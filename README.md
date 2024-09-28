@@ -3,6 +3,8 @@
 Dapp Components that you or LLM can copy and paste into your apps. Accessible. Customizable. Open Source.
 Inspired by [shadcn/ui](https://github.com/shadcn-ui/ui/tree/main)
 
+⚠️ This is alpha version under active development
+
 ### Introduction 
 
 This is NOT a component library. It's a collection of re-usable components and receipes that you can copy and paste into your dApps.
