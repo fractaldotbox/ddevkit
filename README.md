@@ -59,7 +59,7 @@ Faster: Build size is generally not the major concern given treeshaking at moder
 ## Why not using library X?
 
 - Build on top of viem, which has minimum dependency, and @radix for max compatability with shadcn. 
-- We love wagmi and many components depends on @wagmi/core, while we stay framework agnoistic so wagmi is peer dependency for react.
+- We love wagmi and many other web3 libraries depends on it anyway. Thus many, but not all, components depends on @wagmi/core, while we stay framework agnoistic so wagmi is peer dependency for react.
 - Regarding data fetching, we try to decouple that with presentation layer, data source
     - wagmi use tanstack query which has adapters to various frameworks.
     - data source can be RPC, the graph or customized.
@@ -124,7 +124,7 @@ Solid.js development is meaningful to make the library framework-agnoistic and m
 
 - optimism kit
 - Playground
-- EAS attestation
+- EAS attestation without ethers dependency
 - XMTP
 - identity with ENS, basename resolution
 - Wagmi
