@@ -5,7 +5,8 @@
   "exports": {
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
-    "./code": "./src/code.tsx"
+    "./code": "./src/code.tsx",
+    "./fixture": "./src/fixture.ts"
   },
   "scripts": {
     "generate:component": "turbo gen react-component",

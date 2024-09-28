@@ -38,5 +38,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Making of
 - we try to dogfood
-
+- pnpm create wagmi --template next
 `pnpm --filter sample-socialfi exec shadcn add avatar`
+

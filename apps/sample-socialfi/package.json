@@ -11,6 +11,7 @@
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-navigation-menu": "^1.2.0",
     "@repo/ui-react": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

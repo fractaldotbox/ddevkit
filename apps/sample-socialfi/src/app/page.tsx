@@ -17,9 +17,8 @@ export default function Home() {
         />
         <ol>
           <li>
-            Get started by editing <code>app/page.tsx</code>
+            Get started chatting with your friends
           </li>
-          <li>Save and see your changes instantly.</li>
         </ol>
 
         <Avatar>
@@ -44,12 +43,11 @@ export default function Home() {
             Deploy now
           </a>
           <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
+            href="/chat"
             rel="noopener noreferrer"
             className={styles.secondary}
           >
-            Read our docs
+            Chat
           </a>
         </div>
         <Button appName="web" className={styles.secondary}>
