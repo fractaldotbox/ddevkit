@@ -1,81 +1,54 @@
-# Turborepo starter
+## Geist Dapp Kit
 
-This is an official starter Turborepo.
 
-## Using this example
+Dapp Components that you or LLM can copy and paste into your apps. Accessible. Customizable. Open Source.
 
-Run the following command:
+Inspired by shadcn
 
-```sh
-npx create-turbo@latest
-```
+### Introduction 
 
-## What's inside?
+This is NOT a component library. It's a collection of re-usable components that you can copy and paste into your apps.
 
-This Turborepo includes the following packages/apps:
+Besides decouple style and implementation as in shadcn, the bigger motivation is to support developing dapp are that are trustless, secure with minimal dependency to particular ecosystems and avoid supply chain attacks. We try to improve DX but the end goal is to support autonomous agents to control and iterate Decentralized, autonomous website with programmable cryptography. 
 
-### Apps and Packages
+We try to align conventions with shadcn so `geist` is alias to shadcdn with extra batteries. 
+i.e.
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+`npx geist@latest add context-menu` should work
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
-### Utilities
+Read more on the original motivations of [shadcdn](https://ui.shadcn.com/docs)
 
-This Turborepo has some additional tools already setup for you:
+Dapp needs are quite different and end to end tested flows, not just UI components. Fork instead of adding these into the shadcdn registry.
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## Installation
 
-### Build
+### Frameworks
+Next.js
 
-To build all apps and packages, run the following command:
+## FAQ
 
-```
-cd my-turborepo
-pnpm build
-```
+### Why 
+Start with some sensible defaults, then customize the components to your needs.
 
-### Develop
+One of the drawbacks of packaging the components in an npm package is that the style is coupled with the implementation. The design of your components should be separate from their implementation.
 
-To develop all apps and packages, run the following command:
+## Why not using library X?
 
-```
-cd my-turborepo
-pnpm dev
-```
+- Build on top of viem. 
+- Opinonated (us) and unopionated extensions  
 
-### Remote Caching
+- These components wont be possible without amazing work at onchainkit, ensjs, react startk etc. Thus we create default opionated way of , also shows receipes if opt for integrating particular 3rd party libraries.
+- Many components are of similar purposes but not interoperable and generally it is hard to achieve consistent styles and integrating multiple fast itearting libraries is often a headache itself. Build size is not the major concern given treeshaking at modern ESM. 
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+## Which frameworks are supported
+- Currently we focus on React with wagmi, but make it framework agnostic and support solid.js is a goal.
 
-```
-cd my-turborepo
-npx turbo login
-```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+## Repository structure
+This is the monorepo including documentations and packages released. 
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
 
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+## Acknolwedgement
+- Thanks shadcn released with MIT license to make this possible
