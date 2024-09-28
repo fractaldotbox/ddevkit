@@ -1,5 +1,5 @@
 {
-  "name": "@repo/ui",
+  "name": "@repo/ui-react",
   "version": "0.0.0",
   "private": true,
   "exports": {
@@ -8,11 +8,13 @@
     "./code": "./src/code.tsx"
   },
   "scripts": {
-    "lint": "eslint . --max-warnings 0",
-    "generate:component": "turbo gen react-component"
+    "generate:component": "turbo gen react-component",
+    "lint": "biome check .",
+    "lint:fix": "pnpm lint --write",
+    "format:check": "biome format .",
+    "format": "biome format . --write"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@turbo/gen": "^1.12.4",
     "@types/node": "^20.11.24",

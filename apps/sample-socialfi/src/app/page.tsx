@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { Button } from "@repo/ui/button";
+import { Button } from "@repo/ui-react/button";
 import styles from "./page.module.css";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Home() {
   return (
@@ -20,6 +21,11 @@ export default function Home() {
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
+
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
 
         <div className={styles.ctas}>
           <a

@@ -39,7 +39,7 @@ One of the drawbacks of packaging the components in an npm package is that the s
 
 
 ## What is different in dApp development?
-- The space iterate too fast thus working examples matters.
+- The space iterate too fast thus working examples matters. Tools are fragmented are generally do not have sufficient traction.
 - Underated, but libraries should be auditable and dependencies should be minimized, as we learnt from ledger connect kit incident. Check out Extraordinary work at by paulmillr at [scure](https://github.com/paulmillr/scure-base).
 
 ## Why not using library X?
@@ -47,7 +47,9 @@ One of the drawbacks of packaging the components in an npm package is that the s
 - Build on top of viem, which has minimum dependency, and @radix for max compatability with shadcn. 
 
 - Opinonated (us) defaults and unopionated extensions  
- - First of all, we use a plugin systems, such that sensible libraries like starknetjs could be added easily, although we also prefer [scure-starknet](https://github.com/paulmillr/scure-starknet). Libraries such as rainbowkit are tntentionally excluded.
+
+ - First of all, we use a plugin systems, such that libraries sensible to use case like `starknetjs` could be added easily, although we also prefer [scure-starknet](https://github.com/paulmillr/scure-starknet). Libraries such as rainbowkit are intentionally excluded. 
+- At its core, we prefer lightweight, unopionated libraries such as `zustand` or `permissionless`.
 - At the end of the day these are code receipes and components, nothing stops anyone to extend with particular component libraries.    
     - These components wont be possible without amazing work at [onchainkit](https://github.com/coinbase/onchainkit), ensjs, [starknet-react](https://github.com/apibara/starknet-react) etc. Thus we create default opionated receipes, also shows side by side methods to opt for integrating particular 3rd party libraries.
     - It is also not possible for authors keep track of latest versions and best way is to make it a community effort.
