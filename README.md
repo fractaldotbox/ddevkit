@@ -1,11 +1,11 @@
 ## Geist Dapp Kit
 
 Dapp Components that you or LLM can copy and paste into your apps. Accessible. Customizable. Open Source.
-Inspired by shadcn/ui
+Inspired by [shadcn/ui](https://github.com/shadcn-ui/ui/tree/main)
 
 ### Introduction 
 
-This is NOT a component library. It's a collection of re-usable components that you can copy and paste into your apps.
+This is NOT a component library. It's a collection of re-usable components and receipes that you can copy and paste into your dApps.
 
 We want to create generic dApp components that work well across different ecosystems. 
 These components should adapt to common smart contract interfaces. 
