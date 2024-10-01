@@ -11,10 +11,13 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.2",
+    "cross-env": "^7.0.3",
     "prettier": "^3.2.5",
     "shadcn": "^2.1.0",
     "turbo": "^2.1.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "@graphprotocol/graph-cli": "^0.67.2",
+    "@graphprotocol/graph-ts": "^0.31.0"
   },
   "engines": {
     "node": ">=20",

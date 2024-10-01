@@ -11,14 +11,14 @@ export const hooks: Registry = [
         },
       ],
     },
-    {
-      name: "use-account",
-      type: "registry:hook",
-      files: [
-        {
-          path: "hooks/use-account.ts",
-          type: "registry:hook",
-        },
-      ],
-    }
+    // {
+    //   name: "use-",
+    //   type: "registry:hook",
+    //   files: [
+    //     {
+    //       path: "hooks/use-account.ts",
+    //       type: "registry:hook",
+    //     },
+    //   ],
+    // }
   ]

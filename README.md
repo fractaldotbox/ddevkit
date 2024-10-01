@@ -1,9 +1,22 @@
 ## Geist Dapp Kit
 
-Dapp Components that you or LLM can copy and paste into your apps. Accessible. Customizable. Open Source.
+Optimized dApp Components that you or LLM can copy and paste into your apps. Localized. Accessible. Customizable. Open Source.
 Inspired by [shadcn/ui](https://github.com/shadcn-ui/ui/tree/main)
 
 ⚠️ This is alpha version under active development
+
+## Design principles
+- 🙌 Familiar Techstack `viem` `wagmi` 
+- 😌 Minimized dependencies. No `ethers`
+- 🙌 Optimized data fetching and unopionated data source 
+- Small. Faster for both user and ci. Cheaper to store. 
+- SSR ready
+- 🔒 Secure. No dynamic script loading. 
+- Censorship Resistant. Control on Asset gateway to be used.
+- 🌐 Accessible & Localization ready
+- ⛓️ Ecosystems, Framework agnostic
+- 🙌  Working example. First class Storybook support, avoid outdated documentations. 
+- Authors can walkaway. No npm account to secure.
 
 ### Introduction 
 
@@ -18,6 +31,13 @@ Besides decoupling style and implementation as in shadcn, the bigger motivation 
 We try to align conventions with shadcn so `geist` is alias to shadcdn with extra batteries. 
 i.e.
 
+
+
+### Storybook
+- Ease development and showcase
+https://github.com/shadcn-ui/ui/pull/1561
+
+
 `npx geist@latest add connect` should work
 
 
@@ -27,9 +47,10 @@ Dapp needs are quite different and end to end tested flows, not just UI componen
 
 
 ### When to use
-
+- If you want support, maximium compatability latest feature, go for official sdks that are well maintained. 
 - works when components are generic
 - To maintain highly customized components, this library in a sense helped to ensure no extra dependency are created but only generic components, but it does not encapsulate related application logic. 
+
 
 
 ## Installation
@@ -63,6 +84,7 @@ Faster: Build size is generally not the major concern given treeshaking at moder
 - Regarding data fetching, we try to decouple that with presentation layer, data source
     - wagmi use tanstack query which has adapters to various frameworks.
     - data source can be RPC, the graph or customized.
+   
 
 - Opinonated (us) defaults and unopionated extensions  
 
@@ -99,11 +121,15 @@ Use at your own risk as you should always have been and security is often applic
 
 ## Repository structure
 This is the monorepo including documentations and packages released. 
+Note only default style is supported. 
 
 
 ## Rationale
 - Dependency tree analyzer
 - open source apps
+- `graphql-request` is used with @tanstack query as lightweight fetching. Data are not normalized
+   - it is optional to combine with [client from the graph](https://thegraph.com/docs/en/querying/querying-from-an-application/#graph-client) with block tracking, cross-chain subgraphs handling etc. 
+- `@graphprotocol/client-cli` is used for artifact generating
 
 - jotai over zustand
   - Jotai is preferred although zustand is being used in scaffold. Firstly it is used by shadcn, and it [doesn't use a single store as in zustand](https://zustand.docs.pmnd.rs/getting-started/comparison#jotai)
@@ -123,9 +149,40 @@ We prioritize high demanded components which do not have a standing library.
 Solid.js development is meaningful to make the library framework-agnoistic and make dapp more ubitquious, such as in chrome extensions. 
 
 - optimism kit
+- support identities besides basename
+- examples with multiple wallets / privy, dynamic etc
 - Playground
 - EAS attestation without ethers dependency
+- visualize EFP 
 - XMTP
 - identity with ENS, basename resolution
 - Wagmi
+- Frame
 
+## Dev
+- pnpm --filter @repo/cli start:dev -v
+- alias to make things easier 
+  - `alias geist='pnpm --filter @repo/cli start:dev'`
+- but pnpm exec do not support alias
+- for now ensure cwd picked up correctly
+  -  -c `pwd`   
+
+
+- render COMPONENTS_REGISTRY_URL=http://localhost:3003
+  - <COMPONENTS_REGISTRY_URL>/registry/index.json
+
+- use customized
+
+
+## Live Demo
+We host lightweight, autonomous websites on IPFS as demo. Attached is bundle size
+We created a sample app to compare bundle size with common libraries.
+Depends on similar libraries, gateway
+
+- Sample Apps (TODO)
+  - simple explorer
+  - re-create [EFP graph] (https://x.com/BrantlyMillegan/status/1840875170803667319)
+
+- Who is using
+  - Geist 
+  - Ethereum Localizatino Service
