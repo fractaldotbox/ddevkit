@@ -21,3 +21,7 @@ pnpm --filter sample-deps build:analyze
 Gzipped node:1.19MB client:813kb
 
 wagmi only client<260kb
+
+
+## Future study
+- analyze [dependency graph on github](https://github.com/wevm/wagmi/network/dependents) and find overlapping usage of wagmi & ethers 

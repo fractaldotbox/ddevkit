@@ -6,17 +6,15 @@ Inspired by [shadcn/ui](https://github.com/shadcn-ui/ui/tree/main)
 ⚠️ This is alpha version under active development
 
 ## Design principles
-- 🙌 Familiar Techstack `viem` `wagmi` 
-- 😌 Minimized dependencies. No `ethers`
-- 🙌 Optimized data fetching and unopionated data source 
-- Small. Faster for both user and ci. Cheaper to store. 
-- SSR ready
-- 🔒 Secure. No dynamic script loading. 
-- Censorship Resistant. Control on Asset gateway to be used.
+- 🔻 Minimized dependencies, familiar techstack. No `ethers`. All in `viem` `wagmi` `permissionless` `radix` `tailwindcss`, user controls the rest.
+- 🏎 Optimized and SSR ready. Unified data fetching with unopionated data source.
+- 🤌 Small. Faster for both user and ci. Cheaper to store. 
+- 🔒 Secure. No dynamic script loading. Audited dependencies (TODO) 
+- 🕊️ Censorship Resistant. Take control on asset gateway.
 - 🌐 Accessible & Localization ready
 - ⛓️ Ecosystems, Framework agnostic
-- 🙌  Working example. First class Storybook support, avoid outdated documentations. 
-- Authors can walkaway. No npm account to secure.
+- 🙌 Working example. First class Storybook support, avoid outdated documentations. 
+- 🚶 Open source. Authors can walkaway. No npm account to secure.
 
 ### Introduction 
 
@@ -26,11 +24,17 @@ We want to create generic dApp components that work well across different ecosys
 These components should adapt to common smart contract interfaces. 
 
 
-Besides decoupling style and implementation as in shadcn, the bigger motivation is to support developing dapp are that are trustless, secure with minimal dependency to particular ecosystems and avoid supply chain attacks. We try to improve DX but the end goal is to support autonomous agents to control and iterate Decentralized, autonomous website with programmable cryptography. 
+Besides decoupling style and implementation as in shadcn, the bigger motivation is to support developing dapp are that are trustless, secure with minimal dependency to particular ecosystems and avoid supply chain attacks.
+This aims to provide reasonable defaults and allow user to extend per need. 
+We try to improve DX but the end goal is to support autonomous agents to control and iterate Decentralized, autonomous website with programmable cryptography. 
 
 We try to align conventions with shadcn so `geist` is alias to shadcdn with extra batteries. 
 i.e.
 
+
+## What can be done
+- 
+<!-- - Create merkle tree with @openzeppelin/merkle-tree -->
 
 
 ### Storybook
@@ -112,7 +116,7 @@ Faster: Build size is generally not the major concern given treeshaking at moder
 
 
 ## Which frameworks are supported
-- Currently we focus on React with wagmi, but make it framework agnostic and support solid.js is a goal.
+- Currently we focus on React with wagmi, but make it framework agnostic and support solid.js is a goal (reaplcing underlying @radix ui components) .
 - for web framework, next.js is supported for now. We will try to align what is supported at shadcdn
 
 ## How secure is this package?
