@@ -10,14 +10,17 @@
     "format:check": "turbo run format:check --parallel"
   },
   "devDependencies": {
+    "@0no-co/graphqlsp": "^1.12.15",
     "@biomejs/biome": "^1.9.2",
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/introspection": "^4.0.3",
+    "@graphql-codegen/schema-ast": "^4.1.0",
+    "@parcel/watcher": "^2.4.1",
     "cross-env": "^7.0.3",
     "prettier": "^3.2.5",
     "shadcn": "^2.1.0",
     "turbo": "^2.1.2",
-    "typescript": "^5.4.5",
-    "@graphprotocol/graph-cli": "^0.67.2",
-    "@graphprotocol/graph-ts": "^0.31.0"
+    "typescript": "^5.4.5"
   },
   "engines": {
     "node": ">=20",
