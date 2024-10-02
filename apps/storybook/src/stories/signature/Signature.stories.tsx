@@ -1,70 +1,92 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
+import { atom, useAtom } from 'jotai'
+
 import { withWagmiProvider } from '../decorators/wagmi';
 import * as secp from '@noble/secp256k1';
-
-// wrapper for storbook demo
-const SignatureFormDemo = ({ isRaw = false, privateKey }: { isRaw: boolean, privateKey?: string }) => {
-    // const [message, setMessage] = useState('');
-    // const [signature, setSignature] = useState('');
-
-
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
-
-        if (isRaw) {
-
-        }
-
-        // try {
-        //     const signature = await signMessage(message);
-        //     setSignature(secp.utils.bytesToHex(signature));
-        // } catch (error) {
-        //     console.error('Error signing message:', error);
-        // }
-    };
+import { useAccount, useVerifyMessage, useWalletClient } from 'wagmi';
+import { SignatureForm } from './SignatureForm';
+import { Hex, Message } from './sign';
+import { Checkbox, Flex } from '@radix-ui/themes';
+import { useState } from 'react';
 
 
+
+const SignatureVerifyBadge = ({ address, message, signature }: {
+    address: Hex,
+    message: string,
+    signature: string
+}) => {
+    const { data: results } = useVerifyMessage({
+        address
+    });
+
+    const isVerified = false;
+
+    console.log('results', results)
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            {/* <div className="flex items-center space-x-2">
+                <div id="public-key">
+                    <Address address={publicKeyAddress} />
+                </div>
+                <Label htmlFor="public-key">Public Key</Label>
+            </div> */}
 
-                a
-                {/* <div>
-                    <Text as="label" htmlFor="message">Message:</Text>
-                    <Input
-                        id="message"
-                        type="text"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        required
-                    />
-                </div>
-                <Button type="submit">Sign Message</Button> */}
-            </form>
-            {/* {signature && (
-                <div>
-                    <Text>Signature:</Text>
-                    <Text>{signature}</Text>
-                </div>
-            )} */}
+            <Flex align="center" gap="2">
+                <Checkbox size="1" checked={isVerified} />
+                Verified!
+            </Flex>
+            <div>Signature: {signature}</div>
+            <div>Message: </div>
+        </div>
+    );
+
+}
+
+const messageAtom = atom('')
+const signatureAtom = atom('')
+
+
+const SignatureFormWagmi = () => {
+    const { data: client } = useWalletClient();
+    const account = useAccount();
+
+    const [message,] = useAtom(messageAtom);
+    const [signature,] = useAtom(signatureAtom);
+
+    // TODO hex message
+    return (
+        <div>
+            Account {account.address}
+            <SignatureForm
+                messageAtom={messageAtom}
+                signatureAtom={signatureAtom}
+                signMessage={async (message: Message) => {
+                    console.log('client', client)
+                    if (!client) {
+                        return;
+                    }
+                    return await client.signMessage({
+                        message
+                    })
+                }} />
+            <SignatureVerifyBadge
+                address={account.address!}
+                message={message} signature={signature} />
         </div>
     );
 };
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
+
+
 const meta = {
-    title: 'Signature/SignatureFormDemo',
-    component: SignatureFormDemo,
-    parameters: {
-        // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
-        layout: 'centered',
-    },
-    // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-    tags: ['autodocs'],
+    title: 'Signature/SignatureForm',
+    component: SignatureFormWagmi,
+
     // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-} satisfies Meta<typeof SignatureFormDemo>;
+} satisfies Meta<typeof SignatureFormWagmi>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -72,20 +94,12 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Wagmi: Story = {
     args: {
-        isRaw: false
     },
     decorators: [
         withWagmiProvider()
     ]
 };
 
-
-export const Raw: Story = {
-    args: {
-        isRaw: true,
-        privateKey: secp.utils.randomPrivateKey(); // Secure random private key
-    },
-};
 
 
 

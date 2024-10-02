@@ -4,6 +4,9 @@ Optimized dApp Components that you or LLM can copy and paste into your apps. Loc
 Inspired by [shadcn/ui](https://github.com/shadcn-ui/ui/tree/main)
 
 ⚠️ This is alpha version under active development
+## For developers
+- only storybook is working for now, `pnpm --filter storybook storybook`
+- will extract components patterns into registry and make that work with shadcn
 
 ## Design principles
 - 🔻 Minimized dependencies, familiar techstack. No `ethers`. All in `viem` `wagmi` `permissionless` `radix` `tailwindcss`, user controls the rest.
@@ -32,15 +35,19 @@ We try to align conventions with shadcn so `geist` is alias to shadcdn with extr
 i.e.
 
 
-## What can be done
-- 
+## Documentations, Roadmap
+- Under [/apps/docs/md/](/apps/docs/md)
+
+## Samlpe usage
+- Component showing ENS resolved name and Balance
+- sign attestations
+- sign transaction with account abstraction
 <!-- - Create merkle tree with @openzeppelin/merkle-tree -->
 
 
 ### Storybook
 - Ease development and showcase
 https://github.com/shadcn-ui/ui/pull/1561
-
 
 `npx geist@latest add connect` should work
 
@@ -73,6 +80,7 @@ Secure: Avoid supply chain attack
 
 Faster: Build size is generally not the major concern given treeshaking at modern ESM, but we avoid duplications at various depenedencies such as having both jotai and zustand.
 
+## Why treeshaking is not enough?
 
 
 ## What is different in dApp development?

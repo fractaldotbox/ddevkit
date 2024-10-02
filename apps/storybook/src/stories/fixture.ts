@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import { addr } from 'micro-eth-signer';
 
  const vitalik = {
     ens: 'vitalik.eth',
@@ -10,6 +11,12 @@ export const BY_USER = {
 }
 
 
+
+export const getRandomAccount = ()=>{
+    return addr.random();
+}
+
+
 export const getRandomAddress = ()=>{
-    return faker.finance.ethereumAddress()
+    return addr.random().address;
 }
