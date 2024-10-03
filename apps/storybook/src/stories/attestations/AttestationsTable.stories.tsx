@@ -1,12 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { faker } from '@faker-js/faker';
-import { Attestations } from './Attestations';
+import { AttestationsTable } from './AttestationsTable';
 import { Address, Hex } from 'viem';
 import { withWagmiProvider } from '../decorators/wagmi';
+import { BY_USER, getRandomAddress } from '../fixture';
 
 const meta = {
-    title: 'Attestations/Attestations',
-    component: Attestations,
+    title: 'Attestations/AttestationsTable',
+    component: AttestationsTable,
     parameters: {
         layout: 'centered',
     },
@@ -14,7 +15,7 @@ const meta = {
     decorators: [
         withWagmiProvider()
     ]
-} satisfies Meta<typeof Attestations>;
+} satisfies Meta<typeof AttestationsTable>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -23,14 +24,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Exists: Story = {
     args: {
-        address: '0x1CB34c1eC454708e7C849975E8e545B54417CdFf' as Address,
+        address: BY_USER.easSampleAttester.address,
     },
 };
 
 
 export const None: Story = {
     args: {
-        address: faker.finance.ethereumAddress() as Hex,
+        address: getRandomAddress(),
     },
 };
 

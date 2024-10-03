@@ -1,42 +1,37 @@
-import { gql, request } from 'graphql-request'
+import { request, rawRequest } from 'graphql-request'
 import { useQuery } from '@tanstack/react-query'
-
-import { graphql } from '@repo/gql'
+import { gql } from '@repo/graphql'
 import { Address, Hex } from 'viem'
+import { AllAttestationsByQuery } from 'node_modules/@repo/graphql/src/graphql/graphql';
 
-// gql works
-// Invalid AST Node: {}
-// for generated graphql(``)
-
-// const allAttestationsByQuery = gql`
-//   query allAttestationsBy(
-//     $where: AttestationWhereInput
-//   ) {
-//     attestations(where: $where) {
-//       id
-//       txid
-//       schemaId
-//       attester
-//     }
+// TODO consider schema names or separate query
+// schema {
+//   id
+//   schemaNames {
+//     name
 //   }
-// `
+// }
 
-const allAttestationsByQuery = graphql(`
+const allAttestationsByQuery = gql(`
   query allAttestationsBy(
     $where: AttestationWhereInput
   ) {
     attestations(where: $where) {
       id
       txid
+      recipient
+      time
+      isOffchain
       schemaId
       attester
     }
   }
-`)
+`);
+
+export type AttestationQueryResult = AllAttestationsByQuery['attestations'][0]
 
 
-// Invalid AST Node: {}
-
+// TODO type safety
 export const useGetAttestations =  (
     {
         chainId,
@@ -47,20 +42,23 @@ export const useGetAttestations =  (
     }
 )=>{
 
-  // ignore the execution fn
+
+  // https://github.com/dotansimha/graphql-code-generator/blob/master/examples/react/tanstack-react-query/src/use-graphql.ts
+
+  // To confirm schema consistency across multiple chains
   console.log('useGetAttestations', chainId, address)
  const results = useQuery({
     queryKey: ['attestations', chainId, address],
     queryFn: async () =>
-      request(
+      rawRequest<AllAttestationsByQuery>(
         'https://easscan.org/graphql',
-        allAttestationsByQuery,
+        allAttestationsByQuery.toString(),
         {
           "where": {
             "attester": {
               "in": [address]
             }
-          }
+          } 
         }
       ),
   });

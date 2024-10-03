@@ -1,5 +1,5 @@
 {
-  "name": "@repo/gql",
+  "name": "@repo/graphql",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "dist"
   ],
   "exports": {
-    ".": "./src/gql/index.ts"
+    ".": "./src/graphql/index.ts"
   },
   "scripts": {
     "build:gql":"graphql-codegen --config codegen.ts",

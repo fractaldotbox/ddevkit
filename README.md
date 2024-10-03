@@ -1,12 +1,14 @@
 ## Geist Dapp Kit
 
-Optimized dApp Components that you or LLM can copy and paste into your apps. Localized. Accessible. Customizable. Open Source.
+Optimized dApp Components that you or LLM can copy and paste into your apps.  Accessible, Localized. Customizable. Open Source.
 Inspired by [shadcn/ui](https://github.com/shadcn-ui/ui/tree/main)
 
-⚠️ This is alpha version under active development
+⚠️ This is preview alpha version under active development
 ## For developers
-- only storybook is working for now, `pnpm --filter storybook storybook`
-- will extract components patterns into registry and make that work with shadcn
+- Current approach is to focus on storybook, `pnpm --filter storybook storybook`
+  - so we identify key challenges and make sensible architecture decisions e.g. graphql
+- end-goal is to make each of them copy-paste ready code
+  - to be extraced into registry for shadcn cli work
 
 ## Design principles
 - 🔻 Minimized dependencies, familiar techstack. No `ethers`. All in `viem` `wagmi` `permissionless` `radix` `tailwindcss`, user controls the rest.
@@ -134,6 +136,14 @@ Use at your own risk as you should always have been and security is often applic
 ## Repository structure
 This is the monorepo including documentations and packages released. 
 Note only default style is supported. 
+
+
+## Graphql
+- currently we consolidate graphql generation and types under `packages/graphql` instead of workspace level
+- opted for string [documentMode](https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#when-to-use-a-string-documentmode
+) for smaller bundle size and not using AST on the client (tanstack)
+- we will try to modularize and support cli to generate under `@/graphql` 
+
 
 
 ## Rationale
