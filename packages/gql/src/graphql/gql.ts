@@ -14,13 +14,13 @@ import * as types from './graphql';
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  query allAttestationsBy(\n    $where: AttestationWhereInput\n  ) {\n    attestations(where: $where) {\n      id\n      txid\n      recipient\n      time\n      isOffchain\n      schemaId\n      attester\n    }\n  }\n": types.AllAttestationsByDocument,
+    "\n  query allAttestationsBy(\n    $where: AttestationWhereInput\n  ) {\n    attestations(where: $where) {\n      id\n      txid\n      recipient\n      schema {\n        index\n        schemaNames {\n          name\n        }\n      }\n      time\n      isOffchain\n      schemaId\n      attester\n    }\n  }\n": types.AllAttestationsByDocument,
 };
 
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query allAttestationsBy(\n    $where: AttestationWhereInput\n  ) {\n    attestations(where: $where) {\n      id\n      txid\n      recipient\n      time\n      isOffchain\n      schemaId\n      attester\n    }\n  }\n"): typeof import('./graphql').AllAttestationsByDocument;
+export function gql(source: "\n  query allAttestationsBy(\n    $where: AttestationWhereInput\n  ) {\n    attestations(where: $where) {\n      id\n      txid\n      recipient\n      schema {\n        index\n        schemaNames {\n          name\n        }\n      }\n      time\n      isOffchain\n      schemaId\n      attester\n    }\n  }\n"): typeof import('./graphql').AllAttestationsByDocument;
 
 
 export function gql(source: string) {

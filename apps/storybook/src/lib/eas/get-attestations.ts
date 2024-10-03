@@ -4,13 +4,6 @@ import { gql } from '@repo/graphql'
 import { Address, Hex } from 'viem'
 import { AllAttestationsByQuery } from 'node_modules/@repo/graphql/src/graphql/graphql';
 
-// TODO consider schema names or separate query
-// schema {
-//   id
-//   schemaNames {
-//     name
-//   }
-// }
 
 const allAttestationsByQuery = gql(`
   query allAttestationsBy(
@@ -20,6 +13,12 @@ const allAttestationsByQuery = gql(`
       id
       txid
       recipient
+      schema {
+        index
+        schemaNames {
+          name
+        }
+      }
       time
       isOffchain
       schemaId
@@ -63,6 +62,5 @@ export const useGetAttestations =  (
       ),
   });
 
-  console.log('results', results, results?.isLoading, results?.error, results?.data)
   return results;
 }

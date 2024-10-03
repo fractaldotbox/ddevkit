@@ -5,16 +5,18 @@
 // checksum encoded
 
 import { Address, getAddress, isHex  } from 'viem';
+import { getShortHex } from './hex';
 
 
 export type GetShortAddressReturnType = string | null;
 
-export const getShortAddress = (address:Address, sectionLength:number= 4):GetShortAddressReturnType =>{
+export const getShortAddress = (address:Address, sectionLength:number = 4):GetShortAddressReturnType =>{
     if(!isHex(address)|| (address as string )?.length !== 42){
         throw new Error('Invalid Address');
     }
 
     const checksumed = getAddress(address);
 
-    return [checksumed.slice(0,sectionLength+2), checksumed.slice(-sectionLength) ].join('...')
+    return getShortHex(checksumed, sectionLength);
+
 }

@@ -6,7 +6,7 @@ import { withWagmiProvider } from '../decorators/wagmi';
 import * as secp from '@noble/secp256k1';
 import { useAccount, useVerifyMessage, useWalletClient } from 'wagmi';
 import { SignatureForm } from './SignatureForm';
-import { Hex, Message } from './sign';
+import { Hex } from './sign';
 import { Checkbox, Flex } from '@radix-ui/themes';
 import { useState } from 'react';
 
@@ -23,7 +23,6 @@ const SignatureVerifyBadge = ({ address, message, signature }: {
 
     const isVerified = false;
 
-    console.log('results', results)
 
     return (
         <div>

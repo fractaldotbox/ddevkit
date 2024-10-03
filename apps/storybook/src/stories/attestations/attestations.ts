@@ -1,6 +1,6 @@
 import { AllAttestationsByQuery, Attestation } from "node_modules/@repo/graphql/src/graphql/graphql"
 import { Address } from "viem"
-import {   formatDistance, subDays } from 'date-fns'
+import {   format, formatDistance, subDays } from 'date-fns'
 import { AttestationQueryResult } from "@/lib/eas/get-attestations";
 
 export enum AttestationType {
@@ -10,15 +10,18 @@ export enum AttestationType {
 
 // TODO sync graphql type
 export const asAttestationMeta = (attestation: AttestationQueryResult) => {
-    const {id, attester, recipient, schemaId, txid, isOffchain, time = new Date().getTime()} = attestation;
-
+    const {id, attester, recipient, schemaId, schema,  txid, isOffchain, time:_time} = attestation;
+    const schemaName  = schema?.schemaNames?.[0]?.name;
+    const time = _time || new Date().getTime();
+    // TODO component take control of format/locales
     const ageDisplayed = formatDistance(new Date(time * 1000), new Date());
-
     return {
         id,
         schemaId,
-        from: attester,
-        to: recipient,
+        schemaIndex: schema?.index,
+        schemaName,
+        from: attester as Address,
+        to: recipient as Address,
         type: isOffchain ? AttestationType.Offchain : AttestationType.Onchain,
         txid,
         time,
@@ -29,9 +32,10 @@ export const asAttestationMeta = (attestation: AttestationQueryResult) => {
 export type AttestationMeta = {
     id: string,
     schemaId: string,
+    schemaIndex: string,
+    schemaName: string,
     from: Address,
     to: Address,
-    atteser: Address,
     type: AttestationType,
     ageDisplayed: string,
     txid: string,

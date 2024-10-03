@@ -7,9 +7,17 @@ import { DataTable } from "@/components/ui/data-table";
 import { AttestationMeta } from "./attestations";
 import { useMemo } from "react";
 import { asAttestationMeta } from "./attestations";
+import { Badge } from "@/components/ui/badge";
+import { getEasscanSchemaUrl } from "@/lib/eas/util";
+import { mainnet } from "viem/chains";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
+
+
+
+
+// customize column with url getEasscanSchemaUrl()
 
 export const columns: ColumnDef<AttestationMeta>[] = [
     {
@@ -19,6 +27,16 @@ export const columns: ColumnDef<AttestationMeta>[] = [
     {
         accessorKey: "schemaId",
         header: "Schema",
+        cell: ({ row }) => {
+            const schemaId = row.getValue<string>("schemaId");
+            const schemaIndex = row.original.schemaIndex;
+
+            return (
+                <a href={getEasscanSchemaUrl(mainnet, schemaId)} target="_blank">
+                    <Badge>#{schemaIndex}</Badge>
+                </a>
+            )
+        },
     },
     {
         accessorKey: "from",

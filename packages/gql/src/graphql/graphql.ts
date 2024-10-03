@@ -2855,7 +2855,7 @@ export type AllAttestationsByQueryVariables = Exact<{
 }>;
 
 
-export type AllAttestationsByQuery = { __typename?: 'Query', attestations: Array<{ __typename?: 'Attestation', id: string, txid: string, recipient: string, time: number, isOffchain: boolean, schemaId: string, attester: string }> };
+export type AllAttestationsByQuery = { __typename?: 'Query', attestations: Array<{ __typename?: 'Attestation', id: string, txid: string, recipient: string, time: number, isOffchain: boolean, schemaId: string, attester: string, schema: { __typename?: 'Schema', index: string, schemaNames: Array<{ __typename?: 'SchemaName', name: string }> } }> };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -2878,6 +2878,12 @@ export const AllAttestationsByDocument = new TypedDocumentString(`
     id
     txid
     recipient
+    schema {
+      index
+      schemaNames {
+        name
+      }
+    }
     time
     isOffchain
     schemaId
