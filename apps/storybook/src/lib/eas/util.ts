@@ -3,19 +3,27 @@ import { Address, Chain } from "viem";
 import { mainnet } from "viem/chains";
 
 
-const getEasscanEndpoint = (chain: Chain) => {
-    return  EAS_CONFIG_BY_CHAIN_ID[chain.id]?.easscanUrl;
+const getEasscanEndpoint = (chainId: number) => {
+    return  EAS_CONFIG_BY_CHAIN_ID[chainId]?.easscanUrl;
 
 }
 
 
 
-export const getEasscanAddressUrl = (chain:Chain, address:Address)=>{
-    return `${getEasscanEndpoint(chain)}/address/${address}`
+export const getEasscanAttestationUrl = (chainId:number, uid:string, isOffchain: boolean)=>{
+
+    if(isOffchain){
+        return `${getEasscanEndpoint(chainId)}/offchain/attestation/view/${uid}`
+    }
+}
+
+
+export const getEasscanAddressUrl = (chainId:number, address:Address)=>{
+    return `${getEasscanEndpoint(chainId)}/address/${address}`
 }
 
 
 
-export const getEasscanSchemaUrl = (chain:Chain, schemaId:string)=>{
-    return `${getEasscanEndpoint(chain)}/schema/view/${schemaId}`
+export const getEasscanSchemaUrl = (chainId:number, schemaId:string)=>{
+    return `${getEasscanEndpoint(chainId)}/schema/view/${schemaId}`
 }

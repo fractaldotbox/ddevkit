@@ -1,10 +1,11 @@
+import { AddressOrEns, useEnsData } from "@/hooks/use-efp-api";
 
-// Take in address and display 
-
-export const Name = () => {
+export const Name = ({ addressOrEns }: { addressOrEns: AddressOrEns }) => {
+    const { data, isSuccess } = useEnsData(addressOrEns);
+    const name = data?.ens?.name;
     return (
         <div>
-            Name
+            {name}
         </div>
     )
 }

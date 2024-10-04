@@ -17,8 +17,8 @@ import { Label } from "@radix-ui/react-label"
 import { Separator } from "@/components/ui/separator"
 import { getShortHex } from "@/utils/hex"
 import { format } from "date-fns"
-import { getEasscanSchemaUrl } from "@/lib/eas/util"
 import { mainnet } from "viem/chains"
+import { SchemaBadge } from "./SchemaBadge"
 
 // TODO indicate network 
 const AttestationCardContent = ({ attestation }: { attestation: AttestationMeta }) => {
@@ -32,9 +32,7 @@ const AttestationCardContent = ({ attestation }: { attestation: AttestationMeta 
                 <div className="grid flex-1 auto-rows-min gap-0.5">
                     <div className="text-xs text-muted-foreground">Schema ID</div>
                     <div className="flex items-center gap-1 text-2xl font-bold tabular-nums leading-none">
-                        <a href={getEasscanSchemaUrl(mainnet, schemaId)} target="_blank">
-                            <Badge>#{schemaIndex}</Badge>
-                        </a>
+                        <SchemaBadge chainId={mainnet.id} schemaId={schemaId} schemaIndex={schemaIndex} />
                         <div className="flex flex-col">
                             <div className="text-sm font-normal text-muted-foreground">
                                 <span className="text-sm font-normal">

@@ -3,10 +3,6 @@ import { Address } from "viem"
 import {   format, formatDistance, subDays } from 'date-fns'
 import { AttestationQueryResult } from "@/lib/eas/get-attestations";
 
-export enum AttestationType {
-    Onchain = 'onchain',
-    Offchain = 'offchain'
-}
 
 // TODO sync graphql type
 export const asAttestationMeta = (attestation: AttestationQueryResult) => {
@@ -22,7 +18,7 @@ export const asAttestationMeta = (attestation: AttestationQueryResult) => {
         schemaName,
         from: attester as Address,
         to: recipient as Address,
-        type: isOffchain ? AttestationType.Offchain : AttestationType.Onchain,
+        isOffchain,
         txid,
         time,
         ageDisplayed
@@ -36,7 +32,7 @@ export type AttestationMeta = {
     schemaName: string,
     from: Address,
     to: Address,
-    type: AttestationType,
+    isOffchain: boolean,
     ageDisplayed: string,
     txid: string,
 }

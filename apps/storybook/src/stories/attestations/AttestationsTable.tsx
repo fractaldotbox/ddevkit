@@ -1,15 +1,16 @@
 import { useGetAttestations } from "@/lib/eas/get-attestations";
 import { Address, fromBlobs } from "viem";
 import { useChainId } from "wagmi";
-import { Progress } from "@/components/ui/progress"
 import { ColumnDef } from "@tanstack/react-table"
 import { DataTable } from "@/components/ui/data-table";
 import { AttestationMeta } from "./attestations";
 import { useMemo } from "react";
 import { asAttestationMeta } from "./attestations";
 import { Badge } from "@/components/ui/badge";
-import { getEasscanSchemaUrl } from "@/lib/eas/util";
+import { getEasscanAddressUrl, getEasscanAttestationUrl, getEasscanSchemaUrl } from "@/lib/eas/util";
 import { mainnet } from "viem/chains";
+import { truncate } from "@/utils/hex";
+import { SchemaBadge } from "./SchemaBadge";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -23,6 +24,15 @@ export const columns: ColumnDef<AttestationMeta>[] = [
     {
         accessorKey: "id",
         header: "UID",
+        cell: ({ row }) => {
+            const id = row.getValue<string>("id");
+
+            return (
+                <a href={getEasscanAttestationUrl(mainnet.id, id, row.original.isOffchain)} target="_blank">
+                    {truncate(id)}
+                </a>
+            )
+        },
     },
     {
         accessorKey: "schemaId",
@@ -32,9 +42,7 @@ export const columns: ColumnDef<AttestationMeta>[] = [
             const schemaIndex = row.original.schemaIndex;
 
             return (
-                <a href={getEasscanSchemaUrl(mainnet, schemaId)} target="_blank">
-                    <Badge>#{schemaIndex}</Badge>
-                </a>
+                <SchemaBadge chainId={mainnet.id} schemaId={schemaId} schemaIndex={schemaIndex} />
             )
         },
     },
@@ -50,6 +58,13 @@ export const columns: ColumnDef<AttestationMeta>[] = [
     {
         accessorKey: "type",
         header: "Type",
+        cell: ({ row }) => {
+            const isOffchain = row.original.isOffchain;
+
+            return (
+                isOffchain ? 'offchain' : 'onchain'
+            )
+        },
     },
     {
         accessorKey: "ageDisplayed",

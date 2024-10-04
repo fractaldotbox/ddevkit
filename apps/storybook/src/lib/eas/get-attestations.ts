@@ -2,8 +2,9 @@ import { request, rawRequest } from 'graphql-request'
 import { useQuery } from '@tanstack/react-query'
 import { gql } from '@repo/graphql'
 import { Address, Hex } from 'viem'
-import { AllAttestationsByQuery } from 'node_modules/@repo/graphql/src/graphql/graphql';
+// import { AllAttestationsByQuery } from 'node_modules/@repo/graphql/src/graphql/graphql';
 
+type AllAttestationsByQuery = any;
 
 const allAttestationsByQuery = gql(`
   query allAttestationsBy(

@@ -9,7 +9,6 @@ const meta = {
         layout: 'centered',
     },
     argTypes: {
-        backgroundColor: { control: 'color' },
     },
     args: {},
 } satisfies Meta<typeof UploadForm>;

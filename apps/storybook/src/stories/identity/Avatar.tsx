@@ -1,11 +1,38 @@
 // support ENS, basename
 // Option to use ipfs gateway, ens metadata services
 
-import * as AvatarRadix from '@radix-ui/react-avatar';
+import {
+    Avatar as AvatarPrimitive,
+    AvatarFallback,
+    AvatarImage,
+} from "@/components/ui/avatar"
+import { Skeleton } from "@/components/ui/skeleton";
+import { MetadataService, useIdentity } from "@/hooks/use-identity";
 
-export const Avatar = () => (
-    <AvatarRadix.Root>
-        <AvatarRadix.Image />
-        <AvatarRadix.Fallback />
-    </AvatarRadix.Root>
+// support direct props override while consider extract into common provider
+
+
+export const AvatarDisplayed = ({ addressOrEns, avatarSrc }: {
+    addressOrEns: string,
+    avatarSrc: string
+}) => (
+    <AvatarPrimitive>
+        <AvatarImage src={avatarSrc} alt={addressOrEns} />
+        <AvatarFallback>{addressOrEns}</AvatarFallback>
+    </AvatarPrimitive>
 );
+
+
+// import { getEnsName } from '@wagmi/core'
+
+export const Avatar = ({ addressOrEns }: {
+    addressOrEns: string
+}) => {
+
+    const { avatarSrc, isLoading } = useIdentity(addressOrEns, MetadataService.Efp);
+
+    if (isLoading) {
+        return <AvatarPrimitive><Skeleton className="w-full rounded-full bg-gray-200" /></AvatarPrimitive>
+    }
+    return <AvatarDisplayed addressOrEns={addressOrEns} avatarSrc={avatarSrc} />
+}

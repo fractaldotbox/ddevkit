@@ -1,16 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Name } from './Name';
+import { faker } from '@faker-js/faker';
+import { Hex } from 'viem';
+import { NameWagmi } from './NameWagmi';
+import { Address } from './Address';
 import { BY_USER } from '../fixture';
-import { withQueryClientProvider, } from '../decorators/wagmi';
+import { withWagmiProvider } from '../decorators/wagmi';
 
 const meta = {
-    title: 'Identity/Name/Name',
-    component: Name,
+    title: 'Identity/Name/NameWagmi',
+    component: NameWagmi,
     parameters: {
         layout: 'centered',
     },
     args: {},
-} satisfies Meta<typeof Name>;
+} satisfies Meta<typeof NameWagmi>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -20,6 +23,6 @@ export const Short: Story = {
         addressOrEns: BY_USER.vitalik.address,
     },
     decorators: [
-        withQueryClientProvider()
+        withWagmiProvider()
     ],
 };

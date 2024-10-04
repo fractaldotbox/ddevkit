@@ -11,11 +11,11 @@ Inspired by [shadcn/ui](https://github.com/shadcn-ui/ui/tree/main)
   - to be extraced into registry for shadcn cli work
 
 ## Design principles
-- 🔻 Minimized dependencies, familiar techstack. No `ethers`. All in `viem` `wagmi` `permissionless` `radix` `tailwindcss`, user controls the rest.
+- 🔻 Minimized dependencies, familiar techstack. No `ethers` by default, all in `viem` `wagmi` `permissionless` `radix` `tailwindcss`, user controls the rest.
 - 🏎 Optimized and SSR ready. Unified data fetching with unopionated data source.
 - 🤌 Small. Faster for both user and ci. Cheaper to store. 
 - 🔒 Secure. No dynamic script loading. Audited dependencies (TODO) 
-- 🕊️ Censorship Resistant. Take control on asset gateway.
+- 🕊️ Censorship Resistant. Take explicit control on asset gateway and trust assumptions
 - 🌐 Accessible & Localization ready
 - ⛓️ Ecosystems, Framework agnostic
 - 🙌 Working example. First class Storybook support, avoid outdated documentations. 
@@ -139,6 +139,8 @@ Note only default style is supported.
 
 
 ## Graphql
+- it's challenging to manage schemas & related rate limit for multiple servers
+ - https://docs.ens.domains/web/subgraph#the-graph
 - currently we consolidate graphql generation and types under `packages/graphql` instead of workspace level
 - opted for string [documentMode](https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#when-to-use-a-string-documentmode
 ) for smaller bundle size and not using AST on the client (tanstack)
@@ -169,6 +171,8 @@ Note only default style is supported.
 ## Plan
 We prioritize high demanded components which do not have a standing library.
 Solid.js development is meaningful to make the library framework-agnoistic and make dapp more ubitquious, such as in chrome extensions. 
+
+Avoid Next.js dependencies in general
 
 - optimism kit
 - support identities besides basename
@@ -208,3 +212,8 @@ Depends on similar libraries, gateway
 - Who is using
   - Geist 
   - Ethereum Localizatino Service
+
+
+## TODO 
+- zod schema for address
+- only viem dependencies for core types

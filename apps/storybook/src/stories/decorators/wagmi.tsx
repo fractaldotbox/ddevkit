@@ -5,16 +5,41 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 
 // TODO fix Story type
-export const withWagmiProvider = () => {
-    const queryClient = new QueryClient()
+
+
+const QueryClientProviderWrapper = ({ children }: { children: React.ReactNode }) => {
+
+    return (
+        <QueryClientProvider client={new QueryClient()}>
+            <div>
+                {children}
+            </div>
+        </QueryClientProvider>
+    )
+}
+
+export const withQueryClientProvider = () => {
 
     return (Story: any) => (
         <div>
-            <QueryClientProvider client={queryClient}>
+            <QueryClientProviderWrapper >
+                <Story />
+            </QueryClientProviderWrapper>
+
+        </div>
+    )
+}
+
+
+export const withWagmiProvider = () => {
+    return (Story: any) => (
+        <div>
+            <QueryClientProviderWrapper >
                 <WagmiProvider config={WAGMI_CONFIG}>
                     <Story />
                 </WagmiProvider>
-            </QueryClientProvider>
+            </QueryClientProviderWrapper>
+
         </div>
     )
 }

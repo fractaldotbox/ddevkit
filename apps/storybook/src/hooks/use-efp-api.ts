@@ -1,5 +1,5 @@
 // hooks
-import qs from 'querystring';
+import qs from 'fast-querystring';
 import { useQuery } from "@tanstack/react-query"
 import { Address } from 'viem';
 
@@ -8,7 +8,18 @@ import { Address } from 'viem';
 
 const EFP_ENDPOINT = 'https://api.ethfollow.xyz/api/v1/';
 
-type AddressOrEns = Address | string;
+export type AddressOrEns = Address | string;
+
+export type EfpFollower = {
+    address: Address,
+    is_blocked: boolean,
+    is_following: boolean
+}
+
+export type EfpRecord = {
+    data: string,
+    record_type: 'address'
+}
 
 export type EfpApiOptions = {
     limit?:number, sort?:any
@@ -32,22 +43,24 @@ export const getEndpointEnsData = (addressOrEns:AddressOrEns, options?:EfpApiOpt
 }
 
 
+
+
 // TODO use options at query key
-export const useFollowers = (addressOrEns:AddressOrEns, options?:EfpApiOptions) =>{
-    return  useQuery({
+export const useFollowers = (addressOrEns?:AddressOrEns, options?:EfpApiOptions) =>{
+    return  useQuery<{followers: EfpFollower[]}>({
         queryKey: ['ethfollow.followers', addressOrEns],
         queryFn: async () =>{
-            const endpoint = getEndpointUserFollowers(addressOrEns, options);
+            const endpoint = getEndpointUserFollowers(addressOrEns!, options);
 
             return fetch(endpoint).then(res=>res.json());
-
-        }
+        },
+        enabled: !!addressOrEns
           
       });
 }
 
 export const useFollowing = (addressOrEns:AddressOrEns) =>{
-    return  useQuery({
+    return  useQuery<{following: EfpRecord[]}>({
         queryKey: ['ethfollow.following', addressOrEns],
         queryFn: async () =>{
             
