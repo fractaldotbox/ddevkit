@@ -1,6 +1,9 @@
-import { WagmiProvider } from "wagmi";
+import { useAccount, useConnect, useWalletClient, WagmiProvider } from "wagmi";
 import { WAGMI_CONFIG } from "../../utils/wagmi-config";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
+import { BY_USER, getRandomAccount } from "../fixture";
+import { Hex } from "viem";
 
 
 
@@ -30,8 +33,24 @@ export const withQueryClientProvider = () => {
     )
 }
 
+export const withMockAccount = (isStable = true) => {
+    return (Story: any) => {
+        // Not possible to hoist a private key based account. Inject at action
+        // https://wagmi.sh/react/guides/viem#private-key-mnemonic-accounts
+        const privateKey = isStable ? BY_USER.mock.privateKey : getRandomAccount().privateKey as Hex
+        console.log('privateKey', privateKey)
+        const account = privateKeyToAccount(privateKey)
+        return (
+            <>
+                <Story args={{ account, privateKey }} />
+            </>
+        )
+    }
+
+}
 
 export const withWagmiProvider = () => {
+
     return (Story: any) => (
         <div>
             <QueryClientProviderWrapper >
