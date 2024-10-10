@@ -6,6 +6,11 @@ import { useEffect, useMemo, useState } from "react";
 
 export type EfpFollowerWithName = EfpFollower & { name?: string };
 
+
+/**
+ * This one is client-side based dynamic resolving
+ * Better to opt for SSR
+ */
 export const FollowerListEnsjs = ({ addressOrEns }: { addressOrEns: AddressOrEns }) => {
     const [followersWithNames, setFollowersWithNames] = useState<EfpFollowerWithName[]>([]);
 

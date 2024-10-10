@@ -12,7 +12,7 @@ Inspired by [shadcn/ui](https://github.com/shadcn-ui/ui/tree/main)
 
 ## Design principles
 - 🔻 Minimized dependencies, familiar techstack. No `ethers` by default, all in `viem` `wagmi` `permissionless` `radix` `tailwindcss`, user controls the rest.
-- 🏎 Optimized and SSR ready. Unified data fetching with unopionated data source.
+- 🏎 Optimized and SSR ready. Unified data fetching with unopionated data source, minimized JS
 - 🤌 Small. Faster for both user and ci. Cheaper to store. 
 - 🔒 Secure. No dynamic script loading. Audited dependencies (TODO) 
 - 🕊️ Censorship Resistant. Take explicit control on asset gateway and trust assumptions
@@ -217,3 +217,4 @@ Depends on similar libraries, gateway
 ## TODO 
 - zod schema for address
 - only viem dependencies for core types
+

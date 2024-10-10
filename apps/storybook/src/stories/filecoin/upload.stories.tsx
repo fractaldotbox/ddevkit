@@ -5,9 +5,6 @@ import { UploadForm } from './upload-form';
 const meta = {
     title: 'Filecoin/UploadForm',
     component: UploadForm,
-    parameters: {
-        layout: 'centered',
-    },
     argTypes: {
     },
     args: {},
