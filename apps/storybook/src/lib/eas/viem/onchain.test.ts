@@ -1,9 +1,9 @@
 import { beforeEach, describe, it, expect, test } from "vitest";
-import { createAttestation } from "./onchain-viem";
-import { SignatureType } from "./eas";
+import { makeAttestation, revoke } from "./onchain";
+import { SignatureType } from "../eas";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
-import { createEthersSigner } from "./etherjs-adapter";
-import { EAS } from "@ethereum-attestation-service/eas-sdk";
+import { createEthersSigner } from "../etherjs-adapter";
+import { EAS, NO_EXPIRATION } from "@ethereum-attestation-service/eas-sdk";
 import { AccountNotFoundError } from "node_modules/viem/_types/errors/account";
 import { createWalletClient, Hex, http } from "viem";
 import { sepolia } from "viem/chains";
@@ -18,9 +18,84 @@ export const ZERO_BYTES32 =
 	"0x0000000000000000000000000000000000000000000000000000000000000000";
 
 describe("attest with sepolia contract", () => {
-	test(
+	describe(
 		"create attestation",
-		async () => {
+		() => {
+			const privateKey = process.env.TESTER_PRIVATE_KEY_EAS as Hex;
+			const from = privateKeyToAccount(privateKey);
+
+			// "is a friend schema"
+			// https://sepolia.easscan.org/schema/view/0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a
+			const fixture = {
+				schemaId:
+					"0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a",
+				refUID: ZERO_BYTES32,
+				time: 1728637333n,
+				expirationTime: NO_EXPIRATION,
+				revocationTime: 0n,
+				recipient: "0xFD50b031E778fAb33DfD2Fc3Ca66a1EeF0652165",
+				attester: from.address,
+				revocable: true,
+				// "yes"
+				data: "0x0000000000000000000000000000000000000000000000000000000000000001",
+				value: 0n,
+			};
+
+			const txSigner = createEthersSigner(privateKey, sepolia.id);
+
+			// for sdk parity
+			const eas = new EAS(EASContractAddress);
+
+			const { schemaId, expirationTime, revocable, refUID, data, value } =
+				fixture;
+
+			const request = {
+				schema: schemaId,
+				data: { recipient, expirationTime, revocable, refUID, data, value },
+			};
+
+			// TODO
+			test.only("with sdk ", async () => {
+				const overrides = {
+					signatureType: SignatureType.Direct,
+					from: from.address,
+					// maxFeePerGas: 100000000n.toString(),
+					// maxPriorityFeePerGas: 2000000000n.toString(),
+					// deadline: 0n,
+				};
+
+				const txnSdk = await eas.connect(txSigner).attest(request, overrides);
+
+				console.log("results", txnSdk);
+				const uid = await txnSdk.wait();
+
+				expect(await eas.isAttestationValid(uid)).to.be.true;
+			});
+			test("with viem ", async () => {
+				const client = createWalletClient({
+					chain: sepolia,
+					transport: http(),
+					account: from,
+				});
+
+				const { uids } = await makeAttestation(client, request);
+
+				console.log("attested", { uids });
+
+				expect(await eas.isAttestationValid(uids?.[0])).to.be.true;
+			});
+		},
+		5 * 60 * 1000,
+	);
+
+	describe("revoke", () => {
+		beforeEach(async () => {});
+		test("success", async () => {
+			const eas = new EAS(EASContractAddress);
+
+			const uid =
+				"0x303193e78c6e6cb026dc729e60614dd9e949ea947c6084445293ded6c3b4b4a3";
+
 			const privateKey = process.env.TESTER_PRIVATE_KEY_EAS as Hex;
 			const from = privateKeyToAccount(privateKey);
 
@@ -30,78 +105,22 @@ describe("attest with sepolia contract", () => {
 				account: from,
 			});
 
-			const txSigner = createEthersSigner(privateKey, sepolia.id);
-
-			// for sdk parity
-			const eas = new EAS(EASContractAddress);
-			// eas.connect(txSginer)
-			// "is a friend schema"
-			// https://sepolia.easscan.org/schema/view/0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a
-			const fixture = {
-				// uid: '0x5134f511e0533f997e569dac711952dde21daf14b316f3cce23835defc82c065',
-				schemaId:
-					"0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a",
-				refUID: ZERO_BYTES32,
-				time: 1728637333n,
-				expirationTime: NO_EXPIRATION,
-				revocationTime: 0n,
-				// expirationTime: 1728633919n,
-				// revocationTime: 1728633919n,
-				recipient: "0xFD50b031E778fAb33DfD2Fc3Ca66a1EeF0652165",
-				attester: from.address,
-				revocable: true,
-				// "yes"
-				data: "0x0000000000000000000000000000000000000000000000000000000000000001",
-				value: 0n,
-			};
-
-			const { schemaId, expirationTime, revocable, refUID, data, value } =
-				fixture;
-
-			const salt = encodeBytes32String("SALT");
-			// const overrides = {
-			//   signatureType: SignatureType.Direct,
-			//   from: from.address,
-			//   // maxFeePerGas: 100000000n.toString(),
-			//   // maxPriorityFeePerGas: 2000000000n.toString(),
-			//   deadline: 0n,
-			// }
-
-			const overrides = undefined;
-
-			// use existing
-
-			// fromWalletClient.sign
+			const schemaId =
+				"0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a";
 
 			const request = {
 				schema: schemaId,
-				data: { recipient, expirationTime, revocable, refUID, data, value },
+				data: {
+					uid,
+					value: 0n,
+				},
 			};
 
-			const { uids, receipt } = await createAttestation(request, {
-				account: from,
-			});
+			const tx = await revoke(fromWalletClient, request);
 
-			console.log("attested", { uids, receipt });
-			/**
-			 * use existing sdk
-			 *
-			 */
-
-			// const txnSdk = await eas
-			// 	.connect(txSigner)
-			// 	.attest(
-			// 		request,
-			// 		overrides,
-			// 	);
-
-			// console.log("results", txnSdk);
-			// const uid = await txnSdk.wait();
-
-			// expect(await eas.isAttestationValid(uid)).to.be.true;
-		},
-		5 * 60 * 1000,
-	);
+			expect(await eas.isAttestationRevoked(uid)).to.be.true;
+		});
+	});
 });
 
 describe.skip("attesting", () => {

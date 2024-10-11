@@ -21,6 +21,12 @@ import { DelegatedConfig } from "./delegated";
 import { OffchainAttestationType } from "@ethereum-attestation-service/eas-sdk";
 import { EIP712_NAME } from "../versions";
 
+export interface Signature {
+	r: string;
+	s: string;
+	v: number;
+}
+
 export interface TypeDataSigner extends Addressable {
 	signTypedData(
 		domain: TypedDataDomain,
@@ -28,6 +34,12 @@ export interface TypeDataSigner extends Addressable {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		value: Record<string, any>,
 	): Promise<string>;
+}
+
+export enum DelegatedAttestationVersion {
+	Legacy = 0,
+	Version1 = 1,
+	Version2 = 2,
 }
 
 export interface DomainTypedData {
@@ -158,17 +170,6 @@ export const getDomainSeparatorOffchain = (
 			config.address as Hex,
 		]),
 	);
-	// return keccak256(
-	// 	AbiCoder.defaultAbiCoder().encode(
-	// 		["bytes32", "bytes32", "uint256", "address"],
-	// 		[
-	// 			keccak256(toUtf8Bytes(this.signingType.domain)),
-	// 			keccak256(toUtf8Bytes(this.config.version)),
-	// 			this.config.chainId,
-	// 			this.config.address,
-	// 		],
-	// 	),
-	// );
 };
 
 // export abstract class TypedDataHandler {

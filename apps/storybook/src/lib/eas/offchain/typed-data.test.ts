@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
 import {
+	DelegatedAttestationVersion,
 	getDomainSeparatorDefault,
 	getDomainSeparatorDelegated,
 	getDomainSeparatorOffchain,
@@ -50,12 +51,16 @@ describe("hash", () => {
 		expect(encoded).toEqual(encodedEthers);
 	});
 });
+
 describe("typed data", () => {
 	const eas = new EAS(EAS_CONTRACT_ADDRESS);
+
+	// TODO test.each with all versions
 	test("#getDomainSeparatorDelegated", () => {
 		const config: DelegatedConfig = {
 			address: "0x7f890c611c3B5b8Ff44FdF5Cf313FF4484a2D794",
 			chainId: 11155111n,
+			// version will be override
 			version: "1.0.0",
 			// domainSeparator: "domain-separator";
 		};
@@ -70,10 +75,9 @@ describe("typed data", () => {
 
 		console.log("getDomainTypedData", offchain.getDomainTypedData());
 		expect(domainSeparatorSdk).toEqual(
-			"0x2dd01d00c7de5b901f244617225f886e47ea3a05751a1c799cf8f92769fa97fe",
+			"0x517b89f2f19545cfb571bfd093eac675c4e8faff32260db312e3cba40bfec843",
 		);
 
-		// TODO
 		expect(domainSeparator).toEqual(domainSeparatorSdk);
 	});
 
