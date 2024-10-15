@@ -1,11 +1,8 @@
 'use client';
 
-import { useState } from "react";
 import type { Hex } from "viem";
 import { atom, useAtom } from 'jotai'
 
-import * as React from "react"
-import { Text } from "@radix-ui/themes"
 import { Pencil2Icon } from '@radix-ui/react-icons'
 import {
     Form,
@@ -16,11 +13,10 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
-import { Message } from "./sign";
 import { zodResolver } from "@hookform/resolvers/zod"
 
 import { z } from "zod"
-import { Control, FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -32,7 +28,7 @@ const formSchema = z.object({
 export const SignatureForm = ({ messageAtom, signatureAtom, signMessage }: {
     messageAtom: ReturnType<typeof atom<string>>,
     signatureAtom: ReturnType<typeof atom<Hex>>,
-    signMessage: (message: Message) => Promise<Hex | void>
+    signMessage: (message: any) => Promise<Hex | void>
 }) => {
 
     const [, setMessage] = useAtom(messageAtom);

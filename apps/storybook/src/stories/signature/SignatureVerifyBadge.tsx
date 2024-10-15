@@ -1,39 +1,38 @@
-import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Flex } from "@radix-ui/themes";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Hex, Address as AddressType } from "viem";
 import { Address } from "../identity/Address";
 
-export const SignatureVerifyBadge = ({ signature, message, address, verify }: {
-    signature: Hex,
-    message: any,
-    address: AddressType,
+export const SignatureVerifyBadge = ({
+    signature,
+    message,
+    address,
+    verify,
+}: {
+    signature: Hex;
+    message: any;
+    address: AddressType;
     verify: ({
         address,
         message,
         signature,
     }: {
-        address: AddressType,
-        message: any,
-        signature: Hex
-    }) => Promise<boolean>
+        address: AddressType;
+        message: any;
+        signature: Hex;
+    }) => Promise<boolean>;
 }) => {
-
     const [isVerified, setIsVerified] = useState(false);
     useEffect(() => {
         if (!signature || !message || !address) {
             return;
         }
 
-        verify({ signature, message, address })
-            .then(
-                (isVerified: boolean) => {
-                    setIsVerified(isVerified);
-                }
-            );
-
-    }, [signature, message, address])
+        verify({ signature, message, address }).then((isVerified: boolean) => {
+            setIsVerified(isVerified);
+        });
+    }, [signature, message, address]);
 
     return (
         <div>
@@ -45,10 +44,8 @@ export const SignatureVerifyBadge = ({ signature, message, address, verify }: {
             </div>
             <div className="font-xs break-all">Signature: {signature} </div>
             <Flex align="center" gap="2">
-                {isVerified ? '✅Verified!' : ''}
+                {isVerified ? "✅Verified!" : ""}
             </Flex>
         </div>
     );
-
-
-}
+};

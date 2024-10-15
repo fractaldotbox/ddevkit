@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { addr } from 'micro-eth-signer';
-import { Atom, atom, useAtom } from 'jotai'
+import { atom, useAtom } from 'jotai'
 
 import * as typed from 'micro-eth-signer/typed-data';
 import { SignatureForm } from './SignatureForm';
@@ -8,7 +8,7 @@ import { Hex, signEIP712MessageRaw, signMessageRaw, SignType } from './sign';
 import { SignatureVerifyBadge } from './SignatureVerifyBadge';
 import { withMockAccount } from '../decorators/wagmi';
 import { TYPED_DATA } from '@/lib/signature/type-data';
-import { EIP712Domain, TypedData } from 'micro-eth-signer/typed-data';
+import { EIP712Domain } from 'micro-eth-signer/typed-data';
 import { useMemo } from 'react';
 import { ScrollableCodeBlock } from '@/components/ScrollableCodeBlock';
 import type { Address } from 'viem';
@@ -146,20 +146,13 @@ const SignatureFormMinimal = ({
 const meta = {
     title: 'Signature/SignatureFormMinimal',
     component: SignatureFormMinimal,
-
-    // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-    tags: ['autodocs'],
-    // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
 } satisfies Meta<typeof SignatureFormMinimal>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-
 
 export const Minimal: Story = {
-    // TODO ignore updated type from decorator
     // @ts-ignore
     args: {
         signType: SignType.EIP191,
