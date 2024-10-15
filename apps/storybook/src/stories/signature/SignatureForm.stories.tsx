@@ -45,6 +45,7 @@ const useSign = ({
             isReady: false,
         };
     }
+    // temp workaround before account hoisting
     const walletClient = createWalletClient({
         account,
         chain: sepolia,
@@ -138,7 +139,7 @@ const SignatureFormWagmi = ({
     signatureAtom: ReturnType<typeof atom<Hex>>;
     signAccountType?: SignAccountType;
 }) => {
-    // injected private key, manual create
+
 
     const { signMessage, verifySignature, messageToVerify, signature, isReady } =
         useSign({
@@ -198,7 +199,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Wagmi: Story = {
     args: {
         signType: SignType.EIP191,
