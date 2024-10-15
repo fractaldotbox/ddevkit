@@ -11,7 +11,7 @@ import { TYPED_DATA } from '@/lib/signature/type-data';
 import { EIP712Domain, TypedData } from 'micro-eth-signer/typed-data';
 import { useMemo } from 'react';
 import { ScrollableCodeBlock } from '@/components/ScrollableCodeBlock';
-import { Address, verifyMessage } from 'viem';
+import type { Address } from 'viem';
 
 
 
@@ -65,7 +65,7 @@ const useSign = (
             messageToVerify: message,
             signMessage: async (message: string) => signMessageRaw(privateKey, message),
             verifyMessage: async ({ signature, message, address }: VerifySignatureParams) => {
-                return verifyMessage({ address, message, signature });
+                return typed.personal.verify(signature, message, address);
             }
         }
     }

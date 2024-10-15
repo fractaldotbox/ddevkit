@@ -103,7 +103,6 @@ const useSign = (
         message: any
     }) => {
         if (signType === SignType.EIP712) {
-            console.log('publicClient', publicClient, message)
             return publicClient.verifyTypedData(
                 {
                     address,
