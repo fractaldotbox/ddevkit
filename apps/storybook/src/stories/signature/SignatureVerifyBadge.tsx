@@ -2,14 +2,22 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Flex } from "@radix-ui/themes";
 import { useEffect, useMemo, useState } from "react";
-import { Hex } from "viem";
+import { Hex, Address as AddressType } from "viem";
 import { Address } from "../identity/Address";
 
 export const SignatureVerifyBadge = ({ signature, message, address, verify }: {
     signature: Hex,
-    message: string,
-    address: Hex,
-    verify: (signature: Hex, message: string, address: Hex) => Promise<boolean>
+    message: any,
+    address: AddressType,
+    verify: ({
+        address,
+        message,
+        signature,
+    }: {
+        address: AddressType,
+        message: any,
+        signature: Hex
+    }) => Promise<boolean>
 }) => {
 
     const [isVerified, setIsVerified] = useState(false);
@@ -18,7 +26,7 @@ export const SignatureVerifyBadge = ({ signature, message, address, verify }: {
             return;
         }
 
-        verify(signature, message, address)
+        verify({ signature, message, address })
             .then(
                 (isVerified: boolean) => {
                     setIsVerified(isVerified);
@@ -35,8 +43,7 @@ export const SignatureVerifyBadge = ({ signature, message, address, verify }: {
                     <Address address={address} />
                 </div>
             </div>
-
-            <div>Signature: {signature} </div>
+            <div className="font-xs break-all">Signature: {signature} </div>
             <Flex align="center" gap="2">
                 {isVerified ? '✅Verified!' : ''}
             </Flex>

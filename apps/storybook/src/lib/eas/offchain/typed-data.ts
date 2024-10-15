@@ -131,11 +131,9 @@ export type TypedDataConfig = {
 	address: string;
 };
 
-// TODO figure out the version-guessin glogic later
-
+// TODO figure out the version-derivation logic later
+// TODO memo the static part
 export const getDomainSeparatorDefault = (config: TypedDataConfig) => {
-	// TODO replace keccak
-	console.log("default", config);
 	return keccak256(
 		encodeAbiParameters(
 			parseAbiParameters("bytes32,bytes32,bytes32,uint256,address"),

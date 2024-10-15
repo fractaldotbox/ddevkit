@@ -34,15 +34,14 @@ export const withQueryClientProvider = () => {
 }
 
 export const withMockAccount = (isStable = true) => {
-    return (Story: any) => {
+    return (Story: any, context: any) => {
         // Not possible to hoist a private key based account. Inject at action
         // https://wagmi.sh/react/guides/viem#private-key-mnemonic-accounts
         const privateKey = isStable ? BY_USER.mock.privateKey : getRandomAccount().privateKey as Hex
-        console.log('privateKey', privateKey)
         const account = privateKeyToAccount(privateKey)
         return (
             <>
-                <Story args={{ account, privateKey }} />
+                <Story args={{ account, privateKey, ...context.args || {} }} />
             </>
         )
     }

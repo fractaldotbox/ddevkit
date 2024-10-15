@@ -6,10 +6,13 @@ import { useAccount, useConfig, useSignMessage } from 'wagmi';
 import { signMessage } from '@wagmi/core'
 
 import * as typed from 'micro-eth-signer/typed-data';
+import { TYPED_DATA } from '@/lib/signature/type-data';
+import { EIP712Domain, GetType, signTyped, TypedData } from 'micro-eth-signer/typed-data';
 export type Hex = `0x${string}`;
 
 
 // https://www.npmjs.com/package/@noble/secp256k1
+// EIP-191
 export const signMessageRaw = async (privateKey: Hex, message: string) => {
     console.log('signMessageRaw', privateKey, message)
     // const msgHash = sha256(message);
@@ -21,3 +24,24 @@ export const signMessageRaw = async (privateKey: Hex, message: string) => {
 };
 
 
+
+
+export enum SignType {
+    EIP191 = 'EIP191',
+    EIP712 = 'EIP712'
+}
+
+export enum SignAccountType {
+    SA = 'Smart Account',
+    EOA = 'EOA'
+}
+
+
+
+// EIP712
+export const signEIP712MessageRaw = async (privateKey: Hex, typedData: any) => {
+    // fix type of EIP712Domain
+
+    const signature = signTyped(typedData, privateKey);
+    return signature as Hex;
+};
