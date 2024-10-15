@@ -8,6 +8,9 @@ const getEasscanEndpoint = (chainId: number) => {
 
 }
 
+// Could use radix 16 
+export const stringifyWithBigInt = (obj: any) => JSON.stringify(obj, (_, value) => (typeof value === 'bigint' ? value.toString() : value));
+
 
 
 export const getEasscanAttestationUrl = (chainId:number, uid:string, isOffchain: boolean)=>{

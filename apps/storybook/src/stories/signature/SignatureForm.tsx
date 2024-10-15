@@ -32,7 +32,7 @@ const formSchema = z.object({
 export const SignatureForm = ({ messageAtom, signatureAtom, signMessage }: {
     messageAtom: ReturnType<typeof atom<string>>,
     signatureAtom: ReturnType<typeof atom<Hex>>,
-    signMessage: (message: Message) => Promise<Hex | undefined>
+    signMessage: (message: Message) => Promise<Hex | void>
 }) => {
 
     const [, setMessage] = useAtom(messageAtom);
@@ -45,6 +45,8 @@ export const SignatureForm = ({ messageAtom, signatureAtom, signMessage }: {
             message: "",
         },
     })
+
+
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         setMessage(values.message);
@@ -71,10 +73,16 @@ export const SignatureForm = ({ messageAtom, signatureAtom, signMessage }: {
                             <FormItem>
                                 <FormLabel>Message</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="message" {...field} />
+                                    <Input placeholder="message" {...field}
+                                        onChange={(e) => {
+                                            field.onChange(e);
+                                            setMessage(e.target.value);
+                                        }}
+                                    />
                                 </FormControl>
                                 <FormDescription>
                                     Please enter your message to sign
+                                    (For EIP712, this demo add that to `message.contents`)
                                 </FormDescription>
                                 <FormMessage />
                             </FormItem>
