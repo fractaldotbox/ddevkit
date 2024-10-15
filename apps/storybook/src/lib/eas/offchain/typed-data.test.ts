@@ -67,13 +67,10 @@ describe("typed data", () => {
 
 		const domainSeparator = getDomainSeparatorDelegated(config);
 
-		console.log("results", domainSeparator);
-
 		const offchain = new Delegated(config, eas);
 
 		const domainSeparatorSdk = offchain.getDomainSeparator();
 
-		console.log("getDomainTypedData", offchain.getDomainTypedData());
 		expect(domainSeparatorSdk).toEqual(
 			"0x517b89f2f19545cfb571bfd093eac675c4e8faff32260db312e3cba40bfec843",
 		);

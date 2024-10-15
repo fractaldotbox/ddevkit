@@ -2,12 +2,14 @@ import { beforeEach, describe, it, expect, test } from "vitest";
 import { makeAttestation, revoke } from "./onchain";
 import { SignatureType } from "../eas";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
-import { createEthersSigner } from "../etherjs-adapter";
+import { createEthersSigner } from "../ethers";
 import { EAS, NO_EXPIRATION } from "@ethereum-attestation-service/eas-sdk";
 import { AccountNotFoundError } from "node_modules/viem/_types/errors/account";
 import { createWalletClient, Hex, http } from "viem";
 import { sepolia } from "viem/chains";
 import { encodeBytes32String, ethers, JsonRpcProvider } from "ethers";
+import { createEAS } from "../ethers/onchain";
+import { SCHEMA_FIXTURE_IS_A_FRIEND } from "../eas-test.fixture";
 
 export const EASContractAddress = "0xC2679fBD37d54388Ce493F1DB75320D236e1815e"; // Sepolia v0.26
 
@@ -24,11 +26,8 @@ describe("attest with sepolia contract", () => {
 			const privateKey = process.env.TESTER_PRIVATE_KEY_EAS as Hex;
 			const from = privateKeyToAccount(privateKey);
 
-			// "is a friend schema"
-			// https://sepolia.easscan.org/schema/view/0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a
 			const fixture = {
-				schemaId:
-					"0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a",
+				schemaId: SCHEMA_FIXTURE_IS_A_FRIEND.schemaUID,
 				refUID: ZERO_BYTES32,
 				time: 1728637333n,
 				expirationTime: NO_EXPIRATION,
@@ -43,8 +42,7 @@ describe("attest with sepolia contract", () => {
 
 			const txSigner = createEthersSigner(privateKey, sepolia.id);
 
-			// for sdk parity
-			const eas = new EAS(EASContractAddress);
+			const eas = createEAS(EASContractAddress, txSigner);
 
 			const { schemaId, expirationTime, revocable, refUID, data, value } =
 				fixture;
@@ -64,7 +62,7 @@ describe("attest with sepolia contract", () => {
 					// deadline: 0n,
 				};
 
-				const txnSdk = await eas.connect(txSigner).attest(request, overrides);
+				const txnSdk = await eas.attest(request, overrides);
 
 				console.log("results", txnSdk);
 				const uid = await txnSdk.wait();

@@ -2,8 +2,10 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-
 import { Button } from "@/components/ui/button"
+import { useToast } from "@/components/hooks/use-toast"
+
+import { ToastAction } from "@/components/ui/toast"
 import {
     Form,
     FormControl,
@@ -14,20 +16,24 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { useEthersSigner } from "@/lib/wagmi-utils"
-import { Badge } from "@/components/ui/badge"
 import { useChainId } from "wagmi"
 import { SchemaBadge } from "./SchemaBadge"
 import { useAttestation } from "@/lib/eas/use-attestation"
 import { Card, CardContent } from "@/components/ui/card"
+import { toast } from "@/hooks/use-toast"
 
 // TODO dynamic enough to generate fields
 // now focus on sdk part
 
 // For now, hardcode the MetIRL
-export const AttestationFormEasSdk = ({ schemaId, schemaIndex }: { schemaId: string, schemaIndex: string }) => {
+export const AttestationForm = ({ schemaId, schemaIndex, signAttestation }:
+    {
+        schemaId: string,
+        schemaIndex?: string,
+        signAttestation: () => Promise<any>
+    }) => {
 
-    const { signAttestation } = useAttestation();
+
     const chainId = useChainId();
     const formSchema = z.object({
         // TODO address
@@ -38,11 +44,21 @@ export const AttestationFormEasSdk = ({ schemaId, schemaIndex }: { schemaId: str
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            recipient: "",
+            recipient: "0xFD50b031E778fAb33DfD2Fc3Ca66a1EeF0652165",
         },
     })
     function onSubmit(values: z.infer<typeof formSchema>) {
-        signAttestation();
+        signAttestation()
+            .then(({ uids, txnReceipt }: any) => {
+                console.log('success', uids, txnReceipt)
+                toast({
+                    title: "Scheduled: Catch up ",
+                    description: "Friday, February 10, 2023 at 5:57 PM",
+                    action: (
+                        <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
+                    ),
+                })
+            });
         console.log(values)
     }
 
@@ -57,7 +73,7 @@ export const AttestationFormEasSdk = ({ schemaId, schemaIndex }: { schemaId: str
                             render={({ field }) => (
                                 <FormItem>
                                     <div className="flex gap-2">
-                                        <SchemaBadge chainId={chainId} schemaId={schemaId} schemaIndex={schemaIndex} />
+                                        <SchemaBadge chainId={chainId} schemaId={schemaId} schemaIndex={schemaIndex || ''} />
                                         MET IRL
                                     </div>
                                     <FormLabel>Recipient</FormLabel>
