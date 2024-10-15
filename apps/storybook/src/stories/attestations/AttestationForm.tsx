@@ -52,10 +52,10 @@ export const AttestationForm = ({ schemaId, schemaIndex, signAttestation }:
             .then(({ uids, txnReceipt }: any) => {
                 console.log('success', uids, txnReceipt)
                 toast({
-                    title: "Scheduled: Catch up ",
-                    description: "Friday, February 10, 2023 at 5:57 PM",
+                    title: "Attestation success",
+                    description: `onchain txn ${txnReceipt?.transactionHash}`,
                     action: (
-                        <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
+                        <ToastAction altText="Goto schedule to undo">{uids?.[0]}</ToastAction>
                     ),
                 })
             });

@@ -7,6 +7,7 @@ import { createEthersSigner } from '@/lib/eas/ethers';
 import { EAS_CONTRACT_ADDRESS } from '@/lib/eas/abi';
 import { createAttestation, createEAS } from '@/lib/eas/ethers/onchain';
 import { JsonRpcSigner } from 'ethers';
+import { withToaster } from '../decorators/toaster';
 
 
 const AttestationFormEasSdk = ({
@@ -47,6 +48,7 @@ const meta = {
     parameters: {
         layout: 'centered',
     },
+    decorators: [withToaster()],
     args: {}
 } satisfies Meta<typeof AttestationFormEasSdk>;
 

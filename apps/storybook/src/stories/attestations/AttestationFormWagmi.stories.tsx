@@ -12,6 +12,7 @@ import { NO_EXPIRATION } from '@/lib/eas/request';
 import { Account, Address, createWalletClient, http } from 'viem';
 import { sepolia } from 'viem/chains';
 import { makeAttestation } from '@/lib/eas/viem/onchain';
+import { withToaster } from '../decorators/toaster';
 
 
 
@@ -97,6 +98,7 @@ const meta = {
     parameters: {
         layout: 'centered',
     },
+    decorators: [withToaster()],
     args: {}
 } satisfies Meta<typeof AttestationFormWagmi>;
 
@@ -128,6 +130,7 @@ export const AttestationWagmiOnchain: Story = {
         isOffchain: false
     },
     decorators: [
+
         withMockAccount(),
         withWagmiProvider(),
 
