@@ -21,6 +21,32 @@ export type EfpRecord = {
     record_type: 'address'
 }
 
+export type EfpEnsData = {
+    name: string,
+    address: Address,
+    avatar: string,
+    records: {
+        avatar?: string,
+        "com.discord"?: string,
+        "com.github"?: string,
+        "com.twitter"?: string,
+        description?: string,
+        email?: string,
+        header?: string,
+        location?: string,
+        name?: string,
+        "org.telegram"?: string,
+        url?: string,
+        [key: string]: string | undefined
+    },
+    updated_at: string
+}
+
+export type EfpUserStats = {
+    followers_count: string,
+    following_count: string,
+}
+
 export type EfpApiOptions = {
     limit?:number, sort?:any
 }
@@ -40,6 +66,10 @@ export const getEndpointUserFollowers = (addressOrEns:AddressOrEns,  options?:Ef
 export const getEndpointEnsData = (addressOrEns:AddressOrEns, options?:EfpApiOptions)=>{
     const {limit = 10, sort = 'followers'} = options || {};
     return `${EFP_ENDPOINT}users/${addressOrEns}/ens?${qs.stringify({limit, sort})}`
+}
+
+export const getEndpointUserStats = (addressOrEns:AddressOrEns)=>{
+    return `${EFP_ENDPOINT}users/${addressOrEns}/stats`
 }
 
 
@@ -73,12 +103,26 @@ export const useFollowing = (addressOrEns:AddressOrEns) =>{
 }
 
 export const useEnsData = (addressOrEns:AddressOrEns) =>{
-    return  useQuery({
+    return  useQuery<{ens: EfpEnsData}>({
         queryKey: ['ethfollow.ens', addressOrEns],
         queryFn: async () =>{
 
             
             const endpoint = getEndpointEnsData(addressOrEns);
+
+            return fetch(endpoint).then(res=>res.json());
+        }
+            
+        });
+}
+
+export const useUserStats = (addressOrEns:AddressOrEns) =>{
+    return  useQuery<EfpUserStats>({
+        queryKey: ['ethfollow.user-stats', addressOrEns],
+        queryFn: async () =>{
+
+            
+            const endpoint = getEndpointUserStats(addressOrEns);
 
             return fetch(endpoint).then(res=>res.json());
         }
