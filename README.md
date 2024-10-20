@@ -5,8 +5,8 @@ Inspired by [shadcn/ui](https://github.com/shadcn-ui/ui/tree/main)
 
 ⚠️ This is preview alpha version under active development
 ## For developers
-- Current approach is to focus on storybook, `pnpm --filter storybook storybook`
-  - so we identify key challenges and make sensible architecture decisions e.g. graphql
+- Current approach is to focus on storybook, run `pnpm --filter storybook storybook`
+  - to identify key challenges and make sensible architecture decisions e.g. graphql
 - end-goal is to make each of them copy-paste ready code
   - to be extraced into registry for shadcn cli work
 
@@ -60,11 +60,8 @@ Dapp needs are quite different and end to end tested flows, not just UI componen
 
 
 ### When to use
-- If you want support, maximium compatability latest feature, go for official sdks that are well maintained. 
-- works when components are generic
-- To maintain highly customized components, this library in a sense helped to ensure no extra dependency are created but only generic components, but it does not encapsulate related application logic. 
-
-
+- You look for working, generic components with minimum dependencies to further customize
+- If you want support and maximium compatability with latest features, go for official sdks that are well maintained. 
 
 ## Installation
 
