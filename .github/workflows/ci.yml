@@ -63,7 +63,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
 
@@ -74,4 +74,4 @@ jobs:
         env:
           FLEEK_TOKEN: ${{ secrets.FLEEK_TOKEN }}
           FLEEK_PROJECT_ID: ${{ secrets.FLEEK_PROJECT_ID }}
-        run: pnpm --dir apps/storybook deploy-fleek
+        run: pnpm --dir apps/storybook deploy:fleek

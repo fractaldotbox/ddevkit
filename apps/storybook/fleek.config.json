@@ -1,7 +1,7 @@
 {
   "sites": [
     {
-      "slug": "deep-stone-most",
+      "slug": "geist-dapp-kit",
       "distDir": "storybook-static"
     }
   ]
