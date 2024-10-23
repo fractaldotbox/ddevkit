@@ -1,0 +1,8 @@
+{
+  "sites": [
+    {
+      "slug": "deep-stone-most",
+      "distDir": "storybook-static"
+    }
+  ]
+}
