@@ -4,14 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "storybook": "storybook dev -p 6006",
     "test": "vitest",
-    "build-storybook": "storybook build",
-    "config:setup": "node --experimental-json-modules ./src/scripts/setup.mjs"
+    "config:setup": "node --experimental-json-modules ./src/scripts/setup.mjs",
+    "deploy-fleek": "fleek --debug sites deploy"
   },
   "dependencies": {
     "@ensdomains/ensjs": "4.0.1-alpha.0",
@@ -93,6 +92,7 @@
     "@eslint/js": "^9.9.0",
     "@ethereum-attestation-service/eas-contracts": "1.7.1",
     "@faker-js/faker": "^8.2.0",
+    "@fleek-platform/cli": "^2.10.0",
     "@radix-ui/themes": "^3.1.4",
     "@storybook/addon-essentials": "^8.3.4",
     "@storybook/addon-interactions": "^8.3.4",
@@ -124,8 +124,6 @@
     "wagmi": "^2.12.16"
   },
   "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
+    "extends": ["plugin:storybook/recommended"]
   }
 }
