@@ -23,35 +23,33 @@ describe("offchain attestation handling/verification", () => {
 		eas = createEAS(EASContractAddress, signer);
 	});
 	test("create attestation", async () => {
-		const salt = encodeBytes32String("SALT");
-		const uid = getOffchainUID(
-			OffchainAttestationVersion.Version2,
-			schema: VOTE_SCHEMA_FIXTURE.schemaString,
-			// recipient,
-			// now,
-			// expirationTime,
-			// revocable,
-			// refUID,
-			// data,
-			// salt,
-		);
-
-		const offchain = await eas.getOffchain();
-
-		createEAS(EASContractAddress, signer);
-		// const attestation = await offchain.signOffchainAttestation(
-		// 	{
-		// 		schema,
-		// 		recipient,
-		// 		time: now,
-		// 		expirationTime,
-		// 		revocable,
-		// 		refUID,
-		// 		data,
-		// 		salt,
-		// 	},
-		// 	txSender,
+		// const salt = encodeBytes32String("SALT");
+		// const uid = getOffchainUID(
+		// 	OffchainAttestationVersion.Version2,
+		// 	schema: VOTE_SCHEMA_FIXTURE.schemaString,
+		// 	// recipient,
+		// 	// now,
+		// 	// expirationTime,
+		// 	// revocable,
+		// 	// refUID,
+		// 	// data,
+		// 	// salt,
 		// );
+		// const offchain = await eas.getOffchain();
+		// createEAS(EASContractAddress, signer);
+		// // const attestation = await offchain.signOffchainAttestation(
+		// // 	{
+		// // 		schema,
+		// // 		recipient,
+		// // 		time: now,
+		// // 		expirationTime,
+		// // 		revocable,
+		// // 		refUID,
+		// // 		data,
+		// // 		salt,
+		// // 	},
+		// // 	txSender,
+		// // );
 	});
 	// TODO
 	test.skip("should verify attestation onchain", async () => {});
