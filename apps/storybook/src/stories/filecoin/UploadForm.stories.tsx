@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { UploadForm } from './upload-form';
+import { UploadForm } from './UploadForm';
 
 const meta = {
     title: 'Filecoin/UploadForm',
@@ -13,8 +13,14 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Basic: Story = {
+export const TextLighthouse: Story = {
     args: {
+        isText: true
+    },
+};
 
+export const FileLighthouse: Story = {
+    args: {
+        isText: false
     },
 };

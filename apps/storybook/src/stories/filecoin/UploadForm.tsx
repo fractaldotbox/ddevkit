@@ -25,7 +25,11 @@ const FormSchema = z.object({
     file: z.any()
 })
 
-export function UploadForm() {
+export function UploadForm({
+    isText = false
+}: {
+    isText?: boolean
+}) {
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -45,17 +49,24 @@ export function UploadForm() {
         })
     }
 
+    // TODO add toggle and upload text
+
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
                 <FormField
                     control={form.control}
                     name="file"
-                    render={({ field }) => (
+                    render={({ field }: { field: any }) => (
                         <FormItem>
                             <FormLabel>File</FormLabel>
                             <FormControl>
-                                <Input id="file" type="file" {...field} />
+                                {
+                                    isText ? <Input id="file" type="text" {...field} /> :
+                                        (
+                                            <Input id="file" type="file" {...field} />
+                                        )
+                                }
                             </FormControl>
                             <FormDescription>
                                 Upload file to Filecoin
