@@ -22,13 +22,18 @@ import { Input } from "@/components/ui/input"
 
 
 const FormSchema = z.object({
-    file: z.any()
+    file: z.any(),
 })
 
+// TODO generics
+export type FileParams = { file?: any }
+
 export function UploadForm({
-    isText = false
+    isText = false,
+    uploadFile
 }: {
-    isText?: boolean
+    isText?: boolean,
+    uploadFile: (params: FileParams) => Promise<any>
 }) {
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
@@ -38,7 +43,8 @@ export function UploadForm({
     })
 
     function onSubmit(data: z.infer<typeof FormSchema>) {
-        console.log('submit', data)
+        console.log('submit', data);
+        uploadFile(data)
         toast({
             title: "You submitted the following values:",
             description: (

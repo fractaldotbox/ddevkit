@@ -89,15 +89,6 @@ export const retrievePoDsi = async (cid: string) => {
 
 // .uploadText has no deal params options
 
-// const dealParams = {
-//     num_copies: 2, // Number of backup copies
-//     repair_threshold: 28800, // When a storage sector is considered "broken"
-//     renew_threshold: 240, // When your storage deal should be renewed
-//     miner: ["t017840"], // Preferred miners
-//     network: "calibration", // Network choice
-//     deal_duration: 1,
-//     add_mock_data: 2, // Mock data size in MB
-// };
 export const uploadText = async (text: string, apiKey: string) => {
 	if (!text) {
 		throw new Error("Empty text");

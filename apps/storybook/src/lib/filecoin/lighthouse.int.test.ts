@@ -24,10 +24,9 @@ const cid = "QmS9ErDVxHXRNMJRJ5i3bp1zxCZzKP8QXXNH1yUR6dWeKZ";
 describe(
 	"with file encrypted",
 	() => {
-		const walletPrivateKey = generatePrivateKey();
 		// TODO fix: Error: Error encrypting file
 		test.skip("uploadFile encrypted", async () => {
-			const account = privateKeyToAccount(walletPrivateKey);
+			const account = privateKeyToAccount(BY_USER.mock.privateKey);
 			const params = await createLighthouseParams({
 				account,
 				options: {
@@ -73,12 +72,6 @@ describe(
 			console.log("buffer", buffer.toString());
 			expect(buffer.toString()).toEqual("abcde");
 		});
-
-		// test.skip('#mapCidAsBytes', async ()=>{
-		//   const pieceCID = 'baga6ea4seaqkp2pjlh6avlvee6ib2maanav5sc35l5glf3zm6rd6hmfgcx5xeji'
-		//   const bytes = mapCidAsBytes(pieceCID)
-		//   expect(bytes).toEqual('')
-		// });
 	},
 	60 * 1000,
 );
