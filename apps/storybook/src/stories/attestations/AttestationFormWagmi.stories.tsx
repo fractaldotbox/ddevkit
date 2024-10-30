@@ -10,6 +10,8 @@ import { Account, Address, createWalletClient, http } from "viem";
 import { sepolia } from "viem/chains";
 import { makeAttestation } from "@/lib/eas/viem/onchain";
 import { withToaster } from "../decorators/toaster";
+import { useChainId } from "wagmi";
+import { withWalletControlWagmi } from "../decorators/wallet-control";
 
 const useAttestationWagmi = (account: Account, isOffchain: boolean) => {
     const client = createWalletClient({
@@ -53,6 +55,7 @@ const useAttestationWagmi = (account: Account, isOffchain: boolean) => {
 
         const { uids, txnReceipt } = await makeAttestation(client, request);
 
+        console.log('uids', uids, txnReceipt);
         return {
             uids,
             txnReceipt,
@@ -69,12 +72,15 @@ const AttestationFormWagmi = ({
     isOffchain,
     account,
 }: any) => {
-    console.log("account", account.address);
     const { signAttestation } = useAttestationWagmi(account, isOffchain);
 
     const recipient = "0xFD50b031E778fAb33DfD2Fc3Ca66a1EeF0652165" as Address;
+
+    const chainId = useChainId();
+
     return (
         <AttestationForm
+            chainId={chainId}
             schemaId={schemaId}
             schemaIndex={schemaIndex}
             signAttestation={async () => signAttestation({ recipient })}
@@ -100,7 +106,7 @@ export const AttestationWagmiOffchain: Story = {
         schemaId: SCHEMA_FIXTURE_IS_A_FRIEND.schemaUID,
         isOffchain: true,
     },
-    decorators: [withMockAccount(), withWagmiProvider()],
+    decorators: [withWalletControlWagmi(), withMockAccount(), withWagmiProvider()],
 };
 
 export const AttestationWagmiOnchain: Story = {

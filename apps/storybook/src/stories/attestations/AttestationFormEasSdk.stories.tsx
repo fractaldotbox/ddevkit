@@ -6,6 +6,7 @@ import { EAS_CONTRACT_ADDRESS } from '@/lib/eas/abi';
 import { createAttestation, createEAS } from '@/lib/eas/ethers/onchain';
 import { withToaster } from '../decorators/toaster';
 import { SCHEMA_FIXTURE_IS_A_FRIEND } from '@/lib/eas/eas-test.fixture';
+import { withWalletControl } from '../decorators/wallet-control';
 
 
 const AttestationFormEasSdk = ({
@@ -23,6 +24,7 @@ const AttestationFormEasSdk = ({
 
 
     return <AttestationForm
+        chainId={11155111}
         schemaId={schemaId}
         schemaIndex={schemaIndex}
         signAttestation={(): Promise<any> => {
@@ -44,7 +46,7 @@ const meta = {
     parameters: {
         layout: 'centered',
     },
-    decorators: [withToaster()],
+    decorators: [withToaster(), withWalletControl()],
     args: {}
 } satisfies Meta<typeof AttestationFormEasSdk>;
 

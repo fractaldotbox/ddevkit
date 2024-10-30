@@ -53,7 +53,7 @@ describe("attest with sepolia contract", () => {
 			};
 
 			// TODO
-			test.only("with sdk ", async () => {
+			test("with sdk ", async () => {
 				const overrides = {
 					signatureType: SignatureType.Direct,
 					from: from.address,

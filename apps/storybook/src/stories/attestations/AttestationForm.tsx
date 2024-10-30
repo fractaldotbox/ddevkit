@@ -16,7 +16,6 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { useChainId } from "wagmi"
 import { SchemaBadge } from "./SchemaBadge"
 import { useAttestation } from "@/lib/eas/use-attestation"
 import { Card, CardContent } from "@/components/ui/card"
@@ -26,15 +25,15 @@ import { toast } from "@/hooks/use-toast"
 // now focus on sdk part
 
 // For now, hardcode the MetIRL
-export const AttestationForm = ({ schemaId, schemaIndex, signAttestation }:
+export const AttestationForm = ({ chainId, schemaId, schemaIndex, signAttestation }:
     {
+        chainId: number,
         schemaId: string,
         schemaIndex?: string,
         signAttestation: () => Promise<any>
     }) => {
 
 
-    const chainId = useChainId();
     const formSchema = z.object({
         // TODO address
         recipient: z.string().length(42, {
@@ -59,7 +58,6 @@ export const AttestationForm = ({ schemaId, schemaIndex, signAttestation }:
                     ),
                 })
             });
-        console.log(values)
     }
 
     return (

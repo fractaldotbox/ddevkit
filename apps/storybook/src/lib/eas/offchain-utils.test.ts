@@ -9,6 +9,7 @@ import {
 } from "@ethereum-attestation-service/eas-sdk";
 import { describe, test, expect } from "vitest";
 import { Spec, TEST_ATTESTATIONS } from "./eas-test.fixture";
+import { createOffchainURL, zipAndEncodeToBase64 } from "./offchain-utils";
 // import { createOffchainURL, zipAndEncodeToBase64 } from './offchain/offchain';
 
 // use fixture
