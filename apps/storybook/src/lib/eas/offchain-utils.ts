@@ -9,6 +9,14 @@ import { zlibSync } from "fflate";
 import { stringifyWithBigInt } from "./util";
 import { ZERO_ADDRESS, ZERO_HASH } from "../constants";
 import { OFFCHAIN_ATTESTATION_TYPES } from "./offchain/offchain";
+import {
+	Address,
+	encodeAbiParameters,
+	Hex,
+	keccak256,
+	parseAbiParameters,
+	stringToHex,
+} from "viem";
 
 /**
  *
@@ -113,4 +121,50 @@ export const uncompactOffchainAttestationPackage = (
 		},
 		signer: compacted[6],
 	};
+};
+
+export const getOffchainUID = (params: {
+	version: number;
+	schema: string;
+	recipient: Address;
+	time: bigint;
+	expirationTime: bigint;
+	revocable: boolean;
+	refUID: Hex;
+	data: Hex;
+	salt: Hex;
+}) => {
+	const {
+		version,
+		schema,
+		recipient,
+		time,
+		expirationTime,
+		revocable,
+		refUID,
+		data,
+		salt,
+	} = params;
+	// TODO version switch
+	// TODO reuse abi
+	return keccak256(
+		encodeAbiParameters(
+			parseAbiParameters(
+				"uint16, bytes, address, address, uint64, uint64, bool, bytes32, bytes, bytes32, uint32",
+			),
+			[
+				version,
+				stringToHex(schema),
+				recipient,
+				ZERO_ADDRESS,
+				time,
+				expirationTime,
+				revocable,
+				refUID,
+				data,
+				salt,
+				0,
+			],
+		),
+	);
 };
