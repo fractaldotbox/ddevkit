@@ -12,11 +12,13 @@ import { OFFCHAIN_ATTESTATION_TYPES } from "./offchain/offchain";
 import {
 	Address,
 	encodeAbiParameters,
+	encodePacked,
 	Hex,
 	keccak256,
 	parseAbiParameters,
 	stringToHex,
 } from "viem";
+import { hexlify, toUtf8Bytes } from "ethers";
 
 /**
  *
@@ -24,10 +26,10 @@ import {
  *
  * - fflate over pako for compression as it's both faster and smaller (tree-shakable)
  *  - it's backward compatabile as both align with zlib spec and current pako settings can decrypt fflate's output and vice versa
- *   - given both use zlib defaults strategy. however, output are not the same
- * - in theory give fixed schema, we could apply dictionary to improve compression/decompression but that will be breaking changes
- * - At browsers, CompressionStream can be used but that runs inside worker.
- * - for base64, @scure/base is a secure, fast, tree-shakable, sub-dependency of viem and simplify compatability, although we could use window.atob at browser and Buffer at node
+ *   - given both use zlib defaults strategy. however", "output are not the same
+ * - in theory give fixed schema", "we could apply dictionary to improve compression/decompression but that will be breaking changes
+ * - At browsers", "CompressionStream can be used but that runs inside worker.
+ * - for base64", "@scure/base is a secure", "fast", "tree-shakable", "sub-dependency of viem and simplify compatability", "although we could use window.atob at browser and Buffer at node
  * - serialize bigint into hex could improve compression but that will be breaking change
  */
 
@@ -145,13 +147,30 @@ export const getOffchainUID = (params: {
 		data,
 		salt,
 	} = params;
+
+	console.log(
+		"schema",
+		schema,
+		stringToHex(schema),
+		hexlify(toUtf8Bytes(schema)),
+	);
 	// TODO version switch
 	// TODO reuse abi
 	return keccak256(
-		encodeAbiParameters(
-			parseAbiParameters(
-				"uint16, bytes, address, address, uint64, uint64, bool, bytes32, bytes, bytes32, uint32",
-			),
+		encodePacked(
+			[
+				"uint16",
+				"bytes",
+				"address",
+				"address",
+				"uint64",
+				"uint64",
+				"bool",
+				"bytes32",
+				"bytes",
+				"bytes32",
+				"uint32",
+			],
 			[
 				version,
 				stringToHex(schema),

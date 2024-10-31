@@ -16,7 +16,7 @@ import {
 import { createEthersSigner } from "../ethers";
 import { Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { encodeBytes32String, Signer } from "ethers";
+import { ethers, encodeBytes32String, Signer, Signature } from "ethers";
 import {
 	SCHEMA_FIXTURE_IS_A_FRIEND,
 	VOTE_SCHEMA_FIXTURE,
@@ -29,7 +29,7 @@ import {
 } from "../offchain/offchain";
 import { getOffchainUID } from "../offchain-utils";
 
-describe.only("offchain attestation handling/verification", () => {
+describe("offchain attestation handling/verification", () => {
 	let eas: EAS;
 	let offchain: Offchain;
 	let attesterSigner: Signer;
@@ -43,7 +43,7 @@ describe.only("offchain attestation handling/verification", () => {
 	const requestTemplate = {
 		schema: SCHEMA_FIXTURE_IS_A_FRIEND.schemaUID,
 		recipient: BY_USER.eas.mockReceipient.address,
-		time: 1728637333n,
+		time: 1728637333000n,
 		expirationTime: NO_EXPIRATION,
 		revocable: true,
 		refUID: ZERO_BYTES32,
@@ -57,8 +57,11 @@ describe.only("offchain attestation handling/verification", () => {
 		offchain = await eas.getOffchain();
 
 		attesterAddress = (await attesterSigner.getAddress()) as Address;
+
+		console.log("attesterAddress", attesterAddress);
 	});
-	test("with sdk", async () => {
+
+	test.only("with sdk", async () => {
 		const now = BigInt(Date.now());
 
 		const { schema, recipient, revocable, expirationTime, refUID, data } =
@@ -91,6 +94,9 @@ describe.only("offchain attestation handling/verification", () => {
 			},
 			attesterSigner,
 		);
+
+		console.log("sdk attestation", attestation);
+
 		expect(attestation.uid).toBe(uid);
 		expect(
 			await offchain.verifyOffchainAttestationSignature(
@@ -101,31 +107,37 @@ describe.only("offchain attestation handling/verification", () => {
 	});
 
 	test.only("with viem", async () => {
-		// const { schema, recipient, revocable, expirationTime, refUID, data } =
-		// 	requestTemplate;
+		const now = BigInt(Date.now());
+
+		const { schema, recipient, revocable, expirationTime, refUID, data } =
+			requestTemplate;
+		const version = OffchainAttestationVersion.Version2;
 
 		const offchainTypedData: OffchainAttestationTypedData = {
-			version: OffchainAttestationVersion.Version2,
 			...requestTemplate,
+			time: now,
+			version,
 		};
 
-		const version = OffchainAttestationVersion.Version2;
-		const { types, primaryType, domain } =
-			OFFCHAIN_ATTESTATION_TYPES[version][0];
+		const {
+			types,
+			primaryType,
+			domain: domainName,
+		} = OFFCHAIN_ATTESTATION_TYPES[version][0];
 
-		const config = {
-			version: "1.0.0",
-			chainId: 115511n,
-			name: EIP712_NAME,
-			address: "0x7f890c611c3B5b8Ff44FdF5Cf313FF4484a2D794",
+		const domain = {
+			name: domainName,
+			version: "0.26",
+			chainId: sepolia.id,
+			verifyingContract: "0xC2679fBD37d54388Ce493F1DB75320D236e1815e" as Hex,
 		};
-
-		// TODO chain id
 		// TODO sin with contract
 
 		const message = offchainTypedData;
 
 		const typedData = {
+			// must explicit
+			account: from,
 			types,
 			primaryType,
 			domain,
@@ -138,33 +150,62 @@ describe.only("offchain attestation handling/verification", () => {
 			account: from,
 		});
 
-		const {
+		console.log("hihi", from, attesterAddress);
+		console.log("typedData", typedData);
+
+		const signature = await client.signTypedData({
+			...typedData,
+		});
+
+		const uidEasSdk = getOffchainUIDEasSdk(
+			version,
 			schema,
 			recipient,
-			revocable,
-			time,
+			now,
 			expirationTime,
+			revocable,
 			refUID,
 			data,
 			salt,
-		} = requestTemplate;
+		);
 
-		const signed = await client.signTypedData(typedData as any);
 		const uid = getOffchainUID({
-			...requestTemplate,
+			...offchainTypedData,
+			data: data as Hex,
 			refUID: refUID as Hex,
+			salt: salt as Hex,
 			recipient: recipient as Address,
 			version,
 		});
 
+		expect(uid).toBe(uidEasSdk);
+
 		const attestation = {
+			domain,
+			message: {
+				...typedData.message,
+			},
+			primaryType,
+			types,
 			version,
 			uid,
-			...requestTemplate,
-			// ...signedRequest,
+			signature,
 		};
 
-		console.log("results", attestation);
+		console.log("viem attestation", attestation);
+		// sdk verification
+		expect(attestation.uid).toBe(uid);
+
+		expect(
+			await offchain.verifyOffchainAttestationSignature(attesterAddress, {
+				...attestation,
+				domain: {
+					...attestation.domain,
+					chainId: BigInt(attestation.domain.chainId),
+				},
+				signature: Signature.from(attestation.signature),
+			}),
+		).toEqual(true);
 
 		const isValid = await verifyOffchainAttestationSignature(
 			attesterAddress,
@@ -172,21 +213,8 @@ describe.only("offchain attestation handling/verification", () => {
 		);
 
 		expect(isValid).toBe(true);
-
-		// const signedRequest = await this.signTypedDataRequest<
-		// 	EIP712MessageTypes,
-		// 	OffchainAttestationTypedData
-		// >(
-		// 	typedData,
-		// 	{
-		// 		domain: this.getDomainTypedData(),
-		// 		primaryType: this.signingType.primaryType,
-		// 		message: typedData,
-		// 		types: this.signingType.types,
-		// 	},
-		// 	signer,
-		// );
 	});
+
 	// TODO
 	test.skip("should verify attestation onchain", async () => {
 		// await this.eas.contract.attest.staticCall(

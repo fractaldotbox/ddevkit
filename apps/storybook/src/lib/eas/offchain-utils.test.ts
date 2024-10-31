@@ -12,6 +12,12 @@ import { Spec, TEST_ATTESTATIONS } from "./eas-test.fixture";
 import { createOffchainURL, zipAndEncodeToBase64 } from "./offchain-utils";
 // import { createOffchainURL, zipAndEncodeToBase64 } from './offchain/offchain';
 
+describe("#getOffchain", () => {
+	test("viem and sdk", () => {
+		// TODO pull from offchain.int.test.ts after align fixture
+		// getOffchainUID
+	});
+});
 // use fixture
 describe.skip("offchain utils eas-sdk", () => {
 	describe.each(TEST_ATTESTATIONS)(
