@@ -18,10 +18,14 @@ Displaying Ether(ETH) token symbol.
 
 ## How to use
 
-Copy the following code into your code base.
+Install the following `shadcn/ui` component(s):
+
+- [Button](https://ui.shadcn.com/docs/components/button)
+
+Copy the following code into your code base. And modify import parts as needed.
 
 ```tsx
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"; // modify as needed
 
 export type TokenChipProps = {
   // optional because native tokens don't have addresses
