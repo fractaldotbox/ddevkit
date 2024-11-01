@@ -9,20 +9,14 @@
     "./fixture": "./src/fixture.ts"
   },
   "scripts": {
-    "generate:component": "turbo gen react-component",
-    "lint": "biome check .",
-    "lint:fix": "pnpm lint --write",
-    "format:check": "biome format .",
-    "format": "biome format . --write"
+    "generate:component": "turbo gen react-component"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@turbo/gen": "^1.12.4",
     "@types/node": "^20.11.24",
-    "@types/eslint": "^8.56.5",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
-    "eslint": "^8.57.0",
     "typescript": "^5.3.3"
   },
   "dependencies": {

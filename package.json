@@ -4,10 +4,8 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "lint": "turbo run lint --parallel",
-    "lint:fix": "turbo run lint:fix --parallel",
-    "format": "turbo run format --parallel",
-    "format:check": "turbo run format:check --parallel"
+    "check": "biome check . --changed",
+    "check:fix": "biome check . --changed --write"
   },
   "devDependencies": {
     "@0no-co/graphqlsp": "^1.12.15",
