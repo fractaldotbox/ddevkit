@@ -1,29 +1,30 @@
 import { Button } from "@/components/ui/button";
-import { parseEther } from "viem";
-import { useAccount, useSendTransaction } from "wagmi";
+import { Account, parseEther } from "viem";
+import { useSendTransaction } from "wagmi";
 
 interface TransferButtonProps {
   /** Amount to transfer in ETH */
   amount: number;
   /** Address to transfer to */
   to: string;
+  /** Account to use for the transfer */
+  account?: Account;
 }
 
-export function TransferButton({ amount, to }: TransferButtonProps) {
-  const { address } = useAccount();
+export function TransferButton({ amount, to, account }: TransferButtonProps) {
   const { sendTransaction, isPending } = useSendTransaction();
 
-  const handleTransfer = async () => {
-    if (!address) return;
+  const handleTransfer = () => {
     sendTransaction({
       to: to as `0x${string}`,
       value: parseEther(amount.toString()),
+      account,
     });
   };
 
   return (
     <Button onClick={handleTransfer} disabled={isPending}>
-      {address ? "Transfer" : "Connect Wallet"}
+      {account ? "Transfer" : "Connect Wallet"}
     </Button>
   );
 }

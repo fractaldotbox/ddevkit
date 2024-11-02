@@ -4,11 +4,13 @@ import { useState } from "react";
 import { TransferButton } from "./transfer-button";
 import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
 import { Label } from "@/components/ui/label";
+import { Account } from "viem";
 interface TransferButtonProps {
   to: string;
+  account?: Account;
 }
 
-const TransferButtonStory = ({ to }: TransferButtonProps) => {
+const TransferButtonStory = ({ to, account }: TransferButtonProps) => {
   const [amount, setAmount] = useState(0.001);
 
   return (
@@ -18,7 +20,7 @@ const TransferButtonStory = ({ to }: TransferButtonProps) => {
         <Input type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
         <p className="absolute right-3 top-0 bottom-0 flex items-center">ETH</p>
       </div>
-      <TransferButton to={to} amount={amount} />
+      <TransferButton to={to} amount={amount} account={account} />
     </div>
   );
 };
