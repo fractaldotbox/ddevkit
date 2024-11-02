@@ -1,14 +1,23 @@
 import { useAccount } from "wagmi";
 import { Address } from "../identity/Address";
+import { privateKeyToAccount } from "viem/accounts";
 
 export const withWalletControl = () => {
 
     return (Story: any, context: any) => {
 
+        const { privateKey } = context?.args;
+        const account = privateKeyToAccount(privateKey);
+        const { address } = account;
+
 
         return (
             <div>
-                test
+                <Address address={address} />
+                <div className="p-10">
+                    <Story args={context.args} />
+
+                </div>
             </div>
         )
 

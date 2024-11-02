@@ -52,7 +52,7 @@ export const AttestationForm = ({ chainId, schemaId, schemaIndex, signAttestatio
                 console.log('success', uids, txnReceipt)
                 toast({
                     title: "Attestation success",
-                    description: `onchain txn ${txnReceipt?.transactionHash}`,
+                    description: `attested ${txnReceipt?.transactionHash}`,
                     action: (
                         <ToastAction altText="Goto schedule to undo">{uids?.[0]}</ToastAction>
                     ),

@@ -28,6 +28,7 @@ import {
 	verifyOffchainAttestationSignature,
 } from "../offchain/offchain";
 import { getOffchainUID } from "../offchain-utils";
+import { signOffchainAttestation } from "./offchain";
 
 describe("offchain attestation handling/verification", () => {
 	let eas: EAS;
@@ -119,43 +120,17 @@ describe("offchain attestation handling/verification", () => {
 			version,
 		};
 
-		const {
-			types,
-			primaryType,
-			domain: domainName,
-		} = OFFCHAIN_ATTESTATION_TYPES[version][0];
-
-		const domain = {
-			name: domainName,
-			version: "0.26",
-			chainId: sepolia.id,
-			verifyingContract: "0xC2679fBD37d54388Ce493F1DB75320D236e1815e" as Hex,
-		};
-		// TODO sin with contract
-
-		const message = offchainTypedData;
-
-		const typedData = {
-			// must explicit
-			account: from,
-			types,
-			primaryType,
-			domain,
-			message,
-		};
-
-		const client = createWalletClient({
-			chain: sepolia,
-			transport: http(),
-			account: from,
-		});
-
-		console.log("hihi", from, attesterAddress);
-		console.log("typedData", typedData);
-
-		const signature = await client.signTypedData({
-			...typedData,
-		});
+		const attestation = await signOffchainAttestation(
+			{
+				...requestTemplate,
+				time: now,
+				version,
+			},
+			{
+				chain: sepolia,
+				account: from,
+			},
+		);
 
 		const uidEasSdk = getOffchainUIDEasSdk(
 			version,
@@ -179,18 +154,6 @@ describe("offchain attestation handling/verification", () => {
 		});
 
 		expect(uid).toBe(uidEasSdk);
-
-		const attestation = {
-			domain,
-			message: {
-				...typedData.message,
-			},
-			primaryType,
-			types,
-			version,
-			uid,
-			signature,
-		};
 
 		console.log("viem attestation", attestation);
 		// sdk verification
