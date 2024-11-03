@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 
 export type TokenChipProps = {
-  // optional because native tokens don't have addresses
   image?: string;
   name: string;
   symbol: string;
