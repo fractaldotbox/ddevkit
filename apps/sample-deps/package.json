@@ -1,37 +1,36 @@
 {
-  "name": "sample-deps",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "build:analyze": "ANALYZE=true next build"
-  },
-  "dependencies": {
-    "@coinbase/onchainkit": "0.33.2",
-    "@ensdomains/ensjs": "4.0.1-alpha.0",
-    "@ensdomains/ensjs-react": "^0.0.3",
-    "@ethereum-attestation-service/eas-sdk": "2.6.0",
-    "@tanstack/react-query": "^5.56.2",
-    "daisyui": "4.12.10",
-    "ethers": "^6.13.2",
-    "next": "14.2.13",
-    "react": "^18",
-    "react-dom": "^18",
-    "viem": "2.x",
-    "wagmi": "^2.12.16"
-  },
-  "devDependencies": {
-    "@next/bundle-analyzer": "^14.2.13",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "autoprefixer": "^10.4.20",
-    "pino-pretty": "^11.2.2",
-    "postcss": "^8.4.31",
-    "tailwindcss": "^3.4.13",
-    "typescript": "^5"
-  }
+	"name": "sample-deps",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"build:analyze": "ANALYZE=true next build"
+	},
+	"dependencies": {
+		"@coinbase/onchainkit": "0.33.2",
+		"@ensdomains/ensjs": "4.0.1-alpha.0",
+		"@ensdomains/ensjs-react": "^0.0.3",
+		"@ethereum-attestation-service/eas-sdk": "2.6.0",
+		"@tanstack/react-query": "^5.56.2",
+		"daisyui": "4.12.10",
+		"ethers": "^6.13.2",
+		"next": "14.2.13",
+		"react": "^18",
+		"react-dom": "^18",
+		"viem": "2.x",
+		"wagmi": "^2.12.16"
+	},
+	"devDependencies": {
+		"@next/bundle-analyzer": "^14.2.13",
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"autoprefixer": "^10.4.20",
+		"pino-pretty": "^11.2.2",
+		"postcss": "^8.4.31",
+		"tailwindcss": "^3.4.13",
+		"typescript": "^5"
+	}
 }

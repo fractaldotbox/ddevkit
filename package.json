@@ -1,31 +1,31 @@
 {
-  "name": "geist-dapp-kit",
-  "private": true,
-  "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo run lint --parallel",
-    "lint:fix": "turbo run lint:fix --parallel",
-    "format": "turbo run format --parallel",
-    "format:check": "turbo run format:check --parallel"
-  },
-  "devDependencies": {
-    "@0no-co/graphqlsp": "^1.12.15",
-    "@biomejs/biome": "^1.9.2",
-    "@graphql-codegen/cli": "^5.0.2",
-    "@graphql-codegen/introspection": "^4.0.3",
-    "@graphql-codegen/schema-ast": "^4.1.0",
-    "@parcel/watcher": "^2.4.1",
-    "cross-env": "^7.0.3",
-    "prettier": "^3.2.5",
-    "shadcn": "^2.1.0",
-    "turbo": "^2.1.2",
-    "typescript": "^5.4.5",
-    "vite-bundle-visualizer": "^1.2.1"
-  },
-  "engines": {
-    "node": ">=20",
-    "pnpm": ">=9"
-  },
-  "packageManager": "pnpm@9.7.0"
+	"name": "geist-dapp-kit",
+	"private": true,
+	"scripts": {
+		"build": "turbo build",
+		"dev": "turbo dev",
+		"check": "biome check . --changed",
+		"check:fix": "biome check . --changed --write",
+		"prepare": "husky"
+	},
+	"devDependencies": {
+		"@0no-co/graphqlsp": "^1.12.15",
+		"@biomejs/biome": "^1.9.4",
+		"@graphql-codegen/cli": "^5.0.2",
+		"@graphql-codegen/introspection": "^4.0.3",
+		"@graphql-codegen/schema-ast": "^4.1.0",
+		"@parcel/watcher": "^2.4.1",
+		"cross-env": "^7.0.3",
+		"husky": "^9.1.6",
+		"prettier": "^3.2.5",
+		"shadcn": "^2.1.0",
+		"turbo": "^2.1.2",
+		"typescript": "^5.4.5",
+		"vite-bundle-visualizer": "^1.2.1"
+	},
+	"engines": {
+		"node": ">=20",
+		"pnpm": ">=9"
+	},
+	"packageManager": "pnpm@9.7.0"
 }
