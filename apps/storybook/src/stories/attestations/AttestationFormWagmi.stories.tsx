@@ -75,7 +75,12 @@ const useAttestationWagmi = (account: Account, isOffchain: boolean) => {
 
 
 
-            return attestation;
+            console.log('offchain created', attestation);
+            const { uid } = attestation;
+            return {
+                uids: [uid]
+            };
+
         }
 
 
@@ -112,9 +117,10 @@ const AttestationFormWagmi = ({
 
     return (
         <AttestationForm
-            chainId={chainId}
+            chainId={sepolia.id}
             schemaId={schemaId}
             schemaIndex={schemaIndex}
+            isOffchain={isOffchain}
             signAttestation={async () => signAttestation({ recipient })}
         />
     );

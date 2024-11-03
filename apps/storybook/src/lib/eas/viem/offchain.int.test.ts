@@ -17,10 +17,7 @@ import { createEthersSigner } from "../ethers";
 import { Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { ethers, encodeBytes32String, Signer, Signature } from "ethers";
-import {
-	SCHEMA_FIXTURE_IS_A_FRIEND,
-	VOTE_SCHEMA_FIXTURE,
-} from "../eas-test.fixture";
+import { SCHEMA_FIXTURE_MET_IRL } from "../eas-test.fixture";
 import { BY_USER } from "@/stories/fixture";
 import { EIP712_NAME } from "../versions";
 import {
@@ -42,7 +39,7 @@ describe("offchain attestation handling/verification", () => {
 	const from = privateKeyToAccount(privateKey);
 
 	const requestTemplate = {
-		schema: SCHEMA_FIXTURE_IS_A_FRIEND.schemaUID,
+		schema: SCHEMA_FIXTURE_MET_IRL.schemaUID,
 		recipient: BY_USER.eas.mockReceipient.address,
 		time: 1728637333000n,
 		expirationTime: NO_EXPIRATION,

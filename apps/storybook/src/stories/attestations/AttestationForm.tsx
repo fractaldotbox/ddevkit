@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
-import { useToast } from "@/components/hooks/use-toast"
+import { getEasscanAttestationUrl } from '@/lib/eas/util'
 
 import { ToastAction } from "@/components/ui/toast"
 import {
@@ -20,18 +20,24 @@ import { SchemaBadge } from "./SchemaBadge"
 import { useAttestation } from "@/lib/eas/use-attestation"
 import { Card, CardContent } from "@/components/ui/card"
 import { toast } from "@/hooks/use-toast"
+import { getShortHex } from "@/utils/hex"
 
 // TODO dynamic enough to generate fields
 // now focus on sdk part
 
+export interface AttestationFormParams {
+    chainId: number,
+    schemaId: string,
+    schemaIndex?: string,
+    isOffchain: boolean,
+    signAttestation: () => Promise<any>
+}
+
 // For now, hardcode the MetIRL
-export const AttestationForm = ({ chainId, schemaId, schemaIndex, signAttestation }:
-    {
-        chainId: number,
-        schemaId: string,
-        schemaIndex?: string,
-        signAttestation: () => Promise<any>
-    }) => {
+export const AttestationForm = (
+    { chainId, schemaId, schemaIndex, isOffchain, signAttestation }
+        : AttestationFormParams
+) => {
 
 
     const formSchema = z.object({
@@ -49,12 +55,20 @@ export const AttestationForm = ({ chainId, schemaId, schemaIndex, signAttestatio
     function onSubmit(values: z.infer<typeof formSchema>) {
         signAttestation()
             .then(({ uids, txnReceipt }: any) => {
-                console.log('success', uids, txnReceipt)
+                console.log('success', uids, txnReceipt, isOffchain);
+                const [uid] = uids;
+                const url = getEasscanAttestationUrl(chainId, uid, isOffchain)
+
+                const description = isOffchain ? (
+                    getShortHex(uid)
+                ) : `attested ${txnReceipt?.transactionHash}`
+
+
                 toast({
                     title: "Attestation success",
-                    description: `attested ${txnReceipt?.transactionHash}`,
+                    description,
                     action: (
-                        <ToastAction altText="Goto schedule to undo">{uids?.[0]}</ToastAction>
+                        <ToastAction altText="View on EASSCAN"><a target="_blank" href={url}>View on EASSCAN</a></ToastAction>
                     ),
                 })
             });
