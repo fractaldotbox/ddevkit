@@ -91,6 +91,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "@chromatic-com/storybook": "^1.9.0",
     "@eslint/js": "^9.9.0",
     "@ethereum-attestation-service/eas-contracts": "1.7.1",
