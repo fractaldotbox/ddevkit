@@ -42,7 +42,7 @@ export const TokenChip = ({
 }: TokenChipProps) => {
   return (
     <Button variant={"secondary"} className={`py-1 flex gap-3 ${className}`}>
-      <img className="h-6" src={image} alt={`${name}-icon`} />
+      {!!image && <img className="h-6" src={image} alt={`${name}-icon`} />}
       <div className="text-lg font-semibold">{symbol}</div>
     </Button>
   );
