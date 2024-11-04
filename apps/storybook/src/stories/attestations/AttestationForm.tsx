@@ -86,7 +86,7 @@ export const AttestationForm = (
                                 <FormItem>
                                     <div className="flex gap-2">
                                         <SchemaBadge chainId={chainId} schemaId={schemaId} schemaIndex={schemaIndex || ''} />
-                                        MET IRL
+                                        IS A FRIEND
                                     </div>
                                     <FormLabel>Recipient</FormLabel>
                                     <FormControl>
