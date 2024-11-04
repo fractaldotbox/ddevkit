@@ -1,31 +1,31 @@
-import { beforeEach, describe, expect, test } from "vitest";
-import { createEAS } from "../ethers/onchain";
-import { Address, createWalletClient, custom, http } from "viem";
-import { EASContractAddress } from "./onchain.test";
-import { sepolia } from "viem/chains";
+import { BY_USER } from "@/stories/fixture";
 import {
 	EAS,
-	getOffchainUID as getOffchainUIDEasSdk,
 	NO_EXPIRATION,
 	Offchain,
 	OffchainAttestationTypedData,
 	OffchainAttestationVersion,
 	ZERO_BYTES,
 	ZERO_BYTES32,
+	getOffchainUID as getOffchainUIDEasSdk,
 } from "@ethereum-attestation-service/eas-sdk";
-import { createEthersSigner } from "../ethers";
+import { Signature, Signer, encodeBytes32String, ethers } from "ethers";
+import { http, Address, createWalletClient, custom } from "viem";
 import { Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { ethers, encodeBytes32String, Signer, Signature } from "ethers";
+import { sepolia } from "viem/chains";
+import { beforeEach, describe, expect, test } from "vitest";
 import { SCHEMA_FIXTURE_MET_IRL } from "../eas-test.fixture";
-import { BY_USER } from "@/stories/fixture";
-import { EIP712_NAME } from "../versions";
+import { createEthersSigner } from "../ethers";
+import { createEAS } from "../ethers/onchain";
+import { getOffchainUID } from "../offchain-utils";
 import {
 	OFFCHAIN_ATTESTATION_TYPES,
 	verifyOffchainAttestationSignature,
 } from "../offchain/offchain";
-import { getOffchainUID } from "../offchain-utils";
+import { EIP712_NAME } from "../versions";
 import { signOffchainAttestation } from "./offchain";
+import { EASContractAddress } from "./onchain.test";
 
 describe("offchain attestation handling/verification", () => {
 	let eas: EAS;

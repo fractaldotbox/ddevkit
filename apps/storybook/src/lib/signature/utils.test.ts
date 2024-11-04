@@ -1,15 +1,15 @@
-import { expect, test, describe } from "vitest";
 import { ethers } from "ethers";
 import {
-	recoverMessageAddress,
-	verifyMessage,
-	recoverAddress,
-	hashMessage,
 	Address,
 	Hex,
+	hashMessage,
 	hashTypedData,
+	recoverAddress,
+	recoverMessageAddress,
+	verifyMessage,
 } from "viem";
 import { generatePrivateKey } from "viem/accounts";
+import { describe, expect, test } from "vitest";
 
 describe("Signature Verification Tests", () => {
 	// Generate a consistent private key for testing

@@ -1,15 +1,15 @@
-import { beforeEach, describe, it, expect, test } from "vitest";
-import { makeAttestation, revoke } from "./onchain";
-import { SignatureType } from "../eas";
-import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
-import { createEthersSigner } from "../ethers";
 import { EAS, NO_EXPIRATION } from "@ethereum-attestation-service/eas-sdk";
+import { JsonRpcProvider, encodeBytes32String, ethers } from "ethers";
 import { AccountNotFoundError } from "node_modules/viem/_types/errors/account";
-import { createWalletClient, Hex, http } from "viem";
+import { http, Hex, createWalletClient } from "viem";
+import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
 import { sepolia } from "viem/chains";
-import { encodeBytes32String, ethers, JsonRpcProvider } from "ethers";
-import { createEAS } from "../ethers/onchain";
+import { beforeEach, describe, expect, it, test } from "vitest";
+import { SignatureType } from "../eas";
 import { SCHEMA_FIXTURE_IS_A_FRIEND } from "../eas-test.fixture";
+import { createEthersSigner } from "../ethers";
+import { createEAS } from "../ethers/onchain";
+import { makeAttestation, revoke } from "./onchain";
 
 export const EASContractAddress = "0xC2679fBD37d54388Ce493F1DB75320D236e1815e"; // Sepolia v0.26
 

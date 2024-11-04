@@ -5,20 +5,20 @@ import {
 	OffchainAttestationVersion,
 } from "@ethereum-attestation-service/eas-sdk";
 import { base64 } from "@scure/base";
+import { hexlify, toUtf8Bytes } from "ethers";
 import { zlibSync } from "fflate";
-import { stringifyWithBigInt } from "./util";
-import { ZERO_ADDRESS, ZERO_HASH } from "../constants";
-import { OFFCHAIN_ATTESTATION_TYPES } from "./offchain/offchain";
 import {
 	Address,
+	Hex,
 	encodeAbiParameters,
 	encodePacked,
-	Hex,
 	keccak256,
 	parseAbiParameters,
 	stringToHex,
 } from "viem";
-import { hexlify, toUtf8Bytes } from "ethers";
+import { ZERO_ADDRESS, ZERO_HASH } from "../constants";
+import { OFFCHAIN_ATTESTATION_TYPES } from "./offchain/offchain";
+import { stringifyWithBigInt } from "./util";
 
 /**
  *
