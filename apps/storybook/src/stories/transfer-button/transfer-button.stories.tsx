@@ -10,7 +10,7 @@ interface TransferButtonProps {
 }
 
 const TransferButtonStory = ({ to, account }: TransferButtonProps) => {
-  const [amount, setAmount] = useState(0.001);
+  const [amount, setAmount] = useState("0.001");
 
   return (
     <div className="flex flex-col gap-2">
@@ -24,14 +24,14 @@ const TransferButtonStory = ({ to, account }: TransferButtonProps) => {
             const value = e.target.value;
             // Only allow numbers and a single decimal point
             if (/^[0-9]*\.?[0-9]*$/.test(value)) {
-              setAmount(Number(value));
+              setAmount(value);
             }
           }}
           className="border-none bg-white outline-none focus-within:outline-none px-4 focus:outline-none h-10 flex-1"
         />
         <p>ETH</p>
       </div>
-      <TransferButton to={to} amount={amount} account={account} />
+      <TransferButton to={to} amount={Number(amount)} account={account} />
     </div>
   );
 };
