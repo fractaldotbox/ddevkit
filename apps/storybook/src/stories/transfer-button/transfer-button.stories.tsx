@@ -1,4 +1,3 @@
-import { Input } from "@/components/ui/input";
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { TransferButton } from "./transfer-button";
@@ -16,9 +15,21 @@ const TransferButtonStory = ({ to, account }: TransferButtonProps) => {
   return (
     <div className="flex flex-col gap-2">
       <Label>Amount</Label>
-      <div className="flex gap-2 relative">
-        <Input type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
-        <p className="absolute right-3 top-0 bottom-0 flex items-center">ETH</p>
+      <div className="flex items-center gap-2 relative border border-primary rounded-md pr-2 overflow-hidden">
+        <input
+          placeholder="0"
+          pattern="[1-9.]*"
+          value={String(amount)}
+          onChange={(e) => {
+            const value = e.target.value;
+            // Only allow numbers and a single decimal point
+            if (/^[0-9]*\.?[0-9]*$/.test(value)) {
+              setAmount(Number(value));
+            }
+          }}
+          className="border-none bg-white outline-none focus-within:outline-none px-4 focus:outline-none h-10 flex-1"
+        />
+        <p>ETH</p>
       </div>
       <TransferButton to={to} amount={amount} account={account} />
     </div>

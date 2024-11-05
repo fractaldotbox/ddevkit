@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { MutationOptions } from "@tanstack/react-query";
 import { Config, SendTransactionErrorType } from "@wagmi/core";
+import { Loader2 } from "lucide-react";
 import { Account, parseEther } from "viem";
 import { useSendTransaction } from "wagmi";
 import { SendTransactionData, SendTransactionVariables } from "wagmi/query";
@@ -34,7 +35,7 @@ export function TransferButton({ amount, to, account, ...mutationOptions }: Tran
 
   return (
     <Button onClick={handleTransfer} disabled={isPending}>
-      {account ? "Transfer" : "Connect Wallet"}
+      {isPending && <Loader2 className="animate-spin w-4 h-4 mr-1" />} {account ? "Transfer" : "Connect Wallet"}
     </Button>
   );
 }
