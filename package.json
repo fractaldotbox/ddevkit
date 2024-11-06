@@ -4,8 +4,8 @@
 	"scripts": {
 		"build": "turbo build",
 		"dev": "turbo dev",
-		"check": "biome check . --changed",
-		"check:fix": "biome check . --changed --write",
+		"check": "biome check . --changed --no-errors-on-unmatched",
+		"check:fix": "biome check . --changed --write --no-errors-on-unmatched",
 		"prepare": "husky"
 	},
 	"devDependencies": {
