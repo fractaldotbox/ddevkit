@@ -18,12 +18,12 @@ const TransferButtonStory = ({ to, account }: TransferButtonProps) => {
       <div className="flex items-center gap-2 relative border border-primary rounded-md pr-2 overflow-hidden">
         <input
           placeholder="0"
-          pattern="[1-9.]*"
+          pattern="([0-9]+\.)?[0-9]+$"
           value={String(amount)}
           onChange={(e) => {
             const value = e.target.value;
             // Only allow numbers and a single decimal point
-            if (/^[0-9]*\.?[0-9]*$/.test(value)) {
+            if (/([0-9]+\.)?[0-9]+$/.test(value)) {
               setAmount(value);
             }
           }}
