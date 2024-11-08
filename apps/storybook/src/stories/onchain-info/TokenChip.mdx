@@ -1,0 +1,66 @@
+import { Meta, Story, Canvas } from "@storybook/blocks";
+import * as TokenChipStories from "./TokenChip.stories";
+import { TokenChip } from "./TokenChip";
+
+<Meta title="MDX/TokenChip" of={TokenChipStories} />
+
+# TokenChip
+
+The `TokenChip` component is a button that displays the token symbol.
+
+## Example
+
+Displaying Ether(ETH) token symbol.
+
+<Canvas>
+  <Story of={TokenChip.ETHTokenChip} />
+</Canvas>
+
+## How to use
+
+Install the following `shadcn/ui` component(s):
+
+- [Button](https://ui.shadcn.com/docs/components/button)
+
+Copy the following code into your code base. And modify import parts as needed.
+
+```tsx
+import { Button } from "@/components/ui/button"; // modify as needed
+
+export type TokenChipProps = {
+  image?: string;
+  name: string;
+  symbol: string;
+  className?: string;
+};
+
+export const TokenChip = ({
+  image,
+  name,
+  symbol,
+  className,
+}: TokenChipProps) => {
+  return (
+    <Button variant={"secondary"} className={`py-1 flex gap-3 ${className}`}>
+      {!!image && <img className="h-6" src={image} alt={`${name}-icon`} />}
+      <div className="text-lg font-semibold">{symbol}</div>
+    </Button>
+  );
+};
+```
+
+Then import and use.
+
+```tsx
+import { TokenChip } from "@/components/TokenChip"; // replace with your own path
+
+export function ETHTokenChipDemo() {
+  return (
+    <TokenChip
+      image="https://ethereum.org/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Feth-diamond-black.a042df77.png&w=828&q=75"
+      name="Ether"
+      symbol="ETH"
+    />
+  );
+}
+```
