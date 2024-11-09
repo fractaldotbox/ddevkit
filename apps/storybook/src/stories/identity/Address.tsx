@@ -9,7 +9,6 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "@/components/ui/tooltip";
-import { Button } from "@radix-ui/themes";
 import { Check, Copy } from "lucide-react";
 
 export const Address = ({
@@ -36,7 +35,7 @@ export const Address = ({
       <div>{addressDisplayed}</div>
       <TooltipProvider>
         <Tooltip>
-          <TooltipTrigger asChild>
+          <TooltipTrigger asChild data-testid="tooltip-trigger">
             <div onClick={copyToClipboard} className="cursor-pointer">
               {copied ? (
                 <Check className="h-4 w-4" />
