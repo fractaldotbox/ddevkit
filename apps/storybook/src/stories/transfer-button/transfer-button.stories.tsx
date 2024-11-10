@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { TransferButton } from "./transfer-button";
 import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
 import { Label } from "@/components/ui/label";
@@ -12,6 +12,10 @@ interface TransferButtonProps {
 const TransferButtonStory = ({ to, account }: TransferButtonProps) => {
   const [amount, setAmount] = useState("0.001");
 
+  const isValid = useMemo(() => {
+    return /([0-9]+\.)?[0-9]+$/.test(amount);
+  }, [amount]);
+
   return (
     <div className="flex flex-col gap-2">
       <Label>Amount</Label>
@@ -20,6 +24,11 @@ const TransferButtonStory = ({ to, account }: TransferButtonProps) => {
           placeholder="0"
           pattern="([0-9]+\.)?[0-9]+$"
           value={String(amount)}
+          onKeyDown={(e) => {
+            if (e.key === "Backspace") {
+              setAmount("");
+            }
+          }}
           onChange={(e) => {
             const value = e.target.value;
             // Only allow numbers and a single decimal point
@@ -31,7 +40,7 @@ const TransferButtonStory = ({ to, account }: TransferButtonProps) => {
         />
         <p>ETH</p>
       </div>
-      <TransferButton to={to} amount={Number(amount)} account={account} />
+      <TransferButton to={to} amount={Number(amount)} account={account} disabled={!isValid} />
     </div>
   );
 };

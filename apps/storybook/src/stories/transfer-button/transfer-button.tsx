@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/ui/button";
 import { MutationOptions } from "@tanstack/react-query";
 import { Config, SendTransactionErrorType } from "@wagmi/core";
 import { Loader2 } from "lucide-react";
@@ -13,13 +13,22 @@ type TransferButtonProps = {
   to: string;
   /** Account to use for the transfer */
   account?: Account;
-} & MutationOptions<
-  SendTransactionData,
-  SendTransactionErrorType,
-  SendTransactionVariables<Config, Config["chains"][number]["id"]>
->;
+  /** Viem mutation options */
+  mutationOptions?: MutationOptions<
+    SendTransactionData,
+    SendTransactionErrorType,
+    SendTransactionVariables<Config, Config["chains"][number]["id"]>
+  >;
+} & ButtonProps;
 
-export function TransferButton({ amount, to, account, ...mutationOptions }: TransferButtonProps) {
+export function TransferButton({
+  amount,
+  to,
+  account,
+  disabled,
+  mutationOptions,
+  ...buttonProps
+}: TransferButtonProps) {
   const { sendTransaction, isPending } = useSendTransaction();
 
   const handleTransfer = () => {
@@ -34,7 +43,7 @@ export function TransferButton({ amount, to, account, ...mutationOptions }: Tran
   };
 
   return (
-    <Button onClick={handleTransfer} disabled={isPending}>
+    <Button onClick={handleTransfer} disabled={isPending || disabled} {...buttonProps}>
       {isPending && <Loader2 className="animate-spin w-4 h-4 mr-1" />} {account ? "Transfer" : "Connect Wallet"}
     </Button>
   );
