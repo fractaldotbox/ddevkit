@@ -22,19 +22,11 @@ const TransferButtonStory = ({ to, account }: TransferButtonProps) => {
 			<div className="flex items-center gap-2 relative border border-primary rounded-md pr-2 overflow-hidden">
 				<input
 					placeholder="0"
-					pattern="([0-9]+\.)?[0-9]+$"
+					type="number"
 					value={String(amount)}
-					onKeyDown={(e) => {
-						if (e.key === "Backspace") {
-							setAmount(amount.slice(0, -1));
-						}
-					}}
 					onChange={(e) => {
 						const value = e.target.value;
-						// Only allow numbers and a single decimal point
-						if (/([0-9]+\.)?[0-9]+$/.test(value)) {
-							setAmount(value);
-						}
+						setAmount(value);
 					}}
 					className="border-none bg-white outline-none focus-within:outline-none px-4 focus:outline-none h-10 flex-1"
 				/>
