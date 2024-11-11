@@ -26,7 +26,7 @@ const TransferButtonStory = ({ to, account }: TransferButtonProps) => {
           value={String(amount)}
           onKeyDown={(e) => {
             if (e.key === "Backspace") {
-              setAmount("");
+              setAmount(amount.slice(0, -1));
             }
           }}
           onChange={(e) => {
