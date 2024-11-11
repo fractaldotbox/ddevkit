@@ -1,7 +1,5 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
-import * as viem from "viem";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import * as addressUtils from "../../utils/address";
 import { Address } from "../Address";
 
 vi.mock(import("viem"), async (importOriginal) => {
@@ -41,8 +39,8 @@ describe("Address Component", () => {
 		expect(screen.getByText(`0x742d...f44e`)).toBeDefined();
 	});
 
-	it("renders full address when isShort is false", () => {
-		render(<Address address={mockAddress} isShort={false} />);
+	it("renders full address when isFull is true", () => {
+		render(<Address address={mockAddress} isFull={true} />);
 		expect(screen.getByText(mockAddress)).toBeDefined();
 	});
 

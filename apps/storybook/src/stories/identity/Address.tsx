@@ -13,10 +13,10 @@ import { getShortAddress } from "../../utils/address";
 
 export const Address = ({
 	address,
-	isShort = true,
+	isFull,
 }: {
 	address: Hex;
-	isShort?: boolean;
+	isFull?: boolean;
 }) => {
 	const [copied, setCopied] = useState(false);
 
@@ -27,8 +27,8 @@ export const Address = ({
 	};
 
 	const addressDisplayed = useMemo(() => {
-		return isShort ? getShortAddress(address) : getAddress(address);
-	}, [address, isShort]);
+		return isFull ? getAddress(address) : getShortAddress(address);
+	}, [address, isFull]);
 
 	return (
 		<div className="flex gap-2 items-center">
