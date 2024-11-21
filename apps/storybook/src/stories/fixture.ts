@@ -42,3 +42,14 @@ export const getRandomAccount = () => {
 export const getRandomAddress = () => {
 	return addr.random().address as Address;
 };
+
+export const TRANSACTION = {
+	VITALIK_DEPOSIT: {
+		txnHash:
+			"0x31634ddc4975cc9f2c3c6426034fe0ed30163000cd067e80857136ab86dc0a3b",
+	},
+	VITALIK_TRANSFER: {
+		txnHash:
+			"0xed46c306a58821dd2dcbc78d7b7af9715c809c71d7a53b0dfc90c42dfdf59b67",
+	},
+};

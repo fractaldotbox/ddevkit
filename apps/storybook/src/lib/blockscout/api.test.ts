@@ -1,8 +1,9 @@
 import { getAddress } from "viem";
 import { describe, expect, test } from "vitest";
-import { getAddressInfo, getAddressTransactions } from "./api";
+import { getAddressInfo, asTransaction, getTransaction } from "./api";
+import { TXN_VITALIK_DEPOSIT } from "./fixture";
 
-describe.only("blockscout", () => {
+describe("blockscout", () => {
 	test.skip("api", async () => {
 		const address = "0x962EFc5A602f655060ed83BB657Afb6cc4b5883F";
 
@@ -12,18 +13,28 @@ describe.only("blockscout", () => {
 		expect(ens_domain_name).toBe("debuggingfuture.eth");
 	});
 
-	test("getAddressTransactions", async () => {
-		const address = "0x962EFc5A602f655060ed83BB657Afb6cc4b5883F";
+	test("getTransaction", async () => {
 		const txnHash =
 			"0xc6480de9e7ba4daa2bd115be1aa41c669246b052e6765a4848f8c683c63cacf7";
 
-		const { from, to, tx_types } = await getAddressTransactions(
-			address,
-			txnHash,
-		);
+		const { from, to, tx_types } = await getTransaction(txnHash);
 		expect(from.ens_domain_name).toBe("debuggingfuture.eth");
 		expect(to.ens_domain_name).toBe(null);
 		expect(tx_types).toEqual(["coin_transfer"]);
+	});
+});
+
+// transaction_types
+
+describe("Transaction", () => {
+	test("#asTransaction", () => {
+		const transaction = asTransaction(TXN_VITALIK_DEPOSIT);
+
+		expect(transaction.to).toEqual(
+			"0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+		);
+
+		expect(transaction.tx_types).toEqual(["coin_transfer"]);
 	});
 });
 

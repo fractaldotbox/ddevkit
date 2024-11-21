@@ -5,7 +5,7 @@ import { getShortAddress } from '../../utils/address';
 import { useMemo } from 'react';
 
 
-export const Address = ({ address, isShort = true }: {
+export const AddrsesBadge = ({ address, isShort = true }: {
     address: Hex,
     isShort?: boolean
 }) => {
@@ -20,7 +20,7 @@ export const Address = ({ address, isShort = true }: {
     )
 }
 
-export const AddressFromName = ({ name }: {
+export const AddressBadgeFromName = ({ name }: {
     name: string
 }) => {
 
@@ -29,6 +29,6 @@ export const AddressFromName = ({ name }: {
     })
 
     return (
-        <Address address={'0x'} />
+        <AddrsesBadge address={'0x'} />
     )
 }
