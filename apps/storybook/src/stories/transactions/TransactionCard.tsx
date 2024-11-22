@@ -14,11 +14,12 @@ import { useMemo } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Label } from "@radix-ui/react-label"
 import { Separator } from "@/components/ui/separator"
-import { getShortHex } from "@/utils/hex"
+import { getShortHex, getShortHex } from "@/utils/hex"
 import { format } from "date-fns"
 import { mainnet } from "viem/chains"
 import { useGetTransaction } from "@/hooks/use-blockscout"
 import { AddrsesBadge } from "../identity/Address"
+import { TransactionMeta } from "@/lib/blockscout/api"
 
 
 export const TransactionSummary = ({ transaction }: { transaction: TransactionMeta }) => {
@@ -128,7 +129,9 @@ export const TransactionCard = ({
                     <CardDescription>
                         <div className="flex flex-col">
 
-                            <div className="text-xs text-muted-foreground">txnHash</div>
+                            <div className="text-xs text-muted-foreground">
+                                {getShortHex(txnHash)}
+                            </div>
 
                         </div>
 
