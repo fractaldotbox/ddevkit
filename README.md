@@ -4,8 +4,8 @@ Optimized dApp Components that you or LLM can copy and paste into your apps.  Ac
 Inspired by [shadcn/ui](https://github.com/shadcn-ui/ui/tree/main)
 
 ⚠️ This is preview alpha version under active development
-## For developers
-- Current approach is to focus on storybook, run `pnpm --filter storybook storybook`
+## For contributors
+- Current approach is to focus on storybook, run `pnpm --filter storybook dev`
   - to identify key challenges and make sensible architecture decisions e.g. graphql
 - end-goal is to make each of them copy-paste ready code
   - to be extraced into registry for shadcn cli work
@@ -29,7 +29,7 @@ We want to create generic dApp components that work well across different ecosys
 These components should adapt to common smart contract interfaces. 
 
 
-Besides decoupling style and implementation as in shadcn, the bigger motivation is to support developing dapp are that are trustless, secure with minimal dependency to particular ecosystems and avoid supply chain attacks.
+Besides decoupling style and implementation as in shadcn, the bigger motivation is to support developing dapp that are trustless, secure with minimal dependency to particular ecosystems and avoid supply chain attacks.
 This aims to provide reasonable defaults and allow user to extend per need. 
 We try to improve DX but the end goal is to support autonomous agents to control and iterate Decentralized, autonomous website with programmable cryptography. 
 
