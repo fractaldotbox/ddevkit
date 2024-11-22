@@ -1,7 +1,7 @@
 import { getAddress } from "viem";
 import { describe, expect, test } from "vitest";
 import { getAddressInfo, asTransaction, getTransaction } from "./api";
-import { TXN_VITALIK_DEPOSIT } from "./fixture";
+import { TXN_VITALIK_DEPOSIT, TXN_VITALIK_TRANSFER } from "./fixture";
 
 describe("blockscout", () => {
 	test.skip("api", async () => {
@@ -27,14 +27,29 @@ describe("blockscout", () => {
 // transaction_types
 
 describe("Transaction", () => {
-	test("#asTransaction", () => {
+	test("#asTransaction contract", () => {
 		const transaction = asTransaction(TXN_VITALIK_DEPOSIT);
 
 		expect(transaction.to).toEqual(
-			"0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+			"0xB4A8d45647445EA9FC3E1058096142390683dBC2",
 		);
 
-		expect(transaction.tx_types).toEqual(["coin_transfer"]);
+		expect(transaction.displayedTxType).toEqual("contract_call");
+
+		expect(transaction.value).toEqual(32010000000000000000000000000n);
+		expect(transaction.tokenTransfers?.[0]?.name).toEqual("Wrapped Ether");
+	});
+	test("#asTransaction transfer", () => {
+		const transaction = asTransaction(TXN_VITALIK_TRANSFER);
+
+		expect(transaction.to).toEqual(
+			"0x52a785cF0238D02e0F4157735f0a17D04AB2bF6c",
+		);
+
+		expect(transaction.displayedTxType).toEqual("coin_transfer");
+
+		expect(transaction.value).toEqual(100000000000000000000000000000n);
+		expect(transaction.tokenTransfers?.[0]).toEqual([]);
 	});
 });
 

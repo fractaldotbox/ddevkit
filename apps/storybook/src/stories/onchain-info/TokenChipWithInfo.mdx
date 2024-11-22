@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas } from "@storybook/blocks";
-import * as TokenChipStories from "./TokenChip.stories";
-import { TokenChip } from "./TokenChip";
+import * as TokenChipStories from "./TokenChipWithInfo.stories";
+import { TokenChip } from "./TokenChipWithInfo";
 
 <Meta title="MDX/TokenChip" of={TokenChipStories} />
 
@@ -27,19 +27,19 @@ Copy the following code into your code base. And modify import parts as needed.
 ```tsx
 import { Button } from "@/components/ui/button"; // modify as needed
 
-export type TokenChipProps = {
+export type TokenChipWithInfoProps = {
   image?: string;
   name: string;
   symbol: string;
   className?: string;
 };
 
-export const TokenChip = ({
+export const TokenChipWithInfo = ({
   image,
   name,
   symbol,
   className,
-}: TokenChipProps) => {
+}: TokenChipWithInfoProps) => {
   return (
     <Button variant={"secondary"} className={`py-1 flex gap-3 ${className}`}>
       {!!image && <img className="h-6" src={image} alt={`${name}-icon`} />}
@@ -52,11 +52,11 @@ export const TokenChip = ({
 Then import and use.
 
 ```tsx
-import { TokenChip } from "@/components/TokenChip"; // replace with your own path
+import { TokenChipWithInfo } from "@/components/TokenChipWithInfo"; // replace with your own path
 
 export function ETHTokenChipDemo() {
   return (
-    <TokenChip
+    <TokenChipWithInfo
       image="https://ethereum.org/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Feth-diamond-black.a042df77.png&w=828&q=75"
       name="Ether"
       symbol="ETH"

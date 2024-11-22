@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { TransactionCardWithHash } from "./TransactionCard";
-import { withQueryClientProvider } from "../decorators/wagmi";
+import { withWagmiProvider } from "../decorators/wagmi";
 import { TRANSACTION } from "../fixture";
 
 const meta = {
@@ -16,12 +16,12 @@ export const VitalikDepositTransaction: Story = {
 	args: {
 		txnHash: TRANSACTION.VITALIK_DEPOSIT.txnHash,
 	},
-	decorators: [withQueryClientProvider()],
+	decorators: [withWagmiProvider()],
 };
 
 export const VitalikTransferTransaction: Story = {
 	args: {
 		txnHash: TRANSACTION.VITALIK_TRANSFER.txnHash,
 	},
-	decorators: [withQueryClientProvider()],
+	decorators: [withWagmiProvider()],
 };

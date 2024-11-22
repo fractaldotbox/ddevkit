@@ -1,0 +1,93 @@
+/**
+ *
+ * Token image is not on-chain as it's not part-of the ERC20 standard)
+ * Wagmi has that of native token as chain info
+ *
+ * Token logos on Etherscan are added by contract owner after verifications.
+ * Blockscout api use coingecko hosted asset
+ * Trust wallet maintain assets on https://github.com/trustwallet/assets
+ *
+ *
+ * Alternatively, we could create a proxy that accept token address and chain id
+ *
+ */
+
+import { Address, Chain } from "viem";
+
+export const useTokenInfo = ({
+	address,
+	chain,
+}: { address?: Address; chain: Chain }) => {
+	const imageUrl = getTrustWalletIconUrl(chain.name, address);
+
+	const { nativeCurrency } = chain;
+	if (!address) {
+		// TODO chain specifc
+		const data = {
+			// decimals: 0,
+			imageUrl,
+			...nativeCurrency,
+		};
+		return {
+			data,
+		};
+	}
+
+	const results = useReadContracts({
+		allowFailure: false,
+		contracts: [
+			{
+				address,
+				abi: erc20Abi,
+				functionName: "decimals",
+			},
+			{
+				address,
+				abi: erc20Abi,
+				functionName: "name",
+			},
+			{
+				address,
+				abi: erc20Abi,
+				functionName: "symbol",
+			},
+			{
+				address,
+				abi: erc20Abi,
+				functionName: "totalSupply",
+			},
+		],
+	});
+
+	let data = results.data;
+	if (data) {
+		const [decimal, name, symbol, totalSupply] = data;
+		return {
+			...results,
+			data: {
+				decimal,
+				name,
+				symbol,
+				totalSupply,
+				imageUrl,
+			},
+		};
+	}
+	return {
+		...results,
+		data: null,
+	};
+};
+
+export const getTrustWalletIconUrl = (chainName: string, address?: Address) => {
+	// TODO handle special case
+	// https://developer.trustwallet.com/developer/listing-new-assets/repository_details#validators-specific-requirements
+	const chainNamePath = chainName.toLowerCase();
+
+	const ROOT =
+		"https://raw.githubusercontent.com/trustwallet/assets/master/blockchains";
+	if (!address) {
+		return `${ROOT}/${chainNamePath}/info/logo.png`;
+	}
+	return `${ROOT}/${chainNamePath}/assets/${address}/logo.png`;
+};

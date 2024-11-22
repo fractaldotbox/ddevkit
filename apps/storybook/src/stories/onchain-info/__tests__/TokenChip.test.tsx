@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { TokenChip, TokenChipProps } from "../TokenChip";
+import { TokenChipWithInfo, TokenChipWithInfoProps } from "../TokenChipWithInfo";
 
 vi.mock("@/components/ui/button", () => ({
 	Button: ({
@@ -12,8 +12,8 @@ vi.mock("@/components/ui/button", () => ({
 	}) => <button className={className}>{children}</button>,
 }));
 
-describe("TokenChip Component", () => {
-	const defaultProps: TokenChipProps = {
+describe("TokenChipWithInfo Component", () => {
+	const defaultProps: TokenChipWithInfoProps = {
 		name: "Ethereum",
 		symbol: "ETH",
 		image: "https://example.com/eth-icon.png",
@@ -21,7 +21,7 @@ describe("TokenChip Component", () => {
 	};
 
 	it("renders the TokenChip component with correct props", () => {
-		render(<TokenChip {...defaultProps} />);
+		render(<TokenChipWithInfo {...defaultProps} />);
 
 		// Check if the image is rendered with the correct src and alt
 		const image = screen.getByRole("img", { name: /ethereum-icon/i });
@@ -38,7 +38,7 @@ describe("TokenChip Component", () => {
 	});
 
 	it("renders with no image when image prop is not provided", () => {
-		render(<TokenChip name="Bitcoin" symbol="BTC" />);
+		render(<TokenChipWithInfo name="Bitcoin" symbol="BTC" />);
 
 		const image = screen.queryByAltText(`${defaultProps.name}-icon`);
 		expect(image).toBeFalsy();

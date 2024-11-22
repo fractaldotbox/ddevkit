@@ -1,5 +1,6 @@
 import { AddressOrEns } from "@/hooks/use-efp-api";
-import { Address, Transaction } from "viem";
+import { name } from "multiformats/codecs/json";
+import { Address, parseGwei, parseUnits, Transaction } from "viem";
 
 const ROOT = "https://eth.blockscout.com/api/";
 export const invokeApi = async (endpoint: string, body?: any) => {
@@ -62,6 +63,8 @@ export const getTransaction = async (txnHash: string) => {
 export type TransactionMeta = Partial<Transaction> & {
 	displayedTxType: string;
 	isSuccess: boolean;
+	value: bigint;
+	tokenTransfers: any[];
 };
 
 export const findDisplayedTxType = (transaction_types: any[]): string => {
@@ -74,12 +77,30 @@ export const findDisplayedTxType = (transaction_types: any[]): string => {
 	return "native_transfer";
 };
 
+/**
+ *
+ * Requires chain specific info  for native currency symbol
+ *
+ */
 export const asTransaction = (res: any): TransactionMeta => {
 	return {
+		hash: res.hash,
 		blockHash: res.blockHash,
 		from: res.from.hash as Address,
 		to: res.to.hash as Address,
 		isSuccess: res.success,
 		displayedTxType: findDisplayedTxType(res.tx_types),
+		value: parseGwei(res.value),
+		tokenTransfers: res.token_transfers.map((transfer: any) => {
+			return {
+				address: transfer.token.address,
+				amount: parseUnits(transfer.total.value, transfer.total.decimals),
+				decimals: transfer.token.decimals,
+				image: transfer.token.symbol,
+				name: transfer.token.name,
+				type: transfer.token.type,
+				// ERC-20
+			};
+		}),
 	};
 };

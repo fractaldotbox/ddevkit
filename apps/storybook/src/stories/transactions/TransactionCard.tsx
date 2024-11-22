@@ -7,19 +7,19 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { useGetAttestations } from "@/lib/eas/get-attestations"
-import { Address, Hex, Transaction } from "viem"
-import { useChainId } from "wagmi"
+import { Address, formatEther, Hex, Transaction } from "viem"
+import { useChainId, useToken } from "wagmi"
 import { useMemo } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Label } from "@radix-ui/react-label"
 import { Separator } from "@/components/ui/separator"
-import { getShortHex, getShortHex } from "@/utils/hex"
+import { getShortHex } from "@/utils/hex"
 import { format } from "date-fns"
 import { mainnet } from "viem/chains"
 import { useGetTransaction } from "@/hooks/use-blockscout"
 import { AddrsesBadge } from "../identity/Address"
 import { TransactionMeta } from "@/lib/blockscout/api"
+import { useTokenInfo } from "@/lib/token/token"
 
 
 export const TransactionSummary = ({ transaction }: { transaction: TransactionMeta }) => {
@@ -36,25 +36,24 @@ export const TransactionCardContent = ({ transaction }: { transaction: Transacti
         return <Skeleton className="w-[100px] h-[20px] rounded-full" />
     }
 
-
-
     console.log('transaction', transaction)
-    const { from, to } = transaction;
+    const { from, to, value } = transaction;
 
     return (
         <CardContent>
             <div className="flex w-full items-center gap-2">
                 <div className="grid flex-1 auto-rows-min gap-0.5">
-                    <div className="text-xs text-muted-foreground">Schema ID</div>
+                    <div className="text-xs text-muted-foreground">Tranfer</div>
                     <div className="flex items-center gap-1 text-2xl font-bold tabular-nums leading-none">
                         <div className="flex flex-col">
                             <div className="text-sm font-normal text-muted-foreground">
                                 <span className="text-sm font-normal">
-                                    schemaName
+                                    {value !== undefined && formatEther(value)}
                                 </span>
                             </div>
                             <span className="text-sm font-normal text-muted-foreground">
-                                123
+                                unit
+                                {transaction.unit}
                             </span>
                         </div>
                     </div>
@@ -64,13 +63,21 @@ export const TransactionCardContent = ({ transaction }: { transaction: Transacti
                     <div className="text-xs text-muted-foreground">From</div>
                     <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
                         <span className="text-sm font-normal">
-                            {from}
+                            {
+                                from && (
+                                    <AddrsesBadge address={from} />
+                                )
+                            }
                         </span>
                     </div>
                     <div className="text-xs text-muted-foreground">To</div>
                     <div className="flex items-baseline gap-1 text-2xl font-bold tabular-nums leading-none">
                         <span className="text-sm font-normal">
-                            {to}
+                            {
+                                to && (
+                                    <AddrsesBadge address={to} />
+                                )
+                            }
                         </span>
                     </div>
                 </div>
@@ -89,25 +96,11 @@ export const TransactionCardWithHash = ({
 }) => {
 
     const { data: transaction } = useGetTransaction(txnHash);
-    // const chainId = useChainId();
 
 
     if (!txnHash || !transaction) {
-        return <Skeleton className="w-[100px] h-[20px] rounded-full" />;
+        return <Skeleton className="w-[100px] h-[20px] rounded-full" />
     }
-    console.log('transaction', transaction);
-
-    // const transaction = useMemo(() => {
-    //     if (!data) {
-    //         return null;
-    //     }
-    //     return asAttestationMeta(data?.data?.attestations?.[0]);
-    // }, [isSuccess]);
-    // 1. onchain vs offchain
-
-    // 2. grid
-
-    // 0x31634ddc4975cc9f2c3c6426034fe0ed30163000cd067e80857136ab86dc0a3b
 
     return <TransactionCard transaction={transaction} />
 }
@@ -116,12 +109,14 @@ export const TransactionCardWithHash = ({
 export const TransactionCard = ({
     transaction
 }: {
-    transaction: Transaction
+    transaction: TransactionMeta
 }) => {
-
+    // TODO
+    const { data: tokenInfo } = useTokenInfo({
+        address: transaction.tokenTransfers?.[0].address
+    });
 
     return (
-
         <Card>
             {
                 <CardHeader>
@@ -130,7 +125,7 @@ export const TransactionCard = ({
                         <div className="flex flex-col">
 
                             <div className="text-xs text-muted-foreground">
-                                {getShortHex(txnHash)}
+                                {transaction.hash && getShortHex(transaction.hash)}
                             </div>
 
                         </div>
@@ -140,20 +135,11 @@ export const TransactionCard = ({
                                 Transfer 100 ETH
                             </span>
 
-                            <div>
-                                From:
-                                <AddrsesBadge address={transaction?.from} />
-                            </div>
-                            <div>
-                                To:
-                                <AddrsesBadge address={transaction?.to!} />
-                            </div>
-                            <span>
-                                {/* hash: {txnHash} */}
-                            </span>
-                            {/* {
-                                transaction && <TransactionSummary transaction={transaction} />
-                            } */}
+
+
+
+
+
                         </div>
                         <div className="text-xs text-muted-foreground">
                             {/* Created: {format(new Date(attestation.time * 1000), 'yyyy/MM/dd HH:MM:ss')} */}
@@ -163,11 +149,11 @@ export const TransactionCard = ({
                 </CardHeader>
             }
             <CardContent>
-                {/* {
-                    attestation && (
-                        <TransactionCardContent attestation={attestation} />
+                {
+                    transaction && (
+                        <TransactionCardContent transaction={transaction} />
                     )
-                } */}
+                }
             </CardContent>
             <CardFooter>
             </CardFooter>
