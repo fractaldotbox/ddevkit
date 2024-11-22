@@ -1,6 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { TokenChipWithInfo, TokenChipWithInfoProps } from "../TokenChipWithInfo";
+import {
+	TokenChipWithInfo,
+	TokenChipWithInfoProps,
+} from "../TokenChipWithInfo";
 
 vi.mock("@/components/ui/button", () => ({
 	Button: ({

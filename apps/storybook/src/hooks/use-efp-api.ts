@@ -1,6 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
 // hooks
 import qs from "fast-querystring";
-import { useQuery } from "@tanstack/react-query";
 import { Address } from "viem";
 
 // fixture

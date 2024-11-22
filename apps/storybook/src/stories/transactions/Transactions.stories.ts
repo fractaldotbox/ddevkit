@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { TransactionCardWithHash } from "./TransactionCard";
 import { withWagmiProvider } from "../decorators/wagmi";
 import { TRANSACTION } from "../fixture";
+import { TransactionCardWithHash } from "./TransactionCard";
 
 const meta = {
 	title: "Transactions/TransactionCardWithHash",

@@ -1,7 +1,7 @@
 import {
+	TransactionMeta,
 	asTransaction,
 	getTransaction,
-	TransactionMeta,
 } from "@/lib/blockscout/api";
 import { useQuery } from "@tanstack/react-query";
 import { Address, Transaction } from "viem";

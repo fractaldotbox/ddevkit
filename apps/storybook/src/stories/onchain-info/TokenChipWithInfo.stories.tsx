@@ -25,7 +25,6 @@ export const ETHTokenChip: Story = {
 	},
 };
 
-
 export const ETHTokenChipWithAmoubt: Story = {
 	args: {
 		imageUrl:
@@ -33,6 +32,6 @@ export const ETHTokenChipWithAmoubt: Story = {
 		name: "Ether",
 		symbol: "ETH",
 		amount: 300000000000000000n,
-		decimals: 18
+		decimals: 18,
 	},
 };

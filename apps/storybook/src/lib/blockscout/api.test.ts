@@ -1,6 +1,6 @@
 import { getAddress } from "viem";
 import { describe, expect, test } from "vitest";
-import { getAddressInfo, asTransaction, getTransaction } from "./api";
+import { asTransaction, getAddressInfo, getTransaction } from "./api";
 import { TXN_VITALIK_DEPOSIT, TXN_VITALIK_TRANSFER } from "./fixture";
 
 describe("blockscout", () => {

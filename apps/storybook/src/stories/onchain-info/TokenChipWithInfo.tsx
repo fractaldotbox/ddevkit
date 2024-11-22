@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { formatUnits } from "viem";
 
-
 /**
  * Amount instead Balance as it could be generic and not belongs to wallet
  */
@@ -26,15 +25,15 @@ export const TokenChipWithInfo = ({
 }: TokenChipWithInfoProps) => {
 	return (
 		<Button variant={"secondary"} className={`py-1 flex gap-3 ${className}`}>
-			{!!imageUrl && <img className="h-6" src={imageUrl} alt={`${name}-icon`} />}
+			{!!imageUrl && (
+				<img className="h-6" src={imageUrl} alt={`${name}-icon`} />
+			)}
 			<div className="text-lg font-semibold">{symbol}</div>
-			{
-				decimals !== undefined && (
-					<span className="text-sm text-muted-foreground">
-						{formatUnits(amount ?? 0n, decimals)}
-					</span>
-				)
-			}
+			{decimals !== undefined && (
+				<span className="text-sm text-muted-foreground">
+					{formatUnits(amount ?? 0n, decimals)}
+				</span>
+			)}
 		</Button>
 	);
 };

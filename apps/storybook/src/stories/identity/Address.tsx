@@ -1,34 +1,31 @@
-import { getAddress, Hex } from 'viem';
-import { useEnsAddress } from 'wagmi';
-import { normalize } from 'viem/ens'
-import { getShortAddress } from '../../utils/address';
-import { useMemo } from 'react';
+import { useMemo } from "react";
+import { Hex, getAddress } from "viem";
+import { normalize } from "viem/ens";
+import { useEnsAddress } from "wagmi";
+import { getShortAddress } from "../../utils/address";
 
-
-export const AddrsesBadge = ({ address, isShort = true }: {
-    address: Hex,
-    isShort?: boolean
+export const AddrsesBadge = ({
+	address,
+	isShort = true,
+}: {
+	address: Hex;
+	isShort?: boolean;
 }) => {
-    const addressDisplayed = useMemo(() => {
-        return isShort ? getShortAddress(address) : getAddress(address);
-    }, [address, isShort])
+	const addressDisplayed = useMemo(() => {
+		return isShort ? getShortAddress(address) : getAddress(address);
+	}, [address, isShort]);
 
-    return (
-        <div>
-            {addressDisplayed}
-        </div>
-    )
-}
+	return <div>{addressDisplayed}</div>;
+};
 
-export const AddressBadgeFromName = ({ name }: {
-    name: string
+export const AddressBadgeFromName = ({
+	name,
+}: {
+	name: string;
 }) => {
+	const result = useEnsAddress({
+		name: normalize("wevm.eth"),
+	});
 
-    const result = useEnsAddress({
-        name: normalize('wevm.eth'),
-    })
-
-    return (
-        <AddrsesBadge address={'0x'} />
-    )
-}
+	return <AddrsesBadge address={"0x"} />;
+};
