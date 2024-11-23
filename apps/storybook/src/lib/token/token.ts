@@ -14,8 +14,8 @@
 
 import { Address, Chain, erc20Abi } from "viem";
 import { useReadContracts } from "wagmi";
-import { asTrustWalletChainName } from "../chain/trustwallet-chain";
 import { resolveProductionChain } from "../chain/chain-resolver";
+import { asTrustWalletChainName } from "../chain/trustwallet-chain";
 
 export const useTokenInfo = ({
 	address,

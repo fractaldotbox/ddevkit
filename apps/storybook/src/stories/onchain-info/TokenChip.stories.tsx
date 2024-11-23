@@ -17,8 +17,6 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-
-
 export const ETHTokenChip: Story = {
 	args: {
 		chain: mainnet,
@@ -30,7 +28,6 @@ export const OptimismSepoliaTokenChip: Story = {
 		chain: optimismSepolia,
 	},
 };
-
 
 export const ETHTokenChipWithAmount: Story = {
 	args: {

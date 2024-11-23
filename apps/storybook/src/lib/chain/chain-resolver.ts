@@ -1,16 +1,16 @@
 import { Chain, extractChain } from "viem";
 import {
-	mainnet,
-	zora,
-	optimismSepolia,
-	optimismGoerli,
-	optimism,
-	baseSepolia,
-	baseGoerli,
-	base,
-	arbitrumGoerli,
 	arbitrum,
+	arbitrumGoerli,
 	arbitrumSepolia,
+	base,
+	baseGoerli,
+	baseSepolia,
+	mainnet,
+	optimism,
+	optimismGoerli,
+	optimismSepolia,
+	zora,
 } from "viem/chains";
 import * as chains from "viem/chains";
 // importing chains has bundle size impact
