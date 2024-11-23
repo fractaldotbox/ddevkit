@@ -25,7 +25,7 @@ export const ETHTokenChip: Story = {
 	},
 };
 
-export const ETHTokenChipWithAmoubt: Story = {
+export const ETHTokenChipWithAmount: Story = {
 	args: {
 		imageUrl:
 			"https://ethereum.org/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Feth-diamond-black.a042df77.png&w=828&q=75",

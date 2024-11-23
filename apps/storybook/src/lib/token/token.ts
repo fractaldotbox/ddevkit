@@ -12,19 +12,20 @@
  *
  */
 
-import { Address, Chain } from "viem";
+import { Address, Chain, erc20Abi } from "viem";
+import { useReadContracts } from "wagmi";
+import { asTrustWalletChainName } from "../chain/trustwallet-chain";
+import { resolveProductionChain } from "../chain/chain-resolver";
 
 export const useTokenInfo = ({
 	address,
 	chain,
 }: { address?: Address; chain: Chain }) => {
-	const imageUrl = getTrustWalletIconUrl(chain.name, address);
+	const imageUrl = getTrustWalletIconUrl(chain, address);
 
 	const { nativeCurrency } = chain;
 	if (!address) {
-		// TODO chain specifc
 		const data = {
-			// decimals: 0,
 			imageUrl,
 			...nativeCurrency,
 		};
@@ -79,15 +80,22 @@ export const useTokenInfo = ({
 	};
 };
 
-export const getTrustWalletIconUrl = (chainName: string, address?: Address) => {
+/**
+ * trustwallet/assets does not contains most testnet, always fallback to mainnet
+ *
+ */
+export const getTrustWalletIconUrl = (chain: Chain, address?: Address) => {
 	// TODO handle special case
 	// https://developer.trustwallet.com/developer/listing-new-assets/repository_details#validators-specific-requirements
-	const chainNamePath = chainName.toLowerCase();
 
+	const productionChain = resolveProductionChain(chain);
+
+	const twChainName = asTrustWalletChainName(productionChain);
+	console.log("twChainName", twChainName);
 	const ROOT =
 		"https://raw.githubusercontent.com/trustwallet/assets/master/blockchains";
 	if (!address) {
-		return `${ROOT}/${chainNamePath}/info/logo.png`;
+		return `${ROOT}/${twChainName}/info/logo.png`;
 	}
-	return `${ROOT}/${chainNamePath}/assets/${address}/logo.png`;
+	return `${ROOT}/${twChainName}/assets/${address}/logo.png`;
 };
