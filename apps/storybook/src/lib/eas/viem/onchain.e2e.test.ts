@@ -1,14 +1,14 @@
-import { createTestClientConfig } from "@/lib/test-utils";
+import {
+	createTestClientConfig,
+	createTestEthersSigner,
+} from "@/lib/test-utils";
 import { EAS, NO_EXPIRATION } from "@ethereum-attestation-service/eas-sdk";
-import { JsonRpcProvider, encodeBytes32String, ethers } from "ethers";
-import { AccountNotFoundError } from "node_modules/viem/_types/errors/account";
 import { http, Hex, createWalletClient } from "viem";
-import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
+import { privateKeyToAccount } from "viem/accounts";
 import { sepolia } from "viem/chains";
 import { beforeEach, describe, expect, it, test } from "vitest";
 import { SignatureType } from "../eas";
 import { SCHEMA_FIXTURE_IS_A_FRIEND } from "../eas-test.fixture";
-import { createEthersSigner } from "../ethers";
 import { createEAS } from "../ethers/onchain";
 import { makeOnchainAttestation, revoke } from "./onchain";
 
@@ -41,7 +41,7 @@ describe("attest with sepolia contract", () => {
 				value: 0n,
 			};
 
-			const txSigner = createEthersSigner(privateKey, sepolia.id);
+			const txSigner = createTestEthersSigner(privateKey, sepolia.id);
 
 			const eas = createEAS(EASContractAddress, txSigner);
 
@@ -66,19 +66,16 @@ describe("attest with sepolia contract", () => {
 				const overrides = {
 					signatureType: SignatureType.Direct,
 					from: from.address,
-					// maxFeePerGas: 100000000n.toString(),
-					// maxPriorityFeePerGas: 2000000000n.toString(),
-					// deadline: 0n,
 				};
 
 				const txnSdk = await eas.attest(request, overrides);
 
-				console.log("results", txnSdk);
+				console.log("attest with sdk txn", txnSdk);
 				const uid = await txnSdk.wait();
-
+				console.log("attest with sdk txn uid", uid);
 				expect(await eas.isAttestationValid(uid)).to.be.true;
 			});
-			test.only("with viem ", async () => {
+			test("with viem ", async () => {
 				const client = createWalletClient({
 					...createTestClientConfig(),
 					account: from,
@@ -106,8 +103,7 @@ describe("attest with sepolia contract", () => {
 			const from = privateKeyToAccount(privateKey);
 
 			const fromWalletClient = createWalletClient({
-				chain: sepolia,
-				transport: http(),
+				...createTestClientConfig(),
 				account: from,
 			});
 
@@ -131,7 +127,6 @@ describe("attest with sepolia contract", () => {
 
 describe.skip("attesting", () => {
 	let expirationTime: bigint;
-	const data = "0x1234";
 
 	beforeEach(async () => {
 		//   expirationTime = (await latest()) + duration.days(30n);

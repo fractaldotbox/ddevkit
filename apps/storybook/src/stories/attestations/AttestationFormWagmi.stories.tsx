@@ -1,9 +1,6 @@
 import { ZERO_BYTES32 } from "@/lib/eas/eas";
 import { SCHEMA_FIXTURE_IS_A_FRIEND } from "@/lib/eas/eas-test.fixture";
-import {
-	OffchainAttestationTypedData,
-	OffchainAttestationVersion,
-} from "@/lib/eas/offchain/offchain";
+import { OffchainAttestationVersion } from "@/lib/eas/offchain/offchain";
 import { NO_EXPIRATION } from "@/lib/eas/request";
 import { signOffchainAttestation } from "@/lib/eas/viem/offchain";
 import {
@@ -12,15 +9,12 @@ import {
 } from "@/lib/eas/viem/onchain";
 import { createTestClientConfig } from "@/lib/test-utils";
 import type { Meta, StoryObj } from "@storybook/react";
-import { encodeBytes32String } from "ethers";
 import {
-	http,
 	Account,
 	Address,
 	Chain,
 	Hex,
 	createWalletClient,
-	stringToBytes,
 	stringToHex,
 } from "viem";
 import { sepolia } from "viem/chains";
@@ -29,23 +23,12 @@ import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
 import { withWalletControlWagmi } from "../decorators/wallet-control";
 import { AttestationForm } from "./AttestationForm";
 
-type UseAttestationWagmiParams = {
+export type UseAttestationWagmiParams = {
 	account: Account;
 	chain: Chain;
 	isOffchain: boolean;
 	schemaId: string;
 };
-
-// export type SignAttestationRequestParams = {
-// 	recipient: Address;
-// 	schemaId: string,
-// 	refUID: Hex;
-// 	revocable: boolean;
-// 	time: bigint;
-// 	revocationTime: bigint;
-// 	data: string;
-// 	value: bigint;
-// }
 
 const useAttestationWagmi = (params: UseAttestationWagmiParams) => {
 	const { account, chain, isOffchain, schemaId } = params;
@@ -174,9 +157,6 @@ type Story = StoryObj<typeof meta>;
 const requestDataFixture = {
 	refUID: ZERO_BYTES32,
 	time: 1728637333n,
-	// revocationTime: 0n,
-	// recipient,
-	// attester: account.address,
 	revocable: true,
 	// "yes"
 	data: "0x0000000000000000000000000000000000000000000000000000000000000001" as Hex,

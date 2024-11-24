@@ -16,7 +16,7 @@ import { privateKeyToAccount } from "viem/accounts";
 import { sepolia } from "viem/chains";
 import { beforeEach, describe, expect, test } from "vitest";
 import { SCHEMA_FIXTURE_MET_IRL } from "../eas-test.fixture";
-import { createEthersSigner } from "../ethers";
+import { createTestEthersSigner } from "../ethers";
 import { createEAS } from "../ethers/onchain";
 import { getOffchainUID } from "../offchain-utils";
 import {
@@ -50,7 +50,7 @@ describe("offchain attestation handling/verification", () => {
 	};
 
 	beforeEach(async () => {
-		attesterSigner = createEthersSigner(privateKey, sepolia.id);
+		attesterSigner = createTestEthersSigner(privateKey, sepolia.id);
 		eas = createEAS(EASContractAddress, attesterSigner);
 		offchain = await eas.getOffchain();
 
