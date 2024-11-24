@@ -1,6 +1,8 @@
-import { AddressOrEns } from "@/hooks/use-efp-api";
-import { name } from "multiformats/codecs/json";
 import { Address, Transaction, parseGwei, parseUnits } from "viem";
+import {
+	TokenTransfer,
+	TransactionMeta,
+} from "../domain/transaction/transaction";
 
 const ROOT = "https://eth.blockscout.com/api/";
 export const invokeApi = async (endpoint: string, body?: any) => {
@@ -60,13 +62,6 @@ export const getTransaction = async (txnHash: string) => {
 	return invokeApi(endpoint);
 };
 
-export type TransactionMeta = Partial<Transaction> & {
-	displayedTxType: string;
-	isSuccess: boolean;
-	value: bigint;
-	tokenTransfers: any[];
-};
-
 export const findDisplayedTxType = (transaction_types: any[]): string => {
 	if (transaction_types.includes("contract_call")) {
 		return "contract_call";
@@ -77,12 +72,22 @@ export const findDisplayedTxType = (transaction_types: any[]): string => {
 	return "native_transfer";
 };
 
+export const asTokenTransfer = (transfer: any): TokenTransfer => {
+	const { token } = transfer;
+	return {
+		...token,
+		// imageUrl: '',
+		name: transfer.token.name,
+		amount: parseUnits(transfer.total.value, transfer.total.decimals),
+	};
+};
+
 /**
  *
  * Requires chain specific info  for native currency symbol
  *
  */
-export const asTransaction = (res: any): TransactionMeta => {
+export const asTransactionMeta = (res: any): TransactionMeta => {
 	return {
 		hash: res.hash,
 		blockHash: res.blockHash,
@@ -91,16 +96,6 @@ export const asTransaction = (res: any): TransactionMeta => {
 		isSuccess: res.success,
 		displayedTxType: findDisplayedTxType(res.tx_types),
 		value: parseGwei(res.value),
-		tokenTransfers: res.token_transfers.map((transfer: any) => {
-			return {
-				address: transfer.token.address,
-				amount: parseUnits(transfer.total.value, transfer.total.decimals),
-				decimals: transfer.token.decimals,
-				image: transfer.token.symbol,
-				name: transfer.token.name,
-				type: transfer.token.type,
-				// ERC-20
-			};
-		}),
+		tokenTransfers: res.token_transfers.map(asTokenTransfer),
 	};
 };

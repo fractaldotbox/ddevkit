@@ -7,7 +7,6 @@
  * Blockscout api use coingecko hosted asset
  * Trust wallet maintain assets on https://github.com/trustwallet/assets
  *
- *
  * Alternatively, we could create a proxy that accept token address and chain id
  *
  */
@@ -16,6 +15,15 @@ import { Address, Chain, erc20Abi } from "viem";
 import { useReadContracts } from "wagmi";
 import { resolveProductionChain } from "../chain/chain-resolver";
 import { asTrustWalletChainName } from "../chain/trustwallet-chain";
+
+export type Token = {
+	address?: Address;
+	imageUrl?: string;
+	decimals: number;
+	name: string;
+	symbol: string;
+	type?: string;
+};
 
 export const useTokenInfo = ({
 	address,

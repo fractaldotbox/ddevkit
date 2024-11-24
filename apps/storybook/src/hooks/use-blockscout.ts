@@ -1,6 +1,6 @@
 import {
 	TransactionMeta,
-	asTransaction,
+	asTransactionMeta,
 	getTransaction,
 } from "@/lib/blockscout/api";
 import { useQuery } from "@tanstack/react-query";
@@ -14,7 +14,7 @@ export const useGetTransaction = (txnHash: string) => {
 		queryFn: async () => {
 			const results = await getTransaction(txnHash);
 			console.log("results", results);
-			return asTransaction(results);
+			return asTransactionMeta(results);
 		},
 	});
 };
