@@ -1,12 +1,12 @@
 import { EAS_CONTRACT_ADDRESS } from "@/lib/eas/abi";
 import {
-	SCHEMA_FIXTURE_IS_A_FRIEND,
 	VOTE_SCHEMA_FIXTURE,
 	ZERO_BYTES,
 	ZERO_BYTES32,
 } from "@/lib/eas/eas-test.fixture";
 import { createAttestationOnchain, createEAS } from "@/lib/eas/ethers/onchain";
 import { NO_EXPIRATION } from "@/lib/eas/request";
+import { createTestEthersSigner } from "@/lib/test-utils";
 import type { Meta, StoryObj } from "@storybook/react";
 import { encodeBytes32String } from "ethers";
 import { Address, Hex } from "viem";
@@ -14,7 +14,6 @@ import { withToaster } from "../decorators/toaster";
 import { withWalletControl } from "../decorators/wallet-control";
 import { BY_USER } from "../fixture";
 import { AttestationForm } from "./AttestationForm";
-import { createTestEthersSigner } from "@/lib/test-utils";
 
 const requestTemplate = {
 	recipient: BY_USER.eas.mockReceipient.address,
@@ -35,7 +34,6 @@ const AttestationFormEasSdk = ({
 
 	const eas = createEAS(EAS_CONTRACT_ADDRESS, signer);
 
-	console.log("sdk", isOffchain);
 	return (
 		<AttestationForm
 			chainId={11155111}
@@ -70,7 +68,6 @@ const AttestationFormEasSdk = ({
 						signer,
 					);
 
-					console.log("created", attestation);
 					const { uid } = attestation;
 					return {
 						uids: [uid],
