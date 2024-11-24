@@ -22,7 +22,6 @@ export const FollowerListEnsjs = ({
 
 	// consider extracted as common hook but ensure treeshaking
 	useEffect(() => {
-		console.log("isSuccess", isSuccess);
 		if (!isSuccess) return;
 		(async () => {
 			const names = await getNames({

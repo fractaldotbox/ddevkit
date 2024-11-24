@@ -1,22 +1,44 @@
-import { Button } from "@/components/ui/button";
+import { useTokenInfo } from "@/lib/domain/token/token";
+import { Address, Chain, erc20Abi } from "viem";
+import { mainnet } from "viem/chains";
+import { TokenChipWithInfo } from "./TokenChipWithInfo";
 
 export type TokenChipProps = {
-	image?: string;
-	name: string;
-	symbol: string;
 	className?: string;
+	amount?: bigint;
+	chain: Chain;
+	address?: Address;
 };
 
+enum ChainDataProvider {
+	// wagmi rpc
+	Rpc = "rpc",
+	BlockscoutApi = "blockscout",
+}
+
 export const TokenChip = ({
-	image,
-	name,
-	symbol,
+	address,
+	amount,
+	chain,
 	className,
 }: TokenChipProps) => {
+	const { data } = useTokenInfo({
+		address,
+		chain,
+	});
+
+	if (!data) {
+		return null;
+	}
+
 	return (
-		<Button variant={"secondary"} className={`py-1 flex gap-3 ${className}`}>
-			{!!image && <img className="h-6" src={image} alt={`${name}-icon`} />}
-			<div className="text-lg font-semibold">{symbol}</div>
-		</Button>
+		<TokenChipWithInfo
+			amount={amount}
+			decimals={data.decimals}
+			imageUrl={data.imageUrl}
+			name={data.name}
+			symbol={data.symbol}
+			{...data}
+		/>
 	);
 };

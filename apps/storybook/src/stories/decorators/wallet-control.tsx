@@ -1,6 +1,5 @@
 import { privateKeyToAccount } from "viem/accounts";
-import { useAccount } from "wagmi";
-import { Address } from "../identity/Address";
+import { AddressBadge } from "../identity/AddressBadge";
 
 export const withWalletControl = () => {
 	return (Story: any, context: any) => {
@@ -10,7 +9,7 @@ export const withWalletControl = () => {
 
 		return (
 			<div>
-				<Address address={address} />
+				<AddressBadge address={address} />
 				<div className="p-10">
 					<Story args={context.args} />
 				</div>
@@ -28,7 +27,7 @@ export const withWalletControlWagmi = () => {
 		return (
 			<div className="w-full top-0">
 				<div className="float-right">
-					{address && <Address address={address} />}
+					{address && <AddressBadge address={address} />}
 				</div>
 				<div className="p-10">
 					<Story args={context.args} />

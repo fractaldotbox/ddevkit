@@ -1,16 +1,16 @@
 import { faker } from "@faker-js/faker";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Hex } from "viem";
-import { Address } from "./Address";
+import { AddressBadge } from "./AddressBadge";
 
 const meta = {
-	title: "Identity/Address",
-	component: Address,
+	title: "Identity/AddressBadge",
+	component: AddressBadge,
 	parameters: {
 		layout: "centered",
 	},
 	args: {},
-} satisfies Meta<typeof Address>;
+} satisfies Meta<typeof AddressBadge>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

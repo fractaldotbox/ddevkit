@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Hex } from "viem";
 import { withWagmiProvider } from "../decorators/wagmi";
 import { BY_USER } from "../fixture";
-import { Address } from "./Address";
+import { AddressBadge } from "./AddressBadge";
 import { NameWagmi } from "./NameWagmi";
 
 const meta = {

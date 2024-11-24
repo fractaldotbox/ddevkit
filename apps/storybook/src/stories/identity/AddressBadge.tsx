@@ -11,7 +11,7 @@ import { normalize } from "viem/ens";
 import { useEnsAddress } from "wagmi";
 import { getShortAddress } from "../../utils/address";
 
-export const Address = ({
+export const AddressBadge = ({
 	address,
 	isFull,
 }: {
@@ -53,10 +53,14 @@ export const Address = ({
 	);
 };
 
-export const AddressFromName = ({ name }: { name: string }) => {
-	const result = useEnsAddress({
-		name: normalize("wevm.eth"),
+export const AddressBadgeFromName = ({ name }: { name: string }) => {
+	const { data: address } = useEnsAddress({
+		name: normalize(name),
 	});
 
-	return <Address address={"0x"} />;
+	if (!address) {
+		return <span></span>;
+	}
+
+	return <AddressBadge address={address} />;
 };

@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { Address } from "../Address";
+import { AddressBadge } from "../AddressBadge";
 
 vi.mock(import("viem"), async (importOriginal) => {
 	const actual = await importOriginal();
@@ -35,22 +35,22 @@ describe("Address Component", () => {
 	});
 
 	it("renders short address by default", () => {
-		render(<Address address={mockAddress} />);
+		render(<AddressBadge address={mockAddress} />);
 		expect(screen.getByText(`0x742d...f44e`)).toBeDefined();
 	});
 
 	it("renders full address when isFull is true", () => {
-		render(<Address address={mockAddress} isFull={true} />);
+		render(<AddressBadge address={mockAddress} isFull={true} />);
 		expect(screen.getByText(mockAddress)).toBeDefined();
 	});
 
 	it("displays copy icon by default", () => {
-		render(<Address address={mockAddress} />);
+		render(<AddressBadge address={mockAddress} />);
 		expect(screen.getByText("copy-icon")).toBeDefined();
 	});
 
 	it("copies address and shows check icon when clicked", async () => {
-		render(<Address address={mockAddress} />);
+		render(<AddressBadge address={mockAddress} />);
 		const copyButton = screen.getByTestId("tooltip-trigger");
 		const navigatorSpy = vi.spyOn(navigator.clipboard, "writeText");
 
@@ -67,7 +67,7 @@ describe("Address Component", () => {
 	});
 
 	it("displays correct tooltip content", () => {
-		render(<Address address={mockAddress} />);
+		render(<AddressBadge address={mockAddress} />);
 		expect(screen.findByText("Click to copy")).toBeDefined();
 
 		fireEvent.click(screen.getByTestId("tooltip-trigger"));

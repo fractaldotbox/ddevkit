@@ -1,3 +1,4 @@
+import { formatUnitsWithDecimalsDisplayed } from "@/lib/amount";
 import { Text } from "@radix-ui/themes";
 // support ENS, basename
 // Option to use ipfs gateway, ens metadata services
@@ -10,7 +11,7 @@ import { ABI_ERC20 } from "../../utils/config";
 type ETHBalanceProps = {
 	address: Address;
 	chainId?: number;
-	decimalsDisplayed: number;
+	decimalsDisplayed?: number;
 };
 
 // Consider locale for https://github.com/bpierre/dnum
@@ -30,11 +31,7 @@ export const ETHBalance = ({
 
 	return (
 		<Text>
-			{formatUnits(
-				data.value / BigInt(Math.pow(10, data?.decimals - decimalsDisplayed)),
-				decimalsDisplayed,
-			)}{" "}
-			{data?.symbol}
+			{formatUnitsWithDecimalsDisplayed(data, decimalsDisplayed)} {data?.symbol}
 		</Text>
 	);
 };

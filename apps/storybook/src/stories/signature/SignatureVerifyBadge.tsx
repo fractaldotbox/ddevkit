@@ -1,8 +1,8 @@
 import { Label } from "@/components/ui/label";
 import { Flex } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
-import { Address as AddressType, Hex } from "viem";
-import { Address } from "../identity/Address";
+import { Address, Hex } from "viem";
+import { AddressBadge } from "../identity/AddressBadge";
 
 export const SignatureVerifyBadge = ({
 	signature,
@@ -12,13 +12,13 @@ export const SignatureVerifyBadge = ({
 }: {
 	signature: Hex;
 	message: any;
-	address: AddressType;
+	address: Address;
 	verify: ({
 		address,
 		message,
 		signature,
 	}: {
-		address: AddressType;
+		address: Address;
 		message: any;
 		signature: Hex;
 	}) => Promise<boolean>;
@@ -39,7 +39,7 @@ export const SignatureVerifyBadge = ({
 			<div className="flex items-center space-x-2">
 				<Label htmlFor="public-key">Public Key</Label>
 				<div id="public-key">
-					<Address address={address} />
+					<AddressBadge address={address} />
 				</div>
 			</div>
 			<div className="font-xs break-all">Signature: {signature} </div>
