@@ -9,7 +9,7 @@ import { SignatureType } from "../eas";
 import { SCHEMA_FIXTURE_IS_A_FRIEND } from "../eas-test.fixture";
 import { createEthersSigner } from "../ethers";
 import { createEAS } from "../ethers/onchain";
-import { makeAttestation, revoke } from "./onchain";
+import { makeOnchainAttestation, revoke } from "./onchain";
 
 export const EASContractAddress = "0xC2679fBD37d54388Ce493F1DB75320D236e1815e"; // Sepolia v0.26
 
@@ -76,7 +76,7 @@ describe("attest with sepolia contract", () => {
 					account: from,
 				});
 
-				const { uids } = await makeAttestation(client, request);
+				const { uids } = await makeOnchainAttestation(client, request);
 
 				console.log("attested", { uids });
 

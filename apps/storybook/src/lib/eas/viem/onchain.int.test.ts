@@ -1,5 +1,5 @@
 import { beforeEach, describe, it, expect, test } from "vitest";
-import { makeAttestation } from "./onchain";
+import { makeOnchainAttestation } from "./onchain";
 
 // TODO get latest block timestamp with anvil
 

@@ -26,13 +26,15 @@ import { sepolia } from "viem/chains";
 import { getUIDsFromAttestReceipt } from "../events";
 import { RevocationRequest } from "../request";
 
+// TODO align on offchain
 export interface AttestationRequestData {
 	recipient: string;
-	data: string;
+	data: Hex;
 	expirationTime?: bigint;
 	revocable?: boolean;
 	refUID?: string;
 	value?: bigint;
+	time: bigint;
 }
 
 export interface AttestationRequest {
@@ -41,7 +43,7 @@ export interface AttestationRequest {
 }
 
 // strategy action pattern by signature type
-export const makeAttestation = async (
+export const makeOnchainAttestation = async (
 	client: WalletClient,
 	request: AttestationRequest,
 ) => {
