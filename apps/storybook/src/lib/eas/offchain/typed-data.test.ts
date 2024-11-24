@@ -1,30 +1,30 @@
+import {
+	Delegated,
+	EAS,
+	OFFCHAIN_ATTESTATION_TYPES,
+	Offchain,
+	OffchainAttestationType,
+	OffchainAttestationVersion,
+} from "@ethereum-attestation-service/eas-sdk";
+import { AbiCoder, keccak256 as keccak256Ethers, toUtf8Bytes } from "ethers";
+import {
+	Address,
+	Hex,
+	encodeAbiParameters,
+	encodePacked,
+	keccak256,
+	parseAbiParameters,
+} from "viem";
 import { describe, expect, test } from "vitest";
+import { EAS_CONTRACT_ADDRESS } from "../abi";
+import { EIP712_NAME } from "../versions";
+import { DelegatedConfig } from "./delegated";
 import {
 	DelegatedAttestationVersion,
 	getDomainSeparatorDefault,
 	getDomainSeparatorDelegated,
 	getDomainSeparatorOffchain,
 } from "./typed-data";
-import {
-	Delegated,
-	EAS,
-	Offchain,
-	OFFCHAIN_ATTESTATION_TYPES,
-	OffchainAttestationType,
-	OffchainAttestationVersion,
-} from "@ethereum-attestation-service/eas-sdk";
-import {
-	Address,
-	encodeAbiParameters,
-	encodePacked,
-	Hex,
-	keccak256,
-	parseAbiParameters,
-} from "viem";
-import { EAS_CONTRACT_ADDRESS } from "../abi";
-import { DelegatedConfig } from "./delegated";
-import { AbiCoder, toUtf8Bytes, keccak256 as keccak256Ethers } from "ethers";
-import { EIP712_NAME } from "../versions";
 
 describe("hash", () => {
 	const data = {
