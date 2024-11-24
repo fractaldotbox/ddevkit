@@ -47,7 +47,7 @@ i.e.
 <!-- - Create merkle tree with @openzeppelin/merkle-tree -->
 
 
-### Storybook
+### Shadcn
 - Ease development and showcase
 https://github.com/shadcn-ui/ui/pull/1561
 

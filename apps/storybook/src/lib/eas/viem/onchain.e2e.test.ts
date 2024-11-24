@@ -1,15 +1,16 @@
+import {
+	createTestClientConfig,
+	createTestEthersSigner,
+} from "@/lib/test-utils";
 import { EAS, NO_EXPIRATION } from "@ethereum-attestation-service/eas-sdk";
-import { JsonRpcProvider, encodeBytes32String, ethers } from "ethers";
-import { AccountNotFoundError } from "node_modules/viem/_types/errors/account";
 import { http, Hex, createWalletClient } from "viem";
-import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
+import { privateKeyToAccount } from "viem/accounts";
 import { sepolia } from "viem/chains";
 import { beforeEach, describe, expect, it, test } from "vitest";
 import { SignatureType } from "../eas";
 import { SCHEMA_FIXTURE_IS_A_FRIEND } from "../eas-test.fixture";
-import { createEthersSigner } from "../ethers";
 import { createEAS } from "../ethers/onchain";
-import { makeAttestation, revoke } from "./onchain";
+import { makeOnchainAttestation, revoke } from "./onchain";
 
 export const EASContractAddress = "0xC2679fBD37d54388Ce493F1DB75320D236e1815e"; // Sepolia v0.26
 
@@ -29,27 +30,35 @@ describe("attest with sepolia contract", () => {
 			const fixture = {
 				schemaId: SCHEMA_FIXTURE_IS_A_FRIEND.schemaUID,
 				refUID: ZERO_BYTES32,
-				time: 1728637333n,
+				time: 1732433266n,
 				expirationTime: NO_EXPIRATION,
 				revocationTime: 0n,
 				recipient: "0xFD50b031E778fAb33DfD2Fc3Ca66a1EeF0652165",
 				attester: from.address,
 				revocable: true,
 				// "yes"
-				data: "0x0000000000000000000000000000000000000000000000000000000000000001",
+				data: "0x0000000000000000000000000000000000000000000000000000000000000001" as Hex,
 				value: 0n,
 			};
 
-			const txSigner = createEthersSigner(privateKey, sepolia.id);
+			const txSigner = createTestEthersSigner(privateKey, sepolia.id);
 
 			const eas = createEAS(EASContractAddress, txSigner);
 
-			const { schemaId, expirationTime, revocable, refUID, data, value } =
+			const { schemaId, expirationTime, revocable, refUID, data, value, time } =
 				fixture;
 
 			const request = {
 				schema: schemaId,
-				data: { recipient, expirationTime, revocable, refUID, data, value },
+				data: {
+					recipient,
+					expirationTime,
+					revocable,
+					refUID,
+					data,
+					value,
+					time,
+				},
 			};
 
 			// TODO
@@ -57,26 +66,22 @@ describe("attest with sepolia contract", () => {
 				const overrides = {
 					signatureType: SignatureType.Direct,
 					from: from.address,
-					// maxFeePerGas: 100000000n.toString(),
-					// maxPriorityFeePerGas: 2000000000n.toString(),
-					// deadline: 0n,
 				};
 
 				const txnSdk = await eas.attest(request, overrides);
 
-				console.log("results", txnSdk);
+				console.log("attest with sdk txn", txnSdk);
 				const uid = await txnSdk.wait();
-
+				console.log("attest with sdk txn uid", uid);
 				expect(await eas.isAttestationValid(uid)).to.be.true;
 			});
 			test("with viem ", async () => {
 				const client = createWalletClient({
-					chain: sepolia,
-					transport: http(),
+					...createTestClientConfig(),
 					account: from,
 				});
 
-				const { uids } = await makeAttestation(client, request);
+				const { uids } = await makeOnchainAttestation(client, request);
 
 				console.log("attested", { uids });
 
@@ -98,8 +103,7 @@ describe("attest with sepolia contract", () => {
 			const from = privateKeyToAccount(privateKey);
 
 			const fromWalletClient = createWalletClient({
-				chain: sepolia,
-				transport: http(),
+				...createTestClientConfig(),
 				account: from,
 			});
 
@@ -123,7 +127,6 @@ describe("attest with sepolia contract", () => {
 
 describe.skip("attesting", () => {
 	let expirationTime: bigint;
-	const data = "0x1234";
 
 	beforeEach(async () => {
 		//   expirationTime = (await latest()) + duration.days(30n);
