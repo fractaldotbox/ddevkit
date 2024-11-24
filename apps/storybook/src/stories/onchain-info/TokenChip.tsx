@@ -27,8 +27,6 @@ export const TokenChip = ({
 		chain,
 	});
 
-	console.log("data", data, mainnet);
-
 	if (!data) {
 		return null;
 	}
@@ -36,6 +34,7 @@ export const TokenChip = ({
 	return (
 		<TokenChipWithInfo
 			amount={amount}
+			decimals={data.decimals}
 			imageUrl={data.imageUrl}
 			name={data.name}
 			symbol={data.symbol}

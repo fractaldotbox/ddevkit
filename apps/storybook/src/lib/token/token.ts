@@ -62,11 +62,11 @@ export const useTokenInfo = ({
 
 	let data = results.data;
 	if (data) {
-		const [decimal, name, symbol, totalSupply] = data;
+		const [decimals, name, symbol, totalSupply] = data;
 		return {
 			...results,
 			data: {
-				decimal,
+				decimals,
 				name,
 				symbol,
 				totalSupply,
