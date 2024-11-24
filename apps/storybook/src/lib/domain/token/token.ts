@@ -12,9 +12,11 @@
  */
 
 import { Address, Chain, erc20Abi } from "viem";
-import { useReadContracts } from "wagmi";
+// import { useReadContracts } from "wagmi";
+import { Config, readContracts } from "@wagmi/core";
 import { resolveProductionChain } from "../chain/chain-resolver";
-import { asTrustWalletChainName } from "../chain/trustwallet-chain";
+import { asTrustWalletChainName } from "../../trustwallet-chain";
+import { useEffect, useState } from "react";
 
 export type Token = {
 	address?: Address;
@@ -28,10 +30,63 @@ export type Token = {
 export const useTokenInfo = ({
 	address,
 	chain,
-}: { address?: Address; chain: Chain }) => {
+	config,
+}: { address?: Address; chain: Chain; config: Config }) => {
 	const imageUrl = getTrustWalletIconUrl(chain, address);
 
 	const { nativeCurrency } = chain;
+
+	const [tokenInfo, setTokenInfo] = useState<any>(undefined);
+
+	const fetchTokenInfo = async (address: Address) => {
+		const results = await readContracts(config, {
+			allowFailure: false,
+			contracts: [
+				{
+					address,
+					abi: erc20Abi,
+					functionName: "decimals",
+				},
+				{
+					address,
+					abi: erc20Abi,
+					functionName: "name",
+				},
+				{
+					address,
+					abi: erc20Abi,
+					functionName: "symbol",
+				},
+				{
+					address,
+					abi: erc20Abi,
+					functionName: "totalSupply",
+				},
+			],
+		});
+
+		if (results) {
+			const [decimals, name, symbol, totalSupply] = results;
+			return {
+				decimals,
+				name,
+				symbol,
+				totalSupply,
+				imageUrl,
+			};
+		}
+	};
+
+	useEffect(() => {
+		(async () => {
+			if (address) {
+				const tokenInfo = await fetchTokenInfo(address);
+				setTokenInfo(tokenInfo);
+				console.log("setup tokenInfo", tokenInfo);
+			}
+		})();
+	}, [address]);
+
 	if (!address) {
 		const data = {
 			imageUrl,
@@ -42,49 +97,8 @@ export const useTokenInfo = ({
 		};
 	}
 
-	const results = useReadContracts({
-		allowFailure: false,
-		contracts: [
-			{
-				address,
-				abi: erc20Abi,
-				functionName: "decimals",
-			},
-			{
-				address,
-				abi: erc20Abi,
-				functionName: "name",
-			},
-			{
-				address,
-				abi: erc20Abi,
-				functionName: "symbol",
-			},
-			{
-				address,
-				abi: erc20Abi,
-				functionName: "totalSupply",
-			},
-		],
-	});
-
-	let data = results.data;
-	if (data) {
-		const [decimals, name, symbol, totalSupply] = data;
-		return {
-			...results,
-			data: {
-				decimals,
-				name,
-				symbol,
-				totalSupply,
-				imageUrl,
-			},
-		};
-	}
 	return {
-		...results,
-		data: null,
+		data: tokenInfo,
 	};
 };
 

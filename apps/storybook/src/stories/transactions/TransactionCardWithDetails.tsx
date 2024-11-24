@@ -9,18 +9,10 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useGetTransaction } from "@/hooks/use-blockscout";
-import { useTokenInfo } from "@/lib/token/token";
 import { getShortHex } from "@/utils/hex";
 import { Label } from "@radix-ui/react-label";
-import { format } from "date-fns";
-import { useMemo } from "react";
-import { Address, Chain, Hex, Transaction, formatEther } from "viem";
-import { mainnet } from "viem/chains";
-import { useChainId, useToken } from "wagmi";
 import { AddressBadge } from "../identity/AddressBadge";
 import { TransactionMeta } from "@/lib/domain/transaction/transaction";
-import { TokenChip } from "../onchain-info/TokenChip";
 import { TokenChipWithInfo } from "../onchain-info/TokenChipWithInfo";
 import { Token } from "@/lib/domain/token/token";
 
@@ -57,8 +49,6 @@ export const TransactionCardWithDetailsContent = ({
 		tokenTransfers.length > 0 ? tokenTransfers[0] : nativeCurrency
 	) : null;
 
-
-	console.log('tokenTransfers', token, value)
 
 	return (
 		<CardContent>
@@ -104,12 +94,13 @@ export const TransactionCardWithDetailsContent = ({
 // some key fields from https://easscan.org/offchain/attestation/view/0x49dff46654fe740241026c1a717ace9ec439abe26124cd925b0ba1df296433c5
 export const TransactionCardWithDetails = ({
 	transaction,
+	txnUrl,
 	nativeCurrency
 }: {
 	transaction: TransactionMeta;
+	txnUrl: string;
 	nativeCurrency: Token;
 }) => {
-
 
 	return (
 		<Card>
@@ -119,7 +110,9 @@ export const TransactionCardWithDetails = ({
 					<CardDescription>
 						<div className="flex flex-col">
 							<div className="text-xs text-muted-foreground">
-								{transaction.hash && getShortHex(transaction.hash)}
+								<a href={txnUrl} target="_blank" rel="noreferrer">
+									{transaction.hash && getShortHex(transaction.hash)}
+								</a>
 							</div>
 						</div>
 

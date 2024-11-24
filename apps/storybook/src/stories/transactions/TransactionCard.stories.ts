@@ -1,13 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { withWagmiProvider } from "../decorators/wagmi";
 import { TRANSACTION } from "../fixture";
-import { TransactionCardWithHash } from "./TransactionCard";
+import { TransactionCard } from "./TransactionCard";
+import { mainnet } from "viem/chains";
 
 const meta = {
-	title: "Transactions/TransactionCardWithHash",
-	component: TransactionCardWithHash,
+	title: "Transactions/TransactionCard",
+	component: TransactionCard,
 	args: {},
-} satisfies Meta<typeof TransactionCardWithHash>;
+} satisfies Meta<typeof TransactionCard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -15,6 +16,7 @@ type Story = StoryObj<typeof meta>;
 export const VitalikDepositTransaction: Story = {
 	args: {
 		txnHash: TRANSACTION.VITALIK_DEPOSIT.txnHash,
+		chain: mainnet,
 	},
 	decorators: [withWagmiProvider()],
 };
@@ -22,6 +24,7 @@ export const VitalikDepositTransaction: Story = {
 export const VitalikTransferTransaction: Story = {
 	args: {
 		txnHash: TRANSACTION.VITALIK_TRANSFER.txnHash,
+		chain: mainnet,
 	},
 	decorators: [withWagmiProvider()],
 };

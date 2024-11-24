@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { withWagmiProvider } from "../decorators/wagmi";
-import { TRANSACTION } from "../fixture";
 import { TransactionCardWithDetails } from "./TransactionCardWithDetails";
 import {
 	TXN_VITALIK_DEPOSIT,
@@ -21,6 +20,7 @@ type Story = StoryObj<typeof meta>;
 export const VitalikDepositTransaction: Story = {
 	args: {
 		transaction: asTransactionMeta(TXN_VITALIK_DEPOSIT),
+		txnUrl: `https://eth.blockscout.com/tx/${TXN_VITALIK_DEPOSIT.hash}`,
 		nativeCurrency: mainnet.nativeCurrency,
 	},
 	decorators: [withWagmiProvider()],
@@ -29,6 +29,7 @@ export const VitalikDepositTransaction: Story = {
 export const VitalikTransferTransaction: Story = {
 	args: {
 		transaction: asTransactionMeta(TXN_VITALIK_TRANSFER),
+		txnUrl: `https://eth.blockscout.com/tx/${TXN_VITALIK_TRANSFER.hash}`,
 		nativeCurrency: mainnet.nativeCurrency,
 	},
 	decorators: [withWagmiProvider()],

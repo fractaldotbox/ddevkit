@@ -4,6 +4,8 @@ import { TransactionCardWithDetails } from "./TransactionCardWithDetails";
 import { useTokenInfo } from "@/lib/domain/token/token";
 import { Chain } from "viem";
 import { mainnet } from "viem/chains";
+import { createBlockExplorerUrl, ExplorerEntity } from "@/lib/explorer/url";
+import { useConfig } from "wagmi";
 
 export const TransactionCard = ({
     txnHash,
@@ -12,18 +14,35 @@ export const TransactionCard = ({
     txnHash: string;
     chain: Chain
 }) => {
-    const { data: transaction } = useGetTransaction(txnHash);
+    const { data: transaction, isLoading } = useGetTransaction(txnHash);
 
-    // TODO
-    const { data: tokenInfo } = useTokenInfo({
+    console.log('tokenInfo', transaction?.tokenTransfers?.[0]?.address);
+    // TODO handle conditional hook, wait for transaction
+
+    const config = useConfig();
+
+
+    // TODO pass in extra token info 
+    // const { data: tokenInfo } = useTokenInfo({
+    //     config,
+    //     chain,
+    //     address: transaction?.tokenTransfers?.[0]?.address,
+    // });
+
+    const txnUrl = createBlockExplorerUrl({
         chain,
-        address: transaction.tokenTransfers?.[0]?.address,
+        entity: ExplorerEntity.Transaction,
+        params: {
+            txnHash
+        }
     });
-
 
     if (!txnHash || !transaction) {
         return <Skeleton className="w-[100px] h-[20px] rounded-full" />;
     }
 
-    return <TransactionCardWithDetails transaction={transaction} nativeCurrency={chain.nativeCurrency} />;
+    return <TransactionCardWithDetails
+        transaction={transaction}
+        txnUrl={txnUrl}
+        nativeCurrency={chain.nativeCurrency} />;
 };

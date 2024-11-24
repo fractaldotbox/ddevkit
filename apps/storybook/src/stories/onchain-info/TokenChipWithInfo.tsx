@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { formatGwei, formatUnits } from "viem";
+import { formatEther, formatGwei, formatUnits } from "viem";
 
 /**
  * Amount instead Balance as it could be generic and not belongs to wallet
@@ -36,7 +36,7 @@ export const TokenChipWithInfo = ({
 				<span className="text-sm text-muted-foreground">
 					{
 						symbol === "ETH" ? (
-							formatGwei(amount ?? 0n)
+							formatEther((amount ?? 0n) / 1000000000n)
 						) : formatUnits(amount ?? 0n, decimals)
 					}
 				</span>
