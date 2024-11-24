@@ -1,4 +1,4 @@
-import { parseEventLogs, TransactionReceipt } from "viem";
+import { TransactionReceipt, parseEventLogs } from "viem";
 import { EAS_ABI } from "./abi";
 
 export enum Event {

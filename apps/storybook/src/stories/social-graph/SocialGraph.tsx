@@ -59,6 +59,7 @@ export const SocialGraph = ({
 			})),
 		};
 		console.log("gData", gData);
+		//@ts-ignore
 		setGraphData(gData);
 	}, [isLoading]);
 	// Random connected graph

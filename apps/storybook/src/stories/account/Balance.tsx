@@ -11,7 +11,7 @@ import { ABI_ERC20 } from "../../utils/config";
 type ETHBalanceProps = {
 	address: Address;
 	chainId?: number;
-	decimalsDisplayed: number;
+	decimalsDisplayed?: number;
 };
 
 // Consider locale for https://github.com/bpierre/dnum
