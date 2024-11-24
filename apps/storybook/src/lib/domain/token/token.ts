@@ -11,12 +11,12 @@
  *
  */
 
-import { Address, Chain, erc20Abi } from "viem";
 // import { useReadContracts } from "wagmi";
 import { Config, readContracts } from "@wagmi/core";
-import { resolveProductionChain } from "../chain/chain-resolver";
-import { asTrustWalletChainName } from "../../trustwallet-chain";
 import { useEffect, useState } from "react";
+import { Address, Chain, erc20Abi } from "viem";
+import { asTrustWalletChainName } from "../../trustwallet-chain";
+import { resolveProductionChain } from "../chain/chain-resolver";
 
 export type Token = {
 	address?: Address;

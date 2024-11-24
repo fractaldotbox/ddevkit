@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { mainnet } from "viem/chains";
 import { withWagmiProvider } from "../decorators/wagmi";
 import { TRANSACTION } from "../fixture";
 import { TransactionCard } from "./TransactionCard";
-import { mainnet } from "viem/chains";
 
 const meta = {
 	title: "Transactions/TransactionCard",

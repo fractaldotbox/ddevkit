@@ -15,7 +15,6 @@ export type TokenChipWithInfoProps = {
 	className?: string;
 };
 
-
 // TODO fix value
 // TODO add url
 export const TokenChipWithInfo = ({
@@ -34,11 +33,9 @@ export const TokenChipWithInfo = ({
 			<div className="text-lg font-semibold">{symbol}</div>
 			{decimals !== undefined && (
 				<span className="text-sm text-muted-foreground">
-					{
-						symbol === "ETH" ? (
-							formatEther((amount ?? 0n) / 1000000000n)
-						) : formatUnits(amount ?? 0n, decimals)
-					}
+					{symbol === "ETH"
+						? formatEther((amount ?? 0n) / 1000000000n)
+						: formatUnits(amount ?? 0n, decimals)}
 				</span>
 			)}
 		</Button>

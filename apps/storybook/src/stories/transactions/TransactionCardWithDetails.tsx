@@ -9,12 +9,12 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Token } from "@/lib/domain/token/token";
+import { TransactionMeta } from "@/lib/domain/transaction/transaction";
 import { getShortHex } from "@/utils/hex";
 import { Label } from "@radix-ui/react-label";
 import { AddressBadge } from "../identity/AddressBadge";
-import { TransactionMeta } from "@/lib/domain/transaction/transaction";
 import { TokenChipWithInfo } from "../onchain-info/TokenChipWithInfo";
-import { Token } from "@/lib/domain/token/token";
 
 export const TransactionSummary = ({
 	transaction,
@@ -27,13 +27,12 @@ export const TransactionSummary = ({
 	);
 };
 
-
 export const TransactionCardWithDetailsContent = ({
 	transaction,
 	nativeCurrency,
 }: {
-	transaction: TransactionMeta,
-	nativeCurrency: Token
+	transaction: TransactionMeta;
+	nativeCurrency: Token;
 }) => {
 	if (!transaction) {
 		return <Skeleton className="w-[100px] h-[20px] rounded-full" />;
@@ -45,10 +44,12 @@ export const TransactionCardWithDetailsContent = ({
 	const { tokenTransfers } = transaction;
 
 	// TODO input native currency
-	const token = value !== undefined ? (
-		tokenTransfers.length > 0 ? tokenTransfers[0] : nativeCurrency
-	) : null;
-
+	const token =
+		value !== undefined
+			? tokenTransfers.length > 0
+				? tokenTransfers[0]
+				: nativeCurrency
+			: null;
 
 	return (
 		<CardContent>
@@ -59,12 +60,9 @@ export const TransactionCardWithDetailsContent = ({
 						<div className="flex flex-col">
 							<div className="text-sm font-normal text-muted-foreground">
 								<span className="text-sm font-normal">
-									{token && (
-										<TokenChipWithInfo  {...token} amount={value} />
-									)}
+									{token && <TokenChipWithInfo {...token} amount={value} />}
 								</span>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -90,18 +88,16 @@ export const TransactionCardWithDetailsContent = ({
 	);
 };
 
-
 // some key fields from https://easscan.org/offchain/attestation/view/0x49dff46654fe740241026c1a717ace9ec439abe26124cd925b0ba1df296433c5
 export const TransactionCardWithDetails = ({
 	transaction,
 	txnUrl,
-	nativeCurrency
+	nativeCurrency,
 }: {
 	transaction: TransactionMeta;
 	txnUrl: string;
 	nativeCurrency: Token;
 }) => {
-
 	return (
 		<Card>
 			{
@@ -126,7 +122,12 @@ export const TransactionCardWithDetails = ({
 				</CardHeader>
 			}
 			<CardContent>
-				{transaction && <TransactionCardWithDetailsContent transaction={transaction} nativeCurrency={nativeCurrency} />}
+				{transaction && (
+					<TransactionCardWithDetailsContent
+						transaction={transaction}
+						nativeCurrency={nativeCurrency}
+					/>
+				)}
 			</CardContent>
 			<CardFooter></CardFooter>
 		</Card>
