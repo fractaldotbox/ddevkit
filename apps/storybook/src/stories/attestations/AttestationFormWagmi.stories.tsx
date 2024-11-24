@@ -123,9 +123,13 @@ const AttestationFormWagmi = ({
 	schemaIndex: string;
 	isOffchain: boolean;
 	chain: Chain;
-	account: Account;
+	account?: Account;
 	requestData: Omit<AttestationRequestData, 'recipient'>
 }) => {
+	if (!account) {
+		return;
+	}
+
 	const { signAttestation } = useAttestationWagmi({
 		account, isOffchain, schemaId, chain,
 	});
@@ -154,13 +158,11 @@ const meta = {
 	parameters: {
 		layout: "centered",
 	},
-	decorators: [withToaster()
-
-
-		// withWalletControlWagmi(),
-		// withMockAccount(),
-		// withWagmiProvider(),
-
+	decorators: [
+		withToaster(),
+		withWalletControlWagmi(),
+		withMockAccount(),
+		withWagmiProvider(),
 	],
 	args: {},
 } satisfies Meta<typeof AttestationFormWagmi>;
@@ -182,6 +184,7 @@ const requestDataFixture = {
 	value: 0n,
 };
 
+
 // TODO chain control at withWalletControlWagmi
 
 export const AttestationWagmiOffchain: Story = {
@@ -191,22 +194,15 @@ export const AttestationWagmiOffchain: Story = {
 		chain: sepolia,
 		isOffchain: true,
 		requestData: requestDataFixture
-	},
-	decorators: [
-		withWalletControlWagmi(),
-		withMockAccount(),
-		withWagmiProvider(),
-	],
+	}
 };
 
 export const AttestationWagmiOnchain: Story = {
 	args: {
-		// ignore account
 		schemaId: SCHEMA_FIXTURE_IS_A_FRIEND.schemaUID,
 		schemaIndex: '1',
 		chain: sepolia,
 		isOffchain: false,
 		requestData: requestDataFixture
-	},
-	decorators: [withMockAccount(), withWagmiProvider()],
+	}
 };
