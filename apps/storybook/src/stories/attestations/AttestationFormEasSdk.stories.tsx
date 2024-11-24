@@ -5,7 +5,7 @@ import {
 	ZERO_BYTES,
 	ZERO_BYTES32,
 } from "@/lib/eas/eas-test.fixture";
-import { createEthersSigner } from "@/lib/eas/ethers";
+import { createTestEthersSigner } from "@/lib/eas/ethers";
 import { createAttestationOnchain, createEAS } from "@/lib/eas/ethers/onchain";
 import { NO_EXPIRATION } from "@/lib/eas/request";
 import type { Meta, StoryObj } from "@storybook/react";
@@ -31,7 +31,7 @@ const AttestationFormEasSdk = ({
 	schemaIndex,
 	isOffchain,
 }: any) => {
-	const signer = createEthersSigner(privateKey, 11155111);
+	const signer = createTestEthersSigner(privateKey, 11155111);
 
 	const eas = createEAS(EAS_CONTRACT_ADDRESS, signer);
 
@@ -105,7 +105,7 @@ export const Onchain: Story = {
 	args: {
 		privateKey: BY_USER.mock.privateKey,
 		schemaId: VOTE_SCHEMA_FIXTURE.schemaUID,
-		schemaIndex: "1",
+		schemaIndex: "9",
 		isOffchain: false,
 	},
 	decorators: [],
@@ -115,7 +115,7 @@ export const Offchain: Story = {
 	args: {
 		privateKey: BY_USER.mock.privateKey,
 		schemaId: VOTE_SCHEMA_FIXTURE.schemaUID,
-		schemaIndex: "1",
+		schemaIndex: "9",
 		isOffchain: true,
 	},
 	decorators: [],

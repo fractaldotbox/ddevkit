@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { faker } from '@faker-js/faker';
 import { Hex } from 'viem';
 import { NameWagmi } from './NameWagmi';
-import { Address } from './Address';
+import { Address } from './AddressBadge';
 import { BY_USER } from '../fixture';
 import { withWagmiProvider } from '../decorators/wagmi';
 

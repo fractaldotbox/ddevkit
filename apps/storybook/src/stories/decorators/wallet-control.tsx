@@ -1,6 +1,6 @@
 import { privateKeyToAccount } from "viem/accounts";
 import { useAccount } from "wagmi";
-import { Address } from "../identity/Address";
+import { Address } from "../identity/AddressBadge";
 
 export const withWalletControl = () => {
 	return (Story: any, context: any) => {

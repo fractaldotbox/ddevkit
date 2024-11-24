@@ -19,7 +19,7 @@ import { useMemo } from "react";
 import { Address, Hex, Transaction, formatEther } from "viem";
 import { mainnet } from "viem/chains";
 import { useChainId, useToken } from "wagmi";
-import { AddrsesBadge } from "../identity/Address";
+import { AddrsesBadge } from "../identity/AddressBadge";
 
 export const TransactionSummary = ({
 	transaction,
