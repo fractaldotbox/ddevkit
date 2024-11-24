@@ -95,7 +95,7 @@ export const asTransactionMeta = (res: any): TransactionMeta => {
 		to: res.to.hash as Address,
 		isSuccess: res.success,
 		displayedTxType: findDisplayedTxType(res.tx_types),
-		value: parseGwei(res.value),
+		value: parseUnits(res.value, res.decimals),
 		tokenTransfers: res.token_transfers.map(asTokenTransfer),
 	};
 };

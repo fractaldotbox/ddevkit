@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { formatUnitsWithDecimalsDisplayed } from "@/lib/amount";
 import { formatEther, formatGwei, formatUnits } from "viem";
 
 /**
@@ -33,9 +34,13 @@ export const TokenChipWithInfo = ({
 			<div className="text-lg font-semibold">{symbol}</div>
 			{decimals !== undefined && (
 				<span className="text-sm text-muted-foreground">
-					{symbol === "ETH"
-						? formatEther((amount ?? 0n) / 1000000000n)
-						: formatUnits(amount ?? 0n, decimals)}
+					{formatUnitsWithDecimalsDisplayed(
+						{
+							value: amount ?? 0n,
+							decimals,
+						},
+						0,
+					)}
 				</span>
 			)}
 		</Button>

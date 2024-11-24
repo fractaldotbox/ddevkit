@@ -6,6 +6,7 @@ import { useAccount, useBalance, useReadContract, useToken } from 'wagmi';
 import { Address, Chain, formatUnits } from 'viem';
 import { mainnet } from 'viem/chains'
 import { ABI_ERC20 } from '../../utils/config';
+import { formatUnitsWithDecimalsDisplayed } from '@/lib/amount';
 
 
 type ETHBalanceProps = {
@@ -35,7 +36,7 @@ export const ETHBalance = ({
 
     return (
         <Text>
-            {formatUnits(data.value / BigInt(Math.pow(10, data?.decimals - decimalsDisplayed)), decimalsDisplayed)} {data?.symbol}
+            {formatUnitsWithDecimalsDisplayed(data, decimalsDisplayed)} {data?.symbol}
         </Text >
     );
 
