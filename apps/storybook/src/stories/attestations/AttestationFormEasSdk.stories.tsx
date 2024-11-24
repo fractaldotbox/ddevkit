@@ -5,7 +5,6 @@ import {
 	ZERO_BYTES,
 	ZERO_BYTES32,
 } from "@/lib/eas/eas-test.fixture";
-import { createTestEthersSigner } from "@/lib/eas/ethers";
 import { createAttestationOnchain, createEAS } from "@/lib/eas/ethers/onchain";
 import { NO_EXPIRATION } from "@/lib/eas/request";
 import type { Meta, StoryObj } from "@storybook/react";
@@ -15,6 +14,7 @@ import { withToaster } from "../decorators/toaster";
 import { withWalletControl } from "../decorators/wallet-control";
 import { BY_USER } from "../fixture";
 import { AttestationForm } from "./AttestationForm";
+import { createTestEthersSigner } from "@/lib/test-utils";
 
 const requestTemplate = {
 	recipient: BY_USER.eas.mockReceipient.address,
