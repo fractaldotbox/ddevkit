@@ -17,7 +17,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { ToastAction } from "@/components/ui/toast";
 import { toast } from "@/hooks/use-toast";
-import { useAttestation } from "@/lib/eas/use-attestation";
 import { getShortHex } from "@/utils/hex";
 import { SchemaBadge } from "./SchemaBadge";
 

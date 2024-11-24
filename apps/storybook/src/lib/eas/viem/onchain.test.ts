@@ -1,3 +1,4 @@
+import { createTestClientConfig } from "@/lib/test-utils";
 import { EAS, NO_EXPIRATION } from "@ethereum-attestation-service/eas-sdk";
 import { JsonRpcProvider, encodeBytes32String, ethers } from "ethers";
 import { AccountNotFoundError } from "node_modules/viem/_types/errors/account";
@@ -29,14 +30,14 @@ describe("attest with sepolia contract", () => {
 			const fixture = {
 				schemaId: SCHEMA_FIXTURE_IS_A_FRIEND.schemaUID,
 				refUID: ZERO_BYTES32,
-				time: 1728637333n,
+				time: 1732433266n,
 				expirationTime: NO_EXPIRATION,
 				revocationTime: 0n,
 				recipient: "0xFD50b031E778fAb33DfD2Fc3Ca66a1EeF0652165",
 				attester: from.address,
 				revocable: true,
 				// "yes"
-				data: "0x0000000000000000000000000000000000000000000000000000000000000001",
+				data: "0x0000000000000000000000000000000000000000000000000000000000000001" as Hex,
 				value: 0n,
 			};
 
@@ -44,12 +45,20 @@ describe("attest with sepolia contract", () => {
 
 			const eas = createEAS(EASContractAddress, txSigner);
 
-			const { schemaId, expirationTime, revocable, refUID, data, value } =
+			const { schemaId, expirationTime, revocable, refUID, data, value, time } =
 				fixture;
 
 			const request = {
 				schema: schemaId,
-				data: { recipient, expirationTime, revocable, refUID, data, value },
+				data: {
+					recipient,
+					expirationTime,
+					revocable,
+					refUID,
+					data,
+					value,
+					time,
+				},
 			};
 
 			// TODO
@@ -69,10 +78,9 @@ describe("attest with sepolia contract", () => {
 
 				expect(await eas.isAttestationValid(uid)).to.be.true;
 			});
-			test("with viem ", async () => {
+			test.only("with viem ", async () => {
 				const client = createWalletClient({
-					chain: sepolia,
-					transport: http(),
+					...createTestClientConfig(),
 					account: from,
 				});
 

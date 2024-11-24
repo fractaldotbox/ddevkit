@@ -2,27 +2,27 @@
 // https://github.com/wevm/viem/blob/main/src/actions/ens/getEnsName.ts
 
 import {
+	http,
 	Account,
 	Chain,
 	Client,
-	createPublicClient,
-	createWalletClient,
 	Hex,
-	http,
-	parseEventLogs,
-	prepareEncodeFunctionData,
 	ReadContractParameters,
 	TransactionReceipt,
 	Transport,
 	WalletClient,
+	createPublicClient,
+	createWalletClient,
+	parseEventLogs,
+	prepareEncodeFunctionData,
 } from "viem";
 import {
 	simulateContract,
 	waitForTransactionReceipt,
 	writeContract,
 } from "viem/actions";
-import { EAS_ABI, EAS_CONTRACT_ADDRESS } from "../abi";
 import { sepolia } from "viem/chains";
+import { EAS_ABI, EAS_CONTRACT_ADDRESS } from "../abi";
 import { getUIDsFromAttestReceipt } from "../events";
 import { RevocationRequest } from "../request";
 
@@ -91,7 +91,7 @@ export const revoke = async (
 	} = request;
 
 	const publicClient = createPublicClient({
-		chain: sepolia,
+		chain: client.chain,
 		transport: http(),
 	});
 

@@ -105,7 +105,7 @@ export const Onchain: Story = {
 	args: {
 		privateKey: BY_USER.mock.privateKey,
 		schemaId: VOTE_SCHEMA_FIXTURE.schemaUID,
-		schemaIndex: "1",
+		schemaIndex: "9",
 		isOffchain: false,
 	},
 	decorators: [],
@@ -115,7 +115,7 @@ export const Offchain: Story = {
 	args: {
 		privateKey: BY_USER.mock.privateKey,
 		schemaId: VOTE_SCHEMA_FIXTURE.schemaUID,
-		schemaIndex: "1",
+		schemaIndex: "9",
 		isOffchain: true,
 	},
 	decorators: [],
