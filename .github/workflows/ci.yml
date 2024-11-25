@@ -1,12 +1,17 @@
 name: Geist Dapp Kit
 
 on:
+  pull_request:
+    branches:
+      - 'draft'
+      - 'main'  
   push:
     branches:
       - 'draft'
       - 'main'
     paths:
       - 'apps/storybook/**'
+      - 'pnpm-*.yaml'
 
 env:
   NODE_VERSION: '22'
@@ -53,6 +58,7 @@ jobs:
 
   deploy-storybook:
     needs: [build-storybook]
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

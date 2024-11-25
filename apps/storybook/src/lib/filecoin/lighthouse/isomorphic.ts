@@ -1,7 +1,6 @@
-import got from "got";
+import ky from "ky";
 import lighthouse from "@lighthouse-web3/sdk";
 import { Account, Hex, createWalletClient, http } from "viem";
-import { privateKeyToAccount, signMessage } from "viem/accounts";
 import { filecoinCalibration, sepolia } from "viem/chains";
 import kavach from "@lighthouse-web3/kavach";
 import { writeFileSync } from "fs";
@@ -78,7 +77,7 @@ export const retrievePoDsi = async (cid: string) => {
 	// console.log('results', results);
 	// return results?.data;
 
-	let response = await got.get(`${LIGHTHOUSE_API_ROOT}/get_proof`, {
+	let response = await ky.get(`${LIGHTHOUSE_API_ROOT}/get_proof`, {
 		searchParams: {
 			cid,
 			network: "testnet", // Change the network to mainnet when ready
@@ -126,6 +125,6 @@ export const uploadEncryptedFileWithText = async (
 	};
 };
 
-export const getFile = async (cid: string) => {
-	return got("https://gateway.lighthouse.storage/ipfs/" + cid).buffer();
+export const retrieveFile = async (cid: string) => {
+	return ky("https://gateway.lighthouse.storage/ipfs/" + cid).buffer();
 };

@@ -1,64 +1,119 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { AttestationForm } from './AttestationForm';
-import { BY_USER } from '../fixture';
-import { createEthersSigner } from '@/lib/eas/ethers';
-import { EAS_CONTRACT_ADDRESS } from '@/lib/eas/abi';
-import { createAttestation, createEAS } from '@/lib/eas/ethers/onchain';
-import { withToaster } from '../decorators/toaster';
-import { SCHEMA_FIXTURE_IS_A_FRIEND } from '@/lib/eas/eas-test.fixture';
+import { EAS_CONTRACT_ADDRESS } from "@/lib/eas/abi";
+import {
+	VOTE_SCHEMA_FIXTURE,
+	ZERO_BYTES,
+	ZERO_BYTES32,
+} from "@/lib/eas/eas-test.fixture";
+import { createAttestationOnchain, createEAS } from "@/lib/eas/ethers/onchain";
+import { NO_EXPIRATION } from "@/lib/eas/request";
+import { createTestEthersSigner } from "@/lib/test-utils";
+import type { Meta, StoryObj } from "@storybook/react";
+import { encodeBytes32String } from "ethers";
+import { Address, Hex } from "viem";
+import { withToaster } from "../decorators/toaster";
+import { withWalletControl } from "../decorators/wallet-control";
+import { BY_USER } from "../fixture";
+import { AttestationForm } from "./AttestationForm";
 
+const requestTemplate = {
+	recipient: BY_USER.eas.mockReceipient.address,
+	expirationTime: NO_EXPIRATION,
+	revocable: true,
+	refUID: ZERO_BYTES32,
+	data: ZERO_BYTES as Hex,
+	salt: encodeBytes32String("SALT") as Hex,
+};
 
 const AttestationFormEasSdk = ({
-    privateKey,
-    schemaId,
-    schemaIndex
+	privateKey,
+	schemaId,
+	schemaIndex,
+	isOffchain,
 }: any) => {
+	const signer = createTestEthersSigner(privateKey, 11155111);
 
-    const signer = createEthersSigner(privateKey, 11155111);
+	const eas = createEAS(EAS_CONTRACT_ADDRESS, signer);
 
-    const eas = createEAS(EAS_CONTRACT_ADDRESS, signer);
+	return (
+		<AttestationForm
+			chainId={11155111}
+			schemaId={schemaId}
+			schemaIndex={schemaIndex}
+			isOffchain={isOffchain}
+			signAttestation={async (): Promise<any> => {
+				// TODO fix encode data structure
+				const now = BigInt(Date.now());
 
+				const { recipient, revocable, expirationTime, refUID, data, salt } =
+					requestTemplate;
 
+				if (isOffchain) {
+					console.log("create offchain attestation");
 
+					const offchain = await eas.getOffchain();
 
+					const attesterAddress = (await signer.getAddress()) as Address;
 
-    return <AttestationForm
-        schemaId={schemaId}
-        schemaIndex={schemaIndex}
-        signAttestation={(): Promise<any> => {
-            return createAttestation({
-                eas,
-                schemaString: '',
-                encodedDataParams: '',
-                schemaUID: schemaId,
-                attestationData: {}
-            })
-        }} />
+					const attestation = await offchain.signOffchainAttestation(
+						{
+							schema: schemaId,
+							recipient,
+							time: now,
+							expirationTime,
+							revocable,
+							refUID,
+							data,
+							salt,
+						},
+						signer,
+					);
 
-
-}
+					const { uid } = attestation;
+					return {
+						uids: [uid],
+					};
+				}
+				return createAttestationOnchain({
+					eas,
+					schemaString: VOTE_SCHEMA_FIXTURE.schemaString,
+					encodedDataParams: VOTE_SCHEMA_FIXTURE.encodedData,
+					schemaUID: schemaId,
+					attestationData: {},
+				});
+			}}
+		/>
+	);
+};
 
 const meta = {
-    title: 'Attestations/AttestationFormEasSdk',
-    component: AttestationFormEasSdk,
-    parameters: {
-        layout: 'centered',
-    },
-    decorators: [withToaster()],
-    args: {}
+	title: "Attestations/AttestationFormEasSdk",
+	component: AttestationFormEasSdk,
+	parameters: {
+		layout: "centered",
+	},
+	decorators: [withToaster(), withWalletControl()],
+	args: {},
 } satisfies Meta<typeof AttestationFormEasSdk>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-
-export const EthersEasSdk: Story = {
-    args: {
-        privateKey: BY_USER.mock.privateKey,
-        schemaId: SCHEMA_FIXTURE_IS_A_FRIEND.schemaUID,
-        schemaIndex: '1'
-    },
-    decorators: [
-    ]
+export const Onchain: Story = {
+	args: {
+		privateKey: BY_USER.mock.privateKey,
+		schemaId: VOTE_SCHEMA_FIXTURE.schemaUID,
+		schemaIndex: "9",
+		isOffchain: false,
+	},
+	decorators: [],
 };
 
+export const Offchain: Story = {
+	args: {
+		privateKey: BY_USER.mock.privateKey,
+		schemaId: VOTE_SCHEMA_FIXTURE.schemaUID,
+		schemaIndex: "9",
+		isOffchain: true,
+	},
+	decorators: [],
+};

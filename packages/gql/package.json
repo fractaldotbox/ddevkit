@@ -1,26 +1,24 @@
 {
-  "name": "@repo/graphql",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "files": [
-    "dist"
-  ],
-  "exports": {
-    ".": "./src/graphql/index.ts"
-  },
-  "scripts": {
-    "build:gql":"graphql-codegen --config codegen.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "devDependencies": {
-    "@graphprotocol/graph-cli": "^0.67.2",
-    "@graphprotocol/graph-ts": "^0.31.0",
-    "@graphql-codegen/cli": "^5.0.2",
-    "@graphql-codegen/schema-ast": "^4.1.0",
-    "graphql-codegen-typescript-common": "0.18.2"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+	"name": "@repo/graphql",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"files": ["dist"],
+	"exports": {
+		".": "./src/graphql/index.ts"
+	},
+	"scripts": {
+		"build:gql": "graphql-codegen --config codegen.ts",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"devDependencies": {
+		"@graphprotocol/graph-cli": "^0.67.2",
+		"@graphprotocol/graph-ts": "^0.31.0",
+		"@graphql-codegen/cli": "^5.0.2",
+		"@graphql-codegen/schema-ast": "^4.1.0",
+		"graphql-codegen-typescript-common": "0.18.2"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
 }

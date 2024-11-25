@@ -2,37 +2,39 @@
 // https://github.com/wevm/viem/blob/main/src/actions/ens/getEnsName.ts
 
 import {
+	http,
 	Account,
 	Chain,
 	Client,
-	createPublicClient,
-	createWalletClient,
 	Hex,
-	http,
-	parseEventLogs,
-	prepareEncodeFunctionData,
 	ReadContractParameters,
 	TransactionReceipt,
 	Transport,
 	WalletClient,
+	createPublicClient,
+	createWalletClient,
+	parseEventLogs,
+	prepareEncodeFunctionData,
 } from "viem";
 import {
 	simulateContract,
 	waitForTransactionReceipt,
 	writeContract,
 } from "viem/actions";
-import { EAS_ABI, EAS_CONTRACT_ADDRESS } from "../abi";
 import { sepolia } from "viem/chains";
+import { EAS_ABI, EAS_CONTRACT_ADDRESS } from "../abi";
 import { getUIDsFromAttestReceipt } from "../events";
 import { RevocationRequest } from "../request";
 
+// TODO align on offchain
 export interface AttestationRequestData {
 	recipient: string;
-	data: string;
+	data: Hex;
 	expirationTime?: bigint;
 	revocable?: boolean;
 	refUID?: string;
 	value?: bigint;
+	time: bigint;
 }
 
 export interface AttestationRequest {
@@ -41,7 +43,7 @@ export interface AttestationRequest {
 }
 
 // strategy action pattern by signature type
-export const makeAttestation = async (
+export const makeOnchainAttestation = async (
 	client: WalletClient,
 	request: AttestationRequest,
 ) => {
@@ -89,7 +91,7 @@ export const revoke = async (
 	} = request;
 
 	const publicClient = createPublicClient({
-		chain: sepolia,
+		chain: client.chain,
 		transport: http(),
 	});
 

@@ -1,0 +1,17 @@
+import { Meta, Story, Canvas } from "@storybook/blocks";
+import * as TokenChipStories from "./TokenChipWithInfo.stories";
+import { TokenChipWithInfo } from "./TokenChipWithInfo";
+
+<Meta title="MDX/TokenChipWithInfo" of={TokenChipStories} />
+
+# TokenChipWithInfo
+
+The `TokenChipWithInfo` component is a button that displays the token symbol.
+
+## Example
+
+Displaying Ether(ETH) token symbol.
+
+<Canvas>
+  <Story of={TokenChipStories.ETHTokenChip} />
+</Canvas>

@@ -27,6 +27,14 @@ export const VOTE_SCHEMA_FIXTURE = {
 	},
 };
 
+// 	https://sepolia.easscan.org/schema/view/0xc59265615401143689cbfe73046a922c975c99d97e4c248070435b1104b2dea7
+export const SCHEMA_FIXTURE_MET_IRL = {
+	schemaUID:
+		"0xc59265615401143689cbfe73046a922c975c99d97e4c248070435b1104b2dea7",
+	schemaString: "bool metIRL",
+	encodedData: [{ name: "metIRL", value: 1, type: "bool" }],
+};
+
 // https://sepolia.easscan.org/schema/view/0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a
 export const SCHEMA_FIXTURE_IS_A_FRIEND = {
 	schemaUID:

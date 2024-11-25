@@ -6,40 +6,42 @@ import { useEffect, useMemo, useState } from "react";
 
 export type EfpFollowerWithName = EfpFollower & { name?: string };
 
-
 /**
  * This one is client-side based dynamic resolving
  * Better to opt for SSR
  */
-export const FollowerListEnsjs = ({ addressOrEns }: { addressOrEns: AddressOrEns }) => {
-    const [followersWithNames, setFollowersWithNames] = useState<EfpFollowerWithName[]>([]);
+export const FollowerListEnsjs = ({
+	addressOrEns,
+}: { addressOrEns: AddressOrEns }) => {
+	const [followersWithNames, setFollowersWithNames] = useState<
+		EfpFollowerWithName[]
+	>([]);
 
-    const { data, isLoading, isSuccess } = useFollowers(addressOrEns);
-    const followers = data?.followers || [];
+	const { data, isLoading, isSuccess } = useFollowers(addressOrEns);
+	const followers = data?.followers || [];
 
-    // consider extracted as common hook but ensure treeshaking
-    useEffect(() => {
-        console.log('isSuccess', isSuccess)
-        if (!isSuccess) return;
-        ; (async () => {
-            const names = await getNames({
-                addresses: followers.map((follower) => follower.address)
-            })
-            // stable order without missing slot
-            const followersWithNames = followers.map((follower, index) => {
-                return {
-                    ...follower,
-                    ...names?.[index]
-                };
-            });
-            setFollowersWithNames(followersWithNames);
-        })();
-    }, [isSuccess, followers?.length]);
+	// consider extracted as common hook but ensure treeshaking
+	useEffect(() => {
+		if (!isSuccess) return;
+		(async () => {
+			const names = await getNames({
+				addresses: followers.map((follower) => follower.address),
+			});
+			// stable order without missing slot
+			const followersWithNames = followers.map((follower, index) => {
+				return {
+					...follower,
+					...names?.[index],
+				};
+			});
+			setFollowersWithNames(followersWithNames);
+		})();
+	}, [isSuccess, followers?.length]);
 
-    return (
-        <div>
-            <div>{addressOrEns}</div>
-            <FollowerListScrollable followers={followersWithNames} />
-        </div>
-    )
-}
+	return (
+		<div>
+			<div>{addressOrEns}</div>
+			<FollowerListScrollable followers={followersWithNames} />
+		</div>
+	);
+};

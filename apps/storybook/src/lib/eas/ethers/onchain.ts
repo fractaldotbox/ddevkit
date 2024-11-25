@@ -35,7 +35,7 @@ export const createAttestationRequest = ({
 	};
 };
 
-export const createAttestation = async ({
+export const createAttestationOnchain = async ({
 	eas,
 	schemaString,
 	encodedDataParams,
@@ -58,5 +58,17 @@ export const createAttestation = async ({
 
 	return {
 		uid: newAttestationUID,
+	};
+};
+
+export const createAttestationOffchain = async ({
+	// eas,
+	// schemaString,
+	// encodedDataParams,
+	// schemaUID,
+	// attestationData,
+}: createAttestationParams) => {
+	return {
+		uid: "",
 	};
 };

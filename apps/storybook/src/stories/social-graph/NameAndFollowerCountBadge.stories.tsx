@@ -1,27 +1,24 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { NameAndFollowerCountBadge } from './NameAndFollowerCountBadge';
-import { BY_USER } from '../fixture';
-import { withQueryClientProvider } from '../decorators/wagmi';
-
+import { withQueryClientProvider } from "../decorators/wagmi";
+import { BY_USER } from "../fixture";
+import { NameAndFollowerCountBadge } from "./NameAndFollowerCountBadge";
 
 const meta = {
-    title: 'SocialGraph/NameAndFollowerCountBadge',
-    component: NameAndFollowerCountBadge,
-    parameters: {
-        layout: 'centered',
-    },
-    args: {},
+	title: "SocialGraph/NameAndFollowerCountBadge",
+	component: NameAndFollowerCountBadge,
+	parameters: {
+		layout: "centered",
+	},
+	args: {},
 } satisfies Meta<typeof NameAndFollowerCountBadge>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Address: Story = {
-    args: {
-        addressOrEns: BY_USER.vitalik.address
-    },
-    decorators: [
-        withQueryClientProvider()
-    ]
+	args: {
+		addressOrEns: BY_USER.vitalik.address,
+	},
+	decorators: [withQueryClientProvider()],
 };

@@ -1,12 +1,12 @@
 import { describe, expect, test } from "vitest";
 import {
 	createLighthouseParams,
-	getFile,
+	retrieveFile,
 	retrievePoDsi,
 	uploadEncryptedFileWithText,
 	uploadText,
 } from "./lighthouse/isomorphic";
-import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
+import { privateKeyToAccount } from "viem/accounts";
 
 import { BY_USER } from "../../stories/fixture";
 /**
@@ -67,8 +67,8 @@ describe(
 			);
 		});
 
-		test("#getFile", async () => {
-			const buffer = await getFile(cid);
+		test("#retrieveFile", async () => {
+			const buffer = await retrieveFile(cid);
 			console.log("buffer", buffer.toString());
 			expect(buffer.toString()).toEqual("abcde");
 		});

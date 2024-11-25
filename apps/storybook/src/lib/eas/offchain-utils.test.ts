@@ -1,16 +1,23 @@
 import {
-	createOffchainURL as createOffchainURLSdk,
-	decodeBase64ZippedBase64,
 	EAS,
 	Offchain,
 	SignedOffchainAttestation,
 	ZERO_ADDRESS,
+	createOffchainURL as createOffchainURLSdk,
+	decodeBase64ZippedBase64,
 	zipAndEncodeToBase64 as zipAndEncodeToBase64Sdk,
 } from "@ethereum-attestation-service/eas-sdk";
-import { describe, test, expect } from "vitest";
+import { describe, expect, test } from "vitest";
 import { Spec, TEST_ATTESTATIONS } from "./eas-test.fixture";
+import { createOffchainURL, zipAndEncodeToBase64 } from "./offchain-utils";
 // import { createOffchainURL, zipAndEncodeToBase64 } from './offchain/offchain';
 
+describe("#getOffchain", () => {
+	test("viem and sdk", () => {
+		// TODO pull from offchain.int.test.ts after align fixture
+		// getOffchainUID
+	});
+});
 // use fixture
 describe.skip("offchain utils eas-sdk", () => {
 	describe.each(TEST_ATTESTATIONS)(
