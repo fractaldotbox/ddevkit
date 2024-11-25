@@ -1,3 +1,4 @@
+import { privateKeyToAccount } from "viem/accounts";
 import { describe, expect, test } from "vitest";
 import {
 	createLighthouseParams,
@@ -6,7 +7,6 @@ import {
 	uploadEncryptedFileWithText,
 	uploadText,
 } from "./lighthouse/isomorphic";
-import { privateKeyToAccount } from "viem/accounts";
 
 import { BY_USER } from "../../stories/fixture";
 /**

@@ -1,10 +1,10 @@
-import ky from "ky";
-import lighthouse from "@lighthouse-web3/sdk";
-import { Account, Hex, createWalletClient, http } from "viem";
-import { filecoinCalibration, sepolia } from "viem/chains";
-import kavach from "@lighthouse-web3/kavach";
 import { writeFileSync } from "fs";
+import kavach from "@lighthouse-web3/kavach";
+import lighthouse from "@lighthouse-web3/sdk";
 import { DealParameters } from "@lighthouse-web3/sdk/dist/types";
+import ky from "ky";
+import { http, Account, Hex, createWalletClient } from "viem";
+import { filecoinCalibration, sepolia } from "viem/chains";
 // import { CID } from 'multiformats/cid'
 
 // Supposedly lighthouse can be treeshake for node/browser, to be validated
