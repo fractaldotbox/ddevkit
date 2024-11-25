@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { toast } from "@/hooks/use-toast";
-import { uploadFileWithFormData } from "@/lib/filecoin/akave/client";
+import { uploadFileObject, uploadFileWithFormData } from "@/lib/filecoin/akave/client";
 import { getGatewayUrlWithCid } from "@/lib/filecoin/gateway";
-import { uploadText } from "@/lib/filecoin/lighthouse/isomorphic";
+import { uploadText, uploadFile as uploadFileLighthouse } from "@/lib/filecoin/lighthouse/isomorphic";
 import { withToaster } from "../decorators/toaster";
 import { FileParams, UploadForm } from "./UploadForm";
 
@@ -28,51 +28,73 @@ const createToast = ({ cid, name }: { cid: string; name: string }) => {
 		title: "File uploaded",
 		description: (
 			<div>
-				File uploaded with {name}
+				File uploaded with {name} <br />
 				CID:<a href={url}>${cid}</a>
 			</div>
 		),
 	});
 };
 
-const uploadFileLighthouseHandler = async ({ file }: FileParams) => {
-	const response = await uploadText(file, LIGHTHOUSE_API_KEY!);
-	const { name, cid } = response;
-	createToast({ cid, name });
-	return cid;
-};
 
-// not working, to revisit akave
-const uploadFileAkaveCallback = async ({ file }: FileParams) => {
-	const response = await uploadFileWithFormData({
-		akaveEndpointUrl: AKAVE_ENDPOINT_URL,
-		bucketName: "test-bucket",
-		fileName: "test.txt",
-		file,
-	});
-	const { Name: name, RootCID: cid } = response;
-
-	createToast({ cid, name });
-	return cid;
-};
 
 export const TextLighthouse: Story = {
 	args: {
 		isText: true,
-		uploadFile: uploadFileLighthouseHandler,
+		uploadFile: async ({ file }: FileParams) => {
+			const response = await uploadText(file, LIGHTHOUSE_API_KEY!);
+			const { name, cid } = response;
+			createToast({ cid, name });
+			return cid;
+		}
 	},
 };
+
 
 export const TextAkave: Story = {
 	args: {
 		isText: true,
-		uploadFile: uploadFileAkaveCallback,
+		uploadFile: async ({ file }: FileParams) => {
+			const response = await uploadFileObject({
+				akaveEndpointUrl: AKAVE_ENDPOINT_URL,
+				bucketName: "test-bucket",
+				fileName: "test.txt",
+				file,
+			});
+			const { Name: name, RootCID: cid } = response;
+
+			createToast({ cid, name });
+			return cid;
+		}
 	},
 };
 
 export const FileLighthouse: Story = {
 	args: {
 		isText: false,
-		uploadFile: uploadFileLighthouseHandler,
+		uploadFile: async ({ file }: FileParams) => {
+			const response = await uploadFileLighthouse(file, LIGHTHOUSE_API_KEY!);
+			const { name, cid } = response;
+			createToast({ cid, name });
+			return cid;
+		}
+	},
+};
+
+
+export const FileAkave: Story = {
+	args: {
+		isText: false,
+		uploadFile: async ({ file }: FileParams) => {
+			const response = await uploadFileWithFormData({
+				akaveEndpointUrl: AKAVE_ENDPOINT_URL,
+				bucketName: "test-bucket",
+				fileName: "test.txt",
+				file,
+			});
+			const { Name: name, RootCID: cid } = response;
+
+			createToast({ cid, name });
+			return cid;
+		}
 	},
 };

@@ -51,11 +51,11 @@ export const signAuthMessage = async (account: any) => {
 // Further work overriding sdk required for customizing form headers, timeout etc
 // consider direct invoke /api/v0/add?wrap-with-directory
 
-const uploadFile = async (
+export const uploadFile = async (
 	file: File,
 	apiKey: string,
-	progressCallback: any,
-) => {
+	progressCallback: any = () => {},
+): Promise<any> => {
 	// const dealParams: DealParameters = {};
 	const output = await lighthouse.upload(
 		file,

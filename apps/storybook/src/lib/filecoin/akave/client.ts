@@ -19,7 +19,7 @@ export interface AkaveBucket {
  * TODO refactor akave config object
  */
 
-const AKAVE_ENDPOINT_URL = process.env.AKAVE_ENDPOINT_URL || "localhost:3000";
+const AKAVE_ENDPOINT_URL = "localhost:3000";
 
 export const getBucketMetadata = ({
 	akaveEndpointUrl = AKAVE_ENDPOINT_URL,
@@ -121,14 +121,13 @@ export const uploadFileObject = ({
 	bucketName,
 	fileName,
 	file,
-}: UploadParams) => {
+}: UploadParams): Promise<any> => {
 	const endpoint = createUploadEndpoint({
 		akaveEndpointUrl,
 		bucketName,
 	});
 
 	const options = typeof file === "string" ? { body: file } : { json: file };
-
 	return ky.post(endpoint, options).then((res) => res.json());
 };
 
@@ -137,11 +136,12 @@ export const uploadFileWithFormData = async ({
 	bucketName,
 	fileName,
 	file,
-}: UploadParams): Promise<AkaveFile> => {
+}: UploadParams): Promise<any> => {
 	const endpoint = createUploadEndpoint({
 		akaveEndpointUrl,
 		bucketName,
 	});
+
 	const formData = new FormData();
 	// @ts-ignore
 	formData.append("file", file);
