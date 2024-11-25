@@ -8,7 +8,11 @@ import {
 } from "@/components/ui/toast";
 import { useToast } from "@/hooks/use-toast";
 
-export function Toaster() {
+export function Toaster({
+	className,
+}: {
+	className?: string;
+}) {
 	const { toasts } = useToast();
 
 	return (
@@ -27,7 +31,7 @@ export function Toaster() {
 					</Toast>
 				);
 			})}
-			<ToastViewport />
+			<ToastViewport className={className} />
 		</ToastProvider>
 	);
 }

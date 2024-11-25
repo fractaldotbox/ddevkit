@@ -1,10 +1,8 @@
-import { writeFileSync } from "fs";
 import kavach from "@lighthouse-web3/kavach";
 import lighthouse from "@lighthouse-web3/sdk";
-import { DealParameters } from "@lighthouse-web3/sdk/dist/types";
 import ky from "ky";
 import { http, Account, Hex, createWalletClient } from "viem";
-import { filecoinCalibration, sepolia } from "viem/chains";
+import { sepolia } from "viem/chains";
 // import { CID } from 'multiformats/cid'
 
 // Supposedly lighthouse can be treeshake for node/browser, to be validated
@@ -83,7 +81,8 @@ export const retrievePoDsi = async (cid: string) => {
 			network: "testnet", // Change the network to mainnet when ready
 		},
 	});
-	return JSON.parse(response.body);
+	const data = await response.json();
+	return JSON.parse(data);
 };
 
 // .uploadText has no deal params options
@@ -125,6 +124,10 @@ export const uploadEncryptedFileWithText = async (
 	};
 };
 
+export const getLighthouseGatewayUrl = (cid: string) => {
+	return "https://gateway.lighthouse.storage/ipfs/" + cid;
+};
+
 export const retrieveFile = async (cid: string) => {
-	return ky("https://gateway.lighthouse.storage/ipfs/" + cid).buffer();
+	return ky(getLighthouseGatewayUrl(cid)).arrayBuffer();
 };

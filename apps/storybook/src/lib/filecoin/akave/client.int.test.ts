@@ -1,0 +1,100 @@
+import { faker } from "@faker-js/faker";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
+import {
+	AkaveBucket,
+	createBucket,
+	listBucketFiles,
+	listBuckets,
+	uploadFileObject,
+	uploadFileWithFormData,
+} from "./client";
+
+import fs from "fs";
+import os from "os";
+import path from "path";
+
+describe(
+	"with file",
+	() => {
+		const AKAVE_ENDPOINT_URL = import.meta.env.VITE_AKAVE_ENDPOINT_URL;
+		const config = {
+			akaveEndpointUrl: AKAVE_ENDPOINT_URL,
+		};
+		const testBucketNameCreate = "test-bucket-create";
+		const testBucketNameExists = "test-bucket";
+
+		const tmpDir = os.tmpdir();
+		const fileName = "test.txt";
+		const filePath = path.join(tmpDir, fileName);
+
+		const testContent = faker.lorem.paragraphs(10);
+
+		beforeAll(() => {
+			fs.writeFileSync(filePath, testContent, {
+				encoding: "utf8",
+			});
+		});
+
+		test.skip("create bucket", async () => {
+			const results = await createBucket({
+				...config,
+				bucketName: testBucketNameCreate,
+			});
+
+			const { data, success } = results;
+
+			expect(success).toEqual(true);
+			expect(data?.ID).toBeDefined();
+			expect(data?.transactionHash).toBeDefined();
+		});
+
+		test("#listBuckets", async () => {
+			const results = await listBuckets(config);
+			console.log("results", results);
+			expect(
+				!!results.data!.find(
+					(bucket: any) => bucket.Name === testBucketNameExists,
+				),
+			).toEqual(true);
+		});
+
+		test("#listBucketFiles", async () => {
+			const files = await listBucketFiles({
+				...config,
+				bucketName: testBucketNameExists,
+			});
+			console.log("files", files);
+			// expect(!!files.length > 0).toEqual(true);
+		});
+
+		test("uploadFileObject", async () => {
+			const file = {
+				lorem: testContent,
+			};
+			const response = await uploadFileObject({
+				...config,
+				fileName,
+				file,
+				bucketName: testBucketNameExists,
+			});
+			expect(response).toHaveProperty("success", true);
+			// Add more assertions as needed
+		});
+
+		test.only("uploadFileWithFormData", async () => {
+			const file = new File([testContent], fileName, {
+				type: "text/plain",
+			});
+			const response = await uploadFileWithFormData({
+				...config,
+				fileName,
+				file,
+				bucketName: testBucketNameExists,
+			});
+		});
+
+		// TODO delete bucket
+		afterAll(async () => {});
+	},
+	60 * 1000,
+);

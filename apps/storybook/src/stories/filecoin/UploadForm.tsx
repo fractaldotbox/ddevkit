@@ -51,8 +51,6 @@ export function UploadForm({
 		});
 	}
 
-	// TODO add toggle and upload text
-
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
