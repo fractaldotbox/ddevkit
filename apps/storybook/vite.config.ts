@@ -2,6 +2,7 @@ import path from "path";
 import react from "@vitejs/plugin-react";
 /// <reference types="vitest" />
 import { defineConfig } from "vite";
+// @ts-ignore required for config
 import { test } from "vitest";
 
 // https://vitejs.dev/config/

@@ -21,7 +21,16 @@ const FormSchema = z.object({
 	file: z.any(),
 });
 
-export function UploadForm() {
+// TODO generics
+export type FileParams = { file?: any };
+
+export function UploadForm({
+	isText = false,
+	uploadFile,
+}: {
+	isText?: boolean;
+	uploadFile: (params: FileParams) => Promise<any>;
+}) {
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
@@ -31,6 +40,7 @@ export function UploadForm() {
 
 	function onSubmit(data: z.infer<typeof FormSchema>) {
 		console.log("submit", data);
+		uploadFile(data);
 		toast({
 			title: "You submitted the following values:",
 			description: (
@@ -47,11 +57,15 @@ export function UploadForm() {
 				<FormField
 					control={form.control}
 					name="file"
-					render={({ field }) => (
+					render={({ field }: { field: any }) => (
 						<FormItem>
 							<FormLabel>File</FormLabel>
 							<FormControl>
-								<Input id="file" type="file" {...field} />
+								{isText ? (
+									<Input id="file" type="text" {...field} />
+								) : (
+									<Input id="file" type="file" {...field} />
+								)}
 							</FormControl>
 							<FormDescription>Upload file to Filecoin</FormDescription>
 							<FormMessage />

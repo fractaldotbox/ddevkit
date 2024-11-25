@@ -1,4 +1,4 @@
-export const BLOCKSCOUT_CHAINS_BY_ID = {
+export const BLOCKSCOUT_CHAINS_BY_ID_IMPORTED = {
 	"1": {
 		name: "Ethereum",
 		description:
@@ -8943,3 +8943,29 @@ export const BLOCKSCOUT_CHAINS_BY_ID = {
 		],
 	},
 } as Record<string, any>;
+
+// Add Akave Fuji as not in chain Info yet
+
+const BLOCKSCOUT_CHAINS_BY_ID_EXTENSION = {
+	"78963": {
+		name: "Akave Fuji",
+		description: "Akave Fuji",
+		logo: "",
+		ecosystem: "Ethereum",
+		isTestnet: false,
+		layer: 1,
+		rollupType: null,
+		website: "https://www.akave.ai/",
+		explorers: [
+			{
+				url: "http://explorer.akave.ai/",
+				hostedBy: "self",
+			},
+		],
+	},
+};
+
+export const BLOCKSCOUT_CHAINS_BY_ID = {
+	...BLOCKSCOUT_CHAINS_BY_ID_IMPORTED,
+	...BLOCKSCOUT_CHAINS_BY_ID_EXTENSION,
+};
