@@ -1,9 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { toast } from "@/hooks/use-toast";
-import { uploadFileObject, uploadFileWithFormData } from "@/lib/filecoin/akave/client";
+import {
+	uploadFileObject,
+	uploadFileWithFormData,
+} from "@/lib/filecoin/akave/client";
 import { getGatewayUrlWithCid } from "@/lib/filecoin/gateway";
-import { uploadText, uploadFile as uploadFileLighthouse } from "@/lib/filecoin/lighthouse/isomorphic";
+import {
+	uploadFile as uploadFileLighthouse,
+	uploadText,
+} from "@/lib/filecoin/lighthouse/isomorphic";
 import { withToaster } from "../decorators/toaster";
 import { FileParams, UploadForm } from "./UploadForm";
 
@@ -35,8 +41,6 @@ const createToast = ({ cid, name }: { cid: string; name: string }) => {
 	});
 };
 
-
-
 export const TextLighthouse: Story = {
 	args: {
 		isText: true,
@@ -45,10 +49,9 @@ export const TextLighthouse: Story = {
 			const { name, cid } = response;
 			createToast({ cid, name });
 			return cid;
-		}
+		},
 	},
 };
-
 
 export const TextAkave: Story = {
 	args: {
@@ -64,7 +67,7 @@ export const TextAkave: Story = {
 
 			createToast({ cid, name });
 			return cid;
-		}
+		},
 	},
 };
 
@@ -76,10 +79,9 @@ export const FileLighthouse: Story = {
 			const { name, cid } = response;
 			createToast({ cid, name });
 			return cid;
-		}
+		},
 	},
 };
-
 
 export const FileAkave: Story = {
 	args: {
@@ -95,6 +97,6 @@ export const FileAkave: Story = {
 
 			createToast({ cid, name });
 			return cid;
-		}
+		},
 	},
 };
