@@ -3,6 +3,7 @@ import lighthouse from "@lighthouse-web3/sdk";
 import ky from "ky";
 import { http, Account, Hex, createWalletClient } from "viem";
 import { sepolia } from "viem/chains";
+import * as uploadFilesLighthouse from "./browser";
 // import { CID } from 'multiformats/cid'
 
 // Supposedly lighthouse can be treeshake for node/browser, to be validated
@@ -56,18 +57,28 @@ export const uploadFile = async (
 	apiKey: string,
 	progressCallback: any = () => {},
 ): Promise<any> => {
-	// const dealParams: DealParameters = {};
+	console.log("upload", file, apiKey);
 	const output = await lighthouse.upload(
 		file,
 		apiKey,
 		undefined,
 		progressCallback,
 	);
+
+	if (window) {
+		return await uploadFilesLighthouse([file], apiKey);
+	}
 	console.log("File Status:", output);
 
 	console.log(
 		"Visit at https://gateway.lighthouse.storage/ipfs/" + output.data.Hash,
 	);
+
+	return {
+		name: output.data.Name,
+		cid: output.data.Hash,
+		size: parseInt(output.data.Size, 10),
+	};
 };
 
 export const retrievePoDsi = async (cid: string) => {

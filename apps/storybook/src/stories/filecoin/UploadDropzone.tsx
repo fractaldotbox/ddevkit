@@ -20,13 +20,22 @@ type UploadResponse = {
 	url?: string;
 };
 
-const UploadDropzone: React.FC = () => {
+export type UploadDropzoneProps = {
+	uploadFiles: ({ files }: { files: File[] }) => Promise<any>;
+	filePrefix: string;
+}
+
+const UploadDropzone = (props: UploadDropzoneProps) => {
 	const [files, setFiles] = useState<FileWithPreview[]>([]);
 	const [error, setError] = useState<UploadError | null>(null);
 	const [isDragActive, setIsDragActive] = useState(false);
 	const [uploadProgress, setUploadProgress] = useState<Record<string, number>>(
 		{},
 	);
+
+	const filePrefix = props.filePrefix || '';
+	const { uploadFiles } = props;
+
 	const [isUploading, setIsUploading] = useState(false);
 	const dropZoneRef = useRef<HTMLDivElement>(null);
 
@@ -74,11 +83,13 @@ const UploadDropzone: React.FC = () => {
 		return null;
 	};
 
-	const uploadFile = async (file: File): Promise<UploadResponse> => {
+	const uploadFileCallback = async (file: File): Promise<UploadResponse> => {
 		const formData = new FormData();
 		formData.append("file", file);
 
 		console.log("upload file", file);
+
+		const results = await uploadFiles({ files: [file] })
 
 		return {
 			success: true,
@@ -108,8 +119,9 @@ const UploadDropzone: React.FC = () => {
 		// Upload files
 		setIsUploading(true);
 		try {
-			await Promise.all(newFiles.map((file) => uploadFile(file)));
+			await Promise.all(newFiles.map((file) => uploadFileCallback(file)));
 		} catch (error) {
+			console.error('error', error);
 			setError({
 				message: "Failed to upload files. Please try again.",
 				code: "UPLOAD_FAILED",

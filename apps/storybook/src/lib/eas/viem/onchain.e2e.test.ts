@@ -1,7 +1,7 @@
 import {
 	createTestClientConfig,
 	createTestEthersSigner,
-} from "@/lib/test-utils";
+} from "@/lib/test-utils-isomorphic";
 import { EAS, NO_EXPIRATION } from "@ethereum-attestation-service/eas-sdk";
 import { http, Hex, createWalletClient } from "viem";
 import { privateKeyToAccount } from "viem/accounts";

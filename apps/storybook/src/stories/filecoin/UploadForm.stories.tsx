@@ -1,17 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { toast } from "@/hooks/use-toast";
 import {
 	uploadFileObject,
 	uploadFileWithFormData,
 } from "@/lib/filecoin/akave/client";
-import { getGatewayUrlWithCid } from "@/lib/filecoin/gateway";
 import {
 	uploadFile as uploadFileLighthouse,
 	uploadText,
 } from "@/lib/filecoin/lighthouse/isomorphic";
 import { withToaster } from "../decorators/toaster";
 import { FileParams, UploadForm } from "./UploadForm";
+import { createToast } from "./upload-toast";
 
 const meta = {
 	title: "Filecoin/UploadForm",
@@ -27,19 +26,6 @@ type Story = StoryObj<typeof meta>;
 const LIGHTHOUSE_API_KEY = import.meta.env.VITE_LIGHTHOUSE_API_KEY!;
 const AKAVE_ENDPOINT_URL = import.meta.env.VITE_AKAVE_ENDPOINT_URL!;
 
-const createToast = ({ cid, name }: { cid: string; name: string }) => {
-	const url = getGatewayUrlWithCid(cid);
-
-	toast({
-		title: "File uploaded",
-		description: (
-			<div>
-				File uploaded with {name} <br />
-				CID:<a href={url}>${cid}</a>
-			</div>
-		),
-	});
-};
 
 export const TextLighthouse: Story = {
 	args: {

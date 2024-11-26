@@ -72,6 +72,7 @@
 		"got": "^14.4.5",
 		"graphology": "^0.25.4",
 		"graphql-request": "^7.1.0",
+		"happy-dom": "^15.11.6",
 		"jotai": "^2.10.0",
 		"jsdom": "^25.0.1",
 		"ky": "^1.7.2",

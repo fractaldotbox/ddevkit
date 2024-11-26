@@ -6,7 +6,7 @@ import {
 } from "@/lib/eas/eas-test.fixture";
 import { createAttestationOnchain, createEAS } from "@/lib/eas/ethers/onchain";
 import { NO_EXPIRATION } from "@/lib/eas/request";
-import { createTestEthersSigner } from "@/lib/test-utils";
+import { createTestEthersSigner } from "@/lib/test-utils-isomorphic";
 import type { Meta, StoryObj } from "@storybook/react";
 import { encodeBytes32String } from "ethers";
 import { Address, Hex } from "viem";

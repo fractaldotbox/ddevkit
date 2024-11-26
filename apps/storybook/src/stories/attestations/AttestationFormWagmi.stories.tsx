@@ -7,7 +7,7 @@ import {
 	AttestationRequestData,
 	makeOnchainAttestation,
 } from "@/lib/eas/viem/onchain";
-import { createTestClientConfig } from "@/lib/test-utils";
+import { createTestClientConfig } from "@/lib/test-utils-isomorphic";
 import type { Meta, StoryObj } from "@storybook/react";
 import {
 	Account,
