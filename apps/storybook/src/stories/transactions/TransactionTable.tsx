@@ -1,23 +1,7 @@
-import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { TransactionMeta } from "@/lib/domain/transaction/transaction";
 import { getShortHex } from "@/utils/hex";
-import {
-  ArrowUpDown,
-  ChevronLeft,
-  ChevronRight,
-  ExternalLink,
-} from "lucide-react";
-import React, { useState } from "react";
-import { formatEther, formatGwei } from "viem";
-import { AddressBadge } from "../identity/AddressBadge";
+import { ArrowUpDown, ExternalLink } from "lucide-react";
+import { formatEther } from "viem";
 import { DataTable } from "@/components/ui/data-table";
 import { ColumnDef } from "@tanstack/react-table";
 import { getShortAddress } from "@/utils/address";
