@@ -5,6 +5,14 @@ import { formatEther } from "viem";
 import { DataTable } from "@/components/ui/data-table";
 import { ColumnDef } from "@tanstack/react-table";
 import { getShortAddress } from "@/utils/address";
+import { Badge } from "@/components/ui/badge";
+
+export const txnTypeMap: Record<string, string> = {
+  contract_call: "Contract Call",
+  native_transfer: "Native Token Transfer",
+  token_transfer: "Token Transfer",
+  coin_transfer: "Token Transfer",
+};
 
 export interface TransactionTableProps {
   transactions: TransactionMeta[];
@@ -41,13 +49,20 @@ export const columns: ColumnDef<TransactionMeta>[] = [
       return <>{getShortAddress(address)}</>;
     },
   },
-
   {
     accessorKey: "to",
     header: "To",
     cell: ({ row }) => {
       const address = row.getValue<string>("to") as `0x${string}`;
       return <>{getShortAddress(address)}</>;
+    },
+  },
+  {
+    accessorKey: "displayedTxType",
+    header: "Txn Type",
+    cell: ({ row }) => {
+      const txnType = row.getValue<string>("displayedTxType");
+      return <Badge variant="secondary">{txnTypeMap[txnType]}</Badge>;
     },
   },
   {
