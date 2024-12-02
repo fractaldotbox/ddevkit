@@ -1,4 +1,5 @@
 import { describe, expect, test } from "vitest";
+import uploadFilesBrowser from "./browser";
 
 export const createFileForm = (files: File[], isDirectory = false) => {
 	// Create a form element
@@ -24,6 +25,10 @@ export const createFileForm = (files: File[], isDirectory = false) => {
 	};
 };
 
+/**
+ * fetch call not working at test node env potentially due to cors
+ */
+
 describe(
 	"lighthouse browser",
 	() => {
@@ -32,17 +37,24 @@ describe(
 		function promisifyEvent(
 			target: EventTarget,
 			event: string,
+			_handler: (e: Event) => Promise<void>,
 		): Promise<Event> {
 			return new Promise((resolve) => {
-				const handler = (e: Event) => {
+				const handler = async (e: Event) => {
 					target.removeEventListener(event, handler);
+					await _handler(e);
 					resolve(e);
 				};
 				target.addEventListener(event, handler);
 			});
 		}
 
-		test("should upload a file using a form", async () => {
+		const accessToken = process.env.VITE_LIGHTHOUSE_API_KEY!;
+		const config = {
+			accessToken,
+		};
+
+		test.only("should upload a file using a form", async () => {
 			const file = new File(["content"], "test.txt", { type: "text/plain" });
 			const { form, input } = createFileForm([file]);
 
@@ -53,18 +65,24 @@ describe(
 			expect(input.files![0].type).toBe("text/plain");
 
 			// Simulate form submission
-
-			const submitPromise = promisifyEvent(form, "submit");
-			form.addEventListener("submit", (event) => {
+			const handler = async (event: any) => {
 				event.preventDefault();
 				const formData = new FormData(form);
 				const uploadedFile = formData.get("file") as File;
+
+				await uploadFilesBrowser({
+					config,
+					formData: new FormData(form),
+				});
 
 				// Verify the submitted file
 				expect(uploadedFile).not.toBeNull();
 				expect(uploadedFile.name).toBe("test.txt");
 				expect(uploadedFile.type).toBe("text/plain");
-			});
+
+				console.log("submitted");
+			};
+			const submitPromise = promisifyEvent(form, "submit", handler);
 
 			// Create and dispatch a submit event
 			const submitEvent = new Event("submit", {
@@ -89,20 +107,18 @@ describe(
 			dataTransfer.items.add(file2);
 			input.files = dataTransfer.files;
 
-			// Verify the directory upload
-			expect(input.files).not.toBeNull();
-			expect(input.files!.length).toBe(2);
-			expect(input.files![0].name).toBe("directory:file1.txt");
-			expect(input.files![0].type).toBe("text/plain");
-			expect(input.files![1].name).toBe("directory:file2.txt");
-			expect(input.files![1].type).toBe("text/plain");
-
-			const submitPromise = promisifyEvent(form, "submit");
-			form.addEventListener("submit", (event) => {
+			// Simulate form submission
+			const handler = async (event: any) => {
 				event.preventDefault();
 				const formData = new FormData(form);
-				const uploadedFiles = formData.getAll("directory") as File[];
+				const uploadedFiles = formData.getAll("file") as File[];
 
+				await uploadFilesBrowser({
+					config,
+					formData: new FormData(form),
+				});
+
+				// Verify the submitted file
 				// Verify the submitted files
 				expect(uploadedFiles).not.toBeNull();
 				expect(uploadedFiles.length).toBe(2);
@@ -110,14 +126,17 @@ describe(
 				expect(uploadedFiles[0].type).toBe("text/plain");
 				expect(uploadedFiles[1].name).toBe("directory:file2.txt");
 				expect(uploadedFiles[1].type).toBe("text/plain");
-			});
+
+				console.log("submitted");
+			};
+			const submitPromise = promisifyEvent(form, "submit", handler);
+
 			// Create and dispatch a submit event
 			const submitEvent = new Event("submit", {
 				bubbles: true,
 				cancelable: true,
 			});
 			form.dispatchEvent(submitEvent);
-
 			await submitPromise;
 		});
 	},

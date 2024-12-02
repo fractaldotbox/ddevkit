@@ -5,6 +5,8 @@ import { defineConfig } from "vite";
 // @ts-ignore required for config
 import { test } from "vitest";
 
+// import { nodePolyfills } from "vite-plugin-node-polyfills";
+
 // https://vitejs.dev/config/
 export default defineConfig({
 	resolve: {
@@ -17,5 +19,17 @@ export default defineConfig({
 		environment: "jsdom",
 		setupFiles: "./test-setup.ts",
 	},
-	plugins: [react()],
+	plugins: [
+		react(),
+		// nodePolyfills({
+		// 	globals: {
+		// 		Buffer: true,
+		// 		global: true,
+		// 		process: true,
+		// 	},
+		// 	// overrides: {
+		// 	// 	crypto: "node:crypto",
+		// 	// },
+		// }),
+	],
 });

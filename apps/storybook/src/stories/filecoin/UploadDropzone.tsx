@@ -22,8 +22,10 @@ type UploadResponse = {
 
 export type UploadDropzoneProps = {
 	uploadFiles: ({ files }: { files: File[] }) => Promise<any>;
-	filePrefix: string;
-}
+	filePrefix?: string;
+	isAcceptMultiple?: boolean;
+	isAcceptDirectory?: boolean;
+};
 
 const UploadDropzone = (props: UploadDropzoneProps) => {
 	const [files, setFiles] = useState<FileWithPreview[]>([]);
@@ -33,8 +35,12 @@ const UploadDropzone = (props: UploadDropzoneProps) => {
 		{},
 	);
 
-	const filePrefix = props.filePrefix || '';
-	const { uploadFiles } = props;
+	const filePrefix = props.filePrefix || "";
+	const {
+		uploadFiles,
+		isAcceptMultiple = true,
+		isAcceptDirectory = false,
+	} = props;
 
 	const [isUploading, setIsUploading] = useState(false);
 	const dropZoneRef = useRef<HTMLDivElement>(null);
@@ -83,16 +89,17 @@ const UploadDropzone = (props: UploadDropzoneProps) => {
 		return null;
 	};
 
-	const uploadFileCallback = async (file: File): Promise<UploadResponse> => {
-		const formData = new FormData();
-		formData.append("file", file);
+	const uploadFilesCallback = async (
+		files: File[],
+	): Promise<UploadResponse> => {
+		console.log("upload file", files);
 
-		console.log("upload file", file);
+		// TODO handle filePrefix
 
-		const results = await uploadFiles({ files: [file] })
-
+		const results = await uploadFiles({ files });
+		console.log("results", results);
 		return {
-			success: true,
+			success: !!results?.data?.Hash,
 			message: "File uploaded successfully",
 		};
 	};
@@ -119,9 +126,9 @@ const UploadDropzone = (props: UploadDropzoneProps) => {
 		// Upload files
 		setIsUploading(true);
 		try {
-			await Promise.all(newFiles.map((file) => uploadFileCallback(file)));
+			await uploadFilesCallback(newFiles);
 		} catch (error) {
-			console.error('error', error);
+			console.error("error", error);
 			setError({
 				message: "Failed to upload files. Please try again.",
 				code: "UPLOAD_FAILED",
@@ -153,6 +160,15 @@ const UploadDropzone = (props: UploadDropzoneProps) => {
 		});
 	};
 
+	const inputFileProps = {
+		multiple: isAcceptMultiple,
+	};
+
+	if (isAcceptDirectory) {
+		//@ts-ignore
+		inputFileProps.webkitdirectory = "true";
+	}
+
 	return (
 		<div className="w-full max-w-2xl mx-auto p-4 space-y-4">
 			<Card className="p-8">
@@ -169,7 +185,7 @@ const UploadDropzone = (props: UploadDropzoneProps) => {
 						type="file"
 						onChange={handleFileInput}
 						className="hidden"
-						multiple
+						{...inputFileProps}
 						accept={ACCEPTED_TYPES.join(",")}
 						id="file-input"
 					/>
