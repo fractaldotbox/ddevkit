@@ -459,6 +459,15 @@ importers:
       '@ucans/ucans':
         specifier: ^0.12.0
         version: 0.12.0
+      '@ucanto/client':
+        specifier: ^9.0.1
+        version: 9.0.1
+      '@ucanto/interface':
+        specifier: ^10.0.1
+        version: 10.0.1
+      '@ucanto/transport':
+        specifier: ^9.1.1
+        version: 9.1.1
       '@wagmi/core':
         specifier: ^2.13.8
         version: 2.13.8(@tanstack/query-core@5.56.2)(@types/react@18.3.10)(react@18.3.1)(typescript@5.6.2)(viem@2.21.16(bufferutil@4.0.8)(typescript@5.6.2)(utf-8-validate@5.0.10)(zod@3.23.8))

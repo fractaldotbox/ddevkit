@@ -39,7 +39,6 @@ export function UploadForm({
 	});
 
 	function onSubmit(data: z.infer<typeof FormSchema>) {
-		console.log("submit", data);
 		uploadFile(data);
 		toast({
 			title: "You submitted the following values:",
@@ -64,7 +63,13 @@ export function UploadForm({
 								{isText ? (
 									<Input id="file" type="text" {...field} />
 								) : (
-									<Input id="file" type="file" {...field} />
+									<Input id="file" type="file" {...field}
+
+										value={field?.value?.fileName}
+										onChange={(event) => {
+											field.onChange(event?.target?.files?.[0]);
+										}}
+									/>
 								)}
 							</FormControl>
 							<FormDescription>Upload file to Filecoin</FormDescription>

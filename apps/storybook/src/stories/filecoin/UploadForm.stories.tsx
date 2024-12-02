@@ -12,9 +12,10 @@ import { withToaster } from "../decorators/toaster";
 import { FileParams, UploadForm } from "./UploadForm";
 import { createToast } from "./upload-toast";
 
-import { createClient } from "@/lib/filecoin/storacha/isomorphic";
+import { authWithEmail, createClient } from "@/lib/filecoin/storacha/isomorphic";
 import { StoreMemory } from "@web3-storage/w3up-client/stores/memory";
-
+import * as Proof from "@web3-storage/w3up-client/proof";
+import { Signer } from "@web3-storage/w3up-client/principal/ed25519";
 const meta = {
 	title: "Filecoin/UploadForm",
 	component: UploadForm,
@@ -28,6 +29,12 @@ type Story = StoryObj<typeof meta>;
 
 const LIGHTHOUSE_API_KEY = import.meta.env.VITE_LIGHTHOUSE_API_KEY!;
 const AKAVE_ENDPOINT_URL = import.meta.env.VITE_AKAVE_ENDPOINT_URL!;
+
+
+
+const STORACHA_KEY = import.meta.env.VITE_STORACHA_KEY!;
+const STORACHA_PROOF = import.meta.env.VITE_STORACHA_PROOF!;
+
 
 export const TextLighthouse: Story = {
 	args: {
@@ -75,31 +82,33 @@ export const FileStoracha: Story = {
 	args: {
 		isText: false,
 		uploadFile: async ({ file }: FileParams) => {
-			const client = await createClient();
-
-			// TODO use pre-created
-			const space = await client.createSpace("temp");
 
 			// not intuitive that the created space can't be use, setCurrentSpace results in "no proofs"
 			// need to provide account
 
-			const file2 = new File(["content"], "test.txt", { type: "text/plain" });
 
-			// * The issuer needs the `blob/add`, `index/add`, `filecoin/offer` and
-			// * `upload/add` delegated capability.
-			const auth = await space.createAuthorization(client, {
-				// access: {
-				// 	'index/add': true,
-				// 	'blob/add': true,
-				// 	'filecoin/offer': true,
-				// }
+			const principal = Signer.parse(STORACHA_KEY)
+			const client = await createClient({
+				principal
 			});
+
+
+			// Add proof that this agent has been delegated capabilities on the space
+			const proof = await Proof.parse(STORACHA_PROOF!)
+			const space = await client.addSpace(proof)
+
+			await client.setCurrentSpace(space.did())
+
+			// results.proofs?.[0].principal = Proof.Signer.
+
 			// auth.proofs?.[0].
-			await client.addSpace(auth);
+			// await client.addSpace(auth);
 			// await client.addSpace(space);
-			await client.setCurrentSpace(space.did());
+			// await client.setCurrentSpace(space.did());
 
 			console.log("spaces ", client.spaces());
+
+
 
 			const blob = new Blob(
 				[
@@ -109,7 +118,11 @@ export const FileStoracha: Story = {
 				],
 				{ type: "application/json" },
 			);
-			const link = await client.uploadFile(new File([blob], "order.json"));
+			const link = await client.uploadFile(file);
+
+			console.log('link', link, link.toString());
+
+
 			// space.proo
 
 			// Error: Agent has no proofs for
