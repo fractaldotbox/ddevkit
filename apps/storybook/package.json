@@ -21,6 +21,7 @@
 		"@lighthouse-web3/sdk": "^0.3.7",
 		"@noble/secp256k1": "^2.1.0",
 		"@openzeppelin/merkle-tree": "^1.0.7",
+		"@privy-io/react-auth": "^1.95.2",
 		"@radix-ui/colors": "^3.0.0",
 		"@radix-ui/react-accessible-icon": "^1.0.3",
 		"@radix-ui/react-accordion": "^1.2.0",
