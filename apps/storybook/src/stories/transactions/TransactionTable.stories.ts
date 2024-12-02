@@ -1,5 +1,5 @@
 import { asTransactionMeta } from "@/lib/blockscout/api";
-import { TXN_LIST, generateFixtures } from "@/lib/blockscout/fixture";
+import { TXN_LIST, generateTxnFixturesByCount } from "@/lib/blockscout/fixture";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withWagmiProvider } from "../decorators/wagmi";
 import { TransactionTable } from "./TransactionTable";
@@ -25,12 +25,16 @@ export const TransactionTableWithoutFetching: Story = {
 
 export const TransactionTableWithoutFetching2: Story = {
   args: {
-    transactions: generateFixtures(50).map((txn) => asTransactionMeta(txn)),
+    transactions: generateTxnFixturesByCount(50).map((txn) =>
+      asTransactionMeta(txn),
+    ),
   },
 };
 
 export const TransactionTableWithBlockscoutAPI: Story = {
   args: {
-    transactions: generateFixtures(50).map((txn) => asTransactionMeta(txn)),
+    transactions: generateTxnFixturesByCount(50).map((txn) =>
+      asTransactionMeta(txn),
+    ),
   },
 };
