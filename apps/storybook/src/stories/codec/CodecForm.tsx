@@ -20,6 +20,40 @@ const ENCODE_BY_CODEC = {
 	base16: base16S.encode,
 } as Record<string, any>;
 
+
+const CodecOutput = ({
+	codec,
+	output,
+	isMultibase = true
+}: {
+	codec: string,
+	output: string | CID | null,
+	isMultibase?: boolean
+}) => {
+
+	const cidExplorerUrl = useMemo(() => {
+		return `https://cid.ipfs.tech/#${output}`
+	}, [output])
+
+	return (
+		<div>
+			<Label htmlFor="output1">codec: {codec}</Label>
+			<div id="output1">
+
+				{
+					isMultibase ? (
+						<a href={cidExplorerUrl} target="_blank">
+							{output?.toString()}
+						</a>
+					) : (
+						<pre>{output?.toString()}</pre>
+					)
+				}
+			</div>
+		</div >
+	)
+}
+
 export const CodecForm = ({
 	inputAtom,
 	codecAtom,
@@ -41,6 +75,7 @@ export const CodecForm = ({
 			message: input,
 		};
 	}, [input]);
+
 
 	const [output2, setOutput2] = useState("");
 	// TODO agnoistic useAtom
@@ -73,17 +108,22 @@ export const CodecForm = ({
 			</div>
 			<div>
 				<pre>{JSON.stringify(message)}</pre>
-				<pre>cid {cid?.toString()}</pre>
+
 			</div>
 			<div>
-				<br />
-				<Label htmlFor="output1">codec: {codec}</Label>
-				<div id="output1">{output}</div>
-
-				<br />
-				<Label htmlFor="output2">codec: {codecSimple}</Label>
-				<div id="output2">{output2}</div>
-				<br />
+				<CodecOutput
+					codec={"cid"}
+					output={cid}
+				/>
+				<CodecOutput
+					codec={codec}
+					output={output}
+				/>
+				<CodecOutput
+					codec={codecSimple}
+					output={output2}
+					isMultibase={false}
+				/>
 			</div>
 		</div>
 	);
