@@ -55,28 +55,31 @@ export const signAuthMessage = async (account: any) => {
 export const uploadFile = async (
 	file: File,
 	apiKey: string,
-	progressCallback: any = () => {},
+	uploadProgressCallback: any = () => {},
 ): Promise<any> => {
-	const output = await lighthouse.upload(
-		file,
-		apiKey,
-		undefined,
-		progressCallback,
-	);
-
+	let output;
 	if (window) {
-		return await uploadFilesLighthouse({
+		output = await uploadFilesLighthouse<false>({
 			files: [file],
 			config: {
 				accessToken: apiKey,
 			},
+			uploadProgressCallback,
 		});
+	} else {
+		output = await lighthouse.upload(
+			file,
+			apiKey,
+			undefined,
+			uploadProgressCallback,
+		);
 	}
+
 	console.log("File Status:", output);
 
-	console.log(
-		"Visit at https://gateway.lighthouse.storage/ipfs/" + output.data.Hash,
-	);
+	if (!output?.data?.Hash) {
+		throw new Error("Upload failed");
+	}
 
 	return {
 		name: output.data.Name,

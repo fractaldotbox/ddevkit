@@ -57,8 +57,6 @@ export const asFormData = (formData?: FormData, files?: File[]) => {
 export const uploadFiles = async <T extends boolean>(
 	params: UploadLighthouseParams,
 ): Promise<{ data: UploadFileReturnType<T> }> => {
-	// console.log("lighthouse", files);
-
 	const { config, dealParameters, uploadProgressCallback } = params;
 
 	const { accessToken, timeout = 7200000 } = config;

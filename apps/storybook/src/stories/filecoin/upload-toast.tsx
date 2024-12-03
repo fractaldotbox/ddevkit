@@ -1,8 +1,12 @@
 import { toast } from "@/hooks/use-toast";
-import { getGatewayUrlWithCid } from "@/lib/filecoin/gateway";
+import { IpfsGateway, getGatewayUrlWithCid } from "@/lib/filecoin/gateway";
 
-export const createToast = ({ cid, name }: { cid: string; name: string }) => {
-	const url = getGatewayUrlWithCid(cid);
+export const createToast = ({
+	cid,
+	name,
+	gateway = IpfsGateway.IpfsIo,
+}: { cid: string; name: string; gateway?: IpfsGateway }) => {
+	const url = getGatewayUrlWithCid(cid, gateway);
 
 	toast({
 		title: "File uploaded",

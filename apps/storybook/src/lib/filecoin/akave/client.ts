@@ -116,6 +116,8 @@ const createUploadEndpoint = ({
 	return `${akaveEndpointUrl}/buckets/${bucketName}/files`;
 };
 
+// @warning: Seems only form data is working
+
 export const uploadFileObject = ({
 	akaveEndpointUrl = AKAVE_ENDPOINT_URL,
 	bucketName,

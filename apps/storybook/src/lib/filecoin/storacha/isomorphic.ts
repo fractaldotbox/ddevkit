@@ -1,12 +1,6 @@
+// import * as DID from "@ipld/dag-ucan/did";
 import { create } from "@web3-storage/w3up-client";
-import { Signer } from "@web3-storage/w3up-client/principal/ed25519";
-import * as Proof from "@web3-storage/w3up-client/proof";
 import { StoreMemory } from "@web3-storage/w3up-client/stores/memory";
-import type { ServiceConf, Service } from "@web3-storage/w3up-client/types";
-import { connect } from "@ucanto/client";
-import { CAR, HTTP } from "@ucanto/transport";
-import type { ConnectionView, Principal } from "@ucanto/interface";
-import * as DID from "@ipld/dag-ucan/did";
 
 // enable sync methods
 import * as ed from "@noble/ed25519";

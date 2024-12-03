@@ -69,6 +69,19 @@ export const LighthouseDirectory: Story = {
 	},
 };
 
+export const StorachaDirectory: Story = {
+	args: {
+		isAcceptDirectory: true,
+		uploadFiles: async ({
+			files,
+		}: {
+			files: File[];
+		}) => {
+			console.log("upload files with storacha", files);
+		},
+	},
+};
+
 // export const Akave: Story = {
 // 	args: {
 // 		uploadFiles: async ({ files }: {
