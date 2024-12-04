@@ -1,14 +1,16 @@
 import { privateKeyToAccount } from "viem/accounts";
-import { describe, expect, test } from "vitest";
+import { beforeAll, describe, expect, test } from "vitest";
 import {
 	createLighthouseParams,
 	retrieveFile,
 	retrievePoDsi,
 	uploadEncryptedFileWithText,
+	uploadFile,
 	uploadText,
 } from "./lighthouse/isomorphic";
 
 import { BY_USER } from "../../stories/fixture";
+import { createTestFile } from "../test-utils-node";
 /**
  * Test on mainnet
  */
@@ -22,22 +24,53 @@ globalThis.crypto ??= require("node:crypto").webcrypto;
 const cid = "QmS9ErDVxHXRNMJRJ5i3bp1zxCZzKP8QXXNH1yUR6dWeKZ";
 
 describe(
-	"with file encrypted",
+	"lighthouse",
 	() => {
-		// TODO fix: Error: Error encrypting file
-		test.skip("uploadFile encrypted", async () => {
-			const account = privateKeyToAccount(BY_USER.mock.privateKey);
-			const params = await createLighthouseParams({
-				account,
-				options: {
-					apiKey: LIGHTHOUSE_API_KEY,
-				},
+		let testFilePath = "";
+		let testFileName = "";
+
+		const testContent = "abcde";
+
+		beforeAll(() => {
+			const { filePath, fileName } = createTestFile(testContent);
+			testFilePath = filePath;
+			testFileName = fileName;
+		});
+
+		describe("upload", () => {
+			let account = privateKeyToAccount(BY_USER.mock.privateKey);
+			let { file, filePath } = createTestFile(testContent);
+			beforeAll(() => {});
+
+			test.only("#uploadFile", async () => {
+				const params = await createLighthouseParams({
+					account,
+					options: {
+						apiKey: LIGHTHOUSE_API_KEY,
+					},
+				});
+				const response = await uploadFile(file, LIGHTHOUSE_API_KEY);
+
+				expect(!!response.cid).toEqual(true);
+
+				console.log("cid", cid);
 			});
-			const response = await uploadEncryptedFileWithText("abcde", ...params);
 
-			expect(!!response.cid).toEqual(true);
+			// TODO fix: Error: Error encrypting file
+			test.skip("uploadFile encrypted", async () => {
+				const account = privateKeyToAccount(BY_USER.mock.privateKey);
+				const params = await createLighthouseParams({
+					account,
+					options: {
+						apiKey: LIGHTHOUSE_API_KEY,
+					},
+				});
+				const response = await uploadEncryptedFileWithText("abcde", ...params);
 
-			console.log("cid", cid);
+				expect(!!response.cid).toEqual(true);
+
+				console.log("cid", cid);
+			});
 		});
 
 		// from official example
@@ -69,8 +102,9 @@ describe(
 
 		test("#retrieveFile", async () => {
 			const buffer = await retrieveFile(cid);
-			console.log("buffer", buffer.toString());
-			expect(buffer.toString()).toEqual("abcde");
+			const decoder = new TextDecoder("utf-8");
+			const text = decoder.decode(buffer);
+			expect(text).toEqual("abcde");
 		});
 	},
 	60 * 1000,

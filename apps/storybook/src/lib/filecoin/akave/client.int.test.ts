@@ -1,3 +1,4 @@
+import { createTestContent, createTestFile } from "@/lib/test-utils-node";
 import { faker } from "@faker-js/faker";
 import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import {
@@ -9,10 +10,6 @@ import {
 	uploadFileWithFormData,
 } from "./client";
 
-import fs from "fs";
-import os from "os";
-import path from "path";
-
 describe(
 	"with file",
 	() => {
@@ -23,16 +20,15 @@ describe(
 		const testBucketNameCreate = "test-bucket-create";
 		const testBucketNameExists = "test-bucket";
 
-		const tmpDir = os.tmpdir();
-		const fileName = "test.txt";
-		const filePath = path.join(tmpDir, fileName);
+		const testContent = createTestContent();
 
-		const testContent = faker.lorem.paragraphs(10);
+		let testFilePath = "";
+		let testFileName = "";
 
 		beforeAll(() => {
-			fs.writeFileSync(filePath, testContent, {
-				encoding: "utf8",
-			});
+			const { filePath, fileName } = createTestFile(testContent);
+			testFilePath = filePath;
+			testFileName = fileName;
 		});
 
 		test.skip("create bucket", async () => {
@@ -73,7 +69,7 @@ describe(
 			};
 			const response = await uploadFileObject({
 				...config,
-				fileName,
+				fileName: testFileName,
 				file,
 				bucketName: testBucketNameExists,
 			});
@@ -82,12 +78,12 @@ describe(
 		});
 
 		test.only("uploadFileWithFormData", async () => {
-			const file = new File([testContent], fileName, {
+			const file = new File([testContent], testFileName, {
 				type: "text/plain",
 			});
 			const response = await uploadFileWithFormData({
 				...config,
-				fileName,
+				fileName: testFileName,
 				file,
 				bucketName: testBucketNameExists,
 			});
