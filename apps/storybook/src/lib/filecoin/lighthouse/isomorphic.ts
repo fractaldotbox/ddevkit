@@ -1,6 +1,7 @@
 import kavach from "@lighthouse-web3/kavach";
 import lighthouse from "@lighthouse-web3/sdk";
-import ky from "ky";
+import { IUploadProgressCallback } from "@lighthouse-web3/sdk/dist/types";
+import ky, { DownloadProgress } from "ky";
 import { http, Account, Hex, createWalletClient } from "viem";
 import { sepolia } from "viem/chains";
 import { uploadFiles as uploadFilesLighthouse } from "./browser";
@@ -55,9 +56,10 @@ export const signAuthMessage = async (account: any) => {
 export const uploadFile = async (
 	file: File,
 	apiKey: string,
-	uploadProgressCallback: any = () => {},
+	uploadProgressCallback?: (data: DownloadProgress) => void,
 ): Promise<any> => {
 	let output;
+
 	if (window) {
 		output = await uploadFilesLighthouse<false>({
 			files: [file],
@@ -71,11 +73,16 @@ export const uploadFile = async (
 			file,
 			apiKey,
 			undefined,
-			uploadProgressCallback,
+			(data: IUploadProgressCallback) => {
+				if (!uploadProgressCallback) return;
+				uploadProgressCallback({
+					percent: data.progress,
+					transferredBytes: 0,
+					totalBytes: 0,
+				});
+			},
 		);
 	}
-
-	console.log("File Status:", output);
 
 	if (!output?.data?.Hash) {
 		throw new Error("Upload failed");
@@ -89,10 +96,6 @@ export const uploadFile = async (
 };
 
 export const retrievePoDsi = async (cid: string) => {
-	// const results = await lighthouse.posdi(cid);
-	// console.log('results', results);
-	// return results?.data;
-
 	let response = await ky.get(`${LIGHTHOUSE_API_ROOT}/get_proof`, {
 		searchParams: {
 			cid,

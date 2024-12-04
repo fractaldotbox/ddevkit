@@ -13,7 +13,10 @@ export const createToast = ({
 		description: (
 			<div>
 				File uploaded with {name} <br />
-				CID:<a href={url}>{cid}</a>
+				CID:
+				<a href={url} target="_blank">
+					{cid}
+				</a>
 			</div>
 		),
 	});

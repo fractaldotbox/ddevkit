@@ -1,4 +1,4 @@
-import ky from "ky";
+import ky, { DownloadProgress } from "ky";
 
 export interface AkaveFile {
 	Name: string;
@@ -104,6 +104,7 @@ export type UploadParams = {
 	bucketName: string;
 	fileName: string;
 	file: File | Blob | Object;
+	uploadProgressCallback?: (data: DownloadProgress) => void;
 };
 
 const createUploadEndpoint = ({
@@ -138,6 +139,7 @@ export const uploadFileWithFormData = async ({
 	bucketName,
 	fileName,
 	file,
+	uploadProgressCallback,
 }: UploadParams): Promise<any> => {
 	const endpoint = createUploadEndpoint({
 		akaveEndpointUrl,
@@ -149,9 +151,15 @@ export const uploadFileWithFormData = async ({
 	formData.append("file", file);
 
 	// Caused by: RequestContentLengthMismatchError: Request body length does not match content-length header
+
+	// CORS error, to confirm if akave should work at browser
 	return ky
 		.post(endpoint, {
 			body: formData,
+			timeout: 7200000,
+			onDownloadProgress: (progress: DownloadProgress) => {
+				uploadProgressCallback?.(progress);
+			},
 		})
 		.then((res) => res.json())
 		.then((results: any) => {

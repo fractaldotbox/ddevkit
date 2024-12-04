@@ -15,8 +15,13 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Progress } from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
+import { FileLike } from "@web3-storage/w3up-client/types";
+import { useAtom } from "jotai";
+import { DownloadProgress } from "ky";
+import React from "react";
 
 const FormSchema = z.object({
 	file: z.string().or(z.custom<File>()).optional(),
@@ -32,19 +37,39 @@ Nulla at ornare purus, at laoreet nibh. Fusce molestie ex sit amet tristique tem
 Sed in faucibus ipsum. In in arcu ornare, maximus eros ac, volutpat turpis. Maecenas dolor sem, eleifend sed ornare quis, placerat eu risus. Phasellus nisl justo, imperdiet sed finibus at, iaculis vel lectus. Donec quis risus ac augue porta gravida. Ut vestibulum posuere nisi in consectetur. Sed sed libero sit amet est commodo interdum nec congue arcu. Aliquam gravida leo libero, vel euismod leo viverra quis. Donec maximus, ligula a bibendum molestie, eros risus lacinia felis, a sagittis nisi lectus a mauris. Phasellus ac libero eget mauris sodales tristique. Pellentesque tristique, tellus id rhoncus blandit, elit metus sagittis eros, quis condimentum neque dolor ac lorem. Nullam sed eros lorem. Suspendisse dapibus nisi sit amet mauris congue, sit amet pulvinar orci venenatis.
 `;
 
-export type FileParams<T> = { file: T };
+export type FileParams<T> = {
+	file: T;
+	uploadProgressCallback?: (data: DownloadProgress) => void;
+};
 
 export type UploadFormParams =
 	| {
 			isText: false;
+			isShowProgress?: boolean;
+			uploadFile: (params: FileParams<FileLike>) => Promise<any>;
+	  }
+	| {
+			isText: false;
+			isShowProgress?: boolean;
 			uploadFile: (params: FileParams<File>) => Promise<any>;
 	  }
 	| {
 			isText: true;
+			isShowProgress?: boolean;
 			uploadFile: (params: FileParams<string>) => Promise<any>;
 	  };
 
-export function UploadForm({ isText = false, uploadFile }: UploadFormParams) {
+export function UploadForm({
+	isText = false,
+	isShowProgress = true,
+	uploadFile,
+}: UploadFormParams) {
+	const [progress, setProgress] = React.useState({
+		transferredBytes: 0,
+		totalBytes: 0,
+		percent: 0,
+	});
+
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
@@ -56,54 +81,78 @@ export function UploadForm({ isText = false, uploadFile }: UploadFormParams) {
 		if (!data?.file) {
 			return;
 		}
-		uploadFile(data as FileParams<File> & FileParams<string>).then(() => {
-			toast({
-				title: "You submitted the following values:",
-				description: (
-					<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-						<code className="text-white">{JSON.stringify(data, null, 2)}</code>
-					</pre>
-				),
-			});
+		setProgress({
+			transferredBytes: 0,
+			totalBytes: 0,
+			percent: 0.001,
 		});
+
+		const uploadProgressCallback = (data: DownloadProgress) => {
+			setProgress(data);
+		};
+		toast({
+			title: "You submitted the following values:",
+			description: (
+				<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+					<code className="text-white">{JSON.stringify(data, null, 2)}</code>
+				</pre>
+			),
+		});
+
+		uploadFile({ ...data, uploadProgressCallback } as FileParams<File> &
+			FileParams<string>);
 	}
 
 	return (
 		<Form {...form}>
-			<form
-				onSubmit={form.handleSubmit(onSubmit)}
-				className="w-[600px] h-[300px] space-y-6"
-			>
-				<FormField
-					control={form.control}
-					name="file"
-					render={({ field }: { field: any }) => (
-						<FormItem>
-							<FormLabel>File</FormLabel>
-							<FormControl>
-								{isText ? (
-									<div className="w-full">
-										<Textarea id="file" {...field} className="h-[400px]" />
-									</div>
-								) : (
-									<Input
-										id="file"
-										type="file"
-										{...field}
-										value={field?.value?.fileName}
-										onChange={(event) => {
-											field.onChange(event?.target?.files?.[0]);
-										}}
-									/>
-								)}
-							</FormControl>
-							<FormDescription>Upload file to Filecoin</FormDescription>
-							<FormMessage />
-						</FormItem>
+			<div className="h-[500px]">
+				<div className="mb-10">
+					<form
+						onSubmit={form.handleSubmit(onSubmit)}
+						className="w-[600px] space-y-6"
+					>
+						<FormField
+							control={form.control}
+							name="file"
+							render={({ field }: { field: any }) => (
+								<FormItem>
+									<FormLabel>File</FormLabel>
+									<FormControl>
+										{isText ? (
+											<div className="w-full">
+												<Textarea id="file" {...field} className="h-[400px]" />
+											</div>
+										) : (
+											<Input
+												id="file"
+												type="file"
+												{...field}
+												value={field?.value?.fileName}
+												onChange={(event) => {
+													field.onChange(event?.target?.files?.[0]);
+												}}
+											/>
+										)}
+									</FormControl>
+									<FormDescription>Upload file to Filecoin</FormDescription>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<Button type="submit">Submit</Button>
+					</form>
+				</div>
+				<div>
+					{isShowProgress && progress.percent > 0 && (
+						<div>
+							<span>
+								{progress.percent === 1 ? "✅ Uploaded" : "Uploading..."}
+							</span>
+							<Progress value={progress.percent * 100} />
+						</div>
 					)}
-				/>
-				<Button type="submit">Submit</Button>
-			</form>
+				</div>
+			</div>
 		</Form>
 	);
 }

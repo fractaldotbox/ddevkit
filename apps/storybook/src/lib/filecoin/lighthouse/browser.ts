@@ -3,11 +3,9 @@ import { lighthouseConfig } from "@lighthouse-web3/sdk/dist/lighthouse.config";
 // https://github.com/lighthouse-web3/lighthouse-package/issues/119
 import {
 	DealParameters,
-	IFileUploadedResponse,
-	IUploadProgressCallback,
 	UploadFileReturnType,
 } from "@lighthouse-web3/sdk/dist/types";
-import ky from "ky";
+import ky, { DownloadProgress } from "ky";
 
 export const createLighthouseEndpoint = (isWrapWithDirectory = false) => {
 	const search = new URLSearchParams(
@@ -24,7 +22,8 @@ export type UploadLighthouseParams = {
 	formData?: FormData;
 	files?: File[];
 	dealParameters?: DealParameters | undefined;
-	uploadProgressCallback?: (data: IUploadProgressCallback) => void;
+	// use DownloadProgress over IUploadProgressCallback for more metadata
+	uploadProgressCallback?: (data: DownloadProgress) => void;
 };
 
 export const asFormData = (formData?: FormData, files?: File[]) => {
@@ -66,21 +65,14 @@ export const uploadFiles = async <T extends boolean>(
 
 	const files = formData.getAll("file") as File[];
 
-	console.log("directoryFiles", directoryFiles);
-
-	console.log("form", formData, files);
-
 	const isDirectory =
 		directoryFiles.length > 0 ||
 		[...files].some((file) => file.webkitRelativePath);
-
-	console.log("isDirectory", isDirectory);
 
 	const isWrapWithDirectory = isDirectory || files.length > 1;
 
 	let endpoint = createLighthouseEndpoint(isWrapWithDirectory);
 
-	console.log("endpoint", endpoint);
 	const token = `Bearer ${accessToken}`;
 
 	const headers = new Headers({
@@ -98,17 +90,14 @@ export const uploadFiles = async <T extends boolean>(
 	const results = await http
 		.post<UploadFileReturnType<T>>(endpoint, {
 			body: formData,
-			onDownloadProgress: (progress) => {
+			onDownloadProgress: (progress: DownloadProgress) => {
+				console.log("progress", progress);
 				if (uploadProgressCallback) {
-					uploadProgressCallback({
-						progress: progress.percent,
-					});
+					uploadProgressCallback(progress);
 				}
 			},
 		})
 		.json();
-
-	console.log("fetch results", results);
 
 	return {
 		data: results,
