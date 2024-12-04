@@ -1,9 +1,13 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { PrivyLogin, PrivyLoginProvider } from "./privy-login";
 
-function PrivyLoginStories() {
+interface PrivyLoginProps {
+	appId: string;
+}
+
+function PrivyLoginStories({ appId }: PrivyLoginProps) {
 	return (
-		<PrivyLoginProvider>
+		<PrivyLoginProvider appId={appId}>
 			<PrivyLogin />
 		</PrivyLoginProvider>
 	);
@@ -12,9 +16,20 @@ function PrivyLoginStories() {
 const meta = {
 	title: "Privy/Login",
 	component: PrivyLoginStories,
+	argTypes: {
+		appId: {
+			control: "text",
+			name: "Privy App ID",
+		},
+	},
 } satisfies Meta<typeof PrivyLoginStories>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+	args: {
+		appId: "cm2vi1gua0aukbq4p69w3rphl",
+	},
+};
