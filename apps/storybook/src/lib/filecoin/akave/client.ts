@@ -1,4 +1,4 @@
-import ky from "ky";
+import ky, { DownloadProgress } from "ky";
 
 export interface AkaveFile {
 	Name: string;
@@ -19,7 +19,7 @@ export interface AkaveBucket {
  * TODO refactor akave config object
  */
 
-const AKAVE_ENDPOINT_URL = process.env.AKAVE_ENDPOINT_URL || "localhost:3000";
+const AKAVE_ENDPOINT_URL = "localhost:3000";
 
 export const getBucketMetadata = ({
 	akaveEndpointUrl = AKAVE_ENDPOINT_URL,
@@ -104,6 +104,7 @@ export type UploadParams = {
 	bucketName: string;
 	fileName: string;
 	file: File | Blob | Object;
+	uploadProgressCallback?: (data: DownloadProgress) => void;
 };
 
 const createUploadEndpoint = ({
@@ -116,19 +117,20 @@ const createUploadEndpoint = ({
 	return `${akaveEndpointUrl}/buckets/${bucketName}/files`;
 };
 
+// @warning: Seems only form data is working
+
 export const uploadFileObject = ({
 	akaveEndpointUrl = AKAVE_ENDPOINT_URL,
 	bucketName,
 	fileName,
 	file,
-}: UploadParams) => {
+}: UploadParams): Promise<any> => {
 	const endpoint = createUploadEndpoint({
 		akaveEndpointUrl,
 		bucketName,
 	});
 
 	const options = typeof file === "string" ? { body: file } : { json: file };
-
 	return ky.post(endpoint, options).then((res) => res.json());
 };
 
@@ -137,19 +139,27 @@ export const uploadFileWithFormData = async ({
 	bucketName,
 	fileName,
 	file,
-}: UploadParams): Promise<AkaveFile> => {
+	uploadProgressCallback,
+}: UploadParams): Promise<any> => {
 	const endpoint = createUploadEndpoint({
 		akaveEndpointUrl,
 		bucketName,
 	});
+
 	const formData = new FormData();
 	// @ts-ignore
 	formData.append("file", file);
 
 	// Caused by: RequestContentLengthMismatchError: Request body length does not match content-length header
+
+	// CORS error, to confirm if akave should work at browser
 	return ky
 		.post(endpoint, {
 			body: formData,
+			timeout: 7200000,
+			onDownloadProgress: (progress: DownloadProgress) => {
+				uploadProgressCallback?.(progress);
+			},
 		})
 		.then((res) => res.json())
 		.then((results: any) => {

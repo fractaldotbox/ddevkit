@@ -1,8 +1,10 @@
 import kavach from "@lighthouse-web3/kavach";
 import lighthouse from "@lighthouse-web3/sdk";
-import ky from "ky";
+import { IUploadProgressCallback } from "@lighthouse-web3/sdk/dist/types";
+import ky, { DownloadProgress } from "ky";
 import { http, Account, Hex, createWalletClient } from "viem";
 import { sepolia } from "viem/chains";
+import { uploadFiles as uploadFilesLighthouse } from "./browser";
 // import { CID } from 'multiformats/cid'
 
 // Supposedly lighthouse can be treeshake for node/browser, to be validated
@@ -51,30 +53,49 @@ export const signAuthMessage = async (account: any) => {
 // Further work overriding sdk required for customizing form headers, timeout etc
 // consider direct invoke /api/v0/add?wrap-with-directory
 
-const uploadFile = async (
+export const uploadFile = async (
 	file: File,
 	apiKey: string,
-	progressCallback: any,
-) => {
-	// const dealParams: DealParameters = {};
-	const output = await lighthouse.upload(
-		file,
-		apiKey,
-		undefined,
-		progressCallback,
-	);
-	console.log("File Status:", output);
+	uploadProgressCallback?: (data: DownloadProgress) => void,
+): Promise<any> => {
+	let output;
 
-	console.log(
-		"Visit at https://gateway.lighthouse.storage/ipfs/" + output.data.Hash,
-	);
+	if (window) {
+		output = await uploadFilesLighthouse<false>({
+			files: [file],
+			config: {
+				accessToken: apiKey,
+			},
+			uploadProgressCallback,
+		});
+	} else {
+		output = await lighthouse.upload(
+			file,
+			apiKey,
+			undefined,
+			(data: IUploadProgressCallback) => {
+				if (!uploadProgressCallback) return;
+				uploadProgressCallback({
+					percent: data.progress,
+					transferredBytes: 0,
+					totalBytes: 0,
+				});
+			},
+		);
+	}
+
+	if (!output?.data?.Hash) {
+		throw new Error("Upload failed");
+	}
+
+	return {
+		name: output.data.Name,
+		cid: output.data.Hash,
+		size: parseInt(output.data.Size, 10),
+	};
 };
 
 export const retrievePoDsi = async (cid: string) => {
-	// const results = await lighthouse.posdi(cid);
-	// console.log('results', results);
-	// return results?.data;
-
 	let response = await ky.get(`${LIGHTHOUSE_API_ROOT}/get_proof`, {
 		searchParams: {
 			cid,
