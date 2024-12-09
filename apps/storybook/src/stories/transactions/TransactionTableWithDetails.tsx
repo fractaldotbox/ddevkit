@@ -5,22 +5,22 @@ import { Explorer } from "@/lib/explorer/url";
 import { TransactionTable } from "./TransactionTable";
 
 export type TransactionTableWithDetailsProps = GetTxnByFilterQuery & {
-  chainId?: number;
+	chainId?: number;
 };
 
 export function TransactionTableWithDetails(
-  props: TransactionTableWithDetailsProps,
+	props: TransactionTableWithDetailsProps,
 ) {
-  const { data, isPending, isLoading } = useGetTransactions(props);
+	const { data, isPending, isLoading } = useGetTransactions(props);
 
-  if (isPending || isLoading)
-    return <Skeleton className="h-[300px] w-[800px]" />;
+	if (isPending || isLoading)
+		return <Skeleton className="h-[300px] w-[800px]" />;
 
-  return (
-    <TransactionTable
-      transactions={(data || []).map((item: any) => asTransactionMeta(item))}
-      explorer={Explorer.Blockscout}
-      chainId={props.chainId || 1}
-    />
-  );
+	return (
+		<TransactionTable
+			transactions={(data || []).map((item: any) => asTransactionMeta(item))}
+			explorer={Explorer.Blockscout}
+			chainId={props.chainId || 1}
+		/>
+	);
 }
