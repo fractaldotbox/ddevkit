@@ -1,17 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { useUploadAttestation } from "@/hooks/use-upload-attestation";
+import { useUploadAttestationWithEasSDK } from "@/hooks/use-upload-attestation";
 import { Loader2, Upload } from "lucide-react";
-
-export interface UploadAttestationProps {
-  uid?: string;
-  chainId?: number;
-  payload?: any;
-  isEncrypted?: boolean;
-}
+import { UploadAttestationParams } from "./attestations";
 
 // this is a controlled component that depends on an external state
-export function UploadAttestation(props: UploadAttestationProps) {
-  const { uploadAttestation, isPending } = useUploadAttestation();
+export function UploadAttestation(props: UploadAttestationParams) {
+  const { uploadAttestation, isPending } = useUploadAttestationWithEasSDK();
 
   return (
     <Button
