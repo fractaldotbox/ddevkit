@@ -1,12 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { useUploadAttestationWithEasSDK } from "@/hooks/use-upload-attestation";
+import { useUploadAttestation } from "@/hooks/use-upload-attestation";
 import { Loader2, Upload } from "lucide-react";
 import { UploadAttestationParams } from "./attestations";
 
 // this is a controlled component that depends on an external state
 export function UploadAttestation(props: UploadAttestationParams) {
-  const { mutateAsync: uploadAttestation, isPending } =
-    useUploadAttestationWithEasSDK();
+  const { mutateAsync: uploadAttestation, isPending } = useUploadAttestation();
 
   return (
     <Button

@@ -1,4 +1,5 @@
 import { gql, rawRequest } from "graphql-request";
+import { getEasscanEndpoint } from "./util";
 
 export type AttestationByIdResponse = {
   attestation: {
@@ -38,9 +39,9 @@ const allAttestationsByQuery = gql`
   }
 `;
 
-export const getAttestationByUid = async (uid: string) => {
+export const getAttestationByUid = async (uid: string, chainId: number) => {
   const response = await rawRequest<AttestationByIdResponse>(
-    "https://sepolia.easscan.org/graphql",
+    `${getEasscanEndpoint(chainId)}/graphql`,
     allAttestationsByQuery.toString(),
     {
       where: {

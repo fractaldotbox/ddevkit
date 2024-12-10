@@ -15,7 +15,7 @@ const LIGHTHOUSE_API_KEY =
   import.meta.env.LIGHTHOUSE_API_KEY! ||
   import.meta.env.STORYBOOK_LIGHTHOUSE_API_KEY;
 
-export function useUploadAttestationWithEasSDK() {
+export function useUploadAttestation() {
   const { data: walletClient } = useWalletClient();
   const { toast } = useToast();
 
@@ -23,13 +23,13 @@ export function useUploadAttestationWithEasSDK() {
     mutationFn: async ({
       uid,
       payload,
-      chainId,
+      chainId = 1,
       isEncrypted,
     }: UploadAttestationParams) => {
       if (!walletClient) return;
 
       if ((uid || "").length > 0) {
-        const attestation = await getAttestationByUid(uid!);
+        const attestation = await getAttestationByUid(uid!, chainId);
         payload = attestation;
       }
 
