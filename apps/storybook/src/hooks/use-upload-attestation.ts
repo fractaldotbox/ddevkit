@@ -8,6 +8,7 @@ import { UploadAttestationParams } from "@/stories/attestations/attestations";
 import { useMutation } from "@tanstack/react-query";
 import { useWalletClient } from "wagmi";
 import { useToast } from "./use-toast";
+import { getAttestationByUid } from "@/lib/eas/get-attestation-from-uid";
 
 const LIGHTHOUSE_API_KEY =
   import.meta.env.VITE_LIGHTHOUSE_API_KEY ||
@@ -27,12 +28,10 @@ export function useUploadAttestationWithEasSDK() {
     }: UploadAttestationParams) => {
       if (!walletClient) return;
 
-      // if (uid && chainId && !payload) {
-
-      //   const payload =
-
-      //   return;
-      // }
+      if ((uid || "").length > 0) {
+        const attestation = await getAttestationByUid(uid!);
+        payload = attestation;
+      }
 
       if (!payload) {
         console.error(
@@ -47,13 +46,11 @@ export function useUploadAttestationWithEasSDK() {
           options: { apiKey: LIGHTHOUSE_API_KEY },
         });
 
-      console.log({ lighthouseApiKey: LIGHTHOUSE_API_KEY });
-
-      console.log({ apiKey, accountAddress, signedMessage });
+      const compiledPayload = { ...payload, chainId };
 
       if (isEncrypted) {
         const { name, cid } = await uploadEncryptedFileWithText(
-          JSON.stringify(payload),
+          JSON.stringify(compiledPayload),
           apiKey,
           accountAddress,
           signedMessage,
@@ -69,7 +66,10 @@ export function useUploadAttestationWithEasSDK() {
           description: getLighthouseGatewayUrl(cid),
         });
       } else {
-        const { name, cid } = await uploadText(JSON.stringify(payload), apiKey);
+        const { name, cid } = await uploadText(
+          JSON.stringify(compiledPayload),
+          apiKey,
+        );
 
         console.log({
           title: `Upload Successful for file : ${name}`,

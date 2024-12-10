@@ -41,6 +41,9 @@ function ConnectButton() {
 }
 
 export const UploadAttestationWithId: Story = {
+  args: {
+    uid: "0xbd8ffc232319335da170af2f0d92d50db48224cb3ca643a41ce672ecaa26226a",
+  },
   render: ({ uid }) => (
     <>
       <ConnectButton />
@@ -50,10 +53,13 @@ export const UploadAttestationWithId: Story = {
 };
 
 export const UploadAttestationWithPayload: Story = {
+  args: {
+    payload: { attestation: "some_data_from_your_attestation" },
+  },
   render: ({ payload }) => (
     <>
       <ConnectButton />
-      <UploadAttestation payload={{ attestation: "some_data" }} />
+      <UploadAttestation payload={payload} />
     </>
   ),
 };
