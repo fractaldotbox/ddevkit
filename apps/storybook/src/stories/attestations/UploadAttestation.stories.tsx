@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { getShortAddress } from "@/utils/address";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
-import { injected, metaMask } from "wagmi/connectors";
+import { injected } from "wagmi/connectors";
 import { withWagmiProvider } from "../decorators/wagmi";
 import { UploadAttestation } from "./UploadAttestation";
 
