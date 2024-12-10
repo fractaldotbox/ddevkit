@@ -30,6 +30,7 @@ export function useUploadAttestation() {
 
       if ((uid || "").length > 0) {
         const attestation = await getAttestationByUid(uid!, chainId);
+        if (!attestation.attestation) throw new Error("attestation not found");
         payload = attestation;
       }
 
