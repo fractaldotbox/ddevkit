@@ -6,10 +6,13 @@ import {
 } from "@/lib/filecoin/lighthouse/isomorphic";
 import { UploadAttestationParams } from "@/stories/attestations/attestations";
 import { useMutation } from "@tanstack/react-query";
-import { useAccount, useWalletClient } from "wagmi";
+import { useWalletClient } from "wagmi";
 import { useToast } from "./use-toast";
 
-const lighthouseApiKey = import.meta.env.VITE_LIGHTHOUSE_API_KEY as string;
+const LIGHTHOUSE_API_KEY =
+  import.meta.env.VITE_LIGHTHOUSE_API_KEY ||
+  import.meta.env.LIGHTHOUSE_API_KEY! ||
+  import.meta.env.STORYBOOK_LIGHTHOUSE_API_KEY;
 
 export function useUploadAttestationWithEasSDK() {
   const { data: walletClient } = useWalletClient();
@@ -24,8 +27,6 @@ export function useUploadAttestationWithEasSDK() {
     }: UploadAttestationParams) => {
       if (!walletClient) return;
 
-      console.log("uploading...");
-
       // if (uid && chainId && !payload) {
 
       //   const payload =
@@ -39,13 +40,17 @@ export function useUploadAttestationWithEasSDK() {
         );
         return;
       }
-
       // default to payload
       const [apiKey, accountAddress, signedMessage] =
         await createLighthouseParams({
           account: walletClient.account,
-          options: { apiKey: lighthouseApiKey },
+          options: { apiKey: LIGHTHOUSE_API_KEY },
         });
+
+      console.log({ lighthouseApiKey: LIGHTHOUSE_API_KEY });
+
+      console.log({ apiKey, accountAddress, signedMessage });
+
       if (isEncrypted) {
         const { name, cid } = await uploadEncryptedFileWithText(
           JSON.stringify(payload),
@@ -79,5 +84,5 @@ export function useUploadAttestationWithEasSDK() {
     },
   });
 
-  return { uploadAttestation: mutation.mutateAsync, ...mutation };
+  return { ...mutation };
 }

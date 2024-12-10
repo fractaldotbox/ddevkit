@@ -1,7 +1,7 @@
 import kavach from "@lighthouse-web3/kavach";
 import lighthouse from "@lighthouse-web3/sdk";
 import ky from "ky";
-import { http, Account, Hex, createWalletClient } from "viem";
+import { http, Account, Hex, createWalletClient, custom } from "viem";
 import { sepolia } from "viem/chains";
 // import { CID } from 'multiformats/cid'
 
@@ -30,7 +30,7 @@ export const signAuthMessage = async (account: any) => {
   const client = createWalletClient({
     account,
     chain: sepolia,
-    transport: http(),
+    transport: custom(window.ethereum!),
   });
 
   const authMessage = await kavach.getAuthMessage(account.address);
@@ -63,6 +63,7 @@ const uploadFile = async (
     undefined,
     progressCallback,
   );
+
   console.log("File Status:", output);
 
   console.log(

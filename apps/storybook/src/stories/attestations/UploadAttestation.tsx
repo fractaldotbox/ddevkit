@@ -5,7 +5,8 @@ import { UploadAttestationParams } from "./attestations";
 
 // this is a controlled component that depends on an external state
 export function UploadAttestation(props: UploadAttestationParams) {
-  const { uploadAttestation, isPending } = useUploadAttestationWithEasSDK();
+  const { mutateAsync: uploadAttestation, isPending } =
+    useUploadAttestationWithEasSDK();
 
   return (
     <Button
