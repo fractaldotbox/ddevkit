@@ -1,18 +1,23 @@
 import { getLighthouseGatewayUrl } from "./lighthouse/isomorphic";
 
-export enum FilecoinGateway {
+export enum IpfsGateway {
 	Lighthouse = "lighthouse",
 	Akave = "akave",
+	IpfsIo = "ipfsio",
 }
 
 export const getGatewayUrlWithCid = (
 	cid: string,
-	gateway: FilecoinGateway = FilecoinGateway.Lighthouse,
+	gateway: IpfsGateway = IpfsGateway.IpfsIo,
 ) => {
 	// TODO discuss on retrieveal, auth and optimization required
-	// if (gateway === FilecoinGateway.Akave) {
+	// if (gateway === IpfsGateway.Akave) {
 	// 	return "";
 	// }
+
+	if (gateway === IpfsGateway.IpfsIo) {
+		return `https://ipfs.io/ipfs/${cid}`;
+	}
 
 	return getLighthouseGatewayUrl(cid);
 };

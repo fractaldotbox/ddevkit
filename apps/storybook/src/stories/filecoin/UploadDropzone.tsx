@@ -2,6 +2,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { Toggle } from "@/components/ui/toggle";
 import { Upload, X } from "lucide-react";
 import React, { useState, useRef, useCallback } from "react";
 
@@ -20,13 +21,28 @@ type UploadResponse = {
 	url?: string;
 };
 
-const UploadDropzone: React.FC = () => {
+export type UploadDropzoneProps = {
+	uploadFiles: ({ files }: { files: File[] }) => Promise<any>;
+	filePrefix?: string;
+	isAcceptMultiple?: boolean;
+	isAcceptDirectory?: boolean;
+};
+
+const UploadDropzone = (props: UploadDropzoneProps) => {
 	const [files, setFiles] = useState<FileWithPreview[]>([]);
 	const [error, setError] = useState<UploadError | null>(null);
 	const [isDragActive, setIsDragActive] = useState(false);
 	const [uploadProgress, setUploadProgress] = useState<Record<string, number>>(
 		{},
 	);
+
+	const filePrefix = props.filePrefix || "";
+	const {
+		uploadFiles,
+		isAcceptMultiple = true,
+		isAcceptDirectory = false,
+	} = props;
+
 	const [isUploading, setIsUploading] = useState(false);
 	const dropZoneRef = useRef<HTMLDivElement>(null);
 
@@ -74,14 +90,17 @@ const UploadDropzone: React.FC = () => {
 		return null;
 	};
 
-	const uploadFile = async (file: File): Promise<UploadResponse> => {
-		const formData = new FormData();
-		formData.append("file", file);
+	const uploadFilesCallback = async (
+		files: File[],
+	): Promise<UploadResponse> => {
+		console.log("upload file", files);
 
-		console.log("upload file", file);
+		// TODO handle filePrefix
 
+		const results = await uploadFiles({ files });
+		console.log("results", results);
 		return {
-			success: true,
+			success: !!results?.data?.Hash,
 			message: "File uploaded successfully",
 		};
 	};
@@ -108,8 +127,9 @@ const UploadDropzone: React.FC = () => {
 		// Upload files
 		setIsUploading(true);
 		try {
-			await Promise.all(newFiles.map((file) => uploadFile(file)));
+			await uploadFilesCallback(newFiles);
 		} catch (error) {
+			console.error("error", error);
 			setError({
 				message: "Failed to upload files. Please try again.",
 				code: "UPLOAD_FAILED",
@@ -141,8 +161,18 @@ const UploadDropzone: React.FC = () => {
 		});
 	};
 
+	const inputFileProps = {
+		multiple: isAcceptMultiple,
+	};
+
+	if (isAcceptDirectory) {
+		//@ts-ignore
+		inputFileProps.webkitdirectory = "true";
+	}
+
 	return (
 		<div className="w-full max-w-2xl mx-auto p-4 space-y-4">
+			{isAcceptDirectory ? "📁Accept directory" : "📄Accept files"}
 			<Card className="p-8">
 				<div
 					ref={dropZoneRef}
@@ -157,7 +187,7 @@ const UploadDropzone: React.FC = () => {
 						type="file"
 						onChange={handleFileInput}
 						className="hidden"
-						multiple
+						{...inputFileProps}
 						accept={ACCEPTED_TYPES.join(",")}
 						id="file-input"
 					/>

@@ -8,6 +8,11 @@
 		"check:fix": "biome check . --write --no-errors-on-unmatched",
 		"prepare": "husky"
 	},
+	"pnpm": {
+		"overrides": {
+			"@noble/ed25519": "2.1.0"
+		}
+	},
 	"devDependencies": {
 		"@0no-co/graphqlsp": "^1.12.15",
 		"@biomejs/biome": "^1.9.4",
