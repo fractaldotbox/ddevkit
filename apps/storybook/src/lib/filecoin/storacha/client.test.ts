@@ -1,6 +1,6 @@
 // Note test case at https://github.com/storacha/w3up/blob/main/packages/w3up-client/test/client.test.js
 
-import { create } from "@web3-storage/w3up-client";
+import { Client, create } from "@web3-storage/w3up-client";
 import { Signer } from "@web3-storage/w3up-client/principal/ed25519";
 import * as Proof from "@web3-storage/w3up-client/proof";
 import { StoreMemory } from "@web3-storage/w3up-client/stores/memory";
@@ -21,8 +21,6 @@ import { CID } from "multiformats/cid";
 //@ts-ignore
 ed.etc.sha512Sync = (...m) => sha512(ed.etc.concatBytes(...m));
 
-// `w3 delegation create -c 'store/*' -c 'upload/*' <di> --base64`
-
 describe(
 	"storacha",
 	() => {
@@ -31,7 +29,7 @@ describe(
 			const space = await client.createSpace("my-awesome-space");
 			console.log("space", space);
 		});
-		let client: any;
+		let client: Client;
 
 		beforeAll(async () => {
 			const principal = Signer.parse(STORACHA_KEY!);
@@ -47,13 +45,13 @@ describe(
 			console.log("space", space);
 		});
 
-		test.only("#get", async () => {
+		test("#get", async () => {
 			const cidString =
 				"bafybeifpiqvtu3tpmqtefd7dpx2dkcjorfwwn3mdhpqpb3egmbthjr57ua";
 			const cid = CID.parse(cidString, base32.decoder);
 			console.log(cid);
 			const results = await client.capability.upload.get(cid);
-			// expect(cidString).toBe(results.root);
+			expect(cidString).toBe(results.root.toString());
 		});
 
 		test("list files", async () => {
@@ -61,7 +59,6 @@ describe(
 			// Note this requires Claim {"can":"upload/list"}
 			await client.capability.upload.list({
 				cursor: "",
-				// cursor: "bafybeifpiqvtu3tpmqtefd7dpx2dkcjorfwwn3mdhpqpb3egmbthjr57ua",
 				size: 25,
 			});
 		});

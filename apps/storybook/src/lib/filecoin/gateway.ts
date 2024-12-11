@@ -7,10 +7,7 @@ export enum IpfsGateway {
 	IpfsIo = "ipfsio",
 }
 
-// TODO discuss on retrieveal, auth and optimization required
-// if (gateway === IpfsGateway.Akave) {
-// 	return "";
-// }
+// TODO discuss on retrieval for akave, auth and optimization required
 
 export const getIpfsGatewayUrl = (cid: string) => `https://ipfs.io/ipfs/${cid}`;
 
