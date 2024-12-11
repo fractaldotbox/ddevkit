@@ -4,6 +4,7 @@ import { IUploadProgressCallback } from "@lighthouse-web3/sdk/dist/types";
 import ky, { DownloadProgress } from "ky";
 import { http, Account, Hex, createWalletClient } from "viem";
 import { sepolia } from "viem/chains";
+import { GatewayStrategy } from "../gateway-strategy";
 import { uploadFiles as uploadFilesLighthouse } from "./browser";
 // import { CID } from 'multiformats/cid'
 
@@ -145,7 +146,7 @@ export const uploadEncryptedFileWithText = async (
 	};
 };
 
-export const getLighthouseGatewayUrl = (cid: string) => {
+export const getLighthouseGatewayUrl: GatewayStrategy = (cid: string) => {
 	return "https://gateway.lighthouse.storage/ipfs/" + cid;
 };
 

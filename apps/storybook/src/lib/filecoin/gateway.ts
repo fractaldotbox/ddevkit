@@ -1,3 +1,4 @@
+import { GatewayStrategy } from "./gateway-strategy";
 import { getLighthouseGatewayUrl } from "./lighthouse/isomorphic";
 
 export enum IpfsGateway {
@@ -6,18 +7,23 @@ export enum IpfsGateway {
 	IpfsIo = "ipfsio",
 }
 
+// TODO discuss on retrieveal, auth and optimization required
+// if (gateway === IpfsGateway.Akave) {
+// 	return "";
+// }
+
+export const getIpfsGatewayUrl = (cid: string) => `https://ipfs.io/ipfs/${cid}`;
+
+export const GATEWAY_STRAETGIES_BY_GATEWAY = {
+	[IpfsGateway.Lighthouse]: getLighthouseGatewayUrl,
+	[IpfsGateway.IpfsIo]: getIpfsGatewayUrl,
+} as Record<IpfsGateway, GatewayStrategy>;
+
 export const getGatewayUrlWithCid = (
 	cid: string,
 	gateway: IpfsGateway = IpfsGateway.IpfsIo,
 ) => {
-	// TODO discuss on retrieveal, auth and optimization required
-	// if (gateway === IpfsGateway.Akave) {
-	// 	return "";
-	// }
+	const strategy = GATEWAY_STRAETGIES_BY_GATEWAY[gateway] || getIpfsGatewayUrl;
 
-	if (gateway === IpfsGateway.IpfsIo) {
-		return `https://ipfs.io/ipfs/${cid}`;
-	}
-
-	return getLighthouseGatewayUrl(cid);
+	return strategy(cid);
 };
