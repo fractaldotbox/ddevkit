@@ -4,6 +4,7 @@ import { IUploadProgressCallback } from "@lighthouse-web3/sdk/dist/types";
 import ky, { DownloadProgress } from "ky";
 import { http, Account, Hex, createWalletClient } from "viem";
 import { sepolia } from "viem/chains";
+import { GatewayStrategy } from "../gateway-strategy";
 import { uploadFiles as uploadFilesLighthouse } from "./browser";
 // import { CID } from 'multiformats/cid'
 
@@ -53,8 +54,8 @@ export const signAuthMessage = async (account: any) => {
 // Further work overriding sdk required for customizing form headers, timeout etc
 // consider direct invoke /api/v0/add?wrap-with-directory
 
-export const uploadFile = async (
-	file: File,
+export const uploadFiles = async (
+	files: File[],
 	apiKey: string,
 	uploadProgressCallback?: (data: DownloadProgress) => void,
 ): Promise<any> => {
@@ -62,13 +63,15 @@ export const uploadFile = async (
 
 	if (window) {
 		output = await uploadFilesLighthouse<false>({
-			files: [file],
+			files,
 			config: {
 				accessToken: apiKey,
 			},
 			uploadProgressCallback,
 		});
 	} else {
+		// currently accept first file as folder
+		const [file] = files;
 		output = await lighthouse.upload(
 			file,
 			apiKey,
@@ -145,7 +148,7 @@ export const uploadEncryptedFileWithText = async (
 	};
 };
 
-export const getLighthouseGatewayUrl = (cid: string) => {
+export const getLighthouseGatewayUrl: GatewayStrategy = (cid: string) => {
 	return "https://gateway.lighthouse.storage/ipfs/" + cid;
 };
 

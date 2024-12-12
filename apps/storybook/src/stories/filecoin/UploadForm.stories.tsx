@@ -2,15 +2,21 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { uploadFileWithFormData } from "@/lib/filecoin/akave/client";
 import {
-	uploadFile as uploadFileLighthouse,
+	uploadFiles as uploadFilesLighthouse,
 	uploadText,
 } from "@/lib/filecoin/lighthouse/isomorphic";
+
+import {
+	initStorachaClient,
+	uploadFiles as uploadFilesStoracha,
+} from "@/lib/filecoin/storacha/isomorphic";
+
 import { withToaster } from "../decorators/toaster";
-import { FileParams, UploadForm } from "./UploadForm";
+import { UploadFilesParams, UploadForm, UploadFormType } from "./UploadForm";
 import { createToast } from "./upload-toast";
 
 import { IpfsGateway } from "@/lib/filecoin/gateway";
-import { initStorachaClient } from "./use-storacha-client";
+import { FileLike } from "@web3-storage/w3up-client/types";
 
 const meta = {
 	title: "Filecoin/UploadForm",
@@ -33,13 +39,13 @@ const mapTextAsBlob = (text: string) => {
 	return new Blob([text], { type: "text/plain" });
 };
 
-export const TextLighthouse: Story = {
+export const LighthouseText: Story = {
 	args: {
-		isText: true,
-		uploadFile: async ({
+		type: UploadFormType.Text,
+		uploadFiles: async ({
 			file,
 			uploadProgressCallback,
-		}: FileParams<string>) => {
+		}: UploadFilesParams<{ file: string }>) => {
 			const response = await uploadText(file, LIGHTHOUSE_API_KEY!);
 			const { name, cid, size } = response;
 			if (uploadProgressCallback) {
@@ -55,10 +61,131 @@ export const TextLighthouse: Story = {
 	},
 };
 
-export const TextAkave: Story = {
+export const LighthouseFile: Story = {
 	args: {
-		isText: true,
-		uploadFile: async ({ file }: FileParams<string>) => {
+		type: UploadFormType.File,
+		uploadFiles: async ({
+			file,
+			uploadProgressCallback,
+		}: UploadFilesParams<{ file: File }>) => {
+			const response = await uploadFilesLighthouse(
+				[file],
+				LIGHTHOUSE_API_KEY!,
+				uploadProgressCallback,
+			);
+			const { name, cid } = response;
+			createToast({ cid, name });
+			return cid;
+		},
+	},
+};
+
+export const LighthouseDirectory: Story = {
+	args: {
+		...LighthouseFile.args,
+		type: UploadFormType.FileDirectory,
+	},
+};
+
+export const LighthouseMultipleFiles: Story = {
+	args: {
+		type: UploadFormType.FileMultiple,
+		isMultipleFiles: true,
+		uploadFiles: async ({
+			file,
+			uploadProgressCallback,
+		}: UploadFilesParams<{ file: File[] }>) => {
+			console.log("upload DirectoryLighthouse", file);
+			const response = await uploadFilesLighthouse(
+				file,
+				LIGHTHOUSE_API_KEY!,
+				uploadProgressCallback,
+			);
+			const { name, cid } = response;
+			createToast({ cid, name });
+			return cid;
+		},
+	},
+};
+
+export const StorachaText: Story = {
+	args: {
+		type: UploadFormType.Text,
+		uploadFiles: async ({
+			file,
+			uploadProgressCallback,
+		}: UploadFilesParams<{ file: string }>) => {
+			const blob = mapTextAsBlob(file);
+			const { client, space } = await initStorachaClient({
+				keyString: STORACHA_KEY,
+				proofString: STORACHA_PROOF!,
+			});
+
+			const link = await uploadFilesStoracha(
+				{ client, spaceDid: space.did() },
+				{ files: [blob], uploadProgressCallback },
+			);
+
+			createToast({ cid: link.toString(), name: "" });
+		},
+	},
+};
+
+export const StorachaFile: Story = {
+	args: {
+		type: UploadFormType.File,
+		uploadFiles: async ({
+			file,
+			uploadProgressCallback,
+		}: UploadFilesParams<{ file: FileLike }>) => {
+			const { client, space } = await initStorachaClient({
+				keyString: STORACHA_KEY,
+				proofString: STORACHA_PROOF!,
+			});
+
+			const link = await uploadFilesStoracha(
+				{ client, spaceDid: space.did() },
+				{ files: [file], uploadProgressCallback },
+			);
+
+			createToast({ cid: link.toString(), name: "" });
+		},
+	},
+};
+
+export const StorachaMultifield: Story = {
+	args: {
+		type: UploadFormType.MultifieldsAsDirectory,
+		uploadFiles: async ({
+			file,
+			content,
+			uploadProgressCallback,
+		}: UploadFilesParams<any>) => {
+			const { client, space } = await initStorachaClient({
+				keyString: STORACHA_KEY,
+				proofString: STORACHA_PROOF!,
+			});
+
+			const contentFile = new File([content], "content.md", {
+				type: "text/plain",
+			});
+
+			const files = [file, contentFile];
+
+			const link = await uploadFilesStoracha(
+				{ client, spaceDid: space.did() },
+				{ files, uploadProgressCallback },
+			);
+
+			createToast({ cid: link.toString(), name: "" });
+		},
+	},
+};
+
+export const AkaveText: Story = {
+	args: {
+		type: UploadFormType.Text,
+		uploadFiles: async ({ file }: UploadFilesParams<{ file: string }>) => {
 			// Accept File not blob
 			const response = await uploadFileWithFormData({
 				akaveEndpointUrl: AKAVE_ENDPOINT_URL,
@@ -74,63 +201,14 @@ export const TextAkave: Story = {
 	},
 };
 
-export const FileLighthouse: Story = {
+export const AkaveFile: Story = {
 	args: {
-		isText: false,
-		uploadFile: async ({ file, uploadProgressCallback }: FileParams<File>) => {
-			const response = await uploadFileLighthouse(
-				file,
-				LIGHTHOUSE_API_KEY!,
-				uploadProgressCallback,
-			);
-			const { name, cid } = response;
-			createToast({ cid, name });
-			return cid;
-		},
-	},
-};
-
-export const TextStoracha: Story = {
-	args: {
-		isText: true,
-		uploadFile: async ({
+		type: UploadFormType.Text,
+		isShowProgress: false,
+		uploadFiles: async ({
 			file,
 			uploadProgressCallback,
-		}: FileParams<string>) => {
-			const blob = mapTextAsBlob(file);
-			const { client, uploadFile } = await initStorachaClient({
-				keyString: STORACHA_KEY,
-				proofString: STORACHA_PROOF!,
-			});
-
-			const link = await uploadFile({ file: blob, uploadProgressCallback });
-
-			createToast({ cid: link.toString(), name: "" });
-		},
-	},
-};
-
-export const FileStoracha: Story = {
-	args: {
-		isText: false,
-		uploadFile: async ({ file, uploadProgressCallback }: FileParams<File>) => {
-			const { uploadFile } = await initStorachaClient({
-				keyString: STORACHA_KEY,
-				proofString: STORACHA_PROOF!,
-			});
-
-			const link = await uploadFile({ file, uploadProgressCallback });
-
-			createToast({ cid: link.toString(), name: "" });
-		},
-	},
-};
-
-export const FileAkave: Story = {
-	args: {
-		isText: false,
-		isShowProgress: false,
-		uploadFile: async ({ file, uploadProgressCallback }: FileParams<File>) => {
+		}: UploadFilesParams<{ file: File }>) => {
 			const response = await uploadFileWithFormData({
 				akaveEndpointUrl: AKAVE_ENDPOINT_URL,
 				bucketName: "test-bucket",
