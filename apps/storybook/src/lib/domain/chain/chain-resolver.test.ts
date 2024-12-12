@@ -6,7 +6,11 @@ import {
 	optimismSepolia,
 } from "viem/chains";
 import { describe, expect, test } from "vitest";
-import { resolveChainWithName, resolveProductionChain } from "./chain-resolver";
+import {
+	resolveChainById,
+	resolveChainWithName,
+	resolveProductionChain,
+} from "./chain-resolver";
 
 describe("ChainResolver", () => {
 	test("should resolve production chain", () => {
@@ -20,5 +24,9 @@ describe("ChainResolver", () => {
 				.name,
 		).toEqual(optimismSepolia.name);
 		expect(resolveChainWithName("base")).toEqual(base);
+	});
+
+	test("should resolve chain with id", () => {
+		expect(resolveChainById(1).name).toBe("Ethereum");
 	});
 });

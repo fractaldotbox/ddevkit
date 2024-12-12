@@ -1,3 +1,5 @@
+import { faker } from "@faker-js/faker";
+
 export const TXN_VITALIK_DEPOSIT = {
 	priority_fee: "159234328090670",
 	tx_burnt_fee: "792939171909330",
@@ -434,3 +436,322 @@ export const TXN_VITALIK_TRANSFER = {
 	block_number: 21067426,
 	has_error_in_internal_transactions: false,
 };
+
+export const TXN_LIST = [TXN_VITALIK_DEPOSIT, TXN_VITALIK_TRANSFER];
+
+export function generateTxnFixturesByCount(count: number) {
+	const fixtures = [];
+
+	for (let i = 0; i < count; i++) {
+		const isDeposit = faker.datatype.boolean();
+
+		const fixture = {
+			priority_fee: faker.finance.amount(0, 1000000000000000, 0),
+			tx_burnt_fee: faker.finance.amount(0, 1000000000000000, 0),
+			raw_input: faker.datatype.hexadecimal({ length: 1000 }),
+			result: faker.helpers.arrayElement(["success", "failure"]),
+			hash: faker.datatype.hexadecimal({ length: 64 }),
+			max_fee_per_gas: faker.finance.amount(1000000000, 100000000000, 0),
+			revert_reason: faker.datatype.boolean() ? null : faker.lorem.sentence(),
+			confirmation_duration: [
+				0,
+				faker.datatype.number({ min: 1000, max: 20000 }),
+			],
+			type: faker.datatype.number({ min: 0, max: 2 }),
+			token_transfers_overflow: faker.datatype.boolean(),
+			token_transfers: faker.helpers.arrayElements(
+				[
+					{
+						block_hash:
+							"0x6979e04f00a50fe16257215627086f374029eff221a37cff627a6068a7aced51",
+						block_number: 21221256,
+						from: {
+							ens_domain_name: null,
+							hash: "0x0000000000000000000000000000000000000000",
+							implementations: [],
+							is_contract: false,
+							is_scam: false,
+							is_verified: false,
+							metadata: {
+								tags: [
+									{
+										meta: {},
+										name: "Metamask User",
+										ordinal: 0,
+										slug: "metamask-user",
+										tagType: "generic",
+									},
+									{
+										meta: {
+											alertStatus: "info",
+											data: "This address is not owned by any user, is often associated with token burn & mint/genesis events and used as a generic null address",
+										},
+										name: "note_0",
+										ordinal: 0,
+										slug: "note0",
+										tagType: "note",
+									},
+									{
+										meta: {},
+										name: "Burn",
+										ordinal: 0,
+										slug: "burn",
+										tagType: "generic",
+									},
+									{
+										meta: {},
+										name: "Null: 0x000...000",
+										ordinal: 10,
+										slug: "null-0x000000",
+										tagType: "name",
+									},
+									{
+										meta: {},
+										name: "Imtoken User",
+										ordinal: 0,
+										slug: "imtoken-user",
+										tagType: "generic",
+									},
+									{
+										meta: {},
+										name: "Miner",
+										ordinal: 0,
+										slug: "miner",
+										tagType: "generic",
+									},
+									{
+										meta: {},
+										name: "Null Address",
+										ordinal: 10,
+										slug: "null-address",
+										tagType: "name",
+									},
+									{
+										meta: {},
+										name: "Null",
+										ordinal: 0,
+										slug: "null",
+										tagType: "protocol",
+									},
+									{
+										meta: {},
+										name: "BLOCKED",
+										ordinal: 0,
+										slug: "blocked",
+										tagType: "generic",
+									},
+									{
+										meta: {},
+										name: "Genesis",
+										ordinal: 0,
+										slug: "genesis",
+										tagType: "generic",
+									},
+								],
+							},
+							name: null,
+							private_tags: [],
+							proxy_type: "unknown",
+							public_tags: [],
+							watchlist_names: [],
+						},
+						log_index: 422,
+						method: null,
+						timestamp: null,
+						to: {
+							ens_domain_name: null,
+							hash: "0x5c7BCd6E7De5423a257D81B442095A1a6ced35C5",
+							implementations: [
+								{
+									address: "0x48Dcf75EA18233BA947E4480dCd70594720449C1",
+									name: "Ethereum_SpokePool",
+								},
+							],
+							is_contract: true,
+							is_scam: false,
+							is_verified: true,
+							metadata: {
+								tags: [
+									{
+										meta: {},
+										name: "Across Protocol: Ethereum Spoke Pool V2",
+										ordinal: 10,
+										slug: "across-protocol-ethereum-spoke-pool-v2",
+										tagType: "name",
+									},
+									{
+										meta: {
+											bgColor: "#2F3237",
+											tagIcon:
+												"https://blockscout-content.s3.amazonaws.com/across-protocol.svg",
+											tagUrl: "https://across.to/bridge?utm_source=Blockscout",
+											textColor: "#6DF8D7",
+											tooltipDescription:
+												"Bridging method that combines an optimistic oracle, bonded relayers and single-sided liquidity pools to provide decentralized instant transactions from rollup chains to Ethereum mainnet.",
+											tooltipTitle: "Across Protocol",
+											tooltipUrl: "https://across.to/bridge",
+										},
+										name: "Across Protocol",
+										ordinal: 0,
+										slug: "across-protocol",
+										tagType: "protocol",
+									},
+									{
+										meta: {
+											bgColor: "#6DF8D7",
+											textColor: "#2F3237",
+										},
+										name: "Across Protocol: Spoke Pool",
+										ordinal: 10,
+										slug: "across-protocol-spoke-pool",
+										tagType: "name",
+									},
+								],
+							},
+							name: "ERC1967Proxy",
+							private_tags: [],
+							proxy_type: "eip1967",
+							public_tags: [],
+							watchlist_names: [],
+						},
+						token: {
+							address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+							circulating_market_cap: "9676244462.070765",
+							decimals: "18",
+							exchange_rate: "3368.6",
+							holders: "1151470",
+							icon_url:
+								"https://assets.coingecko.com/coins/images/2518/small/weth.png?1696503332",
+							name: "Wrapped Ether",
+							symbol: "WETH",
+							total_supply: "2879560377381669569860630",
+							type: "ERC-20",
+							volume_24h: "1348742956.3707833",
+						},
+						total: {
+							decimals: "18",
+							value: "32010000000000000000",
+						},
+						transaction_hash:
+							"0x31634ddc4975cc9f2c3c6426034fe0ed30163000cd067e80857136ab86dc0a3b",
+						tx_hash:
+							"0x31634ddc4975cc9f2c3c6426034fe0ed30163000cd067e80857136ab86dc0a3b",
+						type: "token_minting",
+					},
+				],
+				{ min: 0, max: 1 },
+			),
+			confirmations: faker.datatype.number({ min: 1, max: 1000000 }),
+			position: faker.datatype.number({ min: 0, max: 1000 }),
+			max_priority_fee_per_gas: faker.finance.amount(100000000, 10000000000, 0),
+			transaction_tag: faker.datatype.boolean() ? null : faker.word.noun(),
+			created_contract: faker.datatype.boolean()
+				? null
+				: faker.finance.ethereumAddress(),
+			value: faker.finance.amount(0, 1000000000000000000000, 0),
+			tx_types: faker.helpers.arrayElements(
+				["coin_transfer", "contract_call", "token_transfer"],
+				{ min: 1, max: 3 },
+			),
+			from: {
+				ens_domain_name: faker.datatype.boolean()
+					? faker.internet.domainName()
+					: undefined,
+				hash: faker.finance.ethereumAddress(),
+				is_contract: faker.datatype.boolean(),
+				is_verified: faker.datatype.boolean(),
+			},
+			gas_used: faker.finance.amount(21000, 1000000, 0),
+			status: faker.helpers.arrayElement(["ok", "error"]),
+			to: {
+				ens_domain_name: faker.datatype.boolean()
+					? faker.internet.domainName()
+					: undefined,
+				hash: faker.finance.ethereumAddress(),
+				is_contract: faker.datatype.boolean(),
+				is_verified: faker.datatype.boolean(),
+			},
+			fee: {
+				type: "actual",
+				value: faker.finance.amount(0, 1000000000000000, 0),
+			},
+			gas_limit: faker.finance.amount(21000, 10000000, 0),
+			gas_price: faker.finance.amount(1000000000, 100000000000, 0),
+			base_fee_per_gas: faker.finance.amount(1000000000, 100000000000, 0),
+			timestamp: faker.date.recent().toISOString(),
+			nonce: faker.datatype.number({ min: 0, max: 10000 }),
+			block: faker.datatype.number({ min: 10000000, max: 30000000 }),
+			exchange_rate: faker.finance.amount(1000, 5000, 2),
+			block_number: faker.datatype.number({ min: 10000000, max: 30000000 }),
+		};
+
+		if (isDeposit) {
+			// @ts-ignore
+			fixture.method = "deposit";
+
+			// @ts-ignore
+			fixture.decoded_input = {
+				method_call:
+					"deposit(address,address,address,uint256,uint256,int64,uint32,bytes,uint256)",
+				method_id: faker.datatype.hexadecimal({ length: 8 }),
+				parameters: [
+					{
+						name: "spokePool",
+						type: "address",
+						value: faker.finance.ethereumAddress(),
+					},
+					{
+						name: "recipient",
+						type: "address",
+						value: faker.finance.ethereumAddress(),
+					},
+					{
+						name: "originToken",
+						type: "address",
+						value: faker.finance.ethereumAddress(),
+					},
+					{
+						name: "amount",
+						type: "uint256",
+						value: faker.finance.amount(0, 1000000000000000000000, 0),
+					},
+					{
+						name: "destinationChainId",
+						type: "uint256",
+						value: faker.datatype.number({ min: 1, max: 100000 }),
+					},
+					{
+						name: "relayerFeePct",
+						type: "int64",
+						value: faker.finance.amount(0, 1000000000000000, 0),
+					},
+					{
+						name: "quoteTimestamp",
+						type: "uint32",
+						value: faker.datatype.number({ min: 1000000000, max: 2000000000 }),
+					},
+					{ name: "message", type: "bytes", value: "0x" },
+					{
+						name: "maxCount",
+						type: "uint256",
+						value: faker.finance.amount(
+							0,
+							115792089237316195423570985008687907853269984665640564039457584007913129639935,
+							0,
+						),
+					},
+				],
+			};
+		} else {
+			// @ts-ignore
+			fixture.method = null;
+
+			// @ts-ignore
+			fixture.decoded_input = null;
+		}
+
+		fixtures.push(fixture);
+	}
+
+	return fixtures;
+}
