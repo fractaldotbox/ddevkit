@@ -2,7 +2,7 @@
 // import { Signer } from "@web3-storage/w3up-client/principal/ed25519";
 // import * as Proof from "@web3-storage/w3up-client/proof";
 // import { FileLike, ProgressStatus } from "@web3-storage/w3up-client/types";
-// import { UploadFileParams } from "./UploadForm";
+// import { UploadFilesParams } from "./UploadForm";
 
 // export type StorachaInitParams = {
 // 	keyString: string;
@@ -28,7 +28,7 @@
 // 		uploadFile: async ({
 // 			file,
 // 			uploadProgressCallback,
-// 		}: UploadFileParams<{ file: FileLike }>) => {
+// 		}: UploadFilesParams<{ file: FileLike }>) => {
 // 			// Note overrding fetchWithUploadProgress not receiving actual progress
 // 			const link = await client.uploadFile(file, {
 // 				onUploadProgress: (progress: ProgressStatus) => {

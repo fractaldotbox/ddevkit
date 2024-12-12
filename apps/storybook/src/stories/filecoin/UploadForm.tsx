@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { ZodObject, ZodType, z } from "zod";
+import { ZodType, z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -12,13 +12,12 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
-import type { FileLike } from "@web3-storage/w3up-client/types";
 import type { DownloadProgress } from "ky";
 import React from "react";
+import { FileInputField } from "@/components/FileInputField";
 
 const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper porttitor massa, non placerat dolor rutrum vel. Morbi eu elit vitae odio hendrerit mollis. Proin at nibh auctor, laoreet ante vel, commodo leo. Sed viverra neque id lectus dictum, non accumsan tortor rhoncus. Fusce consectetur est vitae viverra pellentesque. Nunc pharetra felis libero, at rhoncus est euismod et. Morbi ac ultrices lectus, quis commodo eros. Etiam vestibulum finibus imperdiet. Nulla dictum tempor neque ac varius.
 Duis sed malesuada odio. Aenean fermentum tristique nunc a dictum. Donec posuere varius pharetra. Sed vitae nisi leo. Nam eget velit id erat sagittis molestie. Fusce feugiat turpis nec neque sodales, sit amet lobortis velit tempus. Curabitur nisi quam, consectetur in velit ac, gravida convallis ante. Etiam condimentum, ligula ut pharetra vehicula, odio ligula laoreet sem, et convallis metus mauris ut tellus. Fusce libero risus, vulputate a suscipit commodo, tincidunt vel ex. Duis quis ultrices ex, in feugiat dolor. Nullam ultrices lorem augue, ac pellentesque velit finibus vel.
@@ -30,34 +29,21 @@ Nulla at ornare purus, at laoreet nibh. Fusce molestie ex sit amet tristique tem
 Sed in faucibus ipsum. In in arcu ornare, maximus eros ac, volutpat turpis. Maecenas dolor sem, eleifend sed ornare quis, placerat eu risus. Phasellus nisl justo, imperdiet sed finibus at, iaculis vel lectus. Donec quis risus ac augue porta gravida. Ut vestibulum posuere nisi in consectetur. Sed sed libero sit amet est commodo interdum nec congue arcu. Aliquam gravida leo libero, vel euismod leo viverra quis. Donec maximus, ligula a bibendum molestie, eros risus lacinia felis, a sagittis nisi lectus a mauris. Phasellus ac libero eget mauris sodales tristique. Pellentesque tristique, tellus id rhoncus blandit, elit metus sagittis eros, quis condimentum neque dolor ac lorem. Nullam sed eros lorem. Suspendisse dapibus nisi sit amet mauris congue, sit amet pulvinar orci venenatis.
 `;
 
-export type UploadFileParams<T> = T & {
+export type UploadFilesParams<T> = T & {
 	uploadProgressCallback?: (data: DownloadProgress) => void;
 };
 
 export type UploadFormParams<T> = {
 	isShowProgress?: boolean;
-	isMultifieldAsDirectory?: boolean;
-	isText: boolean;
-	uploadFile: (params: UploadFileParams<T>) => Promise<any>;
+	uploadFiles: (params: UploadFilesParams<T>) => Promise<any>;
 };
 
-const FileInputField = ({ field }: { field: any }) => {
-	return (
-		<Input
-			id="file"
-			type="file"
-			{...field}
-			value={field?.value?.fileName}
-			onChange={(event) => {
-				field.onChange(event?.target?.files?.[0]);
-			}}
-		/>
-	);
-};
 
 export enum UploadFormType {
 	Text = "text",
 	File = "file",
+	FileMultiple = "file-multiple",
+	FileDirectory = "file-directory",
 	MultifieldsAsDirectory = "multifields-as-directory",
 }
 
@@ -121,6 +107,58 @@ UPLOAD_FORM_BY_TYPE[UploadFormType.File] = {
 		/>
 	),
 };
+UPLOAD_FORM_BY_TYPE[UploadFormType.FileMultiple] = {
+	schema: z.object({
+		file: z.custom<File[]>(),
+	}),
+	defaultValues: {
+		file: undefined,
+	},
+	createFormFields: (form: any) => (
+		<FormField
+			control={form.control}
+			name="file"
+			render={({ field }: { field: any }) => (
+				<FormItem>
+					<FormLabel>File</FormLabel>
+					<FormControl>
+						<FileInputField field={field} isMultipleFiles />
+					</FormControl>
+					<FormDescription>Upload file to Filecoin</FormDescription>
+					<FormMessage />
+				</FormItem>
+			)}
+		/>
+	),
+};
+
+UPLOAD_FORM_BY_TYPE[UploadFormType.FileDirectory] = {
+	schema: z.object({
+		file: z.custom<File>(),
+	}),
+	defaultValues: {
+		file: undefined,
+	},
+	createFormFields: (form: any) => (
+		<FormField
+			control={form.control}
+			name="file"
+			render={({ field }: { field: any }) => (
+				<FormItem>
+					<FormLabel>File</FormLabel>
+					<FormControl>
+						<FileInputField field={field} isAcceptDirectory />
+					</FormControl>
+					<FormDescription>Upload file to Filecoin</FormDescription>
+					<FormMessage />
+				</FormItem>
+			)}
+		/>
+	),
+};
+
+
+
 
 UPLOAD_FORM_BY_TYPE[UploadFormType.MultifieldsAsDirectory] = {
 	schema: z.object({
@@ -157,7 +195,7 @@ UPLOAD_FORM_BY_TYPE[UploadFormType.MultifieldsAsDirectory] = {
 					<FormItem>
 						<FormLabel>File</FormLabel>
 						<FormControl>
-							<FileInputField field={field} />
+							<FileInputField field={field} isMultipleFiles={true} />
 						</FormControl>
 						<FormMessage />
 					</FormItem>
@@ -169,20 +207,23 @@ UPLOAD_FORM_BY_TYPE[UploadFormType.MultifieldsAsDirectory] = {
 
 export function UploadForm({
 	type,
+	isMultipleFiles = false,
 	isShowProgress = true,
-	uploadFile,
+	uploadFiles,
 }: {
 	type: UploadFormType;
+	isMultipleFiles?: boolean;
 	isShowProgress?: boolean;
-	uploadFile: (params: UploadFileParams<any>) => Promise<void>;
+	uploadFiles: (params: UploadFilesParams<any>) => Promise<void>;
 }) {
 	const formArgs = UPLOAD_FORM_BY_TYPE[type];
 
 	return (
 		<UploadFormWithFields
 			{...formArgs}
+			isMultipleFiles={isMultipleFiles}
 			isShowProgress={isShowProgress}
-			uploadFile={uploadFile}
+			uploadFiles={uploadFiles}
 		/>
 	);
 }
@@ -196,17 +237,17 @@ export function UploadForm({
 export type UploadFormWithFieldsProps<S extends ZodType<any, any, any>> = {
 	schema: S;
 	defaultValues: any;
+	isMultipleFiles?: boolean;
 	isShowProgress?: boolean;
-	isMultifieldAsDirectory?: boolean;
 	createFormFields: (form: any) => React.ReactNode;
-	uploadFile: (params: UploadFileParams<S>) => Promise<void>;
+	uploadFiles: (params: UploadFilesParams<S>) => Promise<void>;
 };
 
 export function UploadFormWithFields<S extends ZodType<any, any, any>>({
 	schema,
 	defaultValues,
 	isShowProgress = true,
-	uploadFile,
+	uploadFiles,
 	createFormFields,
 }: UploadFormWithFieldsProps<S>) {
 	const [progress, setProgress] = React.useState({
@@ -243,7 +284,7 @@ export function UploadFormWithFields<S extends ZodType<any, any, any>>({
 			),
 		});
 
-		uploadFile({ ...data, uploadProgressCallback } as any);
+		uploadFiles({ ...data, uploadProgressCallback } as any);
 	}
 
 	return (

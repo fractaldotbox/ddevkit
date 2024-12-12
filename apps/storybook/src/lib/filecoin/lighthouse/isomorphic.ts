@@ -54,8 +54,8 @@ export const signAuthMessage = async (account: any) => {
 // Further work overriding sdk required for customizing form headers, timeout etc
 // consider direct invoke /api/v0/add?wrap-with-directory
 
-export const uploadFile = async (
-	file: File,
+export const uploadFiles = async (
+	files: File[],
 	apiKey: string,
 	uploadProgressCallback?: (data: DownloadProgress) => void,
 ): Promise<any> => {
@@ -63,13 +63,15 @@ export const uploadFile = async (
 
 	if (window) {
 		output = await uploadFilesLighthouse<false>({
-			files: [file],
+			files,
 			config: {
 				accessToken: apiKey,
 			},
 			uploadProgressCallback,
 		});
 	} else {
+		// currently accept first file as folder
+		const [file] = files;
 		output = await lighthouse.upload(
 			file,
 			apiKey,
