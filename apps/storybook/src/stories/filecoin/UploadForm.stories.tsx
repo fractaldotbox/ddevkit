@@ -39,8 +39,6 @@ const mapTextAsBlob = (text: string) => {
 	return new Blob([text], { type: "text/plain" });
 };
 
-
-
 export const LighthouseText: Story = {
 	args: {
 		type: UploadFormType.Text,
@@ -82,7 +80,6 @@ export const LighthouseFile: Story = {
 	},
 };
 
-
 export const LighthouseDirectory: Story = {
 	args: {
 		...LighthouseFile.args,
@@ -98,7 +95,7 @@ export const LighthouseMultipleFiles: Story = {
 			file,
 			uploadProgressCallback,
 		}: UploadFilesParams<{ file: File[] }>) => {
-			console.log('upload DirectoryLighthouse', file)
+			console.log("upload DirectoryLighthouse", file);
 			const response = await uploadFilesLighthouse(
 				file,
 				LIGHTHOUSE_API_KEY!,
@@ -111,7 +108,7 @@ export const LighthouseMultipleFiles: Story = {
 	},
 };
 
-export const TextStoracha: Story = {
+export const StorachaText: Story = {
 	args: {
 		type: UploadFormType.Text,
 		uploadFiles: async ({
@@ -134,7 +131,7 @@ export const TextStoracha: Story = {
 	},
 };
 
-export const FileStoracha: Story = {
+export const StorachaFile: Story = {
 	args: {
 		type: UploadFormType.File,
 		uploadFiles: async ({
@@ -156,7 +153,7 @@ export const FileStoracha: Story = {
 	},
 };
 
-export const MultifieldStoracha: Story = {
+export const StorachaMultifield: Story = {
 	args: {
 		type: UploadFormType.MultifieldsAsDirectory,
 		uploadFiles: async ({
@@ -184,7 +181,6 @@ export const MultifieldStoracha: Story = {
 		},
 	},
 };
-
 
 export const AkaveText: Story = {
 	args: {
