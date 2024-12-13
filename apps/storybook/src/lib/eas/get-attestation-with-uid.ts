@@ -39,7 +39,7 @@ const allAttestationsByQuery = gql`
   }
 `;
 
-export const getAttestationByUid = async (uid: string, chainId: number) => {
+export const getAttestationWithUid = async (uid: string, chainId: number) => {
 	const response = await rawRequest<AttestationByIdResponse>(
 		`${getEasscanEndpoint(chainId)}/graphql`,
 		allAttestationsByQuery.toString(),
