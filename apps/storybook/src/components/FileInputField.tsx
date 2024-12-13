@@ -1,8 +1,8 @@
 /*
- * Baes on shadcn & react-hook-form for file upload
+ * Based on shadcn & react-hook-form for file upload
  */
 
-import { ControllerRenderProps, FieldValues } from "react-hook-form";
+import type { ControllerRenderProps, FieldValues } from "react-hook-form";
 import { Input } from "./ui/input";
 
 export const FileInputField = ({

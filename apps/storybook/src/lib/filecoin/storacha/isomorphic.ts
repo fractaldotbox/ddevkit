@@ -4,7 +4,6 @@ import {
 } from "@web3-storage/w3up-client/principal/ed25519";
 import * as Proof from "@web3-storage/w3up-client/proof";
 import type {
-	BlobLike,
 	Client,
 	EmailAddress,
 	FileLike,

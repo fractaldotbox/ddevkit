@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { uploadFiles } from "@/lib/filecoin/lighthouse/browser";
 import { withToaster } from "../decorators/toaster";
 import UploadDropzone from "./UploadDropzone";
-import { createToast } from "./upload-toast";
+import { uploadSuccessToast } from "./upload-toast";
 
 const meta = {
 	title: "Filecoin/UploadDropzone",
@@ -38,7 +38,7 @@ export const Lighthouse: Story = {
 			const {
 				data: { Name: name, Hash: cid },
 			} = results;
-			createToast({ cid, name });
+			uploadSuccessToast({ cid, name });
 			return cid;
 		},
 	},
@@ -63,7 +63,7 @@ export const LighthouseDirectory: Story = {
 			const {
 				data: { Name: name, Hash: cid },
 			} = results;
-			createToast({ cid, name });
+			uploadSuccessToast({ cid, name });
 			return cid;
 		},
 	},
@@ -98,7 +98,7 @@ export const StorachaDirectory: Story = {
 // 			});
 // 			console.log('results', results)
 // 			const { data: { Name: name, Hash: cid } } = results;
-// 			createToast({ cid, name });
+// 			uploadSuccessToast({ cid, name });
 // 			return cid;
 // 		}
 // 	},
