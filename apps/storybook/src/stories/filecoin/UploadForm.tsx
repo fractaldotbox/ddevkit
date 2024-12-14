@@ -55,6 +55,30 @@ export const UPLOAD_FORM_BY_TYPE = {} as Record<
 	}
 >;
 
+const createFormFieldsWithFile = (
+	fileFieldArgs: {
+		isMultipleFiles?: boolean;
+		isAcceptDirectory?: boolean;
+	} = {},
+) => {
+	return (form: any) => (
+		<FormField
+			control={form.control}
+			name="file"
+			render={({ field }: { field: any }) => (
+				<FormItem>
+					<FormLabel>File</FormLabel>
+					<FormControl>
+						<FileInputField field={field} {...fileFieldArgs} />
+					</FormControl>
+					<FormDescription>Upload file to Filecoin</FormDescription>
+					<FormMessage />
+				</FormItem>
+			)}
+		/>
+	);
+};
+
 UPLOAD_FORM_BY_TYPE[UploadFormType.Text] = {
 	schema: z.object({
 		file: z.string(),
@@ -89,23 +113,9 @@ UPLOAD_FORM_BY_TYPE[UploadFormType.File] = {
 	defaultValues: {
 		file: undefined,
 	},
-	createFormFields: (form: any) => (
-		<FormField
-			control={form.control}
-			name="file"
-			render={({ field }: { field: any }) => (
-				<FormItem>
-					<FormLabel>File</FormLabel>
-					<FormControl>
-						<FileInputField field={field} />
-					</FormControl>
-					<FormDescription>Upload file to Filecoin</FormDescription>
-					<FormMessage />
-				</FormItem>
-			)}
-		/>
-	),
+	createFormFields: createFormFieldsWithFile(),
 };
+
 UPLOAD_FORM_BY_TYPE[UploadFormType.FileMultiple] = {
 	schema: z.object({
 		file: z.custom<File[]>(),
@@ -113,22 +123,7 @@ UPLOAD_FORM_BY_TYPE[UploadFormType.FileMultiple] = {
 	defaultValues: {
 		file: undefined,
 	},
-	createFormFields: (form: any) => (
-		<FormField
-			control={form.control}
-			name="file"
-			render={({ field }: { field: any }) => (
-				<FormItem>
-					<FormLabel>File</FormLabel>
-					<FormControl>
-						<FileInputField field={field} isMultipleFiles />
-					</FormControl>
-					<FormDescription>Upload file to Filecoin</FormDescription>
-					<FormMessage />
-				</FormItem>
-			)}
-		/>
-	),
+	createFormFields: createFormFieldsWithFile({ isMultipleFiles: true }),
 };
 
 UPLOAD_FORM_BY_TYPE[UploadFormType.FileDirectory] = {
@@ -138,22 +133,7 @@ UPLOAD_FORM_BY_TYPE[UploadFormType.FileDirectory] = {
 	defaultValues: {
 		file: undefined,
 	},
-	createFormFields: (form: any) => (
-		<FormField
-			control={form.control}
-			name="file"
-			render={({ field }: { field: any }) => (
-				<FormItem>
-					<FormLabel>File</FormLabel>
-					<FormControl>
-						<FileInputField field={field} isAcceptDirectory />
-					</FormControl>
-					<FormDescription>Upload file to Filecoin</FormDescription>
-					<FormMessage />
-				</FormItem>
-			)}
-		/>
-	),
+	createFormFields: createFormFieldsWithFile({ isAcceptDirectory: true }),
 };
 
 UPLOAD_FORM_BY_TYPE[UploadFormType.MultifieldsAsDirectory] = {
@@ -184,19 +164,7 @@ UPLOAD_FORM_BY_TYPE[UploadFormType.MultifieldsAsDirectory] = {
 					</FormItem>
 				)}
 			/>
-			<FormField
-				control={form.control}
-				name="file"
-				render={({ field }: { field: any }) => (
-					<FormItem>
-						<FormLabel>File</FormLabel>
-						<FormControl>
-							<FileInputField field={field} isMultipleFiles={true} />
-						</FormControl>
-						<FormMessage />
-					</FormItem>
-				)}
-			/>
+			{createFormFieldsWithFile({ isMultipleFiles: true })(form)}
 		</>
 	),
 };

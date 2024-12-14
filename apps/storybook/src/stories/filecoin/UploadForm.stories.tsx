@@ -13,7 +13,7 @@ import {
 
 import { withToaster } from "../decorators/toaster";
 import { UploadFilesParams, UploadForm, UploadFormType } from "./UploadForm";
-import { createToast } from "./upload-toast";
+import { uploadSuccessToast } from "./upload-toast";
 
 import { IpfsGateway } from "@/lib/filecoin/gateway";
 import { FileLike } from "@web3-storage/w3up-client/types";
@@ -55,7 +55,7 @@ export const LighthouseText: Story = {
 					percent: 1,
 				});
 			}
-			createToast({ cid, name, gateway: IpfsGateway.Lighthouse });
+			uploadSuccessToast({ cid, name, gateway: IpfsGateway.Lighthouse });
 			return cid;
 		},
 	},
@@ -74,16 +74,9 @@ export const LighthouseFile: Story = {
 				uploadProgressCallback,
 			);
 			const { name, cid } = response;
-			createToast({ cid, name });
+			uploadSuccessToast({ cid, name });
 			return cid;
 		},
-	},
-};
-
-export const LighthouseDirectory: Story = {
-	args: {
-		...LighthouseFile.args,
-		type: UploadFormType.FileDirectory,
 	},
 };
 
@@ -95,16 +88,27 @@ export const LighthouseMultipleFiles: Story = {
 			file,
 			uploadProgressCallback,
 		}: UploadFilesParams<{ file: File[] }>) => {
-			console.log("upload DirectoryLighthouse", file);
 			const response = await uploadFilesLighthouse(
 				file,
 				LIGHTHOUSE_API_KEY!,
 				uploadProgressCallback,
 			);
-			const { name, cid } = response;
-			createToast({ cid, name });
+			const name = Array.from(file)
+				.map((f) => f.name)
+				.join(", ");
+
+			const { cid } = response;
+			uploadSuccessToast({ cid, name });
 			return cid;
 		},
+	},
+};
+
+export const LighthouseDirectory: Story = {
+	args: {
+		...LighthouseMultipleFiles.args,
+		type: UploadFormType.FileDirectory,
+		isMultipleFiles: true,
 	},
 };
 
@@ -126,7 +130,7 @@ export const StorachaText: Story = {
 				{ files: [blob], uploadProgressCallback },
 			);
 
-			createToast({ cid: link.toString(), name: "" });
+			uploadSuccessToast({ cid: link.toString(), name: "" });
 		},
 	},
 };
@@ -148,7 +152,7 @@ export const StorachaFile: Story = {
 				{ files: [file], uploadProgressCallback },
 			);
 
-			createToast({ cid: link.toString(), name: "" });
+			uploadSuccessToast({ cid: link.toString(), name: "" });
 		},
 	},
 };
@@ -177,7 +181,7 @@ export const StorachaMultifield: Story = {
 				{ files, uploadProgressCallback },
 			);
 
-			createToast({ cid: link.toString(), name: "" });
+			uploadSuccessToast({ cid: link.toString(), name: "" });
 		},
 	},
 };
@@ -195,7 +199,7 @@ export const AkaveText: Story = {
 			});
 			const { Name: name, RootCID: cid } = response;
 
-			createToast({ cid, name, gateway: IpfsGateway.Lighthouse });
+			uploadSuccessToast({ cid, name, gateway: IpfsGateway.Lighthouse });
 			return cid;
 		},
 	},
@@ -218,7 +222,7 @@ export const AkaveFile: Story = {
 			});
 			const { Name: name, RootCID: cid } = response;
 
-			createToast({ cid, name });
+			uploadSuccessToast({ cid, name });
 			return cid;
 		},
 	},
