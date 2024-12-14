@@ -33,6 +33,12 @@ const CHAIN_ID_BY_NAME = Object.fromEntries(
 		]),
 );
 
+export const resolveChainById = (chainId: number) => {
+	return Object.fromEntries(
+		Object.values(chains).map((chain) => [chain.id, chain]),
+	)[chainId];
+};
+
 /**
  * Non reliable and best effort basis
  */

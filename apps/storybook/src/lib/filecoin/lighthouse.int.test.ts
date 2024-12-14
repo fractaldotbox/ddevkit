@@ -5,7 +5,7 @@ import {
 	retrieveFile,
 	retrievePoDsi,
 	uploadEncryptedFileWithText,
-	uploadFile,
+	uploadFiles,
 	uploadText,
 } from "./lighthouse/isomorphic";
 
@@ -26,8 +26,8 @@ const cid = "QmS9ErDVxHXRNMJRJ5i3bp1zxCZzKP8QXXNH1yUR6dWeKZ";
 describe(
 	"lighthouse",
 	() => {
-		let testFilePath = "";
-		let testFileName = "";
+		let testFilePath;
+		let testFileName;
 
 		const testContent = "abcde";
 
@@ -49,7 +49,7 @@ describe(
 						apiKey: LIGHTHOUSE_API_KEY,
 					},
 				});
-				const response = await uploadFile(file, LIGHTHOUSE_API_KEY);
+				const response = await uploadFiles([file], LIGHTHOUSE_API_KEY);
 
 				expect(!!response.cid).toEqual(true);
 

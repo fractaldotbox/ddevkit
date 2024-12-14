@@ -8,27 +8,37 @@ import * as UploadFormStories from './UploadForm.stories';
 - This is an attempt to unify upload components for various clients of filecoin 
 - Note they have diferent sweetspot and requirements
 
-## Lighthouse
-- isomorphic sdk
-<Canvas>
-  <Story of={UploadFormStories.FileLighthouse} />
-</Canvas>
+
+## Lighthouse Upload Single File
+- isomorphic sdk upload text as file or selected file
+<Canvas of={UploadFormStories.LighthouseText} />
+
+<Canvas  of={UploadFormStories.LighthouseFile} />
+
+
+## Lighthouse with directory
+- select a directory to upload
+<Canvas of={UploadFormStories.LighthouseDirectory} />
+
+## Lighthouse with multiple files
+- select multiple files to upload (as a directory)
+<Canvas  of={UploadFormStories.LighthouseMultipleFiles} />
 
 ## Storacha
 - for hot storage and IPFS gateway retrieval
-
 - It will skip upload if file always exists 
+- upload text as file or selected file
 
-<Canvas>
-  <Story of={UploadFormStories.FileStoracha} />
-</Canvas>
+<Canvas of={UploadFormStories.StorachaText} />
+
+<Canvas of={UploadFormStories.StorachaFile} />
 
 
-## Storacha
+## Storacha multi field as single file
+- group multiple fields into a directory 
 - for hot storage and IPFS gateway retrieval
-<Canvas>
-  <Story of={UploadFormStories.FileStoracha} />
-</Canvas>
+
+<Canvas of={UploadFormStories.StorachaMultifield} />
 
 
 ## Akave
@@ -37,6 +47,7 @@ import * as UploadFormStories from './UploadForm.stories';
 - require minimum size to upload
 - specify backend via VITE_AKAVE_ENDPOINT_URL
 
-<Canvas>
-  <Story of={UploadFormStories.TextAkave} />
-</Canvas>
+<Canvas  of={UploadFormStories.AkaveText} />
+
+
+<Canvas  of={UploadFormStories.AkaveFile} />

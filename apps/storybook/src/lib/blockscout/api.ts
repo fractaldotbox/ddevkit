@@ -1,10 +1,15 @@
-import { Address, Transaction, parseGwei, parseUnits } from "viem";
+import { Address, parseUnits } from "viem";
+import * as chains from "viem/chains";
 import {
 	TokenTransfer,
 	TransactionMeta,
 } from "../domain/transaction/transaction";
 
-const ROOT = "https://eth.blockscout.com/api/";
+const chainIdToApiRoot: any = {
+	[chains.mainnet.id]: "https://eth.blockscout.com/api/",
+	[chains.optimism.id]: "https://optimism.blockscout.com/api/",
+};
+
 export const invokeApi = async (endpoint: string, body?: any) => {
 	return fetch(endpoint, {
 		method: "GET",
@@ -26,23 +31,30 @@ export interface BlockscoutEndpointParams {
 	txnHash?: string;
 }
 
-export const ENDPOINT_STRATEGIES = {
+export const getEndpointStrategy = (chainId?: number) => ({
 	[BlockscoutEndpoint.Address]: (params: BlockscoutEndpointParams) => {
 		const { address } = params;
-		return ROOT + "v1/address/" + address;
+		return (
+			chainIdToApiRoot[chainId || chains.mainnet.id] + "v1/address/" + address
+		);
 	},
 	[BlockscoutEndpoint.Transaction]: (params: BlockscoutEndpointParams) => {
 		const { txnHash } = params;
-		return ROOT + "v2/transactions/" + txnHash;
+		return (
+			chainIdToApiRoot[chainId || chains.mainnet.id] +
+			"v2/transactions/" +
+			txnHash
+		);
 	},
-};
+});
 
 // TODO enum type
 export const getEndpoint = (
 	endpoint: BlockscoutEndpoint,
 	params: BlockscoutEndpointParams,
+	chainId = 1,
 ) => {
-	const strategy = ENDPOINT_STRATEGIES[endpoint];
+	const strategy = getEndpointStrategy(chainId)[endpoint];
 	if (!strategy) {
 		throw new Error("");
 	}
@@ -50,16 +62,54 @@ export const getEndpoint = (
 	return strategy(params);
 };
 
-export const getAddressInfo = async (address: Address) => {
-	const endpoint = getEndpoint(BlockscoutEndpoint.Address, { address });
+export const getAddressInfo = async (address: Address, chainId?: number) => {
+	const endpoint = getEndpoint(
+		BlockscoutEndpoint.Address,
+		{ address },
+		chainId,
+	);
 	return invokeApi(endpoint);
 };
 
-export const getTransaction = async (txnHash: string) => {
-	const endpoint = getEndpoint(BlockscoutEndpoint.Transaction, {
-		txnHash,
-	});
+export const getTransaction = async (txnHash: string, chainId?: number) => {
+	const endpoint = getEndpoint(
+		BlockscoutEndpoint.Transaction,
+		{
+			txnHash,
+		},
+		chainId,
+	);
 	return invokeApi(endpoint);
+};
+
+export interface GetTxnByFilterQuery {
+	filter?: string;
+
+	// maybe have more types
+	type?: (
+		| "token_transfer"
+		| "contract_creation"
+		| "contract_call"
+		| "coin_transfer"
+		| "token_creation"
+	)[];
+	method?: string;
+	chainId?: number;
+}
+
+export const getTxnsByFilter = async ({
+	filter,
+	type,
+	method,
+	chainId = 1,
+}: GetTxnByFilterQuery) => {
+	const queryString = new URLSearchParams({
+		...(filter && { filter }),
+		...(method && { method }),
+		...(type && { type: type.join(",") }),
+	});
+	const endpoint = `${chainIdToApiRoot[chainId || chains.mainnet.id]}v2/transactions?${queryString.toString()}`;
+	return await invokeApi(endpoint);
 };
 
 export const findDisplayedTxType = (transaction_types: any[]): string => {
@@ -96,6 +146,8 @@ export const asTransactionMeta = (res: any): TransactionMeta => {
 		isSuccess: res.success,
 		displayedTxType: findDisplayedTxType(res.tx_types),
 		value: parseUnits(res.value, res.decimals),
-		tokenTransfers: res.token_transfers.map(asTokenTransfer),
+		tokenTransfers: (res.token_transfers || []).map(asTokenTransfer),
+		gas: res.gas_used,
+		blockNumber: res.block_number,
 	};
 };

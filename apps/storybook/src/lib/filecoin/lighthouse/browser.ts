@@ -91,7 +91,6 @@ export const uploadFiles = async <T extends boolean>(
 		.post<UploadFileReturnType<T>>(endpoint, {
 			body: formData,
 			onDownloadProgress: (progress: DownloadProgress) => {
-				console.log("progress", progress);
 				if (uploadProgressCallback) {
 					uploadProgressCallback(progress);
 				}
