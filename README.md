@@ -95,7 +95,7 @@ Faster: Build size is generally not the major concern given treeshaking at moder
 
 - Opinonated (us) defaults and unopionated extensions  
 
- - First of all, we use a plugin systems, such that libraries sensible to use case like `starknetjs` could be added easily, although we also prefer [scure-starknet](https://github.com/paulmillr/scure-starknet). Libraries such as rainbowkit are intentionally excluded. 
+ - First of all, we support a plugin systems such that libraries sensible to use case like `starknetjs` could be added easily, although we also prefer [scure-starknet](https://github.com/paulmillr/scure-starknet). Libraries such as rainbowkit are intentionally excluded. 
 - At its core, we prefer lightweight, framework-agnoistic libraries with minimal context provider such as `jotai` or `permissionless`. Individual choices are documented at Rationale.
 - At the end of the day these are code receipes and components, nothing stops anyone to extend with particular component libraries.    
     - These components wont be possible without amazing work at [onchainkit](https://github.com/coinbase/onchainkit), ensjs, [starknet-react](https://github.com/apibara/starknet-react) etc. Thus we create default opionated receipes, also shows side by side methods to opt for integrating particular 3rd party libraries.
@@ -153,6 +153,11 @@ Note only default style is supported.
 
 - vitest over jest
   - used by shadcn, scaffold and generally author find less issues for typscript setup as in jest.
+
+- Currently we use a small set of unix style stable, isomorphic lightweight libraries. To avoid supply chain attacks, we should make versions easily fixed/immutable or configurable to native 
+  - `ky` over `fetch` to reduce boilerplates
+  - use `URLSearchParams` over `fast-querystring`
+  - unjs packages
 
 ## Acknolwedgement
 - Thanks shadcn released with MIT license to make this possible

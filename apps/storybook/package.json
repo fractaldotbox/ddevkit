@@ -12,6 +12,7 @@
 		"deploy:fleek": "fleek --debug sites deploy"
 	},
 	"dependencies": {
+		"@repo/ui-react": "workspace:*",
 		"@ensdomains/ensjs": "4.0.1-alpha.0",
 		"@ensdomains/ensjs-react": "^0.0.3",
 		"@ethereum-attestation-service/eas-sdk": "2.6.0",

@@ -1,8 +1,8 @@
-import { Avatar as AvatarPrimitive } from "@/components/ui/avatar";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Avatar as AvatarPrimitive } from "@/components/shadcn/avatar";
+import { Skeleton } from "@/components/shadcn/skeleton";
 import { normalize } from "viem/ens";
 import { useEnsAvatar } from "wagmi";
-import { AvatarDisplayed } from "./Avatar";
+import { AvatarDisplayed } from "./avatar";
 
 export const AvatarWagmi = ({
 	ens,

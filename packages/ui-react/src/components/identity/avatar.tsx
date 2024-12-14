@@ -5,8 +5,8 @@ import {
 	AvatarFallback,
 	AvatarImage,
 	Avatar as AvatarPrimitive,
-} from "@/components/ui/avatar";
-import { Skeleton } from "@/components/ui/skeleton";
+} from "@/components/shadcn/avatar";
+import { Skeleton } from "@/components/shadcn/skeleton";
 import { MetadataService, useIdentity } from "@/hooks/use-identity";
 
 // support direct props override while consider extract into common provider
