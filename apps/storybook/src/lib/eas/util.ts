@@ -2,7 +2,7 @@ import { EAS_CONFIG_BY_CHAIN_ID } from "@/utils/config";
 import { Address, Chain } from "viem";
 import { mainnet } from "viem/chains";
 
-const getEasscanEndpoint = (chainId: number) => {
+export const getEasscanEndpoint = (chainId: number) => {
 	return EAS_CONFIG_BY_CHAIN_ID[chainId]?.easscanUrl;
 };
 

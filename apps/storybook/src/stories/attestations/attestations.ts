@@ -47,3 +47,10 @@ export type AttestationMeta = {
 	ageDisplayed: string;
 	txid: string;
 };
+
+export type UploadAttestationParams = {
+	uid?: string;
+	chainId?: number;
+	payload?: any;
+	isEncrypted?: boolean;
+};
