@@ -5,7 +5,7 @@ export const withToaster = () => {
 		return (
 			<>
 				<Story args={context.args} />
-				<Toaster />
+				<Toaster className="md:max-w-[560px]" />
 			</>
 		);
 	};

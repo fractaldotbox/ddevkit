@@ -31,7 +31,7 @@ export const FileInputField = ({
 			value={field?.value?.fileName}
 			onChange={(event) => {
 				const files = event?.target?.files;
-				const file = isMultipleFiles ? files : files?.[0];
+				const file = isMultipleFiles || isAcceptDirectory ? files : files?.[0];
 				field.onChange(file);
 			}}
 		/>

@@ -80,13 +80,6 @@ export const LighthouseFile: Story = {
 	},
 };
 
-export const LighthouseDirectory: Story = {
-	args: {
-		...LighthouseFile.args,
-		type: UploadFormType.FileDirectory,
-	},
-};
-
 export const LighthouseMultipleFiles: Story = {
 	args: {
 		type: UploadFormType.FileMultiple,
@@ -95,16 +88,27 @@ export const LighthouseMultipleFiles: Story = {
 			file,
 			uploadProgressCallback,
 		}: UploadFilesParams<{ file: File[] }>) => {
-			console.log("upload DirectoryLighthouse", file);
 			const response = await uploadFilesLighthouse(
 				file,
 				LIGHTHOUSE_API_KEY!,
 				uploadProgressCallback,
 			);
-			const { name, cid } = response;
+			const name = Array.from(file)
+				.map((f) => f.name)
+				.join(", ");
+
+			const { cid } = response;
 			uploadSuccessToast({ cid, name });
 			return cid;
 		},
+	},
+};
+
+export const LighthouseDirectory: Story = {
+	args: {
+		...LighthouseMultipleFiles.args,
+		type: UploadFormType.FileDirectory,
+		isMultipleFiles: true,
 	},
 };
 

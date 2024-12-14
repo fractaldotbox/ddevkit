@@ -12,8 +12,10 @@ export const uploadSuccessToast = ({
 		title: "File uploaded",
 		description: (
 			<div>
-				File uploaded {name} <br />
-				CID:
+				{name && <span className="pr-2">Name:</span>}
+				{name}
+				<br />
+				<span className="pr-2">CID:</span>
 				<a href={url} target="_blank">
 					{cid}
 				</a>

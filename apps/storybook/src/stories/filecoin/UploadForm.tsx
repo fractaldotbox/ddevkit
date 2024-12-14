@@ -69,7 +69,7 @@ const createFormFieldsWithFile = (
 				<FormItem>
 					<FormLabel>File</FormLabel>
 					<FormControl>
-						<FileInputField {...field} {...fileFieldArgs} />
+						<FileInputField field={field} {...fileFieldArgs} />
 					</FormControl>
 					<FormDescription>Upload file to Filecoin</FormDescription>
 					<FormMessage />
