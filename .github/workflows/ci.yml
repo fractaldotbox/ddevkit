@@ -55,6 +55,12 @@ jobs:
       - name: Build app
         run: pnpm --filter storybook build
 
+      - name: Upload storybook build
+        uses: actions/upload-artifact@v3
+        with:
+          name: storybook-build
+          path: apps/storybook/storybook-static
+
   deploy-storybook:
     needs: [build-storybook]
     if: github.ref == 'refs/heads/main'
@@ -71,6 +77,12 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
+
+      - name: Download storybook build
+        uses: actions/download-artifact@v3
+        with:
+          name: storybook-build
+          path: apps/storybook/storybook-static
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
