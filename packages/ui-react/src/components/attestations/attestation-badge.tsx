@@ -1,5 +1,5 @@
-import { Badge } from "@/components/ui/badge";
-import { useGetAttestations } from "@/lib/eas/get-attestations";
+import { Badge } from "#components/ui/badge.tsx";
+import { useGetAttestations } from "#lib/eas/get-attestations.tsx";
 import { useChainId } from "wagmi";
 
 // TODO

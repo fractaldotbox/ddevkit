@@ -16,7 +16,10 @@ import {
 	parseAbiParameters,
 	stringToHex,
 } from "viem";
-import { ZERO_ADDRESS, ZERO_HASH } from "../constants";
+import {
+	ZERO_ADDRESS,
+	ZERO_HASH,
+} from "../../../../../packages/ui-react/src/lib/constants";
 import { OFFCHAIN_ATTESTATION_TYPES } from "./offchain/offchain";
 import { stringifyWithBigInt } from "./util";
 

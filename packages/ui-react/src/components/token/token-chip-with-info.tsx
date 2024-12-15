@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { formatUnitsWithDecimalsDisplayed } from "@/lib/amount";
+import { Button } from "#components/ui/button";
+import { formatUnitsWithDecimalsDisplayed } from "#/lib/amount";
 import { formatEther, formatGwei, formatUnits } from "viem";
 
 /**

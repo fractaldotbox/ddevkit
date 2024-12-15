@@ -20,5 +20,20 @@
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true
 	},
-	"include": ["src"]
+	"include": [
+		"src",
+		"../../packages/ui-react/src/lib/alchemy.ts",
+		"../../packages/ui-react/src/lib/amount.ts",
+		"../../packages/ui-react/src/lib/constants.ts",
+		"../../packages/ui-react/src/lib/test-utils-isomorphic.ts",
+		"../../packages/ui-react/src/lib/test-utils-node.ts",
+		"../../packages/ui-react/src/components/attestations/attestation-badge.tsx",
+		"../../packages/ui-react/src/components/attestations/attestation-card.tsx",
+		"../../packages/ui-react/src/components/attestations/AttestationForm.tsx",
+		"../../packages/ui-react/src/components/attestations/attestations.ts",
+		"../../packages/ui-react/src/components/attestations/AttestationsTable.tsx",
+		"../../packages/ui-react/src/components/attestations/SchemaBadge.tsx",
+		"../../packages/ui-react/src/components/attestations/UploadAttestation.tsx",
+		"../../packages/ui-react/src/components/signature/signature-verify-badge.tsx"
+	]
 }

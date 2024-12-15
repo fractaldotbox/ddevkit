@@ -1,5 +1,5 @@
 {
-	"name": "@repo/ui-react",
+	"name": "@repo/domain",
 	"version": "0.0.0",
 	"private": true,
 	"exports": {
@@ -8,9 +8,6 @@
 	},
 	"imports": {
 		"#*": ["./src/*", "./src/*.tsx"]
-	},
-	"scripts": {
-		"generate:component": "turbo gen react-component"
 	},
 	"devDependencies": {
 		"@repo/typescript-config": "workspace:*",
@@ -24,7 +21,6 @@
 		"vitest": "^2.0.5"
 	},
 	"dependencies": {
-		"@repo/domain": "workspace:*",
 		"@ensdomains/ensjs": "4.0.1-alpha.0",
 		"@ensdomains/ensjs-react": "^0.0.3",
 		"@ethereum-attestation-service/eas-sdk": "2.6.0",

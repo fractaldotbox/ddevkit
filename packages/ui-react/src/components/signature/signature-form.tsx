@@ -11,12 +11,12 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/components/ui/form";
+} from "#components/ui/form.tsx";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Pencil2Icon } from "@radix-ui/react-icons";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "#components/ui/button.tsx";
+import { Input } from "#components/ui/input.tsx";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 

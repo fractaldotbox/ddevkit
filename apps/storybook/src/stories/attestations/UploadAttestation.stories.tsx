@@ -5,7 +5,7 @@ import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { injected } from "wagmi/connectors";
 import { withToaster } from "../decorators/toaster";
 import { withWagmiProvider } from "../decorators/wagmi";
-import { UploadAttestation } from "./UploadAttestation";
+import { UploadAttestation } from "../../../../../packages/ui-react/src/components/attestations/UploadAttestation";
 
 const meta = {
 	title: "Attestations/UploadAttestation",

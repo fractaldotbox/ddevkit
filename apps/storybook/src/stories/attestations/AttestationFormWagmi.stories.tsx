@@ -21,7 +21,7 @@ import { sepolia } from "viem/chains";
 import { withToaster } from "../decorators/toaster";
 import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
 import { withWalletControlWagmi } from "../decorators/wallet-control";
-import { AttestationForm } from "./AttestationForm";
+import { AttestationForm } from "../../../../../packages/ui-react/src/components/attestations/AttestationForm";
 
 export type UseAttestationWagmiParams = {
 	account: Account;

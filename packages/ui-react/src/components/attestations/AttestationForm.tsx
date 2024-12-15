@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { getEasscanAttestationUrl } from "@/lib/eas/util";
+import { Button } from "#components/shadcn/button";
+import { getEasscanAttestationUrl } from "#lib/eas/util";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "#components/ui/card";
 import {
 	Form,
 	FormControl,
@@ -13,11 +13,11 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { ToastAction } from "@/components/ui/toast";
-import { toast } from "@/hooks/use-toast";
-import { getShortHex } from "@/utils/hex";
+} from "#components/shadcn/form";
+import { Input } from "#components/shadcn/input";
+import { ToastAction } from "#components/shadcn/toast";
+import { toast } from "#hooks/shadcn/use-toast";
+import { getShortHex } from "#lib/utils/hex";
 import { SchemaBadge } from "./SchemaBadge";
 
 // TODO dynamic enough to generate fields

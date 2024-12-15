@@ -5,7 +5,7 @@ import {
 	ToastProvider,
 	ToastTitle,
 	ToastViewport,
-} from "@/components/shadcn/toast";
+} from "#components/shadcn/toast";
 import { useToast } from "@/hooks/shadcn/use-toast";
 
 export function Toaster() {

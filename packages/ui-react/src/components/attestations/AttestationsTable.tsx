@@ -1,11 +1,11 @@
-import { Badge } from "@/components/ui/badge";
-import { DataTable } from "@/components/ui/data-table";
-import { useGetAttestations } from "@/lib/eas/get-attestations";
+import { Badge } from "#components/ui/badge";
+import { DataTable } from "#components/ui/data-table";
+import { useGetAttestations } from "#lib/eas/get-attestations";
 import {
 	getEasscanAddressUrl,
 	getEasscanAttestationUrl,
 	getEasscanSchemaUrl,
-} from "@/lib/eas/util";
+} from "#lib/eas/util";
 import { truncate } from "@/utils/hex";
 import { ColumnDef } from "@tanstack/react-table";
 import { useMemo } from "react";

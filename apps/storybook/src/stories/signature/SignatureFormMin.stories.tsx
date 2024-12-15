@@ -9,8 +9,8 @@ import { EIP712Domain } from "micro-eth-signer/typed-data";
 import { useMemo } from "react";
 import type { Address } from "viem";
 import { withMockAccount } from "../decorators/wagmi";
-import { SignatureForm } from "./SignatureForm";
-import { SignatureVerifyBadge } from "./SignatureVerifyBadge";
+import { SignatureForm } from "@repo/ui-react/components/signature/signature-form";
+import { SignatureVerifyBadge } from "@repo/ui-react/components/signature/signature-verify-badge";
 import { Hex, SignType, signEIP712MessageRaw, signMessageRaw } from "./sign";
 
 export type VerifySignatureParams = {

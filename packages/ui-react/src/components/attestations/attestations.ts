@@ -1,4 +1,4 @@
-import { AttestationQueryResult } from "@/lib/eas/get-attestations";
+import { AttestationQueryResult } from "#lib/eas/get-attestations";
 import { format, formatDistance, subDays } from "date-fns";
 import {
 	AllAttestationsByQuery,

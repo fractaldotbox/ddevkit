@@ -1,7 +1,7 @@
-import { useTokenInfo } from "@/lib/domain/token/token";
+import { useTokenInfo } from "#lib/domain/token/token.ts";
 import { Address, Chain, erc20Abi } from "viem";
 import { mainnet } from "viem/chains";
-import { TokenChipWithInfo } from "./TokenChipWithInfo";
+import { TokenChipWithInfo } from "./token-chip-with-info";
 
 export type TokenChipProps = {
 	className?: string;

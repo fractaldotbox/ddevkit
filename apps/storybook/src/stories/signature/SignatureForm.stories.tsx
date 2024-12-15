@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Atom, atom, useAtom } from "jotai";
 
 import { ScrollableCodeBlock } from "@/components/ScrollableCodeBlock";
-import { TYPED_DATA } from "@/lib/signature/type-data";
+import { TYPED_DATA } from "@repo/domain/signature/type-data";
 import { useMemo } from "react";
 import {
 	http,
@@ -14,8 +14,9 @@ import {
 import { sepolia } from "viem/chains";
 import { useSignMessage } from "wagmi";
 import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
-import { SignatureForm } from "./SignatureForm";
-import { SignatureVerifyBadge } from "./SignatureVerifyBadge";
+import { SignatureForm } from "@repo/ui-react/components/signature/signature-form";
+
+import { SignatureVerifyBadge } from "@repo/ui-react/components/signature/signature-verify-badge";
 import { Hex, SignAccountType, SignType } from "./sign";
 
 const { types, primaryType, domain } = TYPED_DATA;

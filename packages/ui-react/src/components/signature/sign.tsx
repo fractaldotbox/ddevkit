@@ -5,7 +5,7 @@ import { signMessage } from "@wagmi/core";
 import { useEffect, useRef, useState } from "react";
 import { useAccount, useConfig, useSignMessage } from "wagmi";
 
-import { TYPED_DATA } from "@/lib/signature/type-data";
+import { TYPED_DATA } from "@repo/domain/signature/type-data";
 import * as typed from "micro-eth-signer/typed-data";
 import {
 	EIP712Domain,

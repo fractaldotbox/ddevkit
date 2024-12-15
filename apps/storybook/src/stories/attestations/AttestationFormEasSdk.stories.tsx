@@ -13,7 +13,7 @@ import { Address, Hex } from "viem";
 import { withToaster } from "../decorators/toaster";
 import { withWalletControl } from "../decorators/wallet-control";
 import { BY_USER } from "../fixture";
-import { AttestationForm } from "./AttestationForm";
+import { AttestationForm } from "../../../../../packages/ui-react/src/components/attestations/AttestationForm";
 
 const requestTemplate = {
 	recipient: BY_USER.eas.mockReceipient.address,

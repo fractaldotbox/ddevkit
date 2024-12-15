@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { mainnet, optimismSepolia } from "viem/chains";
 import { withWagmiProvider } from "../decorators/wagmi";
-import { TokenChip } from "./TokenChip";
+import { TokenChip } from "@repo/ui-react/components/token/token-chip";
 
 const meta = {
 	title: "OnchainInfo/TokenChip",

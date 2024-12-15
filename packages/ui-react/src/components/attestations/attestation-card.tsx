@@ -5,10 +5,10 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useGetAttestations } from "@/lib/eas/get-attestations";
+} from "#components/ui/card";
+import { Separator } from "#components/ui/separator";
+import { Skeleton } from "#components/ui/skeleton";
+import { useGetAttestations } from "#lib/eas/get-attestations";
 import { getShortHex } from "@/utils/hex";
 import { Label } from "@radix-ui/react-label";
 import { format } from "date-fns";

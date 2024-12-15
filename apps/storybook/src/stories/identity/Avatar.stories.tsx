@@ -1,5 +1,4 @@
 import { Avatar } from "@repo/ui-react/components/identity/avatar";
-import { AvatarWagmi } from "@repo/ui-react/components/identity/avatar-wagmi";
 import type { Meta, StoryObj } from "@storybook/react";
 import {
 	withQueryClientProvider,

@@ -1,5 +1,5 @@
-import { Badge } from "@/components/ui/badge";
-import { getEasscanSchemaUrl } from "@/lib/eas/util";
+import { Badge } from "#components/ui/badge";
+import { getEasscanSchemaUrl } from "#lib/eas/util";
 import { Chain } from "viem/chains";
 
 export const SchemaBadge = ({

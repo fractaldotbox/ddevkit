@@ -1,5 +1,5 @@
-import { Avatar as AvatarPrimitive } from "@/components/shadcn/avatar";
-import { Skeleton } from "@/components/shadcn/skeleton";
+import { Avatar as AvatarPrimitive } from "#components/shadcn/avatar.tsx";
+import { Skeleton } from "#components/shadcn/skeleton.tsx";
 import { normalize } from "viem/ens";
 import { useEnsAvatar } from "wagmi";
 import { AvatarDisplayed } from "./avatar";
