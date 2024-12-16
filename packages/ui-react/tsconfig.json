@@ -2,7 +2,7 @@
 	"extends": "@repo/typescript-config/react-library.json",
 	"compilerOptions": {
 		"baseUrl": ".",
-		"moduleResolution": "nodenext",
+		"moduleResolution": "bundler",
 		"paths": {
 			"#*": ["src/*"]
 		}

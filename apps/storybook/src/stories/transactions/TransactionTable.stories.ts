@@ -3,7 +3,7 @@ import { TXN_LIST, generateTxnFixturesByCount } from "@/lib/blockscout/fixture";
 import { Explorer } from "@/lib/explorer/url";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withWagmiProvider } from "../decorators/wagmi";
-import { TransactionTable } from "./TransactionTable";
+import { TransactionTable } from "@repo/ui-react/components/transactions/TransactionTable.js";
 
 const meta = {
 	title: "Transactions/TransactionTable",

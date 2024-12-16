@@ -3,7 +3,7 @@ import {
 	TooltipContent,
 	TooltipProvider,
 	TooltipTrigger,
-} from "#components/shadcn/tooltip.tsx";
+} from "#components/shadcn/tooltip";
 import { Check, Copy } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Hex, getAddress } from "viem";

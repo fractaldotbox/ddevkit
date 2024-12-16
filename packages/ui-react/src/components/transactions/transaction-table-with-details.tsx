@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useGetTransactions } from "@/hooks/use-blockscout";
 import { GetTxnByFilterQuery, asTransactionMeta } from "@/lib/blockscout/api";
 import { Explorer } from "@/lib/explorer/url";
-import { TransactionTable } from "./TransactionTable";
+import { TransactionTable } from "./transaction-table";
 
 export type TransactionTableWithDetailsProps = GetTxnByFilterQuery & {
 	chainId?: number;

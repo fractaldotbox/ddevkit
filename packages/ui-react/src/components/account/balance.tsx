@@ -7,7 +7,7 @@ import { mainnet } from "viem/chains";
 import { useBalance, useReadContract } from "wagmi";
 import { ABI_ERC20 } from "../../utils/config";
 
-type ETHBalanceProps = {
+type NativeTokenBalanceProps = {
 	address: Address;
 	chainId?: number;
 	decimalsDisplayed?: number;
@@ -15,11 +15,11 @@ type ETHBalanceProps = {
 
 // Consider locale for https://github.com/bpierre/dnum
 
-export const ETHBalance = ({
+export const NativeTokenBalance = ({
 	address,
 	chainId = mainnet.id,
 	decimalsDisplayed = 4,
-}: ETHBalanceProps) => {
+}: NativeTokenBalanceProps) => {
 	const { data, isError, isLoading } = useBalance({
 		address,
 		chainId,
@@ -48,7 +48,7 @@ export const Balance = ({
 		return <TokenBalance address={address} chainId={chainId} token={token} />;
 	}
 
-	return <ETHBalance address={address} chainId={chainId} />;
+	return <NativeTokenBalance address={address} chainId={chainId} />;
 };
 
 export const TokenBalance = ({

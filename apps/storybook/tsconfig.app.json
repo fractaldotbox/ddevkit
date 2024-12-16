@@ -34,6 +34,8 @@
 		"../../packages/ui-react/src/components/attestations/AttestationsTable.tsx",
 		"../../packages/ui-react/src/components/attestations/SchemaBadge.tsx",
 		"../../packages/ui-react/src/components/attestations/UploadAttestation.tsx",
-		"../../packages/ui-react/src/components/signature/signature-verify-badge.tsx"
+		"../../packages/ui-react/src/components/signature/signature-verify-badge.tsx",, "../../packages/ui-react/src/components/transactions/TransactionTableWithDetails.tsx"
+, "../../packages/ui-react/src/components/transactions/transaction-table.tsx"		"../../packages/ui-react/src/components/transactions/transaction-card-with-details.tsx",
+		"../../packages/ui-react/src/components/transactions/transaction-card.tsx"
 	]
 }

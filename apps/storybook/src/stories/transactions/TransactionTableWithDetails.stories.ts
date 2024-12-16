@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { withWagmiProvider } from "../decorators/wagmi";
-import { TransactionTableWithDetails } from "./TransactionTableWithDetails";
+import { TransactionTableWithDetails } from "@repo/ui-react/components/transactions/TransactionTableWithDetails.js";
 
 const meta = {
 	title: "Transactions/TransactionTableWithDetails",
