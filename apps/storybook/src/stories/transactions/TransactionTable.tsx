@@ -5,7 +5,7 @@ import { TransactionMeta } from "@/lib/domain/transaction/transaction";
 import {
 	Explorer,
 	ExplorerEntity,
-	createBlockExplorerUrl,
+	blockExplorerUrlFactory,
 } from "@/lib/explorer/url";
 import { getShortAddress } from "@/utils/address";
 import { getShortHex } from "@/utils/hex";
@@ -36,21 +36,30 @@ const getTxnTableCols = ({
 	chainId: number;
 	explorer: Explorer;
 }): ColumnDef<TransactionMeta>[] => {
+	const chain = resolveChainById(chainId);
+	const createTxnUrl = blockExplorerUrlFactory({
+		chain,
+		config: {
+			name: explorer,
+		},
+	});
+
 	return [
 		{
 			accessorKey: "hash",
 			header: "Txn Hash",
 			cell: ({ row }) => {
 				const txnHash = row.getValue<string>("hash") as `0x${string}`;
-
+				const txnUrl = createTxnUrl({
+					chain,
+					entity: ExplorerEntity.Transaction,
+					params: {
+						txnHash,
+					},
+				});
 				return (
 					<a
-						href={createBlockExplorerUrl({
-							chain: resolveChainById(chainId),
-							entity: ExplorerEntity.Transaction,
-							params: { txnHash },
-							explorer,
-						})}
+						href={txnUrl}
 						target="_blank"
 						rel="noopener noreferrer"
 						className="flex items-center hover:underline"

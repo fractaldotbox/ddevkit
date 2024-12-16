@@ -1,7 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { useGetTransaction } from "@/hooks/use-blockscout";
 import { useTokenInfo } from "@/lib/domain/token/token";
-import { ExplorerEntity, createBlockExplorerUrl } from "@/lib/explorer/url";
+import { ExplorerEntity, blockExplorerUrlFactory } from "@/lib/explorer/url";
 import { Chain } from "viem";
 import { mainnet } from "viem/chains";
 import { useConfig } from "wagmi";
@@ -28,7 +28,11 @@ export const TransactionCard = ({
 	//     address: transaction?.tokenTransfers?.[0]?.address,
 	// });
 
-	const txnUrl = createBlockExplorerUrl({
+	const createTxnUrl = blockExplorerUrlFactory({
+		chain,
+	});
+
+	const txnUrl = createTxnUrl({
 		chain,
 		entity: ExplorerEntity.Transaction,
 		params: {
