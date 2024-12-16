@@ -20,6 +20,11 @@ const eas = {
 	},
 };
 
+const filecoinTopHolder = {
+	address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+	filAddress: "f1m2swr32yrlouzs7ijui3jttwgc6lxa5n5sookhi",
+};
+
 mock.address = addr.fromPrivateKey(mock.privateKey) as Address;
 
 // mainnet, base https://easscan.org/address/0x1e3de6aE412cA218FD2ae3379750388D414532dc
@@ -31,6 +36,7 @@ const easSampleAttester = {
 export const BY_USER = {
 	vitalik,
 	easSampleAttester,
+	filecoinTopHolder,
 	mock,
 	eas,
 };
