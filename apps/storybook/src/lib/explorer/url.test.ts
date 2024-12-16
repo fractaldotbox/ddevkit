@@ -106,7 +106,6 @@ describe("BlockExplorer", () => {
 			},
 		});
 
-		console.log(defaultConfig);
 		const url = createUrl({ chain, entity, params });
 		expect(url).toEqual(expected);
 	});

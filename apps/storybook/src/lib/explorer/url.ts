@@ -22,13 +22,6 @@ export enum ExplorerEntity {
 	Token = "token",
 }
 
-// From viem
-type ChainBlockExplorer = {
-	name: string;
-	url: string;
-	apiUrl?: string | undefined;
-};
-
 /**
  * Model after https://eips.ethereum.org/EIPS/eip-3091
  */
