@@ -60,10 +60,10 @@ export type CreateBlockExplorerUrlArgs = {
  * inefficient implementation, will optimize later with currying
  *
  * Currying as generally we don't need run-time dynamic choice of explorer but a handy api to create corrs. urls
- * run-time params couold be locale
+ * run-time params are txn hash, or locale etc which populated from config
  *
  * viem blockExplorers, or any obj-based config cannot handle locale or more complicated logic
- * single override, functional config to simplify the logic here
+ * prefer single functional override  to simplify the logic here
  * we might want e.g. filecoin specific chain with blockscout for the rest
  *
  * TODO figure out best way to inject overrideBlockExplorers / overrideStrategies after we have more non standard examples
