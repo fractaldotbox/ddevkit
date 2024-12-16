@@ -6,13 +6,13 @@ import { BLOCKSCOUT_CHAINS_BY_ID } from "./chainInfo";
 
 // TODO ensure treeshaking
 
-export const getBlockscoutChainEndpoint = (chain: Chain) => {
+export const getBlockscoutChainEndpoint = (chain: Chain): string => {
 	const blockScoutChainExplorer =
 		BLOCKSCOUT_CHAINS_BY_ID[chain.id.toString()]?.explorers?.[0];
 
 	if (!blockScoutChainExplorer) {
-		return;
+		return "";
 	}
 
-	return blockScoutChainExplorer.url;
+	return blockScoutChainExplorer.url.replace(/\/$/, "");
 };
