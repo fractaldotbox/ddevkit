@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { BY_USER } from "@repo/domain/user.fixture";
 import { Address } from "viem";
 import { base, optimism } from "viem/chains";
 import { BY_CHAIN_ID, Token } from "../../utils/config";
 import { withWagmiProvider } from "../decorators/wagmi";
-import { BY_USER } from "../fixture";
 import { Balance } from "./Balance";
 
 const meta = {

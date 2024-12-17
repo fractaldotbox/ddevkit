@@ -1,8 +1,8 @@
+import { TRANSACTION } from "@repo/domain/user.fixture";
 import { TransactionCard } from "@repo/ui-react/components/transactions/transaction-card";
 import type { Meta, StoryObj } from "@storybook/react";
 import { mainnet } from "viem/chains";
 import { withWagmiProvider } from "../decorators/wagmi";
-import { TRANSACTION } from "../fixture";
 
 const meta = {
 	title: "Transactions/TransactionCard",

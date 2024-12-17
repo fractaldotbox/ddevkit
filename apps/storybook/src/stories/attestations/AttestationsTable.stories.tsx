@@ -1,7 +1,7 @@
+import { BY_USER, getRandomAddress } from "@repo/domain/user.fixture";
 import { AttestationsTable } from "@repo/ui-react/components/attestations/attestations-table";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withWagmiProvider } from "../decorators/wagmi";
-import { BY_USER, getRandomAddress } from "../fixture";
 
 const meta = {
 	title: "Attestations/AttestationsTable",

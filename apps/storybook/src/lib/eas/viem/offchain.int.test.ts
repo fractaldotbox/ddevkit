@@ -1,4 +1,3 @@
-import { BY_USER } from "@/stories/fixture";
 import {
 	EAS,
 	NO_EXPIRATION,
@@ -9,6 +8,7 @@ import {
 	ZERO_BYTES32,
 	getOffchainUID as getOffchainUIDEasSdk,
 } from "@ethereum-attestation-service/eas-sdk";
+import { BY_USER } from "@repo/domain/user.fixture";
 import { Signature, Signer, encodeBytes32String, ethers } from "ethers";
 import { http, Address, createWalletClient, custom } from "viem";
 import { Hex } from "viem";

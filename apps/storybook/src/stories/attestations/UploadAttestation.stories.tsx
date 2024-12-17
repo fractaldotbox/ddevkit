@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { getShortAddress } from "@/utils/address";
-import { UploadAttestation } from "@repo/ui-react/components/attestations/UploadAttestation";
+import { UploadAttestation } from "@repo/ui-react/components/attestations/upload-attestation";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { injected } from "wagmi/connectors";

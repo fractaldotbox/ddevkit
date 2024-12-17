@@ -1,7 +1,7 @@
+import { BY_USER } from "@repo/domain/user.fixture";
 import { Name } from "@repo/ui-react/components/identity/name";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withQueryClientProvider } from "../decorators/wagmi";
-import { BY_USER } from "../fixture";
 
 const meta = {
 	title: "Identity/Name/Name",
