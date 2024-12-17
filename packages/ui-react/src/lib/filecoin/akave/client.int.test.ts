@@ -1,5 +1,9 @@
-import { createTestContent, createTestFile } from "@/lib/test-utils-node";
 import { faker } from "@faker-js/faker";
+import rootConfig from "@repo/domain/config";
+import {
+	createTestContent,
+	createTestFile,
+} from "@repo/ui-react/lib/test-utils-node";
 import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import {
 	AkaveBucket,
@@ -13,9 +17,8 @@ import {
 describe(
 	"with file",
 	() => {
-		const AKAVE_ENDPOINT_URL = import.meta.env.VITE_AKAVE_ENDPOINT_URL;
 		const config = {
-			akaveEndpointUrl: AKAVE_ENDPOINT_URL,
+			akaveEndpointUrl: rootConfig.akave.endpointUrl!,
 		};
 		const testBucketNameCreate = "test-bucket-create";
 		const testBucketNameExists = "test-bucket";

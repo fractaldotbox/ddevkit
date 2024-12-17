@@ -8,6 +8,7 @@ import {
 	ZERO_BYTES32,
 	getOffchainUID as getOffchainUIDEasSdk,
 } from "@ethereum-attestation-service/eas-sdk";
+import config from "@repo/domain/config";
 import { BY_USER } from "@repo/domain/user.fixture";
 import { Signature, Signer, encodeBytes32String, ethers } from "ethers";
 import { http, Address, createWalletClient, custom } from "viem";
@@ -25,7 +26,7 @@ import {
 } from "../offchain/offchain";
 import { EIP712_NAME } from "../versions";
 import { signOffchainAttestation } from "./offchain";
-import { EASContractAddress } from "./onchain.test";
+import { EASContractAddress } from "./onchain.e2e.test";
 
 describe("offchain attestation handling/verification", () => {
 	let eas: EAS;
@@ -35,7 +36,7 @@ describe("offchain attestation handling/verification", () => {
 
 	const salt = encodeBytes32String("SALT") as Hex;
 
-	const privateKey = process.env.TESTER_PRIVATE_KEY_EAS as Hex;
+	const privateKey = config.test.eas.privateKey as Hex;
 	const from = privateKeyToAccount(privateKey);
 
 	const requestTemplate = {

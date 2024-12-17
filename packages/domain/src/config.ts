@@ -10,6 +10,15 @@ export default {
 		apiKey: process.env.LIGHTHOUSE_API_KEY,
 	},
 	akave: {
-		endpointUrl: ProcessingInstruction.env.AKAVE_ENDPOINT_URL,
+		endpointUrl: process.env.AKAVE_ENDPOINT_URL,
+	},
+	storacha: {
+		key: process.env.STORACHA_KEY,
+		proof: process.env.STORACHA_PROOF,
+	},
+	test: {
+		eas: {
+			privateKey: process.env.TEST_EAS_PRIVATE_KEY,
+		},
 	},
 };

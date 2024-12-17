@@ -1,5 +1,6 @@
 // Note test case at https://github.com/storacha/w3up/blob/main/packages/w3up-client/test/client.test.js
 
+import config from "@repo/domain/config";
 import { Client, create } from "@web3-storage/w3up-client";
 import { Signer } from "@web3-storage/w3up-client/principal/ed25519";
 import * as Proof from "@web3-storage/w3up-client/proof";
@@ -9,9 +10,6 @@ import * as Link from "multiformats/link";
 import { createPendingTransactionFilter } from "viem/actions";
 import { beforeAll, describe, expect, test } from "vitest";
 import { authWithEmail } from "./isomorphic";
-const STORACHA_KEY = process.env.VITE_STORACHA_KEY!;
-const STORACHA_EMAIL = process.env.VITE_STORACHA_EMAIL!;
-const STORACHA_PROOF = process.env.VITE_STORACHA_PROOF!;
 
 // https://github.com/storacha/w3up/issues/1591
 // required at nodejs, no issue at browser
@@ -32,10 +30,10 @@ describe(
 		let client: Client;
 
 		beforeAll(async () => {
-			const principal = Signer.parse(STORACHA_KEY!);
+			const principal = Signer.parse(config.storacha.key!);
 			const store = new StoreMemory();
 			client = await create({ principal, store });
-			const proof = await Proof.parse(STORACHA_PROOF);
+			const proof = await Proof.parse(config.storacha.proof);
 			const space = await client.addSpace(proof);
 			await client.setCurrentSpace(space.did());
 		});

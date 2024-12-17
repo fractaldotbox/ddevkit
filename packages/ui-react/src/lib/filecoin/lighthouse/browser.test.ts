@@ -1,6 +1,6 @@
+import config from "@repo/domain/config";
 import { describe, expect, test } from "vitest";
 import uploadFilesBrowser from "./browser";
-
 export const createFileForm = (files: File[], isDirectory = false) => {
 	// Create a form element
 	const form = document.createElement("form");
@@ -49,11 +49,6 @@ describe(
 			});
 		}
 
-		const accessToken = process.env.VITE_LIGHTHOUSE_API_KEY!;
-		const config = {
-			accessToken,
-		};
-
 		test.only("should upload a file using a form", async () => {
 			const file = new File(["content"], "test.txt", { type: "text/plain" });
 			const { form, input } = createFileForm([file]);
@@ -71,7 +66,9 @@ describe(
 				const uploadedFile = formData.get("file") as File;
 
 				await uploadFilesBrowser({
-					config,
+					config: {
+						accessToken: config.lighthouse.apiKey!,
+					},
 					formData: new FormData(form),
 				});
 

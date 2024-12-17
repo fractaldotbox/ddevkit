@@ -31,6 +31,7 @@ import { StoreMemory } from "@web3-storage/w3up-client/stores/memory";
 // enable sync methods
 import * as ed from "@noble/ed25519";
 import { sha512 } from "@noble/hashes/sha512";
+import config from "../../../../../domain/src/config";
 
 export type StorachaInitParams = {
 	keyString: string;
@@ -50,16 +51,6 @@ export interface StorachaConfig {
 	client: Client;
 	spaceDid: W3DID;
 }
-
-// TODO support other bundlers
-export const loadStorachaConfig = () => {
-	const keyString = process.env.VITE_STORACHA_KEY;
-	const proofString = process.env.VITE_STORACHA_PROOF;
-	if (!keyString || !proofString) {
-		throw new Error("Missing VITE_STORACHA_KEY or VITE_STORACHA_PROOF");
-	}
-	return { keyString, proofString };
-};
 
 // @w3ui use indexed DB with unextractable `CryptoKey`s.
 // https://github.com/storacha/w3ui/blob/main/packages/core/src/index.ts#L69

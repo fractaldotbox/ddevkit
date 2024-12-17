@@ -1,11 +1,11 @@
 // remove utils from from ethers and replcae with micro-eth-signer
 
-import { ZERO_ADDRESS } from "@/lib/constants";
 import { isDeepEqual } from "@/lib/utils";
 import type {
 	OffchainAttestationType,
 	SignedOffchainAttestation,
 } from "@ethereum-attestation-service/eas-sdk";
+import { ZERO_ADDRESS } from "@repo/ui-react/lib/constants";
 import { Address, verifyMessage, verifyTypedData } from "viem";
 import { getOffchainUID } from "../offchain-utils";
 import { InvalidAddress, InvalidPrimaryType, InvalidTypes } from "./typed-data";

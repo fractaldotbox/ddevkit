@@ -1,20 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { uploadFileWithFormData } from "@/lib/filecoin/akave/client";
+import { uploadFileWithFormData } from "@repo/ui-react/lib/filecoin/akave/client";
 import {
 	uploadFiles as uploadFilesLighthouse,
 	uploadText,
-} from "@/lib/filecoin/lighthouse/isomorphic";
+} from "@repo/ui-react/lib/filecoin/lighthouse/isomorphic";
 
 import {
 	initStorachaClient,
 	uploadFiles as uploadFilesStoracha,
-} from "@/lib/filecoin/storacha/isomorphic";
+} from "@repo/ui-react/lib/filecoin/storacha/isomorphic";
 
 import { withToaster } from "../decorators/toaster";
 import { UploadFilesParams, UploadForm, UploadFormType } from "./UploadForm";
 import { uploadSuccessToast } from "./upload-toast";
 
+import config from "@repo/domain/config";
 import { IpfsGateway } from "@repo/ui-react/lib/filecoin/gateway";
 import { FileLike } from "@web3-storage/w3up-client/types";
 
@@ -29,12 +30,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const LIGHTHOUSE_API_KEY = import.meta.env.VITE_LIGHTHOUSE_API_KEY!;
-const AKAVE_ENDPOINT_URL = import.meta.env.VITE_AKAVE_ENDPOINT_URL!;
-
-const STORACHA_KEY = import.meta.env.VITE_STORACHA_KEY!;
-const STORACHA_PROOF = import.meta.env.VITE_STORACHA_PROOF!;
-
 const mapTextAsBlob = (text: string) => {
 	return new Blob([text], { type: "text/plain" });
 };
@@ -46,7 +41,7 @@ export const LighthouseText: Story = {
 			file,
 			uploadProgressCallback,
 		}: UploadFilesParams<{ file: string }>) => {
-			const response = await uploadText(file, LIGHTHOUSE_API_KEY!);
+			const response = await uploadText(file, config.lighthouse.apiKey!);
 			const { name, cid, size } = response;
 			if (uploadProgressCallback) {
 				uploadProgressCallback({
@@ -70,7 +65,7 @@ export const LighthouseFile: Story = {
 		}: UploadFilesParams<{ file: File }>) => {
 			const response = await uploadFilesLighthouse(
 				[file],
-				LIGHTHOUSE_API_KEY!,
+				config.lighthouse.apiKey!,
 				uploadProgressCallback,
 			);
 			const { name, cid } = response;
@@ -90,7 +85,7 @@ export const LighthouseMultipleFiles: Story = {
 		}: UploadFilesParams<{ file: File[] }>) => {
 			const response = await uploadFilesLighthouse(
 				file,
-				LIGHTHOUSE_API_KEY!,
+				config.lighthouse.apiKey!,
 				uploadProgressCallback,
 			);
 			const name = Array.from(file)
@@ -121,8 +116,8 @@ export const StorachaText: Story = {
 		}: UploadFilesParams<{ file: string }>) => {
 			const blob = mapTextAsBlob(file);
 			const { client, space } = await initStorachaClient({
-				keyString: STORACHA_KEY,
-				proofString: STORACHA_PROOF!,
+				keyString: config.storacha.key!,
+				proofString: config.storacha.proof!,
 			});
 
 			const link = await uploadFilesStoracha(
@@ -143,8 +138,8 @@ export const StorachaFile: Story = {
 			uploadProgressCallback,
 		}: UploadFilesParams<{ file: FileLike }>) => {
 			const { client, space } = await initStorachaClient({
-				keyString: STORACHA_KEY,
-				proofString: STORACHA_PROOF!,
+				keyString: config.storacha.key!,
+				proofString: config.storacha.proof!,
 			});
 
 			const link = await uploadFilesStoracha(
@@ -166,8 +161,8 @@ export const StorachaMultifield: Story = {
 			uploadProgressCallback,
 		}: UploadFilesParams<any>) => {
 			const { client, space } = await initStorachaClient({
-				keyString: STORACHA_KEY,
-				proofString: STORACHA_PROOF!,
+				keyString: config.storacha.key!,
+				proofString: config.storacha.proof!,
 			});
 
 			const contentFile = new File([content], "content.md", {
@@ -192,7 +187,7 @@ export const AkaveText: Story = {
 		uploadFiles: async ({ file }: UploadFilesParams<{ file: string }>) => {
 			// Accept File not blob
 			const response = await uploadFileWithFormData({
-				akaveEndpointUrl: AKAVE_ENDPOINT_URL,
+				akaveEndpointUrl: config.akave.endpointUrl!,
 				bucketName: "test-bucket",
 				fileName: "test.txt",
 				file: new File([file], "test.txt"),
@@ -214,7 +209,7 @@ export const AkaveFile: Story = {
 			uploadProgressCallback,
 		}: UploadFilesParams<{ file: File }>) => {
 			const response = await uploadFileWithFormData({
-				akaveEndpointUrl: AKAVE_ENDPOINT_URL,
+				akaveEndpointUrl: config.akave.endpointUrl!,
 				bucketName: "test-bucket",
 				fileName: "test.txt",
 				file,

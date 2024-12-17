@@ -1,17 +1,17 @@
+import { EAS, NO_EXPIRATION } from "@ethereum-attestation-service/eas-sdk";
+import config from "@repo/domain/config";
+import { SignatureType } from "@repo/ui-react/lib/eas";
 import {
 	createTestClientConfig,
 	createTestEthersSigner,
-} from "@/lib/test-utils-isomorphic";
-import { EAS, NO_EXPIRATION } from "@ethereum-attestation-service/eas-sdk";
+} from "@repo/ui-react/lib/test-utils-isomorphic";
 import { http, Hex, createWalletClient } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { sepolia } from "viem/chains";
 import { beforeEach, describe, expect, it, test } from "vitest";
-import { SignatureType } from "../eas";
 import { SCHEMA_FIXTURE_IS_A_FRIEND } from "../eas-test.fixture";
 import { createEAS } from "../ethers/onchain";
 import { makeOnchainAttestation, revoke } from "./onchain";
-
 export const EASContractAddress = "0xC2679fBD37d54388Ce493F1DB75320D236e1815e"; // Sepolia v0.26
 
 // TODO fixture
@@ -20,11 +20,12 @@ export const ZERO_BYTES = "0x";
 export const ZERO_BYTES32 =
 	"0x0000000000000000000000000000000000000000000000000000000000000000";
 
+const privateKey = config.test.eas.privateKey as Hex;
+
 describe("attest with sepolia contract", () => {
 	describe(
 		"create attestation",
 		() => {
-			const privateKey = process.env.TESTER_PRIVATE_KEY_EAS as Hex;
 			const from = privateKeyToAccount(privateKey);
 
 			const fixture = {
@@ -99,7 +100,6 @@ describe("attest with sepolia contract", () => {
 			const uid =
 				"0x303193e78c6e6cb026dc729e60614dd9e949ea947c6084445293ded6c3b4b4a3";
 
-			const privateKey = process.env.TESTER_PRIVATE_KEY_EAS as Hex;
 			const from = privateKeyToAccount(privateKey);
 
 			const fromWalletClient = createWalletClient({

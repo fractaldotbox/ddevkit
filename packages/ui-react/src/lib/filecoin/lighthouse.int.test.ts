@@ -9,20 +9,19 @@ import {
 	uploadText,
 } from "./lighthouse/isomorphic";
 
+import config from "@repo/domain/config";
+import { BY_USER } from "@repo/domain/user.fixture";
 import { createTestFile } from "@repo/ui-react/lib/test-utils-node";
-import { BY_USER } from "../../stories/fixture";
 /**
  * Test on mainnet
  */
 
-// account 0xb5fE438f29Cc9787fC8C968eEF2D17cA15aee74b
-const LIGHTHOUSE_API_KEY = process.env.LIGHTHOUSE_API_KEY!;
 //workaround at test
 globalThis.crypto ??= require("node:crypto").webcrypto;
 
 // abcde
 const cid = "QmS9ErDVxHXRNMJRJ5i3bp1zxCZzKP8QXXNH1yUR6dWeKZ";
-
+const apiKey = config.lighthouse.apiKey!;
 describe(
 	"lighthouse",
 	() => {
@@ -46,10 +45,10 @@ describe(
 				const params = await createLighthouseParams({
 					account,
 					options: {
-						apiKey: LIGHTHOUSE_API_KEY,
+						apiKey,
 					},
 				});
-				const response = await uploadFiles([file], LIGHTHOUSE_API_KEY);
+				const response = await uploadFiles([file], apiKey);
 
 				expect(!!response.cid).toEqual(true);
 
@@ -62,7 +61,7 @@ describe(
 				const params = await createLighthouseParams({
 					account,
 					options: {
-						apiKey: LIGHTHOUSE_API_KEY,
+						apiKey,
 					},
 				});
 				const response = await uploadEncryptedFileWithText("abcde", ...params);
@@ -89,7 +88,7 @@ describe(
 
 		// TODO cross-check with cid lib. it is including metadata
 		test("#uploadText", async () => {
-			const response = await uploadText("abcde", LIGHTHOUSE_API_KEY!);
+			const response = await uploadText("abcde", apiKey);
 			console.log(response);
 
 			const { name, cid, size } = response;
