@@ -1,13 +1,13 @@
-import { ZERO_BYTES32 } from "@/lib/eas/eas";
-import { SCHEMA_FIXTURE_IS_A_FRIEND } from "@/lib/eas/eas-test.fixture";
-import { OffchainAttestationVersion } from "@/lib/eas/offchain/offchain";
-import { NO_EXPIRATION } from "@/lib/eas/request";
-import { signOffchainAttestation } from "@/lib/eas/viem/offchain";
+import { ZERO_BYTES32 } from "@repo/ui-react/lib/eas/eas";
+import { SCHEMA_FIXTURE_IS_A_FRIEND } from "@repo/ui-react/lib/eas/eas-test.fixture";
+import { OffchainAttestationVersion } from "@repo/ui-react/lib/eas/offchain/offchain";
+import { NO_EXPIRATION } from "@repo/ui-react/lib/eas/request";
+import { signOffchainAttestation } from "@repo/ui-react/lib/eas/viem/offchain";
 import {
 	AttestationRequestData,
 	makeOnchainAttestation,
-} from "@/lib/eas/viem/onchain";
-import { createTestClientConfig } from "@/lib/test-utils-isomorphic";
+} from "@repo/ui-react/lib/eas/viem/onchain";
+import { createTestClientConfig } from "@repo/ui-react/lib/test-utils-isomorphic";
 import type { Meta, StoryObj } from "@storybook/react";
 import {
 	Account,
@@ -21,7 +21,7 @@ import { sepolia } from "viem/chains";
 import { withToaster } from "../decorators/toaster";
 import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
 import { withWalletControlWagmi } from "../decorators/wallet-control";
-import { AttestationForm } from "../../../../../packages/ui-react/src/components/attestations/AttestationForm";
+import { AttestationForm } from "@repo/ui-react/components/attestations/attestation-form.js";
 
 export type UseAttestationWagmiParams = {
 	account: Account;

@@ -10,7 +10,7 @@ import {
 } from "./lighthouse/isomorphic";
 
 import { BY_USER } from "../../stories/fixture";
-import { createTestFile } from "../../../../../packages/ui-react/src/lib/test-utils-node";
+import { createTestFile } from "@repo/ui-react/lib/test-utils-node";
 /**
  * Test on mainnet
  */

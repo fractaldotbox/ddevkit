@@ -1,7 +1,7 @@
-import { Skeleton } from "@/components/ui/skeleton";
-import { useGetTransactions } from "@/hooks/use-blockscout";
-import { GetTxnByFilterQuery, asTransactionMeta } from "@/lib/blockscout/api";
-import { Explorer } from "@/lib/explorer/url";
+import { Skeleton } from "#components/shadcn/skeleton";
+import { useGetTransactions } from "#hooks/data/use-blockscout.js";
+import { GetTxnByFilterQuery, asTransactionMeta } from "#lib/blockscout/api";
+import { Explorer } from "#lib/explorer/url";
 import { TransactionTable } from "./transaction-table";
 
 export type TransactionTableWithDetailsProps = GetTxnByFilterQuery & {

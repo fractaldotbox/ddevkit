@@ -1,10 +1,8 @@
 import { AddressOrEns, EfpFollower, useFollowers } from "@/hooks/use-efp-api";
-import { FollowerListScrollable } from "./FollowerList";
+import { FollowerListScrollable } from "@repo/ui-react/components/FollowerList";
 
-import { getNames } from "@/lib/ens/use-ensjs";
+import { getNames } from "@repo/ui-react/hooks/ens/use-ensjs";
 import { useEffect, useMemo, useState } from "react";
-
-export type EfpFollowerWithName = EfpFollower & { name?: string };
 
 /**
  * This one is client-side based dynamic resolving

@@ -5,12 +5,12 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Token } from "@/lib/domain/token/token";
-import { TransactionMeta } from "@/lib/domain/transaction/transaction";
-import { getShortHex } from "@/utils/hex";
+} from "#components/shadcn/card";
+import { Separator } from "#components/shadcn/separator";
+import { Skeleton } from "#components/shadcn/skeleton";
+import { Token } from "#lib/domain/token/token";
+import { TransactionMeta } from "#lib/domain/transaction/transaction";
+import { getShortHex } from "#utils/hex";
 import { Label } from "@radix-ui/react-label";
 import { AddressBadge } from "../../../../../apps/storybook/src/stories/identity/AddressBadge";
 import { TokenChipWithInfo } from "../onchain-info/TokenChipWithInfo";

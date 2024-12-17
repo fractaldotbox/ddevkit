@@ -1,10 +1,7 @@
-import { faker } from "@faker-js/faker";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Hex } from "viem";
 import { withWagmiProvider } from "../decorators/wagmi";
 import { BY_USER } from "../fixture";
-import { AddressBadge } from "./AddressBadge";
-import { NameWagmi } from "./NameWagmi";
+import { NameWagmi } from "@repo/ui-react/components/identity/name-wagmi";
 
 const meta = {
 	title: "Identity/Name/NameWagmi",

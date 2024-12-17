@@ -1,5 +1,5 @@
-import { Button } from "#components/ui/button";
-import { useUploadAttestation } from "@/hooks/use-upload-attestation";
+import { Button } from "#components/shadcn/button";
+import { useUploadAttestation } from "#hooks/eas/use-upload-attestation.js";
 import { Loader2, Upload } from "lucide-react";
 import { UploadAttestationParams } from "./attestations";
 

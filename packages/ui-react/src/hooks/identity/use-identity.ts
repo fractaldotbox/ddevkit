@@ -1,4 +1,4 @@
-import { AddressOrEns, useEnsData } from "../use-efp-api";
+import { AddressOrEns, useEnsData } from "../ens/use-efp-api";
 
 export enum MetadataService {
 	Efp = "efp",

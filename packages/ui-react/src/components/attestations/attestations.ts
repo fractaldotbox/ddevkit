@@ -1,9 +1,5 @@
-import { AttestationQueryResult } from "#lib/eas/get-attestations";
+import { AttestationQueryResult } from "#hooks/eas/get-attestation";
 import { format, formatDistance, subDays } from "date-fns";
-import {
-	AllAttestationsByQuery,
-	Attestation,
-} from "node_modules/@repo/graphql/src/graphql/graphql";
 import { Address } from "viem";
 
 // TODO sync graphql type

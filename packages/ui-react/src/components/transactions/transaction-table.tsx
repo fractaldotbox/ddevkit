@@ -1,14 +1,14 @@
-import { Badge } from "@/components/ui/badge";
-import { DataTable } from "@/components/ui/data-table";
-import { resolveChainById } from "@/lib/domain/chain/chain-resolver";
-import { TransactionMeta } from "@/lib/domain/transaction/transaction";
+import { Badge } from "#components/shadcn/badge";
+import { DataTable } from "#components/shadcn/data-table";
+import { resolveChainById } from "#lib/domain/chain/chain-resolver";
+import { TransactionMeta } from "#lib/domain/transaction/transaction";
 import {
 	Explorer,
 	ExplorerEntity,
 	blockExplorerUrlFactory,
-} from "@/lib/explorer/url";
-import { getShortAddress } from "@/utils/address";
-import { getShortHex } from "@/utils/hex";
+} from "#lib/explorer/url";
+import { getShortAddress } from "#utils/address";
+import { getShortHex } from "#utils/hex";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, ExternalLink } from "lucide-react";
 import { formatEther } from "viem";
