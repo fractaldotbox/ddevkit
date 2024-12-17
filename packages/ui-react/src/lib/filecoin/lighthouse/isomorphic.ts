@@ -20,10 +20,13 @@ export const createLighthouseParams = async ({
 }: {
 	account: Account;
 	options: {
-		apiKey: string;
+		apiKey?: string;
 	};
 }): Promise<[string, string, string]> => {
 	const { apiKey } = options;
+	if (!apiKey) {
+		throw new Error("Lighthouse apiKey required");
+	}
 
 	const signedMessage = await signAuthMessage(account);
 	return [apiKey, account.address, signedMessage];

@@ -15,7 +15,7 @@ import { withToaster } from "../decorators/toaster";
 import { UploadFilesParams, UploadForm, UploadFormType } from "./UploadForm";
 import { uploadSuccessToast } from "./upload-toast";
 
-import { IpfsGateway } from "@/lib/filecoin/gateway";
+import { IpfsGateway } from "@repo/ui-react/lib/filecoin/gateway";
 import { FileLike } from "@web3-storage/w3up-client/types";
 
 const meta = {

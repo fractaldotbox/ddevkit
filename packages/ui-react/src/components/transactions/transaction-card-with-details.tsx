@@ -1,5 +1,6 @@
 import { Label } from "@radix-ui/react-label";
 import { TransactionMeta } from "@repo/domain/transaction/transaction";
+import { AddressBadge } from "#components/identity/address-badge";
 import {
 	Card,
 	CardContent,

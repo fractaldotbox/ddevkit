@@ -1,19 +1,16 @@
-import { getAttestationWithUid } from "@/lib/eas/get-attestation-with-uid";
+import { UploadAttestationParams } from "@repo/ui-react/components/attestations/attestations";
+import { getAttestationWithUid } from "@repo/ui-react/hooks/eas/get-attestation-with-uid";
 import {
 	createLighthouseParams,
 	getLighthouseGatewayUrl,
 	uploadEncryptedFileWithText,
 	uploadText,
-} from "@/lib/filecoin/lighthouse/isomorphic";
-import { UploadAttestationParams } from "@/stories/attestations/attestations";
+} from "@repo/ui-react/lib/filecoin/lighthouse/isomorphic";
 import { useMutation } from "@tanstack/react-query";
 import { useWalletClient } from "wagmi";
 import { useToast } from "./use-toast";
 
-const LIGHTHOUSE_API_KEY =
-	import.meta.env.VITE_LIGHTHOUSE_API_KEY ||
-	import.meta.env.LIGHTHOUSE_API_KEY! ||
-	import.meta.env.STORYBOOK_LIGHTHOUSE_API_KEY;
+import config from "@repo/domain/config";
 
 export function useUploadAttestationWithLighthouse() {
 	const { data: walletClient } = useWalletClient();
@@ -46,7 +43,7 @@ export function useUploadAttestationWithLighthouse() {
 			const [apiKey, accountAddress, signedMessage] =
 				await createLighthouseParams({
 					account: walletClient.account,
-					options: { apiKey: LIGHTHOUSE_API_KEY },
+					options: { apiKey: config.lighthouse.apiKey },
 				});
 
 			const compiledPayload = { ...payload, chainId };

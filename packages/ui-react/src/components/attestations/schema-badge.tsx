@@ -1,6 +1,5 @@
-import { Chain } from "viem/chains";
 import { Badge } from "#components/shadcn/badge";
-import { getEasscanSchemaUrl } from "#lib/eas/util";
+import { getEasscanSchemaUrl } from "#lib/eas/easscan";
 
 export const SchemaBadge = ({
 	chainId,

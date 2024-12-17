@@ -43,7 +43,7 @@ const TransferButtonStory = ({ to, account }: TransferButtonProps) => {
 };
 
 const meta = {
-	title: "UI/TransferButton",
+	title: "Transfer/TransferButton",
 	component: TransferButtonStory,
 } satisfies Meta<typeof TransferButtonStory>;
 

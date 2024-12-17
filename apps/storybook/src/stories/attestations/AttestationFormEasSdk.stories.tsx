@@ -6,6 +6,7 @@ import {
 } from "@/lib/eas/eas-test.fixture";
 import { createAttestationOnchain, createEAS } from "@/lib/eas/ethers/onchain";
 import { NO_EXPIRATION } from "@/lib/eas/request";
+import { BY_USER } from "@repo/domain/user.fixture";
 import { AttestationForm } from "@repo/ui-react/components/attestations/attestation-form.js";
 import { createTestEthersSigner } from "@repo/ui-react/lib/test-utils-isomorphic";
 import type { Meta, StoryObj } from "@storybook/react";
@@ -13,7 +14,6 @@ import { encodeBytes32String } from "ethers";
 import { Address, Hex } from "viem";
 import { withToaster } from "../decorators/toaster";
 import { withWalletControl } from "../decorators/wallet-control";
-import { BY_USER } from "../user.fixture";
 
 const requestTemplate = {
 	recipient: BY_USER.eas.mockReceipient.address,

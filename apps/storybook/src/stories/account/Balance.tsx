@@ -1,5 +1,5 @@
 import { Text } from "@radix-ui/themes";
-import { formatUnitsWithDecimalsDisplayed } from "@repo/ui-react/lib/amount";
+import { formatUnitsWithDecimalsDisplayed } from "@repo/domain/amount";
 import { ABI_ERC20 } from "@repo/ui-react/lib/utils/config";
 // support ENS, basename
 // Option to use ipfs gateway, ens metadata services
