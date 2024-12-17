@@ -108,7 +108,7 @@
 	},
 	"devDependencies": {
 		"postcss": "^8.4.24",
-		"autoprefixer":"10.4.20",
+		"autoprefixer": "10.4.20",
 		"@biomejs/biome": "^1.9.4",
 		"@chromatic-com/storybook": "^1.9.0",
 		"@ethereum-attestation-service/eas-contracts": "1.7.1",
@@ -135,7 +135,7 @@
 		"react-test-renderer": "^18.3.1",
 		"storybook": "^8.3.4",
 		"storybook-dependency-tree": "^0.0.18",
-		"typescript": "^5.5.3",
+		"typescript": "^5.7.2",
 		"typescript-eslint": "^8.0.1",
 		"vite": "^5.4.1",
 		"vite-plugin-node-polyfills": "^0.22.0",

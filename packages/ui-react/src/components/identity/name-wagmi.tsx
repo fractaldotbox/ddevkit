@@ -1,6 +1,6 @@
 // Take in address and display
 
-import { AddressOrEns } from "#hooks/ens/use-efp-api.js";
+import { AddressOrEns } from "#hooks/ens/efp";
 import { useEffect, useMemo, useState } from "react";
 import { Address, isHex } from "viem";
 import { useEnsName } from "wagmi";

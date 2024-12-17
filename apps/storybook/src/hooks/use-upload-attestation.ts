@@ -15,7 +15,7 @@ const LIGHTHOUSE_API_KEY =
 	import.meta.env.LIGHTHOUSE_API_KEY! ||
 	import.meta.env.STORYBOOK_LIGHTHOUSE_API_KEY;
 
-export function useUploadAttestation() {
+export function useUploadAttestationWithLighthouse() {
 	const { data: walletClient } = useWalletClient();
 	const { toast } = useToast();
 

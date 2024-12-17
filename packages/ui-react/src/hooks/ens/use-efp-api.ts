@@ -1,5 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { Address } from "viem";
+import {
+	AddressOrEns,
+	EfpApiOptions,
+	EfpFollower,
+	EfpEnsData,
+	EfpUserStats,
+} from "./efp";
 
 const EFP_ENDPOINT = "https://api.ethfollow.xyz/api/v1/";
 
@@ -26,7 +33,7 @@ export const getEndpointEnsData = (
 	options?: EfpApiOptions,
 ) => {
 	const { limit = 10, sort = "followers" } = options || {};
-	return `${EFP_ENDPOINT}users/${addressOrEns}/ens?${qs.stringify({ limit, sort })}`;
+	return `${EFP_ENDPOINT}users/${addressOrEns}/ens?${new URLSearchParams({ limit: limit.toString(), sort }).toString()}`;
 };
 
 export const getEndpointUserStats = (addressOrEns: AddressOrEns) => {

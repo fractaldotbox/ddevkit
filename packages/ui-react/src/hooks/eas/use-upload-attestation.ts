@@ -8,12 +8,12 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { useWalletClient } from "wagmi";
 import { useToast } from "../shadcn/use-toast";
-import { UploadAttestationParams } from "#components/attestations/attestations.js";
+import { UploadAttestationParams } from "#components/attestations/attestations";
 
-export function useUploadAttestation({
-	apiKey,
+export function useUploadAttestationWithLighthouse({
+	lighthouseApiKey,
 }: {
-	apiKey: string;
+	lighthouseApiKey: string;
 }) {
 	const { data: walletClient } = useWalletClient();
 	const { toast } = useToast();
@@ -44,7 +44,7 @@ export function useUploadAttestation({
 			// default to payload
 			const [accountAddress, signedMessage] = await createLighthouseParams({
 				account: walletClient.account,
-				options: { apiKey },
+				options: { lighthouseApiKey },
 			});
 
 			const compiledPayload = { ...payload, chainId };
@@ -52,7 +52,7 @@ export function useUploadAttestation({
 			if (isEncrypted) {
 				const { name, cid } = await uploadEncryptedFileWithText(
 					JSON.stringify(compiledPayload),
-					apiKey,
+					lighthouseApiKey,
 					accountAddress,
 					signedMessage,
 				);
@@ -63,7 +63,7 @@ export function useUploadAttestation({
 			} else {
 				const { name, cid } = await uploadText(
 					JSON.stringify(compiledPayload),
-					apiKey,
+					lighthouseApiKey,
 				);
 				toast({
 					title: `Upload Successful for file : ${name}`,

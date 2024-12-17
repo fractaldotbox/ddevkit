@@ -1,11 +1,12 @@
 import { Button } from "#components/shadcn/button";
-import { useUploadAttestation } from "#hooks/eas/use-upload-attestation.js";
 import { Loader2, Upload } from "lucide-react";
 import { UploadAttestationParams } from "./attestations";
+import { useUploadAttestationWithLighthouse } from "#hooks/eas/use-upload-attestation";
 
 // this is a controlled component that depends on an external state
 export function UploadAttestation(props: UploadAttestationParams) {
-	const { mutateAsync: uploadAttestation, isPending } = useUploadAttestation();
+	const { mutateAsync: uploadAttestation, isPending } =
+		useUploadAttestationWithLighthouse({});
 
 	return (
 		<Button

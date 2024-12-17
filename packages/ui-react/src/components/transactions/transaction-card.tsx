@@ -1,6 +1,6 @@
 import { Skeleton } from "#components/shadcn/skeleton";
-import { useGetTransaction } from "#hooks/data/use-blockscout.js";
-import { useTokenInfo } from "#lib/domain/token/token";
+import { useGetTransaction } from "#hooks/data/use-blockscout";
+// import { useTokenInfo } from "#lib/domain/token/token";
 import { ExplorerEntity, blockExplorerUrlFactory } from "#lib/explorer/url";
 import { Chain } from "viem";
 import { mainnet } from "viem/chains";

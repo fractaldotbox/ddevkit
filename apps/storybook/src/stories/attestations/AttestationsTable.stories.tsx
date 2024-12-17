@@ -1,9 +1,7 @@
-import { faker } from "@faker-js/faker";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Address, Hex } from "viem";
 import { withWagmiProvider } from "../decorators/wagmi";
 import { BY_USER, getRandomAddress } from "../fixture";
-import { AttestationsTable } from "../../../../../packages/ui-react/src/components/attestations/AttestationsTable";
+import { AttestationsTable } from "@repo/ui-react/components/attestations/attestations-table";
 
 const meta = {
 	title: "Attestations/AttestationsTable",

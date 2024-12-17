@@ -7,7 +7,7 @@ import {
 	Avatar as AvatarPrimitive,
 } from "#components/shadcn/avatar";
 import { Skeleton } from "#components/shadcn/skeleton";
-import { MetadataService, useIdentity } from "#hooks/identity/use-identity.js";
+import { MetadataService, useIdentity } from "#hooks/identity/use-identity";
 
 // support direct props override while consider extract into common provider
 
