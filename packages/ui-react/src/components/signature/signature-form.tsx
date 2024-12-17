@@ -3,6 +3,8 @@
 import { atom, useAtom } from "jotai";
 import type { Hex } from "viem";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Pencil2Icon } from "@radix-ui/react-icons";
 import {
 	Form,
 	FormControl,
@@ -12,13 +14,11 @@ import {
 	FormLabel,
 	FormMessage,
 } from "#components/shadcn/form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Pencil2Icon } from "@radix-ui/react-icons";
 
-import { Button } from "#components/shadcn/button";
-import { Input } from "#components/shadcn/input";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { Button } from "#components/shadcn/button";
+import { Input } from "#components/shadcn/input";
 
 const formSchema = z.object({
 	message: z.string().min(1).max(50),

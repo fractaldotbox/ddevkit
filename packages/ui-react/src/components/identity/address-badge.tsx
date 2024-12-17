@@ -1,14 +1,14 @@
+import { Check, Copy } from "lucide-react";
+import { useMemo, useState } from "react";
+import { Hex, getAddress } from "viem";
+import { normalize } from "viem/ens";
+import { useEnsAddress } from "wagmi";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipProvider,
 	TooltipTrigger,
 } from "#components/shadcn/tooltip";
-import { Check, Copy } from "lucide-react";
-import { useMemo, useState } from "react";
-import { Hex, getAddress } from "viem";
-import { normalize } from "viem/ens";
-import { useEnsAddress } from "wagmi";
 import { getShortAddress } from "../../lib/utils/address";
 
 export const AddressBadge = ({

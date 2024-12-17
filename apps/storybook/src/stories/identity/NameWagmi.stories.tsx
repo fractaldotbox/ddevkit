@@ -1,7 +1,7 @@
+import { NameWagmi } from "@repo/ui-react/components/identity/name-wagmi";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withWagmiProvider } from "../decorators/wagmi";
 import { BY_USER } from "../fixture";
-import { NameWagmi } from "@repo/ui-react/components/identity/name-wagmi";
 
 const meta = {
 	title: "Identity/Name/NameWagmi",

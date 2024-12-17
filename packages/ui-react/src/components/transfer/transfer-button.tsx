@@ -1,10 +1,10 @@
-import { Button, ButtonProps } from "#components/shadcn/button";
 import { MutationOptions } from "@tanstack/react-query";
 import { Config, SendTransactionErrorType } from "@wagmi/core";
 import { Loader2 } from "lucide-react";
 import { Account, parseEther } from "viem";
 import { useSendTransaction } from "wagmi";
 import { SendTransactionData, SendTransactionVariables } from "wagmi/query";
+import { Button, ButtonProps } from "#components/shadcn/button";
 
 type TransferButtonProps = {
 	/** Amount to transfer in ETH */

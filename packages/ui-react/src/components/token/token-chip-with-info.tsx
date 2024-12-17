@@ -1,6 +1,6 @@
-import { Button } from "#components/shadcn/button";
 import { formatUnitsWithDecimalsDisplayed } from "@repo/domain/amount";
 import { formatEther, formatGwei, formatUnits } from "viem";
+import { Button } from "#components/shadcn/button";
 
 /**
  * Amount instead Balance as it could be generic and not belongs to wallet

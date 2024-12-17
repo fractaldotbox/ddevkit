@@ -4,8 +4,8 @@ import { Text } from "@radix-ui/themes";
 import { Address } from "viem";
 import { mainnet } from "viem/chains";
 import { useBalance, useReadContract } from "wagmi";
-import { ABI_ERC20 } from "#lib/utils/config";
 import { formatUnitsWithDecimalsDisplayed } from "#lib/amount";
+import { ABI_ERC20 } from "#lib/utils/config";
 
 type NativeTokenBalanceProps = {
 	address: Address;

@@ -9,8 +9,8 @@ import {
 	uploadText,
 } from "./lighthouse/isomorphic";
 
-import { BY_USER } from "../../stories/fixture";
 import { createTestFile } from "@repo/ui-react/lib/test-utils-node";
+import { BY_USER } from "../../stories/fixture";
 /**
  * Test on mainnet
  */

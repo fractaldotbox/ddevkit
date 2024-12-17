@@ -1,3 +1,5 @@
+import { Label } from "@radix-ui/react-label";
+import { TransactionMeta } from "@repo/domain/transaction/transaction";
 import {
 	Card,
 	CardContent,
@@ -8,11 +10,9 @@ import {
 } from "#components/shadcn/card";
 import { Separator } from "#components/shadcn/separator";
 import { Skeleton } from "#components/shadcn/skeleton";
-import { Token } from "../token/token";
-import { TransactionMeta } from "@repo/domain/transaction/transaction";
-import { Label } from "@radix-ui/react-label";
 import { TokenChipWithInfo } from "#components/token/token-chip-with-info";
 import { getShortHex } from "#lib/utils/hex";
+import { Token } from "../token/token";
 
 export const TransactionSummary = ({
 	transaction,

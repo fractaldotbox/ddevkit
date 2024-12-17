@@ -1,8 +1,8 @@
-import { Button } from "#components/shadcn/button";
-import { getEasscanAttestationUrl } from "#lib/eas/util";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { Button } from "#components/shadcn/button";
+import { getEasscanAttestationUrl } from "#lib/eas/util";
 
 import { Card, CardContent } from "#components/shadcn/card";
 import {

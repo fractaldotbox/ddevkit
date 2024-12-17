@@ -1,9 +1,9 @@
 // Take in address and display
 
-import { AddressOrEns } from "#hooks/ens/efp";
 import { useEffect, useMemo, useState } from "react";
 import { Address, isHex } from "viem";
 import { useEnsName } from "wagmi";
+import { AddressOrEns } from "#hooks/ens/efp";
 
 export const NameWagmi = ({ addressOrEns }: { addressOrEns: AddressOrEns }) => {
 	const isName = !isHex(addressOrEns);

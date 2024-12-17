@@ -1,7 +1,10 @@
-import { Badge } from "#components/shadcn/badge";
-import { DataTable } from "#components/data-table";
 import { resolveChainById } from "@repo/domain/chain/chain-resolver";
 import { TransactionMeta } from "@repo/domain/transaction/transaction";
+import { ColumnDef } from "@tanstack/react-table";
+import { ArrowUpDown, ExternalLink } from "lucide-react";
+import { formatEther } from "viem";
+import { DataTable } from "#components/data-table";
+import { Badge } from "#components/shadcn/badge";
 import {
 	Explorer,
 	ExplorerEntity,
@@ -9,9 +12,6 @@ import {
 } from "#lib/explorer/url";
 import { getShortAddress } from "#lib/utils/address";
 import { getShortHex } from "#lib/utils/hex";
-import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, ExternalLink } from "lucide-react";
-import { formatEther } from "viem";
 
 export const txnTypeMap: Record<string, string> = {
 	contract_call: "Contract Call",

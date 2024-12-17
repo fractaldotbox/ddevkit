@@ -1,5 +1,5 @@
-import { cn } from "#lib/shadcn/utils";
 import { ScrollArea } from "#components/shadcn/scroll-area";
+import { cn } from "#lib/shadcn/utils";
 
 export const ScrollableCodeBlock = ({
 	title,

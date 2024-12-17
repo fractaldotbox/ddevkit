@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { FollowerListEnsjs } from "@repo/ui-react/components/social-graph/follower-list-ensjs";
 import { withQueryClientProvider } from "../decorators/wagmi";
 import { BY_USER } from "../fixture";
-import { FollowerListEnsjs } from "@repo/ui-react/components/social-graph/follower-list-ensjs";
 
 const meta = {
 	title: "SocialGraph/FollowerListEnsjs",

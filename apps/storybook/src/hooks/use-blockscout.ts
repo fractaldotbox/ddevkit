@@ -1,10 +1,10 @@
+import { TransactionMeta } from "@repo/domain/transaction/transaction";
 import {
 	GetTxnByFilterQuery,
 	asTransactionMeta,
 	getTransaction,
 	getTxnsByFilter,
 } from "@repo/ui-react/lib/blockscout/api";
-import { TransactionMeta } from "@repo/domain/transaction/transaction";
 import { useQuery } from "@tanstack/react-query";
 
 export const CACHE_KEY = "blockscout";

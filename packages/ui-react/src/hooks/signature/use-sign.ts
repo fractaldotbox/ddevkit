@@ -1,7 +1,5 @@
-import { signMessage } from "@wagmi/core";
-import { useEffect, useRef, useState } from "react";
-import { useAccount, useConfig, useSignMessage } from "wagmi";
 import { Hex } from "@repo/domain/signature/sign";
+import { signMessage } from "@wagmi/core";
 import * as typed from "micro-eth-signer/typed-data";
 import {
 	EIP712Domain,
@@ -9,6 +7,8 @@ import {
 	TypedData,
 	signTyped,
 } from "micro-eth-signer/typed-data";
+import { useEffect, useRef, useState } from "react";
+import { useAccount, useConfig, useSignMessage } from "wagmi";
 
 // https://www.npmjs.com/package/@noble/secp256k1
 // EIP-191

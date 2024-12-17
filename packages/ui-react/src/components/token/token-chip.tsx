@@ -1,8 +1,8 @@
 import { Address, Chain, erc20Abi } from "viem";
 import { mainnet } from "viem/chains";
-import { TokenChipWithInfo } from "./token-chip-with-info";
-import { useTokenInfo } from "./token";
 import { useConfig } from "wagmi";
+import { useTokenInfo } from "./token";
+import { TokenChipWithInfo } from "./token-chip-with-info";
 
 export type TokenChipProps = {
 	className?: string;

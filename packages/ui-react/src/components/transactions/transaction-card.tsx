@@ -1,10 +1,10 @@
+import { Chain } from "viem";
+import { mainnet } from "viem/chains";
+import { useConfig } from "wagmi";
 import { Skeleton } from "#components/shadcn/skeleton";
 import { useGetTransaction } from "#hooks/data/use-blockscout";
 // import { useTokenInfo } from "@repo/domain/token/token";
 import { ExplorerEntity, blockExplorerUrlFactory } from "#lib/explorer/url";
-import { Chain } from "viem";
-import { mainnet } from "viem/chains";
-import { useConfig } from "wagmi";
 import { TransactionCardWithDetails } from "./transaction-card-with-details";
 
 export const TransactionCard = ({

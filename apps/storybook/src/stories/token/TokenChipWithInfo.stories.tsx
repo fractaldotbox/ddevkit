@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from "@storybook/react";
 import { TokenChipWithInfo } from "@repo/ui-react/components/token/token-chip-with-info";
+import { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
 	title: "OnchainInfo/TokenChipWithInfo",

@@ -1,8 +1,8 @@
-import { Meta, StoryObj } from "@storybook/react";
 import {
 	PrivyLogin,
 	PrivyLoginProvider,
 } from "@repo/ui-react/components/privy/privy-login";
+import { Meta, StoryObj } from "@storybook/react";
 
 interface PrivyLoginProps {
 	appId: string;

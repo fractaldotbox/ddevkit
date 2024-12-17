@@ -1,3 +1,4 @@
+import { AttestationForm } from "@repo/ui-react/components/attestations/attestation-form.js";
 import { ZERO_BYTES32 } from "@repo/ui-react/lib/eas/eas";
 import { SCHEMA_FIXTURE_IS_A_FRIEND } from "@repo/ui-react/lib/eas/eas-test.fixture";
 import { OffchainAttestationVersion } from "@repo/ui-react/lib/eas/offchain/offchain";
@@ -21,7 +22,6 @@ import { sepolia } from "viem/chains";
 import { withToaster } from "../decorators/toaster";
 import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
 import { withWalletControlWagmi } from "../decorators/wallet-control";
-import { AttestationForm } from "@repo/ui-react/components/attestations/attestation-form.js";
 
 export type UseAttestationWagmiParams = {
 	account: Account;

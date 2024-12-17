@@ -4,6 +4,7 @@ import {
 	EIP712MessageTypes,
 	OffchainAttestationVersion,
 } from "@ethereum-attestation-service/eas-sdk";
+import { ZERO_ADDRESS, ZERO_HASH } from "@repo/ui-react/lib/constants";
 import { base64 } from "@scure/base";
 import { hexlify, toUtf8Bytes } from "ethers";
 import { zlibSync } from "fflate";
@@ -16,7 +17,6 @@ import {
 	parseAbiParameters,
 	stringToHex,
 } from "viem";
-import { ZERO_ADDRESS, ZERO_HASH } from "@repo/ui-react/lib/constants";
 import { OFFCHAIN_ATTESTATION_TYPES } from "./offchain/offchain";
 import { stringifyWithBigInt } from "./util";
 

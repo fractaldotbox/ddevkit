@@ -1,5 +1,10 @@
-import { Badge } from "#components/shadcn/badge";
+import { ColumnDef } from "@tanstack/react-table";
+import { useMemo } from "react";
+import { Address, fromBlobs } from "viem";
+import { mainnet } from "viem/chains";
+import { useChainId } from "wagmi";
 import { DataTable } from "#components/data-table";
+import { Badge } from "#components/shadcn/badge";
 import { useGetAttestations } from "#lib/eas/get-attestations";
 import {
 	getEasscanAddressUrl,
@@ -7,11 +12,6 @@ import {
 	getEasscanSchemaUrl,
 } from "#lib/eas/util";
 import { truncate } from "#utils/hex";
-import { ColumnDef } from "@tanstack/react-table";
-import { useMemo } from "react";
-import { Address, fromBlobs } from "viem";
-import { mainnet } from "viem/chains";
-import { useChainId } from "wagmi";
 import { SchemaBadge } from "./SchemaBadge";
 import { AttestationMeta } from "./attestations";
 import { asAttestationMeta } from "./attestations";

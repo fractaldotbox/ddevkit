@@ -3,8 +3,9 @@ import { Address } from "viem";
 import {
 	AddressOrEns,
 	EfpApiOptions,
-	EfpFollower,
 	EfpEnsData,
+	EfpFollower,
+	EfpRecord,
 	EfpUserStats,
 } from "./efp";
 

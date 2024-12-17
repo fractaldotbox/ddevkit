@@ -1,3 +1,6 @@
+import { useMutation } from "@tanstack/react-query";
+import { useWalletClient } from "wagmi";
+import { UploadAttestationParams } from "#components/attestations/attestations";
 import { getAttestationWithUid } from "#lib/eas/get-attestation-with-uid";
 import {
 	createLighthouseParams,
@@ -5,10 +8,7 @@ import {
 	uploadEncryptedFileWithText,
 	uploadText,
 } from "#lib/filecoin/lighthouse/isomorphic";
-import { useMutation } from "@tanstack/react-query";
-import { useWalletClient } from "wagmi";
 import { useToast } from "../shadcn/use-toast";
-import { UploadAttestationParams } from "#components/attestations/attestations";
 
 export function useUploadAttestationWithLighthouse({
 	lighthouseApiKey,

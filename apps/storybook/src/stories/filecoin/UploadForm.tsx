@@ -2,7 +2,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { ZodType, z } from "zod";
 
-import { FileInputField } from "@repo/ui-react/components/file/file-input-field";
 import { Button } from "@/components/ui/button";
 import {
 	Form,
@@ -16,6 +15,7 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
+import { FileInputField } from "@repo/ui-react/components/file/file-input-field";
 import type { DownloadProgress } from "ky";
 import React from "react";
 

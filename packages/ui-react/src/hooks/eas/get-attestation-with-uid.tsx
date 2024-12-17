@@ -1,4 +1,5 @@
 import { gql, rawRequest } from "graphql-request";
+import { getEasscanEndpoint } from "../../lib/eas/easscan";
 
 export type AttestationByIdResponse = {
 	attestation: {

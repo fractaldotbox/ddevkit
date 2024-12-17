@@ -11,11 +11,11 @@
  *
  */
 
+import { resolveProductionChain } from "@repo/domain/chain/chain-resolver";
 // import { useReadContracts } from "wagmi";
 import { Config, readContracts } from "@wagmi/core";
 import { useEffect, useState } from "react";
 import { Address, Chain, erc20Abi } from "viem";
-import { resolveProductionChain } from "@repo/domain/chain/chain-resolver";
 
 export type Token = {
 	address?: Address;

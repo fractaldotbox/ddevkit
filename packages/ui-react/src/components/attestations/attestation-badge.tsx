@@ -1,6 +1,6 @@
+import { useChainId } from "wagmi";
 import { Badge } from "#components/shadcn/badge";
 import { useGetAttestations } from "#lib/eas/get-attestations";
-import { useChainId } from "wagmi";
 
 // TODO
 export function AttestationBadge({
