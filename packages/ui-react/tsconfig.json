@@ -8,6 +8,6 @@
 			"#*": ["src/*"]
 		}
 	},
-	"include": ["src"],
+	"include": ["src", "../../packages/@repo/domain"],
 	"exclude": ["node_modules", "dist"]
 }

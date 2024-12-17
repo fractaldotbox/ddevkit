@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { withWagmiProvider } from "../decorators/wagmi";
-import { BY_USER } from "../fixture";
+import { BY_USER } from "@repo/domain/user.fixture";
 import { AttestationCard } from "@repo/ui-react/components/attestations/attestation-card";
 
 const meta = {

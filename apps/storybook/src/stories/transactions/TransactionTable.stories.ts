@@ -1,9 +1,12 @@
-import { asTransactionMeta } from "@/lib/blockscout/api";
-import { TXN_LIST, generateTxnFixturesByCount } from "@/lib/blockscout/fixture";
-import { Explorer } from "@/lib/explorer/url";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withWagmiProvider } from "../decorators/wagmi";
-import { TransactionTable } from "@repo/ui-react/components/transactions/TransactionTable.js";
+import { TransactionTable } from "@repo/ui-react/components/transactions/transaction-table";
+import {
+	generateTxnFixturesByCount,
+	TXN_LIST,
+} from "@repo/ui-react/lib/blockscout/data.fixture";
+import { asTransactionMeta } from "@repo/ui-react/lib/blockscout/api";
+import { Explorer } from "@repo/ui-react/lib/explorer/url";
 
 const meta = {
 	title: "Transactions/TransactionTable",

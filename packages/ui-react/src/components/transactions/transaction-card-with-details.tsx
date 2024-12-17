@@ -8,12 +8,11 @@ import {
 } from "#components/shadcn/card";
 import { Separator } from "#components/shadcn/separator";
 import { Skeleton } from "#components/shadcn/skeleton";
-import { Token } from "#lib/domain/token/token";
-import { TransactionMeta } from "#lib/domain/transaction/transaction";
-import { getShortHex } from "#utils/hex";
+import { Token } from "../token/token";
+import { TransactionMeta } from "@repo/domain/transaction/transaction";
 import { Label } from "@radix-ui/react-label";
-import { AddressBadge } from "../../../../../apps/storybook/src/stories/identity/AddressBadge";
-import { TokenChipWithInfo } from "../onchain-info/TokenChipWithInfo";
+import { TokenChipWithInfo } from "#components/token/token-chip-with-info";
+import { getShortHex } from "#lib/utils/hex";
 
 export const TransactionSummary = ({
 	transaction,

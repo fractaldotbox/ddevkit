@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { atom, useAtom } from "jotai";
 import { addr } from "micro-eth-signer";
 
-import { ScrollableCodeBlock } from "@/components/ScrollableCodeBlock";
-import { TYPED_DATA } from "@/lib/signature/type-data";
+import { ScrollableCodeBlock } from "@repo/ui-react/components/scrollable-code-block";
+import { TYPED_DATA } from "@repo/domain/signature/type-data";
 import * as typed from "micro-eth-signer/typed-data";
 import { EIP712Domain } from "micro-eth-signer/typed-data";
 import { useMemo } from "react";
@@ -11,7 +11,12 @@ import type { Address } from "viem";
 import { withMockAccount } from "../decorators/wagmi";
 import { SignatureForm } from "@repo/ui-react/components/signature/signature-form";
 import { SignatureVerifyBadge } from "@repo/ui-react/components/signature/signature-verify-badge";
-import { Hex, SignType, signEIP712MessageRaw, signMessageRaw } from "./sign";
+import { Hex, SignType } from "@repo/domain/signature/sign";
+
+import {
+	signEIP712MessageRaw,
+	signMessageRaw,
+} from "@repo/ui-react/hooks/signature/use-sign";
 
 export type VerifySignatureParams = {
 	address: Address;

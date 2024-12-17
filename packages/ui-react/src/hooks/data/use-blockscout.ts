@@ -3,8 +3,8 @@ import {
 	asTransactionMeta,
 	getTransaction,
 	getTxnsByFilter,
-} from "@/lib/blockscout/api";
-import { TransactionMeta } from "@/lib/domain/transaction/transaction";
+} from "#lib/blockscout/api";
+import { TransactionMeta } from "#lib/domain/transaction/transaction";
 import { useQuery } from "@tanstack/react-query";
 
 export const CACHE_KEY = "blockscout";

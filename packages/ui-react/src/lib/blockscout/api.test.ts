@@ -1,7 +1,7 @@
 import { getAddress } from "viem";
 import { describe, expect, test } from "vitest";
 import { asTransactionMeta, getAddressInfo, getTransaction } from "./api";
-import { TXN_VITALIK_DEPOSIT, TXN_VITALIK_TRANSFER } from "./fixture";
+import { BY_TXN } from "./data.fixture";
 
 describe("blockscout", () => {
 	test.skip("api", async () => {
@@ -28,7 +28,7 @@ describe("blockscout", () => {
 
 describe("Transaction", () => {
 	test("#asTransactionMeta contract", () => {
-		const transaction = asTransactionMeta(TXN_VITALIK_DEPOSIT);
+		const transaction = asTransactionMeta(BY_TXN.VITALIK_DEPOSIT);
 
 		expect(transaction.to).toEqual(
 			"0xB4A8d45647445EA9FC3E1058096142390683dBC2",
@@ -40,7 +40,7 @@ describe("Transaction", () => {
 		expect(transaction.tokenTransfers?.[0]?.name).toEqual("Wrapped Ether");
 	});
 	test("#asTransactionMeta transfer", () => {
-		const transaction = asTransactionMeta(TXN_VITALIK_TRANSFER);
+		const transaction = asTransactionMeta(BY_TXN.VITALIK_TRANSFER);
 
 		expect(transaction.to).toEqual(
 			"0x52a785cF0238D02e0F4157735f0a17D04AB2bF6c",

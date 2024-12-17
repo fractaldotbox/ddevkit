@@ -1,11 +1,11 @@
-import { formatUnitsWithDecimalsDisplayed } from "@/lib/amount";
 import { Text } from "@radix-ui/themes";
 // support ENS, basename
 // Option to use ipfs gateway, ens metadata services
 import { Address } from "viem";
 import { mainnet } from "viem/chains";
 import { useBalance, useReadContract } from "wagmi";
-import { ABI_ERC20 } from "../../utils/config";
+import { formatUnitsWithDecimalsDisplayed } from "@repo/ui-react/lib/amount";
+import { ABI_ERC20 } from "@repo/ui-react/lib/utils/config";
 
 type ETHBalanceProps = {
 	address: Address;

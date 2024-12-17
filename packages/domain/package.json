@@ -4,10 +4,11 @@
 	"private": true,
 	"exports": {
 		".": "./src/index.ts",
-		"./*": ["./src/*.ts", "./src/*.tsx"]
+		"./*.fixture": ["./src/*.fixture.ts"],
+		"./*": ["./src/*", "./src/*.tsx", "./src/*.ts"]
 	},
 	"imports": {
-		"#*": ["./src/*.ts", "./src/*.tsx"]
+		"#*": ["./src/*", "./src/*.tsx"]
 	},
 	"devDependencies": {
 		"@repo/typescript-config": "workspace:*",

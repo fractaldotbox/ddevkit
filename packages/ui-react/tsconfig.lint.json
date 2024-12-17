@@ -3,6 +3,6 @@
 	"compilerOptions": {
 		"outDir": "dist"
 	},
-	"include": ["src", "turbo"],
+	"include": ["src", "turbo", "../../packages/@repo/domain"],
 	"exclude": ["node_modules", "dist"]
 }

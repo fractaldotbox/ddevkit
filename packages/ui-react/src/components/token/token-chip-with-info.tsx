@@ -1,5 +1,5 @@
 import { Button } from "#components/shadcn/button";
-import { formatUnitsWithDecimalsDisplayed } from "#/lib/amount";
+import { formatUnitsWithDecimalsDisplayed } from "@repo/domain/amount";
 import { formatEther, formatGwei, formatUnits } from "viem";
 
 /**

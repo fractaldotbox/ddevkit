@@ -15,8 +15,7 @@
 import { Config, readContracts } from "@wagmi/core";
 import { useEffect, useState } from "react";
 import { Address, Chain, erc20Abi } from "viem";
-import { asTrustWalletChainName } from "../../trustwallet-chain";
-import { resolveProductionChain } from "../chain/chain-resolver";
+import { resolveProductionChain } from "@repo/domain/chain/chain-resolver";
 
 export type Token = {
 	address?: Address;
@@ -25,6 +24,26 @@ export type Token = {
 	name: string;
 	symbol: string;
 	type?: string;
+};
+
+/**
+ * trustwallet/assets does not contains most testnet, always fallback to mainnet
+ *
+ */
+export const getTrustWalletIconUrl = (chain: Chain, address?: Address) => {
+	// TODO handle special case
+	// https://developer.trustwallet.com/developer/listing-new-assets/repository_details#validators-specific-requirements
+
+	const productionChain = resolveProductionChain(chain);
+
+	const twChainName = asTrustWalletChainName(productionChain);
+	console.log("twChainName", twChainName);
+	const ROOT =
+		"https://raw.githubusercontent.com/trustwallet/assets/master/blockchains";
+	if (!address) {
+		return `${ROOT}/${twChainName}/info/logo.png`;
+	}
+	return `${ROOT}/${twChainName}/assets/${address}/logo.png`;
 };
 
 export const useTokenInfo = ({
@@ -100,24 +119,4 @@ export const useTokenInfo = ({
 	return {
 		data: tokenInfo,
 	};
-};
-
-/**
- * trustwallet/assets does not contains most testnet, always fallback to mainnet
- *
- */
-export const getTrustWalletIconUrl = (chain: Chain, address?: Address) => {
-	// TODO handle special case
-	// https://developer.trustwallet.com/developer/listing-new-assets/repository_details#validators-specific-requirements
-
-	const productionChain = resolveProductionChain(chain);
-
-	const twChainName = asTrustWalletChainName(productionChain);
-	console.log("twChainName", twChainName);
-	const ROOT =
-		"https://raw.githubusercontent.com/trustwallet/assets/master/blockchains";
-	if (!address) {
-		return `${ROOT}/${twChainName}/info/logo.png`;
-	}
-	return `${ROOT}/${twChainName}/assets/${address}/logo.png`;
 };

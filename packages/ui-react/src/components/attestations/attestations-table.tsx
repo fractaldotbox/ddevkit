@@ -1,5 +1,5 @@
 import { Badge } from "#components/shadcn/badge";
-import { DataTable } from "#components/shadcn/data-table";
+import { DataTable } from "#components/data-table";
 import { useGetAttestations } from "#lib/eas/get-attestations";
 import {
 	getEasscanAddressUrl,

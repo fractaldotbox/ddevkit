@@ -20,5 +20,9 @@
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true
 	},
-	"include": ["src", "../../packages/@repo/ui-react", "../../packages/@repo/ui-domain"]
+	"include": [
+		"src",
+		"../../packages/@repo/ui-react",
+		"../../packages/@repo/domain"
+	]
 }

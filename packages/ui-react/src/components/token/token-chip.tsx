@@ -1,7 +1,8 @@
-import { useTokenInfo } from "#lib/domain/token/token.ts";
 import { Address, Chain, erc20Abi } from "viem";
 import { mainnet } from "viem/chains";
 import { TokenChipWithInfo } from "./token-chip-with-info";
+import { useTokenInfo } from "./token";
+import { useConfig } from "wagmi";
 
 export type TokenChipProps = {
 	className?: string;
@@ -22,9 +23,11 @@ export const TokenChip = ({
 	chain,
 	className,
 }: TokenChipProps) => {
+	const config = useConfig();
 	const { data } = useTokenInfo({
 		address,
 		chain,
+		config,
 	});
 
 	if (!data) {

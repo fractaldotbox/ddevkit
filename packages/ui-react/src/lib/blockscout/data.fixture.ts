@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 
-export const TXN_VITALIK_DEPOSIT = {
+export const VITALIK_DEPOSIT = {
 	priority_fee: "159234328090670",
 	tx_burnt_fee: "792939171909330",
 	raw_input:
@@ -334,7 +334,7 @@ export const TXN_VITALIK_DEPOSIT = {
 	has_error_in_internal_transactions: false,
 };
 
-export const TXN_VITALIK_TRANSFER = {
+export const VITALIK_TRANSFER = {
 	priority_fee: "20370000000000",
 	tx_burnt_fee: "206773321797000",
 	raw_input: "0x",
@@ -437,7 +437,11 @@ export const TXN_VITALIK_TRANSFER = {
 	has_error_in_internal_transactions: false,
 };
 
-export const TXN_LIST = [TXN_VITALIK_DEPOSIT, TXN_VITALIK_TRANSFER];
+export const BY_TXN = {
+	VITALIK_DEPOSIT,
+	VITALIK_TRANSFER,
+};
+export const TXN_LIST = Object.values(BY_TXN);
 
 export function generateTxnFixturesByCount(count: number) {
 	const fixtures = [];

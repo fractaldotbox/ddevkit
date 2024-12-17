@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from "@/components/ui/button";
+import { Button, ButtonProps } from "#components/shadcn/button";
 import { MutationOptions } from "@tanstack/react-query";
 import { Config, SendTransactionErrorType } from "@wagmi/core";
 import { Loader2 } from "lucide-react";

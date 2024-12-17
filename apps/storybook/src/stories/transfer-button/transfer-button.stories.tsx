@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { useMemo, useState } from "react";
 import { Account } from "viem";
 import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
-import { TransferButton } from "./transfer-button";
+import { TransferButton } from "@repo/ui-react/components/transfer/transfer-button";
 interface TransferButtonProps {
 	to: string;
 	account?: Account;

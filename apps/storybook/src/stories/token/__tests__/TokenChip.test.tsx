@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import {
 	TokenChipWithInfo,
 	TokenChipWithInfoProps,
-} from "../TokenChipWithInfo";
+} from "@repo/ui-react/components/token/token-chip-with-info";
 
 vi.mock("@/components/ui/button", () => ({
 	Button: ({

@@ -9,15 +9,15 @@ import {
 import { Separator } from "#components/shadcn/separator";
 import { Skeleton } from "#components/shadcn/skeleton";
 import { useGetAttestations } from "#hooks/eas/get-attestations";
-import { getShortHex } from "#utils/hex";
 import { Label } from "@radix-ui/react-label";
 import { format } from "date-fns";
 import { useMemo } from "react";
 import { Address, Hex } from "viem";
 import { mainnet } from "viem/chains";
 import { useChainId } from "wagmi";
-import { SchemaBadge } from "./SchemaBadge";
 import { AttestationMeta, asAttestationMeta } from "./attestations";
+import { SchemaBadge } from "./schema-badge";
+import { getShortHex } from "#lib/utils/hex";
 
 // TODO indicate network
 const AttestationCardContent = ({

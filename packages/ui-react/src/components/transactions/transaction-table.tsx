@@ -1,5 +1,5 @@
 import { Badge } from "#components/shadcn/badge";
-import { DataTable } from "#components/shadcn/data-table";
+import { DataTable } from "#components/data-table";
 import { resolveChainById } from "@repo/domain/chain/chain-resolver";
 import { TransactionMeta } from "@repo/domain/transaction/transaction";
 import {
