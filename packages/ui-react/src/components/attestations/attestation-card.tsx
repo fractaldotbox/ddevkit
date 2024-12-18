@@ -16,8 +16,8 @@ import { Separator } from "#components/shadcn/separator";
 import { Skeleton } from "#components/shadcn/skeleton";
 import { useGetAttestations } from "#hooks/eas/get-attestations";
 import { getShortHex } from "#lib/utils/hex";
+import { SchemaBadge } from "./attestation-schema-badge";
 import { AttestationMeta, asAttestationMeta } from "./attestations";
-import { SchemaBadge } from "./schema-badge";
 
 // TODO indicate network
 const AttestationCardContent = ({
@@ -68,8 +68,10 @@ const AttestationCardContent = ({
 
 // some key fields from https://easscan.org/offchain/attestation/view/0x49dff46654fe740241026c1a717ace9ec439abe26124cd925b0ba1df296433c5
 export const AttestationCard = ({
+	isOffchain,
 	attesterAddress,
 }: {
+	isOffchain: boolean;
 	attesterAddress: Address;
 }) => {
 	const chainId = useChainId();
@@ -78,21 +80,20 @@ export const AttestationCard = ({
 		address: attesterAddress,
 	});
 
+	const title = `${isOffchain ? "Offchain " : "Onchain"} Attestation`;
+
 	const attestation = useMemo(() => {
 		if (!data) {
 			return null;
 		}
 		return asAttestationMeta(data?.data?.attestations?.[0]);
 	}, [isSuccess]);
-	// 1. onchain vs offchain
-
-	// 2. grid
 
 	return (
 		<Card>
 			{attestation ? (
 				<CardHeader>
-					<CardTitle>Attestation</CardTitle>
+					<CardTitle>{title}</CardTitle>
 					<CardDescription>
 						<div className="flex flex-col">
 							<div className="flex items-baseline ">

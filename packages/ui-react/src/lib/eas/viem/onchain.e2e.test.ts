@@ -16,9 +16,6 @@ export const EASContractAddress = "0xC2679fBD37d54388Ce493F1DB75320D236e1815e"; 
 
 // TODO fixture
 const recipient = "0x7f890c611c3B5b8Ff44FdF5Cf313FF4484a2D794";
-export const ZERO_BYTES = "0x";
-export const ZERO_BYTES32 =
-	"0x0000000000000000000000000000000000000000000000000000000000000000";
 
 const privateKey = config.test.eas.privateKey as Hex;
 

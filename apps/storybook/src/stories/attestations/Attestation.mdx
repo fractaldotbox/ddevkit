@@ -1,0 +1,16 @@
+import { Meta, Story, Canvas } from '@storybook/blocks';
+import * as AttestationFormEasSdkStories from './AttestationFormEasSdk.stories';
+import * as AttestationFormWagmiStories from './AttestationFormWagmi.stories';
+
+<Meta title="MDX/Avatar" of={AttestationFormWagmiStories} />
+
+# Attestation
+- These stories are about creating attestation via EAS
+- both versions of Pure wagmi / viem-based and eas-sdk are available
+
+- These components use plain shadcn style and mimic official ones for  attestation / schema card
+- Refers to below articla on official exmples
+  - https://mirror.xyz/0xeee68aECeB4A9e9f328a46c39F50d83fA0239cDF/GLCRxzd7Y68_lWNnLxk4FG20sOWDwcQE_stQt6V7y1Y
+
+
+<Canvas of={AttestationFormWagmiStories.AttestationWagmiOffchain} />

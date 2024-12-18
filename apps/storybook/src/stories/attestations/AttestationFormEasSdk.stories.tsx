@@ -1,17 +1,18 @@
-import { EAS_CONTRACT_ADDRESS } from "@/lib/eas/abi";
-import {
-	VOTE_SCHEMA_FIXTURE,
-	ZERO_BYTES,
-	ZERO_BYTES32,
-} from "@/lib/eas/eas-test.fixture";
-import { createAttestationOnchain, createEAS } from "@/lib/eas/ethers/onchain";
-import { NO_EXPIRATION } from "@/lib/eas/request";
 import { BY_USER } from "@repo/domain/user.fixture";
 import { AttestationForm } from "@repo/ui-react/components/attestations/attestation-form.js";
+import { ZERO_BYTES } from "@repo/ui-react/lib/constants";
+import { EAS_CONTRACT_ADDRESS } from "@repo/ui-react/lib/eas/abi";
+import { VOTE_SCHEMA_FIXTURE } from "@repo/ui-react/lib/eas/attest.fixture";
+import {
+	createAttestationOnchain,
+	createEAS,
+} from "@repo/ui-react/lib/eas/ethers/onchain";
+import { NO_EXPIRATION } from "@repo/ui-react/lib/eas/request";
 import { createTestEthersSigner } from "@repo/ui-react/lib/test-utils-isomorphic";
 import type { Meta, StoryObj } from "@storybook/react";
 import { encodeBytes32String } from "ethers";
-import { Address, Hex } from "viem";
+import { Address, Hex, zeroHash } from "viem";
+import { optimism, sepolia } from "viem/chains";
 import { withToaster } from "../decorators/toaster";
 import { withWalletControl } from "../decorators/wallet-control";
 
@@ -19,24 +20,33 @@ const requestTemplate = {
 	recipient: BY_USER.eas.mockReceipient.address,
 	expirationTime: NO_EXPIRATION,
 	revocable: true,
-	refUID: ZERO_BYTES32,
+	refUID: zeroHash,
 	data: ZERO_BYTES as Hex,
 	salt: encodeBytes32String("SALT") as Hex,
 };
 
+export interface AttestationFormEasSdkProps {
+	privateKey: string;
+	chainId: number;
+	schemaId: string;
+	schemaIndex: string;
+	isOffchain: boolean;
+}
+
 const AttestationFormEasSdk = ({
 	privateKey,
+	chainId,
 	schemaId,
 	schemaIndex,
 	isOffchain,
-}: any) => {
+}: AttestationFormEasSdkProps) => {
 	const signer = createTestEthersSigner(privateKey, 11155111);
 
 	const eas = createEAS(EAS_CONTRACT_ADDRESS, signer);
 
 	return (
 		<AttestationForm
-			chainId={11155111}
+			chainId={chainId}
 			schemaId={schemaId}
 			schemaIndex={schemaIndex}
 			isOffchain={isOffchain}
@@ -100,6 +110,18 @@ type Story = StoryObj<typeof meta>;
 
 export const Onchain: Story = {
 	args: {
+		chainId: sepolia.id,
+		privateKey: BY_USER.mock.privateKey,
+		schemaId: VOTE_SCHEMA_FIXTURE.schemaUID,
+		schemaIndex: "9",
+		isOffchain: false,
+	},
+	decorators: [],
+};
+
+export const OnchainOptimism: Story = {
+	args: {
+		chainId: optimism.id,
 		privateKey: BY_USER.mock.privateKey,
 		schemaId: VOTE_SCHEMA_FIXTURE.schemaUID,
 		schemaIndex: "9",
@@ -110,6 +132,7 @@ export const Onchain: Story = {
 
 export const Offchain: Story = {
 	args: {
+		chainId: sepolia.id,
 		privateKey: BY_USER.mock.privateKey,
 		schemaId: VOTE_SCHEMA_FIXTURE.schemaUID,
 		schemaIndex: "9",

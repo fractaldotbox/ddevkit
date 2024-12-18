@@ -1,6 +1,5 @@
 import { AttestationForm } from "@repo/ui-react/components/attestations/attestation-form.js";
-import { ZERO_BYTES32 } from "@repo/ui-react/lib/eas/eas";
-import { SCHEMA_FIXTURE_IS_A_FRIEND } from "@repo/ui-react/lib/eas/eas-test.fixture";
+import { SCHEMA_FIXTURE_IS_A_FRIEND } from "@repo/ui-react/lib/eas/attest.fixture";
 import { OffchainAttestationVersion } from "@repo/ui-react/lib/eas/offchain/offchain";
 import { NO_EXPIRATION } from "@repo/ui-react/lib/eas/request";
 import { signOffchainAttestation } from "@repo/ui-react/lib/eas/viem/offchain";
@@ -17,6 +16,7 @@ import {
 	Hex,
 	createWalletClient,
 	stringToHex,
+	zeroHash,
 } from "viem";
 import { sepolia } from "viem/chains";
 import { withToaster } from "../decorators/toaster";
@@ -56,7 +56,7 @@ const useAttestationWagmi = (params: UseAttestationWagmiParams) => {
 			const attestation = await signOffchainAttestation(
 				{
 					revocable: false,
-					refUID: ZERO_BYTES32,
+					refUID: zeroHash,
 					...request,
 
 					version,
@@ -155,7 +155,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const requestDataFixture = {
-	refUID: ZERO_BYTES32,
+	refUID: zeroHash,
 	time: 1728637333n,
 	revocable: true,
 	// "yes"

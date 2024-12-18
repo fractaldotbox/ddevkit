@@ -1,15 +1,11 @@
-import {
+import type {
 	AttestationShareablePackageObject,
-	NO_EXPIRATION,
 	OffchainAttestationVersion,
 	SignedOffchainAttestation,
 } from "@ethereum-attestation-service/eas-sdk";
+import { NO_EXPIRATION } from "./request";
 
 // https://github.com/wevm/viem/blob/main/src/constants/address.ts#L5
-
-export const ZERO_BYTES = "0x";
-export const ZERO_BYTES32 =
-	"0x0000000000000000000000000000000000000000000000000000000000000000";
 
 // https://github.com/ethereum-attestation-service/eas-sdk?tab=readme-ov-file#example-creating-onchain-attestations
 export const VOTE_SCHEMA_FIXTURE = {

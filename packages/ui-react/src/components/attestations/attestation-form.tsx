@@ -2,8 +2,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "#components/shadcn/button";
-import { getEasscanAttestationUrl } from "#lib/eas/util";
-
 import { Card, CardContent } from "#components/shadcn/card";
 import {
 	Form,
@@ -17,8 +15,9 @@ import {
 import { Input } from "#components/shadcn/input";
 import { ToastAction } from "#components/shadcn/toast";
 import { toast } from "#hooks/shadcn/use-toast";
+import { getEasscanAttestationUrl } from "#lib/eas/util";
 import { getShortHex } from "#lib/utils/hex";
-import { SchemaBadge } from "./SchemaBadge";
+import { SchemaBadge } from "./attestation-schema-badge";
 
 // TODO dynamic enough to generate fields
 // now focus on sdk part
