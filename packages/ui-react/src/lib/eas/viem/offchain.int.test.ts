@@ -16,14 +16,14 @@ import { Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { sepolia } from "viem/chains";
 import { beforeEach, describe, expect, test } from "vitest";
-import { SCHEMA_FIXTURE_MET_IRL } from "../eas-test.fixture";
-import { createTestEthersSigner } from "../ethers";
-import { createEAS } from "../ethers/onchain";
-import { getOffchainUID } from "../offchain-utils";
+import { createTestEthersSigner } from "#lib/test-utils-isomorphic";
+import { SCHEMA_FIXTURE_MET_IRL } from "../attest.fixture";
+import { createEAS } from "../sdk/eas";
 import {
 	OFFCHAIN_ATTESTATION_TYPES,
 	verifyOffchainAttestationSignature,
-} from "../offchain/offchain";
+} from "../sdk/offchain/offchain";
+import { getOffchainUID } from "../sdk/offchain/offchain-utils";
 import { EIP712_NAME } from "../versions";
 import { signOffchainAttestation } from "./offchain";
 import { EASContractAddress } from "./onchain.e2e.test";

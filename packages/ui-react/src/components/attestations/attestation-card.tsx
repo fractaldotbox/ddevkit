@@ -14,15 +14,15 @@ import {
 } from "#components/shadcn/card";
 import { Separator } from "#components/shadcn/separator";
 import { Skeleton } from "#components/shadcn/skeleton";
-import { useGetAttestations } from "#hooks/eas/get-attestations";
+import { useGetAttestationWithUid } from "#hooks/eas/get-attestation-with-uid";
 import { getShortHex } from "#lib/utils/hex";
-import { SchemaBadge } from "./attestation-schema-badge";
+import { AttestationSchemaBadge } from "./attestation-schema-badge";
 import { AttestationMeta, asAttestationMeta } from "./attestations";
 
-// TODO indicate network
 const AttestationCardContent = ({
+	chainId,
 	attestation,
-}: { attestation: AttestationMeta }) => {
+}: { chainId: number; attestation: AttestationMeta }) => {
 	const { from, to, schemaId, schemaName, schemaIndex } = attestation;
 	if (!attestation) {
 		return <Skeleton className="w-[100px] h-[20px] rounded-full" />;
@@ -33,8 +33,8 @@ const AttestationCardContent = ({
 				<div className="grid flex-1 auto-rows-min gap-0.5">
 					<div className="text-xs text-muted-foreground">Schema ID</div>
 					<div className="flex items-center gap-1 text-2xl font-bold tabular-nums leading-none">
-						<SchemaBadge
-							chainId={mainnet.id}
+						<AttestationSchemaBadge
+							chainId={chainId}
 							schemaId={schemaId}
 							schemaIndex={schemaIndex}
 						/>
@@ -66,28 +66,16 @@ const AttestationCardContent = ({
 	);
 };
 
-// some key fields from https://easscan.org/offchain/attestation/view/0x49dff46654fe740241026c1a717ace9ec439abe26124cd925b0ba1df296433c5
-export const AttestationCard = ({
+export const AttestationCardWithMeta = ({
 	isOffchain,
-	attesterAddress,
+	chainId,
+	attestation,
 }: {
 	isOffchain: boolean;
-	attesterAddress: Address;
+	chainId: number;
+	attestation: AttestationMeta | null;
 }) => {
-	const chainId = useChainId();
-	const { data, isSuccess } = useGetAttestations({
-		chainId,
-		address: attesterAddress,
-	});
-
 	const title = `${isOffchain ? "Offchain " : "Onchain"} Attestation`;
-
-	const attestation = useMemo(() => {
-		if (!data) {
-			return null;
-		}
-		return asAttestationMeta(data?.data?.attestations?.[0]);
-	}, [isSuccess]);
 
 	return (
 		<Card>
@@ -118,9 +106,42 @@ export const AttestationCard = ({
 				<Skeleton className="w-[100px] h-[20px] rounded-full" />
 			)}
 			<CardContent>
-				{attestation && <AttestationCardContent attestation={attestation} />}
+				{attestation && (
+					<AttestationCardContent chainId={chainId} attestation={attestation} />
+				)}
 			</CardContent>
 			<CardFooter></CardFooter>
 		</Card>
+	);
+};
+
+// some key fields from https://easscan.org/offchain/attestation/view/0x49dff46654fe740241026c1a717ace9ec439abe26124cd925b0ba1df296433c5
+export const AttestationCard = ({
+	isOffchain,
+	chainId,
+	attestationUid,
+}: {
+	isOffchain: boolean;
+	chainId: number;
+	attestationUid: string;
+}) => {
+	const { data, isSuccess } = useGetAttestationWithUid({
+		chainId,
+		uid: attestationUid,
+	});
+
+	const attestation = useMemo(() => {
+		if (!data) {
+			return null;
+		}
+		return asAttestationMeta(data?.data?.attestation);
+	}, [isSuccess]);
+
+	return (
+		<AttestationCardWithMeta
+			isOffchain={isOffchain}
+			chainId={chainId}
+			attestation={attestation}
+		/>
 	);
 };

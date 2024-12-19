@@ -1,7 +1,7 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useWalletClient } from "wagmi";
 import { UploadAttestationParams } from "#components/attestations/attestations";
-import { getAttestationWithUid } from "#lib/eas/get-attestation-with-uid";
+import { createGetAttestationWithUidQueryOptions } from "#hooks/eas/get-attestation-with-uid";
 import {
 	createLighthouseParams,
 	getLighthouseGatewayUrl,
@@ -13,9 +13,12 @@ import { useToast } from "../shadcn/use-toast";
 export function useUploadAttestationWithLighthouse({
 	lighthouseApiKey,
 }: {
-	lighthouseApiKey: string;
+	lighthouseApiKey?: string;
 }) {
+	if (!lighthouseApiKey) throw new Error("lighthouseApiKey is required");
+
 	const { data: walletClient } = useWalletClient();
+	const queryClient = useQueryClient();
 	const { toast } = useToast();
 
 	const mutation = useMutation({
@@ -27,8 +30,15 @@ export function useUploadAttestationWithLighthouse({
 		}: UploadAttestationParams) => {
 			if (!walletClient) return;
 
-			if ((uid || "").length > 0) {
-				const attestation = await getAttestationWithUid(uid!, chainId);
+			if (uid) {
+				const queryOptions = createGetAttestationWithUidQueryOptions({
+					uid,
+					chainId,
+				});
+
+				const { data: attestation } =
+					await queryClient.fetchQuery(queryOptions);
+
 				if (!attestation.attestation) throw new Error("attestation not found");
 				payload = attestation;
 			}
@@ -44,7 +54,7 @@ export function useUploadAttestationWithLighthouse({
 			// default to payload
 			const [accountAddress, signedMessage] = await createLighthouseParams({
 				account: walletClient.account,
-				options: { lighthouseApiKey },
+				options: { apiKey: lighthouseApiKey },
 			});
 
 			const compiledPayload = { ...payload, chainId };

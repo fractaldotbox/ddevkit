@@ -1,3 +1,4 @@
+import { QueryClient, useQuery } from "@tanstack/react-query";
 import { gql, rawRequest } from "graphql-request";
 import { getEasscanEndpoint } from "../../lib/eas/easscan";
 
@@ -39,16 +40,39 @@ const allAttestationsByQuery = gql`
   }
 `;
 
-export const getAttestationWithUid = async (uid: string, chainId: number) => {
-	const response = await rawRequest<AttestationByIdResponse>(
-		`${getEasscanEndpoint(chainId)}/graphql`,
-		allAttestationsByQuery.toString(),
-		{
-			where: {
-				id: uid,
-			},
-		},
-	);
+export const createGetAttestationWithUidQueryOptions = ({
+	uid,
+	chainId,
+}: {
+	uid: string;
+	chainId: number;
+}) => {
+	return {
+		queryKey: ["attestation", chainId, uid],
+		queryFn: async () =>
+			rawRequest<AttestationByIdResponse>(
+				`${getEasscanEndpoint(chainId)}/graphql`,
+				allAttestationsByQuery.toString(),
+				{
+					where: {
+						id: uid,
+					},
+				},
+			),
+	};
+};
 
-	return response.data;
+export const useGetAttestationWithUid = ({
+	uid,
+	chainId,
+}: {
+	uid: string;
+	chainId: number;
+}) => {
+	const queryOptions = createGetAttestationWithUidQueryOptions({
+		uid,
+		chainId,
+	});
+
+	return useQuery(queryOptions);
 };

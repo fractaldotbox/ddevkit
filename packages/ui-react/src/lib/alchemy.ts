@@ -12,18 +12,10 @@ export const ALCHEMY_ENDPOINT_BY_CHAIN_ID = {
 	[arbitrum.id]: `https://arb-mainnet.g.alchemy.com/v2/`,
 } as Record<number, string>;
 
-/**
- * Below are not expected to be published in package
- */
-const ALCHEMY_API_KEY =
-	import.meta.env.ALCHEMY_API_KEY ||
-	import.meta.env.STORYBOOK_ALCHEMY_API_KEY ||
-	"";
-
-export const getAlchemyEndpoint = (chainId: number) => {
+export const getAlchemyEndpoint = (chainId: number, apiKey?: string) => {
 	const endpoint = ALCHEMY_ENDPOINT_BY_CHAIN_ID[chainId];
-	if (!endpoint) {
+	if (!endpoint || !apiKey) {
 		return;
 	}
-	return `${endpoint}${ALCHEMY_API_KEY}`;
+	return `${endpoint}${apiKey}`;
 };

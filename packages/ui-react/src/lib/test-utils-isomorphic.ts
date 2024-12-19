@@ -1,3 +1,4 @@
+import config from "@repo/domain/config";
 import {
 	BrowserProvider,
 	JsonRpcProvider,
@@ -5,13 +6,6 @@ import {
 	ethers,
 } from "ethers";
 import { http } from "viem";
-import {
-	type Account,
-	type Chain,
-	type Client,
-	type Transport,
-	createWalletClient,
-} from "viem";
 import { sepolia } from "viem/chains";
 import { getAlchemyEndpoint } from "./alchemy";
 
@@ -20,7 +14,7 @@ export const createTestClientConfig = (overrides?: any) => {
 	const chain = overrides?.chain || sepolia;
 	return {
 		chain,
-		transport: http(getAlchemyEndpoint(chain.id)),
+		transport: http(getAlchemyEndpoint(chain.id, config.alchemy.apiKey)),
 		...(overrides || {}),
 	};
 };
@@ -29,7 +23,9 @@ export const createTestEthersSigner = (
 	privateKey: string,
 	chainId: number = sepolia.id,
 ) => {
-	const provider = new JsonRpcProvider(getAlchemyEndpoint(chainId));
+	const provider = new JsonRpcProvider(
+		getAlchemyEndpoint(chainId, config.alchemy.apiKey),
+	);
 
 	return new ethers.Wallet(privateKey, provider);
 };

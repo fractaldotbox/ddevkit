@@ -1,7 +1,7 @@
 import { Badge } from "#components/shadcn/badge";
 import { getEasscanSchemaUrl } from "#lib/eas/easscan";
 
-export const SchemaBadge = ({
+export const AttestationSchemaBadge = ({
 	chainId,
 	schemaId,
 	schemaIndex,

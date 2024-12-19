@@ -12,6 +12,7 @@
 		"#*": ["./src/*", "./src/*.tsx"]
 	},
 	"scripts": {
+		"test": "vitest",
 		"generate:component": "turbo gen react-component"
 	},
 	"devDependencies": {
@@ -34,7 +35,8 @@
 		"dependency-tree": "^11.0.1",
 		"globals": "^15.9.0",
 		"react-test-renderer": "^18.3.1",
-		"typescript-eslint": "^8.0.1"
+		"typescript-eslint": "^8.0.1",
+		"pako": "^2.1.0"
 	},
 	"dependencies": {
 		"@repo/domain": "workspace:*",
@@ -119,7 +121,6 @@
 		"micro-eth-signer": "^0.12.0",
 		"micro-packed": "^0.6.3",
 		"multiformats": "^13.3.0",
-		"pako": "^2.1.0",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"react-dropzone": "^14.2.9",

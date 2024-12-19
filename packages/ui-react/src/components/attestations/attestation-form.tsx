@@ -17,7 +17,7 @@ import { ToastAction } from "#components/shadcn/toast";
 import { toast } from "#hooks/shadcn/use-toast";
 import { getEasscanAttestationUrl } from "#lib/eas/util";
 import { getShortHex } from "#lib/utils/hex";
-import { SchemaBadge } from "./attestation-schema-badge";
+import { AttestationSchemaBadge } from "./attestation-schema-badge";
 
 // TODO dynamic enough to generate fields
 // now focus on sdk part
@@ -30,7 +30,8 @@ export interface AttestationFormParams {
 	signAttestation: () => Promise<any>;
 }
 
-// For now, hardcode the MetIRL
+// TODO dynamic schema. For now, hardcode the MetIRL
+// https://github.com/fractaldotbox/geist-dapp-kit/issues/56
 export const AttestationForm = ({
 	chainId,
 	schemaId,
@@ -52,7 +53,6 @@ export const AttestationForm = ({
 	});
 	function onSubmit(values: z.infer<typeof formSchema>) {
 		signAttestation().then(({ uids, txnReceipt }: any) => {
-			console.log("success", uids, txnReceipt, isOffchain);
 			const [uid] = uids;
 			const url = getEasscanAttestationUrl(chainId, uid, isOffchain);
 
@@ -84,8 +84,8 @@ export const AttestationForm = ({
 							name="recipient"
 							render={({ field }) => (
 								<FormItem>
-									<div className="flex gap-2">
-										<SchemaBadge
+									<div className="flex gap-2 pt-4">
+										<AttestationSchemaBadge
 											chainId={chainId}
 											schemaId={schemaId}
 											schemaIndex={schemaIndex || ""}

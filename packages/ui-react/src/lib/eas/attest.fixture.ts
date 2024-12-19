@@ -1,8 +1,9 @@
-import type {
+import {
 	AttestationShareablePackageObject,
 	OffchainAttestationVersion,
 	SignedOffchainAttestation,
 } from "@ethereum-attestation-service/eas-sdk";
+import { mainnet, optimism, sepolia } from "viem/chains";
 import { NO_EXPIRATION } from "./request";
 
 // https://github.com/wevm/viem/blob/main/src/constants/address.ts#L5
@@ -10,7 +11,7 @@ import { NO_EXPIRATION } from "./request";
 // https://github.com/ethereum-attestation-service/eas-sdk?tab=readme-ov-file#example-creating-onchain-attestations
 export const VOTE_SCHEMA_FIXTURE = {
 	schemaUID:
-		"0xb16fa048b0d597f5a821747eba64efa4762ee5143e9a80600d0005386edfc995",
+		"0x424041413f6893c2f2e3e0e91ce9e26763840795b9c7fbb3866502e8d5c94677",
 	schemaString: "uint256 eventId, uint8 voteIndex",
 	encodedData: [
 		{ name: "eventId", value: 1, type: "uint256" },
@@ -31,10 +32,74 @@ export const SCHEMA_FIXTURE_MET_IRL = {
 	encodedData: [{ name: "metIRL", value: 1, type: "bool" }],
 };
 
+// https://optimism.easscan.org/schema/view/0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a
 // https://sepolia.easscan.org/schema/view/0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a
 export const SCHEMA_FIXTURE_IS_A_FRIEND = {
 	schemaUID:
 		"0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a",
+};
+
+export const SCHEMA_BY_NAME = {
+	ENDORSEMENTS: {
+		byChain: {
+			[mainnet.id]: {
+				index: 12,
+				uid: "0xa76299ae6a66b66ff48344f36c0fa657a0a9eeb6721248311df9cf25748e4405",
+			},
+		},
+		schema: VOTE_SCHEMA_FIXTURE,
+	},
+	VOTE: {
+		byChain: {
+			[mainnet.id]: {
+				index: 12,
+				uid: "0x424041413f6893c2f2e3e0e91ce9e26763840795b9c7fbb3866502e8d5c94677",
+			},
+		},
+		schema: VOTE_SCHEMA_FIXTURE,
+	},
+	IS_A_FRIEND: {
+		byChain: {
+			[optimism.id]: {
+				index: 9,
+				uid: "0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a",
+			},
+			[sepolia.id]: {
+				index: 10,
+				uid: "0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a",
+			},
+		},
+		schema: {},
+	},
+	MET_IRL: {
+		byChain: {
+			[optimism.id]: {
+				index: 42,
+				uid: "0xc59265615401143689cbfe73046a922c975c99d97e4c248070435b1104b2dea7",
+				byExample: {
+					offchain:
+						"0xb51930c7a58e36ada6ab84c25971c527c0cc990fa17a73cfc1733c187d7a7fca",
+				},
+			},
+			[sepolia.id]: {
+				index: 78,
+				uid: "0xc59265615401143689cbfe73046a922c975c99d97e4c248070435b1104b2dea7",
+				byExample: {
+					offchain:
+						"0xd241a6e573b1e702011583f85a09fcdbf5239d9360172bca3175ea48bdabc284",
+				},
+			},
+			[mainnet.id]: {
+				index: 78,
+				uid: "0xc59265615401143689cbfe73046a922c975c99d97e4c248070435b1104b2dea7",
+				byExample: {
+					onchain:
+						"0x16ee27959f9d9f7a9b4b768a60e1b8ff2057c4763bc2c9d3b107bfa36f43b97e",
+				},
+			},
+		},
+		schema: {},
+	},
 };
 
 export interface Spec {

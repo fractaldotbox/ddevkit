@@ -1,6 +1,6 @@
 import { format, formatDistance, subDays } from "date-fns";
 import { Address } from "viem";
-import { AttestationQueryResult } from "#hooks/eas/get-attestation";
+import { AttestationQueryResult } from "#hooks/eas/get-attestations";
 
 // TODO sync graphql type
 export const asAttestationMeta = (attestation: AttestationQueryResult) => {
@@ -39,6 +39,7 @@ export type AttestationMeta = {
 	schemaName: string;
 	from: Address;
 	to: Address;
+	time: number;
 	isOffchain: boolean;
 	ageDisplayed: string;
 	txid: string;

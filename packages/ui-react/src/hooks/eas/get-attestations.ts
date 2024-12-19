@@ -2,6 +2,7 @@ import { gql } from "@repo/graphql";
 import { useQuery } from "@tanstack/react-query";
 import { rawRequest, request } from "graphql-request";
 import { Address, Hex } from "viem";
+import { getEasscanEndpoint } from "#lib/eas/easscan";
 // import { AllAttestationsByQuery } from 'node_modules/@repo/graphql/src/graphql/graphql';
 
 type AllAttestationsByQuery = any;
@@ -40,13 +41,11 @@ export const useGetAttestations = ({
 }) => {
 	// https://github.com/dotansimha/graphql-code-generator/blob/master/examples/react/tanstack-react-query/src/use-graphql.ts
 
-	// To confirm schema consistency across multiple chains
-	console.log("useGetAttestations", chainId, address);
 	const results = useQuery({
 		queryKey: ["attestations", chainId, address],
 		queryFn: async () =>
 			rawRequest<AllAttestationsByQuery>(
-				"https://easscan.org/graphql",
+				`${getEasscanEndpoint(chainId)}/graphql`,
 				allAttestationsByQuery.toString(),
 				{
 					where: {

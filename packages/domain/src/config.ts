@@ -5,6 +5,9 @@
  * to be genearted with shadcn cli
  */
 
+// this run at runtime but
+// at storybook process.env not longer available and import.meta.env do not include config
+
 export default {
 	lighthouse: {
 		apiKey: process.env.LIGHTHOUSE_API_KEY,
@@ -15,6 +18,9 @@ export default {
 	storacha: {
 		key: process.env.STORACHA_KEY,
 		proof: process.env.STORACHA_PROOF,
+	},
+	alchemy: {
+		apiKey: process.env.ALCHEMY_API_KEY,
 	},
 	test: {
 		eas: {

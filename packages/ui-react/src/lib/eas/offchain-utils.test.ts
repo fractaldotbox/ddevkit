@@ -8,8 +8,11 @@ import {
 	zipAndEncodeToBase64 as zipAndEncodeToBase64Sdk,
 } from "@ethereum-attestation-service/eas-sdk";
 import { describe, expect, test } from "vitest";
-import { Spec, TEST_ATTESTATIONS } from "./eas-test.fixture";
-import { createOffchainURL, zipAndEncodeToBase64 } from "./offchain-utils";
+import { Spec, TEST_ATTESTATIONS } from "./attest.fixture";
+import {
+	createOffchainURL,
+	zipAndEncodeToBase64,
+} from "./sdk/offchain/offchain-utils";
 // import { createOffchainURL, zipAndEncodeToBase64 } from './offchain/offchain';
 
 describe("#getOffchain", () => {

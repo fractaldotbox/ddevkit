@@ -1,6 +1,7 @@
+import { Address } from "viem";
 import { useChainId } from "wagmi";
 import { Badge } from "#components/shadcn/badge";
-import { useGetAttestations } from "#lib/eas/get-attestations";
+import { useGetAttestations } from "#hooks/eas/get-attestations";
 
 // TODO
 export function AttestationBadge({
@@ -16,7 +17,7 @@ export function AttestationBadge({
 	// TODO address from addressOrEns
 	const { data, isSuccess } = useGetAttestations({
 		chainId,
-		address: addressOrEns,
+		address: addressOrEns as Address,
 	});
 
 	return <Badge>Translator</Badge>;

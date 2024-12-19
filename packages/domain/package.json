@@ -7,6 +7,9 @@
 		"./*.fixture": ["./src/*.fixture.ts"],
 		"./*": ["./src/*", "./src/*.tsx", "./src/*.ts"]
 	},
+	"scripts": {
+		"test": "vitest"
+	},
 	"imports": {
 		"#*": ["./src/*", "./src/*.tsx"]
 	},

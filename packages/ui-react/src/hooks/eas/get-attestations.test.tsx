@@ -1,10 +1,11 @@
-import { mainnet } from "viem/chains";
+import { mainnet, optimism } from "viem/chains";
 import { describe, expect, test } from "vitest";
 import { useGetAttestations } from "./get-attestations";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { renderHook, waitFor } from "@testing-library/react";
 import React from "react";
+import { Address } from "viem";
 
 /**
  * @vitest-environment jsdom
@@ -21,23 +22,25 @@ describe("attestatiosn", () => {
 		<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 	);
 
-	// TODO provider
-	test("should return an array of attestations", async () => {
-		const { result } = renderHook(
-			() =>
-				useGetAttestations({
-					chainId: mainnet.id,
-					address: "0x1CB34c1eC454708e7C849975E8e545B54417CdFf",
-				}),
-			{ wrapper },
-		);
+	test.each([[mainnet.id, "0x1CB34c1eC454708e7C849975E8e545B54417CdFf"]])(
+		`should return an array of attestations`,
+		async (chainId: number, address: string) => {
+			const { result } = renderHook(
+				() =>
+					useGetAttestations({
+						chainId,
+						address: address as Address,
+					}),
+				{ wrapper },
+			);
 
-		await waitFor(() => expect(result.current.isLoading).toBe(false));
+			await waitFor(() => expect(result.current.isLoading).toBe(false), {
+				timeout: 60000,
+			});
 
-		await waitFor(() => expect(result.current.isSuccess).toBe(true));
+			await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
-		//    const attestations = await useGetAttestations({
-		//     chainId: mainnet.id
-		//    })
-	});
-});
+			expect(result.current.data).toBeDefined();
+		},
+	);
+}, 60_000);

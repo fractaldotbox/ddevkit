@@ -7,7 +7,7 @@ import {
 	EIP712Types,
 	TypeDataSigner,
 	// TypedDataHandler,
-} from "./typed-data";
+} from "./typed-data-handler";
 import { EIP712_NAME, EIP712_VERSIONS } from "./versions";
 
 enum DelegatedAttestationVersion {

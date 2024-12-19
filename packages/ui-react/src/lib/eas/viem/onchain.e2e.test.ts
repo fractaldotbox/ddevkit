@@ -10,7 +10,7 @@ import { privateKeyToAccount } from "viem/accounts";
 import { sepolia } from "viem/chains";
 import { beforeEach, describe, expect, it, test } from "vitest";
 import { SCHEMA_FIXTURE_IS_A_FRIEND } from "../eas-test.fixture";
-import { createEAS } from "../ethers/onchain";
+import { createEAS } from "../sdk/eas";
 import { makeOnchainAttestation, revoke } from "./onchain";
 export const EASContractAddress = "0xC2679fBD37d54388Ce493F1DB75320D236e1815e"; // Sepolia v0.26
 

@@ -80,7 +80,6 @@ const useAttestationWagmi = (params: UseAttestationWagmiParams) => {
 			data: request,
 		});
 
-		console.log("uids", uids, txnReceipt);
 		return {
 			uids,
 			txnReceipt,
@@ -161,6 +160,14 @@ const requestDataFixture = {
 	// "yes"
 	data: "0x0000000000000000000000000000000000000000000000000000000000000001" as Hex,
 	value: 0n,
+};
+
+const createArgs = (schema: any, chainId: number) => {
+	return {
+		chainId: chainId,
+		schemaId: schema.byChain[chainId].uid,
+		schemaIndex: schema.byChain[chainId].index.toString(),
+	};
 };
 
 // TODO chain control at withWalletControlWagmi

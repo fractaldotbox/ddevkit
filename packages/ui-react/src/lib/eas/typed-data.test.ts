@@ -16,15 +16,15 @@ import {
 	parseAbiParameters,
 } from "viem";
 import { describe, expect, test } from "vitest";
-import { EAS_CONTRACT_ADDRESS } from "../abi";
-import { EIP712_NAME } from "../versions";
-import { DelegatedConfig } from "./delegated";
+import { EAS_CONTRACT_ADDRESS } from "./abi";
+import { DelegatedConfig } from "./sdk/offchain/delegated";
 import {
 	DelegatedAttestationVersion,
 	getDomainSeparatorDefault,
 	getDomainSeparatorDelegated,
 	getDomainSeparatorOffchain,
-} from "./typed-data";
+} from "./sdk/offchain/typed-data-handler";
+import { EIP712_NAME } from "./versions";
 
 describe("hash", () => {
 	const data = {

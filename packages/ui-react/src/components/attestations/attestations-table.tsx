@@ -4,15 +4,10 @@ import { Address, fromBlobs } from "viem";
 import { mainnet } from "viem/chains";
 import { useChainId } from "wagmi";
 import { DataTable } from "#components/data-table";
-import { Badge } from "#components/shadcn/badge";
-import { useGetAttestations } from "#lib/eas/get-attestations";
-import {
-	getEasscanAddressUrl,
-	getEasscanAttestationUrl,
-	getEasscanSchemaUrl,
-} from "#lib/eas/util";
-import { truncate } from "#utils/hex";
-import { SchemaBadge } from "./SchemaBadge";
+import { useGetAttestations } from "#hooks/eas/get-attestations";
+import { getEasscanAttestationUrl } from "#lib/eas/util";
+import { truncate } from "#lib/utils/hex";
+import { AttestationSchemaBadge } from "./attestation-schema-badge";
 import { AttestationMeta } from "./attestations";
 import { asAttestationMeta } from "./attestations";
 
@@ -50,7 +45,7 @@ export const columns: ColumnDef<AttestationMeta>[] = [
 			const schemaIndex = row.original.schemaIndex;
 
 			return (
-				<SchemaBadge
+				<AttestationSchemaBadge
 					chainId={mainnet.id}
 					schemaId={schemaId}
 					schemaIndex={schemaIndex}

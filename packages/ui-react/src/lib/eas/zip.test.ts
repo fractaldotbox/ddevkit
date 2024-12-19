@@ -1,7 +1,7 @@
+import { stringifyWithBigInt } from "@repo/domain/util.js";
 import { deflateSync, inflateSync, unzlibSync, zlibSync } from "fflate";
 import pako from "pako";
 import { describe, expect, test } from "vitest";
-import { stringifyWithBigInt } from "./util";
 
 describe("zip", () => {
 	const fixtures = [

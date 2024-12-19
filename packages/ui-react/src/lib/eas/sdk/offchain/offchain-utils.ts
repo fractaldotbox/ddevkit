@@ -4,9 +4,9 @@ import {
 	EIP712MessageTypes,
 	OffchainAttestationVersion,
 } from "@ethereum-attestation-service/eas-sdk";
-import { ZERO_ADDRESS, ZERO_HASH } from "@repo/ui-react/lib/constants";
+import { stringifyWithBigInt } from "@repo/domain/util";
+import { ZERO_ADDRESS } from "@repo/ui-react/lib/constants";
 import { base64 } from "@scure/base";
-import { hexlify, toUtf8Bytes } from "ethers";
 import { zlibSync } from "fflate";
 import {
 	Address,
@@ -16,9 +16,9 @@ import {
 	keccak256,
 	parseAbiParameters,
 	stringToHex,
+	zeroHash,
 } from "viem";
-import { OFFCHAIN_ATTESTATION_TYPES } from "./offchain/offchain";
-import { stringifyWithBigInt } from "./util";
+import { OFFCHAIN_ATTESTATION_TYPES } from "./offchain";
 
 /**
  *
@@ -69,7 +69,7 @@ export const compactOffchainAttestationPackage = (
 		sig.message.recipient === ZERO_ADDRESS ? "0" : sig.message.recipient,
 		Number(sig.message.time),
 		Number(sig.message.expirationTime),
-		sig.message.refUID === ZERO_HASH ? "0" : sig.message.refUID,
+		sig.message.refUID === zeroHash ? "0" : sig.message.refUID,
 		sig.message.revocable,
 		sig.message.data,
 		0,
@@ -115,7 +115,7 @@ export const uncompactOffchainAttestationPackage = (
 				recipient: compacted[9] === "0" ? ZERO_ADDRESS : compacted[9],
 				time: BigInt(compacted[10]),
 				expirationTime: BigInt(compacted[11]),
-				refUID: compacted[12] === "0" ? ZERO_HASH : compacted[12],
+				refUID: compacted[12] === "0" ? zeroHash : compacted[12],
 				revocable: compacted[13],
 				data: compacted[14],
 				salt: compacted[17],
@@ -148,12 +148,6 @@ export const getOffchainUID = (params: {
 		salt,
 	} = params;
 
-	console.log(
-		"schema",
-		schema,
-		stringToHex(schema),
-		hexlify(toUtf8Bytes(schema)),
-	);
 	// TODO version switch
 	// TODO reuse abi
 	return keccak256(

@@ -2,17 +2,20 @@ import { BY_USER } from "@repo/domain/user.fixture";
 import { AttestationForm } from "@repo/ui-react/components/attestations/attestation-form.js";
 import { ZERO_BYTES } from "@repo/ui-react/lib/constants";
 import { EAS_CONTRACT_ADDRESS } from "@repo/ui-react/lib/eas/abi";
-import { VOTE_SCHEMA_FIXTURE } from "@repo/ui-react/lib/eas/attest.fixture";
+import {
+	SCHEMA_BY_NAME,
+	VOTE_SCHEMA_FIXTURE,
+} from "@repo/ui-react/lib/eas/attest.fixture";
+import { NO_EXPIRATION } from "@repo/ui-react/lib/eas/request";
 import {
 	createAttestationOnchain,
 	createEAS,
-} from "@repo/ui-react/lib/eas/ethers/onchain";
-import { NO_EXPIRATION } from "@repo/ui-react/lib/eas/request";
+} from "@repo/ui-react/lib/eas/sdk/eas";
 import { createTestEthersSigner } from "@repo/ui-react/lib/test-utils-isomorphic";
 import type { Meta, StoryObj } from "@storybook/react";
 import { encodeBytes32String } from "ethers";
 import { Address, Hex, zeroHash } from "viem";
-import { optimism, sepolia } from "viem/chains";
+import { mainnet, optimism, sepolia } from "viem/chains";
 import { withToaster } from "../decorators/toaster";
 import { withWalletControl } from "../decorators/wallet-control";
 
@@ -108,35 +111,43 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const createArgs = (schema: any, chainId: number) => {
+	return {
+		chainId: chainId,
+		privateKey: BY_USER.mock.privateKey,
+		schemaId: schema.byChain[chainId].uid,
+		schemaIndex: schema.byChain[chainId].index.toString(),
+	};
+};
+
 export const Onchain: Story = {
 	args: {
-		chainId: sepolia.id,
-		privateKey: BY_USER.mock.privateKey,
-		schemaId: VOTE_SCHEMA_FIXTURE.schemaUID,
-		schemaIndex: "9",
 		isOffchain: false,
+		...createArgs(SCHEMA_BY_NAME.VOTE, mainnet.id),
 	},
 	decorators: [],
 };
 
 export const OnchainOptimism: Story = {
 	args: {
-		chainId: optimism.id,
-		privateKey: BY_USER.mock.privateKey,
-		schemaId: VOTE_SCHEMA_FIXTURE.schemaUID,
-		schemaIndex: "9",
-		isOffchain: false,
+		...Onchain.args,
+		...createArgs(SCHEMA_BY_NAME.IS_A_FRIEND, optimism.id),
 	},
 	decorators: [],
 };
 
 export const Offchain: Story = {
 	args: {
-		chainId: sepolia.id,
-		privateKey: BY_USER.mock.privateKey,
-		schemaId: VOTE_SCHEMA_FIXTURE.schemaUID,
-		schemaIndex: "9",
 		isOffchain: true,
+		...createArgs(SCHEMA_BY_NAME.IS_A_FRIEND, sepolia.id),
+	},
+	decorators: [],
+};
+
+export const OffchainVote: Story = {
+	args: {
+		isOffchain: true,
+		...createArgs(SCHEMA_BY_NAME.VOTE, sepolia.id),
 	},
 	decorators: [],
 };

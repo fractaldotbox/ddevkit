@@ -18,7 +18,7 @@ import {
 	keccak256,
 	parseAbiParameters,
 } from "viem";
-import { EIP712_NAME } from "../versions";
+import { EIP712_NAME } from "../../versions";
 import { DelegatedConfig } from "./delegated";
 
 export interface Signature {

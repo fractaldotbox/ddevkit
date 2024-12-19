@@ -1,4 +1,4 @@
-import { Signature } from "./offchain/typed-data";
+import { Signature } from "./sdk/offchain/typed-data-handler";
 
 export const NO_EXPIRATION = 0n;
 
