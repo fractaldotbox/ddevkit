@@ -37,7 +37,7 @@ describe(
 		});
 
 		describe("upload", () => {
-			let account = privateKeyToAccount(BY_USER.mock.privateKey);
+			let account = privateKeyToAccount(BY_USER.user.privateKey);
 			let { file, filePath } = createTestFile(testContent);
 			beforeAll(() => {});
 
@@ -57,7 +57,7 @@ describe(
 
 			// TODO fix: Error: Error encrypting file
 			test.skip("uploadFile encrypted", async () => {
-				const account = privateKeyToAccount(BY_USER.mock.privateKey);
+				const account = privateKeyToAccount(BY_USER.user.privateKey);
 				const params = await createLighthouseParams({
 					account,
 					options: {

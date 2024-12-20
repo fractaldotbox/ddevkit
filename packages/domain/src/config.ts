@@ -23,6 +23,9 @@ export default {
 		apiKey: process.env.ALCHEMY_API_KEY,
 	},
 	test: {
+		user: {
+			privateKey: process.env.TEST_USER_PRIVATE_KEY,
+		},
 		eas: {
 			privateKey: process.env.TEST_EAS_PRIVATE_KEY,
 		},

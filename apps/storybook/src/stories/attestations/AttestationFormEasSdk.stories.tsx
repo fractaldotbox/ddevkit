@@ -96,7 +96,7 @@ const createArgs = (schema: any, chain: Chain, fixture: any) => {
 	const { data, attestData } = fixture;
 	return {
 		chainId: chain.id,
-		privateKey: BY_USER.mock.privateKey,
+		privateKey: BY_USER.user.privateKey,
 		schemaId: uid,
 		schemaIndex: index.toString(),
 		schemaString,

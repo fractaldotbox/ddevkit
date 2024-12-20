@@ -60,7 +60,7 @@ describe("offchain attestation handling/verification", () => {
 		console.log("attesterAddress", attesterAddress);
 	});
 
-	test.only("with sdk", async () => {
+	test("with sdk", async () => {
 		const now = BigInt(Date.now());
 
 		const { schema, recipient, revocable, expirationTime, refUID, data } =

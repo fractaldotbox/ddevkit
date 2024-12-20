@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { addr } from "micro-eth-signer";
 import { Address, Hex } from "viem";
+import config from "./config";
 
 const vitalik = {
 	ens: "vitalik.eth",
@@ -9,9 +10,8 @@ const vitalik = {
 
 // stable private key
 // 0x4E123166e7DfDE7AbA29162Fb3a5c6Af562443D4
-const mock = {
-	privateKey:
-		"0xa46a4c2b881440fd567968672dd045571ba36c9b24fd6c77fb81a8efdf98a738" as Hex,
+const user = {
+	privateKey: config.test.user.privateKey as Hex,
 	address: "",
 };
 
@@ -26,7 +26,7 @@ const filecoinTopHolder = {
 	filAddress: "f1m2swr32yrlouzs7ijui3jttwgc6lxa5n5sookhi",
 };
 
-mock.address = addr.fromPrivateKey(mock.privateKey) as Address;
+user.address = addr.fromPrivateKey(user.privateKey) as Address;
 
 // mainnet, base https://easscan.org/address/0x1e3de6aE412cA218FD2ae3379750388D414532dc
 // https://github.com/ethereum-attestation-service/eas-sdk/blob/master/README.md?plain=1#L123
@@ -38,7 +38,7 @@ export const BY_USER = {
 	vitalik,
 	easSampleAttester,
 	filecoinTopHolder,
-	mock,
+	user,
 	eas,
 };
 

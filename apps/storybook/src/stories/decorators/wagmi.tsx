@@ -32,7 +32,7 @@ export const withMockAccount = (isStable = true) => {
 		// Not possible to hoist a private key based account. Inject at action
 		// https://wagmi.sh/react/guides/viem#private-key-mnemonic-accounts
 		const privateKey = isStable
-			? BY_USER.mock.privateKey
+			? BY_USER.user.privateKey
 			: (getRandomAccount().privateKey as Hex);
 		const account = privateKeyToAccount(privateKey);
 		return (

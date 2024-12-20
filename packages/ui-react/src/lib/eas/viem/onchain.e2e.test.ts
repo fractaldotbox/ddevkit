@@ -1,15 +1,15 @@
 import { EAS, NO_EXPIRATION } from "@ethereum-attestation-service/eas-sdk";
 import config from "@repo/domain/config";
-import { SignatureType } from "@repo/ui-react/lib/eas";
+import { SignatureType } from "@repo/ui-react/lib/eas/request";
 import {
 	createTestClientConfig,
 	createTestEthersSigner,
 } from "@repo/ui-react/lib/test-utils-isomorphic";
-import { http, Hex, createWalletClient } from "viem";
+import { http, Hex, createWalletClient, zeroHash } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { sepolia } from "viem/chains";
 import { beforeEach, describe, expect, it, test } from "vitest";
-import { SCHEMA_FIXTURE_IS_A_FRIEND } from "../eas-test.fixture";
+import { SCHEMA_FIXTURE_IS_A_FRIEND } from "../attest.fixture";
 import { createEAS } from "../sdk/eas";
 import { makeOnchainAttestation, revoke } from "./onchain";
 export const EASContractAddress = "0xC2679fBD37d54388Ce493F1DB75320D236e1815e"; // Sepolia v0.26
@@ -27,7 +27,7 @@ describe("attest with sepolia contract", () => {
 
 			const fixture = {
 				schemaId: SCHEMA_FIXTURE_IS_A_FRIEND.schemaUID,
-				refUID: ZERO_BYTES32,
+				refUID: zeroHash,
 				time: 1732433266n,
 				expirationTime: NO_EXPIRATION,
 				revocationTime: 0n,

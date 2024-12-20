@@ -77,7 +77,6 @@ export const useAttestation = (params: UseAttestationParams) => {
 				},
 			);
 
-			console.log("offchain created", attestation);
 			const { uid } = attestation;
 			return {
 				uids: [uid],
