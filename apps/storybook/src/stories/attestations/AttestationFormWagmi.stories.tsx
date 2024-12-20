@@ -1,118 +1,48 @@
 import { AttestationForm } from "@repo/ui-react/components/attestations/attestation-form.js";
-import { SCHEMA_FIXTURE_IS_A_FRIEND } from "@repo/ui-react/lib/eas/attest.fixture";
-import { OffchainAttestationVersion } from "@repo/ui-react/lib/eas/offchain/offchain";
-import { NO_EXPIRATION } from "@repo/ui-react/lib/eas/request";
-import { signOffchainAttestation } from "@repo/ui-react/lib/eas/viem/offchain";
+import { useAttestation } from "@repo/ui-react/hooks/eas/use-attestation";
 import {
-	AttestationRequestData,
-	makeOnchainAttestation,
-} from "@repo/ui-react/lib/eas/viem/onchain";
-import { createTestClientConfig } from "@repo/ui-react/lib/test-utils-isomorphic";
+	SCHEMA_BY_NAME,
+	SCHEMA_FIXTURE_IS_A_FRIEND,
+} from "@repo/ui-react/lib/eas/attest.fixture";
+import { AttestationRequestData } from "@repo/ui-react/lib/eas/viem/onchain";
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-	Account,
-	Address,
-	Chain,
-	Hex,
-	createWalletClient,
-	stringToHex,
-	zeroHash,
-} from "viem";
+import { Account, Address, Chain, Hex, stringToHex, zeroHash } from "viem";
 import { sepolia } from "viem/chains";
 import { withToaster } from "../decorators/toaster";
 import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
 import { withWalletControlWagmi } from "../decorators/wallet-control";
 
-export type UseAttestationWagmiParams = {
-	account: Account;
-	chain: Chain;
-	isOffchain: boolean;
-	schemaId: string;
-};
-
-const useAttestationWagmi = (params: UseAttestationWagmiParams) => {
-	const { account, chain, isOffchain, schemaId } = params;
-	const client = createWalletClient({
-		...createTestClientConfig(),
-		account,
-	});
-
-	const signAttestation = async (requestParams: AttestationRequestData) => {
-		console.log("signing onchain attestation");
-
-		const request = {
-			schema: schemaId,
-			expirationTime: NO_EXPIRATION,
-			...requestParams,
-		};
-
-		if (isOffchain) {
-			console.log("signing offchain attestation");
-
-			const version = OffchainAttestationVersion.Version2;
-
-			const salt = stringToHex("SALT", { size: 32 }) as Hex;
-
-			const attestation = await signOffchainAttestation(
-				{
-					revocable: false,
-					refUID: zeroHash,
-					...request,
-
-					version,
-					salt,
-				},
-				{
-					chain,
-					account,
-				},
-			);
-
-			console.log("offchain created", attestation);
-			const { uid } = attestation;
-			return {
-				uids: [uid],
-			};
-		}
-
-		const { uids, txnReceipt } = await makeOnchainAttestation(client, {
-			schema: schemaId,
-			data: request,
-		});
-
-		return {
-			uids,
-			txnReceipt,
-		};
-	};
-	return {
-		signAttestation,
-	};
-};
-
 const AttestationFormWagmi = ({
 	schemaId,
 	schemaIndex,
-	isOffchain,
+
 	account,
+	isOffchain,
+	schemaString,
 	chain,
-	requestData,
+	data,
+	attestData,
 }: {
 	schemaId: string;
 	schemaIndex: string;
+	account: Account;
 	isOffchain: boolean;
+	schemaString: string;
 	chain: Chain;
-	account?: Account;
-	requestData: Omit<AttestationRequestData, "recipient">;
+	data: any;
+	attestData: Omit<AttestationRequestData, "recipient">;
 }) => {
 	if (!account) {
 		return;
 	}
 
-	const { signAttestation } = useAttestationWagmi({
+	console.log("schemaString", schemaString);
+
+	const { signAttestation } = useAttestation({
 		account,
 		isOffchain,
 		schemaId,
+		schemaString,
 		chain,
 	});
 
@@ -126,7 +56,8 @@ const AttestationFormWagmi = ({
 			isOffchain={isOffchain}
 			signAttestation={async () =>
 				signAttestation({
-					...requestData,
+					...attestData,
+					data,
 					recipient,
 					// attester: account.address,
 				})
@@ -153,20 +84,26 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const requestDataFixture = {
-	refUID: zeroHash,
-	time: 1728637333n,
-	revocable: true,
-	// "yes"
-	data: "0x0000000000000000000000000000000000000000000000000000000000000001" as Hex,
-	value: 0n,
-};
+const createArgs = (schema: any, chain: Chain, fixture: any) => {
+	const { schemaString } = schema;
+	const { uid, index } = schema.byChain[chain.id];
+	const { data, attestData } = fixture;
 
-const createArgs = (schema: any, chainId: number) => {
 	return {
-		chainId: chainId,
-		schemaId: schema.byChain[chainId].uid,
-		schemaIndex: schema.byChain[chainId].index.toString(),
+		chain,
+		chainId: chain.id,
+		schemaId: uid,
+		schemaIndex: index.toString(),
+		schemaString,
+		data,
+		attestData: {
+			refUID: zeroHash,
+			time: 1728637333n,
+			revocable: true,
+			value: 0n,
+			salt: stringToHex("SALT", { size: 32 }) as Hex,
+			...attestData,
+		},
 	};
 };
 
@@ -174,20 +111,22 @@ const createArgs = (schema: any, chainId: number) => {
 
 export const AttestationWagmiOffchain: Story = {
 	args: {
-		schemaId: SCHEMA_FIXTURE_IS_A_FRIEND.schemaUID,
-		schemaIndex: "9",
-		chain: sepolia,
 		isOffchain: true,
-		requestData: requestDataFixture,
+		...createArgs(
+			SCHEMA_BY_NAME.IS_A_FRIEND,
+			sepolia,
+			SCHEMA_BY_NAME.IS_A_FRIEND.byFixture.isFriend,
+		),
 	},
 };
 
 export const AttestationWagmiOnchain: Story = {
 	args: {
-		schemaId: SCHEMA_FIXTURE_IS_A_FRIEND.schemaUID,
-		schemaIndex: "9",
-		chain: sepolia,
 		isOffchain: false,
-		requestData: requestDataFixture,
+		...createArgs(
+			SCHEMA_BY_NAME.IS_A_FRIEND,
+			sepolia,
+			SCHEMA_BY_NAME.IS_A_FRIEND.byFixture.isFriend,
+		),
 	},
 };

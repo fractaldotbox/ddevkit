@@ -2,16 +2,17 @@ import {
 	EAS,
 	NO_EXPIRATION,
 	SchemaEncoder,
+	SchemaValue,
 } from "@ethereum-attestation-service/eas-sdk";
 import { Signer } from "ethers";
 
-export type createAttestationParams = any;
-export type createAttestationRequestParams = any;
+export type reateAttestationRequestParams = any;
 
-// : {
-//     EASContractAddress: string;
-//     signer: JsonRpcSigner;
-// }
+export interface SchemaItem {
+	name: string;
+	type: string;
+	value: SchemaValue;
+}
 
 export const createEAS = (EASContractAddress: string, signer: Signer) => {
 	return new EAS(EASContractAddress).connect(signer);
@@ -37,19 +38,12 @@ export const createAttestationRequest = ({
 
 export const createAttestationOnchain = async ({
 	eas,
-	schemaString,
-	encodedDataParams,
+	encodedData,
 	schemaUID,
-	attestationData,
-}: createAttestationParams) => {
-	// Initialize SchemaEncoder with the schema string
-	const schemaEncoder = new SchemaEncoder(schemaString);
-	const encodedData = schemaEncoder.encodeData(encodedDataParams);
-
+}: any) => {
 	const transaction = await eas.attest({
 		schema: schemaUID,
 		data: {
-			...attestationData,
 			data: encodedData,
 		},
 	});
@@ -67,7 +61,7 @@ export const createAttestationOffchain = async ({
 	// encodedDataParams,
 	// schemaUID,
 	// attestationData,
-}: createAttestationParams) => {
+}: any) => {
 	return {
 		uid: "",
 	};

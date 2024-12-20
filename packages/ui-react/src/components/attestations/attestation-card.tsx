@@ -31,7 +31,7 @@ const AttestationCardContent = ({
 		<CardContent>
 			<div className="flex w-full items-center gap-2">
 				<div className="grid flex-1 auto-rows-min gap-0.5">
-					<div className="text-xs text-muted-foreground">Schema ID</div>
+					<div className="text-xs text-muted-foreground">Schema</div>
 					<div className="flex items-center gap-1 text-2xl font-bold tabular-nums leading-none">
 						<AttestationSchemaBadge
 							chainId={chainId}

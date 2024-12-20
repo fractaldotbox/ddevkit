@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { Address } from "viem";
 import { z } from "zod";
 import { Button } from "#components/shadcn/button";
 import { Card, CardContent } from "#components/shadcn/card";
@@ -40,10 +41,12 @@ export const AttestationForm = ({
 	signAttestation,
 }: AttestationFormParams) => {
 	const formSchema = z.object({
-		// TODO address
-		recipient: z.string().length(42, {
-			message: "address must be 42 characters.",
-		}),
+		recipient: z
+			.string()
+			.length(42, {
+				message: "address must be 42 characters.",
+			})
+			.brand<Address>(),
 	});
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),

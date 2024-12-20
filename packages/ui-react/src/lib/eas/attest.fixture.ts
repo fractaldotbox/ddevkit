@@ -8,22 +8,6 @@ import { NO_EXPIRATION } from "./request";
 
 // https://github.com/wevm/viem/blob/main/src/constants/address.ts#L5
 
-// https://github.com/ethereum-attestation-service/eas-sdk?tab=readme-ov-file#example-creating-onchain-attestations
-export const VOTE_SCHEMA_FIXTURE = {
-	schemaUID:
-		"0x424041413f6893c2f2e3e0e91ce9e26763840795b9c7fbb3866502e8d5c94677",
-	schemaString: "uint256 eventId, uint8 voteIndex",
-	encodedData: [
-		{ name: "eventId", value: 1, type: "uint256" },
-		{ name: "voteIndex", value: 1, type: "uint8" },
-	],
-	data: {
-		recipient: "0xFD50b031E778fAb33DfD2Fc3Ca66a1EeF0652165",
-		expirationTime: NO_EXPIRATION,
-		revocable: true,
-	},
-};
-
 // 	https://sepolia.easscan.org/schema/view/0xc59265615401143689cbfe73046a922c975c99d97e4c248070435b1104b2dea7
 export const SCHEMA_FIXTURE_MET_IRL = {
 	schemaUID:
@@ -39,6 +23,7 @@ export const SCHEMA_FIXTURE_IS_A_FRIEND = {
 		"0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a",
 };
 
+// https://github.com/ethereum-attestation-service/eas-sdk?tab=readme-ov-file#example-creating-onchain-attestations
 export const SCHEMA_BY_NAME = {
 	ENDORSEMENTS: {
 		byChain: {
@@ -47,7 +32,24 @@ export const SCHEMA_BY_NAME = {
 				uid: "0xa76299ae6a66b66ff48344f36c0fa657a0a9eeb6721248311df9cf25748e4405",
 			},
 		},
-		schema: VOTE_SCHEMA_FIXTURE,
+		schemaString: "bool isEndorsement,string name,string domain,string context",
+		byFixture: {
+			// offchain
+			// 0x0c389cde363ae48a76686ddb3f1d5d9dd5bf548f19a0342b6bca143e3b4a9668
+			vote: {
+				data: [
+					{ name: "isEndorsement", value: 1, type: "bool" },
+					{ name: "name", value: "hi", type: "string" },
+					{ name: "domain", value: "attest.sh", type: "string" },
+					{ name: "context", value: "testing", type: "string" },
+				],
+				attestData: {
+					recipient: "0xDFe8beeE223412F316baf2968B17527D6EbA29F1",
+					expirationTime: NO_EXPIRATION,
+					revocable: true,
+				},
+			},
+		},
 	},
 	VOTE: {
 		byChain: {
@@ -55,8 +57,25 @@ export const SCHEMA_BY_NAME = {
 				index: 12,
 				uid: "0x424041413f6893c2f2e3e0e91ce9e26763840795b9c7fbb3866502e8d5c94677",
 			},
+			[sepolia.id]: {
+				index: 12,
+				uid: "0x424041413f6893c2f2e3e0e91ce9e26763840795b9c7fbb3866502e8d5c94677",
+			},
 		},
-		schema: VOTE_SCHEMA_FIXTURE,
+		schemaString: "uint256 eventId, uint8 voteIndex",
+		byFixture: {
+			vote: {
+				data: [
+					{ name: "eventId", value: 1, type: "uint256" },
+					{ name: "voteIndex", value: 1, type: "uint8" },
+				],
+				attestData: {
+					recipient: "0xFD50b031E778fAb33DfD2Fc3Ca66a1EeF0652165",
+					expirationTime: NO_EXPIRATION,
+					revocable: true,
+				},
+			},
+		},
 	},
 	IS_A_FRIEND: {
 		byChain: {
@@ -69,7 +88,17 @@ export const SCHEMA_BY_NAME = {
 				uid: "0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a",
 			},
 		},
-		schema: {},
+		schemaString: "bool isFriend",
+		byFixture: {
+			isFriend: {
+				data: [{ name: "isFriend", value: true, type: "bool" }],
+				attestData: {
+					recipient: "0xFD50b031E778fAb33DfD2Fc3Ca66a1EeF0652165",
+					expirationTime: NO_EXPIRATION,
+					revocable: true,
+				},
+			},
+		},
 	},
 	MET_IRL: {
 		byChain: {
@@ -98,7 +127,17 @@ export const SCHEMA_BY_NAME = {
 				},
 			},
 		},
-		schema: {},
+		schemaString: "bool metIRL",
+		byFixture: {
+			isFriend: {
+				data: [{ name: "metIRL", value: true, type: "bool" }],
+				attestData: {
+					recipient: "0xFD50b031E778fAb33DfD2Fc3Ca66a1EeF0652165",
+					expirationTime: NO_EXPIRATION,
+					revocable: true,
+				},
+			},
+		},
 	},
 };
 
