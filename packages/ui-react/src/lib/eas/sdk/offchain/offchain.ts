@@ -6,7 +6,7 @@ import type {
 } from "@ethereum-attestation-service/eas-sdk";
 import { ZERO_ADDRESS } from "@repo/ui-react/lib/constants";
 import { Address, verifyMessage, verifyTypedData } from "viem";
-import { isDeepEqual } from "#lib/shadcn/utils.js";
+import { isDeepEqual } from "#lib/shadcn/utils";
 import { getOffchainUID } from "./offchain-utils";
 import {
 	InvalidAddress,

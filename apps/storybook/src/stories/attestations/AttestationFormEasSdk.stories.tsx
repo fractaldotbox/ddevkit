@@ -1,6 +1,6 @@
 import { BY_USER } from "@repo/domain/user.fixture";
-import { AttestationForm } from "@repo/ui-react/components/attestations/attestation-form.js";
-import { useAttestationEasSdk } from "@repo/ui-react/hooks/eas/sdk/use-attestation.js";
+import { AttestationForm } from "@repo/ui-react/components/attestations/attestation-form";
+import { useAttestationEasSdk } from "@repo/ui-react/hooks/eas/sdk/use-attestation";
 import { EAS_CONTRACT_ADDRESS } from "@repo/ui-react/lib/eas/abi";
 import { SCHEMA_BY_NAME } from "@repo/ui-react/lib/eas/attest.fixture";
 import { NO_EXPIRATION } from "@repo/ui-react/lib/eas/request";

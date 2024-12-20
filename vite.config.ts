@@ -10,14 +10,15 @@ import { test } from "vitest";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
 	resolve: {
-		alias: {
-			"@": path.resolve(__dirname, "./src"),
-		},
+		// alias: {
+		// 	"@": path.resolve(__dirname, "./src"),
+		// },
 	},
+	// TODO react module only config
 	test: {
 		globals: true,
 		environment: "jsdom",
-		setupFiles: "./test-setup.ts",
+		setupFiles: path.resolve(__dirname, "./test-setup.ts"),
 		env: loadEnv(mode, process.cwd(), ""),
 	},
 	plugins: [

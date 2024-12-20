@@ -19,7 +19,7 @@ describe("TokenChipWithInfo Component", () => {
 	const defaultProps: TokenChipWithInfoProps = {
 		name: "Ethereum",
 		symbol: "ETH",
-		image: "https://example.com/eth-icon.png",
+		imageUrl: "https://example.com/eth-icon.png",
 		className: "custom-class",
 	};
 

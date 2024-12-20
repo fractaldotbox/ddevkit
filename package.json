@@ -32,5 +32,11 @@
 		"node": ">=20",
 		"pnpm": ">=9"
 	},
-	"packageManager": "pnpm@9.7.0"
+	"packageManager": "pnpm@9.7.0",
+	"dependencies": {
+		"@testing-library/jest-dom": "^6.6.3",
+		"@testing-library/react": "^16.0.1",
+		"@vitejs/plugin-react": "^4.3.2",
+		"vitest": "^2.0.5"
+	}
 }

@@ -1,4 +1,4 @@
-import { AttestationForm } from "@repo/ui-react/components/attestations/attestation-form.js";
+import { AttestationForm } from "@repo/ui-react/components/attestations/attestation-form";
 import { useAttestation } from "@repo/ui-react/hooks/eas/use-attestation";
 import {
 	SCHEMA_BY_NAME,

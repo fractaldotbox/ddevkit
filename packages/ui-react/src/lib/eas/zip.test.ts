@@ -1,4 +1,4 @@
-import { stringifyWithBigInt } from "@repo/domain/util.js";
+import { stringifyWithBigInt } from "@repo/domain/util";
 import { deflateSync, inflateSync, unzlibSync, zlibSync } from "fflate";
 import pako from "pako";
 import { describe, expect, test } from "vitest";

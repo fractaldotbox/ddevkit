@@ -1,3 +1,4 @@
+import { AddressBadge } from "@repo/ui-react/components/identity/address-badge";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
