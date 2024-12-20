@@ -53,7 +53,7 @@ export const useAttestationEasSdk = (params: UseAttestationEasSdkParams) => {
 		const encodedData = schemaEncoder.encodeData(data);
 
 		if (isOffchain) {
-			console.log("create offchain attestation");
+			console.log("create offchain attestation", data);
 
 			const offchain = await eas.getOffchain();
 
@@ -85,6 +85,11 @@ export const useAttestationEasSdk = (params: UseAttestationEasSdkParams) => {
 			schemaString,
 			encodedData,
 			schemaUID: schemaId,
+			attestationData: {
+				recipient,
+				revocable,
+				expirationTime,
+			},
 		});
 	};
 	return {

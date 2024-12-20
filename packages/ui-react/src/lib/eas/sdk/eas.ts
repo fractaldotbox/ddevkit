@@ -6,7 +6,7 @@ import {
 } from "@ethereum-attestation-service/eas-sdk";
 import { Signer } from "ethers";
 
-export type reateAttestationRequestParams = any;
+export type CreateAttestationRequestParams = any;
 
 export interface SchemaItem {
 	name: string;
@@ -18,51 +18,25 @@ export const createEAS = (EASContractAddress: string, signer: Signer) => {
 	return new EAS(EASContractAddress).connect(signer);
 };
 
-export const createAttestationRequest = ({
-	schemaUID,
-	schemaString,
-	encodedDataParams,
-	attestationData,
-}: createAttestationRequestParams) => {
-	const schemaEncoder = new SchemaEncoder(schemaString);
-	const encodedData = schemaEncoder.encodeData(encodedDataParams);
-
-	return {
-		schema: schemaUID,
-		data: {
-			...attestationData,
-			data: encodedData,
-		},
-	};
-};
-
 export const createAttestationOnchain = async ({
 	eas,
 	encodedData,
 	schemaUID,
+	attestationData,
 }: any) => {
 	const transaction = await eas.attest({
 		schema: schemaUID,
 		data: {
+			...attestationData,
 			data: encodedData,
 		},
 	});
 
 	const newAttestationUID = await transaction.wait();
 
+	console.log(transaction);
 	return {
-		uid: newAttestationUID,
-	};
-};
-
-export const createAttestationOffchain = async ({
-	// eas,
-	// schemaString,
-	// encodedDataParams,
-	// schemaUID,
-	// attestationData,
-}: any) => {
-	return {
-		uid: "",
+		uids: [newAttestationUID],
+		txnReceipt: transaction.receipt,
 	};
 };

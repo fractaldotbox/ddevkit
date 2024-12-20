@@ -3,7 +3,7 @@ import {
 	OffchainAttestationVersion,
 	SignedOffchainAttestation,
 } from "@ethereum-attestation-service/eas-sdk";
-import { mainnet, optimism, sepolia } from "viem/chains";
+import { mainnet, optimism, optimismSepolia, sepolia } from "viem/chains";
 import { NO_EXPIRATION } from "./request";
 
 // https://github.com/wevm/viem/blob/main/src/constants/address.ts#L5
@@ -80,6 +80,10 @@ export const SCHEMA_BY_NAME = {
 	IS_A_FRIEND: {
 		byChain: {
 			[optimism.id]: {
+				index: 9,
+				uid: "0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a",
+			},
+			[optimismSepolia.id]: {
 				index: 9,
 				uid: "0x27d06e3659317e9a4f8154d1e849eb53d43d91fb4f219884d1684f86d797804a",
 			},

@@ -1,7 +1,6 @@
 import { BY_USER } from "@repo/domain/user.fixture";
 import { AttestationForm } from "@repo/ui-react/components/attestations/attestation-form.js";
 import { useAttestationEasSdk } from "@repo/ui-react/hooks/eas/sdk/use-attestation.js";
-import { ZERO_BYTES } from "@repo/ui-react/lib/constants";
 import { EAS_CONTRACT_ADDRESS } from "@repo/ui-react/lib/eas/abi";
 import { SCHEMA_BY_NAME } from "@repo/ui-react/lib/eas/attest.fixture";
 import { NO_EXPIRATION } from "@repo/ui-react/lib/eas/request";
@@ -9,8 +8,8 @@ import { SchemaItem, createEAS } from "@repo/ui-react/lib/eas/sdk/eas";
 import { createTestEthersSigner } from "@repo/ui-react/lib/test-utils-isomorphic";
 import type { Meta, StoryObj } from "@storybook/react";
 import { encodeBytes32String } from "ethers";
-import { Hex, zeroHash } from "viem";
-import { mainnet, optimism, sepolia } from "viem/chains";
+import { Chain, Hex, zeroHash } from "viem";
+import { mainnet, optimism, optimismSepolia, sepolia } from "viem/chains";
 import { withToaster } from "../decorators/toaster";
 import { withWalletControl } from "../decorators/wallet-control";
 
@@ -106,33 +105,31 @@ const createArgs = (schema: any, chain: Chain, fixture: any) => {
 	};
 };
 
-export const Onchain: Story = {
+export const OnchainSepolia: Story = {
 	args: {
 		isOffchain: false,
-		// ...createArgs(SCHEMA_BY_NAME.VOTE, mainnet.id),
-		// ...SCHEMA_BY_NAME.VOTE.byFixture.vote,
 		...createArgs(
 			SCHEMA_BY_NAME.IS_A_FRIEND,
-			optimism,
+			sepolia,
 			SCHEMA_BY_NAME.IS_A_FRIEND.byFixture.isFriend,
 		),
 	},
 	decorators: [],
 };
 
-export const OnchainOptimism: Story = {
+export const OnchainOptimismSepolia: Story = {
 	args: {
 		isOffchain: false,
 		...createArgs(
 			SCHEMA_BY_NAME.IS_A_FRIEND,
-			optimism,
+			optimismSepolia,
 			SCHEMA_BY_NAME.IS_A_FRIEND.byFixture.isFriend,
 		),
 	},
 	decorators: [],
 };
 
-export const Offchain: Story = {
+export const OffchainSepolia: Story = {
 	args: {
 		isOffchain: true,
 		...createArgs(
