@@ -35,11 +35,12 @@ export const signOffchainAttestation = async (
 
 	const { version, data, refUID, salt, recipient } = request;
 
+	console.log("request", request);
 	const {
 		types,
 		primaryType,
 		domain: domainName,
-	} = OFFCHAIN_ATTESTATION_TYPES[version][0];
+	} = OFFCHAIN_ATTESTATION_TYPES[version][0]!;
 
 	const domain = {
 		name: domainName,

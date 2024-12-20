@@ -114,6 +114,14 @@ export const SCHEMA_BY_NAME = {
 						"0xb51930c7a58e36ada6ab84c25971c527c0cc990fa17a73cfc1733c187d7a7fca",
 				},
 			},
+			[optimismSepolia.id]: {
+				index: 42,
+				uid: "0xc59265615401143689cbfe73046a922c975c99d97e4c248070435b1104b2dea7",
+				byExample: {
+					offchain:
+						"0xb51930c7a58e36ada6ab84c25971c527c0cc990fa17a73cfc1733c187d7a7fca",
+				},
+			},
 			[sepolia.id]: {
 				index: 78,
 				uid: "0xc59265615401143689cbfe73046a922c975c99d97e4c248070435b1104b2dea7",

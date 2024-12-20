@@ -12,6 +12,8 @@ import { beforeEach, describe, expect, it, test } from "vitest";
 import { SCHEMA_FIXTURE_IS_A_FRIEND } from "../attest.fixture";
 import { createEAS } from "../sdk/eas";
 import { makeOnchainAttestation, revoke } from "./onchain";
+
+const chain = sepolia;
 export const EASContractAddress = "0xC2679fBD37d54388Ce493F1DB75320D236e1815e"; // Sepolia v0.26
 
 // TODO fixture
