@@ -14,7 +14,7 @@ import { Signature, Signer, encodeBytes32String, ethers } from "ethers";
 import { http, Address, createWalletClient, custom, zeroHash } from "viem";
 import { Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { sepolia, optimismSepolia } from "viem/chains";
+import { optimismSepolia, sepolia } from "viem/chains";
 import { beforeEach, describe, expect, test } from "vitest";
 import { createTestEthersSigner } from "#lib/test-utils-isomorphic";
 import { SCHEMA_BY_NAME } from "../attest.fixture";
