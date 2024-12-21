@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "#components/ui/button";
 import { UploadAttestation } from "@repo/ui-react/components/attestations/upload-attestation";
 import { getShortAddress } from "@repo/ui-react/lib/utils/address";
 import type { Meta, StoryObj } from "@storybook/react";

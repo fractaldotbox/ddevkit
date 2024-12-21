@@ -15,9 +15,9 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from "@/components/ui/table";
+} from "#components/shadcn/table";
 import { useState } from "react";
-import { Button } from "../../../../apps/storybook/src/components/ui/button";
+import { Button } from "#components/shadcn/button";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];

@@ -1,4 +1,4 @@
-import { Input } from "@/components/ui/input";
+import { Input } from "#components/ui/input";
 import { base16 as base16S, base64 as base64S } from "@scure/base";
 import { Atom, atom, useAtom } from "jotai";
 import { base16 } from "multiformats/bases/base16";
@@ -8,7 +8,7 @@ import * as json from "multiformats/codecs/json";
 import { sha256 } from "multiformats/hashes/sha2";
 import { Suspense, useEffect, useMemo, useState } from "react";
 
-import { Label } from "@/components/ui/label";
+import { Label } from "#components/ui/label";
 
 const MULTI_ENCODER_BY_CODEC = {
 	["multibase64"]: base64.encoder,

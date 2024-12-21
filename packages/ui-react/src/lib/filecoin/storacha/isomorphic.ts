@@ -31,7 +31,7 @@ import { StoreMemory } from "@web3-storage/w3up-client/stores/memory";
 // enable sync methods
 import * as ed from "@noble/ed25519";
 import { sha512 } from "@noble/hashes/sha512";
-import config from "../../../../../domain/src/config";
+import config from "@repo/domain/src/config";
 
 export type StorachaInitParams = {
 	keyString: string;

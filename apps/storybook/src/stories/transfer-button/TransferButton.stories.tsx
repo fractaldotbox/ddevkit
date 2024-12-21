@@ -1,4 +1,4 @@
-import { Label } from "@/components/ui/label";
+import { Label } from "#components/ui/label";
 import { TransferButton } from "@repo/ui-react/components/transfer/transfer-button";
 import { Meta, StoryObj } from "@storybook/react";
 import { useMemo, useState } from "react";
