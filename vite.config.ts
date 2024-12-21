@@ -6,11 +6,26 @@ import { defineConfig, loadEnv } from "vite";
 import { test } from "vitest";
 import { configDefaults } from "vitest/config";
 
+const getTestPatterns = (suites: string) => {
+	if (suites === "unit") {
+		return {
+			exclude: ["**/*.int.test.ts(x)?", "**/*.e2e.test.ts(x)?"],
+		};
+	}
+	if (suites === "int") {
+		return {
+			exclude: ["**/*.e2e.test.ts(x)?"],
+		};
+	}
+	return {
+		exclude: [],
+	};
+};
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), "");
 
-	console.log(env.VITE_SUITES);
 	return {
 		resolve: {},
 		// TODO react module only config
@@ -22,9 +37,7 @@ export default defineConfig(({ mode }) => {
 			// TODO by env flags, for now just skip int tests
 			exclude: [
 				...configDefaults.exclude,
-				...(env.VITEST_SUITES === "unit"
-					? ["**/*.int.test.ts(x)?", "**/*.e2e.test.ts(x)?"]
-					: []),
+				...getTestPatterns(env.VITEST_SUITES).exclude,
 			],
 		},
 		plugins: [react()],

@@ -36,7 +36,7 @@ describe("Transaction", () => {
 
 		expect(transaction.displayedTxType).toEqual("contract_call");
 
-		expect(transaction.value).toEqual(32010000000000000000000000000n);
+		expect(transaction.value).toEqual(32010000000000000000n);
 		expect(transaction.tokenTransfers?.[0]?.name).toEqual("Wrapped Ether");
 	});
 	test("#asTransactionMeta transfer", () => {
@@ -48,36 +48,7 @@ describe("Transaction", () => {
 
 		expect(transaction.displayedTxType).toEqual("coin_transfer");
 
-		expect(transaction.value).toEqual(100000000000000000000000000000n);
-		expect(transaction.tokenTransfers?.[0]).toEqual([]);
+		expect(transaction.value).toEqual(100000000000000000000n);
+		expect(transaction.tokenTransfers).toEqual([]);
 	});
 });
-
-// {
-//     block_number_balance_updated_at: 21184382,
-//     coin_balance: '2084671391552286312',
-//     creation_transaction_hash: null,
-//     creation_tx_hash: null,
-//     creator_address_hash: null,
-//     ens_domain_name: 'debuggingfuture.eth',
-//     exchange_rate: '3170.33',
-//     has_beacon_chain_withdrawals: false,
-//     has_decompiled_code: false,
-//     has_logs: false,
-//     has_token_transfers: true,
-//     has_tokens: true,
-//     has_validated_blocks: false,
-//     hash: '0x962EFc5A602f655060ed83BB657Afb6cc4b5883F',
-//     implementations: [],
-//     is_contract: false,
-//     is_scam: false,
-//     is_verified: false,
-//     metadata: null,
-//     name: null,
-//     private_tags: [],
-//     proxy_type: null,
-//     public_tags: [],
-//     token: null,
-//     watchlist_address_id: null,
-//     watchlist_names: []
-//   }

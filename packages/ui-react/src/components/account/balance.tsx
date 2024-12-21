@@ -5,7 +5,7 @@ import { formatUnitsWithDecimalsDisplayed } from "@repo/domain/amount";
 import { Address } from "viem";
 import { mainnet } from "viem/chains";
 import { useBalance, useReadContract } from "wagmi";
-import { ABI_ERC20 } from "#lib/utils/config";
+import { ABI_ERC20 } from "#lib/token/config.js";
 
 type NativeTokenBalanceProps = {
 	address: Address;
