@@ -1,3 +1,5 @@
+// @vitest-environment happy-dom
+
 import config from "@repo/domain/config";
 import { describe, expect, test } from "vitest";
 import uploadFilesBrowser from "./browser";
@@ -29,11 +31,12 @@ export const createFileForm = (files: File[], isDirectory = false) => {
  * fetch call not working at test node env potentially due to cors
  */
 
-describe(
+describe.skip(
 	"lighthouse browser",
 	() => {
-		// @vitest-environment happy-dom
-
+		const uploadConfig = {
+			accessToken: config.lighthouse.apiKey!,
+		};
 		function promisifyEvent(
 			target: EventTarget,
 			event: string,
@@ -49,7 +52,7 @@ describe(
 			});
 		}
 
-		test.only("should upload a file using a form", async () => {
+		test("should upload a file using a form", async () => {
 			const file = new File(["content"], "test.txt", { type: "text/plain" });
 			const { form, input } = createFileForm([file]);
 
@@ -64,24 +67,19 @@ describe(
 				event.preventDefault();
 				const formData = new FormData(form);
 				const uploadedFile = formData.get("file") as File;
-
 				await uploadFilesBrowser({
-					config: {
-						accessToken: config.lighthouse.apiKey!,
-					},
+					config: uploadConfig,
 					formData: new FormData(form),
 				});
-
 				// Verify the submitted file
 				expect(uploadedFile).not.toBeNull();
 				expect(uploadedFile.name).toBe("test.txt");
 				expect(uploadedFile.type).toBe("text/plain");
-
 				console.log("submitted");
 			};
 			const submitPromise = promisifyEvent(form, "submit", handler);
 
-			// Create and dispatch a submit event
+			// // Create and dispatch a submit event
 			const submitEvent = new Event("submit", {
 				bubbles: true,
 				cancelable: true,
@@ -111,7 +109,7 @@ describe(
 				const uploadedFiles = formData.getAll("file") as File[];
 
 				await uploadFilesBrowser({
-					config,
+					config: uploadConfig,
 					formData: new FormData(form),
 				});
 
