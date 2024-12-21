@@ -1,9 +1,9 @@
 import { BY_USER, getRandomAccount } from "@repo/domain/user.fixture";
+import { WAGMI_CONFIG } from "@repo/ui-react/lib/utils/wagmi-config";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Hex } from "viem";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
 import { WagmiProvider, useAccount, useConnect, useWalletClient } from "wagmi";
-import { WAGMI_CONFIG } from "../../utils/wagmi-config";
 
 // TODO fix Story type
 

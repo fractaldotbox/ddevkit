@@ -2,7 +2,7 @@ import { Flex } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 import { Address, Hex } from "viem";
 import { Label } from "#components/shadcn/label";
-
+import { AddressBadge } from "../identity/address-badge";
 export const SignatureVerifyBadge = ({
 	signature,
 	message,

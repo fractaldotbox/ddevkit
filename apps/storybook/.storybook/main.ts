@@ -12,6 +12,14 @@ function getAbsolutePath(value: string): any {
 
 const config: StorybookConfig = {
 	stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+	core: {
+		builder: {
+			name: "@storybook/builder-vite",
+			options: {
+				viteConfigPath: "../../vite.config.ts",
+			},
+		},
+	},
 	addons: [
 		getAbsolutePath("@storybook/addon-onboarding"),
 		getAbsolutePath("@storybook/addon-links"),

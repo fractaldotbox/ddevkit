@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { BY_USER } from "@repo/domain/user.fixture";
 import { Balance } from "@repo/ui-react/components/account/balance";
-import { BY_CHAIN_ID, Token } from "@repo/ui-react/lib/utils/config";
+import { BY_CHAIN_ID, Token } from "@repo/ui-react/lib/token/config";
 import { Address } from "viem";
 import { base, optimism } from "viem/chains";
 import { withWagmiProvider } from "../decorators/wagmi";

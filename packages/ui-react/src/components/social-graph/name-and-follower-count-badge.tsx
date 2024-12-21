@@ -1,6 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { AddressOrEns, useEnsData, useUserStats } from "@/hooks/use-efp-api";
 import { Text } from "@radix-ui/themes";
+import {
+	AddressOrEns,
+	useEnsData,
+	useUserStats,
+} from "@repo/ui-react/hooks/use-efp-api";
 
 import { useEffect, useState } from "react";
 
