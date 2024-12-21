@@ -16,9 +16,9 @@ import {
 import { Input } from "#components/shadcn/input";
 import { ToastAction } from "#components/shadcn/toast";
 import { toast } from "#hooks/shadcn/use-toast";
+import { getEasscanAttestationUrl } from "#lib/eas/easscan";
 import { getShortHex } from "#lib/utils/hex";
 import { AttestationSchemaBadge } from "./attestation-schema-badge";
-import { getEasscanAttestationUrl } from "#lib/eas/easscan";
 
 // TODO dynamic enough to generate fields
 // now focus on sdk part

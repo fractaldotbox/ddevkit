@@ -1,8 +1,8 @@
-import { toast } from "#hooks/use-toast";
 import {
 	IpfsGateway,
 	getGatewayUrlWithCid,
 } from "@repo/ui-react/lib/filecoin/gateway";
+import { toast } from "#hooks/use-toast";
 
 export const uploadSuccessToast = ({
 	cid,

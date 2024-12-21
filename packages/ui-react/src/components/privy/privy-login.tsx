@@ -1,6 +1,6 @@
-import { Button } from "#components/shadcn/button";
 import { PrivyProvider, usePrivy } from "@privy-io/react-auth";
 import { PropsWithChildren } from "react";
+import { Button } from "#components/shadcn/button";
 
 export function PrivyLoginProvider({
 	children,

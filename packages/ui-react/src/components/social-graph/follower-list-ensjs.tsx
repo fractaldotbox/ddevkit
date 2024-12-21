@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { getNames } from "#hooks/ens/use-ensjs";
 import { AddressOrEns, EfpFollowerWithName } from "#hooks/ens/efp";
+import { getNames } from "#hooks/ens/use-ensjs";
 import { FollowerListScrollable } from "./follower-list";
 
 /**

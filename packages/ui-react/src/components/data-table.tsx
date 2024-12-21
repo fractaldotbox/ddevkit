@@ -8,6 +8,8 @@ import {
 	useReactTable,
 } from "@tanstack/react-table";
 
+import { useState } from "react";
+import { Button } from "#components/shadcn/button";
 import {
 	Table,
 	TableBody,
@@ -16,8 +18,6 @@ import {
 	TableHeader,
 	TableRow,
 } from "#components/shadcn/table";
-import { useState } from "react";
-import { Button } from "#components/shadcn/button";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];

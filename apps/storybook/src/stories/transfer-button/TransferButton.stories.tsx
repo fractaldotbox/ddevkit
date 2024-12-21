@@ -1,8 +1,8 @@
-import { Label } from "#components/ui/label";
 import { TransferButton } from "@repo/ui-react/components/transfer/transfer-button";
 import { Meta, StoryObj } from "@storybook/react";
 import { useMemo, useState } from "react";
 import { Account } from "viem";
+import { Label } from "#components/ui/label";
 import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
 interface TransferButtonProps {
 	to: string;
