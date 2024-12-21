@@ -1,12 +1,9 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Text } from "@radix-ui/themes";
-import {
-	AddressOrEns,
-	useEnsData,
-	useUserStats,
-} from "@repo/ui-react/hooks/use-efp-api";
+import { Card, CardContent } from "#components/shadcn/card";
+import { useEnsData, useUserStats } from "#hooks/ens/use-efp-api";
 
 import { useEffect, useState } from "react";
+import { AddressOrEns } from "#hooks/ens/efp";
 
 export type NameWithEfpFollowerCount = { name: string; followers: number };
 
