@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"@/*": ["./src/*"]
+			"@/*": ["./src/*", "./src/*.tsx"]
 		},
 		"target": "ES2020",
 		"useDefineForClassFields": true,
@@ -20,5 +20,9 @@
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true
 	},
-	"include": ["src"]
+	"include": [
+		"src",
+		"../../packages/@repo/ui-react",
+		"../../packages/@repo/domain"
+	]
 }

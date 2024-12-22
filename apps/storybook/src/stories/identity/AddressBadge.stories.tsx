@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
+import { AddressBadge } from "@repo/ui-react/components/identity/address-badge";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Hex } from "viem";
-import { AddressBadge } from "./AddressBadge";
 
 const meta = {
 	title: "Identity/AddressBadge",

@@ -1,5 +1,5 @@
+import { AddressBadge } from "@repo/ui-react/components/identity/address-badge";
 import { privateKeyToAccount } from "viem/accounts";
-import { AddressBadge } from "../identity/AddressBadge";
 
 export const withWalletControl = () => {
 	return (Story: any, context: any) => {

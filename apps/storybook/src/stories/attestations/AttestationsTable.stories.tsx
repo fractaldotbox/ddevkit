@@ -1,9 +1,7 @@
-import { faker } from "@faker-js/faker";
+import { BY_USER, getRandomAddress } from "@repo/domain/user.fixture";
+import { AttestationsTable } from "@repo/ui-react/components/attestations/attestations-table";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Address, Hex } from "viem";
 import { withWagmiProvider } from "../decorators/wagmi";
-import { BY_USER, getRandomAddress } from "../fixture";
-import { AttestationsTable } from "./AttestationsTable";
 
 const meta = {
 	title: "Attestations/AttestationsTable",

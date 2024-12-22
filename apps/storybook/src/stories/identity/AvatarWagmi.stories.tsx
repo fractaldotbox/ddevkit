@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { BY_USER } from "@repo/domain/user.fixture";
+import { AvatarWagmi } from "@repo/ui-react/components/identity/avatar-wagmi";
 import { withWagmiProvider } from "../decorators/wagmi";
-import { BY_USER } from "../fixture";
-import { AvatarWagmi } from "./AvatarWagmi";
 
 const meta = {
 	title: "Identity/Avatar/AvatarWagmi",

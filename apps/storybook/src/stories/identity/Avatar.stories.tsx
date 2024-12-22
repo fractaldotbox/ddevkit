@@ -1,11 +1,10 @@
+import { BY_USER } from "@repo/domain/user.fixture";
+import { Avatar } from "@repo/ui-react/components/identity/avatar";
 import type { Meta, StoryObj } from "@storybook/react";
 import {
 	withQueryClientProvider,
 	withWagmiProvider,
 } from "../decorators/wagmi";
-import { BY_USER } from "../fixture";
-import { Avatar } from "./Avatar";
-import { AvatarWagmi } from "./AvatarWagmi";
 
 const meta = {
 	title: "Identity/Avatar/Avatar",

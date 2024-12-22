@@ -1,12 +1,9 @@
-import { asTransactionMeta } from "@/lib/blockscout/api";
-import {
-	TXN_VITALIK_DEPOSIT,
-	TXN_VITALIK_TRANSFER,
-} from "@/lib/blockscout/fixture";
+import { TransactionCardWithDetails } from "@repo/ui-react/components/transactions/transaction-card-with-details";
+import { asTransactionMeta } from "@repo/ui-react/lib/blockscout/api";
+import { BY_TXN } from "@repo/ui-react/lib/blockscout/data.fixture";
 import type { Meta, StoryObj } from "@storybook/react";
 import { mainnet } from "viem/chains";
 import { withWagmiProvider } from "../decorators/wagmi";
-import { TransactionCardWithDetails } from "./TransactionCardWithDetails";
 
 const meta = {
 	title: "Transactions/TransactionCardWithDetails",
@@ -19,8 +16,8 @@ type Story = StoryObj<typeof meta>;
 
 export const VitalikDepositTransaction: Story = {
 	args: {
-		transaction: asTransactionMeta(TXN_VITALIK_DEPOSIT),
-		txnUrl: `https://eth.blockscout.com/tx/${TXN_VITALIK_DEPOSIT.hash}`,
+		transaction: asTransactionMeta(BY_TXN.VITALIK_DEPOSIT),
+		txnUrl: `https://eth.blockscout.com/tx/${BY_TXN.VITALIK_DEPOSIT.hash}`,
 		nativeCurrency: mainnet.nativeCurrency,
 	},
 	decorators: [withWagmiProvider()],
@@ -28,8 +25,8 @@ export const VitalikDepositTransaction: Story = {
 
 export const VitalikTransferTransaction: Story = {
 	args: {
-		transaction: asTransactionMeta(TXN_VITALIK_TRANSFER),
-		txnUrl: `https://eth.blockscout.com/tx/${TXN_VITALIK_TRANSFER.hash}`,
+		transaction: asTransactionMeta(BY_TXN.VITALIK_TRANSFER),
+		txnUrl: `https://eth.blockscout.com/tx/${BY_TXN.VITALIK_TRANSFER.hash}`,
 		nativeCurrency: mainnet.nativeCurrency,
 	},
 	decorators: [withWagmiProvider()],

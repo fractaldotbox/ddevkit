@@ -2,8 +2,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { ZodType, z } from "zod";
 
-import { FileInputField } from "@/components/FileInputField";
-import { Button } from "@/components/ui/button";
+import { FileInputField } from "@repo/ui-react/components/file/file-input-field";
+import type { DownloadProgress } from "ky";
+import React from "react";
+import { Button } from "#components/ui/button";
 import {
 	Form,
 	FormControl,
@@ -12,12 +14,10 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/components/ui/form";
-import { Progress } from "@/components/ui/progress";
-import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/hooks/use-toast";
-import type { DownloadProgress } from "ky";
-import React from "react";
+} from "#components/ui/form";
+import { Progress } from "#components/ui/progress";
+import { Textarea } from "#components/ui/textarea";
+import { toast } from "#hooks/use-toast";
 
 const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper porttitor massa, non placerat dolor rutrum vel. Morbi eu elit vitae odio hendrerit mollis. Proin at nibh auctor, laoreet ante vel, commodo leo. Sed viverra neque id lectus dictum, non accumsan tortor rhoncus. Fusce consectetur est vitae viverra pellentesque. Nunc pharetra felis libero, at rhoncus est euismod et. Morbi ac ultrices lectus, quis commodo eros. Etiam vestibulum finibus imperdiet. Nulla dictum tempor neque ac varius.
 Duis sed malesuada odio. Aenean fermentum tristique nunc a dictum. Donec posuere varius pharetra. Sed vitae nisi leo. Nam eget velit id erat sagittis molestie. Fusce feugiat turpis nec neque sodales, sit amet lobortis velit tempus. Curabitur nisi quam, consectetur in velit ac, gravida convallis ante. Etiam condimentum, ligula ut pharetra vehicula, odio ligula laoreet sem, et convallis metus mauris ut tellus. Fusce libero risus, vulputate a suscipit commodo, tincidunt vel ex. Duis quis ultrices ex, in feugiat dolor. Nullam ultrices lorem augue, ac pellentesque velit finibus vel.

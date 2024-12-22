@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { uploadFiles } from "@/lib/filecoin/lighthouse/browser";
+import config from "@repo/domain/config";
+import { uploadFiles } from "@repo/ui-react/lib/filecoin/lighthouse/browser";
 import { withToaster } from "../decorators/toaster";
 import UploadDropzone from "./UploadDropzone";
 import { uploadSuccessToast } from "./upload-toast";
@@ -17,9 +18,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const LIGHTHOUSE_API_KEY = import.meta.env.VITE_LIGHTHOUSE_API_KEY!;
-const AKAVE_ENDPOINT_URL = import.meta.env.VITE_AKAVE_ENDPOINT_URL!;
-
 export const Lighthouse: Story = {
 	args: {
 		uploadFiles: async ({
@@ -31,7 +29,7 @@ export const Lighthouse: Story = {
 
 			const results = await uploadFiles<false>({
 				config: {
-					accessToken: LIGHTHOUSE_API_KEY,
+					accessToken: config.lighthouse.apiKey,
 				},
 				files,
 			});
@@ -56,7 +54,7 @@ export const LighthouseDirectory: Story = {
 
 			const results = await uploadFiles<false>({
 				config: {
-					accessToken: LIGHTHOUSE_API_KEY,
+					accessToken: config.lighthouse.apiKey,
 				},
 				files,
 			});
