@@ -29,7 +29,7 @@
 		"vite-bundle-visualizer": "^1.2.1"
 	},
 	"engines": {
-		"node": ">=20",
+		"node": ">=22",
 		"pnpm": ">=9"
 	},
 	"packageManager": "pnpm@9.7.0",
@@ -38,6 +38,6 @@
 		"@testing-library/react": "^16.0.1",
 		"@vitejs/plugin-react": "^4.3.2",
 		"vite": "^5.4.1",
-		"vitest": "^2.0.5"
+		"vitest": "^2.1.8"
 	}
 }
