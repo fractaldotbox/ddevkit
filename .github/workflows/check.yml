@@ -10,6 +10,8 @@ on:
 env:
   NODE_VERSION: '22'
   PNPM_VERSION: '9'
+  TEST_EAS_PRIVATE_KEY: ${{ secrets.TEST_EAS_PRIVATE_KEY }}
+  TEST_USER_PRIVATE_KEY: ${{ secrets.TEST_USER_PRIVATE_KEY }}
 
 jobs:
   check:
