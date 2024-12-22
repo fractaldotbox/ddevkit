@@ -9,6 +9,9 @@
 // at storybook process.env not longer available and import.meta.env do not include config
 
 export default {
+	onchainkit: {
+		apiKey: process.env.ONCHAINKIT_API_KEY,
+	},
 	lighthouse: {
 		apiKey: process.env.LIGHTHOUSE_API_KEY,
 	},
