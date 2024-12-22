@@ -1,10 +1,10 @@
-import { TransactionTable } from "@repo/ui-react/components/transactions/transaction-table";
-import { asTransactionMeta } from "@repo/ui-react/lib/blockscout/api";
+import { TransactionTable } from "@geist/ui-react/components/transactions/transaction-table";
+import { asTransactionMeta } from "@geist/ui-react/lib/blockscout/api";
 import {
 	TXN_LIST,
 	generateTxnFixturesByCount,
-} from "@repo/ui-react/lib/blockscout/data.fixture";
-import { Explorer } from "@repo/ui-react/lib/explorer/url";
+} from "@geist/ui-react/lib/blockscout/data.fixture";
+import { Explorer } from "@geist/ui-react/lib/explorer/url";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withWagmiProvider } from "../decorators/wagmi";
 

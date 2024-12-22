@@ -1,4 +1,4 @@
-import { formatUnitsWithDecimalsDisplayed } from "@repo/domain/amount";
+import { formatUnitsWithDecimalsDisplayed } from "@geist/domain/amount";
 import { formatEther, formatGwei, formatUnits } from "viem";
 import { Button } from "#components/shadcn/button";
 

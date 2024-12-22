@@ -1,6 +1,6 @@
-import { TransactionCardWithDetails } from "@repo/ui-react/components/transactions/transaction-card-with-details";
-import { asTransactionMeta } from "@repo/ui-react/lib/blockscout/api";
-import { BY_TXN } from "@repo/ui-react/lib/blockscout/data.fixture";
+import { TransactionCardWithDetails } from "@geist/ui-react/components/transactions/transaction-card-with-details";
+import { asTransactionMeta } from "@geist/ui-react/lib/blockscout/api";
+import { BY_TXN } from "@geist/ui-react/lib/blockscout/data.fixture";
 import type { Meta, StoryObj } from "@storybook/react";
 import { mainnet } from "viem/chains";
 import { withWagmiProvider } from "../decorators/wagmi";

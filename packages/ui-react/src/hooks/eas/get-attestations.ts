@@ -1,9 +1,9 @@
-import { gql } from "@repo/graphql";
+import { gql } from "@geist/graphql";
 import { useQuery } from "@tanstack/react-query";
 import { rawRequest, request } from "graphql-request";
 import { Address, Hex } from "viem";
 import { getEasscanEndpoint } from "#lib/eas/easscan";
-// import { AllAttestationsByQuery } from 'node_modules/@repo/graphql/src/graphql/graphql';
+// import { AllAttestationsByQuery } from 'node_modules/@geist/graphql/src/graphql/graphql';
 
 type AllAttestationsByQuery = any;
 

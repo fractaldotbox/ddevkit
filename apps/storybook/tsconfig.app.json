@@ -22,7 +22,7 @@
 	},
 	"include": [
 		"src",
-		"../../packages/@repo/ui-react",
-		"../../packages/@repo/domain"
+		"../../packages/@geist/ui-react",
+		"../../packages/@geist/domain"
 	]
 }

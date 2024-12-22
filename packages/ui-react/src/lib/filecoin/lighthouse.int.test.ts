@@ -9,9 +9,9 @@ import {
 	uploadText,
 } from "./lighthouse/isomorphic";
 
-import config from "@repo/domain/config";
-import { BY_USER } from "@repo/domain/user.fixture";
-import { createTestFile } from "@repo/ui-react/lib/test-utils-node";
+import config from "@geist/domain/config";
+import { BY_USER } from "@geist/domain/user.fixture";
+import { createTestFile } from "@geist/ui-react/lib/test-utils-node";
 /**
  * Test on mainnet
  */

@@ -1,4 +1,4 @@
-import { TokenChipWithInfo } from "@repo/ui-react/components/token/token-chip-with-info";
+import { TokenChipWithInfo } from "@geist/ui-react/components/token/token-chip-with-info";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta = {

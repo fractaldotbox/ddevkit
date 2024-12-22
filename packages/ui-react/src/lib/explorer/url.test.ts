@@ -1,4 +1,4 @@
-import { BY_USER, TRANSACTION } from "@repo/domain/user.fixture";
+import { BY_USER, TRANSACTION } from "@geist/domain/user.fixture";
 import { filecoin, filecoinCalibration, mainnet, sepolia } from "viem/chains";
 import { describe, expect, test } from "vitest";
 import { createOverrideStrategies as createBlockscoutOverrideStrategies } from "../blockscout/url";

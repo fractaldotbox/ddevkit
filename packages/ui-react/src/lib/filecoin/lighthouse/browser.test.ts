@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 
-import config from "@repo/domain/config";
+import config from "@geist/domain/config";
 import { describe, expect, test } from "vitest";
 import uploadFilesBrowser from "./browser";
 export const createFileForm = (files: File[], isDirectory = false) => {

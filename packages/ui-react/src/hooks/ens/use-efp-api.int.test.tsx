@@ -8,7 +8,7 @@ import {
 	useFollowing,
 } from "./use-efp-api";
 
-import { BY_USER } from "@repo/domain/user.fixture";
+import { BY_USER } from "@geist/domain/user.fixture";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { renderHook, waitFor } from "@testing-library/react";
 import React from "react";

@@ -1,22 +1,22 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { uploadFileWithFormData } from "@repo/ui-react/lib/filecoin/akave/client";
+import { uploadFileWithFormData } from "@geist/ui-react/lib/filecoin/akave/client";
 import {
 	uploadFiles as uploadFilesLighthouse,
 	uploadText,
-} from "@repo/ui-react/lib/filecoin/lighthouse/isomorphic";
+} from "@geist/ui-react/lib/filecoin/lighthouse/isomorphic";
 
 import {
 	initStorachaClient,
 	uploadFiles as uploadFilesStoracha,
-} from "@repo/ui-react/lib/filecoin/storacha/isomorphic";
+} from "@geist/ui-react/lib/filecoin/storacha/isomorphic";
 
 import { withToaster } from "../decorators/toaster";
 import { UploadFilesParams, UploadForm, UploadFormType } from "./UploadForm";
 import { uploadSuccessToast } from "./upload-toast";
 
-import config from "@repo/domain/config";
-import { IpfsGateway } from "@repo/ui-react/lib/filecoin/gateway";
+import config from "@geist/domain/config";
+import { IpfsGateway } from "@geist/ui-react/lib/filecoin/gateway";
 import { FileLike } from "@web3-storage/w3up-client/types";
 
 const meta = {

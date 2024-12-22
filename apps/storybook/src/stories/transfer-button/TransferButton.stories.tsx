@@ -1,4 +1,4 @@
-import { TransferButton } from "@repo/ui-react/components/transfer/transfer-button";
+import { TransferButton } from "@geist/ui-react/components/transfer/transfer-button";
 import { Meta, StoryObj } from "@storybook/react";
 import { useMemo, useState } from "react";
 import { Account } from "viem";

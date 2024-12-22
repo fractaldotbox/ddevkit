@@ -2,7 +2,7 @@
  * we keep similar class-based interface as in original sdk for interoperability
  */
 
-import { isCID } from "@repo/domain/codec";
+import { isCID } from "@geist/domain/codec";
 import { CID, MultihashDigest } from "multiformats";
 import {
 	type AbiFunction,

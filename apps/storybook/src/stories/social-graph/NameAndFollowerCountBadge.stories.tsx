@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { BY_USER } from "@repo/domain/user.fixture";
-import { NameAndFollowerCountBadge } from "@repo/ui-react/components/social-graph/name-and-follower-count-badge";
+import { BY_USER } from "@geist/domain/user.fixture";
+import { NameAndFollowerCountBadge } from "@geist/ui-react/components/social-graph/name-and-follower-count-badge";
 import { withQueryClientProvider } from "../decorators/wagmi";
 
 const meta = {

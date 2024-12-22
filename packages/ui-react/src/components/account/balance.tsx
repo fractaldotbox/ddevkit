@@ -1,5 +1,5 @@
+import { formatUnitsWithDecimalsDisplayed } from "@geist/domain/amount";
 import { Text } from "@radix-ui/themes";
-import { formatUnitsWithDecimalsDisplayed } from "@repo/domain/amount";
 // support ENS, basename
 // Option to use ipfs gateway, ens metadata services
 import { Address } from "viem";

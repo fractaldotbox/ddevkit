@@ -1,4 +1,4 @@
-import config from "@repo/domain/config";
+import config from "@geist/domain/config";
 import {
 	BrowserProvider,
 	JsonRpcProvider,

@@ -1,7 +1,7 @@
 import {
 	PrivyLogin,
 	PrivyLoginProvider,
-} from "@repo/ui-react/components/privy/privy-login";
+} from "@geist/ui-react/components/privy/privy-login";
 import { Meta, StoryObj } from "@storybook/react";
 
 interface PrivyLoginProps {

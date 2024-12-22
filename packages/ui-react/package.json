@@ -1,5 +1,5 @@
 {
-	"name": "@repo/ui-react",
+	"name": "@geist/ui-react",
 	"version": "0.0.0",
 	"private": true,
 	"type": "module",
@@ -18,7 +18,7 @@
 		"generate:component": "turbo gen react-component"
 	},
 	"devDependencies": {
-		"@repo/typescript-config": "workspace:*",
+		"@geist/typescript-config": "workspace:*",
 		"@turbo/gen": "^1.12.4",
 		"@types/node": "^22.10.2",
 		"@types/react": "^18.3.12",
@@ -39,7 +39,7 @@
 		"pako": "^2.1.0"
 	},
 	"dependencies": {
-		"@repo/domain": "workspace:*",
+		"@geist/domain": "workspace:*",
 		"@ensdomains/ensjs": "4.0.1-alpha.0",
 		"@ensdomains/ensjs-react": "^0.0.3",
 		"@ethereum-attestation-service/eas-sdk": "2.6.0",
@@ -88,7 +88,7 @@
 		"@radix-ui/react-toggle": "^1.1.0",
 		"@radix-ui/react-toggle-group": "^1.0.4",
 		"@radix-ui/react-tooltip": "^1.1.2",
-		"@repo/graphql": "workspace:*",
+		"@geist/graphql": "workspace:*",
 		"@scure/base": "^1.1.9",
 		"@storybook/components": "^8.3.6",
 		"@storybook/icons": "^1.2.12",

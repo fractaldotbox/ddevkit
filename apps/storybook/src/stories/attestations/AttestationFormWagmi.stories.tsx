@@ -1,10 +1,10 @@
-import { AttestationForm } from "@repo/ui-react/components/attestations/attestation-form";
-import { useAttestation } from "@repo/ui-react/hooks/eas/use-attestation";
+import { AttestationForm } from "@geist/ui-react/components/attestations/attestation-form";
+import { useAttestation } from "@geist/ui-react/hooks/eas/use-attestation";
 import {
 	SCHEMA_BY_NAME,
 	SCHEMA_FIXTURE_IS_A_FRIEND,
-} from "@repo/ui-react/lib/eas/attest.fixture";
-import { AttestationRequestData } from "@repo/ui-react/lib/eas/viem/onchain";
+} from "@geist/ui-react/lib/eas/attest.fixture";
+import { AttestationRequestData } from "@geist/ui-react/lib/eas/viem/onchain";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Account, Address, Chain, Hex, stringToHex, zeroHash } from "viem";
 import { sepolia } from "viem/chains";
