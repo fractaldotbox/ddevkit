@@ -1,10 +1,10 @@
 import { EAS, NO_EXPIRATION } from "@ethereum-attestation-service/eas-sdk";
-import config from "@repo/domain/config";
-import { SignatureType } from "@repo/ui-react/lib/eas/request";
+import config from "@geist/domain/config";
+import { SignatureType } from "@geist/ui-react/lib/eas/request";
 import {
 	createTestClientConfig,
 	createTestEthersSigner,
-} from "@repo/ui-react/lib/test-utils-isomorphic";
+} from "@geist/ui-react/lib/test-utils-isomorphic";
 import { http, Hex, createWalletClient, zeroHash } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { sepolia } from "viem/chains";

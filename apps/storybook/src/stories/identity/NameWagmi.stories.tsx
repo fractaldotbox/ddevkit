@@ -1,5 +1,5 @@
-import { BY_USER } from "@repo/domain/user.fixture";
-import { NameWagmi } from "@repo/ui-react/components/identity/name-wagmi";
+import { BY_USER } from "@geist/domain/user.fixture";
+import { NameWagmi } from "@geist/ui-react/components/identity/name-wagmi";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withWagmiProvider } from "../decorators/wagmi";
 

@@ -1,4 +1,4 @@
-import config from "@repo/domain/config";
+import config from "@geist/domain/config";
 import { Loader2, Upload } from "lucide-react";
 import { Button } from "#components/shadcn/button";
 import { useUploadAttestationWithLighthouse } from "#hooks/eas/use-upload-attestation";

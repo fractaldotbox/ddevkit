@@ -1,5 +1,5 @@
 {
-	"name": "@repo/domain",
+	"name": "@geist/domain",
 	"version": "0.0.0",
 	"private": true,
 	"exports": {
@@ -14,7 +14,7 @@
 		"#*": ["./src/*", "./src/*.tsx"]
 	},
 	"devDependencies": {
-		"@repo/typescript-config": "workspace:*",
+		"@geist/typescript-config": "workspace:*",
 		"@turbo/gen": "^1.12.4",
 		"@types/node": "^22.10.2",
 		"@faker-js/faker": "^8.2.0",
@@ -32,7 +32,7 @@
 		"@noble/secp256k1": "^2.1.0",
 		"@openzeppelin/merkle-tree": "^1.0.7",
 		"@privy-io/react-auth": "^1.95.2",
-		"@repo/graphql": "workspace:*",
+		"@geist/graphql": "workspace:*",
 		"@scure/base": "^1.1.9",
 		"@storybook/components": "^8.3.6",
 		"@storybook/icons": "^1.2.12",

@@ -1,8 +1,8 @@
 {
-	"extends": "@repo/typescript-config/react-library.json",
+	"extends": "@geist/typescript-config/react-library.json",
 	"compilerOptions": {
 		"outDir": "dist"
 	},
-	"include": ["src", "turbo", "../../packages/@repo/domain"],
+	"include": ["src", "turbo", "../../packages/@geist/domain"],
 	"exclude": ["node_modules", "dist"]
 }

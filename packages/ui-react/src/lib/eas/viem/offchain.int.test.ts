@@ -8,8 +8,8 @@ import {
 	ZERO_BYTES32,
 	getOffchainUID as getOffchainUIDEasSdk,
 } from "@ethereum-attestation-service/eas-sdk";
-import config from "@repo/domain/config";
-import { BY_USER } from "@repo/domain/user.fixture";
+import config from "@geist/domain/config";
+import { BY_USER } from "@geist/domain/user.fixture";
 import { Signature, Signer, encodeBytes32String, ethers } from "ethers";
 import { http, Address, createWalletClient, custom, zeroHash } from "viem";
 import { Hex } from "viem";

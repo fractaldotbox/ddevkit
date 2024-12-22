@@ -1,5 +1,5 @@
-import { resolveChainById } from "@repo/domain/chain/chain-resolver";
-import { TransactionMeta } from "@repo/domain/transaction/transaction";
+import { resolveChainById } from "@geist/domain/chain/chain-resolver";
+import { TransactionMeta } from "@geist/domain/transaction/transaction";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, ExternalLink } from "lucide-react";
 import { formatEther } from "viem";

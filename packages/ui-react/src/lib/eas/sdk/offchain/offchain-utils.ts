@@ -4,8 +4,8 @@ import {
 	EIP712MessageTypes,
 	OffchainAttestationVersion,
 } from "@ethereum-attestation-service/eas-sdk";
-import { stringifyWithBigInt } from "@repo/domain/util";
-import { ZERO_ADDRESS } from "@repo/ui-react/lib/constants";
+import { stringifyWithBigInt } from "@geist/domain/util";
+import { ZERO_ADDRESS } from "@geist/ui-react/lib/constants";
 import { base64 } from "@scure/base";
 import { zlibSync } from "fflate";
 import {

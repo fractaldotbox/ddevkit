@@ -1,9 +1,9 @@
-import { Hex, SignType } from "@repo/domain/signature/sign";
-import { TYPED_DATA } from "@repo/domain/signature/type-data";
-import { ScrollableCodeBlock } from "@repo/ui-react/components/scrollable-code-block";
-import { SignatureForm } from "@repo/ui-react/components/signature/signature-form";
-import { SignatureVerifyBadge } from "@repo/ui-react/components/signature/signature-verify-badge";
-import { useSign } from "@repo/ui-react/hooks/signature/use-sign";
+import { Hex, SignType } from "@geist/domain/signature/sign";
+import { TYPED_DATA } from "@geist/domain/signature/type-data";
+import { ScrollableCodeBlock } from "@geist/ui-react/components/scrollable-code-block";
+import { SignatureForm } from "@geist/ui-react/components/signature/signature-form";
+import { SignatureVerifyBadge } from "@geist/ui-react/components/signature/signature-verify-badge";
+import { useSign } from "@geist/ui-react/hooks/signature/use-sign";
 import type { Meta, StoryObj } from "@storybook/react";
 import { atom, useAtom } from "jotai";
 import { withMockAccount } from "../decorators/wagmi";

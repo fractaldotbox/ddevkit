@@ -1,5 +1,5 @@
-import { UploadAttestation } from "@repo/ui-react/components/attestations/upload-attestation";
-import { getShortAddress } from "@repo/ui-react/lib/utils/address";
+import { UploadAttestation } from "@geist/ui-react/components/attestations/upload-attestation";
+import { getShortAddress } from "@geist/ui-react/lib/utils/address";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { injected } from "wagmi/connectors";

@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { AddressBadge } from "@repo/ui-react/components/identity/address-badge";
+import { AddressBadge } from "@geist/ui-react/components/identity/address-badge";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Hex } from "viem";
 

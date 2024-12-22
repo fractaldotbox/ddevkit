@@ -1,5 +1,5 @@
 {
-	"extends": "@repo/typescript-config/react-library.json",
+	"extends": "@geist/typescript-config/react-library.json",
 	"compilerOptions": {
 		"baseUrl": ".",
 		"module": "esnext",
@@ -8,6 +8,6 @@
 			"#*": ["src/*"]
 		}
 	},
-	"include": ["src", "../../packages/@repo/domain"],
+	"include": ["src", "../../packages/@geist/domain"],
 	"exclude": ["node_modules", "dist"]
 }

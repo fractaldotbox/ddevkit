@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import config from "@repo/domain/config";
-import { uploadFiles } from "@repo/ui-react/lib/filecoin/lighthouse/browser";
+import config from "@geist/domain/config";
+import { uploadFiles } from "@geist/ui-react/lib/filecoin/lighthouse/browser";
 import { withToaster } from "../decorators/toaster";
 import UploadDropzone from "./UploadDropzone";
 import { uploadSuccessToast } from "./upload-toast";

@@ -1,4 +1,4 @@
-import { TransactionTableWithDetails } from "@repo/ui-react/components/transactions/transaction-table-with-details";
+import { TransactionTableWithDetails } from "@geist/ui-react/components/transactions/transaction-table-with-details";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withWagmiProvider } from "../decorators/wagmi";
 

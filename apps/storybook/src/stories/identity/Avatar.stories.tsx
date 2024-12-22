@@ -1,5 +1,5 @@
-import { BY_USER } from "@repo/domain/user.fixture";
-import { Avatar } from "@repo/ui-react/components/identity/avatar";
+import { BY_USER } from "@geist/domain/user.fixture";
+import { Avatar } from "@geist/ui-react/components/identity/avatar";
 import type { Meta, StoryObj } from "@storybook/react";
 import {
 	withQueryClientProvider,

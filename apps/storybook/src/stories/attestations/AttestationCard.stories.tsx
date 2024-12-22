@@ -1,5 +1,5 @@
-import { AttestationCard } from "@repo/ui-react/components/attestations/attestation-card";
-import { SCHEMA_BY_NAME } from "@repo/ui-react/lib/eas/attest.fixture";
+import { AttestationCard } from "@geist/ui-react/components/attestations/attestation-card";
+import { SCHEMA_BY_NAME } from "@geist/ui-react/lib/eas/attest.fixture";
 import type { Meta, StoryObj } from "@storybook/react";
 import { mainnet, optimism } from "viem/chains";
 import { withWagmiProvider } from "../decorators/wagmi";

@@ -1,6 +1,6 @@
 import { SchemaEncoder } from "@ethereum-attestation-service/eas-sdk";
-import { NO_EXPIRATION } from "@repo/ui-react/lib/eas/request";
-import type { AttestationRequestData } from "@repo/ui-react/lib/eas/viem/onchain";
+import { NO_EXPIRATION } from "@geist/ui-react/lib/eas/request";
+import type { AttestationRequestData } from "@geist/ui-react/lib/eas/viem/onchain";
 import { Signer, ZeroHash } from "ethers";
 import { useMemo } from "react";
 import {
