@@ -16,7 +16,7 @@
 	"devDependencies": {
 		"@repo/typescript-config": "workspace:*",
 		"@turbo/gen": "^1.12.4",
-		"@types/node": "^20.11.24",
+		"@types/node": "^22.10.2",
 		"@faker-js/faker": "^8.2.0",
 		"typescript": "^5.7.2",
 		"vite": "^5.4.1",
