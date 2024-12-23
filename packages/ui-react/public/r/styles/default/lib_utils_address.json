@@ -1,0 +1,13 @@
+{
+	"name": "lib_utils_address",
+	"type": "registry:lib",
+	"dependencies": [],
+	"files": [
+		{
+			"path": "lib/utils_address.ts",
+			"content": "import { Address, getAddress, isHex } from \"viem\";\nimport { getShortHex } from \"./hex\";\n\nexport type GetShortAddressReturnType = string | null;\n\nexport const getShortAddress = (\n\taddress: Address,\n\tsectionLength: number = 4,\n): GetShortAddressReturnType => {\n\tif (!isHex(address) || (address as string)?.length !== 42) {\n\t\tthrow new Error(\"Invalid Address\");\n\t}\n\n\tconst checksumed = getAddress(address);\n\n\treturn getShortHex(checksumed, sectionLength);\n};\n",
+			"type": "registry:lib"
+		}
+	],
+	"registryDependencies": []
+}

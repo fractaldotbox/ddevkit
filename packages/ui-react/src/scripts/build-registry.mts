@@ -1,9 +1,8 @@
 // @sts-nocheck
-import { existsSync, promises as fs, readFileSync } from "fs";
+import { promises as fs, existsSync, readFileSync } from "fs";
 import { tmpdir } from "os";
 import path from "path";
 import { cwd } from "process";
-import template from "lodash.template";
 // import { rimraf } from "rimraf";
 import { Project, ScriptKind, SyntaxKind } from "ts-morph";
 import { z } from "zod";
@@ -19,17 +18,6 @@ import {
 	registryItemTypeSchema,
 	registrySchema,
 } from "../registry/schema";
-
-/**
- * problem statement
- *
- * We want to use different paths for built in shadcn components vs geist components
- * maintain a whitelist
- *
- * Do not want to create extra level of style
- *
- * clone but restructure the folder
- */
 
 const REGISTRY_EXPORT_PATH = path.join(process.cwd(), "public/r");
 const REGISTRY_SOURCE_PATH = path.join(process.cwd(), "src");
@@ -50,6 +38,37 @@ async function createTempSourceFile(filename: string) {
 	const dir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-"));
 	return path.join(dir, filename);
 }
+
+function writeFileWithDirSync(filepath: string, data: any, options = {}) {
+	// Ensure the directory exists
+	const dirname = path.dirname(filepath);
+
+	if (!existsSync(dirname)) {
+		fs.mkdir(dirname, { recursive: true });
+	}
+
+	// Write the file
+	fs.writeFile(filepath, data, options);
+}
+
+// for both export path and in dependencies
+
+// TODO different at import path
+const rewriteGeistDependencyPath = (path: string) => {
+	const pathRootMatch = path.match(
+		/^(#)*(components|lib|hooks)\/(shadcn\/)*(.*)$/,
+	);
+
+	const alias = pathRootMatch?.[1] ? "@/" : "";
+
+	const modulePath =
+		pathRootMatch?.[2] === "components" ? "components/ui" : pathRootMatch?.[2];
+
+	if (pathRootMatch?.[0]) {
+		return `${alias}${modulePath}/${pathRootMatch[4]?.replace(/\//g, "_")}`;
+	}
+	return path;
+};
 
 // ----------------------------------------------------------------------------
 // Build registry/styles/[style]/[name].json.
@@ -96,8 +115,28 @@ async function buildStyles(registry: Registry) {
 						sourceFile.getVariableDeclaration("containerClassName")?.remove();
 						sourceFile.getVariableDeclaration("description")?.remove();
 
+						// Replace shadcn imports
+						console.log("content", file);
+						for (const node of sourceFile.getImportDeclarations()) {
+							const currentImport = node.getModuleSpecifier().getLiteralValue();
+
+							const geistDependencyPath =
+								rewriteGeistDependencyPath(currentImport);
+
+							node
+								.getModuleSpecifier()
+								.replaceWithText(`"${geistDependencyPath}"`);
+						}
+						// find root to supporot unlimited level of nested folder
+
+						let geistDependencyPath = rewriteGeistDependencyPath(file.path);
+
+						console.log("path", geistDependencyPath);
+
+						// TODO add registry url to registryDependencies
+
 						return {
-							path: file.path,
+							path: geistDependencyPath,
 							type: file.type,
 							content: sourceFile.getText(),
 							target: file.target,
@@ -105,8 +144,6 @@ async function buildStyles(registry: Registry) {
 					}),
 				);
 			}
-
-			console.log("import file", item);
 
 			const payload = registryEntrySchema
 				.omit({
@@ -122,17 +159,17 @@ async function buildStyles(registry: Registry) {
 				});
 
 			if (payload.success) {
-				const shadcnRegistryUrl = "https://ui.shadcn.com";
+				const shadcnRegistryUrl = "https://ui.shadcn.com/r";
 				payload.data.registryDependencies = (
 					payload.data.registryDependencies ?? []
 				).concat(
 					(item.shadcnDependencies ?? []).map(
 						(dependency) =>
-							`${shadcnRegistryUrl}/registry/${style.name}/${dependency}`,
+							`${shadcnRegistryUrl}/styles/${style.name}/${dependency}.json`,
 					),
 				);
 
-				await fs.writeFile(
+				await writeFileWithDirSync(
 					path.join(targetPath, `${item.name}.json`),
 					JSON.stringify(payload.data, null, 2),
 					"utf8",
@@ -468,6 +505,7 @@ export const Index: Record<string, any> = {
 		});
 	const registryJson = JSON.stringify(items, null, 2);
 	// rimraf.sync(path.join(REGISTRY_EXPORT_PATH, "index.json"));
+
 	console.log("write json");
 	await fs.writeFile(
 		path.join(REGISTRY_EXPORT_PATH, "index.json"),

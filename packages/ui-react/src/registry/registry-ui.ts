@@ -312,8 +312,16 @@ export const ui: Registry = [
 		type: "registry:ui",
 		dependencies: ["viem", "wagmi", "lucide-react"],
 		shadcnDependencies: ["badge", "tooltip"],
-		// registryDependencies: ["badge", "tooltip"],
-		files: ["components/identity/address-badge.tsx"],
+		files: [
+			{
+				type: "registry:ui",
+				path: "components/identity/address-badge.tsx",
+			},
+			{
+				type: "registry:lib",
+				path: "lib/utils/address.ts",
+			},
+		],
 	},
 	// {
 	// 	name: "toggle-group",

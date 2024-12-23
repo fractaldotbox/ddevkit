@@ -1,5 +1,5 @@
 {
-	"name": "utils",
+	"name": "lib_utils_hex",
 	"type": "registry:lib",
 	"dependencies": [],
 	"files": [

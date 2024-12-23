@@ -1,21 +1,18 @@
 [
-  {
-    "name": "address-badge",
-    "type": "registry:ui",
-    "dependencies": [
-      "viem",
-      "wagmi",
-      "lucide-react"
-    ],
-    "shadcnDependencies": [
-      "badge",
-      "tooltip"
-    ],
-    "files": [
-      {
-        "path": "components/identity/address-badge.tsx",
-        "type": "registry:ui"
-      }
-    ]
-  }
+	{
+		"name": "address-badge",
+		"type": "registry:ui",
+		"dependencies": ["viem", "wagmi", "lucide-react"],
+		"shadcnDependencies": ["badge", "tooltip"],
+		"files": [
+			{
+				"path": "components/identity/address-badge.tsx",
+				"type": "registry:ui"
+			},
+			{
+				"path": "lib/utils/address.ts",
+				"type": "registry:lib"
+			}
+		]
+	}
 ]
