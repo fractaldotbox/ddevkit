@@ -4,69 +4,24 @@
 import * as React from "react"
 
 export const Index: Record<string, any> = {
-  "new-york": {
-    "toggle": {
-      name: "toggle",
-      type: "registry:ui",
-      registryDependencies: undefined,
-      files: ["registry/new-york/ui/toggle.tsx"],
-      component: React.lazy(() => import("#registry/new-york/ui/toggle.tsx")),
-      source: "",
-      category: "undefined",
-      subcategory: "undefined",
-      chunks: []
-    },
-    "tooltip": {
-      name: "tooltip",
-      type: "registry:ui",
-      registryDependencies: undefined,
-      files: ["registry/new-york/ui/tooltip.tsx"],
-      component: React.lazy(() => import("#registry/new-york/ui/tooltip.tsx")),
-      source: "",
-      category: "undefined",
-      subcategory: "undefined",
-      chunks: []
-    },
-    "utils": {
-      name: "utils",
-      type: "registry:lib",
-      registryDependencies: undefined,
-      files: ["registry/new-york/lib/utils.ts"],
-      component: React.lazy(() => import("#registry/new-york/lib/utils.ts")),
-      source: "",
-      category: "undefined",
-      subcategory: "undefined",
-      chunks: []
-    },
-    "use-mobile": {
-      name: "use-mobile",
-      type: "registry:hook",
-      registryDependencies: undefined,
-      files: ["registry/new-york/hooks/use-mobile.tsx"],
-      component: React.lazy(() => import("#registry/new-york/hooks/use-mobile.tsx")),
-      source: "",
-      category: "undefined",
-      subcategory: "undefined",
-      chunks: []
-    },
-    "use-toast": {
-      name: "use-toast",
-      type: "registry:hook",
-      registryDependencies: undefined,
-      files: ["registry/new-york/hooks/use-toast.ts"],
-      component: React.lazy(() => import("#registry/new-york/hooks/use-toast.ts")),
-      source: "",
-      category: "undefined",
-      subcategory: "undefined",
-      chunks: []
-    },
-  },  "default": {
+  "default": {
     "toggle": {
       name: "toggle",
       type: "registry:ui",
       registryDependencies: undefined,
       files: ["registry/default/ui/toggle.tsx"],
       component: React.lazy(() => import("#registry/default/ui/toggle.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
+    "address-badge": {
+      name: "address-badge",
+      type: "registry:ui",
+      registryDependencies: ["badge","tooltip"],
+      files: ["registry/default/components/identity/address-badge.tsx"],
+      component: React.lazy(() => import("#registry/default/components/identity/address-badge.tsx")),
       source: "",
       category: "undefined",
       subcategory: "undefined",

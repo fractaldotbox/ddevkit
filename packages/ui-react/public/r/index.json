@@ -13,6 +13,25 @@
     ]
   },
   {
+    "name": "address-badge",
+    "type": "registry:ui",
+    "dependencies": [
+      "viem",
+      "wagmi",
+      "lucide-react"
+    ],
+    "registryDependencies": [
+      "badge",
+      "tooltip"
+    ],
+    "files": [
+      {
+        "path": "components/identity/address-badge.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  {
     "name": "tooltip",
     "type": "registry:ui",
     "dependencies": [

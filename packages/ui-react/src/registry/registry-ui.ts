@@ -305,6 +305,15 @@ export const ui: Registry = [
 		dependencies: ["@radix-ui/react-toggle"],
 		files: ["ui/toggle.tsx"],
 	},
+
+	// utils
+	{
+		name: "address-badge",
+		type: "registry:ui",
+		dependencies: ["viem", "wagmi", "lucide-react"],
+		registryDependencies: ["badge", "tooltip"],
+		files: ["components/identity/address-badge.tsx"],
+	},
 	// {
 	// 	name: "toggle-group",
 	// 	type: "registry:ui",
