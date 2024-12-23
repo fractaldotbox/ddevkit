@@ -5,34 +5,12 @@ import * as React from "react"
 
 export const Index: Record<string, any> = {
   "default": {
-    "toggle": {
-      name: "toggle",
-      type: "registry:ui",
-      registryDependencies: undefined,
-      files: ["registry/default/ui/toggle.tsx"],
-      component: React.lazy(() => import("#registry/default/ui/toggle.tsx")),
-      source: "",
-      category: "undefined",
-      subcategory: "undefined",
-      chunks: []
-    },
     "address-badge": {
       name: "address-badge",
       type: "registry:ui",
-      registryDependencies: ["badge","tooltip"],
+      registryDependencies: undefined,
       files: ["registry/default/components/identity/address-badge.tsx"],
       component: React.lazy(() => import("#registry/default/components/identity/address-badge.tsx")),
-      source: "",
-      category: "undefined",
-      subcategory: "undefined",
-      chunks: []
-    },
-    "tooltip": {
-      name: "tooltip",
-      type: "registry:ui",
-      registryDependencies: undefined,
-      files: ["registry/default/ui/tooltip.tsx"],
-      component: React.lazy(() => import("#registry/default/ui/tooltip.tsx")),
       source: "",
       category: "undefined",
       subcategory: "undefined",
@@ -42,8 +20,8 @@ export const Index: Record<string, any> = {
       name: "utils",
       type: "registry:lib",
       registryDependencies: undefined,
-      files: ["registry/default/lib/utils.ts"],
-      component: React.lazy(() => import("#registry/default/lib/utils.ts")),
+      files: ["registry/default/lib/utils/hex.ts"],
+      component: React.lazy(() => import("#registry/default/lib/utils/hex.ts")),
       source: "",
       category: "undefined",
       subcategory: "undefined",

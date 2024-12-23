@@ -299,19 +299,20 @@ export const ui: Registry = [
 	// 		},
 	// 	],
 	// },
-	{
-		name: "toggle",
-		type: "registry:ui",
-		dependencies: ["@radix-ui/react-toggle"],
-		files: ["ui/toggle.tsx"],
-	},
+	// {
+	// 	name: "toggle",
+	// 	type: "registry:ui",
+	// 	dependencies: ["@radix-ui/react-toggle"],
+	// 	files: ["ui/toggle.tsx"],
+	// },
 
 	// utils
 	{
 		name: "address-badge",
 		type: "registry:ui",
 		dependencies: ["viem", "wagmi", "lucide-react"],
-		registryDependencies: ["badge", "tooltip"],
+		shadcnDependencies: ["badge", "tooltip"],
+		// registryDependencies: ["badge", "tooltip"],
 		files: ["components/identity/address-badge.tsx"],
 	},
 	// {
@@ -321,10 +322,4 @@ export const ui: Registry = [
 	// 	registryDependencies: ["toggle"],
 	// 	files: ["ui/toggle-group.tsx"],
 	// },
-	{
-		name: "tooltip",
-		type: "registry:ui",
-		dependencies: ["@radix-ui/react-tooltip"],
-		files: ["ui/tooltip.tsx"],
-	},
 ];

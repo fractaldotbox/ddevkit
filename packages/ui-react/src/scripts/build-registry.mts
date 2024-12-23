@@ -9,8 +9,8 @@ import { Project, ScriptKind, SyntaxKind } from "ts-morph";
 import { z } from "zod";
 
 import { registry } from "../registry";
-import { baseColors } from "../registry/registry-base-colors";
-import { colorMapping, colors } from "../registry/registry-colors";
+// import { baseColors } from "../registry/registry-base-colors";
+// import { colorMapping, colors } from "../registry/registry-colors";
 import { styles } from "../registry/registry-styles";
 import {
 	Registry,
@@ -20,14 +20,26 @@ import {
 	registrySchema,
 } from "../registry/schema";
 
-const REGISTRY_PATH = path.join(process.cwd(), "public/r");
+/**
+ * problem statement
+ *
+ * We want to use different paths for built in shadcn components vs geist components
+ * maintain a whitelist
+ *
+ * Do not want to create extra level of style
+ *
+ * clone but restructure the folder
+ */
+
+const REGISTRY_EXPORT_PATH = path.join(process.cwd(), "public/r");
+const REGISTRY_SOURCE_PATH = path.join(process.cwd(), "src");
 
 const REGISTRY_INDEX_WHITELIST: z.infer<typeof registryItemTypeSchema>[] = [
 	"registry:ui",
 	"registry:lib",
-	"registry:hook",
+	// "registry:hook",
 	// "registry:theme",
-	"registry:block",
+	// "registry:block",
 ];
 
 const project = new Project({
@@ -37,6 +49,142 @@ const project = new Project({
 async function createTempSourceFile(filename: string) {
 	const dir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-"));
 	return path.join(dir, filename);
+}
+
+// ----------------------------------------------------------------------------
+// Build registry/styles/[style]/[name].json.
+// ----------------------------------------------------------------------------
+async function buildStyles(registry: Registry) {
+	for (const style of styles) {
+		const targetPath = path.join(REGISTRY_EXPORT_PATH, "styles", style.name);
+
+		// Create directory if it doesn't exist.
+		if (!existsSync(targetPath)) {
+			await fs.mkdir(targetPath, { recursive: true });
+		}
+
+		for (const item of registry) {
+			if (!REGISTRY_INDEX_WHITELIST.includes(item.type)) {
+				continue;
+			}
+
+			let files;
+			if (item.files) {
+				files = await Promise.all(
+					item.files.map(async (_file) => {
+						const file =
+							typeof _file === "string"
+								? {
+										path: _file,
+										type: item.type,
+										content: "",
+										target: "",
+									}
+								: _file;
+
+						const content = await fs.readFile(
+							path.join(REGISTRY_SOURCE_PATH, file.path),
+							"utf8",
+						);
+
+						const tempFile = await createTempSourceFile(file.path);
+						const sourceFile = project.createSourceFile(tempFile, content, {
+							scriptKind: ScriptKind.TSX,
+						});
+
+						sourceFile.getVariableDeclaration("iframeHeight")?.remove();
+						sourceFile.getVariableDeclaration("containerClassName")?.remove();
+						sourceFile.getVariableDeclaration("description")?.remove();
+
+						return {
+							path: file.path,
+							type: file.type,
+							content: sourceFile.getText(),
+							target: file.target,
+						};
+					}),
+				);
+			}
+
+			console.log("import file", item);
+
+			const payload = registryEntrySchema
+				.omit({
+					source: true,
+					category: true,
+					subcategory: true,
+					shadcnDependencies: true,
+					chunks: true,
+				})
+				.safeParse({
+					...item,
+					files,
+				});
+
+			if (payload.success) {
+				const shadcnRegistryUrl = "https://ui.shadcn.com";
+				payload.data.registryDependencies = (
+					payload.data.registryDependencies ?? []
+				).concat(
+					(item.shadcnDependencies ?? []).map(
+						(dependency) =>
+							`${shadcnRegistryUrl}/registry/${style.name}/${dependency}`,
+					),
+				);
+
+				await fs.writeFile(
+					path.join(targetPath, `${item.name}.json`),
+					JSON.stringify(payload.data, null, 2),
+					"utf8",
+				);
+			}
+		}
+	}
+
+	// ----------------------------------------------------------------------------
+	// Build registry/styles/index.json.
+	// ----------------------------------------------------------------------------
+	const stylesJson = JSON.stringify(styles, null, 2);
+	await fs.writeFile(
+		path.join(REGISTRY_EXPORT_PATH, "styles/index.json"),
+		stylesJson,
+		"utf8",
+	);
+}
+
+// ----------------------------------------------------------------------------
+// Build registry/styles/[name]/index.json.
+// ----------------------------------------------------------------------------
+async function buildStylesIndex() {
+	for (const style of styles) {
+		const targetPath = path.join(REGISTRY_EXPORT_PATH, "styles", style.name);
+
+		const dependencies = [
+			"tailwindcss-animate",
+			"class-variance-authority",
+			"lucide-react",
+		];
+
+		const payload: RegistryEntry = {
+			name: style.name,
+			type: "registry:style",
+			dependencies,
+			registryDependencies: ["utils"],
+			tailwind: {
+				config: {
+					plugins: [`require("tailwindcss-animate")`],
+				},
+			},
+			cssVars: {},
+			files: [],
+		};
+
+		await fs.writeFile(
+			path.join(targetPath, "index.json"),
+			JSON.stringify(payload, null, 2),
+			"utf8",
+		);
+	}
 }
 
 // ----------------------------------------------------------------------------
@@ -209,8 +357,8 @@ export const Index: Record<string, any> = {
 
 						const targetFile = file.replace(item.name, `${chunkName}`);
 						const targetFilePath = path.join(
-							cwd(),
-							`registry/${style.name}/${type}/${chunkName}.tsx`,
+							REGISTRY_SOURCE_PATH,
+							`${style.name}/${type}/${chunkName}.tsx`,
 						);
 
 						// Write component file.
@@ -319,10 +467,10 @@ export const Index: Record<string, any> = {
 			};
 		});
 	const registryJson = JSON.stringify(items, null, 2);
-	// rimraf.sync(path.join(REGISTRY_PATH, "index.json"));
+	// rimraf.sync(path.join(REGISTRY_EXPORT_PATH, "index.json"));
 	console.log("write json");
 	await fs.writeFile(
-		path.join(REGISTRY_PATH, "index.json"),
+		path.join(REGISTRY_EXPORT_PATH, "index.json"),
 		registryJson,
 		"utf8",
 	);
@@ -341,8 +489,8 @@ try {
 	}
 
 	await buildRegistry(result.data);
-	// await buildStyles(result.data);
-	// await buildStylesIndex();
+	await buildStyles(result.data);
+	await buildStylesIndex();
 	// await buildThemes();
 
 	console.log("✅ Done!");
