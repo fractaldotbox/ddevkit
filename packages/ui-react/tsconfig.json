@@ -6,7 +6,8 @@
 		"moduleResolution": "bundler",
 		"paths": {
 			"#*": ["src/*"]
-		}
+		},
+		"target": "ES2022"
 	},
 	"include": ["src", "../../packages/@geist/domain"],
 	"exclude": ["node_modules", "dist"]

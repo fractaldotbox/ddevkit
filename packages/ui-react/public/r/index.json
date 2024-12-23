@@ -1,0 +1,28 @@
+[
+  {
+    "name": "toggle",
+    "type": "registry:ui",
+    "dependencies": [
+      "@radix-ui/react-toggle"
+    ],
+    "files": [
+      {
+        "path": "ui/toggle.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  {
+    "name": "tooltip",
+    "type": "registry:ui",
+    "dependencies": [
+      "@radix-ui/react-tooltip"
+    ],
+    "files": [
+      {
+        "path": "ui/tooltip.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  }
+]
