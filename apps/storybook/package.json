@@ -83,6 +83,8 @@
 		"lucide-react": "^0.446.0",
 		"micro-packed": "^0.6.3",
 		"multiformats": "^13.3.0",
+		"pako": "^2.1.0",
+		"permissionless": "^0.2.23",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"react-dropzone": "^14.2.9",

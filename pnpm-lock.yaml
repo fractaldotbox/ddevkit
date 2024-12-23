@@ -74,6 +74,15 @@ importers:
       '@ethereumjs/rlp':
         specifier: ^5.0.2
         version: 5.0.2
+      '@geist/domain':
+        specifier: workspace:*
+        version: link:../../packages/domain
+      '@geist/graphql':
+        specifier: workspace:*
+        version: link:../../packages/gql
+      '@geist/ui-react':
+        specifier: workspace:*
+        version: link:../../packages/ui-react
       '@hookform/resolvers':
         specifier: ^3.9.0
         version: 3.9.0(react-hook-form@7.53.0(react@18.3.1))
@@ -94,7 +103,7 @@ importers:
         version: 1.0.7
       '@privy-io/react-auth':
         specifier: ^1.95.2
-        version: 1.95.2(@solana/web3.js@1.95.5(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
+        version: 1.95.2(@solana/web3.js@1.95.5(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.8)(permissionless@0.2.23(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))(webauthn-p256@0.0.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
       '@radix-ui/colors':
         specifier: ^3.0.0
         version: 3.0.0
@@ -191,15 +200,6 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@geist/domain':
-        specifier: workspace:*
-        version: link:../../packages/domain
-      '@geist/graphql':
-        specifier: workspace:*
-        version: link:../../packages/gql
-      '@geist/ui-react':
-        specifier: workspace:*
-        version: link:../../packages/ui-react
       '@scure/base':
         specifier: ^1.1.9
         version: 1.1.9
@@ -275,6 +275,12 @@ importers:
       multiformats:
         specifier: ^13.3.0
         version: 13.3.0
+      pako:
+        specifier: ^2.1.0
+        version: 2.1.0
+      permissionless:
+        specifier: ^0.2.23
+        version: 0.2.23(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))(webauthn-p256@0.0.5)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -411,6 +417,9 @@ importers:
       '@ethereumjs/rlp':
         specifier: ^5.0.2
         version: 5.0.2
+      '@geist/graphql':
+        specifier: workspace:*
+        version: link:../gql
       '@hookform/resolvers':
         specifier: ^3.9.0
         version: 3.9.0(react-hook-form@7.53.0(react@18.3.1))
@@ -431,10 +440,7 @@ importers:
         version: 1.0.7
       '@privy-io/react-auth':
         specifier: ^1.95.2
-        version: 1.95.2(@solana/web3.js@1.95.5(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
-      '@geist/graphql':
-        specifier: workspace:*
-        version: link:../gql
+        version: 1.95.2(@solana/web3.js@1.95.5(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.8)(permissionless@0.2.23(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))(webauthn-p256@0.0.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
       '@scure/base':
         specifier: ^1.1.9
         version: 1.1.9
@@ -576,6 +582,12 @@ importers:
       '@ethereumjs/rlp':
         specifier: ^5.0.2
         version: 5.0.2
+      '@geist/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@geist/graphql':
+        specifier: workspace:*
+        version: link:../gql
       '@hookform/resolvers':
         specifier: ^3.9.0
         version: 3.9.0(react-hook-form@7.53.0(react@18.3.1))
@@ -602,7 +614,13 @@ importers:
         version: 1.0.7
       '@privy-io/react-auth':
         specifier: ^1.95.2
-        version: 1.95.2(@solana/web3.js@1.95.5(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
+        version: 1.95.2(@solana/web3.js@1.95.5(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.8)(permissionless@0.2.23(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))(webauthn-p256@0.0.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
+      '@privy-io/wagmi':
+        specifier: ^0.2.13
+        version: 0.2.13(kjkal4mpntnb4ingcpeg2h45vi)
+      '@privy-io/wagmi-connector':
+        specifier: ^0.1.13
+        version: 0.1.13(seuudtlqc2ej5cwookedvm32v4)
       '@radix-ui/colors':
         specifier: ^3.0.0
         version: 3.0.0
@@ -702,12 +720,6 @@ importers:
       '@radix-ui/themes':
         specifier: ^3.1.6
         version: 3.1.6(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@geist/domain':
-        specifier: workspace:*
-        version: link:../domain
-      '@geist/graphql':
-        specifier: workspace:*
-        version: link:../gql
       '@scure/base':
         specifier: ^1.1.9
         version: 1.1.9
@@ -795,6 +807,9 @@ importers:
       multiformats:
         specifier: ^13.3.0
         version: 13.3.0
+      permissionless:
+        specifier: ^0.2.23
+        version: 0.2.23(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))(webauthn-p256@0.0.5)
       postcss:
         specifier: ^8.4.24
         version: 8.4.47
@@ -3202,6 +3217,23 @@ packages:
         optional: true
       permissionless:
         optional: true
+
+  '@privy-io/wagmi-connector@0.1.13':
+    resolution: {integrity: sha512-dbel4pYvbJM+28m12DE7LvEKzJ8ni/rDkuHpF3RGwkph+HsgDNDxJy4OTgUjaKi6yJsjZ5nvhsZdNNVXbVFKkg==}
+    peerDependencies:
+      '@privy-io/react-auth': ^1.33.0
+      react: ^18
+      react-dom: ^18
+      viem: '>=0.3.35'
+      wagmi: '>=1.4.12 <2'
+
+  '@privy-io/wagmi@0.2.13':
+    resolution: {integrity: sha512-NOyM43Kbc1K+hu3OwaSpKE1twhUEof9+jPefX4f1OLhbnEZGfcKAYP75O9xjc5rxTPgKfod9FSmt/xbKxJfUHw==}
+    peerDependencies:
+      '@privy-io/react-auth': ^1.64.1
+      react: '>=18'
+      viem: ^2
+      wagmi: ^2
 
   '@protobufjs/aspromise@1.1.2':
     resolution: {integrity: sha512-j+gKExEuLmKwvz3OgROXtrJ2UG2x8Ch2YZUxahh+s1F2HZ+wAceUNLkvy6zKCPVRkU++ZWQrdxsUeQXmcg4uoQ==}
@@ -10045,6 +10077,12 @@ packages:
   performance-now@2.1.0:
     resolution: {integrity: sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==}
 
+  permissionless@0.2.23:
+    resolution: {integrity: sha512-J/Z8Tvgv/FKcbu9DMDYu/QLkssnlOAbQ6yXPqKsRywdB+x4FT5PDHVkwBdK46t6QnDy8r4zU9G1EmlTSmZA2kA==}
+    peerDependencies:
+      viem: ^2.21.54
+      webauthn-p256: 0.0.10
+
   picocolors@1.1.0:
     resolution: {integrity: sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==}
 
@@ -15810,7 +15848,7 @@ snapshots:
     dependencies:
       zod: 3.23.8
 
-  '@privy-io/js-sdk-core@0.35.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))':
+  '@privy-io/js-sdk-core@0.35.1(bufferutil@4.0.8)(permissionless@0.2.23(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))(webauthn-p256@0.0.5))(utf-8-validate@5.0.10)(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))':
     dependencies:
       '@ethersproject/abstract-signer': 5.7.0
       '@ethersproject/bignumber': 5.7.0
@@ -15828,6 +15866,7 @@ snapshots:
       set-cookie-parser: 2.7.1
       uuid: 9.0.1
     optionalDependencies:
+      permissionless: 0.2.23(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))(webauthn-p256@0.0.5)
       viem: 2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
     transitivePeerDependencies:
       - bufferutil
@@ -15844,7 +15883,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@privy-io/react-auth@1.95.2(@solana/web3.js@1.95.5(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)':
+  '@privy-io/react-auth@1.95.2(@solana/web3.js@1.95.5(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.8)(permissionless@0.2.23(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))(webauthn-p256@0.0.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)':
     dependencies:
       '@coinbase/wallet-sdk': 4.0.3
       '@ethersproject/abstract-signer': 5.7.0
@@ -15862,7 +15901,7 @@ snapshots:
       '@heroicons/react': 2.2.0(react@18.3.1)
       '@marsidev/react-turnstile': 0.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@metamask/eth-sig-util': 6.0.2
-      '@privy-io/js-sdk-core': 0.35.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))
+      '@privy-io/js-sdk-core': 0.35.1(bufferutil@4.0.8)(permissionless@0.2.23(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))(webauthn-p256@0.0.5))(utf-8-validate@5.0.10)(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))
       '@simplewebauthn/browser': 9.0.1
       '@solana/wallet-adapter-base': 0.9.23(@solana/web3.js@1.95.5(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))
       '@solana/wallet-standard-wallet-adapter-base': 1.1.2(@solana/web3.js@1.95.5(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))(bs58@5.0.0)
@@ -15896,6 +15935,7 @@ snapshots:
       web3-core-helpers: 1.10.3
     optionalDependencies:
       '@solana/web3.js': 1.95.5(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      permissionless: 0.2.23(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))(webauthn-p256@0.0.5)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -15918,6 +15958,21 @@ snapshots:
       - uWebSockets.js
       - utf-8-validate
       - zod
+
+  '@privy-io/wagmi-connector@0.1.13(seuudtlqc2ej5cwookedvm32v4)':
+    dependencies:
+      '@privy-io/react-auth': 1.95.2(@solana/web3.js@1.95.5(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.8)(permissionless@0.2.23(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))(webauthn-p256@0.0.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      viem: 2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
+      wagmi: 2.12.16(@tanstack/query-core@5.56.2)(@tanstack/react-query@5.56.2(react@18.3.1))(@types/react@18.3.18)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.3(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.3.18)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(typescript@5.7.2)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.22.5)(typescript@5.7.2)(utf-8-validate@5.0.10)(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)
+
+  '@privy-io/wagmi@0.2.13(kjkal4mpntnb4ingcpeg2h45vi)':
+    dependencies:
+      '@privy-io/react-auth': 1.95.2(@solana/web3.js@1.95.5(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.8)(permissionless@0.2.23(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))(webauthn-p256@0.0.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
+      react: 18.3.1
+      viem: 2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
+      wagmi: 2.12.16(@tanstack/query-core@5.56.2)(@tanstack/react-query@5.56.2(react@18.3.1))(@types/react@18.3.18)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.1(react@18.3.1))(react-native@0.75.3(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(@types/react@18.3.18)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(typescript@5.7.2)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.22.5)(typescript@5.7.2)(utf-8-validate@5.0.10)(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))(zod@3.23.8)
 
   '@protobufjs/aspromise@1.1.2': {}
 
@@ -24643,6 +24698,11 @@ snapshots:
       sha.js: 2.4.11
 
   performance-now@2.1.0: {}
+
+  permissionless@0.2.23(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))(webauthn-p256@0.0.5):
+    dependencies:
+      viem: 2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
+      webauthn-p256: 0.0.5
 
   picocolors@1.1.0: {}
 
