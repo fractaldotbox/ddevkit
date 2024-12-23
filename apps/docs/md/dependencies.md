@@ -21,3 +21,8 @@ This document rational behind opionated dependencies
 - We want first class ESM support and thus
   - `vitest` over `jest` for testing 
   - `tsx` over `ts-node` for .mts execution
+
+
+## Form
+- we opt for shadcn form (react-hook-form) instead of radix ui form 
+

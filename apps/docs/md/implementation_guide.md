@@ -60,7 +60,3 @@ use <TokenChip address={0xabcde..} >  for the higher level component where data 
 ## Themes, dark mode
 
 
-## Form
-- we opt for shadcn form (react-hook-form) instead of radix ui form 
-
-
