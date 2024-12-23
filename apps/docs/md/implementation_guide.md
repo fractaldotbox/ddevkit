@@ -19,7 +19,7 @@ For now we try to mimic behaviours of common components e.g. blockscout, on-chai
 
 - We try to always decouple the presentation (dump) component from smart components. We support reasonable default but all data fetching / gateway etc should be explicit params at lower level components. 
 
-
+- note only `default` style is supported for shadcn
 
 ## Minimize Code usage and Treeshaking 
 - TBC
