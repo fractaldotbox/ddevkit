@@ -41,18 +41,9 @@ i.e.
 - Under [/apps/docs/md/](/apps/docs/md)
 
 ## Samlpe usage
-- Component showing ENS resolved name and Balance
-- sign attestations
-- sign transaction with account abstraction
-<!-- - Create merkle tree with @openzeppelin/merkle-tree -->
+- Check out [Hosted Storybook](https://dappkit.geist.network/) for working examples 
 
-
-### Shadcn
-- Ease development and showcase
-https://github.com/shadcn-ui/ui/pull/1561
-
-`npx geist@latest add connect` should work
-
+## Shadcn
 
 Read more on the original motivations of [shadcdn](https://ui.shadcn.com/docs)
 
@@ -123,47 +114,11 @@ Faster: Build size is generally not the major concern given treeshaking at moder
 - for web framework, next.js is supported for now. We will try to align what is supported at shadcdn
 
 ## How secure is this package?
-Use at your own risk as you should always have been and security is often application specific. We're not infosec experts and precisely for that reason we do best-effort to align best practices and avoid common pitfalls, and make this open so everyone can point out any risks. We would like to work with auditors.
+Use at your own risk as you should always have been and security is often application specific.
+We're not infosec experts and precisely for that reason we do best-effort to align best practices and avoid common pitfalls, and make this open so everyone can point out any risks. We would like to work with auditors.
 
-
-## Repository structure
-This is the monorepo including documentations and packages released. 
-Note only default style is supported. 
-
-
-## Graphql
-- it's challenging to manage schemas & related rate limit for multiple servers
- - https://docs.ens.domains/web/subgraph#the-graph
-- currently we consolidate graphql generation and types under `packages/graphql` instead of workspace level
-- opted for string [documentMode](https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#when-to-use-a-string-documentmode
-) for smaller bundle size and not using AST on the client (tanstack)
-- we will try to modularize and support cli to generate under `@/graphql` 
-
-
-
-## Rationale
-- Dependency tree analyzer
-- open source apps
-- `graphql-request` is used with @tanstack query as lightweight fetching. Data are not normalized
-   - it is optional to combine with [client from the graph](https://thegraph.com/docs/en/querying/querying-from-an-application/#graph-client) with block tracking, cross-chain subgraphs handling etc. 
-- `@graphprotocol/client-cli` is used for artifact generating
-
-- jotai over zustand
-  - Jotai is preferred although zustand is being used in scaffold. Firstly it is used by shadcn, and it [doesn't use a single store as in zustand](https://zustand.docs.pmnd.rs/getting-started/comparison#jotai)
-
-- vitest over jest
-  - used by shadcn, scaffold and generally author find less issues for typscript setup as in jest.
-
-- Currently we use a small set of unix style stable, isomorphic lightweight libraries. To avoid supply chain attacks, we should make versions easily fixed/immutable or configurable to native 
-  - `ky` over `fetch` to reduce boilerplates
-  - use `URLSearchParams` over `fast-querystring`
-  - unjs packages
 
 ## Acknolwedgement
 - Thanks shadcn released with MIT license to make this possible
 - Thank you for contribution
 
-## Live Demo
-We host lightweight, autonomous websites on IPFS as demo. Attached is bundle size
-We created a sample app to compare bundle size with common libraries.
-Depends on similar libraries, gateway
