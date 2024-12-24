@@ -8,8 +8,7 @@
 		".": "./src/graphql/index.ts"
 	},
 	"scripts": {
-		"build:gql": "graphql-codegen --config codegen.ts",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"build:gql": "graphql-codegen --config codegen.ts"
 	},
 	"devDependencies": {
 		"@graphprotocol/graph-cli": "^0.67.2",
