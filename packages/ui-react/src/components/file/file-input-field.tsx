@@ -3,7 +3,7 @@
  */
 
 import type { ControllerRenderProps, FieldValues } from "react-hook-form";
-import { Input } from "../shadcn/input";
+import { Input } from "#components/shadcn/input";
 
 export const FileInputField = ({
 	field,

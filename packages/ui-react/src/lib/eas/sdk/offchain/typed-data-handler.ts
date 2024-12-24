@@ -10,7 +10,6 @@ import {
 	toUtf8Bytes,
 	verifyTypedData,
 } from "ethers";
-import isEqual from "lodash/isEqual";
 import {
 	Hex,
 	encodeAbiParameters,
@@ -18,8 +17,8 @@ import {
 	keccak256,
 	parseAbiParameters,
 } from "viem";
+import { DelegatedConfig } from "#lib/eas/sdk/offchain/delegated";
 import { EIP712_NAME } from "#lib/eas/versions";
-import { DelegatedConfig } from "./delegated";
 
 export interface Signature {
 	r: string;
