@@ -34,7 +34,7 @@ export const getZodSchemaFromSchemaString = (schemaString: string) => {
 };
 
 // do we want to make it safe?
-export function useEASSchemaForm({
+export function useEasSchemaForm({
 	schemaString,
 	schemaId,
 	isEnabled = true, // whether to use this hook or not
@@ -45,7 +45,7 @@ export function useEASSchemaForm({
 }) {
 	if (!schemaString && !schemaId)
 		throw new Error(
-			"[useEASSchemaForm] at least one of schemaString and schemaId must be present",
+			"[useEasSchemaForm] at least one of schemaString and schemaId must be present",
 		);
 
 	const [schemaStringState, setSchemaStringState] = useState(schemaString);
