@@ -1,3 +1,6 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMemo, useState } from "react";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 // function to get JSON from attestation (we cannot dynamically create zod schemas)
@@ -29,3 +32,35 @@ export const getZodSchemaFromSchemaString = (schemaString: string) => {
 
 	return z.object(zodSchemaObject);
 };
+
+// do we want to make it safe?
+export function useEASSchemaForm({
+	schemaString,
+	schemaId,
+	isEnabled = true, // whether to use this hook or not
+}: {
+	schemaString?: string;
+	schemaId?: string;
+	isEnabled?: boolean;
+}) {
+	if (!schemaString && !schemaId)
+		throw new Error(
+			"[useEASSchemaForm] at least one of schemaString and schemaId must be present",
+		);
+
+	const [schemaStringState, setSchemaStringState] = useState(schemaString);
+
+	const formSchema = useMemo(() => {
+		if (!!schemaStringState)
+			return getZodSchemaFromSchemaString(schemaStringState);
+		return z.object({});
+	}, [schemaString]);
+
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
+		disabled: !isEnabled,
+	});
+
+	// we return a react hook form instance
+	return form;
+}
