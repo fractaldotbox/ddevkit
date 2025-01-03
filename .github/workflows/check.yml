@@ -57,7 +57,9 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run Tests - Unit
-        run: pnpm --filter ui-react run test:unit
+        run: |
+          pnpm --filter ui-react run test:unit
+          pnpm --filter domain run test:unit
 
       - name: Run Check
         run: pnpm exec turbo run check

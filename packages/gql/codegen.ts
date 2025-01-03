@@ -12,7 +12,7 @@ const config: CodegenConfig = {
 	generates: {
 		"./src/graphql/eas/": {
 			preset: "client",
-			documents: ["../../apps/storybook/src/lib/eas/**/*.ts"],
+			documents: ["../../packages/ui-react/src/lib/eas/**/*.ts"],
 			schema: "https://easscan.org/graphql",
 			presetConfig: {
 				gqlTagName: "gql",
@@ -21,10 +21,13 @@ const config: CodegenConfig = {
 				documentMode: "string",
 			},
 		},
+		// note new endpoint for mainnet
+		// https://discuss.ens.domains/t/ens-subgraph-migration-to-the-decentralised-version/19183
 		"./src/graphql/ens/": {
 			preset: "client",
-			documents: ["../../apps/storybook/src/lib/ens/**/*.ts"],
-			schema: "https://api.thegraph.com/subgraphs/name/ensdomains/ens",
+			documents: ["../../packages/ui-react/src/lib/ens/**/*.ts"],
+			schema:
+				"https://api.studio.thegraph.com/query/49574/enssepolia/version/latest",
 			presetConfig: {
 				gqlTagName: "gql",
 			},
@@ -32,12 +35,6 @@ const config: CodegenConfig = {
 				documentMode: "string",
 			},
 		},
-		// './schema.graphql': {
-		//   plugins: ['schema-ast'],
-		//   config: {
-		//     includeDirectives: true
-		//   }
-		// }
 	},
 };
 

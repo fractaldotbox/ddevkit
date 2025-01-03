@@ -19,10 +19,10 @@ import {
 	writeContract,
 } from "viem/actions";
 import { sepolia } from "viem/chains";
-import { EAS_ABI, EAS_CONTRACT_ADDRESS } from "../abi";
-import { getUIDsFromAttestReceipt } from "../events";
-import { RevocationRequest } from "../request";
-import type { SchemaItem } from "../sdk/eas";
+import { EAS_ABI, EAS_CONTRACT_ADDRESS } from "#lib/eas/abi";
+import { getUIDsFromAttestReceipt } from "#lib/eas/events";
+import { RevocationRequest } from "#lib/eas/request";
+import type { SchemaItem } from "#lib/eas/sdk/eas";
 
 // TODO align on offchain
 export interface AttestationRequestData {

@@ -1,6 +1,6 @@
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import { gql, rawRequest } from "graphql-request";
-import { getEasscanEndpoint } from "../../lib/eas/easscan";
+import { getEasscanEndpoint } from "#lib/eas/easscan";
 
 export type AttestationByIdResponse = {
 	attestation: {

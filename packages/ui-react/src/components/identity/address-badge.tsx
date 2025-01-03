@@ -9,7 +9,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "#components/shadcn/tooltip";
-import { getShortAddress } from "../../lib/utils/address";
+import { getShortAddress } from "#lib/utils/address";
 
 export const AddressBadge = ({
 	address,

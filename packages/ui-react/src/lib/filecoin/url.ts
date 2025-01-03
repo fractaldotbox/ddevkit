@@ -7,7 +7,7 @@ import {
 	ExplorerEntity,
 	ExplorerParams,
 	createBlockExplorerUrlWithEip3091,
-} from "../explorer/url";
+} from "#lib/explorer/url";
 
 export const createFilfoxEndpoint = (
 	chainId: number,

@@ -1,5 +1,5 @@
 {
-	"extends": "@geist/typescript-config/react-library.json",
+	"extends": "@geist/typescript-config/base.json",
 	"compilerOptions": {
 		"baseUrl": ".",
 		"module": "esnext",

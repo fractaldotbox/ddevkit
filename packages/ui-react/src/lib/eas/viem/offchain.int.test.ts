@@ -16,16 +16,15 @@ import { Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { optimismSepolia, sepolia } from "viem/chains";
 import { beforeEach, describe, expect, test } from "vitest";
-import { createTestEthersSigner } from "#lib/test-utils-isomorphic";
-import { SCHEMA_BY_NAME } from "../attest.fixture";
-import { createEAS } from "../sdk/eas";
+import { SCHEMA_BY_NAME } from "#lib/eas/attest.fixture";
+import { createEAS } from "#lib/eas/sdk/eas";
 import {
 	OFFCHAIN_ATTESTATION_TYPES,
 	verifyOffchainAttestationSignature,
-} from "../sdk/offchain/offchain";
-import { getOffchainUID } from "../sdk/offchain/offchain-utils";
-import { EIP712_NAME } from "../versions";
-import { signOffchainAttestation } from "./offchain";
+} from "#lib/eas/sdk/offchain/offchain";
+import { getOffchainUID } from "#lib/eas/sdk/offchain/offchain-utils";
+import { signOffchainAttestation } from "#lib/eas/viem/offchain";
+import { createTestEthersSigner } from "#lib/test-utils-isomorphic";
 
 const chain = sepolia;
 export const EASContractAddress = "0xC2679fBD37d54388Ce493F1DB75320D236e1815e"; // Sepolia v0.26
