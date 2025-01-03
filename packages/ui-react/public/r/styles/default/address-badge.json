@@ -1,21 +1,25 @@
 {
-	"name": "address-badge",
-	"type": "registry:ui",
-	"dependencies": ["viem", "wagmi", "lucide-react"],
-	"files": [
-		{
-			"path": "components/ui/identity_address-badge.tsx",
-			"content": "import { Check, Copy } from \"lucide-react\";\nimport { useMemo, useState } from \"react\";\nimport { Hex, getAddress } from \"viem\";\nimport { normalize } from \"viem/ens\";\nimport { useEnsAddress } from \"wagmi\";\nimport {\n\tTooltip,\n\tTooltipContent,\n\tTooltipProvider,\n\tTooltipTrigger,\n} from \"@/components/ui/tooltip\";\nimport { getShortAddress } from \"@/lib/utils_address\";\n\nexport const AddressBadge = ({\n\taddress,\n\tisFull,\n}: {\n\taddress: Hex;\n\tisFull?: boolean;\n}) => {\n\tconst [copied, setCopied] = useState(false);\n\n\tconst copyToClipboard = () => {\n\t\tnavigator.clipboard.writeText(getAddress(address));\n\t\tsetCopied(true);\n\t\tsetTimeout(() => setCopied(false), 2000);\n\t};\n\n\tconst addressDisplayed = useMemo(() => {\n\t\treturn isFull ? getAddress(address) : getShortAddress(address);\n\t}, [address, isFull]);\n\n\treturn (\n\t\t<div className=\"flex gap-2 items-center\">\n\t\t\t<div>{addressDisplayed}</div>\n\t\t\t<TooltipProvider>\n\t\t\t\t<Tooltip>\n\t\t\t\t\t<TooltipTrigger asChild data-testid=\"tooltip-trigger\">\n\t\t\t\t\t\t<div onClick={copyToClipboard} className=\"cursor-pointer\">\n\t\t\t\t\t\t\t{copied ? (\n\t\t\t\t\t\t\t\t<Check className=\"h-4 w-4\" />\n\t\t\t\t\t\t\t) : (\n\t\t\t\t\t\t\t\t<Copy className=\"h-4 w-4\" />\n\t\t\t\t\t\t\t)}\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</TooltipTrigger>\n\t\t\t\t\t<TooltipContent>\n\t\t\t\t\t\t<p>{copied ? \"Copied!\" : \"Click to copy\"}</p>\n\t\t\t\t\t</TooltipContent>\n\t\t\t\t</Tooltip>\n\t\t\t</TooltipProvider>\n\t\t</div>\n\t);\n};\n\nexport const AddressBadgeFromName = ({ name }: { name: string }) => {\n\tconst { data: address } = useEnsAddress({\n\t\tname: normalize(name),\n\t});\n\n\tif (!address) {\n\t\treturn <span></span>;\n\t}\n\n\treturn <AddressBadge address={address} />;\n};\n",
-			"type": "registry:ui"
-		},
-		{
-			"path": "lib/utils_address.ts",
-			"content": "import { Address, getAddress, isHex } from \"viem\";\nimport { getShortHex } from \"./hex\";\n\nexport type GetShortAddressReturnType = string | null;\n\nexport const getShortAddress = (\n\taddress: Address,\n\tsectionLength: number = 4,\n): GetShortAddressReturnType => {\n\tif (!isHex(address) || (address as string)?.length !== 42) {\n\t\tthrow new Error(\"Invalid Address\");\n\t}\n\n\tconst checksumed = getAddress(address);\n\n\treturn getShortHex(checksumed, sectionLength);\n};\n",
-			"type": "registry:lib"
-		}
-	],
-	"registryDependencies": [
-		"https://ui.shadcn.com/r/styles/default/badge.json",
-		"https://ui.shadcn.com/r/styles/default/tooltip.json"
-	]
+  "name": "address-badge",
+  "type": "registry:ui",
+  "dependencies": [
+    "viem",
+    "wagmi",
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "components/ui/identity_address-badge.tsx",
+      "content": "import { Check, Copy } from \"lucide-react\";\nimport { useMemo, useState } from \"react\";\nimport { Hex, getAddress } from \"viem\";\nimport { normalize } from \"viem/ens\";\nimport { useEnsAddress } from \"wagmi\";\nimport {\n\tTooltip,\n\tTooltipContent,\n\tTooltipProvider,\n\tTooltipTrigger,\n} from \"@/components/ui/tooltip\";\nimport { getShortAddress } from \"@/lib/utils_address\";\n\nexport const AddressBadge = ({\n\taddress,\n\tisFull,\n}: {\n\taddress: Hex;\n\tisFull?: boolean;\n}) => {\n\tconst [copied, setCopied] = useState(false);\n\n\tconst copyToClipboard = () => {\n\t\tnavigator.clipboard.writeText(getAddress(address));\n\t\tsetCopied(true);\n\t\tsetTimeout(() => setCopied(false), 2000);\n\t};\n\n\tconst addressDisplayed = useMemo(() => {\n\t\treturn isFull ? getAddress(address) : getShortAddress(address);\n\t}, [address, isFull]);\n\n\treturn (\n\t\t<div className=\"flex gap-2 items-center\">\n\t\t\t<div>{addressDisplayed}</div>\n\t\t\t<TooltipProvider>\n\t\t\t\t<Tooltip>\n\t\t\t\t\t<TooltipTrigger asChild data-testid=\"tooltip-trigger\">\n\t\t\t\t\t\t<div onClick={copyToClipboard} className=\"cursor-pointer\">\n\t\t\t\t\t\t\t{copied ? (\n\t\t\t\t\t\t\t\t<Check className=\"h-4 w-4\" />\n\t\t\t\t\t\t\t) : (\n\t\t\t\t\t\t\t\t<Copy className=\"h-4 w-4\" />\n\t\t\t\t\t\t\t)}\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</TooltipTrigger>\n\t\t\t\t\t<TooltipContent>\n\t\t\t\t\t\t<p>{copied ? \"Copied!\" : \"Click to copy\"}</p>\n\t\t\t\t\t</TooltipContent>\n\t\t\t\t</Tooltip>\n\t\t\t</TooltipProvider>\n\t\t</div>\n\t);\n};\n\nexport const AddressBadgeFromName = ({ name }: { name: string }) => {\n\tconst { data: address } = useEnsAddress({\n\t\tname: normalize(name),\n\t});\n\n\tif (!address) {\n\t\treturn <span></span>;\n\t}\n\n\treturn <AddressBadge address={address} />;\n};\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "lib/utils_address.ts",
+      "content": "import { Address, getAddress, isHex } from \"viem\";\nimport { getShortHex } from \"@/lib/utils_hex\";\n\nexport type GetShortAddressReturnType = string | null;\n\nexport const getShortAddress = (\n\taddress: Address,\n\tsectionLength: number = 4,\n): GetShortAddressReturnType => {\n\tif (!isHex(address) || (address as string)?.length !== 42) {\n\t\tthrow new Error(\"Invalid Address\");\n\t}\n\n\tconst checksumed = getAddress(address);\n\n\treturn getShortHex(checksumed, sectionLength);\n};\n",
+      "type": "registry:lib"
+    }
+  ],
+  "registryDependencies": [
+    "https://ui.shadcn.com/r/styles/default/badge.json",
+    "https://ui.shadcn.com/r/styles/default/tooltip.json"
+  ]
 }

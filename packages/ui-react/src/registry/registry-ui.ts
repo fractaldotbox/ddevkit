@@ -323,6 +323,43 @@ export const ui: Registry = [
 			},
 		],
 	},
+	{
+		name: "avatar",
+		type: "registry:ui",
+		dependencies: ["viem", "wagmi"],
+		shadcnDependencies: [],
+		files: [
+			{
+				type: "registry:ui",
+				path: "components/identity/avatar.tsx",
+			},
+		],
+	},
+
+	{
+		name: "attestation-card",
+		type: "registry:ui",
+		dependencies: [
+			"viem",
+			"wagmi",
+			"@radix-ui/react-label",
+			"date-fns",
+			"#hooks/eas/get-attestation-with-uid",
+		],
+		shadcnDependencies: ["card", "separator", "skeleton", "tooltip"],
+		files: [
+			{
+				type: "registry:ui",
+				path: "components/attestations/attestation-card.tsx",
+			},
+
+			{
+				type: "registry:hook",
+				path: "hooks/eas/get-attestation-with-uid.ts",
+			},
+		],
+	},
+
 	// {
 	// 	name: "toggle-group",
 	// 	type: "registry:ui",
