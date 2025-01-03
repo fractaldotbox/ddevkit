@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useWalletClient } from "wagmi";
 import { UploadAttestationParams } from "#components/attestations/attestations";
-import { useToast } from "#components/shadcn/use-toast";
 import { createGetAttestationWithUidQueryOptions } from "#hooks/eas/get-attestation-with-uid";
+import { useToast } from "#hooks/shadcn/use-toast";
 import {
 	createLighthouseParams,
 	getLighthouseGatewayUrl,

@@ -1,8 +1,8 @@
+import { toast } from "@geist/ui-react/hooks/shadcn/use-toast";
 import {
 	IpfsGateway,
 	getGatewayUrlWithCid,
 } from "@geist/ui-react/lib/filecoin/gateway";
-import { toast } from "#hooks/use-toast";
 
 export const uploadSuccessToast = ({
 	cid,
