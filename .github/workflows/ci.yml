@@ -64,6 +64,10 @@ jobs:
           name: storybook-build
           path: apps/storybook/storybook-static
 
+      # smoke test, disabled for now
+      # - name: Build gql
+      #   run:  pnpm --filter graphql build:gql
+
   deploy-storybook:
     needs: [build-storybook]
     if: github.ref == 'refs/heads/main'

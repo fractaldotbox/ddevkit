@@ -8,7 +8,9 @@
 		"./*": ["./src/*", "./src/*.tsx", "./src/*.ts"]
 	},
 	"scripts": {
-		"test": "vitest"
+		"test": "vitest",
+		"test:unit": "VITEST_SUITES=unit vitest",
+		"test:int": "VITEST_SUITES=int vitest"
 	},
 	"imports": {
 		"#*": ["./src/*", "./src/*.tsx"]

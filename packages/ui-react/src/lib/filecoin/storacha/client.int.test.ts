@@ -7,9 +7,7 @@ import * as Proof from "@web3-storage/w3up-client/proof";
 import { StoreMemory } from "@web3-storage/w3up-client/stores/memory";
 import { base32 } from "multiformats/bases/base32";
 import * as Link from "multiformats/link";
-import { createPendingTransactionFilter } from "viem/actions";
 import { beforeAll, describe, expect, test } from "vitest";
-import { authWithEmail } from "./isomorphic";
 
 // https://github.com/storacha/w3up/issues/1591
 // required at nodejs, no issue at browser

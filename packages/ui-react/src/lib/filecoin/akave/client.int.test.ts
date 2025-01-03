@@ -12,7 +12,7 @@ import {
 	listBuckets,
 	uploadFileObject,
 	uploadFileWithFormData,
-} from "./client";
+} from "#lib/filecoin/akave/client";
 
 describe(
 	"with file",

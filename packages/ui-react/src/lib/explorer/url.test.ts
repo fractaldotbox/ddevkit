@@ -1,9 +1,13 @@
 import { BY_USER, TRANSACTION } from "@geist/domain/user.fixture";
 import { filecoin, filecoinCalibration, mainnet, sepolia } from "viem/chains";
 import { describe, expect, test } from "vitest";
-import { createOverrideStrategies as createBlockscoutOverrideStrategies } from "../blockscout/url";
-import { createOverrideStrategies as createFilecoinOverrideStrategies } from "../filecoin/url";
-import { Explorer, ExplorerEntity, blockExplorerUrlFactory } from "./url";
+import { createOverrideStrategies as createBlockscoutOverrideStrategies } from "#lib/blockscout/url";
+import {
+	Explorer,
+	ExplorerEntity,
+	blockExplorerUrlFactory,
+} from "#lib/explorer/url";
+import { createOverrideStrategies as createFilecoinOverrideStrategies } from "#lib/filecoin/url";
 
 describe("BlockExplorer", () => {
 	test.each([

@@ -1,9 +1,9 @@
-import { Address, parseUnits } from "viem";
-import * as chains from "viem/chains";
 import {
 	TokenTransfer,
 	TransactionMeta,
-} from "../domain/transaction/transaction";
+} from "@geist/domain/transaction/transaction";
+import { Address, parseUnits } from "viem";
+import * as chains from "viem/chains";
 
 const chainIdToApiRoot: any = {
 	[chains.mainnet.id]: "https://eth.blockscout.com/api/",

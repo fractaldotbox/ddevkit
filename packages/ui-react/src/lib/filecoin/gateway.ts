@@ -1,5 +1,5 @@
-import { GatewayStrategy } from "./gateway-strategy";
-import { getLighthouseGatewayUrl } from "./lighthouse/isomorphic";
+import { GatewayStrategy } from "#lib/filecoin/gateway-strategy";
+import { getLighthouseGatewayUrl } from "#lib/filecoin/lighthouse/isomorphic";
 
 export enum IpfsGateway {
 	Lighthouse = "lighthouse",
