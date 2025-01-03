@@ -5,7 +5,9 @@
 	"main": "index.js",
 	"files": ["dist"],
 	"exports": {
-		".": "./src/graphql/index.ts"
+		".": "./src/graphql/index.ts",
+		"./eas/*": "./src/graphql/eas/*.ts",
+		"./ens/*": "./src/graphql/ens/*.ts"
 	},
 	"scripts": {
 		"build:gql": "graphql-codegen --config codegen.ts"

@@ -1,24 +1,25 @@
-import { QueryClient, useQuery } from "@tanstack/react-query";
+import { Attestation } from "@geist/graphql/eas/graphql";
+import { QueryClient, UseQueryResult, useQuery } from "@tanstack/react-query";
 import { gql, rawRequest } from "graphql-request";
 import { getEasscanEndpoint } from "#lib/eas/easscan";
 
-export type AttestationByIdResponse = {
-	attestation: {
-		id: string;
-		txid: string;
-		recipient: string;
-		schema: {
-			index: number;
-			schemaNames: {
-				name: string;
-			}[];
-		};
-		time: string; // Assuming time is returned as a string (e.g., ISO 8601 format)
-		isOffchain: boolean;
-		schemaId: string;
-		attester: string;
-	} | null; // In case attestation can be null
-};
+// export type AttestationByIdResponse = {
+// 	attestation: {
+// 		id: string;
+// 		txid: string;
+// 		recipient: string;
+// 		schema: {
+// 			index: number;
+// 			schemaNames: {
+// 				name: string;
+// 			}[];
+// 		};
+// 		time: string; // Assuming time is returned as a string (e.g., ISO 8601 format)
+// 		isOffchain: boolean;
+// 		schemaId: string;
+// 		attester: string;
+// 	} | null; // In case attestation can be null
+// };
 
 const allAttestationsByQuery = gql`
   query AttestationById($where: AttestationWhereUniqueInput!) {
@@ -40,17 +41,21 @@ const allAttestationsByQuery = gql`
   }
 `;
 
+export type UseGetAttestationParams = {
+	uid: string;
+	chainId: number;
+};
+
+export type UseGetAttestationsReturnType = UseQueryResult<Attestation, Error>;
+
 export const createGetAttestationWithUidQueryOptions = ({
 	uid,
 	chainId,
-}: {
-	uid: string;
-	chainId: number;
-}) => {
+}: UseGetAttestationParams) => {
 	return {
 		queryKey: ["attestation", chainId, uid],
 		queryFn: async () =>
-			rawRequest<AttestationByIdResponse>(
+			rawRequest(
 				`${getEasscanEndpoint(chainId)}/graphql`,
 				allAttestationsByQuery.toString(),
 				{
@@ -65,10 +70,7 @@ export const createGetAttestationWithUidQueryOptions = ({
 export const useGetAttestationWithUid = ({
 	uid,
 	chainId,
-}: {
-	uid: string;
-	chainId: number;
-}) => {
+}: UseGetAttestationParams): UseGetAttestationsReturnType => {
 	const queryOptions = createGetAttestationWithUidQueryOptions({
 		uid,
 		chainId,
