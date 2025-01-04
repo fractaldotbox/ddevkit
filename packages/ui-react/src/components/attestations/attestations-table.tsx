@@ -4,7 +4,7 @@ import { Address, fromBlobs } from "viem";
 import { mainnet } from "viem/chains";
 import { useChainId } from "wagmi";
 import { DataTable } from "#components/data-table";
-import { useGetAttestations } from "#hooks/eas/get-attestations";
+import { useGetAttestations } from "#hooks/eas/use-get-attestations";
 import { getEasscanAttestationUrl } from "#lib/eas/easscan";
 import { truncate } from "#lib/utils/hex";
 import { AttestationSchemaBadge } from "./attestation-schema-badge";
