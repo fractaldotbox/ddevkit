@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -2849,6 +2850,13 @@ export type TimestampWhereUniqueInput = {
   id?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type AllAttestationsByQueryVariables = Exact<{
+  where?: InputMaybe<AttestationWhereInput>;
+}>;
+
+
+export type AllAttestationsByQuery = { __typename?: 'Query', attestations: Array<{ __typename?: 'Attestation', id: string, txid: string, recipient: string, time: number, isOffchain: boolean, schemaId: string, attester: string, schema: { __typename?: 'Schema', index: string, schemaNames: Array<{ __typename?: 'SchemaName', name: string }> } }> };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -2863,3 +2871,23 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+
+export const AllAttestationsByDocument = new TypedDocumentString(`
+    query allAttestationsBy($where: AttestationWhereInput) {
+  attestations(where: $where) {
+    id
+    txid
+    recipient
+    schema {
+      index
+      schemaNames {
+        name
+      }
+    }
+    time
+    isOffchain
+    schemaId
+    attester
+  }
+}
+    `) as unknown as TypedDocumentString<AllAttestationsByQuery, AllAttestationsByQueryVariables>;

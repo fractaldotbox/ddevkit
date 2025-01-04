@@ -1,11 +1,9 @@
 import { gql } from "@geist/graphql";
-import { useQuery } from "@tanstack/react-query";
+import type { Attestation } from "@geist/graphql/eas/graphql";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
 import { rawRequest, request } from "graphql-request";
 import { Address, Hex } from "viem";
 import { getEasscanEndpoint } from "#lib/eas/easscan";
-// import { AllAttestationsByQuery } from 'node_modules/@geist/graphql/src/graphql/graphql';
-
-type AllAttestationsByQuery = any;
 
 const allAttestationsByQuery = gql(`
   query allAttestationsBy(
@@ -29,22 +27,23 @@ const allAttestationsByQuery = gql(`
   }
 `);
 
-export type AttestationQueryResult = AllAttestationsByQuery["attestations"][0];
+export type UseGetAttestationsParams = {
+	chainId: number;
+	address: Address;
+};
 
-// TODO type safety
+export type UseGetAttestationsReturnType = UseQueryResult<Attestation[], Error>;
+
 export const useGetAttestations = ({
 	chainId,
 	address,
-}: {
-	chainId: number;
-	address: Address;
-}) => {
+}: UseGetAttestationsParams): UseGetAttestationsReturnType => {
 	// https://github.com/dotansimha/graphql-code-generator/blob/master/examples/react/tanstack-react-query/src/use-graphql.ts
 
 	const results = useQuery({
 		queryKey: ["attestations", chainId, address],
 		queryFn: async () =>
-			rawRequest<AllAttestationsByQuery>(
+			rawRequest<Attestation[]>(
 				`${getEasscanEndpoint(chainId)}/graphql`,
 				allAttestationsByQuery.toString(),
 				{
@@ -54,7 +53,7 @@ export const useGetAttestations = ({
 						},
 					},
 				},
-			),
+			).then(({ data }) => data),
 	});
 
 	return results;
