@@ -10,9 +10,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { encodeBytes32String } from "ethers";
 import { Chain, Hex, zeroHash } from "viem";
 import { mainnet, optimism, optimismSepolia, sepolia } from "viem/chains";
+import { withQueryClientProvider } from "#stories/decorators/wagmi.tsx";
 import { withToaster } from "../decorators/toaster";
 import { withWalletControl } from "../decorators/wallet-control";
-import { withQueryClientProvider } from "#stories/decorators/wagmi.tsx";
 
 export interface AttestationFormEasSdkProps {
 	privateKey: string;

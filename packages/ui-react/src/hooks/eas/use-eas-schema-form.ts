@@ -1,4 +1,3 @@
-import { getEasscanEndpoint } from "#lib/eas/easscan.js";
 import { gql } from "@geist/graphql";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
@@ -6,6 +5,7 @@ import { rawRequest } from "graphql-request";
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { getEasscanEndpoint } from "#lib/eas/easscan.js";
 
 type SchemaByQuery = any;
 

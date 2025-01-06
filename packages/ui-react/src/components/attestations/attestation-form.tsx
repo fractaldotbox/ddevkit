@@ -1,4 +1,6 @@
-import { z, ZodNumber } from "zod";
+import { Spinner } from "@radix-ui/themes";
+import { ZodNumber, z } from "zod";
+import { Badge } from "#components/shadcn/badge";
 import { Button } from "#components/shadcn/button";
 import { Card, CardContent } from "#components/shadcn/card";
 import {
@@ -11,13 +13,11 @@ import {
 } from "#components/shadcn/form";
 import { Input } from "#components/shadcn/input";
 import { ToastAction } from "#components/shadcn/toast";
+import { useEasSchemaForm } from "#hooks/eas/use-eas-schema-form";
 import { toast } from "#hooks/shadcn/use-toast";
 import { getEasscanAttestationUrl } from "#lib/eas/easscan";
 import { getShortHex } from "#lib/utils/hex";
 import { AttestationSchemaBadge } from "./attestation-schema-badge";
-import { useEasSchemaForm } from "#hooks/eas/use-eas-schema-form";
-import { Badge } from "#components/shadcn/badge";
-import { Spinner } from "@radix-ui/themes";
 
 // TODO dynamic enough to generate fields
 // now focus on sdk part

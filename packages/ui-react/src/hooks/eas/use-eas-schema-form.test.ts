@@ -1,6 +1,6 @@
+import { getRandomAddress } from "@geist/domain/user.fixture";
 import { describe, expect, it } from "vitest";
 import { getZodSchemaFromSchemaString } from "./use-eas-schema-form";
-import { getRandomAddress } from "@geist/domain/user.fixture";
 
 describe("use-schema-eas-form", () => {
 	describe("#getZodSchemaFromSchemaString", () => {
