@@ -106,5 +106,5 @@ export function useEasSchemaForm({
 	const isLoading = schemaQueryResults.isLoading;
 
 	// we return a react hook form instance
-	return { form, isLoading };
+	return { form, formSchema, isLoading };
 }

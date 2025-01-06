@@ -19,6 +19,7 @@ import { toast } from "#hooks/shadcn/use-toast";
 import { getEasscanAttestationUrl } from "#lib/eas/easscan";
 import { getShortHex } from "#lib/utils/hex";
 import { AttestationSchemaBadge } from "./attestation-schema-badge";
+import { useEasSchemaForm } from "#hooks/eas/use-eas-schema-form.js";
 
 // TODO dynamic enough to generate fields
 // now focus on sdk part
@@ -40,20 +41,27 @@ export const AttestationForm = ({
 	isOffchain,
 	signAttestation,
 }: AttestationFormParams) => {
-	const formSchema = z.object({
-		recipient: z
-			.string()
-			.length(42, {
-				message: "address must be 42 characters.",
-			})
-			.brand<Address>(),
+	// const formSchema = z.object({
+	//   recipient: z
+	//     .string()
+	//     .length(42, {
+	//       message: "address must be 42 characters.",
+	//     })
+	//     .brand<Address>(),
+	// });
+
+	// const form = useForm<z.infer<typeof formSchema>>({
+	//   resolver: zodResolver(formSchema),
+	//   defaultValues: {
+	//     recipient: "0xFD50b031E778fAb33DfD2Fc3Ca66a1EeF0652165",
+	//   },
+	// });
+
+	const { formSchema, form, isLoading } = useEasSchemaForm({
+		schemaId,
+		chainId,
 	});
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
-		defaultValues: {
-			recipient: "0xFD50b031E778fAb33DfD2Fc3Ca66a1EeF0652165",
-		},
-	});
+
 	function onSubmit(values: z.infer<typeof formSchema>) {
 		signAttestation().then(({ uids, txnReceipt }: any) => {
 			const [uid] = uids;
