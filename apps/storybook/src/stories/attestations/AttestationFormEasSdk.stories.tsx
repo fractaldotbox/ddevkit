@@ -10,6 +10,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { encodeBytes32String } from "ethers";
 import { Chain, Hex, zeroHash } from "viem";
 import { mainnet, optimism, optimismSepolia, sepolia } from "viem/chains";
+import { withQueryClientProvider } from "#stories/decorators/wagmi.tsx";
 import { withToaster } from "../decorators/toaster";
 import { withWalletControl } from "../decorators/wallet-control";
 
@@ -83,7 +84,7 @@ const meta = {
 	parameters: {
 		layout: "centered",
 	},
-	decorators: [withToaster(), withWalletControl()],
+	decorators: [withToaster(), withWalletControl(), withQueryClientProvider()],
 	args: {},
 } satisfies Meta<typeof AttestationFormEasSdk>;
 
@@ -109,9 +110,9 @@ export const OnchainSepolia: Story = {
 	args: {
 		isOffchain: false,
 		...createArgs(
-			SCHEMA_BY_NAME.IS_A_FRIEND,
+			SCHEMA_BY_NAME.VOTE,
 			sepolia,
-			SCHEMA_BY_NAME.IS_A_FRIEND.byFixture.isFriend,
+			SCHEMA_BY_NAME.VOTE.byFixture.vote,
 		),
 	},
 	decorators: [],
@@ -133,9 +134,9 @@ export const OffchainSepolia: Story = {
 	args: {
 		isOffchain: true,
 		...createArgs(
-			SCHEMA_BY_NAME.IS_A_FRIEND,
+			SCHEMA_BY_NAME.VOTE,
 			sepolia,
-			SCHEMA_BY_NAME.IS_A_FRIEND.byFixture.isFriend,
+			SCHEMA_BY_NAME.VOTE.byFixture.vote,
 		),
 	},
 	decorators: [],

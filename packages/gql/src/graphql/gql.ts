@@ -14,6 +14,8 @@ import * as types from "./graphql";
 const documents = {
 	"\n  query allAttestationsBy(\n    $where: AttestationWhereInput\n  ) {\n    attestations(where: $where) {\n      id\n      txid\n      recipient\n      schema {\n        index\n        schemaNames {\n          name\n        }\n      }\n      time\n      isOffchain\n      schemaId\n      attester\n    }\n  }\n":
 		types.AllAttestationsByDocument,
+	"\n\tquery schemaBy($where: SchemaWhereUniqueInput!) {\n\t\tschema(where: $where) {\n\t\t\tschemaString: schema\n\t\t\tindex\n\t\t\trevocable\n\t\t\tcreator\n\t\t}\n\t}\n":
+		types.SchemaByDocument,
 };
 
 /**
@@ -22,6 +24,10 @@ const documents = {
 export function gql(
 	source: "\n  query allAttestationsBy(\n    $where: AttestationWhereInput\n  ) {\n    attestations(where: $where) {\n      id\n      txid\n      recipient\n      schema {\n        index\n        schemaNames {\n          name\n        }\n      }\n      time\n      isOffchain\n      schemaId\n      attester\n    }\n  }\n",
 ): typeof import("./graphql").AllAttestationsByDocument;
+
+export function gql(
+	source: "\n\tquery schemaBy($where: SchemaWhereUniqueInput!) {\n\t\tschema(where: $where) {\n\t\t\tschemaString: schema\n\t\t\tindex\n\t\t\trevocable\n\t\t\tcreator\n\t\t}\n\t}\n",
+): typeof import("./graphql").SchemaByDocument;
 
 export function gql(source: string) {
 	return (documents as any)[source] ?? {};

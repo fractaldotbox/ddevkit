@@ -11,8 +11,9 @@ const vitalik = {
 // stable private key
 // 0x4E123166e7DfDE7AbA29162Fb3a5c6Af562443D4
 const user = {
-	privateKey: config.test.user.privateKey as Hex,
-	address: "",
+	privateKey:
+		"0x9e0fbda2334ed9a312bfb8c59bbc55f6c059a69fae1a1e818ddcd6c60843375b" as Hex,
+	address: "0x8178c9834DDaE72D4fcAB4655bF16bCe9C7bE557",
 };
 
 const eas = {

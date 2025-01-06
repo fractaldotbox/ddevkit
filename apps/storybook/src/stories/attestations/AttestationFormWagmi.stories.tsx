@@ -9,13 +9,16 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Account, Address, Chain, Hex, stringToHex, zeroHash } from "viem";
 import { sepolia } from "viem/chains";
 import { withToaster } from "../decorators/toaster";
-import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
+import {
+	withMockAccount,
+	withQueryClientProvider,
+	withWagmiProvider,
+} from "../decorators/wagmi";
 import { withWalletControlWagmi } from "../decorators/wallet-control";
 
 const AttestationFormWagmi = ({
 	schemaId,
 	schemaIndex,
-
 	account,
 	isOffchain,
 	schemaString,
@@ -77,6 +80,7 @@ const meta = {
 		withWalletControlWagmi(),
 		withMockAccount(),
 		withWagmiProvider(),
+		withQueryClientProvider(),
 	],
 	args: {},
 } satisfies Meta<typeof AttestationFormWagmi>;
@@ -110,23 +114,25 @@ const createArgs = (schema: any, chain: Chain, fixture: any) => {
 // TODO chain control at withWalletControlWagmi
 
 export const AttestationWagmiOffchain: Story = {
+	// @ts-expect-error withMockAccount() decorator should inject an account.
 	args: {
 		isOffchain: true,
 		...createArgs(
-			SCHEMA_BY_NAME.IS_A_FRIEND,
+			SCHEMA_BY_NAME.VOTE,
 			sepolia,
-			SCHEMA_BY_NAME.IS_A_FRIEND.byFixture.isFriend,
+			SCHEMA_BY_NAME.VOTE.byFixture.vote,
 		),
 	},
 };
 
 export const AttestationWagmiOnchain: Story = {
+	// @ts-expect-error withMockAccount() decorator should inject an account.
 	args: {
 		isOffchain: false,
 		...createArgs(
-			SCHEMA_BY_NAME.IS_A_FRIEND,
+			SCHEMA_BY_NAME.VOTE,
 			sepolia,
-			SCHEMA_BY_NAME.IS_A_FRIEND.byFixture.isFriend,
+			SCHEMA_BY_NAME.VOTE.byFixture.vote,
 		),
 	},
 };

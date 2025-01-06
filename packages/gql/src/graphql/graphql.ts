@@ -2842,3 +2842,29 @@ export const AllAttestationsByDocument = new TypedDocumentString(`
 	AllAttestationsByQuery,
 	AllAttestationsByQueryVariables
 >;
+
+export type SchemaByQueryVariables = Exact<{
+	where?: InputMaybe<SchemaWhereUniqueInput>;
+}>;
+
+export type SchemaByQuery = {
+	__typename?: "Query";
+	schema: {
+		__typename?: "Schema";
+		index: string;
+		schemaString: string;
+		revocable: boolean;
+		creator: string;
+	};
+};
+
+export const SchemaByDocument = new TypedDocumentString(`
+	query schemaBy($where: SchemaWhereUniqueInput!) {
+		schema(where: $where) {
+			schemaString: schema
+			index
+			revocable
+			creator
+		}
+	}
+`) as unknown as TypedDocumentString<SchemaByQuery, SchemaByQueryVariables>;
