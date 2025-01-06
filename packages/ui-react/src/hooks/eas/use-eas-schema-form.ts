@@ -96,6 +96,9 @@ export function useEasSchemaForm({
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		disabled: !isEnabled || schemaQueryResults.isLoading,
+		defaultValues: Object.fromEntries(
+			Object.keys(formSchema.shape).map((key) => [key, ""]),
+		),
 	});
 
 	const isLoading = schemaQueryResults.isLoading;

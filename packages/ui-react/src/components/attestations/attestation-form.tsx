@@ -107,6 +107,16 @@ export const AttestationForm = ({
 												<FormControl>
 													<Input
 														{...field}
+														type={
+															formSchema.shape[schemaKey] instanceof ZodNumber
+																? "number"
+																: "text"
+														}
+														onChange={(value) =>
+															formSchema.shape[schemaKey] instanceof ZodNumber
+																? field.onChange(value.target.valueAsNumber)
+																: field.onChange(value.target.value)
+														}
 														placeholder={
 															formSchema.shape[schemaKey] instanceof ZodNumber
 																? "number"
