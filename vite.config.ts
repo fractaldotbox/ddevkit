@@ -6,6 +6,19 @@ import { defineConfig, loadEnv } from "vite";
 import { test } from "vitest";
 import { configDefaults } from "vitest/config";
 
+const problematicEnvVars = [
+	'CommonProgramFiles(x86)',
+	'ProgramFiles(x86)',
+	'IntelliJ IDEA Community Edition'
+];
+
+console.log("problematicEnvVars")
+console.log(problematicEnvVars)
+
+problematicEnvVars.forEach((varName) => {
+	delete process.env[varName];
+});
+
 const getTestPatterns = (suites: string) => {
 	if (suites === "unit") {
 		return {
@@ -25,7 +38,10 @@ const getTestPatterns = (suites: string) => {
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), "");
-
+	// Clear specific environment variables
+	problematicEnvVars.forEach((varName) => {
+		delete process.env[varName];
+	});
 	return {
 		resolve: {},
 		// TODO react module only config
@@ -40,7 +56,9 @@ export default defineConfig(({ mode }) => {
 				...getTestPatterns(env.VITEST_SUITES).exclude,
 			],
 		},
-		plugins: [react()],
+		plugins: [
+			react()
+		],
 		define: {
 			"process.env": process.env,
 		},
