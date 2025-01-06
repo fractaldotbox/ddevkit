@@ -12,6 +12,7 @@ import {
 	Address,
 	Chain,
 	Hex,
+	TransactionReceipt,
 	createWalletClient,
 	stringToHex,
 	zeroHash,
@@ -24,6 +25,11 @@ export type UseAttestationParams = {
 	isOffchain: boolean;
 	schemaId: string;
 	schemaString: string;
+};
+
+export type UseAttestationReturnType = {
+	uids: string[];
+	txnReceipt?: TransactionReceipt;
 };
 
 export const useAttestation = (params: UseAttestationParams) => {

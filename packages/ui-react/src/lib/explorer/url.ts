@@ -1,7 +1,5 @@
-import { Args } from "@storybook/react";
 import { getBlock } from "viem/actions";
 import { Chain, filecoin, filecoinCalibration, mainnet } from "viem/chains";
-import { getBlockscoutChainEndpoint } from "../blockscout/chain";
 
 export enum Explorer {
 	Blockscout = "blockscout",

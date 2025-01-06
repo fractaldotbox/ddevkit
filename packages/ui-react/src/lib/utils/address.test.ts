@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getShortAddress } from "./address";
+import { getShortAddress } from "#lib/utils/address";
 
 describe("utils", () => {
 	it("getShortAddress", () => {

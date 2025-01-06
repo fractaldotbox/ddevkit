@@ -7,7 +7,7 @@ import {
 	uploadEncryptedFileWithText,
 	uploadFiles,
 	uploadText,
-} from "./lighthouse/isomorphic";
+} from "#lib/filecoin/lighthouse/isomorphic";
 
 import config from "@geist/domain/config";
 import { BY_USER } from "@geist/domain/user.fixture";

@@ -2,7 +2,7 @@
 
 import config from "@geist/domain/config";
 import { describe, expect, test } from "vitest";
-import uploadFilesBrowser from "./browser";
+import uploadFilesBrowser from "#lib/filecoin/lighthouse/browser";
 export const createFileForm = (files: File[], isDirectory = false) => {
 	// Create a form element
 	const form = document.createElement("form");

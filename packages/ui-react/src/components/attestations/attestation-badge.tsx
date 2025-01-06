@@ -1,7 +1,7 @@
 import { Address } from "viem";
 import { useChainId } from "wagmi";
 import { Badge } from "#components/shadcn/badge";
-import { useGetAttestations } from "#hooks/eas/get-attestations";
+import { useGetAttestations } from "#hooks/eas/use-get-attestations";
 
 // TODO
 export function AttestationBadge({

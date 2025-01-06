@@ -1,8 +1,8 @@
-import { getBlockscoutChainEndpoint } from "../blockscout/chain";
+import { getBlockscoutChainEndpoint } from "#lib/blockscout/chain";
 import {
 	CreateBlockExplorerUrlArgs,
 	createBlockExplorerUrlWithEip3091,
-} from "../explorer/url";
+} from "#lib/explorer/url";
 
 // For overrideBlockExplorers
 export const createOverrideStrategies = () => {
