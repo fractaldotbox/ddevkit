@@ -1,13 +1,9 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Address } from "viem";
-import { z } from "zod";
+import { z, ZodNumber } from "zod";
 import { Button } from "#components/shadcn/button";
 import { Card, CardContent } from "#components/shadcn/card";
 import {
 	Form,
 	FormControl,
-	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
@@ -19,7 +15,9 @@ import { toast } from "#hooks/shadcn/use-toast";
 import { getEasscanAttestationUrl } from "#lib/eas/easscan";
 import { getShortHex } from "#lib/utils/hex";
 import { AttestationSchemaBadge } from "./attestation-schema-badge";
-import { useEasSchemaForm } from "#hooks/eas/use-eas-schema-form.js";
+import { useEasSchemaForm } from "#hooks/eas/use-eas-schema-form";
+import { Badge } from "#components/shadcn/badge";
+import { Spinner } from "@radix-ui/themes";
 
 // TODO dynamic enough to generate fields
 // now focus on sdk part
@@ -41,23 +39,7 @@ export const AttestationForm = ({
 	isOffchain,
 	signAttestation,
 }: AttestationFormParams) => {
-	// const formSchema = z.object({
-	//   recipient: z
-	//     .string()
-	//     .length(42, {
-	//       message: "address must be 42 characters.",
-	//     })
-	//     .brand<Address>(),
-	// });
-
-	// const form = useForm<z.infer<typeof formSchema>>({
-	//   resolver: zodResolver(formSchema),
-	//   defaultValues: {
-	//     recipient: "0xFD50b031E778fAb33DfD2Fc3Ca66a1EeF0652165",
-	//   },
-	// });
-
-	const { formSchema, form, isLoading } = useEasSchemaForm({
+	const { formSchema, form, isLoading, schemaDetails } = useEasSchemaForm({
 		schemaId,
 		chainId,
 	});
@@ -88,38 +70,63 @@ export const AttestationForm = ({
 	return (
 		<Card className="pt-8">
 			<CardContent>
-				<Form {...form}>
-					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-						<FormField
-							control={form.control}
-							name="recipient"
-							render={({ field }) => (
-								<FormItem>
-									<div className="flex gap-2 pt-4">
-										<AttestationSchemaBadge
-											chainId={chainId}
-											schemaId={schemaId}
-											schemaIndex={schemaIndex || ""}
-										/>
-										IS A FRIEND
-									</div>
-									<FormLabel>Recipient</FormLabel>
-									<FormControl>
-										<Input
-											placeholder="0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
-											{...field}
-										/>
-									</FormControl>
-									<FormDescription>
-										Attest You met this person in real life
-									</FormDescription>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-						<Button type="submit">Submit</Button>
-					</form>
-				</Form>
+				{isLoading ? (
+					<Spinner className="animate-spin" />
+				) : (
+					<Form {...form}>
+						<form
+							onSubmit={form.handleSubmit(onSubmit)}
+							className="flex flex-col gap-5"
+						>
+							<div className="flex justify-between items-center pt-4">
+								<div className="flex gap-2 items-center">
+									<AttestationSchemaBadge
+										chainId={chainId}
+										schemaId={schemaId}
+										schemaIndex={schemaDetails?.index || schemaIndex || ""}
+									/>
+									{getShortHex(schemaId as unknown as `0x${string}`)}
+								</div>
+
+								<div className="flex gap-2 items-center">
+									{!!schemaDetails?.revocable && (
+										<Badge variant={"destructive"}>REVOCABLE</Badge>
+									)}
+									{!!isOffchain && <Badge>OFFCHAIN</Badge>}
+								</div>
+							</div>
+							{Object.keys(formSchema.shape).map((schemaKey) => {
+								return (
+									<FormField
+										key={schemaKey}
+										control={form.control}
+										name={schemaKey}
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>{schemaKey}</FormLabel>
+												<FormControl>
+													<Input
+														{...field}
+														placeholder={
+															formSchema.shape[schemaKey] instanceof ZodNumber
+																? "number"
+																: "string"
+														}
+													/>
+												</FormControl>
+												<FormMessage className="font-light" />
+											</FormItem>
+										)}
+									/>
+								);
+							})}
+
+							<Button type="submit" style={{ marginTop: "0.5rem" }}>
+								Submit
+							</Button>
+						</form>
+					</Form>
+				)}
 			</CardContent>
 		</Card>
 	);

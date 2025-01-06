@@ -2,9 +2,8 @@ import { getEasscanEndpoint } from "#lib/eas/easscan.js";
 import { gql } from "@geist/graphql";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
-import { is } from "date-fns/locale";
 import { rawRequest } from "graphql-request";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -30,7 +29,6 @@ export const getZodSchemaFromSchemaString = (schemaString: string) => {
 		// if we see array, we define as array schema
 		if (type.includes("[]")) {
 			zodSchemaType = zodSchemaType.array();
-			console.log("array attached");
 		}
 
 		// attach to object
@@ -68,35 +66,32 @@ export function useEasSchemaForm({
 			"[useEasSchemaForm] at least one of schemaString and schemaId must be present",
 		);
 
-	const [schemaStringState, setSchemaStringState] = useState(schemaString);
-
 	const schemaQueryResults = useQuery({
 		queryKey: ["schemaBy", schemaId],
 		queryFn: async () => {
-			try {
-				const { data } = await rawRequest<SchemaByQuery>(
-					`${getEasscanEndpoint(chainId)}/graphql`,
-					schemaByQuery.toString(),
-					{
-						where: {
-							id: schemaId,
-						},
+			const { data } = await rawRequest<SchemaByQuery>(
+				`${getEasscanEndpoint(chainId)}/graphql`,
+				schemaByQuery.toString(),
+				{
+					where: {
+						id: schemaId,
 					},
-				);
-				setSchemaStringState(data.data.schema.schemaString ?? undefined);
-			} catch (e) {
-				console.error(`[useEasSchemaForm] ` + e);
-				setSchemaStringState(undefined);
-			}
+				},
+			);
+
+			return data.schema;
 		},
 		enabled: !!isEnabled && !!schemaId,
 	});
 
 	const formSchema = useMemo(() => {
-		if (!!schemaStringState)
-			return getZodSchemaFromSchemaString(schemaStringState);
+		if (!!schemaQueryResults.data?.schemaString)
+			return getZodSchemaFromSchemaString(schemaQueryResults.data.schemaString);
+
+		if (!!schemaString) return getZodSchemaFromSchemaString(schemaString);
+
 		return z.object({});
-	}, [schemaString]);
+	}, [schemaQueryResults?.data?.schemaString, schemaString]);
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -106,5 +101,10 @@ export function useEasSchemaForm({
 	const isLoading = schemaQueryResults.isLoading;
 
 	// we return a react hook form instance
-	return { form, formSchema, isLoading };
+	return {
+		form,
+		formSchema,
+		isLoading,
+		schemaDetails: schemaQueryResults.data,
+	};
 }
