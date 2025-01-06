@@ -19,9 +19,6 @@ import { getEasscanAttestationUrl } from "#lib/eas/easscan";
 import { getShortHex } from "#lib/utils/hex";
 import { AttestationSchemaBadge } from "./attestation-schema-badge";
 
-// TODO dynamic enough to generate fields
-// now focus on sdk part
-
 export interface AttestationFormParams {
 	chainId: number;
 	schemaId: string;
@@ -30,8 +27,6 @@ export interface AttestationFormParams {
 	signAttestation: () => Promise<any>;
 }
 
-// TODO dynamic schema. For now, hardcode the MetIRL
-// https://github.com/fractaldotbox/geist-dapp-kit/issues/56
 export const AttestationForm = ({
 	chainId,
 	schemaId,
@@ -67,6 +62,7 @@ export const AttestationForm = ({
 		});
 	}
 
+	// TODO: array schema handling
 	return (
 		<Card className="pt-8">
 			<CardContent>
@@ -112,11 +108,14 @@ export const AttestationForm = ({
 																? "number"
 																: "text"
 														}
-														onChange={(value) =>
-															formSchema.shape[schemaKey] instanceof ZodNumber
-																? field.onChange(value.target.valueAsNumber)
-																: field.onChange(value.target.value)
-														}
+														value={field.value ?? ""}
+														onChange={(e) => {
+															const value =
+																formSchema.shape[schemaKey] instanceof ZodNumber
+																	? e.target.valueAsNumber || 0
+																	: e.target.value;
+															field.onChange(value);
+														}}
 														placeholder={
 															formSchema.shape[schemaKey] instanceof ZodNumber
 																? "number"

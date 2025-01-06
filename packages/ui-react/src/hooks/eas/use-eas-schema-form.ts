@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { rawRequest } from "graphql-request";
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { z, ZodNumber } from "zod";
 import { getEasscanEndpoint } from "#lib/eas/easscan.js";
 
 type SchemaByQuery = any;
@@ -93,11 +93,15 @@ export function useEasSchemaForm({
 		return z.object({});
 	}, [schemaQueryResults?.data?.schemaString, schemaString]);
 
+	// TODO: array schema handling
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
-		disabled: !isEnabled || schemaQueryResults.isLoading,
+		disabled: !isEnabled,
 		defaultValues: Object.fromEntries(
-			Object.keys(formSchema.shape).map((key) => [key, ""]),
+			Object.keys(formSchema.shape).map((key) => [
+				key,
+				formSchema.shape[key] instanceof ZodNumber ? 0 : "",
+			]),
 		),
 	});
 
