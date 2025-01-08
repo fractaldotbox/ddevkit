@@ -1,5 +1,5 @@
 import { format, formatDistance, subDays } from "date-fns";
-import { Address } from "viem";
+import type { Address } from "viem";
 import { AttestationQueryResult } from "#hooks/eas/use-get-attestations";
 
 // TODO sync graphql type

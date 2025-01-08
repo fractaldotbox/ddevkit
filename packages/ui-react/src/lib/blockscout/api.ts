@@ -2,7 +2,7 @@ import {
 	TokenTransfer,
 	TransactionMeta,
 } from "@geist/domain/transaction/transaction";
-import { Address, parseUnits } from "viem";
+import { type Address, parseUnits } from "viem";
 import * as chains from "viem/chains";
 
 const chainIdToApiRoot: any = {

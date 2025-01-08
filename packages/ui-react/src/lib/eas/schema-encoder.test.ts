@@ -1,5 +1,5 @@
 import { AbiCoder } from "ethers";
-import { Hex, encodeAbiParameters } from "viem";
+import { type Hex, encodeAbiParameters } from "viem";
 import { beforeEach, describe, expect, test } from "vitest";
 import { ZERO_ADDRESS } from "#lib/constants";
 import { SchemaEncoder as SchemaEncoderEasSdk } from "#lib/eas/sdk/offchain/schema-encoder";

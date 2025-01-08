@@ -1,6 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { useMemo } from "react";
-import { Address, fromBlobs } from "viem";
+import { type Address, fromBlobs } from "viem";
 import { mainnet } from "viem/chains";
 import { useChainId } from "wagmi";
 import { DataTable } from "#components/data-table";

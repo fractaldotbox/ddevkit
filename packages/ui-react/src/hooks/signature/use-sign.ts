@@ -12,7 +12,7 @@ import { useAccount, useConfig, useSignMessage } from "wagmi";
 import { atom, useAtom } from "jotai";
 import { addr } from "micro-eth-signer";
 
-import { Hex, SignType } from "@geist/domain/signature/sign";
+import { type Hex, SignType } from "@geist/domain/signature/sign";
 import { TYPED_DATA } from "@geist/domain/signature/type-data";
 import { useMemo } from "react";
 import type { Address } from "viem";

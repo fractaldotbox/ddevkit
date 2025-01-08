@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { BY_USER } from "@geist/domain/user.fixture";
 import { Balance } from "@geist/ui-react/components/account/balance";
 import { BY_CHAIN_ID, Token } from "@geist/ui-react/lib/token/config";
-import { Address } from "viem";
+import type { Address } from "viem";
 import { base, optimism } from "viem/chains";
 import { withWagmiProvider } from "../decorators/wagmi";
 
