@@ -2,7 +2,7 @@ import kavach from "@lighthouse-web3/kavach";
 import lighthouse from "@lighthouse-web3/sdk";
 import { IUploadProgressCallback } from "@lighthouse-web3/sdk/dist/types";
 import ky, { DownloadProgress } from "ky";
-import { http, Account, createWalletClient } from "viem";
+import { http, type Account, createWalletClient } from "viem";
 import { sepolia } from "viem/chains";
 import { GatewayStrategy } from "#lib/filecoin/gateway-strategy";
 import { uploadFiles as uploadFilesLighthouse } from "#lib/filecoin/lighthouse/browser";

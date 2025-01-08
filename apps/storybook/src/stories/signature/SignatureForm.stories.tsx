@@ -15,7 +15,11 @@ import { sepolia } from "viem/chains";
 import { useSignMessage } from "wagmi";
 import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
 
-import { Hex, SignAccountType, SignType } from "@geist/domain/signature/sign";
+import {
+	type Hex,
+	SignAccountType,
+	SignType,
+} from "@geist/domain/signature/sign";
 import { ScrollableCodeBlock } from "@geist/ui-react/components/scrollable-code-block";
 import { SignatureVerifyBadge } from "@geist/ui-react/components/signature/signature-verify-badge";
 

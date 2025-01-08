@@ -1,5 +1,5 @@
-import { Attestation } from "@geist/graphql/eas/graphql";
-import { QueryClient, UseQueryResult, useQuery } from "@tanstack/react-query";
+import { type Attestation } from "@geist/graphql/eas/graphql";
+import { type UseQueryResult, useQuery } from "@tanstack/react-query";
 import { gql, rawRequest } from "graphql-request";
 import { getEasscanEndpoint } from "#lib/eas/easscan";
 

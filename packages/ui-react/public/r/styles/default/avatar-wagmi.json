@@ -1,16 +1,13 @@
 {
-  "name": "avatar-wagmi",
-  "type": "registry:ui",
-  "dependencies": [
-    "viem",
-    "wagmi"
-  ],
-  "files": [
-    {
-      "path": "components/ui/identity_avatar-wagmi.tsx",
-      "content": "import { normalize } from \"viem/ens\";\nimport { useEnsAvatar } from \"wagmi\";\nimport { Avatar as AvatarPrimitive } from \"@/components/ui/avatar\";\nimport { Skeleton } from \"@/components/ui/skeleton\";\nimport { AvatarDisplayed } from \"./avatar\";\n\nexport const AvatarWagmi = ({\n\tens,\n}: {\n\tens: string;\n}) => {\n\tconst { data: ensAvatar, isLoading } = useEnsAvatar({\n\t\tname: normalize(ens),\n\t});\n\n\tif (isLoading || !ensAvatar) {\n\t\treturn (\n\t\t\t<AvatarPrimitive>\n\t\t\t\t<Skeleton className=\"w-full rounded-full bg-gray-200\" />\n\t\t\t</AvatarPrimitive>\n\t\t);\n\t}\n\treturn <AvatarDisplayed addressOrEns={ens} avatarSrc={ensAvatar} />;\n};\n",
-      "type": "registry:ui"
-    }
-  ],
-  "registryDependencies": []
+	"name": "avatar-wagmi",
+	"type": "registry:ui",
+	"dependencies": ["viem", "wagmi"],
+	"files": [
+		{
+			"path": "components/ui/identity_avatar-wagmi.tsx",
+			"content": "import { normalize } from \"viem/ens\";\nimport { useEnsAvatar } from \"wagmi\";\nimport { Avatar as AvatarPrimitive } from \"@/components/ui/avatar\";\nimport { Skeleton } from \"@/components/ui/skeleton\";\nimport { AvatarDisplayed } from \"./avatar\";\n\nexport const AvatarWagmi = ({\n\tens,\n}: {\n\tens: string;\n}) => {\n\tconst { data: ensAvatar, isLoading } = useEnsAvatar({\n\t\tname: normalize(ens),\n\t});\n\n\tif (isLoading || !ensAvatar) {\n\t\treturn (\n\t\t\t<AvatarPrimitive>\n\t\t\t\t<Skeleton className=\"w-full rounded-full bg-gray-200\" />\n\t\t\t</AvatarPrimitive>\n\t\t);\n\t}\n\treturn <AvatarDisplayed addressOrEns={ens} avatarSrc={ensAvatar} />;\n};\n",
+			"type": "registry:ui"
+		}
+	],
+	"registryDependencies": []
 }

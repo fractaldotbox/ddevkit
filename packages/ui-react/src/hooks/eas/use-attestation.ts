@@ -2,17 +2,17 @@ import { NO_EXPIRATION } from "@geist/ui-react/lib/eas/request";
 import { OffchainAttestationVersion } from "@geist/ui-react/lib/eas/sdk/offchain/offchain";
 import { signOffchainAttestation } from "@geist/ui-react/lib/eas/viem/offchain";
 import {
-	AttestationRequestData,
+	type AttestationRequestData,
 	makeOnchainAttestation,
 } from "@geist/ui-react/lib/eas/viem/onchain";
 import { createTestClientConfig } from "@geist/ui-react/lib/test-utils-isomorphic";
 import { useMemo } from "react";
 import {
-	Account,
-	Address,
-	Chain,
-	Hex,
-	TransactionReceipt,
+	type Account,
+	type Address,
+	type Chain,
+	type Hex,
+	type TransactionReceipt,
 	createWalletClient,
 	stringToHex,
 	zeroHash,

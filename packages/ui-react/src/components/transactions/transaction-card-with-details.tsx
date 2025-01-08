@@ -1,4 +1,5 @@
-import { TransactionMeta } from "@geist/domain/transaction/transaction";
+import type { Token } from "@geist/domain/token/token";
+import type { TransactionMeta } from "@geist/domain/transaction/transaction";
 import { Label } from "@radix-ui/react-label";
 import { AddressBadge } from "#components/identity/address-badge";
 import {
@@ -12,7 +13,6 @@ import {
 import { Separator } from "#components/shadcn/separator";
 import { Skeleton } from "#components/shadcn/skeleton";
 import { TokenChipWithInfo } from "#components/token/token-chip-with-info";
-import type { Token } from "@geist/domain/token/token";
 import { getShortHex } from "#lib/utils/hex";
 
 export const TransactionSummary = ({

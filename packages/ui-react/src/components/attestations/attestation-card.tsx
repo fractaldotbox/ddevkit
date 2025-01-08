@@ -1,7 +1,9 @@
 import { Label } from "@radix-ui/react-label";
 import { format } from "date-fns";
 import { useMemo } from "react";
-import { Address, Hex } from "viem";
+import { type Address, Hex } from "viem";
+import { mainnet } from "viem/chains";
+import { useChainId } from "wagmi";
 import {
 	Card,
 	CardContent,

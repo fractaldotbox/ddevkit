@@ -1,4 +1,4 @@
-import { Hex, SignType } from "@geist/domain/signature/sign";
+import { type Hex, SignType } from "@geist/domain/signature/sign";
 import { TYPED_DATA } from "@geist/domain/signature/type-data";
 import { ScrollableCodeBlock } from "@geist/ui-react/components/scrollable-code-block";
 import { SignatureForm } from "@geist/ui-react/components/signature/signature-form";

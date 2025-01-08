@@ -8,8 +8,8 @@ import {
 } from "@ethereum-attestation-service/eas-sdk";
 import { AbiCoder, keccak256 as keccak256Ethers, toUtf8Bytes } from "ethers";
 import {
-	Address,
-	Hex,
+	type Address,
+	type Hex,
 	encodeAbiParameters,
 	encodePacked,
 	keccak256,

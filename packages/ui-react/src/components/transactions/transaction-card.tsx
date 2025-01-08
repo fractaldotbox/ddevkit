@@ -1,4 +1,4 @@
-import { Chain } from "viem";
+import type { Chain } from "viem";
 import { mainnet } from "viem/chains";
 import { useConfig } from "wagmi";
 import { Skeleton } from "#components/shadcn/skeleton";

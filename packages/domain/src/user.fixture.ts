@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { addr } from "micro-eth-signer";
-import { Address, Hex } from "viem";
+import type { Address, Hex } from "viem";
 import config from "./config";
 
 const vitalik = {

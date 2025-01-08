@@ -327,6 +327,9 @@ importers:
       '@fleek-platform/cli':
         specifier: ^3.8.2
         version: 3.8.2(@types/node@22.10.2)(encoding@0.1.13)(typescript@5.7.2)
+      '@geist/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       '@radix-ui/themes':
         specifier: ^3.1.4
         version: 3.1.4(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
