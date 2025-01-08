@@ -12,7 +12,7 @@ import {
 import { Separator } from "#components/shadcn/separator";
 import { Skeleton } from "#components/shadcn/skeleton";
 import { TokenChipWithInfo } from "#components/token/token-chip-with-info";
-import { Token } from "#lib/token/token";
+import type { Token } from "@geist/domain/token/token";
 import { getShortHex } from "#lib/utils/hex";
 
 export const TransactionSummary = ({

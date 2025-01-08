@@ -121,6 +121,8 @@ async function buildStyles(registry: Registry) {
 							const geistDependencyPath =
 								rewriteGeistDependencyPath(currentImport);
 
+							console.log("geistDependencyPath", geistDependencyPath);
+
 							node
 								.getModuleSpecifier()
 								.replaceWithText(`"${geistDependencyPath}"`);
