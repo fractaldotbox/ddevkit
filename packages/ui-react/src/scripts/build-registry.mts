@@ -12,15 +12,21 @@ import { registry } from "../registry";
 // import { colorMapping, colors } from "../registry/registry-colors";
 import { styles } from "../registry/registry-styles";
 import {
-	Registry,
-	RegistryEntry,
+	type Registry,
+	type RegistryEntry,
 	registryEntrySchema,
 	registryItemTypeSchema,
 	registrySchema,
 } from "../registry/schema";
 
-const REGISTRY_EXPORT_PATH = path.join(process.cwd(), "public/r");
+const REGISTRY_EXPORT_ROOT = path.resolve(
+	import.meta.dirname,
+	"../../../../apps/geist",
+);
+const REGISTRY_EXPORT_PATH = path.join(REGISTRY_EXPORT_ROOT, "/public/r");
 const REGISTRY_SOURCE_PATH = path.join(process.cwd(), "src");
+
+console.log("registry export path", REGISTRY_EXPORT_PATH);
 
 const REGISTRY_INDEX_WHITELIST: z.infer<typeof registryItemTypeSchema>[] = [
 	"registry:ui",
@@ -515,7 +521,10 @@ export const Index: Record<string, any> = {
 
 	// Write style index.
 	// rimraf.sync(path.join(process.cwd(), "__registry__/index.tsx"));
-	await fs.writeFile(path.join(process.cwd(), "__registry__/index.tsx"), index);
+	await fs.writeFile(
+		path.resolve(REGISTRY_EXPORT_ROOT, "__registry__/index.tsx"),
+		index,
+	);
 }
 
 try {
