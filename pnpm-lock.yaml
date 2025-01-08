@@ -74,6 +74,15 @@ importers:
       '@ethereumjs/rlp':
         specifier: ^5.0.2
         version: 5.0.2
+      '@geist/domain':
+        specifier: workspace:*
+        version: link:../../packages/domain
+      '@geist/graphql':
+        specifier: workspace:*
+        version: link:../../packages/gql
+      '@geist/ui-react':
+        specifier: workspace:*
+        version: link:../../packages/ui-react
       '@hookform/resolvers':
         specifier: ^3.9.0
         version: 3.9.0(react-hook-form@7.53.0(react@18.3.1))
@@ -191,15 +200,6 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@geist/domain':
-        specifier: workspace:*
-        version: link:../../packages/domain
-      '@geist/graphql':
-        specifier: workspace:*
-        version: link:../../packages/gql
-      '@geist/ui-react':
-        specifier: workspace:*
-        version: link:../../packages/ui-react
       '@scure/base':
         specifier: ^1.1.9
         version: 1.1.9
@@ -324,6 +324,9 @@ importers:
       '@fleek-platform/cli':
         specifier: ^3.8.2
         version: 3.8.2(@types/node@22.10.2)(encoding@0.1.13)(typescript@5.7.2)
+      '@geist/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       '@radix-ui/themes':
         specifier: ^3.1.4
         version: 3.1.4(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -411,6 +414,9 @@ importers:
       '@ethereumjs/rlp':
         specifier: ^5.0.2
         version: 5.0.2
+      '@geist/graphql':
+        specifier: workspace:*
+        version: link:../gql
       '@hookform/resolvers':
         specifier: ^3.9.0
         version: 3.9.0(react-hook-form@7.53.0(react@18.3.1))
@@ -432,9 +438,6 @@ importers:
       '@privy-io/react-auth':
         specifier: ^1.95.2
         version: 1.95.2(@solana/web3.js@1.95.5(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))(@types/react@18.3.18)(bs58@5.0.0)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
-      '@geist/graphql':
-        specifier: workspace:*
-        version: link:../gql
       '@scure/base':
         specifier: ^1.1.9
         version: 1.1.9
@@ -576,6 +579,12 @@ importers:
       '@ethereumjs/rlp':
         specifier: ^5.0.2
         version: 5.0.2
+      '@geist/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@geist/graphql':
+        specifier: workspace:*
+        version: link:../gql
       '@hookform/resolvers':
         specifier: ^3.9.0
         version: 3.9.0(react-hook-form@7.53.0(react@18.3.1))
@@ -702,12 +711,6 @@ importers:
       '@radix-ui/themes':
         specifier: ^3.1.6
         version: 3.1.6(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@geist/domain':
-        specifier: workspace:*
-        version: link:../domain
-      '@geist/graphql':
-        specifier: workspace:*
-        version: link:../gql
       '@scure/base':
         specifier: ^1.1.9
         version: 1.1.9
