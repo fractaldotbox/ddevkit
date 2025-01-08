@@ -337,15 +337,63 @@ export const ui: Registry = [
 	},
 
 	{
+		name: "avatar-wagmi",
+		type: "registry:ui",
+		dependencies: ["viem", "wagmi"],
+		shadcnDependencies: [],
+		files: [
+			{
+				type: "registry:ui",
+				path: "components/identity/avatar-wagmi.tsx",
+			},
+		],
+	},
+
+	{
+		name: "name",
+		type: "registry:ui",
+		dependencies: ["viem"],
+		shadcnDependencies: [],
+		files: [
+			{
+				type: "registry:ui",
+				path: "components/identity/name.tsx",
+			},
+			{
+				type: "registry:hook",
+				path: "hooks/ens/use-efp-api.ts",
+			},
+		],
+	},
+	{
+		name: "name-wagmi",
+		type: "registry:ui",
+		dependencies: ["viem", "wagmi"],
+		shadcnDependencies: [],
+		files: [
+			{
+				type: "registry:ui",
+				path: "components/identity/name-wagmi.tsx",
+			},
+		],
+	},
+	// {
+	// 	name: "attestation-badge",
+	// 	type: "registry:ui",
+	// 	dependencies: ["viem", "wagmi"],
+	// 	shadcnDependencies: ["badge"],
+	// 	files: [
+	// 		{
+	// 			type: "registry:hook",
+	// 			path: "hooks/eas/use-get-attestations.tsx",
+	// 		},
+	// 	],
+	// },
+
+	{
 		name: "attestation-card",
 		type: "registry:ui",
-		dependencies: [
-			"viem",
-			"wagmi",
-			"@radix-ui/react-label",
-			"date-fns",
-			"#hooks/eas/get-attestation-with-uid",
-		],
+		dependencies: ["viem", "wagmi", "@radix-ui/react-label", "date-fns"],
 		shadcnDependencies: ["card", "separator", "skeleton", "tooltip"],
 		files: [
 			{
@@ -355,7 +403,7 @@ export const ui: Registry = [
 
 			{
 				type: "registry:hook",
-				path: "hooks/eas/get-attestation-with-uid.ts",
+				path: "hooks/eas/use-get-attestation-with-uid.tsx",
 			},
 		],
 	},

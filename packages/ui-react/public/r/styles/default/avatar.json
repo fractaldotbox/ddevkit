@@ -1,13 +1,16 @@
 {
-	"name": "avatar",
-	"type": "registry:ui",
-	"dependencies": ["viem", "wagmi"],
-	"files": [
-		{
-			"path": "components/ui/identity_avatar.tsx",
-			"content": "import {\n\tAvatarFallback,\n\tAvatarImage,\n\tAvatar as AvatarPrimitive,\n} from \"@/components/ui/avatar\";\nimport { Skeleton } from \"@/components/ui/skeleton\";\nimport { MetadataService, useIdentity } from \"@/hooks/identity_use-identity\";\n\n// support direct props override while consider extract into common provider\n\nexport const AvatarDisplayed = ({\n\taddressOrEns,\n\tavatarSrc,\n}: {\n\taddressOrEns: string;\n\tavatarSrc: string;\n}) => (\n\t<AvatarPrimitive>\n\t\t<AvatarImage src={avatarSrc} alt={addressOrEns} />\n\t\t<AvatarFallback>{addressOrEns}</AvatarFallback>\n\t</AvatarPrimitive>\n);\n\n// import { getEnsName } from '@wagmi/core'\n\nexport const Avatar = ({\n\taddressOrEns,\n}: {\n\taddressOrEns: string;\n}) => {\n\tconst { avatarSrc, isLoading } = useIdentity(\n\t\taddressOrEns,\n\t\tMetadataService.Efp,\n\t);\n\n\tif (isLoading) {\n\t\treturn (\n\t\t\t<AvatarPrimitive>\n\t\t\t\t<Skeleton className=\"w-full rounded-full bg-gray-200\" />\n\t\t\t</AvatarPrimitive>\n\t\t);\n\t}\n\treturn <AvatarDisplayed addressOrEns={addressOrEns} avatarSrc={avatarSrc} />;\n};\n",
-			"type": "registry:ui"
-		}
-	],
-	"registryDependencies": []
+  "name": "avatar",
+  "type": "registry:ui",
+  "dependencies": [
+    "viem",
+    "wagmi"
+  ],
+  "files": [
+    {
+      "path": "components/ui/identity_avatar.tsx",
+      "content": "import {\n\tAvatarFallback,\n\tAvatarImage,\n\tAvatar as AvatarPrimitive,\n} from \"@/components/ui/avatar\";\nimport { Skeleton } from \"@/components/ui/skeleton\";\nimport { MetadataService, useIdentity } from \"@/hooks/identity_use-identity\";\n\n// support direct props override while consider extract into common provider\n\nexport const AvatarDisplayed = ({\n\taddressOrEns,\n\tavatarSrc,\n}: {\n\taddressOrEns: string;\n\tavatarSrc: string;\n}) => (\n\t<AvatarPrimitive>\n\t\t<AvatarImage src={avatarSrc} alt={addressOrEns} />\n\t\t<AvatarFallback>{addressOrEns}</AvatarFallback>\n\t</AvatarPrimitive>\n);\n\n// import { getEnsName } from '@wagmi/core'\n\nexport const Avatar = ({\n\taddressOrEns,\n}: {\n\taddressOrEns: string;\n}) => {\n\tconst { avatarSrc, isLoading } = useIdentity(\n\t\taddressOrEns,\n\t\tMetadataService.Efp,\n\t);\n\n\tif (isLoading) {\n\t\treturn (\n\t\t\t<AvatarPrimitive>\n\t\t\t\t<Skeleton className=\"w-full rounded-full bg-gray-200\" />\n\t\t\t</AvatarPrimitive>\n\t\t);\n\t}\n\treturn <AvatarDisplayed addressOrEns={addressOrEns} avatarSrc={avatarSrc} />;\n};\n",
+      "type": "registry:ui"
+    }
+  ],
+  "registryDependencies": []
 }

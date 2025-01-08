@@ -6,7 +6,7 @@ export const hooks: Registry = [
 		type: "registry:hook",
 		files: [
 			{
-				path: "hooks/use-get-attestation-with-uid.ts",
+				path: "hooks/eas/use-get-attestation-with-uid.tsx",
 				type: "registry:hook",
 			},
 		],

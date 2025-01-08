@@ -25,9 +25,7 @@ const REGISTRY_SOURCE_PATH = path.join(process.cwd(), "src");
 const REGISTRY_INDEX_WHITELIST: z.infer<typeof registryItemTypeSchema>[] = [
 	"registry:ui",
 	"registry:lib",
-	// "registry:hook",
-	// "registry:theme",
-	// "registry:block",
+	"registry:hook",
 ];
 
 const project = new Project({
