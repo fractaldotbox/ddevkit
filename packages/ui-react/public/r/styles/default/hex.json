@@ -1,13 +1,13 @@
 {
-  "name": "hex",
-  "type": "registry:lib",
-  "dependencies": [],
-  "files": [
-    {
-      "path": "lib/utils_hex.ts",
-      "content": "import { Hex } from \"viem\";\n\nexport type GetShortAddressReturnType = string | null;\n\nexport const getShortHex = (\n\thex: Hex,\n\tsectionLength: number = 4,\n): GetShortAddressReturnType => {\n\treturn [hex.slice(0, sectionLength + 2), hex.slice(-sectionLength)].join(\n\t\t\"...\",\n\t);\n};\n\n// TODO\nexport const truncate = (stringToTruncate: string, threshold: number = 15) => {\n\tif (stringToTruncate.length <= threshold) {\n\t\treturn stringToTruncate;\n\t}\n\treturn stringToTruncate.slice(-threshold).concat(\"...\");\n};\n",
-      "type": "registry:lib"
-    }
-  ],
-  "registryDependencies": []
+	"name": "hex",
+	"type": "registry:lib",
+	"dependencies": [],
+	"files": [
+		{
+			"path": "lib/utils_hex.ts",
+			"content": "import { Hex } from \"viem\";\n\nexport type GetShortAddressReturnType = string | null;\n\nexport const getShortHex = (\n\thex: Hex,\n\tsectionLength: number = 4,\n): GetShortAddressReturnType => {\n\treturn [hex.slice(0, sectionLength + 2), hex.slice(-sectionLength)].join(\n\t\t\"...\",\n\t);\n};\n\n// TODO\nexport const truncate = (stringToTruncate: string, threshold: number = 15) => {\n\tif (stringToTruncate.length <= threshold) {\n\t\treturn stringToTruncate;\n\t}\n\treturn stringToTruncate.slice(-threshold).concat(\"...\");\n};\n",
+			"type": "registry:lib"
+		}
+	],
+	"registryDependencies": []
 }

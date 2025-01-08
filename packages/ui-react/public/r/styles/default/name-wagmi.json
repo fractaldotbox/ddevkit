@@ -1,16 +1,13 @@
 {
-  "name": "name-wagmi",
-  "type": "registry:ui",
-  "dependencies": [
-    "viem",
-    "wagmi"
-  ],
-  "files": [
-    {
-      "path": "components/ui/identity_name-wagmi.tsx",
-      "content": "import { useEffect, useMemo, useState } from \"react\";\nimport { Address, isHex } from \"viem\";\nimport { useEnsName } from \"wagmi\";\nimport type { AddressOrEns } from \"@/hooks/ens_efp\";\n\nexport const NameWagmi = ({ addressOrEns }: { addressOrEns: AddressOrEns }) => {\n\tconst isName = !isHex(addressOrEns);\n\n\tconst { data: name, isSuccess } = useEnsName({\n\t\taddress: addressOrEns as Address,\n\t\tquery: {\n\t\t\tenabled: !isName,\n\t\t},\n\t});\n\n\tconst displayedName = useMemo(() => {\n\t\tif (!isSuccess) return \"\";\n\t\treturn name || addressOrEns;\n\t}, [isSuccess]);\n\n\treturn <div>{displayedName}</div>;\n};\n",
-      "type": "registry:ui"
-    }
-  ],
-  "registryDependencies": []
+	"name": "name-wagmi",
+	"type": "registry:ui",
+	"dependencies": ["viem", "wagmi"],
+	"files": [
+		{
+			"path": "components/ui/identity_name-wagmi.tsx",
+			"content": "import { useEffect, useMemo, useState } from \"react\";\nimport { Address, isHex } from \"viem\";\nimport { useEnsName } from \"wagmi\";\nimport type { AddressOrEns } from \"@/hooks/ens_efp\";\n\nexport const NameWagmi = ({ addressOrEns }: { addressOrEns: AddressOrEns }) => {\n\tconst isName = !isHex(addressOrEns);\n\n\tconst { data: name, isSuccess } = useEnsName({\n\t\taddress: addressOrEns as Address,\n\t\tquery: {\n\t\t\tenabled: !isName,\n\t\t},\n\t});\n\n\tconst displayedName = useMemo(() => {\n\t\tif (!isSuccess) return \"\";\n\t\treturn name || addressOrEns;\n\t}, [isSuccess]);\n\n\treturn <div>{displayedName}</div>;\n};\n",
+			"type": "registry:ui"
+		}
+	],
+	"registryDependencies": []
 }
