@@ -1,6 +1,6 @@
 import { Check, Copy } from "lucide-react";
 import { useMemo, useState } from "react";
-import { Hex, getAddress } from "viem";
+import { type Hex, getAddress } from "viem";
 import { normalize } from "viem/ens";
 import { useEnsAddress } from "wagmi";
 import {

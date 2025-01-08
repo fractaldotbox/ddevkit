@@ -12,7 +12,7 @@ import config from "@geist/domain/config";
 import { BY_USER } from "@geist/domain/user.fixture";
 import { Signature, Signer, encodeBytes32String, ethers } from "ethers";
 import { http, Address, createWalletClient, custom, zeroHash } from "viem";
-import { Hex } from "viem";
+import type { Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { optimismSepolia, sepolia } from "viem/chains";
 import { beforeEach, describe, expect, test } from "vitest";

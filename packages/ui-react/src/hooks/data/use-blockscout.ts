@@ -1,3 +1,4 @@
+import type { TransactionMeta } from "@geist/domain/transaction/transaction";
 import { useQuery } from "@tanstack/react-query";
 import {
 	GetTxnByFilterQuery,
@@ -5,7 +6,6 @@ import {
 	getTransaction,
 	getTxnsByFilter,
 } from "#lib/blockscout/api";
-import { TransactionMeta } from "#lib/domain/transaction/transaction";
 
 export const CACHE_KEY = "blockscout";
 

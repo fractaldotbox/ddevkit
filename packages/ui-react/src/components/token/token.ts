@@ -13,18 +13,10 @@
 
 import { resolveProductionChain } from "@geist/domain/chain/chain-resolver";
 // import { useReadContracts } from "wagmi";
-import { Config, readContracts } from "@wagmi/core";
+import { type Config, readContracts } from "@wagmi/core";
 import { useEffect, useState } from "react";
-import { Address, Chain, erc20Abi } from "viem";
-
-export type Token = {
-	address?: Address;
-	imageUrl?: string;
-	decimals: number;
-	name: string;
-	symbol: string;
-	type?: string;
-};
+import { type Address, type Chain, erc20Abi } from "viem";
+import { asTrustWalletChainName } from "#lib/trustwallet-chain.js";
 
 /**
  * trustwallet/assets does not contains most testnet, always fallback to mainnet

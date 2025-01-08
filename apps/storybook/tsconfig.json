@@ -1,4 +1,5 @@
 {
+	"extends": "@geist/typescript-config/base.json",
 	"compilerOptions": {
 		"baseUrl": "."
 	},
