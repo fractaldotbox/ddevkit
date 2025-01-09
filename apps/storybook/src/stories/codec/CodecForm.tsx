@@ -1,8 +1,8 @@
 import { base16 as base16S, base64 as base64S } from "@scure/base";
-import { Atom, atom, useAtom } from "jotai";
+import { Atom, type atom, useAtom } from "jotai";
 import { base16 } from "multiformats/bases/base16";
 import { base64 } from "multiformats/bases/base64";
-import { CID, MultibaseEncoder } from "multiformats/cid";
+import { CID, type MultibaseEncoder } from "multiformats/cid";
 import * as json from "multiformats/codecs/json";
 import { sha256 } from "multiformats/hashes/sha2";
 import { Suspense, useEffect, useMemo, useState } from "react";

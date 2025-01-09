@@ -1,7 +1,7 @@
 import { signMessage } from "@wagmi/core";
 import * as typed from "micro-eth-signer/typed-data";
 import {
-	EIP712Domain,
+	type EIP712Domain,
 	GetType,
 	TypedData,
 	signTyped,
@@ -9,7 +9,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { useAccount, useConfig, useSignMessage } from "wagmi";
 
-import { atom, useAtom } from "jotai";
+import { type atom, useAtom } from "jotai";
 import { addr } from "micro-eth-signer";
 
 import { type Hex, SignType } from "@geist/domain/signature/sign";

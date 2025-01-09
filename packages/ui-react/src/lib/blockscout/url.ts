@@ -1,6 +1,6 @@
 import { getBlockscoutChainEndpoint } from "#lib/blockscout/chain";
 import {
-	CreateBlockExplorerUrlArgs,
+	type CreateBlockExplorerUrlArgs,
 	createBlockExplorerUrlWithEip3091,
 } from "#lib/explorer/url";
 

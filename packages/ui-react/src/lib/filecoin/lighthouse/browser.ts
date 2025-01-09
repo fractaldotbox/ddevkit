@@ -1,11 +1,11 @@
 import { lighthouseConfig } from "@lighthouse-web3/sdk/dist/lighthouse.config";
 // This is custom implementation of lighthouse browser client due to below issue and preference of ky for timeout
 // https://github.com/lighthouse-web3/lighthouse-package/issues/119
-import {
+import type {
 	DealParameters,
 	UploadFileReturnType,
 } from "@lighthouse-web3/sdk/dist/types";
-import ky, { DownloadProgress } from "ky";
+import ky, { type DownloadProgress } from "ky";
 
 export const createLighthouseEndpoint = (isWrapWithDirectory = false) => {
 	const search = new URLSearchParams(

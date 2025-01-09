@@ -1,7 +1,7 @@
 import {
-	AttestationShareablePackageObject,
+	type AttestationShareablePackageObject,
 	OffchainAttestationVersion,
-	SignedOffchainAttestation,
+	type SignedOffchainAttestation,
 } from "@ethereum-attestation-service/eas-sdk";
 import { mainnet, optimism, optimismSepolia, sepolia } from "viem/chains";
 import { NO_EXPIRATION } from "./request";

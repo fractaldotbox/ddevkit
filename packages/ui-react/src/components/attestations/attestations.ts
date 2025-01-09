@@ -1,6 +1,6 @@
 import { format, formatDistance, subDays } from "date-fns";
 import type { Address } from "viem";
-import { AttestationQueryResult } from "#hooks/eas/use-get-attestations";
+import type { AttestationQueryResult } from "#hooks/eas/use-get-attestations";
 
 // TODO sync graphql type
 export const asAttestationMeta = (attestation: AttestationQueryResult) => {

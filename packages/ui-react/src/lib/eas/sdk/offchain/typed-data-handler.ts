@@ -1,23 +1,23 @@
-import { OffchainAttestationType } from "@ethereum-attestation-service/eas-sdk";
+import type { OffchainAttestationType } from "@ethereum-attestation-service/eas-sdk";
 import {
 	AbiCoder,
-	Addressable,
+	type Addressable,
 	Signature as Sig,
-	TypedDataDomain,
-	TypedDataField,
+	type TypedDataDomain,
+	type TypedDataField,
 	getAddress,
 	hexlify,
 	toUtf8Bytes,
 	verifyTypedData,
 } from "ethers";
 import {
-	Hex,
+	type Hex,
 	encodeAbiParameters,
 	encodePacked,
 	keccak256,
 	parseAbiParameters,
 } from "viem";
-import { DelegatedConfig } from "#lib/eas/sdk/offchain/delegated";
+import type { DelegatedConfig } from "#lib/eas/sdk/offchain/delegated";
 import { EIP712_NAME } from "#lib/eas/versions";
 
 export interface Signature {

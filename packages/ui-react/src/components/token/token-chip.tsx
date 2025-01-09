@@ -1,4 +1,4 @@
-import { type Address, Chain, erc20Abi } from "viem";
+import { type Address, type Chain, erc20Abi } from "viem";
 import { mainnet } from "viem/chains";
 import { useConfig } from "wagmi";
 import { useTokenInfo } from "./token";

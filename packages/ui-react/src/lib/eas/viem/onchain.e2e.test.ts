@@ -5,7 +5,7 @@ import {
 	createTestClientConfig,
 	createTestEthersSigner,
 } from "@geist/ui-react/lib/test-utils-isomorphic";
-import { http, Hex, createWalletClient, zeroHash } from "viem";
+import { http, type Hex, createWalletClient, zeroHash } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { sepolia } from "viem/chains";
 import { beforeEach, describe, expect, it, test } from "vitest";

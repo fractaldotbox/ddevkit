@@ -1,8 +1,8 @@
 import {
-	EAS,
+	type EAS,
 	NO_EXPIRATION,
 	Offchain,
-	OffchainAttestationTypedData,
+	type OffchainAttestationTypedData,
 	OffchainAttestationVersion,
 	ZERO_BYTES,
 	ZERO_BYTES32,
@@ -10,8 +10,8 @@ import {
 } from "@ethereum-attestation-service/eas-sdk";
 import config from "@geist/domain/config";
 import { BY_USER } from "@geist/domain/user.fixture";
-import { Signature, Signer, encodeBytes32String, ethers } from "ethers";
-import { http, Address, createWalletClient, custom, zeroHash } from "viem";
+import { Signature, type Signer, encodeBytes32String, ethers } from "ethers";
+import { http, type Address, createWalletClient, custom, zeroHash } from "viem";
 import type { Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { optimismSepolia, sepolia } from "viem/chains";

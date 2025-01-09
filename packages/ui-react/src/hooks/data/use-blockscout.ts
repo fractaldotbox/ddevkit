@@ -1,7 +1,7 @@
 import type { TransactionMeta } from "@geist/domain/transaction/transaction";
 import { useQuery } from "@tanstack/react-query";
 import {
-	GetTxnByFilterQuery,
+	type GetTxnByFilterQuery,
 	asTransactionMeta,
 	getTransaction,
 	getTxnsByFilter,

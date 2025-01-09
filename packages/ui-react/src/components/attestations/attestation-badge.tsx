@@ -1,4 +1,4 @@
-import { type Address } from "viem";
+import type { Address } from "viem";
 import { useChainId } from "wagmi";
 import { Badge } from "#components/shadcn/badge";
 import { useGetAttestations } from "#hooks/eas/use-get-attestations";

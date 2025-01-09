@@ -5,7 +5,7 @@ import path from "path";
 import { cwd } from "process";
 // import { rimraf } from "rimraf";
 import { Project, ScriptKind, SyntaxKind } from "ts-morph";
-import { z } from "zod";
+import type { z } from "zod";
 
 import { registry } from "../registry";
 // import { baseColors } from "../registry/registry-base-colors";
@@ -15,7 +15,7 @@ import {
 	type Registry,
 	type RegistryEntry,
 	registryEntrySchema,
-	registryItemTypeSchema,
+	type registryItemTypeSchema,
 	registrySchema,
 } from "../registry/schema";
 

@@ -2,7 +2,7 @@
 // and fixture from [micro-eth-signer](https://github.com/debuggingfuture/micro-eth-signer/blob/main/test/typed-data.test.js)
 
 import { EIP712Domain } from "micro-eth-signer/typed-data";
-import { TypedData } from "viem";
+import type { TypedData } from "viem";
 
 export const EIP721_TYPES = {
 	Person: [

@@ -1,6 +1,6 @@
 import { ScrollArea } from "#components/shadcn/scroll-area";
 import { Separator } from "#components/shadcn/separator";
-import { EfpFollowerWithName } from "#hooks/ens/efp";
+import type { EfpFollowerWithName } from "#hooks/ens/efp";
 
 export const FollowerListScrollable = ({
 	followers,

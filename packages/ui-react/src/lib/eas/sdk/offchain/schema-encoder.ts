@@ -4,7 +4,7 @@ import {
 	encodeBytes32String,
 	isBytesLike,
 } from "ethers";
-import { CID, MultihashDigest } from "multiformats";
+import { CID, type MultihashDigest } from "multiformats";
 import { ZERO_ADDRESS } from "#lib/constants";
 
 export type SchemaValue =

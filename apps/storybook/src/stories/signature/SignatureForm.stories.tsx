@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Atom, atom, useAtom } from "jotai";
+import { type Atom, atom, useAtom } from "jotai";
 
 import { TYPED_DATA } from "@geist/domain/signature/type-data";
 import { SignatureForm } from "@geist/ui-react/components/signature/signature-form";
 import { useMemo } from "react";
 import {
 	http,
-	Account,
+	type Account,
 	createPublicClient,
 	createWalletClient,
 	verifyMessage,

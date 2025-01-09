@@ -4,9 +4,16 @@ import {
 	SCHEMA_BY_NAME,
 	SCHEMA_FIXTURE_IS_A_FRIEND,
 } from "@geist/ui-react/lib/eas/attest.fixture";
-import { AttestationRequestData } from "@geist/ui-react/lib/eas/viem/onchain";
+import type { AttestationRequestData } from "@geist/ui-react/lib/eas/viem/onchain";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Account, Address, Chain, Hex, stringToHex, zeroHash } from "viem";
+import {
+	type Account,
+	type Address,
+	type Chain,
+	type Hex,
+	stringToHex,
+	zeroHash,
+} from "viem";
 import { sepolia } from "viem/chains";
 import { withToaster } from "../decorators/toaster";
 import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";

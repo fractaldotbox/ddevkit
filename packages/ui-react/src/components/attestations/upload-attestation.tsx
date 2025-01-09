@@ -2,7 +2,7 @@ import config from "@geist/domain/config";
 import { Loader2, Upload } from "lucide-react";
 import { Button } from "#components/shadcn/button";
 import { useUploadAttestationWithLighthouse } from "#hooks/eas/use-upload-attestation";
-import { UploadAttestationParams } from "./attestations";
+import type { UploadAttestationParams } from "./attestations";
 
 // this is a controlled component that depends on an external state
 export function UploadAttestation(props: UploadAttestationParams) {

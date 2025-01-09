@@ -17,7 +17,7 @@ import { Skeleton } from "#components/shadcn/skeleton";
 import { useGetAttestationWithUid } from "#hooks/eas/use-get-attestation-with-uid.js";
 import { getShortHex } from "#lib/utils/hex";
 import { AttestationSchemaBadge } from "./attestation-schema-badge";
-import type { AttestationMeta, asAttestationMeta } from "./attestations";
+import { type AttestationMeta, asAttestationMeta } from "./attestations";
 
 const AttestationCardContent = ({
 	chainId,
