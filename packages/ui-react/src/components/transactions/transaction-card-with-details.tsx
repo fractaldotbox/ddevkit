@@ -1,5 +1,5 @@
 import type { Token } from "@geist/domain/token/token";
-import { TransactionMeta } from "@geist/domain/transaction/transaction";
+import type { TransactionMeta } from "@geist/domain/transaction/transaction";
 import { Label } from "@radix-ui/react-label";
 import { AddressBadge } from "#components/identity/address-badge";
 import {

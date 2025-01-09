@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { ZodType, z } from "zod";
+import { type ZodType, z } from "zod";
 
 import { FileInputField } from "@geist/ui-react/components/file/file-input-field";
 import { toast } from "@geist/ui-react/hooks/shadcn/use-toast";

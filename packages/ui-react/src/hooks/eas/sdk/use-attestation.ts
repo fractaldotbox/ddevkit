@@ -1,12 +1,12 @@
 import { SchemaEncoder } from "@ethereum-attestation-service/eas-sdk";
 import { NO_EXPIRATION } from "@geist/ui-react/lib/eas/request";
 import type { AttestationRequestData } from "@geist/ui-react/lib/eas/viem/onchain";
-import { Signer, ZeroHash } from "ethers";
+import { type Signer, ZeroHash } from "ethers";
 import { useMemo } from "react";
 import {
 	Account,
-	Address,
-	Chain,
+	type Address,
+	type Chain,
 	Hex,
 	createWalletClient,
 	stringToHex,

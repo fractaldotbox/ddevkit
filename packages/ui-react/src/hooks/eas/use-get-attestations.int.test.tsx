@@ -4,7 +4,7 @@ import { useGetAttestations } from "./use-get-attestations";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { renderHook, waitFor } from "@testing-library/react";
-import React from "react";
+import type React from "react";
 import type { Address } from "viem";
 
 /**

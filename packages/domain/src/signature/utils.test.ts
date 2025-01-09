@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import {
-	Address,
-	Hex,
+	type Address,
+	type Hex,
 	hashMessage,
 	hashTypedData,
 	recoverAddress,

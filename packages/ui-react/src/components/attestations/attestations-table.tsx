@@ -1,4 +1,4 @@
-import { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 import { useMemo } from "react";
 import { type Address, fromBlobs } from "viem";
 import { mainnet } from "viem/chains";
@@ -8,7 +8,7 @@ import { useGetAttestations } from "#hooks/eas/use-get-attestations";
 import { getEasscanAttestationUrl } from "#lib/eas/easscan";
 import { truncate } from "#lib/utils/hex";
 import { AttestationSchemaBadge } from "./attestation-schema-badge";
-import { AttestationMeta } from "./attestations";
+import type { AttestationMeta } from "./attestations";
 import { asAttestationMeta } from "./attestations";
 
 // This type is used to define the shape of our data.

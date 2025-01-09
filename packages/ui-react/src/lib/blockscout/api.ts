@@ -1,4 +1,4 @@
-import {
+import type {
 	TokenTransfer,
 	TransactionMeta,
 } from "@geist/domain/transaction/transaction";

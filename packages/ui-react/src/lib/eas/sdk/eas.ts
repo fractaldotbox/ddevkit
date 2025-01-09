@@ -2,9 +2,9 @@ import {
 	EAS,
 	NO_EXPIRATION,
 	SchemaEncoder,
-	SchemaValue,
+	type SchemaValue,
 } from "@ethereum-attestation-service/eas-sdk";
-import { Signer } from "ethers";
+import type { Signer } from "ethers";
 
 export type CreateAttestationRequestParams = any;
 

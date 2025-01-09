@@ -1,6 +1,6 @@
 import { gql } from "@geist/graphql";
 import type { Attestation } from "@geist/graphql/eas/graphql";
-import { UseQueryResult, useQuery } from "@tanstack/react-query";
+import { type UseQueryResult, useQuery } from "@tanstack/react-query";
 import { rawRequest, request } from "graphql-request";
 import { type Address, Hex } from "viem";
 import { getEasscanEndpoint } from "#lib/eas/easscan";

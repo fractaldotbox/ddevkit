@@ -1,4 +1,4 @@
-import { GatewayStrategy } from "#lib/filecoin/gateway-strategy";
+import type { GatewayStrategy } from "#lib/filecoin/gateway-strategy";
 import { getLighthouseGatewayUrl } from "#lib/filecoin/lighthouse/isomorphic";
 
 export enum IpfsGateway {

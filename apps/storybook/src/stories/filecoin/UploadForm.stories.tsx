@@ -12,12 +12,16 @@ import {
 } from "@geist/ui-react/lib/filecoin/storacha/isomorphic";
 
 import { withToaster } from "../decorators/toaster";
-import { UploadFilesParams, UploadForm, UploadFormType } from "./UploadForm";
+import {
+	type UploadFilesParams,
+	UploadForm,
+	UploadFormType,
+} from "./UploadForm";
 import { uploadSuccessToast } from "./upload-toast";
 
 import config from "@geist/domain/config";
 import { IpfsGateway } from "@geist/ui-react/lib/filecoin/gateway";
-import { FileLike } from "@web3-storage/w3up-client/types";
+import type { FileLike } from "@web3-storage/w3up-client/types";
 
 const meta = {
 	title: "Filecoin/UploadForm",

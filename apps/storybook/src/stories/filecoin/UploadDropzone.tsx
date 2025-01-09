@@ -1,5 +1,6 @@
 import { Upload, X } from "lucide-react";
-import React, { useState, useRef, useCallback } from "react";
+import type React from "react";
+import { useCallback, useRef, useState } from "react";
 import { Alert, AlertDescription } from "#components/ui/alert";
 import { Button } from "#components/ui/button";
 import { Card } from "#components/ui/card";

@@ -1,7 +1,7 @@
 // Note test case at https://github.com/storacha/w3up/blob/main/packages/w3up-client/test/client.test.js
 
 import config from "@geist/domain/config";
-import { Client, create } from "@web3-storage/w3up-client";
+import { type Client, create } from "@web3-storage/w3up-client";
 import { Signer } from "@web3-storage/w3up-client/principal/ed25519";
 import * as Proof from "@web3-storage/w3up-client/proof";
 import { StoreMemory } from "@web3-storage/w3up-client/stores/memory";
