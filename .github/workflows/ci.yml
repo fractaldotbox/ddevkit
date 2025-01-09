@@ -64,6 +64,9 @@ jobs:
           name: storybook-build
           path: apps/storybook/storybook-static
 
+      - name: Build Registry
+        run: pnpm --filter ui-react build:registry
+
       # smoke test, disabled for now
       # - name: Build gql
       #   run:  pnpm --filter graphql build:gql

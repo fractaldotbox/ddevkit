@@ -71,6 +71,17 @@ export const Index: Record<string, any> = {
       subcategory: "undefined",
       chunks: []
     },
+    "attestations-table": {
+      name: "attestations-table",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: ["registry/default/components/attestations/attestations-table.tsx","registry/default/components/attestations/attestation-schema-badge.tsx","registry/default/components/data-table.tsx","registry/default/hooks/eas/use-get-attestations.ts"],
+      component: React.lazy(() => import("#registry/default/components/attestations/attestations-table.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
     "hex": {
       name: "hex",
       type: "registry:lib",

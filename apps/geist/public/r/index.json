@@ -110,5 +110,35 @@
         "type": "registry:hook"
       }
     ]
+  },
+  {
+    "name": "attestations-table",
+    "type": "registry:ui",
+    "dependencies": [
+      "viem",
+      "wagmi",
+      "@tanstack/react-table"
+    ],
+    "shadcnDependencies": [
+      "tooltip"
+    ],
+    "files": [
+      {
+        "path": "components/attestations/attestations-table.tsx",
+        "type": "registry:ui"
+      },
+      {
+        "path": "components/attestations/attestation-schema-badge.tsx",
+        "type": "registry:ui"
+      },
+      {
+        "path": "components/data-table.tsx",
+        "type": "registry:ui"
+      },
+      {
+        "path": "hooks/eas/use-get-attestations.ts",
+        "type": "registry:hook"
+      }
+    ]
   }
 ]
