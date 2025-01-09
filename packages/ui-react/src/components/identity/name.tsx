@@ -1,4 +1,4 @@
-import { AddressOrEns } from "#hooks/ens/efp";
+import type { AddressOrEns } from "#hooks/ens/efp";
 import { useEnsData } from "#hooks/ens/use-efp-api";
 
 export const Name = ({ addressOrEns }: { addressOrEns: AddressOrEns }) => {

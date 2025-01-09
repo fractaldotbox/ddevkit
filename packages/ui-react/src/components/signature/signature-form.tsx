@@ -1,6 +1,6 @@
 "use client";
 
-import { atom, useAtom } from "jotai";
+import { type atom, useAtom } from "jotai";
 import type { Hex } from "viem";
 
 import { zodResolver } from "@hookform/resolvers/zod";

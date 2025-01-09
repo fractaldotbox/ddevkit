@@ -1,5 +1,10 @@
 import { getBlock } from "viem/actions";
-import { Chain, filecoin, filecoinCalibration, mainnet } from "viem/chains";
+import {
+	type Chain,
+	filecoin,
+	filecoinCalibration,
+	mainnet,
+} from "viem/chains";
 
 export enum Explorer {
 	Blockscout = "blockscout",

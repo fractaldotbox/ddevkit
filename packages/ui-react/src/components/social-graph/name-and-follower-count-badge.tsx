@@ -3,7 +3,7 @@ import { Card, CardContent } from "#components/shadcn/card";
 import { useEnsData, useUserStats } from "#hooks/ens/use-efp-api";
 
 import { useEffect, useState } from "react";
-import { AddressOrEns } from "#hooks/ens/efp";
+import type { AddressOrEns } from "#hooks/ens/efp";
 
 export type NameWithEfpFollowerCount = { name: string; followers: number };
 

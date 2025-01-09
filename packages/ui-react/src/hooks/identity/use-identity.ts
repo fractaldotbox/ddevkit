@@ -1,4 +1,4 @@
-import { AddressOrEns } from "#hooks/ens/efp.js";
+import type { AddressOrEns } from "#hooks/ens/efp.js";
 import { useEnsData } from "#hooks/ens/use-efp-api";
 
 export enum MetadataService {

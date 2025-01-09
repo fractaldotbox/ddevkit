@@ -1,5 +1,5 @@
 import { TokenChipWithInfo } from "@geist/ui-react/components/token/token-chip-with-info";
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
 	title: "OnchainInfo/TokenChipWithInfo",

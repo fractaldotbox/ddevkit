@@ -6,11 +6,11 @@ import {
 	Account,
 	Chain,
 	Client,
-	Hex,
-	ReadContractParameters,
+	type Hex,
+	type ReadContractParameters,
 	TransactionReceipt,
 	Transport,
-	WalletClient,
+	type WalletClient,
 	createPublicClient,
 } from "viem";
 import {
@@ -21,7 +21,7 @@ import {
 import { sepolia } from "viem/chains";
 import { EAS_ABI, EAS_CONTRACT_ADDRESS } from "#lib/eas/abi";
 import { getUIDsFromAttestReceipt } from "#lib/eas/events";
-import { RevocationRequest } from "#lib/eas/request";
+import type { RevocationRequest } from "#lib/eas/request";
 import type { SchemaItem } from "#lib/eas/sdk/eas";
 
 // TODO align on offchain

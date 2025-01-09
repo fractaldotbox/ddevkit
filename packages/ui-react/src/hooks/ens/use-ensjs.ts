@@ -1,6 +1,6 @@
 import { addEnsContracts } from "@ensdomains/ensjs";
 import { batch, getName } from "@ensdomains/ensjs/public";
-import { http, Address, createPublicClient } from "viem";
+import { http, type Address, createPublicClient } from "viem";
 import { mainnet } from "viem/chains";
 
 export const createEnsClient = () => {

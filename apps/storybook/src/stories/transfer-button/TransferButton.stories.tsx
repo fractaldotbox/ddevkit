@@ -1,5 +1,5 @@
 import { TransferButton } from "@geist/ui-react/components/transfer/transfer-button";
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { useMemo, useState } from "react";
 import type { Account } from "viem";
 import { Label } from "#components/ui/label";

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useWalletClient } from "wagmi";
-import { UploadAttestationParams } from "#components/attestations/attestations";
+import type { UploadAttestationParams } from "#components/attestations/attestations";
 import { createGetAttestationWithUidQueryOptions } from "#hooks/eas/use-get-attestation-with-uid.js";
 import { useToast } from "#hooks/shadcn/use-toast";
 import {
