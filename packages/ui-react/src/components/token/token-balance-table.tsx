@@ -1,0 +1,103 @@
+import type { TransactionTableProps } from "#components/token/token-balance-entry";
+import { Explorer } from "#lib/explorer/url";
+
+import type { ColumnDef } from "@tanstack/react-table";
+import { Check, ChevronDown, ChevronUp } from "lucide-react";
+import { DataTable } from "#components/data-table";
+
+// ASSET_CROSS_CHAIN
+
+export interface TokenBalanceTableProps {
+	tokenBalances: TokenBalanceEntry[];
+	chainId?: number;
+	// explorer?: Explorer;
+	itemsPerPage?: number;
+	withPagination?: boolean;
+	withSorting?: boolean;
+}
+
+const getCols = ({
+	explorer,
+}: {
+	explorer: Explorer;
+}): ColumnDef<TokenBalanceMeta>[] => {
+	return [
+		{
+			accessorKey: "symbol",
+			header: "Symbol",
+			cell: ({ row }) => {
+				console.log("row", row, row.getValue(), row.subRows);
+				return <>{row.getValue("symbol")}</>;
+			},
+		},
+		{
+			accessorKey: "chainId",
+			header: "ChainId",
+			cell: ({ row }) => {
+				console.log("row", row, row.getValue(), row.subRows);
+				return <>{row.getValue("chainId")}</>;
+			},
+		},
+		{
+			accessorKey: "price",
+			header: "Price",
+			cell: ({ row }) => {
+				// TODO formatUnits
+				return <>${row.getValue("price")}</>;
+			},
+		},
+		{
+			accessorKey: "amount",
+			header: "Amount",
+			cell: ({ row }) => {
+				return <>{row.getValue("amount")}</>;
+			},
+		},
+		{
+			accessorKey: "value",
+			header: "Value",
+			cell: ({ row }) => {
+				return <>${row.getValue("value")}</>;
+			},
+		},
+		{
+			id: "expand",
+			header: "",
+			cell: ({ row }) => {
+				return row.getCanExpand() ? (
+					<div
+						onClick={row.getToggleExpandedHandler()}
+						style={{ cursor: "pointer" }}
+					>
+						{row.getIsExpanded() ? (
+							<ChevronUp className="h-4 w-4 shrink-0 transition-transform duration-200" />
+						) : (
+							<ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
+						)}
+					</div>
+				) : (
+					""
+				);
+			},
+		},
+	] as ColumnDef<TokenBalanceMeta>[];
+};
+
+export function TokenBalanceTable({
+	tokenBalances,
+	explorer = Explorer.Blockscout,
+}: TokenBalanceTableProps) {
+	// load and inject token info in bulk
+
+	return (
+		<div className="w-full">
+			<DataTable
+				columns={getCols({ explorer })}
+				data={tokenBalances}
+				tableConfig={{
+					getSubRows: (row) => row.subEntries,
+				}}
+			/>
+		</div>
+	);
+}
