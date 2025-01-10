@@ -126,11 +126,11 @@ export const ui: Registry = [
 			},
 			{
 				type: "registry:lib",
-				path: "libs/eas/easscan.ts",
+				path: "lib/eas/easscan.ts",
 			},
 			{
 				type: "registry:lib",
-				path: "libs/utils/hex.ts",
+				path: "lib/utils/hex.ts",
 			},
 		],
 	},

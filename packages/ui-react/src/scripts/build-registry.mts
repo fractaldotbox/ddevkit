@@ -58,12 +58,23 @@ function writeFileWithDirSync(filepath: string, data: any, options = {}) {
 // for both export path and in dependencies
 
 // TODO different at import path
-const rewriteGeistDependencyPath = (path: string) => {
-	const pathRootMatch = path.match(
-		/^(#)*(components|lib|hooks)\/(shadcn\/)*(.*)$/,
+const rewriteGeistDependencyPath = (pathInput: string) => {
+	// TODO bulk regex
+	if (pathInput.startsWith("./")) {
+		const resolved = path.relative(REGISTRY_SOURCE_PATH, pathInput);
+
+		// path input is re that file, use file path as input
+
+		console.log("relative", pathInput, REGISTRY_SOURCE_PATH, resolved);
+	}
+
+	const pathRootMatch = pathInput.match(
+		/^([?:\.\/|#])*(components|lib|hooks)\/(shadcn\/)*(.*)$/,
 	);
 
-	const alias = pathRootMatch?.[1] ? "@/" : "";
+	// console.log("relative path?", path, pathRootMatch?.[1]);
+
+	const alias = pathRootMatch?.[1] === "#" ? "@/" : "";
 
 	const modulePath =
 		pathRootMatch?.[2] === "components" ? "components/ui" : pathRootMatch?.[2];
@@ -71,7 +82,7 @@ const rewriteGeistDependencyPath = (path: string) => {
 	if (pathRootMatch?.[0]) {
 		return `${alias}${modulePath}/${pathRootMatch[4]?.replace(/\//g, "_")}`;
 	}
-	return path;
+	return pathInput;
 };
 
 // ----------------------------------------------------------------------------
