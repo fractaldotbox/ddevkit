@@ -1,4 +1,4 @@
-import type { TransactionTableProps } from "#components/token/token-balance-entry";
+import type { TokenBalanceEntry } from "#components/token/token-balance-entry";
 import { Explorer } from "#lib/explorer/url";
 
 import type { ColumnDef } from "@tanstack/react-table";
@@ -20,7 +20,7 @@ const getCols = ({
 	explorer,
 }: {
 	explorer: Explorer;
-}): ColumnDef<TokenBalanceMeta>[] => {
+}): ColumnDef<TokenBalanceEntry>[] => {
 	return [
 		{
 			accessorKey: "symbol",
@@ -80,7 +80,7 @@ const getCols = ({
 				);
 			},
 		},
-	] as ColumnDef<TokenBalanceMeta>[];
+	] as ColumnDef<TokenBalanceEntry>[];
 };
 
 export function TokenBalanceTable({

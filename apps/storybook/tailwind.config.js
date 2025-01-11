@@ -4,14 +4,11 @@ const { blackA, violet, mauve } = require("@radix-ui/colors");
 export default {
 	content: ["./src/**/*.{js,jsx,ts,tsx}", "./@/**/*.{js,jsx,ts,tsx}"],
 	safelist: [
-		"min-h-[600px]",
-		"min-w-[600px]",
-		"w-full",
 		{
-			pattern: /(min|max)-*w-.*/,
+			pattern: /(min|max)*-*w-/,
 		},
 		{
-			pattern: /(min|max)-*h-.*/,
+			pattern: /(min|max)*-*h-/,
 		},
 
 		{

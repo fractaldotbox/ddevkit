@@ -5,20 +5,11 @@
 	"type": "module",
 	"exports": {
 		".": "./src/index.ts",
-		"./*.fixture": [
-			"./src/*.fixture.ts"
-		],
-		"./*": [
-			"./src/*",
-			"./src/*.tsx",
-			"./src/*.ts"
-		]
+		"./*.fixture": ["./src/*.fixture.ts"],
+		"./*": ["./src/*", "./src/*.tsx", "./src/*.ts"]
 	},
 	"imports": {
-		"#*": [
-			"./src/*",
-			"./src/*.tsx"
-		]
+		"#*": ["./src/*", "./src/*.tsx"]
 	},
 	"scripts": {
 		"test": "vitest",

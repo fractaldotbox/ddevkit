@@ -1,39 +1,95 @@
 "use client";
-import { ChartContainer, type ChartConfig } from "#components/shadcn/chart";
-import { Bar, BarChart, CartesianGrid } from "recharts";
+
+import * as React from "react";
+import {
+	type ChartConfig,
+	ChartContainer,
+	ChartTooltip,
+	ChartTooltipContent,
+} from "#components/shadcn/chart";
+
+import { Label, Pie, PieChart } from "recharts";
+import type { TokenBalanceEntry } from "./token-balance-entry";
 
 const chartData = [
-	{ month: "January", desktop: 186, mobile: 80 },
-	{ month: "February", desktop: 305, mobile: 200 },
-	{ month: "March", desktop: 237, mobile: 120 },
-	{ month: "April", desktop: 73, mobile: 190 },
-	{ month: "May", desktop: 209, mobile: 130 },
-	{ month: "June", desktop: 214, mobile: 140 },
+	{ browser: "chrome", visitors: 275, fill: "hsl(var(--chart-1))" },
+	{ browser: "safari", visitors: 200, fill: "hsl(var(--chart-2))" },
 ];
 
 const chartConfig = {
-	desktop: {
-		label: "Desktop",
-		color: "#2563eb",
-	},
-	mobile: {
-		label: "Mobile",
-		color: "#60a5fa",
+	visitors: {
+		label: "Visitors",
 	},
 } satisfies ChartConfig;
 
-export const TokenBalanceChart = () => {
+export const TokenBalanceChart = ({
+	tokenBalances,
+}: {
+	tokenBalances: TokenBalanceEntry[];
+}) => {
+	const totalAmount = React.useMemo(() => {
+		return tokenBalances.reduce((acc, curr) => acc + curr.value! || 0, 0);
+	}, []);
+
+	const chartData = tokenBalances.map((entry, i) => {
+		return {
+			browser: entry.symbol,
+			visitors: entry.value || 0,
+			fill: `hsl(var(--chart-${i}))`,
+		};
+	});
+
 	return (
-		<div className="w-full h-full">
+		<div className="w-full h-full]">
 			<ChartContainer
 				config={chartConfig}
-				className="min-h-[600px] min-w-[600px] w-full"
+				style={{ height: "600px", width: "600px" }}
+				className="h-[600px] w-full"
 			>
-				<BarChart accessibilityLayer data={chartData}>
-					<CartesianGrid vertical={false} />
-					<Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-					<Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-				</BarChart>
+				<PieChart>
+					<ChartTooltip
+						cursor={false}
+						content={<ChartTooltipContent hideLabel />}
+					/>
+					<Pie
+						data={chartData}
+						label
+						dataKey="visitors"
+						nameKey="browser"
+						innerRadius={60}
+						strokeWidth={5}
+					>
+						<Label
+							content={({ viewBox }) => {
+								if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+									return (
+										<text
+											x={viewBox.cx}
+											y={viewBox.cy}
+											textAnchor="middle"
+											dominantBaseline="middle"
+										>
+											<tspan
+												x={viewBox.cx}
+												y={viewBox.cy}
+												className="fill-foreground text-3xl font-bold"
+											>
+												${totalAmount.toLocaleString()}
+											</tspan>
+											<tspan
+												x={viewBox.cx}
+												y={(viewBox.cy || 0) + 24}
+												className="fill-muted-foreground"
+											>
+												Balance
+											</tspan>
+										</text>
+									);
+								}
+							}}
+						/>
+					</Pie>
+				</PieChart>
 			</ChartContainer>
 		</div>
 	);
