@@ -1,5 +1,6 @@
 import type { Address } from "viem";
 import { asCaip19Id } from "./cross-chain";
+import type { TokenPriceEntry } from "./token-price-entry";
 
 export type Token = {
 	address?: Address;

@@ -1,12 +1,7 @@
-import * as React from "react";
-import {
-	type ChartConfig,
-	ChartContainer,
-	ChartTooltip,
-	ChartTooltipContent,
-} from "#components/shadcn/chart";
-
 import { asCaip19Id } from "@geist/domain/token/cross-chain.js";
+import type { TokenPriceEntry } from "@geist/domain/token/token-price-entry";
+import { format, isSameHour } from "date-fns";
+import * as React from "react";
 import {
 	Area,
 	AreaChart,
@@ -16,33 +11,73 @@ import {
 	XAxis,
 } from "recharts";
 import { type Address, type Chain, ChainDisconnectedError } from "viem";
-import type { TokenPriceEntry } from "./token-price-entry";
+import {
+	type ChartConfig,
+	ChartContainer,
+	ChartTooltip,
+	ChartTooltipContent,
+} from "#components/shadcn/chart";
+
+// Alternatively s3 scale
+// https://github.com/recharts/recharts/blob/master/storybook/stories/Examples/TimeSeries.stories.tsx#L97
+
+const filterIntegralTicks = (ticks) => {
+	return ticks.filter((tick, index, array) => {
+		if (index === 0 || index === array.length - 1) {
+			return true;
+		}
+		const prevTick = array[index - 1];
+		const nextTick = array[index + 1];
+		const tickDate = new Date(tick);
+		const prevTickDate = new Date(prevTick);
+		const nextTickDate = new Date(nextTick);
+
+		return (
+			!isSameHour(tickDate, prevTickDate) && !isSameHour(tickDate, nextTickDate)
+		);
+	});
+};
+
+// TODO
+export type TokenInfo = unknown;
 
 export const TokenPriceChartWithFeed = ({
-	tokenPriceFeed,
+	tokenPriceFeedByTokenId,
+	tokenInfoByTokenId,
 }: {
-	tokenPriceFeed: TokenPriceEntry[];
+	tokenPriceFeedByTokenId: { [tokenId: string]: TokenPriceEntry[] };
+	tokenInfoByTokenId: Record<string, TokenInfo>;
 }) => {
-	const chartConfig = {
-		ethereum: {
-			label: "Ethereum",
-			color: "hsl(var(--chart-1))",
-		},
-	} satisfies ChartConfig;
+	const tokenIds = Object.keys(tokenPriceFeedByTokenId || {});
 
-	// const chartData = tokenPriceFeed.map((entry, i) => {
-	// 	return {
-	// 		browser: entry.symbol,
-	// 		visitors: entry.value || 0,
-	// 		fill: `hsl(var(--chart-${i}))`,
-	// 	};
-	// });
-	const chartData = [
-		{ date: "2024-04-01", ethereum: 222 },
-		{ date: "2024-04-02", ethereum: 97 },
-		{ date: "2024-04-03", ethereum: 167 },
-		{ date: "2024-04-04", ethereum: 242 },
-	];
+	const chartData = Object.values(
+		Object.entries(tokenPriceFeedByTokenId || {}).reduce(
+			(acc, [tokenId, entries]) => {
+				entries.forEach((entry) => {
+					const date = format(entry.happenAt * 1000, "yyyy-MM-dd HH:MM");
+
+					acc[date] = acc[date] || {
+						date,
+					};
+
+					acc[date][tokenId] = entry.price || 0;
+				});
+				return acc;
+			},
+			{},
+		),
+	);
+
+	const chartConfig = Object.keys(tokenPriceFeedByTokenId).reduce(
+		(acc, tokenId, i) => {
+			console.log("tokenId", tokenId, acc);
+			acc[tokenId] = {
+				label: tokenInfoByTokenId[tokenId]?.symbol,
+			};
+			return acc;
+		},
+		{},
+	) satisfies ChartConfig;
 
 	return (
 		<div className="w-full h-full]">
@@ -60,23 +95,33 @@ export const TokenPriceChartWithFeed = ({
 				>
 					<CartesianGrid vertical={false} />
 					<XAxis
-						dataKey="month"
+						dataKey="date"
 						tickLine={false}
 						axisLine={false}
 						tickMargin={8}
-						tickFormatter={(value) => value.slice(0, 3)}
+						minTickGap={32}
+						// ticks={filterIntegralTicks([chartData.map(d => d.date)])}
+						tickFormatter={(value) => {
+							const date = new Date(value);
+
+							return format(date, "HH:MM");
+						}}
 					/>
 					<ChartTooltip
 						cursor={false}
 						content={<ChartTooltipContent hideLabel />}
 					/>
-					<Line
-						dataKey="ethereum"
-						type="natural"
-						stroke="var(--color-ethereum)"
-						strokeWidth={2}
-						dot={false}
-					/>
+					{tokenIds.map((dataKey, i) => {
+						return (
+							<Line
+								dataKey={dataKey}
+								type="natural"
+								stroke={`hsl(var(--chart-${i + 1}))`}
+								strokeWidth={2}
+								dot={false}
+							/>
+						);
+					})}
 				</LineChart>
 			</ChartContainer>
 		</div>

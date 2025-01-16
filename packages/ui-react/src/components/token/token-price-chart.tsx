@@ -9,10 +9,11 @@ import {
 } from "#components/shadcn/chart";
 
 import { asCaip19Id } from "@geist/domain/token/cross-chain.js";
+import type { TokenPriceEntry } from "@geist/domain/token/token-price-entry.js";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import type { Address, Chain } from "viem";
+import { useGetPriceWithMultipleTokenIds } from "#hooks/data/use-defillama.js";
 import { TokenPriceChartWithFeed } from "./token-price-chart-with-feed";
-import type { TokenPriceEntry } from "./token-price-entry";
 
 const chartConfig = {
 	visitors: {
@@ -23,28 +24,19 @@ const chartConfig = {
 export const TokenPriceChart = ({
 	chain,
 	address,
-	tokenPriceFeed,
 }: {
 	chain: Chain;
 	address: Address;
-	tokenPriceFeed: TokenPriceEntry[];
 }) => {
-	// const chartData = tokenPriceFeed.map((entry, i) => {
-	// 	return {
-	// 		browser: entry.symbol,
-	// 		visitors: entry.value || 0,
-	// 		fill: `hsl(var(--chart-${i}))`,
-	// 	};
-	// });
+	const { data: tokenPriceFeedByTokenId } = useGetPriceWithMultipleTokenIds(
+		"ethereum:0xdF574c24545E5FfEcb9a659c229253D4111d87e1",
+	);
 
-	const capi19Id = asCaip19Id(chain.id, address);
+	console.log("tokenPriceFeed", tokenPriceFeedByTokenId);
 
-	const chartData = [
-		{ date: "2024-04-01", desktop: 222, mobile: 150 },
-		{ date: "2024-04-02", desktop: 97, mobile: 180 },
-		{ date: "2024-04-03", desktop: 167, mobile: 120 },
-		{ date: "2024-04-04", desktop: 242, mobile: 260 },
-	];
-
-	return <TokenPriceChartWithFeed tokenPriceFeed={[]} />;
+	return (
+		<TokenPriceChartWithFeed
+			tokenPriceFeedByTokenId={tokenPriceFeedByTokenId}
+		/>
+	);
 };

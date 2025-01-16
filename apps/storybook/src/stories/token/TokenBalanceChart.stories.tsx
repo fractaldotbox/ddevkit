@@ -4,7 +4,7 @@ import {
 } from "@geist/domain/token/cross-chain";
 import { asTokenBalanceEntries } from "@geist/domain/token/token";
 import {
-	PRICE_DATA,
+	PRICE_DATA_SNAPSHOT,
 	TOKEN_BALANCES_MULTIPLE_STABLECOINS,
 } from "@geist/domain/token/token-balance.fixture";
 import { TokenBalanceChart } from "@geist/ui-react/components/token/token-balance-chart";
@@ -28,7 +28,7 @@ export const ByCrosschainToken: Story = {
 	args: {
 		tokenBalances: asTokenBalanceEntries(
 			groupCrosschainTokens(TOKEN_BALANCES_MULTIPLE_STABLECOINS),
-			PRICE_DATA,
+			PRICE_DATA_SNAPSHOT,
 		),
 	},
 };

@@ -1,8 +1,33 @@
 // TODO cross-check blockscout
 
+import { faker } from "@faker-js/faker";
+import { subHours } from "date-fns";
+import type { TokenPriceEntry } from "./token-price-entry";
+
 // TODO decimal based
 // TODO confirm price modelfor cross-chain assets
-export const PRICE_DATA = [
+
+export const PRICE_DATA_FEED = [
+	{ happenAt: 1664364295, price: 0.9935534119681249 },
+	{ happenAt: 1664451015, price: 0.9945405382806103 },
+	{ happenAt: 1664537423, price: 0.9914483744619215 },
+	{ happenAt: 1664623579, price: 0.9931501362122901 },
+	{ happenAt: 1664709926, price: 0.9885029770209419 },
+	{ happenAt: 1664796631, price: 0.9965279854794221 },
+	{ happenAt: 1664883123, price: 0.9914113855913221 },
+] as TokenPriceEntry[];
+
+export const generatePriceDataFeed = (
+	count: number,
+	endTime: Date,
+): TokenPriceEntry[] => {
+	return Array.from({ length: count }).map((_, i) => ({
+		happenAt: subHours(endTime, i).getTime() / 1000,
+		price: parseFloat(faker.finance.amount({ min: 5, max: 10, dec: 2 })),
+	}));
+};
+
+export const PRICE_DATA_SNAPSHOT = [
 	{
 		chainId: "1",
 		symbol: "USDC",

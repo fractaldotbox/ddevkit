@@ -1,6 +1,7 @@
 import { TokenPriceChart } from "@geist/ui-react/components/token/token-price-chart";
 import type { Meta, StoryObj } from "@storybook/react";
 import { mainnet } from "viem/chains";
+import { withWagmiProvider } from "#stories/decorators/wagmi.tsx";
 
 const meta = {
 	title: "Token/TokenPriceChart",
@@ -9,7 +10,7 @@ const meta = {
 		layout: "centered",
 	},
 	args: {},
-	decorators: [],
+	decorators: [withWagmiProvider()],
 } satisfies Meta<typeof TokenPriceChart>;
 
 export default meta;
@@ -19,6 +20,7 @@ type Story = StoryObj<typeof meta>;
 export const Ethereum: Story = {
 	args: {
 		chain: mainnet,
-		tokenAddress: "0xdF574c24545E5FfEcb9a659c229253D4111d87e1",
+		tokenIds:
+			"eip155:1/erc20:0x6b175474e89094c44da98b954eedeac495271d0f,eip155:1/erc20:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
 	},
 };
