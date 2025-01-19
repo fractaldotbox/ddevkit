@@ -4,9 +4,9 @@ import { useQuery } from "@tanstack/react-query";
 import { rawRequest } from "graphql-request";
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
-import { z, ZodNumber } from "zod";
-import { getEasscanEndpoint } from "#lib/eas/easscan.js";
 import { Address } from "viem";
+import { ZodNumber, z } from "zod";
+import { getEasscanEndpoint } from "#lib/eas/easscan.js";
 
 type SchemaByQuery = any;
 
