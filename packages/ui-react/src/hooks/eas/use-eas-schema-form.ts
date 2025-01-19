@@ -6,6 +6,7 @@ import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { z, ZodNumber } from "zod";
 import { getEasscanEndpoint } from "#lib/eas/easscan.js";
+import { Address } from "viem";
 
 type SchemaByQuery = any;
 
@@ -36,6 +37,32 @@ export const getZodSchemaFromSchemaString = (schemaString: string) => {
 	}
 
 	return z.object(zodSchemaObject);
+};
+
+// function to get submission data that is attestation-ready
+export const getSubmissionData = (schemaString: string, values: any) => {
+	const stringPairs = schemaString.split(",");
+	const entries = stringPairs.map((pair) => pair.split(" "));
+
+	const result: {
+		name: string;
+		value: string | boolean | number | bigint;
+		type: string;
+	}[] = [];
+
+	for (const entry of entries) {
+		const [type = "", name = ""] = entry;
+
+		const resultEntry = {
+			name,
+			value: values[name],
+			type,
+		};
+
+		result.push(resultEntry);
+	}
+
+	return result;
 };
 
 const schemaByQuery = gql(`
@@ -79,7 +106,12 @@ export function useEasSchemaForm({
 				},
 			);
 
-			return data.schema;
+			return data.schema as {
+				schemaString: string;
+				index: string;
+				revocable: true;
+				creator: Address;
+			};
 		},
 		enabled: !!isEnabled && !!schemaId,
 	});

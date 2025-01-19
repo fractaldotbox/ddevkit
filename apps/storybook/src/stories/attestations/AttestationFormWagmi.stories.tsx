@@ -23,7 +23,6 @@ const AttestationFormWagmi = ({
 	isOffchain,
 	schemaString,
 	chain,
-	data,
 	attestData,
 }: {
 	schemaId: string;
@@ -32,7 +31,6 @@ const AttestationFormWagmi = ({
 	isOffchain: boolean;
 	schemaString: string;
 	chain: Chain;
-	data: any;
 	attestData: Omit<AttestationRequestData, "recipient">;
 }) => {
 	if (!account) {
@@ -57,10 +55,10 @@ const AttestationFormWagmi = ({
 			schemaId={schemaId}
 			schemaIndex={schemaIndex}
 			isOffchain={isOffchain}
-			signAttestation={async () =>
+			signAttestation={async (values: any) =>
 				signAttestation({
 					...attestData,
-					data,
+					data: values,
 					recipient,
 					// attester: account.address,
 				})

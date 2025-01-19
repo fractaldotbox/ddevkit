@@ -1,6 +1,9 @@
 import { getRandomAddress } from "@geist/domain/user.fixture";
 import { describe, expect, it } from "vitest";
-import { getZodSchemaFromSchemaString } from "./use-eas-schema-form";
+import {
+	getSubmissionData,
+	getZodSchemaFromSchemaString,
+} from "./use-eas-schema-form";
 
 describe("use-schema-eas-form", () => {
 	describe("#getZodSchemaFromSchemaString", () => {
@@ -75,6 +78,27 @@ describe("use-schema-eas-form", () => {
 				message: "hello world",
 				characters: ["tony", "alice", "vitalik"],
 			});
+		});
+	});
+
+	describe("#getSubmissionData", () => {
+		it("happy flow", () => {
+			const data = getSubmissionData(
+				"address walletAddress,string requestId,bool hasClaimedNFT,string message",
+				{
+					walletAddress: "0x123",
+					requestId: "abcdef",
+					hasClaimedNFT: false,
+					message: "test",
+				},
+			);
+
+			expect(data).toEqual([
+				{ name: "walletAddress", value: "0x123", type: "address" },
+				{ name: "requestId", value: "abcdef", type: "string" },
+				{ name: "hasClaimedNFT", value: false, type: "bool" },
+				{ name: "message", value: "test", type: "string" },
+			]);
 		});
 	});
 });

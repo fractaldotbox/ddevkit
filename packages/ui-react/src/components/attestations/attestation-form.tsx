@@ -13,7 +13,10 @@ import {
 } from "#components/shadcn/form";
 import { Input } from "#components/shadcn/input";
 import { ToastAction } from "#components/shadcn/toast";
-import { useEasSchemaForm } from "#hooks/eas/use-eas-schema-form";
+import {
+	getSubmissionData,
+	useEasSchemaForm,
+} from "#hooks/eas/use-eas-schema-form";
 import { toast } from "#hooks/shadcn/use-toast";
 import { getEasscanAttestationUrl } from "#lib/eas/easscan";
 import { getShortHex } from "#lib/utils/hex";
@@ -24,7 +27,7 @@ export interface AttestationFormParams {
 	schemaId: string;
 	schemaIndex?: string;
 	isOffchain: boolean;
-	signAttestation: () => Promise<any>;
+	signAttestation: (values: any) => Promise<any>;
 }
 
 export const AttestationForm = ({
@@ -40,26 +43,30 @@ export const AttestationForm = ({
 	});
 
 	function onSubmit(values: z.infer<typeof formSchema>) {
-		signAttestation().then(({ uids, txnReceipt }: any) => {
-			const [uid] = uids;
-			const url = getEasscanAttestationUrl(chainId, uid, isOffchain);
+		if (!!schemaDetails)
+			signAttestation(
+				getSubmissionData(schemaDetails.schemaString, values),
+			).then(({ uids, txnReceipt }: any) => {
+				console.log({ uids, txnReceipt });
+				const [uid] = uids;
+				const url = getEasscanAttestationUrl(chainId, uid, isOffchain);
 
-			const description = isOffchain
-				? getShortHex(uid)
-				: `attested ${txnReceipt?.transactionHash}`;
+				const description = isOffchain
+					? getShortHex(uid)
+					: `attested ${txnReceipt?.transactionHash}`;
 
-			toast({
-				title: "Attestation success",
-				description,
-				action: (
-					<ToastAction altText="View on EASSCAN">
-						<a target="_blank" href={url}>
-							View on EASSCAN
-						</a>
-					</ToastAction>
-				),
+				toast({
+					title: "Attestation success",
+					description,
+					action: (
+						<ToastAction altText="View on EASSCAN">
+							<a target="_blank" href={url}>
+								View on EASSCAN
+							</a>
+						</ToastAction>
+					),
+				});
 			});
-		});
 	}
 
 	// TODO: array schema handling

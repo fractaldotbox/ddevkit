@@ -60,17 +60,17 @@ const AttestationFormEasSdk = ({
 			schemaId={schemaId}
 			schemaIndex={schemaIndex}
 			isOffchain={isOffchain}
-			signAttestation={async (): Promise<any> => {
+			signAttestation={async (values: any): Promise<any> => {
 				// TODO fix encode data structure
 				const now = BigInt(Date.now());
 
-				const { recipient, revocable, expirationTime, refUID, data, salt } =
+				const { recipient, revocable, expirationTime, refUID, salt } =
 					requestTemplate;
 
 				return signAttestation({
 					...requestTemplate,
 					recipient,
-					data,
+					data: values,
 					time: now,
 				});
 			}}
@@ -95,6 +95,7 @@ const createArgs = (schema: any, chain: Chain, fixture: any) => {
 	const { schemaString, byChain } = schema;
 	const { uid, index } = byChain[chain.id];
 	const { data, attestData } = fixture;
+
 	return {
 		chainId: chain.id,
 		privateKey: BY_USER.user.privateKey,
@@ -143,11 +144,15 @@ export const OffchainSepolia: Story = {
 };
 
 // Until dynamic form
-// export const OffchainVote: Story = {
-// 	args: {
-// 		isOffchain: true,
-// 		...createArgs(SCHEMA_BY_NAME.VOTE, sepolia.id),
-// 		...SCHEMA_BY_NAME.VOTE.byFixture.vote,
-// 	},
-// 	decorators: [],
-// };
+export const OffchainVote: Story = {
+	args: {
+		isOffchain: true,
+		...createArgs(
+			SCHEMA_BY_NAME.VOTE,
+			sepolia,
+			SCHEMA_BY_NAME.VOTE.byFixture.vote,
+		),
+		...SCHEMA_BY_NAME.VOTE.byFixture.vote,
+	},
+	decorators: [],
+};
