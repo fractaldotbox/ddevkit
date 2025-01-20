@@ -1,22 +1,40 @@
+import { asCaip19Id } from "@geist/domain/token/cross-chain.js";
 import { mainnet } from "viem/chains";
 import { describe, expect, it } from "vitest";
-import { asCoinId, getChart, getPrices } from "./api";
+import { asDefillamaTokenId, getChart, getPrices } from "./api";
 
 describe("defillama api", () => {
 	it("#prices of coins", async () => {
-		const prices = await getPrices(
-			"ethereum:0xdF574c24545E5FfEcb9a659c229253D4111d87e1,coingecko:ethereum,bsc:0x762539b45a1dcce3d36d080f74d1aed37844b878,ethereum:0xdB25f211AB05b1c97D595516F45794528a807ad8",
+		const tokens = [
+			{
+				chainId: mainnet.id,
+				address: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+			},
+			{
+				// https://eips.ethereum.org/EIPS/eip-7528
+				chainId: mainnet.id,
+				address: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+			},
+		];
+		const priceByTokenId = await getPrices(tokens);
+
+		const caip19Ids = tokens.map(
+			asCaip19Id
 		);
 
-		expect(prices.coins["coingecko:ethereum"]).toBeDefined();
+		expect(priceByTokenId[caip19Ids[0]]![0].happenAt).toBeDefined();
+		console.log("prices", priceByTokenId);
 	});
-	it("#chart", async () => {
-		const coinId = asCoinId({
-			chain: mainnet,
-			address: "0xdF574c24545E5FfEcb9a659c229253D4111d87e1",
-		});
-		const chart = await getChart(coinId);
+	it("#getChart", async () => {
+		const tokens = [
+			{
+				chainId: mainnet.id,
+				address: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+			},
+		];
+		const pricesByTokenId = await getChart(tokens);
 
-		console.log("chart", chart.coins[coinId].prices);
+		const tokenId = asCaip19Id(tokens[0]);
+		expect(pricesByTokenId[tokenId][0].happenAt).toBeDefined();
 	});
 });

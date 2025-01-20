@@ -32,8 +32,3 @@ export const ByCrosschainToken: Story = {
 		),
 	},
 };
-
-// export const ByChain: Story = {
-// 	args: {
-// 	},
-// };

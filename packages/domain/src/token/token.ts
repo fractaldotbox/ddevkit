@@ -1,4 +1,4 @@
-import type { Address } from "viem";
+import type { Address, Chain } from "viem";
 import { asCaip19Id } from "./cross-chain";
 import type { TokenPriceEntry } from "./token-price-entry";
 
@@ -10,6 +10,12 @@ export type Token = {
 	symbol: string;
 	type?: string;
 };
+
+
+export type TokenSelector = { 
+	chainId: number;
+	address: string
+ };
 
 // TODO if price not available
 export const asPriceValue = (amount, price) => {
@@ -24,9 +30,9 @@ export const asTokenBalanceEntries = (tokenGroup, priceData) => {
 		([symbol, { meta, amount, tokenBalances = [] }]) => {
 			const subEntries = tokenBalances.map(
 				({ chainId, address, symbol, amount }) => {
-					const tokenId = asCaip19Id(chainId, address);
+					const tokenId = asCaip19Id({chainId, address});
 					const price = priceData.find(
-						({ chainId, address }) => asCaip19Id(chainId, address) === tokenId,
+						({ chainId, address }) => asCaip19Id( { chainId, address }) === tokenId,
 					)?.price;
 
 					console.log("price", price, tokenId);

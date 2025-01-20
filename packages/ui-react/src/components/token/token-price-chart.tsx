@@ -12,8 +12,12 @@ import { asCaip19Id } from "@geist/domain/token/cross-chain.js";
 import type { TokenPriceEntry } from "@geist/domain/token/token-price-entry.js";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import type { Address, Chain } from "viem";
-import { useGetPriceWithMultipleTokenIds } from "#hooks/data/use-defillama.js";
+import {
+	useGetChartWithMultipleTokens,
+	useGetPriceWithMultipleTokenIds,
+} from "#hooks/data/use-defillama.js";
 import { TokenPriceChartWithFeed } from "./token-price-chart-with-feed";
+import type { TokenSelector } from "@geist/domain/token/token.js";
 
 const chartConfig = {
 	visitors: {
@@ -23,20 +27,30 @@ const chartConfig = {
 
 export const TokenPriceChart = ({
 	chain,
-	address,
+	tokens,
+	tokenInfoByTokenId,
 }: {
 	chain: Chain;
-	address: Address;
+	tokens: TokenSelector[];
+	tokenInfoByTokenId: Record<string, { symbol: string }>;
 }) => {
-	const { data: tokenPriceFeedByTokenId } = useGetPriceWithMultipleTokenIds(
-		"ethereum:0xdF574c24545E5FfEcb9a659c229253D4111d87e1",
-	);
+	const {
+		data: tokenPriceFeedByTokenId,
+		isLoading,
+		isSuccess,
+		error,
+	} = useGetChartWithMultipleTokens(tokens);
 
-	console.log("tokenPriceFeed", tokenPriceFeedByTokenId);
+	// TODO load tokenInfoByTokenId
 
-	return (
+	console.log('data',isSuccess,error, tokenPriceFeedByTokenId);
+
+	return isLoading ? (
+		<div>Loading...</div>
+	) : (
 		<TokenPriceChartWithFeed
-			tokenPriceFeedByTokenId={tokenPriceFeedByTokenId}
+			tokenPriceFeedByTokenId={tokenPriceFeedByTokenId || {}}
+			tokenInfoByTokenId={tokenInfoByTokenId}
 		/>
 	);
 };

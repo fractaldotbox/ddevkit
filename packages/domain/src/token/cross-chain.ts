@@ -1,5 +1,7 @@
 // TODO db based
 
+import type { TokenSelector } from "./token";
+
 // consider main chain as canonical asset
 
 // TODO chainIdCaip19 CAIP-19 eip155: prefix
@@ -51,9 +53,12 @@ export const TOKEN_CROSS_CHAIN = [
 	},
 ];
 
-export const asCaip19Id = (chainId: string, address: string) => {
-	return `eip155:${chainId}/erc20:${address}`;
+export const asCaip19Id = (token: TokenSelector) => {
+
+	return `eip155:${token.chainId}/erc20:${token.address}`;
 };
+
+
 
 export const groupCrosschainTokens = (tokenBalances: any[]) => {
 	const grouped = Object.groupBy(tokenBalances, (tokenBalance) => {

@@ -1,42 +1,73 @@
+import { asCaip19Id } from "@geist/domain/token/cross-chain.js";
 import ky, { type DownloadProgress } from "ky";
 import type { Chain } from "viem";
 import type { TokenPriceEntry } from "#components/token/token-price-entry.js";
+import type { TokenSelector } from "@geist/domain/token/token.js";
+import { resolveChainById } from "@geist/domain/chain/chain-resolver.js";
 
 const ENDPOINT = "https://api.llama.fi";
 const ENDPOINT_COINS = "https://coins.llama.fi";
 
-export const asCoinId = ({
-	chain,
+export const asDefillamaTokenId = ({
+	chainId,
 	address,
 }: {
-	chain: Chain;
+	chainId: number;
 	address: string;
-}) => `${chain.name.toLowerCase()}:${address}`;
+}) =>{
+	const chain = resolveChainById(chainId);
+	return `${chain?.name?.toLowerCase()}:${address}`;
+}
 
 export type DefillamaPriceEntry = { timestamp: number; price: number };
 
+// TODO support specify e.g. coingecko:ethereum for defillama
+
+
+export const asTokensByDefillamaTokenId = (tokens: TokenSelector[]) => {
+	return Object.fromEntries(
+		tokens.map((token) => [
+			asDefillamaTokenId(token),
+			{ ...token, id: asCaip19Id(token) },
+		]),
+	);
+};
+
+// TODO fix result type
+
 export async function getPrices(
-	tokenIds: string,
+	tokens: TokenSelector[],
 ): Promise<{ [tokenId: string]: TokenPriceEntry[] }> {
+	const byTokenId = asTokensByDefillamaTokenId(tokens);
+
+	const tokenIds = Object.keys(byTokenId);
+
 	const response = await ky(
 		`${ENDPOINT_COINS}/prices/current/${tokenIds}?` +
 			new URLSearchParams({
 				searchWidth: "4h",
 			}).toString(),
 	);
-	const priceDataByTokenId = await response.json();
+	const results = await response.json<{
+		coins: { [tokenId: keyof typeof byTokenId]: TokenPriceEntry[] };
+	}>();
 
+	// TODO get longer timestamps
+	const priceDataByTokenId = results?.coins;
 	return Object.fromEntries(
-		Object.entries(
-			priceDataByTokenId as Record<string, DefillamaPriceEntry[]>,
-		).map(([tokenId, priceData]) => {
-			return [tokenId, priceData.map(asTokenPriceEntry)];
+		Object.entries(priceDataByTokenId).map(([tokenId, priceData]) => {
+			return [byTokenId[tokenId]!.id, [asTokenPriceEntry(priceData)]];
 		}),
 	);
 }
 
-export async function getChart(tokenIds: string) {
-	console.log(tokenIds);
+export async function getChart(
+	tokens: TokenSelector[],
+): Promise<{ [tokenId: string]: TokenPriceEntry[] }> {
+	const byTokenId = asTokensByDefillamaTokenId(tokens);
+
+	const tokenIds = Object.keys(byTokenId);
+
 	const response = await ky(
 		`${ENDPOINT_COINS}/chart/${tokenIds}?` +
 			new URLSearchParams({
@@ -46,7 +77,22 @@ export async function getChart(tokenIds: string) {
 				// searchWidth: "600",
 			}).toString(),
 	);
-	return await response.json();
+	const results = await response.json<{
+		coins: {
+			[tokenId: keyof typeof byTokenId]: {
+				symbol: string;
+				prices: { timestamp: number; price: number }[];
+			};
+		};
+	}>();
+	
+	return Object.fromEntries(
+		Object.entries(results.coins).map(([tokenId, priceData]) => {
+			const { prices, symbol } = priceData;
+			console.log(tokenId, byTokenId, priceData);
+			return [byTokenId[tokenId]!.id, prices.map(asTokenPriceEntry)];
+		}),
+	);
 }
 
 export async function getProtocols() {
