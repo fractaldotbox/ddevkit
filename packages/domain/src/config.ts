@@ -36,4 +36,7 @@ export default {
 	pimlico: {
 		apiKey: process.env.PIMLICO_API_KEY,
 	},
+	privy: {
+		appId: process.env.PRIVY_APP_ID,
+	},
 };

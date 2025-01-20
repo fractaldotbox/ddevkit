@@ -1,6 +1,13 @@
-import { usePrivy, useWallets } from "@privy-io/react-auth";
+import {
+	type ConnectedWallet,
+	usePrivy,
+	useWallets,
+} from "@privy-io/react-auth";
 import { useSetActiveWallet } from "@privy-io/wagmi";
-import { SmartAccountClient, createSmartAccountClient } from "permissionless";
+import {
+	type SmartAccountClient,
+	createSmartAccountClient,
+} from "permissionless";
 import { toSimpleSmartAccount } from "permissionless/accounts";
 import { useEffect, useMemo, useState } from "react";
 import { zeroAddress } from "viem";
@@ -87,12 +94,13 @@ export function PrivyAAFlow() {
 			{!isAuthenticated && <Button onClick={login}>Sign in with Privy</Button>}
 
 			{isWalletsReady &&
-				wallets.map((wallet) => {
+				wallets.map((wallet: ConnectedWallet) => {
 					return (
 						<Button
 							key={wallet.address}
-							onClick={() => {
-								setActiveWallet(wallet);
+							onClick={async () => {
+								// @ts-ignore
+								await setActiveWallet(wallet);
 							}}
 						>
 							Make active: {wallet.address}

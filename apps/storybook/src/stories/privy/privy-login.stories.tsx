@@ -1,3 +1,4 @@
+import config from "@geist/domain/config";
 import {
 	PrivyLogin,
 	PrivyLoginProvider,
@@ -33,6 +34,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	args: {
-		appId: "cm2vi1gua0aukbq4p69w3rphl",
+		appId: config.privy.appId!,
 	},
 };

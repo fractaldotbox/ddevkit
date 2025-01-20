@@ -1,5 +1,6 @@
 import { type PrivyClientConfig, PrivyProvider } from "@privy-io/react-auth";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { WagmiProvider, createConfig } from "@privy-io/wagmi";
+import { type QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
 	type PimlicoClient,
 	createPimlicoClient,
@@ -13,11 +14,14 @@ import {
 import { http } from "viem";
 import { entryPoint07Address } from "viem/account-abstraction";
 import { sepolia } from "viem/chains";
-import { WagmiProvider, createConfig } from "wagmi";
+import type { Config } from "wagmi";
 import { generatePimlicoRpcUrl } from "./utils";
 
 interface PrivyAAContextProps {
 	appId: string;
+	privyConfig: any;
+	wagmiConfig: Config;
+	queryClient: QueryClient;
 }
 
 interface PrivyAAContext {
@@ -26,7 +30,7 @@ interface PrivyAAContext {
 	pimlicoRpcUrl: string;
 }
 
-const privyConfig: PrivyClientConfig = {
+const PRIVY_CONFIG_DEFAULT: PrivyClientConfig = {
 	embeddedWallets: {
 		createOnLogin: "users-without-wallets",
 		requireUserPasswordOnCreate: true,
@@ -38,27 +42,17 @@ const privyConfig: PrivyClientConfig = {
 	},
 };
 
-const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			refetchOnWindowFocus: false,
-		},
-	},
-});
-
-const wagmiConfig = createConfig({
-	chains: [sepolia],
-	transports: {
-		[sepolia.id]: http(),
-	},
-});
-
 const PrivyAAContext = createContext<PrivyAAContext>(undefined as never);
 
 export function PrivyAAProvider({
 	children,
 	appId,
+	privyConfig = {},
+	wagmiConfig,
+	queryClient,
 }: PropsWithChildren<PrivyAAContextProps>) {
+	const config = { ...PRIVY_CONFIG_DEFAULT, ...privyConfig };
+	// TODO remove chain hardcode
 	const pimlicoRpcUrl = generatePimlicoRpcUrl(sepolia.id);
 
 	const [pimlicoClient] = useState(
@@ -73,7 +67,7 @@ export function PrivyAAProvider({
 
 	return (
 		<PrivyAAContext.Provider value={{ appId, pimlicoClient, pimlicoRpcUrl }}>
-			<PrivyProvider appId={appId} config={privyConfig}>
+			<PrivyProvider appId={appId} config={config}>
 				<QueryClientProvider client={queryClient}>
 					<WagmiProvider config={wagmiConfig} reconnectOnMount={false}>
 						{children}
