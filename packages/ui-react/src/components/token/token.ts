@@ -12,12 +12,12 @@
  */
 
 import { resolveProductionChain } from "@geist/domain/chain/chain-resolver";
+import type { TokenSelector } from "@geist/domain/token/token";
 // import { useReadContracts } from "wagmi";
 import { type Config, readContracts } from "@wagmi/core";
 import { useEffect, useState } from "react";
 import { type Address, type Chain, erc20Abi } from "viem";
 import { asTrustWalletChainName } from "#lib/trustwallet-chain";
-import type { TokenSelector } from "@geist/domain/token/token";
 
 /**
  * trustwallet/assets does not contains most testnet, always fallback to mainnet
@@ -39,45 +39,46 @@ export const getTrustWalletIconUrl = (chain: Chain, address?: Address) => {
 	return `${ROOT}/${twChainName}/assets/${address}/logo.png`;
 };
 
-const chunk = <T>(arr: T[], size: number): T[][] => 
-	Array.from({ length: Math.ceil(arr.length / size) }, 
-		(_, i) => arr.slice(i * size, i * size + size));
+const chunk = <T>(arr: T[], size: number): T[][] =>
+	Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
+		arr.slice(i * size, i * size + size),
+	);
 
+export const fetchTokenInfoBulkAction =
+	(config: Config) => async (tokens: TokenSelector[]) => {
+		const selectors = [
+			{
+				functionName: "name",
+			},
+			{
+				functionName: "decimals",
+			},
+			{
+				functionName: "symbol",
+			},
+			{
+				functionName: "totalSupply",
+			},
+		];
+		const results = await readContracts(config, {
+			batchSize: 10,
+			allowFailure: false,
+			contracts: tokens.flatMap((token) => {
+				const address = token.address as Address;
 
-export const fetchTokenInfoBulkAction = (config : Config) => async (tokens: TokenSelector[]) => {
-	const selectors = [
-		{
-			functionName: "name",
-		},
-		{
-			functionName: "decimals",
-		},
-		{
-			functionName: "symbol",
-		},
-		{
-			functionName: "totalSupply",
-		}
-	];
-	const results = await readContracts(config, {
-		batchSize: 10,
-		allowFailure: false,
-		contracts: tokens.flatMap(token=>{
-			const address = token.address as Address;
+				return selectors.map((selector) => ({
+					address,
+					abi: erc20Abi,
+					...selector,
+				}));
+			}),
+		});
 
-
-
-			return (selectors.map((selector) => ({ address, abi: erc20Abi, ...selector  })))
-		})
-	});
-
-
-    const chunkedResults = chunk(results, 4)
-        .reduce((acc, chunk, idx) => {
-			console.log('idx', chunk, idx)
+		const chunkedResults = chunk(results, 4).reduce((acc, chunk, idx) => {
+			console.log("idx", chunk, idx);
 			const [name, decimals, symbol, totalSupply] = chunk;
 			const address = tokens[idx % 4]!.address;
-			console.log('address', address, acc)
+			console.log("address", address, acc);
 			return {
 				...acc,
 				[address]: {
@@ -85,55 +86,43 @@ export const fetchTokenInfoBulkAction = (config : Config) => async (tokens: Toke
 					decimals,
 					symbol,
 					totalSupply,
-				}
-			}
-		}, {}
-	);
+				},
+			};
+		}, {});
 
-
-	return chunkedResults;
-};
+		return chunkedResults;
+	};
 
 export const useTokenInfoBulk = ({
 	tokens,
-	config
-}:{
-	tokens: TokenSelector[],
-	config: Config 
-})=>{
-
+	config,
+}: {
+	tokens: TokenSelector[];
+	config: Config;
+}) => {
 	const [tokenInfos, setTokenInfos] = useState<any>(undefined);
 
-	
 	// turn on multicall batch add options to bulk by wagmi
-
-	
-
 
 	useEffect(() => {
 		(async () => {
 			if (tokens) {
-							
-					const results = await fetchTokenInfoBulkAction(config)(tokens);
+				const results = await fetchTokenInfoBulkAction(config)(tokens);
 
-					if (results) {
-						console.log('results', results);
-						// const [decimals, name, symbol, totalSupply] = results;
-						// return {
-						// 	decimals,
-						// 	name,
-						// 	symbol,
-						// 	totalSupply,
-						// 	imageUrl,
-						// };
-					}
+				if (results) {
+					console.log("results", results);
+					// const [decimals, name, symbol, totalSupply] = results;
+					// return {
+					// 	decimals,
+					// 	name,
+					// 	symbol,
+					// 	totalSupply,
+					// 	imageUrl,
+					// };
+				}
 			}
-
-
 		})();
 	}, [tokens]);
-
-
 
 	// if (!address) {
 	// 	const data = {
@@ -148,8 +137,6 @@ export const useTokenInfoBulk = ({
 	return {
 		// data: tokenInfo,
 	};
-
-
 };
 
 export const useTokenInfo = ({

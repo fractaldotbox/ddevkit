@@ -10,6 +10,7 @@ import {
 
 import { asCaip19Id } from "@geist/domain/token/cross-chain.js";
 import type { TokenPriceEntry } from "@geist/domain/token/token-price-entry.js";
+import type { TokenSelector } from "@geist/domain/token/token.js";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import type { Address, Chain } from "viem";
 import {
@@ -17,7 +18,6 @@ import {
 	useGetPriceWithMultipleTokenIds,
 } from "#hooks/data/use-defillama.js";
 import { TokenPriceChartWithFeed } from "./token-price-chart-with-feed";
-import type { TokenSelector } from "@geist/domain/token/token.js";
 
 const chartConfig = {
 	visitors: {
@@ -43,7 +43,7 @@ export const TokenPriceChart = ({
 
 	// TODO load tokenInfoByTokenId
 
-	console.log('data',isSuccess,error, tokenPriceFeedByTokenId);
+	console.log("data", isSuccess, error, tokenPriceFeedByTokenId);
 
 	return isLoading ? (
 		<div>Loading...</div>

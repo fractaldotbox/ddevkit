@@ -11,11 +11,10 @@ export type Token = {
 	type?: string;
 };
 
-
-export type TokenSelector = { 
+export type TokenSelector = {
 	chainId: number;
-	address: string
- };
+	address: string;
+};
 
 // TODO if price not available
 export const asPriceValue = (amount, price) => {
@@ -30,9 +29,10 @@ export const asTokenBalanceEntries = (tokenGroup, priceData) => {
 		([symbol, { meta, amount, tokenBalances = [] }]) => {
 			const subEntries = tokenBalances.map(
 				({ chainId, address, symbol, amount }) => {
-					const tokenId = asCaip19Id({chainId, address});
+					const tokenId = asCaip19Id({ chainId, address });
 					const price = priceData.find(
-						({ chainId, address }) => asCaip19Id( { chainId, address }) === tokenId,
+						({ chainId, address }) =>
+							asCaip19Id({ chainId, address }) === tokenId,
 					)?.price;
 
 					console.log("price", price, tokenId);

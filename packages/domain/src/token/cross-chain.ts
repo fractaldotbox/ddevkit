@@ -54,11 +54,8 @@ export const TOKEN_CROSS_CHAIN = [
 ];
 
 export const asCaip19Id = (token: TokenSelector) => {
-
 	return `eip155:${token.chainId}/erc20:${token.address}`;
 };
-
-
 
 export const groupCrosschainTokens = (tokenBalances: any[]) => {
 	const grouped = Object.groupBy(tokenBalances, (tokenBalance) => {

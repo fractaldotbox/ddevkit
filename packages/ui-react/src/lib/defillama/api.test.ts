@@ -18,9 +18,7 @@ describe("defillama api", () => {
 		];
 		const priceByTokenId = await getPrices(tokens);
 
-		const caip19Ids = tokens.map(
-			asCaip19Id
-		);
+		const caip19Ids = tokens.map(asCaip19Id);
 
 		expect(priceByTokenId[caip19Ids[0]]![0].happenAt).toBeDefined();
 		console.log("prices", priceByTokenId);

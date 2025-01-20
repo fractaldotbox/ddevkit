@@ -33,12 +33,12 @@ export const Ethereum: Story = {
 		tokens: [
 			{
 				chainId: mainnet.id,
-				address: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'	
+				address: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
 			},
 			{
 				chainId: mainnet.id,
-				address: '0xae7ab96520de3a18e5e111b5eaab095312d7fe84'	
-			}
-		]
+				address: "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+			},
+		],
 	},
 };

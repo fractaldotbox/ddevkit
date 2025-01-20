@@ -1,9 +1,9 @@
+import { resolveChainById } from "@geist/domain/chain/chain-resolver.js";
 import { asCaip19Id } from "@geist/domain/token/cross-chain.js";
+import type { TokenSelector } from "@geist/domain/token/token.js";
 import ky, { type DownloadProgress } from "ky";
 import type { Chain } from "viem";
 import type { TokenPriceEntry } from "#components/token/token-price-entry.js";
-import type { TokenSelector } from "@geist/domain/token/token.js";
-import { resolveChainById } from "@geist/domain/chain/chain-resolver.js";
 
 const ENDPOINT = "https://api.llama.fi";
 const ENDPOINT_COINS = "https://coins.llama.fi";
@@ -14,15 +14,14 @@ export const asDefillamaTokenId = ({
 }: {
 	chainId: number;
 	address: string;
-}) =>{
+}) => {
 	const chain = resolveChainById(chainId);
 	return `${chain?.name?.toLowerCase()}:${address}`;
-}
+};
 
 export type DefillamaPriceEntry = { timestamp: number; price: number };
 
 // TODO support specify e.g. coingecko:ethereum for defillama
-
 
 export const asTokensByDefillamaTokenId = (tokens: TokenSelector[]) => {
 	return Object.fromEntries(
@@ -85,7 +84,7 @@ export async function getChart(
 			};
 		};
 	}>();
-	
+
 	return Object.fromEntries(
 		Object.entries(results.coins).map(([tokenId, priceData]) => {
 			const { prices, symbol } = priceData;
