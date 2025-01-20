@@ -1,11 +1,17 @@
-import { http, Account, Address, Chain, Hex, createWalletClient } from "viem";
-import { sepolia } from "viem/chains";
+import {
+	http,
+	type Account,
+	type Address,
+	type Chain,
+	type Hex,
+	createWalletClient,
+} from "viem";
 import {
 	OFFCHAIN_ATTESTATION_TYPES,
-	OffchainAttestationTypedData,
-	OffchainAttestationVersion,
-} from "../sdk/offchain/offchain";
-import { getOffchainUID } from "../sdk/offchain/offchain-utils";
+	type OffchainAttestationTypedData,
+	type OffchainAttestationVersion,
+} from "#lib/eas/sdk/offchain/offchain";
+import { getOffchainUID } from "#lib/eas/sdk/offchain/offchain-utils";
 
 export interface OffchainAttestationParams {
 	schema: string;

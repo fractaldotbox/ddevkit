@@ -1,9 +1,7 @@
 // ECDSA signatures over secp256k1
 
 import { sha256 } from "@noble/hashes/sha256";
-import { signMessage } from "@wagmi/core";
 import { useEffect, useRef, useState } from "react";
-import { useAccount, useConfig, useSignMessage } from "wagmi";
 
 import * as typed from "micro-eth-signer/typed-data";
 

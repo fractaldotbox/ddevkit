@@ -1,13 +1,16 @@
-import { MutationOptions } from "@tanstack/react-query";
-import { Config, SendTransactionErrorType } from "@wagmi/core";
+import type { MutationOptions } from "@tanstack/react-query";
+import type { Config, SendTransactionErrorType } from "@wagmi/core";
 import { Loader2 } from "lucide-react";
-import { SmartAccountClient } from "permissionless";
-import { Account, parseEther, zeroAddress } from "viem";
-import { SmartAccount } from "viem/account-abstraction";
+import type { SmartAccountClient } from "permissionless";
+import { type Account, parseEther, zeroAddress } from "viem";
+import type { SmartAccount } from "viem/account-abstraction";
 import { sepolia } from "viem/chains";
 import { useSendTransaction } from "wagmi";
-import { SendTransactionData, SendTransactionVariables } from "wagmi/query";
-import { Button, ButtonProps } from "#components/shadcn/button";
+import type {
+	SendTransactionData,
+	SendTransactionVariables,
+} from "wagmi/query";
+import { Button, type ButtonProps } from "#components/shadcn/button";
 
 type TransferButtonProps = {
 	/** Amount to transfer in ETH */

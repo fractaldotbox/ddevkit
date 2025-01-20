@@ -1,7 +1,7 @@
 // We should find a space efficient, composable way to organize abi by contract versions & action
 // For now, use sepolia as canonical one
 
-import { Hex } from "viem";
+import type { Hex } from "viem";
 
 // TODO fix multi-chain later
 export const EAS_CONTRACT_ADDRESS =

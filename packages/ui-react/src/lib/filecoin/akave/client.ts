@@ -1,4 +1,4 @@
-import ky, { DownloadProgress } from "ky";
+import ky, { type DownloadProgress } from "ky";
 
 export interface AkaveFile {
 	Name: string;

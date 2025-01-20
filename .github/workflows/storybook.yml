@@ -1,0 +1,62 @@
+name: Geist Dapp Kit
+
+on:
+  pull_request:
+    branches:
+      - 'draft'
+      - 'main'  
+  push:
+    branches:
+      - 'draft'
+      - 'main'
+    paths:
+      - 'apps/storybook/**'
+      - 'pnpm-*.yaml'
+
+env:
+  TEST_EAS_PRIVATE_KEY: ${{ secrets.TEST_EAS_PRIVATE_KEY }}
+  TEST_USER_PRIVATE_KEY: ${{ secrets.TEST_USER_PRIVATE_KEY }}
+  LIGHTHOUSE_API_KEY: ${{ secrets.LIGHTHOUSE_API_KEY }}
+
+jobs:
+  build-storybook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+      
+      - name: Build app
+        run: pnpm --filter storybook build
+
+      - name: Upload storybook build
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-build
+          path: apps/storybook/storybook-static
+
+      # smoke test, disabled for now
+      # - name: Build gql
+      #   run:  pnpm --filter graphql build:gql
+
+  deploy-storybook:
+    needs: [build-storybook]
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm.yml
+
+      - name: Download storybook build
+        uses: actions/download-artifact@v4
+        with:
+          name: storybook-build
+          path: apps/storybook/storybook-static
+
+      - name: Deploy app
+        env:
+          FLEEK_TOKEN: ${{ secrets.FLEEK_TOKEN }}
+          FLEEK_PROJECT_ID: ${{ secrets.FLEEK_PROJECT_ID }}
+        run: pnpm --dir apps/storybook deploy:fleek

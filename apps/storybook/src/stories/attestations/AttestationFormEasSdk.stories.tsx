@@ -4,11 +4,11 @@ import { useAttestationEasSdk } from "@geist/ui-react/hooks/eas/sdk/use-attestat
 import { EAS_CONTRACT_ADDRESS } from "@geist/ui-react/lib/eas/abi";
 import { SCHEMA_BY_NAME } from "@geist/ui-react/lib/eas/attest.fixture";
 import { NO_EXPIRATION } from "@geist/ui-react/lib/eas/request";
-import { SchemaItem, createEAS } from "@geist/ui-react/lib/eas/sdk/eas";
+import { type SchemaItem, createEAS } from "@geist/ui-react/lib/eas/sdk/eas";
 import { createTestEthersSigner } from "@geist/ui-react/lib/test-utils-isomorphic";
 import type { Meta, StoryObj } from "@storybook/react";
 import { encodeBytes32String } from "ethers";
-import { Chain, Hex, zeroHash } from "viem";
+import { type Chain, type Hex, zeroHash } from "viem";
 import { mainnet, optimism, optimismSepolia, sepolia } from "viem/chains";
 import { withToaster } from "../decorators/toaster";
 import { withWalletControl } from "../decorators/wallet-control";

@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Atom, atom, useAtom } from "jotai";
+import { type Atom, atom, useAtom } from "jotai";
 
 import { TYPED_DATA } from "@geist/domain/signature/type-data";
 import { SignatureForm } from "@geist/ui-react/components/signature/signature-form";
 import { useMemo } from "react";
 import {
 	http,
-	Account,
+	type Account,
 	createPublicClient,
 	createWalletClient,
 	verifyMessage,
@@ -15,7 +15,11 @@ import { sepolia } from "viem/chains";
 import { useSignMessage } from "wagmi";
 import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
 
-import { Hex, SignAccountType, SignType } from "@geist/domain/signature/sign";
+import {
+	type Hex,
+	SignAccountType,
+	SignType,
+} from "@geist/domain/signature/sign";
 import { ScrollableCodeBlock } from "@geist/ui-react/components/scrollable-code-block";
 import { SignatureVerifyBadge } from "@geist/ui-react/components/signature/signature-verify-badge";
 

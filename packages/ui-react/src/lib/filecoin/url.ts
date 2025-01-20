@@ -1,13 +1,13 @@
-import { Chain, filecoin, filecoinCalibration } from "viem/chains";
+import { type Chain, filecoin, filecoinCalibration } from "viem/chains";
 import {
-	CreateBlockExplorerUrlArgs,
-	CreateExplorerUrl,
+	type CreateBlockExplorerUrlArgs,
+	type CreateExplorerUrl,
 	Explorer,
-	ExplorerConfig,
-	ExplorerEntity,
-	ExplorerParams,
+	type ExplorerConfig,
+	type ExplorerEntity,
+	type ExplorerParams,
 	createBlockExplorerUrlWithEip3091,
-} from "../explorer/url";
+} from "#lib/explorer/url";
 
 export const createFilfoxEndpoint = (
 	chainId: number,

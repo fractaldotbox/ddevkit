@@ -1,7 +1,7 @@
 import { Label } from "@radix-ui/react-label";
 import { format } from "date-fns";
 import { useMemo } from "react";
-import { Address, Hex } from "viem";
+import type { Address, Hex } from "viem";
 import { mainnet } from "viem/chains";
 import { useChainId } from "wagmi";
 import {
@@ -14,10 +14,10 @@ import {
 } from "#components/shadcn/card";
 import { Separator } from "#components/shadcn/separator";
 import { Skeleton } from "#components/shadcn/skeleton";
-import { useGetAttestationWithUid } from "#hooks/eas/get-attestation-with-uid";
+import { useGetAttestationWithUid } from "#hooks/eas/use-get-attestation-with-uid.js";
 import { getShortHex } from "#lib/utils/hex";
 import { AttestationSchemaBadge } from "./attestation-schema-badge";
-import { AttestationMeta, asAttestationMeta } from "./attestations";
+import { type AttestationMeta, asAttestationMeta } from "./attestations";
 
 const AttestationCardContent = ({
 	chainId,

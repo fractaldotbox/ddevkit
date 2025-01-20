@@ -1,7 +1,7 @@
 import { BY_USER, getRandomAccount } from "@geist/domain/user.fixture";
 import { WAGMI_CONFIG } from "@geist/ui-react/lib/utils/wagmi-config";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Hex } from "viem";
+import type { Hex } from "viem";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
 import { WagmiProvider, useAccount, useConnect, useWalletClient } from "wagmi";
 

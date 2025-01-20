@@ -1,5 +1,5 @@
 {
-	"name": "storybook",
+	"name": "@geist/storybook",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
@@ -103,6 +103,7 @@
 		"@ethereum-attestation-service/eas-contracts": "1.7.1",
 		"@faker-js/faker": "^8.2.0",
 		"@fleek-platform/cli": "^3.8.2",
+		"@geist/typescript-config": "workspace:*",
 		"@radix-ui/themes": "^3.1.4",
 		"@storybook/addon-essentials": "^8.3.4",
 		"@storybook/addon-interactions": "^8.3.4",

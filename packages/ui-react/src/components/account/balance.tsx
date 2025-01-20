@@ -2,7 +2,7 @@ import { formatUnitsWithDecimalsDisplayed } from "@geist/domain/amount";
 import { Text } from "@radix-ui/themes";
 // support ENS, basename
 // Option to use ipfs gateway, ens metadata services
-import { Address } from "viem";
+import type { Address } from "viem";
 import { mainnet } from "viem/chains";
 import { useBalance, useReadContract } from "wagmi";
 import { ABI_ERC20 } from "#lib/token/config";

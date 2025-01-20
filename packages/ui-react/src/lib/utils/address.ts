@@ -3,8 +3,8 @@
 
 // checksum encoded
 
-import { Address, getAddress, isHex } from "viem";
-import { getShortHex } from "./hex";
+import { type Address, getAddress, isHex } from "viem";
+import { getShortHex } from "#lib/utils/hex";
 
 export type GetShortAddressReturnType = string | null;
 

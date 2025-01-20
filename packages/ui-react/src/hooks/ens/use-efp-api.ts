@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { Address } from "viem";
-import {
+import type { Address } from "viem";
+import type {
 	AddressOrEns,
 	EfpApiOptions,
 	EfpEnsData,

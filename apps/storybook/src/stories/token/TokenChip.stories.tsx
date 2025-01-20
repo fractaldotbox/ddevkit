@@ -1,5 +1,5 @@
 import { TokenChip } from "@geist/ui-react/components/token/token-chip";
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { mainnet, optimismSepolia } from "viem/chains";
 import { withWagmiProvider } from "../decorators/wagmi";
 

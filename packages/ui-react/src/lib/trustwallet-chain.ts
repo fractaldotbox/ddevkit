@@ -1,4 +1,4 @@
-import { Chain } from "viem";
+import type { Chain } from "viem";
 import { optimism } from "viem/chains";
 
 // https://github.com/trustwallet/assets

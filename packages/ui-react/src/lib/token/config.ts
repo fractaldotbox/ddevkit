@@ -1,4 +1,4 @@
-import { Address } from "viem";
+import type { Address } from "viem";
 import { base, mainnet, optimism, sepolia } from "viem/chains";
 
 export enum Token {

@@ -5,11 +5,12 @@
 	"main": "index.js",
 	"files": ["dist"],
 	"exports": {
-		".": "./src/graphql/index.ts"
+		".": "./src/graphql/index.ts",
+		"./eas/*": "./src/graphql/eas/*.ts",
+		"./ens/*": "./src/graphql/ens/*.ts"
 	},
 	"scripts": {
-		"build:gql": "graphql-codegen --config codegen.ts",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"build:gql": "graphql-codegen --config codegen.ts"
 	},
 	"devDependencies": {
 		"@graphprotocol/graph-cli": "^0.67.2",

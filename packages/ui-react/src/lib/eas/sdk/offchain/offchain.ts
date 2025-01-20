@@ -5,9 +5,9 @@ import type {
 	SignedOffchainAttestation,
 } from "@ethereum-attestation-service/eas-sdk";
 import { ZERO_ADDRESS } from "@geist/ui-react/lib/constants";
-import { Address, verifyMessage, verifyTypedData } from "viem";
+import { type Address, verifyMessage, verifyTypedData } from "viem";
+import { getOffchainUID } from "#lib/eas/sdk/offchain/offchain-utils";
 import { isDeepEqual } from "#lib/shadcn/utils";
-import { getOffchainUID } from "./offchain-utils";
 import {
 	InvalidAddress,
 	InvalidPrimaryType,

@@ -1,11 +1,11 @@
 import { mainnet, optimism } from "viem/chains";
 import { describe, expect, test } from "vitest";
-import { useGetAttestations } from "./get-attestations";
+import { useGetAttestations } from "./use-get-attestations";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { renderHook, waitFor } from "@testing-library/react";
-import React from "react";
-import { Address } from "viem";
+import type React from "react";
+import type { Address } from "viem";
 
 /**
  * @vitest-environment jsdom

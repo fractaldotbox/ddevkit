@@ -1,14 +1,12 @@
 import omit from "lodash/omit";
-import semver from "semver";
 import {
-	EIP712MessageTypes,
-	EIP712Params,
+	type EIP712MessageTypes,
+	type EIP712Params,
 	EIP712Response,
-	EIP712Types,
+	type EIP712Types,
 	TypeDataSigner,
 	// TypedDataHandler,
-} from "./typed-data-handler";
-import { EIP712_NAME, EIP712_VERSIONS } from "./versions";
+} from "#lib/eas/sdk/offchain/typed-data-handler";
 
 enum DelegatedAttestationVersion {
 	Legacy = 0,

@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Address } from "viem";
+import type { Address } from "viem";
 import { z } from "zod";
 import { Button } from "#components/shadcn/button";
 import { Card, CardContent } from "#components/shadcn/card";

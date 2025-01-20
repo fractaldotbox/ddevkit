@@ -3,7 +3,7 @@
  */
 
 import { isCID } from "@geist/domain/codec";
-import { CID, MultihashDigest } from "multiformats";
+import { CID, type MultihashDigest } from "multiformats";
 import {
 	type AbiFunction,
 	type AbiParameter,

@@ -1,14 +1,14 @@
 import {
 	EAS,
 	Offchain,
-	SignedOffchainAttestation,
+	type SignedOffchainAttestation,
 	ZERO_ADDRESS,
 	createOffchainURL as createOffchainURLSdk,
 	decodeBase64ZippedBase64,
 	zipAndEncodeToBase64 as zipAndEncodeToBase64Sdk,
 } from "@ethereum-attestation-service/eas-sdk";
 import { describe, expect, test } from "vitest";
-import { Spec, TEST_ATTESTATIONS } from "./attest.fixture";
+import { type Spec, TEST_ATTESTATIONS } from "./attest.fixture";
 import {
 	createOffchainURL,
 	zipAndEncodeToBase64,

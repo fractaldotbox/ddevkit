@@ -1,4 +1,4 @@
-import { Chain, extractChain } from "viem";
+import { type Chain, extractChain } from "viem";
 import {
 	arbitrum,
 	arbitrumGoerli,
