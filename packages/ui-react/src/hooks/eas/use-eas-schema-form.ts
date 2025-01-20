@@ -5,8 +5,8 @@ import { rawRequest } from "graphql-request";
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { Address } from "viem";
-import { ZodNumber, z } from "zod";
-import { getEasscanEndpoint } from "#lib/eas/easscan.js";
+import { ZodArray, ZodBoolean, ZodNumber, z } from "zod";
+import { getEasscanEndpoint } from "#lib/eas/easscan";
 
 type SchemaByQuery = any;
 
@@ -130,10 +130,13 @@ export function useEasSchemaForm({
 		resolver: zodResolver(formSchema),
 		disabled: !isEnabled,
 		defaultValues: Object.fromEntries(
-			Object.keys(formSchema.shape).map((key) => [
-				key,
-				formSchema.shape[key] instanceof ZodNumber ? 0 : "",
-			]),
+			Object.keys(formSchema.shape).map((key) => {
+				let defaultValue: string | number | boolean | any[] = "";
+				if (formSchema.shape[key] instanceof ZodNumber) defaultValue = 0;
+				if (formSchema.shape[key] instanceof ZodBoolean) defaultValue = false;
+				if (formSchema.shape[key] instanceof ZodArray) defaultValue = [];
+				return [key, defaultValue];
+			}),
 		),
 	});
 

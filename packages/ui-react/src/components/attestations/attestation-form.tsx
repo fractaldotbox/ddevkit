@@ -1,8 +1,9 @@
 import { Spinner } from "@radix-ui/themes";
-import { ZodNumber, z } from "zod";
+import { ZodBoolean, ZodNumber, z } from "zod";
 import { Badge } from "#components/shadcn/badge";
 import { Button } from "#components/shadcn/button";
 import { Card, CardContent } from "#components/shadcn/card";
+import { Switch } from "#components/shadcn/switch";
 import {
 	Form,
 	FormControl,
@@ -105,31 +106,41 @@ export const AttestationForm = ({
 										control={form.control}
 										name={schemaKey}
 										render={({ field }) => (
-											<FormItem>
+											<FormItem className="flex flex-col gap-3">
 												<FormLabel>{schemaKey}</FormLabel>
-												<FormControl>
-													<Input
-														{...field}
-														type={
-															formSchema.shape[schemaKey] instanceof ZodNumber
-																? "number"
-																: "text"
-														}
-														value={field.value ?? ""}
-														onChange={(e) => {
-															const value =
+												{formSchema.shape[schemaKey] instanceof ZodBoolean ? (
+													<FormControl>
+														<Switch
+															checked={field.value}
+															onCheckedChange={field.onChange}
+														/>
+													</FormControl>
+												) : (
+													<FormControl>
+														<Input
+															{...field}
+															type={
 																formSchema.shape[schemaKey] instanceof ZodNumber
-																	? e.target.valueAsNumber || 0
-																	: e.target.value;
-															field.onChange(value);
-														}}
-														placeholder={
-															formSchema.shape[schemaKey] instanceof ZodNumber
-																? "number"
-																: "string"
-														}
-													/>
-												</FormControl>
+																	? "number"
+																	: "text"
+															}
+															value={field.value ?? ""}
+															onChange={(e) => {
+																const value =
+																	formSchema.shape[schemaKey] instanceof
+																	ZodNumber
+																		? e.target.valueAsNumber || 0
+																		: e.target.value;
+																field.onChange(value);
+															}}
+															placeholder={
+																formSchema.shape[schemaKey] instanceof ZodNumber
+																	? "number"
+																	: "string"
+															}
+														/>
+													</FormControl>
+												)}
 												<FormMessage className="font-light" />
 											</FormItem>
 										)}
