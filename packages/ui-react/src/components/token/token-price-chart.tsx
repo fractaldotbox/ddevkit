@@ -13,10 +13,12 @@ import type { TokenPriceEntry } from "@geist/domain/token/token-price-entry.js";
 import type { TokenSelector } from "@geist/domain/token/token.js";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import type { Address, Chain } from "viem";
+import { useConfig } from "wagmi";
 import {
 	useGetChartWithMultipleTokens,
 	useGetPriceWithMultipleTokenIds,
 } from "#hooks/data/use-defillama.js";
+import { useTokenInfoBulk } from "./token";
 import { TokenPriceChartWithFeed } from "./token-price-chart-with-feed";
 
 const chartConfig = {
@@ -28,11 +30,9 @@ const chartConfig = {
 export const TokenPriceChart = ({
 	chain,
 	tokens,
-	tokenInfoByTokenId,
 }: {
 	chain: Chain;
 	tokens: TokenSelector[];
-	tokenInfoByTokenId: Record<string, { symbol: string }>;
 }) => {
 	const {
 		data: tokenPriceFeedByTokenId,
@@ -40,6 +40,16 @@ export const TokenPriceChart = ({
 		isSuccess,
 		error,
 	} = useGetChartWithMultipleTokens(tokens);
+
+	const config = useConfig();
+
+	const { data: tokenInfoByTokenId = {} } = useTokenInfoBulk({
+		chainId: chain.id,
+		tokens,
+		config,
+	});
+
+	console.log("byId", tokenInfoByTokenId);
 
 	// TODO load tokenInfoByTokenId
 

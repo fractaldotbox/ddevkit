@@ -17,6 +17,8 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "#components/shadcn/chart";
+import { useTokenInfoBulk } from "./token";
+import { TokenChipWithInfo } from "./token-chip-with-info";
 
 // Alternatively s3 scale
 // https://github.com/recharts/recharts/blob/master/storybook/stories/Examples/TimeSeries.stories.tsx#L97
@@ -70,9 +72,11 @@ export const TokenPriceChartWithFeed = ({
 
 	const chartConfig = Object.keys(tokenPriceFeedByTokenId).reduce(
 		(acc, tokenId, i) => {
-			console.log("tokenId", tokenId, acc);
+			const tokenInfo = tokenInfoByTokenId[tokenId] || {};
+			console.log("tokenId", tokenId, acc, tokenInfo);
 			acc[tokenId] = {
-				label: tokenInfoByTokenId[tokenId]?.symbol,
+				...tokenInfo,
+				label: tokenInfo?.symbol,
 			};
 			return acc;
 		},
@@ -109,7 +113,30 @@ export const TokenPriceChartWithFeed = ({
 					/>
 					<ChartTooltip
 						cursor={false}
-						content={<ChartTooltipContent hideLabel />}
+						content={
+							<ChartTooltipContent
+								formatter={(v, tokenId) => {
+									const decimals = 18;
+									const value = BigInt(
+										Math.floor((v as number) * Math.pow(10, decimals)),
+									);
+									const tokenInfo = chartConfig[tokenId]! || {};
+
+									const { label, imageUrl = "" } = tokenInfo;
+									return (
+										<TokenChipWithInfo
+											imageUrl={imageUrl}
+											name={label}
+											symbol={label}
+											decimals={decimals}
+											decimalsDisplayed={1}
+											amount={value}
+										/>
+									);
+								}}
+								hideLabel
+							/>
+						}
 					/>
 					{tokenIds.map((dataKey, i) => {
 						return (

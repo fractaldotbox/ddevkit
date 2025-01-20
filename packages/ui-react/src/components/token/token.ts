@@ -12,6 +12,7 @@
  */
 
 import { resolveProductionChain } from "@geist/domain/chain/chain-resolver";
+import { asCaip19Id } from "@geist/domain/token/cross-chain.js";
 import type { TokenSelector } from "@geist/domain/token/token";
 // import { useReadContracts } from "wagmi";
 import { type Config, readContracts } from "@wagmi/core";
@@ -45,7 +46,7 @@ const chunk = <T>(arr: T[], size: number): T[][] =>
 	);
 
 export const fetchTokenInfoBulkAction =
-	(config: Config) => async (tokens: TokenSelector[]) => {
+	(config: Config, chainId: number) => async (tokens: TokenSelector[]) => {
 		const selectors = [
 			{
 				functionName: "name",
@@ -79,9 +80,13 @@ export const fetchTokenInfoBulkAction =
 			const [name, decimals, symbol, totalSupply] = chunk;
 			const address = tokens[idx % 4]!.address;
 			console.log("address", address, acc);
+
+			const caip19Id = asCaip19Id({ chainId, address });
+
+			console.log("caip19Id", caip19Id);
 			return {
 				...acc,
-				[address]: {
+				[caip19Id]: {
 					name,
 					decimals,
 					symbol,
@@ -93,49 +98,36 @@ export const fetchTokenInfoBulkAction =
 		return chunkedResults;
 	};
 
+// For now only current chain
 export const useTokenInfoBulk = ({
+	chainId,
 	tokens,
 	config,
 }: {
+	chainId: number;
 	tokens: TokenSelector[];
 	config: Config;
 }) => {
-	const [tokenInfos, setTokenInfos] = useState<any>(undefined);
+	const [tokenInfo, setTokenInfo] = useState<any>(undefined);
 
+	console.log("useTokenInfoBulk", tokens);
 	// turn on multicall batch add options to bulk by wagmi
 
 	useEffect(() => {
 		(async () => {
 			if (tokens) {
-				const results = await fetchTokenInfoBulkAction(config)(tokens);
+				const byCapid19Id = await fetchTokenInfoBulkAction(
+					config,
+					chainId,
+				)(tokens);
 
-				if (results) {
-					console.log("results", results);
-					// const [decimals, name, symbol, totalSupply] = results;
-					// return {
-					// 	decimals,
-					// 	name,
-					// 	symbol,
-					// 	totalSupply,
-					// 	imageUrl,
-					// };
-				}
+				setTokenInfo(byCapid19Id);
 			}
 		})();
 	}, [tokens]);
 
-	// if (!address) {
-	// 	const data = {
-	// 		imageUrl,
-	// 		...nativeCurrency,
-	// 	};
-	// 	return {
-	// 		data,
-	// 	};
-	// }
-
 	return {
-		// data: tokenInfo,
+		data: tokenInfo,
 	};
 };
 

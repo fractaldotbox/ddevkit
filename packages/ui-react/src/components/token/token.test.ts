@@ -28,18 +28,16 @@ describe("fetchTokenInfoBulkAction", () => {
 			{ address: "0xdac17f958d2ee523a2206206994597c13d831ec7", chainId: 1 },
 		];
 
-		const results = await fetchTokenInfoBulkAction(config)(tokens);
+		const results = await fetchTokenInfoBulkAction(config, 1)(tokens);
 
 		// expect(Object.keys(results)).toEqual([]);
 
 		console.log("results", results);
 		// Verify first token results
-		expect(results[0]).toBe(6); // decimals
-		// expect(results[1]).toBe("Test Token"); // name
-		// expect(results[2]).toBe("TST"); // symbol
-		// expect(results[3]).toBe(1000000000000000000n); // totalSupply
-
-		// // Verify second token results
-		// expect(results[4]).toBe(18); // decimals
+		const token =
+			results["eip155:1/erc20:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"];
+		const { decimals, name, symbol, totalSupply } = token;
+		expect(decimals).toBe(6); // decimals
+		expect(totalSupply > 30646276803710503n).toBe(true);
 	});
 });
