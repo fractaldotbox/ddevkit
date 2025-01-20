@@ -8,6 +8,7 @@ export type TokenChipProps = {
 	className?: string;
 	amount?: bigint;
 	chain: Chain;
+	decimalsDisplayed?: number;
 	address?: Address;
 };
 
@@ -21,6 +22,7 @@ export const TokenChip = ({
 	address,
 	amount,
 	chain,
+	decimalsDisplayed,
 	className,
 }: TokenChipProps) => {
 	const config = useConfig();
@@ -38,6 +40,7 @@ export const TokenChip = ({
 		<TokenChipWithInfo
 			amount={amount}
 			decimals={data.decimals}
+			decimalsDisplayed={decimalsDisplayed}
 			imageUrl={data.imageUrl}
 			name={data.name}
 			symbol={data.symbol}
