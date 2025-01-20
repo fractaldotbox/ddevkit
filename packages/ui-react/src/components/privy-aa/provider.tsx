@@ -1,23 +1,27 @@
-import { PrivyClientConfig, PrivyProvider } from "@privy-io/react-auth";
+import { type PrivyClientConfig, PrivyProvider } from "@privy-io/react-auth";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
-	PimlicoClient,
+	type PimlicoClient,
 	createPimlicoClient,
 } from "permissionless/clients/pimlico";
-import { PropsWithChildren, createContext, useContext, useState } from "react";
+import {
+	type PropsWithChildren,
+	createContext,
+	useContext,
+	useState,
+} from "react";
 import { http } from "viem";
 import { entryPoint07Address } from "viem/account-abstraction";
 import { sepolia } from "viem/chains";
 import { WagmiProvider, createConfig } from "wagmi";
+import { generatePimlicoRpcUrl } from "./utils";
 
 interface PrivyAAContextProps {
 	appId: string;
-	pimlicoApiKey: string;
 }
 
 interface PrivyAAContext {
 	appId: string;
-	pimlicoApiKey: string;
 	pimlicoClient: PimlicoClient;
 	pimlicoRpcUrl: string;
 }
@@ -54,15 +58,8 @@ const PrivyAAContext = createContext<PrivyAAContext>(undefined as never);
 export function PrivyAAProvider({
 	children,
 	appId,
-	pimlicoApiKey,
 }: PropsWithChildren<PrivyAAContextProps>) {
-	if (!pimlicoApiKey) {
-		throw new Error("Missing pimlicoApiKey");
-	}
-
-	const [pimlicoRpcUrl] = useState(
-		`https://api.pimlico.io/v2/11155111/rpc?apikey=${pimlicoApiKey}`,
-	);
+	const pimlicoRpcUrl = generatePimlicoRpcUrl(sepolia.id);
 
 	const [pimlicoClient] = useState(
 		createPimlicoClient({
@@ -75,9 +72,7 @@ export function PrivyAAProvider({
 	);
 
 	return (
-		<PrivyAAContext.Provider
-			value={{ appId, pimlicoApiKey, pimlicoClient, pimlicoRpcUrl }}
-		>
+		<PrivyAAContext.Provider value={{ appId, pimlicoClient, pimlicoRpcUrl }}>
 			<PrivyProvider appId={appId} config={privyConfig}>
 				<QueryClientProvider client={queryClient}>
 					<WagmiProvider config={wagmiConfig} reconnectOnMount={false}>

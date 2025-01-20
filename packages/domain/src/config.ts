@@ -33,4 +33,7 @@ export default {
 			privateKey: process.env.TEST_EAS_PRIVATE_KEY,
 		},
 	},
+	pimlico: {
+		apiKey: process.env.PIMLICO_API_KEY,
+	},
 };

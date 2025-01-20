@@ -1,16 +1,15 @@
 import { PrivyAAFlow } from "@geist/ui-react/components/privy-aa/account-abstraction.js";
 import { PrivyAAProvider } from "@geist/ui-react/components/privy-aa/provider.js";
 
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 interface PrivyAAProps {
 	appId: string;
-	pimlicoApiKey: string;
 }
 
-function PrivyAAStories({ appId, pimlicoApiKey }: PrivyAAProps) {
+function PrivyAAStories({ appId }: PrivyAAProps) {
 	return (
-		<PrivyAAProvider appId={appId} pimlicoApiKey={pimlicoApiKey}>
+		<PrivyAAProvider appId={appId}>
 			<PrivyAAFlow />
 		</PrivyAAProvider>
 	);
@@ -24,10 +23,6 @@ const meta = {
 			control: "text",
 			name: "Privy App ID",
 		},
-		pimlicoApiKey: {
-			control: "text",
-			name: "Pimlico API Key",
-		},
 	},
 } satisfies Meta<typeof PrivyAAStories>;
 
@@ -38,6 +33,5 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
 	args: {
 		appId: "",
-		pimlicoApiKey: "",
 	},
 };
