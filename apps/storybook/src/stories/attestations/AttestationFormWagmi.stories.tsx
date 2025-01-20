@@ -116,9 +116,9 @@ export const AttestationWagmiOffchain: Story = {
 	args: {
 		isOffchain: true,
 		...createArgs(
-			SCHEMA_BY_NAME.VOTE,
+			SCHEMA_BY_NAME.IS_A_FRIEND,
 			sepolia,
-			SCHEMA_BY_NAME.VOTE.byFixture.vote,
+			SCHEMA_BY_NAME.IS_A_FRIEND.byFixture.isFriend,
 		),
 	},
 };
@@ -128,9 +128,9 @@ export const AttestationWagmiOnchain: Story = {
 	args: {
 		isOffchain: false,
 		...createArgs(
-			SCHEMA_BY_NAME.VOTE,
+			SCHEMA_BY_NAME.IS_A_FRIEND,
 			sepolia,
-			SCHEMA_BY_NAME.VOTE.byFixture.vote,
+			SCHEMA_BY_NAME.IS_A_FRIEND.byFixture.isFriend,
 		),
 	},
 };

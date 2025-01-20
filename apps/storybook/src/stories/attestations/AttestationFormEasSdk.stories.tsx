@@ -111,12 +111,11 @@ export const OnchainSepolia: Story = {
 	args: {
 		isOffchain: false,
 		...createArgs(
-			SCHEMA_BY_NAME.VOTE,
+			SCHEMA_BY_NAME.IS_A_FRIEND,
 			sepolia,
-			SCHEMA_BY_NAME.VOTE.byFixture.vote,
+			SCHEMA_BY_NAME.IS_A_FRIEND.byFixture.isFriend,
 		),
 	},
-	decorators: [],
 };
 
 export const OnchainOptimismSepolia: Story = {
@@ -128,16 +127,15 @@ export const OnchainOptimismSepolia: Story = {
 			SCHEMA_BY_NAME.IS_A_FRIEND.byFixture.isFriend,
 		),
 	},
-	decorators: [],
 };
 
 export const OffchainSepolia: Story = {
 	args: {
 		isOffchain: true,
 		...createArgs(
-			SCHEMA_BY_NAME.VOTE,
+			SCHEMA_BY_NAME.IS_A_FRIEND,
 			sepolia,
-			SCHEMA_BY_NAME.VOTE.byFixture.vote,
+			SCHEMA_BY_NAME.IS_A_FRIEND.byFixture.isFriend,
 		),
 	},
 	decorators: [],
@@ -148,11 +146,9 @@ export const OffchainVote: Story = {
 	args: {
 		isOffchain: true,
 		...createArgs(
-			SCHEMA_BY_NAME.VOTE,
+			SCHEMA_BY_NAME.IS_A_FRIEND,
 			sepolia,
-			SCHEMA_BY_NAME.VOTE.byFixture.vote,
+			SCHEMA_BY_NAME.IS_A_FRIEND.byFixture.isFriend,
 		),
-		...SCHEMA_BY_NAME.VOTE.byFixture.vote,
 	},
-	decorators: [],
 };
