@@ -10,7 +10,7 @@ const queryClient = new QueryClient({
 	},
 });
 
-export const withPrivyProvider = ({ appId }: { appId: string }) => {
+export const withPrivyAAProvider = ({ appId }: { appId: string }) => {
 	return (Story: any) => (
 		<div>
 			<PrivyAAProvider

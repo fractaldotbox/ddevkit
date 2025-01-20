@@ -2,13 +2,13 @@ import { PrivyAAFlow } from "@geist/ui-react/components/privy-aa/account-abstrac
 
 import config from "@geist/domain/config";
 import type { Meta, StoryObj } from "@storybook/react";
-import { withPrivyProvider } from "#stories/decorators/privy.tsx";
+import { withPrivyAAProvider } from "#stories/decorators/privy-aa.tsx";
 
 const meta = {
 	title: "Privy/Account Abstraction",
 	component: PrivyAAFlow,
 	argTypes: {},
-	decorators: [withPrivyProvider({ appId: config.privy.appId! })],
+	decorators: [withPrivyAAProvider({ appId: config.privy.appId! })],
 } satisfies Meta<typeof PrivyAAFlow>;
 
 export default meta;
