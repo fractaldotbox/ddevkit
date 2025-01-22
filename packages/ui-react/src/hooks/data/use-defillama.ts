@@ -18,7 +18,17 @@ export const useGetChartWithMultipleTokens = (tokens: TokenSelector[]) => {
 
 export const useGetPriceWithMultipleTokenIds = (tokens: TokenSelector[]) => {
 	return useQuery<{ [tokenId: string]: TokenPriceEntry[] }>({
-		queryKey: [`${CACHE_KEY}.chart`, tokens],
+		queryKey: [`${CACHE_KEY}.price`, tokens],
+		queryFn: async () => {
+			const priceDataByTokenId = await getPrices(tokens);
+			return priceDataByTokenId;
+		},
+	});
+};
+
+export const useGetProtocolRevenue = (protocolId: string) => {
+	return useQuery<{ [tokenId: string]: TokenPriceEntry[] }>({
+		queryKey: [`${CACHE_KEY}.protocol.revenue`, tokens],
 		queryFn: async () => {
 			const priceDataByTokenId = await getPrices(tokens);
 			return priceDataByTokenId;

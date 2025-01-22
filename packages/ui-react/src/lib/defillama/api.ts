@@ -1,3 +1,4 @@
+import type { Name } from "@ensdomains/ensjs/subgraph";
 import { resolveChainById } from "@geist/domain/chain/chain-resolver.js";
 import { asCaip19Id } from "@geist/domain/token/cross-chain.js";
 import type { TokenSelector } from "@geist/domain/token/token.js";
@@ -94,10 +95,10 @@ export async function getChart(
 	);
 }
 
-export async function getProtocols() {
+export const getProtocols = async () => {
 	const response = await ky(`${ENDPOINT}/protocols`);
 	return await response.json();
-}
+};
 
 export const asTokenPriceEntry = (priceData: any) => {
 	const { timestamp, price } = priceData;
@@ -105,4 +106,19 @@ export const asTokenPriceEntry = (priceData: any) => {
 		happenAt: timestamp,
 		price,
 	};
+};
+
+export const getProtocolFees = async (
+	protocolSlug: string,
+	dataType: string,
+) => {
+	const response = await ky(
+		`${ENDPOINT}/summary/fees/${protocolSlug}?dataType=${dataType}`,
+	);
+
+	return await response.json<{
+		name: string;
+		logo: string;
+		totalDataChart: [number, number][];
+	}>();
 };

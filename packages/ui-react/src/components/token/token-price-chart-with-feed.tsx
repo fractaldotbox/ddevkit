@@ -17,7 +17,7 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "#components/shadcn/chart";
-import { useTokenInfoBulk } from "./token";
+import { type TokenInfo, useTokenInfoBulk } from "./token";
 import { TokenChipWithInfo } from "./token-chip-with-info";
 
 // Alternatively s3 scale
@@ -39,9 +39,6 @@ const filterIntegralTicks = (ticks) => {
 		);
 	});
 };
-
-// TODO
-export type TokenInfo = unknown;
 
 export const TokenPriceChartWithFeed = ({
 	tokenPriceFeedByTokenId,
@@ -108,7 +105,7 @@ export const TokenPriceChartWithFeed = ({
 						tickFormatter={(value) => {
 							const date = new Date(value);
 
-							return format(date, "HH:MM");
+							return format(date, "MM-dd");
 						}}
 					/>
 					<ChartTooltip

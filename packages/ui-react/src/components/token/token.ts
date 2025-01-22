@@ -1,43 +1,60 @@
 /**
+ * Generally for token metadata / image it is more performant to use indexing services or pre-generate data during build process.
  *
- * Token image is not on-chain as it's not part-of the ERC20 standard)
+ * useToken and useTokenBulk use rpc directly for minnmized dependency and dynamic token support
+ *
+ * Token image is not on-chain as it's not part-of the ERC20 standard
  * Wagmi has that of native token as chain info
  *
  * Token logos on Etherscan are added by contract owner after verifications.
  * Blockscout api use coingecko hosted asset
  * Trust wallet maintain assets on https://github.com/trustwallet/assets
+ * Defillama use assets from various sources including coingecko https://github.com/DefiLlama/icons
+ *   - with custom proxy https://token-icons.llamao.fi/icons/tokens/1/0xc3d688b66703497daa19211eedff47f25384cdc3?h=20&w=20
  *
- * Alternatively, we could create a proxy that accept token address and chain id
+ * As we don't want to increase bundle size to check if address is included thus url will return 404 in that case
  *
+ * Alternatively,
+ * - we could create a proxy that accept token address and chain id
+ * - create css spirites during build if applicable
  */
 
-import { resolveProductionChain } from "@geist/domain/chain/chain-resolver";
+import {
+	resolveChainById,
+	resolveProductionChain,
+} from "@geist/domain/chain/chain-resolver";
 import { asCaip19Id } from "@geist/domain/token/cross-chain.js";
 import type { TokenSelector } from "@geist/domain/token/token";
 // import { useReadContracts } from "wagmi";
 import { type Config, readContracts } from "@wagmi/core";
 import { useEffect, useState } from "react";
-import { type Address, type Chain, erc20Abi } from "viem";
+import { type Address, type Chain, erc20Abi, getAddress } from "viem";
 import { asTrustWalletChainName } from "#lib/trustwallet-chain";
+
+export type TokenInfo = {
+	address: Address;
+	imageUrl?: string;
+	decimals: number;
+	symbol: string;
+	name: string;
+};
 
 /**
  * trustwallet/assets does not contains most testnet, always fallback to mainnet
- *
  */
 export const getTrustWalletIconUrl = (chain: Chain, address?: Address) => {
-	// TODO handle special case
-	// https://developer.trustwallet.com/developer/listing-new-assets/repository_details#validators-specific-requirements
-
 	const productionChain = resolveProductionChain(chain);
 
 	const twChainName = asTrustWalletChainName(productionChain);
-	console.log("twChainName", twChainName);
+
 	const ROOT =
 		"https://raw.githubusercontent.com/trustwallet/assets/master/blockchains";
+
 	if (!address) {
 		return `${ROOT}/${twChainName}/info/logo.png`;
 	}
-	return `${ROOT}/${twChainName}/assets/${address}/logo.png`;
+
+	return `${ROOT}/${twChainName}/assets/${getAddress(address)}/logo.png`;
 };
 
 const chunk = <T>(arr: T[], size: number): T[][] =>
@@ -76,18 +93,23 @@ export const fetchTokenInfoBulkAction =
 		});
 
 		const chunkedResults = chunk(results, 4).reduce((acc, chunk, idx) => {
-			console.log("idx", chunk, idx);
 			const [name, decimals, symbol, totalSupply] = chunk;
 			const address = tokens[idx % 4]!.address;
-			console.log("address", address, acc);
 
 			const caip19Id = asCaip19Id({ chainId, address });
 
-			console.log("caip19Id", caip19Id);
+			const chain = resolveChainById(chainId);
+			const imageUrl = chain
+				? getTrustWalletIconUrl(chain, address as Address)
+				: "";
+
+			console.log("imageUrl", imageUrl);
 			return {
 				...acc,
 				[caip19Id]: {
+					address,
 					name,
+					imageUrl,
 					decimals,
 					symbol,
 					totalSupply,
@@ -95,10 +117,11 @@ export const fetchTokenInfoBulkAction =
 			};
 		}, {});
 
-		return chunkedResults;
+		return chunkedResults as Record<string, TokenInfo>;
 	};
 
 // For now only current chain
+
 export const useTokenInfoBulk = ({
 	chainId,
 	tokens,
@@ -110,7 +133,6 @@ export const useTokenInfoBulk = ({
 }) => {
 	const [tokenInfo, setTokenInfo] = useState<any>(undefined);
 
-	console.log("useTokenInfoBulk", tokens);
 	// turn on multicall batch add options to bulk by wagmi
 
 	useEffect(() => {
@@ -133,12 +155,13 @@ export const useTokenInfoBulk = ({
 
 export const useTokenInfo = ({
 	address,
-	chain,
+	chainId,
 	config,
-}: { address?: Address; chain: Chain; config: Config }) => {
-	const imageUrl = getTrustWalletIconUrl(chain, address);
+}: { address?: Address; chainId: number; config: Config }) => {
+	const chain = resolveChainById(chainId);
+	const imageUrl = chain ? getTrustWalletIconUrl(chain, address) : "";
 
-	const { nativeCurrency } = chain;
+	const { nativeCurrency } = chain || {};
 
 	const [tokenInfo, setTokenInfo] = useState<any>(undefined);
 
@@ -186,7 +209,6 @@ export const useTokenInfo = ({
 			if (address) {
 				const tokenInfo = await fetchTokenInfo(address);
 				setTokenInfo(tokenInfo);
-				console.log("setup tokenInfo", tokenInfo);
 			}
 		})();
 	}, [address]);

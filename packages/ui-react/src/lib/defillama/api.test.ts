@@ -1,7 +1,13 @@
+import exp from "constants";
 import { asCaip19Id } from "@geist/domain/token/cross-chain.js";
 import { mainnet } from "viem/chains";
 import { describe, expect, it } from "vitest";
-import { asDefillamaTokenId, getChart, getPrices } from "./api";
+import {
+	asDefillamaTokenId,
+	getChart,
+	getPrices,
+	getProtocolFees,
+} from "./api";
 
 describe("defillama api", () => {
 	it("#prices of coins", async () => {
@@ -34,5 +40,14 @@ describe("defillama api", () => {
 
 		const tokenId = asCaip19Id(tokens[0]);
 		expect(pricesByTokenId[tokenId][0].happenAt).toBeDefined();
+	});
+
+	it("#getProtocolFees", async () => {
+		const results = await getProtocolFees("aave", "dailyFees");
+		const { logo, name, totalDataChart } = results;
+
+		expect(logo).toBeDefined();
+		expect(name).toBeDefined();
+		expect(totalDataChart.length > 0).toEqual(true);
 	});
 });
