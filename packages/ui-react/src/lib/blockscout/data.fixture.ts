@@ -443,7 +443,7 @@ export const BY_TXN = {
 };
 export const TXN_LIST = Object.values(BY_TXN);
 
-export function generateTxnFixturesByCount(count: number) {
+export const generateTxnFixturesByCount = (count: number) => {
 	const fixtures = [];
 
 	for (let i = 0; i < count; i++) {
@@ -758,4 +758,4 @@ export function generateTxnFixturesByCount(count: number) {
 	}
 
 	return fixtures;
-}
+};

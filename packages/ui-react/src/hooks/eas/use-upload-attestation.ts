@@ -10,11 +10,11 @@ import {
 	uploadText,
 } from "#lib/filecoin/lighthouse/isomorphic";
 
-export function useUploadAttestationWithLighthouse({
+export const useUploadAttestationWithLighthouse = ({
 	lighthouseApiKey,
 }: {
 	lighthouseApiKey?: string;
-}) {
+}) => {
 	if (!lighthouseApiKey) throw new Error("lighthouseApiKey is required");
 
 	const { data: walletClient } = useWalletClient();
@@ -84,4 +84,4 @@ export function useUploadAttestationWithLighthouse({
 	});
 
 	return { ...mutation };
-}
+};
