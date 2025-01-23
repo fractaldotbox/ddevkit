@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
-import { formatUnitsWithLocale } from "@geist/domain/amount.js";
+import { formatUnitsWithLocale } from "@geist/domain/amount";
 import { format } from "date-fns";
 
 import {
