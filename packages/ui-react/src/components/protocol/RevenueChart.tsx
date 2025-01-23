@@ -16,6 +16,8 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "#components/shadcn/chart";
+
+
 const chartData = [
 	{ date: "2024-04-01", desktop: 222, mobile: 150 },
 	{ date: "2024-04-02", desktop: 97, mobile: 180 },
@@ -124,7 +126,7 @@ const chartConfig = {
 	},
 } satisfies ChartConfig;
 
-export function Component() {
+export const RevenueChart = () => {
 	const [activeChart, setActiveChart] =
 		React.useState<keyof typeof chartConfig>("desktop");
 
