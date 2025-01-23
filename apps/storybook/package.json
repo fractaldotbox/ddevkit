@@ -1,10 +1,10 @@
 {
-	"name": "storybook",
+	"name": "@geist/storybook",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
 	"imports": {
-		"#*": ["./src/*", "./src/*.tsx"]
+		"#*": ["./src/*", "./*.ts", "./src/*.tsx"]
 	},
 	"scripts": {
 		"dev": "storybook dev -p 6006",

@@ -1,4 +1,5 @@
 import { TokenPriceChart } from "@geist/ui-react/components/token/token-price-chart";
+import { BY_CHAIN_ID, Token } from "@geist/ui-react/lib/token/config";
 import type { Meta, StoryObj } from "@storybook/react";
 import { mainnet } from "viem/chains";
 import { withWagmiProvider } from "#stories/decorators/wagmi.tsx";
@@ -26,7 +27,7 @@ export const StETH: Story = {
 		tokens: [
 			{
 				chainId: mainnet.id,
-				address: "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+				address: BY_CHAIN_ID[mainnet.id][Token.StETH]!,
 			},
 		],
 	},
