@@ -5,20 +5,14 @@ import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
 import { formatUnitsWithLocale } from "@geist/domain/amount.js";
 import { format } from "date-fns";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from "#components/shadcn/card";
+
 import {
 	type ChartConfig,
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
 } from "#components/shadcn/chart";
-import { useGetProtocolRevenue } from "#hooks/data/use-defillama.js";
+import { useGetProtocolRevenue } from "#hooks/data/use-defillama";
 
 const chartConfig = {
 	fees: {

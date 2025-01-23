@@ -1,4 +1,3 @@
-import { asCaip19Id } from "@geist/domain/token/cross-chain.js";
 import type { TokenPriceEntry } from "@geist/domain/token/token-price-entry";
 import { format, isSameHour } from "date-fns";
 import * as React from "react";

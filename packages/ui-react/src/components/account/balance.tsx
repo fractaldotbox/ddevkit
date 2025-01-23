@@ -6,7 +6,7 @@ import type { Address } from "viem";
 import { mainnet } from "viem/chains";
 import { useBalance, useConfig, useReadContract } from "wagmi";
 import { getBalance } from "wagmi/actions";
-import { useTokenInfo } from "#components/token/token.js";
+import { useTokenInfo } from "#components/token/token";
 import { ABI_ERC20 } from "#lib/token/config";
 
 type NativeTokenBalanceProps = {

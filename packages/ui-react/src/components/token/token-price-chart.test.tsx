@@ -1,11 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import { mainnet } from "viem/chains";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { useGetChartWithMultipleTokens } from "#hooks/data/use-defillama.js";
+import { useGetChartWithMultipleTokens } from "#hooks/data/use-defillama";
 import { TokenPriceChart } from "./token-price-chart";
 
 // Mock the hooks
-vi.mock("#hooks/data/use-defillama.js", () => ({
+vi.mock("#hooks/data/use-defillama", () => ({
 	useGetChartWithMultipleTokens: vi.fn(),
 }));
 

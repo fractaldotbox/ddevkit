@@ -1,10 +1,8 @@
-import type { Name } from "@ensdomains/ensjs/subgraph";
-import { resolveChainById } from "@geist/domain/chain/chain-resolver.js";
-import { asCaip19Id } from "@geist/domain/token/cross-chain.js";
-import type { TokenSelector } from "@geist/domain/token/token.js";
-import ky, { type DownloadProgress } from "ky";
-import type { Chain } from "viem";
-import type { TokenPriceEntry } from "#components/token/token-price-entry.js";
+import { resolveChainById } from "@geist/domain/chain/chain-resolver";
+import { asCaip19Id } from "@geist/domain/token/cross-chain";
+import type { TokenSelector } from "@geist/domain/token/token";
+import type { TokenPriceEntry } from "@geist/domain/token/token-price-entry";
+import ky from "ky";
 
 const ENDPOINT = "https://api.llama.fi";
 const ENDPOINT_COINS = "https://coins.llama.fi";
