@@ -32,6 +32,6 @@ export const ETHTokenChipWithAmount: Story = {
 		symbol: "ETH",
 		amount: 300000000000000000n,
 		decimals: 18,
-		decimalsDisplayed: 1,
+		maximumSignificantDigits: 1,
 	},
 };

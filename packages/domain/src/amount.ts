@@ -7,17 +7,25 @@ import { formatUnits } from "viem";
 
 export const formatUnitsWithLocale = ({
 	value,
-	exponent,
+	exponent = 18,
 	locale,
 	formatOptions,
 }: {
 	value: bigint;
 	exponent: number;
 	locale?: Intl.Locale;
-	formatOptions: Intl.NumberFormatOptions;
+	formatOptions?: Intl.NumberFormatOptions;
 }) => {
-	// losing precision
 	const e = Math.pow(10, exponent);
 
-	return (Number(value) / e).toLocaleString(locale, formatOptions);
+	const currency =
+		formatOptions?.style === "currency"
+			? formatOptions?.currency || "USD"
+			: undefined;
+
+	return (Number(value) / e).toLocaleString(locale, {
+		...formatOptions,
+		currency,
+		maximumFractionDigits: formatOptions?.maximumFractionDigits ?? 2,
+	});
 };

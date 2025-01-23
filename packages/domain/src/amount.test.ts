@@ -12,7 +12,6 @@ describe("amount", () => {
 					minimumFractionDigits: 2,
 					maximumFractionDigits: 2,
 					style: "currency",
-					currency: "USD",
 				},
 			});
 			expect(result).toBe("$1,234.57");

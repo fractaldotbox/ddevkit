@@ -4,7 +4,9 @@ import { Text } from "@radix-ui/themes";
 // Option to use ipfs gateway, ens metadata services
 import type { Address } from "viem";
 import { mainnet } from "viem/chains";
-import { useBalance, useReadContract } from "wagmi";
+import { useBalance, useConfig, useReadContract } from "wagmi";
+import { getBalance } from "wagmi/actions";
+import { useTokenInfo } from "#components/token/token.js";
 import { ABI_ERC20 } from "#lib/token/config";
 
 type NativeTokenBalanceProps = {
@@ -14,6 +16,76 @@ type NativeTokenBalanceProps = {
 };
 
 // Consider locale for https://github.com/bpierre/dnum
+
+export const Balance = ({
+	address,
+	chainId = mainnet.id,
+	tokenAddress,
+}: {
+	address: Address;
+	chainId?: number;
+	tokenAddress?: Address;
+}) => {
+	if (tokenAddress) {
+		return (
+			<TokenBalance
+				address={address}
+				chainId={chainId}
+				tokenAddress={tokenAddress}
+			/>
+		);
+	}
+
+	return <NativeTokenBalance address={address} chainId={chainId} />;
+};
+
+export const TokenBalance = ({
+	address,
+	chainId = mainnet.id,
+	tokenAddress,
+}: {
+	address: Address;
+	chainId?: number;
+	tokenAddress: Address;
+}) => {
+	const config = useConfig();
+
+	const { data, isError, isLoading, error } = useReadContract({
+		abi: ABI_ERC20,
+		address: tokenAddress,
+		chainId,
+		functionName: "balanceOf",
+		args: [address],
+		account: address,
+	});
+
+	const { data: tokenInfo } = useTokenInfo({
+		chainId,
+		address: tokenAddress,
+		config,
+	});
+
+	if (isLoading || !tokenInfo) return <Text>Loading...</Text>;
+	if (isError) return <Text>Error loading balance</Text>;
+
+	const value = data ?? BigInt(0);
+
+	const { decimals } = tokenInfo || {};
+
+	console.log("data", data, tokenInfo, value, decimals);
+	return (
+		<Text>
+			{formatUnitsWithLocale({
+				value,
+				exponent: decimals ?? 18,
+				formatOptions: {
+					style: "currency",
+					maximumFractionDigits: 4,
+				},
+			})}{" "}
+		</Text>
+	);
+};
 
 export const NativeTokenBalance = ({
 	address,
@@ -28,49 +100,18 @@ export const NativeTokenBalance = ({
 	if (isError) return <Text>Error loading balance</Text>;
 	if (isLoading || !data) return <Text>Loading...</Text>;
 
+	const value = data?.value ?? BigInt(0);
+
 	return (
 		<Text>
-			{formatUnitsWithLocale(data, decimalsDisplayed)} {data?.symbol}
+			{formatUnitsWithLocale({
+				value,
+				exponent: data?.decimals ?? 18,
+				formatOptions: {
+					maximumFractionDigits: decimalsDisplayed,
+				},
+			})}{" "}
+			{data?.symbol}
 		</Text>
 	);
-};
-
-export const Balance = ({
-	address,
-	chainId = mainnet.id,
-	token,
-}: {
-	address: Address;
-	chainId?: number;
-	token?: Address;
-}) => {
-	if (token) {
-		return <TokenBalance address={address} chainId={chainId} token={token} />;
-	}
-
-	return <NativeTokenBalance address={address} chainId={chainId} />;
-};
-
-export const TokenBalance = ({
-	address,
-	chainId = mainnet.id,
-	token,
-}: {
-	address: Address;
-	chainId?: number;
-	token?: Address;
-}) => {
-	const { data, isError, isLoading } = useReadContract({
-		abi: ABI_ERC20,
-		address: token,
-		chainId,
-		functionName: "balanceOf",
-		args: [address],
-		account: address,
-	});
-
-	if (isLoading) return <Text>Loading...</Text>;
-	if (isError) return <Text>Error loading balance</Text>;
-
-	return <Text>{data?.toString()}</Text>;
 };

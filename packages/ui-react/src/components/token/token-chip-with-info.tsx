@@ -10,10 +10,9 @@ export type TokenChipWithInfoProps = {
 	imageUrl?: string;
 	name: string;
 	symbol: string;
-	// TODO both amount and decimals are required
 	amount?: bigint;
 	decimals?: number;
-	decimalsDisplayed?: number;
+	maximumSignificantDigits?: number;
 	className?: string;
 };
 
@@ -25,7 +24,7 @@ export const TokenChipWithInfo = ({
 	symbol,
 	amount,
 	decimals,
-	decimalsDisplayed = 2,
+	maximumSignificantDigits = 2,
 	className,
 }: TokenChipWithInfoProps) => {
 	return (
@@ -37,13 +36,13 @@ export const TokenChipWithInfo = ({
 				<div className="text-lg font-semibold">{symbol}</div>
 				{decimals !== undefined && (
 					<div className="text-sm text-muted-foreground p-2">
-						{formatUnitsWithLocale(
-							{
-								value: amount ?? 0n,
-								decimals,
+						{formatUnitsWithLocale({
+							value: amount ?? 0n,
+							exponent: decimals,
+							formatOptions: {
+								maximumSignificantDigits,
 							},
-							decimalsDisplayed,
-						)}
+						})}
 					</div>
 				)}
 			</div>
