@@ -31,15 +31,16 @@ export const useGetPriceWithMultipleTokenIds = (tokens: TokenSelector[]) => {
 	});
 };
 
-export const useGetProtocolRevenue = (protocolSlug: string) => {
+export const useGetProtocolRevenue = (
+	protocolSlug: string,
+	dataType = "dailyFees",
+) => {
 	return useQuery({
-		queryKey: [`${CACHE_KEY}.protocol.revenue`, protocolSlug],
+		queryKey: [`${CACHE_KEY}.protocol.revenue`, protocolSlug, dataType],
 		queryFn: async () => {
-			const results = await getProtocolFees(protocolSlug, "dailyFees");
+			const results = await getProtocolFees(protocolSlug, dataType);
 
 			const { totalDataChart } = results;
-			// TODO align time format
-
 			return {
 				...results,
 				totalDataChart,

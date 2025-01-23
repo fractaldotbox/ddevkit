@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
+import { formatUnitsWithLocale } from "@geist/domain/amount.js";
 import { format } from "date-fns";
 import {
 	Card,
@@ -24,6 +25,10 @@ const chartConfig = {
 		label: "fees",
 		color: "hsl(var(--chart-1))",
 	},
+	revenue: {
+		label: "revenue",
+		color: "hsl(var(--chart-2))",
+	},
 } satisfies ChartConfig;
 
 export const RevenueChart = ({
@@ -31,22 +36,30 @@ export const RevenueChart = ({
 }: {
 	protocolSlug: string;
 }) => {
-	const [activeChart, setActiveChart] =
-		React.useState<keyof typeof chartConfig>("fees");
+	const [activeCharts, setActiveCharts] = React.useState<
+		(keyof typeof chartConfig)[]
+	>(["fees", "revenue"]);
 
-	const { data } = useGetProtocolRevenue(protocolSlug);
-	const { totalDataChart = [] } = data || {};
+	const { data: dailyFees } = useGetProtocolRevenue(protocolSlug, "dailyFees");
+	const { data: dailyRevenue } = useGetProtocolRevenue(
+		protocolSlug,
+		"dailyRevenue",
+	);
 
-	const chartData = totalDataChart.map(([happenAt, amount]) => {
-		const date = format(happenAt * 1000, "yyyy-MM-dd HH:MM");
+	const chartData = (dailyFees?.totalDataChart || []).map(
+		([happenAt, amount], i) => {
+			const date = format(happenAt * 1000, "yyyy-MM-dd HH:MM");
 
-		return {
-			date,
-			fees: amount,
-		};
-	});
+			const [, revenue] = dailyRevenue?.totalDataChart[i] || [];
 
-	console.log("chartData", chartData);
+			console.log("data", date, amount, revenue);
+			return {
+				date,
+				fees: amount,
+				revenue,
+			};
+		},
+	);
 
 	const total = React.useMemo(
 		() => ({
@@ -85,28 +98,40 @@ export const RevenueChart = ({
 						});
 					}}
 				/>
-				<ChartTooltip
-					content={
-						<ChartTooltipContent
-							className="w-[150px]"
-							nameKey="fees"
-							labelFormatter={(date) => {
-								return new Date(date).toLocaleDateString("en-US", {
-									month: "short",
-									day: "numeric",
-									year: "numeric",
-								});
-							}}
-							formatter={(value) => {
-								return `${value.toLocaleString({
-									style: "currency",
-									currency: "USD",
-								})}`;
-							}}
+
+				{activeCharts.map((activeChart) => (
+					<>
+						<ChartTooltip
+							key={activeChart}
+							content={
+								<ChartTooltipContent
+									className="w-[150px]"
+									nameKey={activeChart}
+									labelFormatter={(date) => {
+										return new Date(date).toLocaleDateString("en-US", {
+											month: "short",
+											day: "numeric",
+											year: "numeric",
+										});
+									}}
+									formatter={(value, key) => {
+										return (
+											`${key}` +
+											formatUnitsWithLocale({
+												value,
+												exponent: 1,
+												formatOptions: {
+													style: "currency",
+												},
+											})
+										);
+									}}
+								/>
+							}
 						/>
-					}
-				/>
-				<Bar dataKey={activeChart} fill={`var(--color-${activeChart})`} />
+						<Bar dataKey={activeChart} fill={`var(--color-${activeChart})`} />
+					</>
+				))}
 			</BarChart>
 		</ChartContainer>
 	);
