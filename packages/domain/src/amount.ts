@@ -1,14 +1,23 @@
 import { formatUnits } from "viem";
 
-export const formatUnitsWithDecimalsDisplayed = (
-	data: {
-		value: bigint;
-		decimals: number;
-	},
-	decimalsDisplayed = 4,
-) => {
-	return formatUnits(
-		data.value / BigInt(Math.pow(10, data?.decimals - decimalsDisplayed)),
-		decimalsDisplayed,
-	);
+/**
+ * compared to formatUnits from viem
+ * besides expotent handling, also take control of decimals displayed and locale concern
+ */
+
+export const formatUnitsWithLocale = ({
+	value,
+	exponent,
+	locale,
+	formatOptions,
+}: {
+	value: bigint;
+	exponent: number;
+	locale?: Intl.Locale;
+	formatOptions: Intl.NumberFormatOptions;
+}) => {
+	// losing precision
+	const e = Math.pow(10, exponent);
+
+	return (Number(value) / e).toLocaleString(locale, formatOptions);
 };

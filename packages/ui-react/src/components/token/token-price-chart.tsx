@@ -49,10 +49,6 @@ export const TokenPriceChart = ({
 		config,
 	});
 
-	console.log("byId", tokenInfoByTokenId);
-
-	// TODO load tokenInfoByTokenId
-
 	console.log("data", isSuccess, error, tokenPriceFeedByTokenId);
 
 	return isLoading ? (

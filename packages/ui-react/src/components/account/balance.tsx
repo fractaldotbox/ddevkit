@@ -1,4 +1,4 @@
-import { formatUnitsWithDecimalsDisplayed } from "@geist/domain/amount";
+import { formatUnitsWithLocale } from "@geist/domain/amount";
 import { Text } from "@radix-ui/themes";
 // support ENS, basename
 // Option to use ipfs gateway, ens metadata services
@@ -30,7 +30,7 @@ export const NativeTokenBalance = ({
 
 	return (
 		<Text>
-			{formatUnitsWithDecimalsDisplayed(data, decimalsDisplayed)} {data?.symbol}
+			{formatUnitsWithLocale(data, decimalsDisplayed)} {data?.symbol}
 		</Text>
 	);
 };

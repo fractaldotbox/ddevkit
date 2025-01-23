@@ -1,10 +1,9 @@
 import { RevenueChart } from "@geist/ui-react/components/protocol/revenue-chart";
 import type { Meta, StoryObj } from "@storybook/react";
-import { mainnet } from "viem/chains";
 import { withWagmiProvider } from "#stories/decorators/wagmi.tsx";
 
 const meta = {
-	title: "Token/TokenPriceChart",
+	title: "Protocol/RevenueChart",
 	component: RevenueChart,
 	parameters: {
 		layout: "centered",
@@ -22,12 +21,6 @@ type Story = StoryObj<typeof meta>;
 
 export const AaveV3: Story = {
 	args: {
-		chain: mainnet,
-		tokens: [
-			{
-				chainId: mainnet.id,
-				address: "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
-			},
-		],
+		protocolSlug: "aave-v3",
 	},
 };

@@ -1,4 +1,4 @@
-import { formatUnitsWithDecimalsDisplayed } from "@geist/domain/amount";
+import { formatUnitsWithLocale } from "@geist/domain/amount";
 import { formatEther, formatGwei, formatUnits } from "viem";
 import { Button } from "#components/shadcn/button";
 
@@ -37,7 +37,7 @@ export const TokenChipWithInfo = ({
 				<div className="text-lg font-semibold">{symbol}</div>
 				{decimals !== undefined && (
 					<div className="text-sm text-muted-foreground p-2">
-						{formatUnitsWithDecimalsDisplayed(
+						{formatUnitsWithLocale(
 							{
 								value: amount ?? 0n,
 								decimals,
