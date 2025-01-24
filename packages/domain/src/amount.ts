@@ -11,11 +11,14 @@ export const formatUnitsWithLocale = ({
 	locale,
 	formatOptions,
 }: {
-	value: bigint;
-	exponent: number;
+	value?: bigint;
+	exponent?: number;
 	locale?: Intl.Locale;
 	formatOptions?: Intl.NumberFormatOptions;
 }) => {
+	if (value === undefined) {
+		return "";
+	}
 	const e = Math.pow(10, exponent);
 
 	const currency =

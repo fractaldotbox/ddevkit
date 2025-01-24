@@ -112,8 +112,8 @@ export const RevenueChart = ({
 										return (
 											`${key}` +
 											formatUnitsWithLocale({
-												value,
-												exponent: 1,
+												value: BigInt(value),
+												exponent: 0,
 												formatOptions: {
 													style: "currency",
 												},

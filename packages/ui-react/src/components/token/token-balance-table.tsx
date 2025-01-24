@@ -16,10 +16,10 @@ const FormattedValueCell = ({
 		<>
 			{formatUnitsWithLocale({
 				value,
-				exponent: 1,
+				exponent: 0,
 				formatOptions: {
 					style,
-					maximumSignificantDigits: 2,
+					maximumFractionDigits: 2,
 				},
 			})}
 		</>

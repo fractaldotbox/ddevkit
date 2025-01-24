@@ -12,7 +12,7 @@ export type TokenChipWithInfoProps = {
 	symbol: string;
 	amount?: bigint;
 	decimals?: number;
-	maximumSignificantDigits?: number;
+	maximumFractionDigits?: number;
 	className?: string;
 };
 
@@ -24,7 +24,7 @@ export const TokenChipWithInfo = ({
 	symbol,
 	amount,
 	decimals,
-	maximumSignificantDigits = 2,
+	maximumFractionDigits = 2,
 	className,
 }: TokenChipWithInfoProps) => {
 	return (
@@ -40,7 +40,7 @@ export const TokenChipWithInfo = ({
 							value: amount ?? 0n,
 							exponent: decimals,
 							formatOptions: {
-								maximumSignificantDigits,
+								maximumFractionDigits,
 							},
 						})}
 					</div>

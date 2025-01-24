@@ -75,13 +75,12 @@ export const TokenBalanceChart = ({
 												y={viewBox.cy}
 												className="fill-foreground text-3xl font-bold"
 											>
-												$
 												{formatUnitsWithLocale({
 													value: totalAmount,
-													exponent: 1,
+													exponent: 0,
 													formatOptions: {
 														style: "currency",
-														maximumSignificantDigits: 2,
+														maximumFractionDigits: 2,
 													},
 												})}
 											</tspan>

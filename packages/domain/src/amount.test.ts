@@ -17,9 +17,21 @@ describe("amount", () => {
 			expect(result).toBe("$1,234.57");
 		});
 
+		test("formats number with locale options", () => {
+			const result = formatUnitsWithLocale({
+				value: undefined,
+				formatOptions: {
+					minimumFractionDigits: 2,
+					maximumFractionDigits: 2,
+					style: "currency",
+				},
+			});
+			expect(result).toBe("");
+		});
+
 		test("handles different locales", () => {
 			const result = formatUnitsWithLocale({
-				value: 123456789000n,
+				value: 1234567890000n,
 				exponent: 9,
 				locale: new Intl.Locale("de-DE"),
 				formatOptions: {
@@ -27,7 +39,7 @@ describe("amount", () => {
 					maximumFractionDigits: 2,
 				},
 			});
-			expect(result).toBe("1.234.567,00");
+			expect(result).toBe("1.234,57");
 		});
 
 		test("handles zero value", () => {
@@ -47,7 +59,7 @@ describe("amount", () => {
 				value: BigInt(0),
 				exponent: 9,
 			});
-			expect(result).toBe("0.00");
+			expect(result).toBe("0");
 		});
 	});
 });
