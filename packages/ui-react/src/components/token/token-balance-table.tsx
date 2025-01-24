@@ -1,11 +1,30 @@
 import type { TokenBalanceEntry } from "#components/token/token-balance-entry";
 import { Explorer } from "#lib/explorer/url";
 
+import { formatUnitsWithLocale } from "@geist/domain/amount";
 import type { ColumnDef } from "@tanstack/react-table";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
 import { DataTable } from "#components/data-table";
 
 // ASSET_CROSS_CHAIN
+
+const FormattedValueCell = ({
+	value,
+	style,
+}: { value: any; style?: "currency" }) => {
+	return (
+		<>
+			{formatUnitsWithLocale({
+				value,
+				exponent: 1,
+				formatOptions: {
+					style,
+					maximumSignificantDigits: 2,
+				},
+			})}
+		</>
+	);
+};
 
 export interface TokenBalanceTableProps {
 	tokenBalances: TokenBalanceEntry[];
@@ -42,22 +61,25 @@ const getCols = ({
 			accessorKey: "price",
 			header: "Price",
 			cell: ({ row }) => {
-				// TODO formatUnits
-				return <>${row.getValue("price")}</>;
+				return (
+					<FormattedValueCell value={row.getValue("price")} style="currency" />
+				);
 			},
 		},
 		{
 			accessorKey: "amount",
 			header: "Amount",
 			cell: ({ row }) => {
-				return <>{row.getValue("amount")}</>;
+				return <FormattedValueCell value={row.getValue("amount")} />;
 			},
 		},
 		{
 			accessorKey: "value",
 			header: "Value",
 			cell: ({ row }) => {
-				return <>${row.getValue("value")}</>;
+				return (
+					<FormattedValueCell value={row.getValue("value")} style="currency" />
+				);
 			},
 		},
 		{

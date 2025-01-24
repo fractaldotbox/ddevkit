@@ -1,8 +1,8 @@
 export type TokenBalanceEntry = {
 	symbol: string;
-	amount: string;
+	amount: bigint;
 	chainId?: string;
 	price?: number;
-	value?: number;
+	value?: bigint;
 	subRows?: TokenBalanceEntry[];
 };

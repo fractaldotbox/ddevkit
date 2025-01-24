@@ -8,6 +8,7 @@ import {
 	ChartTooltipContent,
 } from "#components/shadcn/chart";
 
+import { formatUnitsWithLocale } from "@geist/domain/amount.js";
 import { Label, Pie, PieChart } from "recharts";
 import type { TokenBalanceEntry } from "./token-balance-entry";
 
@@ -28,7 +29,7 @@ export const TokenBalanceChart = ({
 	tokenBalances: TokenBalanceEntry[];
 }) => {
 	const totalAmount = React.useMemo(() => {
-		return tokenBalances.reduce((acc, curr) => acc + curr.value! || 0, 0);
+		return tokenBalances.reduce((acc, curr) => acc + curr.value! || 0n, 0n);
 	}, []);
 
 	const chartData = tokenBalances.map((entry, i) => {
@@ -74,7 +75,15 @@ export const TokenBalanceChart = ({
 												y={viewBox.cy}
 												className="fill-foreground text-3xl font-bold"
 											>
-												${totalAmount.toLocaleString()}
+												$
+												{formatUnitsWithLocale({
+													value: totalAmount,
+													exponent: 1,
+													formatOptions: {
+														style: "currency",
+														maximumSignificantDigits: 2,
+													},
+												})}
 											</tspan>
 											<tspan
 												x={viewBox.cx}
