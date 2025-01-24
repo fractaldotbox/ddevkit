@@ -8,20 +8,11 @@ import {
 	ChartTooltipContent,
 } from "#components/shadcn/chart";
 
-import { formatUnitsWithLocale } from "@geist/domain/amount.js";
+import { formatUnitsWithLocale } from "@geist/domain/amount";
 import { Label, Pie, PieChart } from "recharts";
 import type { TokenBalanceEntry } from "./token-balance-entry";
 
-const chartData = [
-	{ browser: "chrome", visitors: 275, fill: "hsl(var(--chart-1))" },
-	{ browser: "safari", visitors: 200, fill: "hsl(var(--chart-2))" },
-];
-
-const chartConfig = {
-	visitors: {
-		label: "Visitors",
-	},
-} satisfies ChartConfig;
+const chartConfig = {} satisfies ChartConfig;
 
 export const TokenBalanceChart = ({
 	tokenBalances,
@@ -34,12 +25,13 @@ export const TokenBalanceChart = ({
 
 	const chartData = tokenBalances.map((entry, i) => {
 		return {
-			browser: entry.symbol,
-			visitors: entry.value || 0,
+			amount: Number(entry.amount || 0),
+			value: Number(entry.value || 0),
 			fill: `hsl(var(--chart-${i}))`,
 		};
 	});
 
+	console.log("chartData", tokenBalances, chartData);
 	return (
 		<div className="w-full h-full]">
 			<ChartContainer
@@ -50,12 +42,30 @@ export const TokenBalanceChart = ({
 				<PieChart>
 					<ChartTooltip
 						cursor={false}
-						content={<ChartTooltipContent hideLabel />}
+						content={
+							<ChartTooltipContent
+								hideLabel
+								formatter={(v, key) => {
+									return (
+										<div>
+											{formatUnitsWithLocale({
+												value: BigInt(v),
+												exponent: 0,
+												formatOptions: {
+													style: "currency",
+													maximumFractionDigits: 2,
+												},
+											})}
+										</div>
+									);
+								}}
+							/>
+						}
 					/>
 					<Pie
 						data={chartData}
 						label
-						dataKey="visitors"
+						dataKey="amount"
 						nameKey="browser"
 						innerRadius={60}
 						strokeWidth={5}
@@ -77,7 +87,7 @@ export const TokenBalanceChart = ({
 											>
 												{formatUnitsWithLocale({
 													value: totalAmount,
-													exponent: 0,
+													exponent: 18,
 													formatOptions: {
 														style: "currency",
 														maximumFractionDigits: 2,

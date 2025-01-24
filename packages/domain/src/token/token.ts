@@ -32,9 +32,8 @@ export const asTokenBalanceEntries = (tokenGroup, priceData) => {
 					return {
 						chainId,
 						symbol,
-						amount,
+						amount: BigInt(amount),
 						price,
-
 						value: asPriceValue(BigInt(amount), price, decimals),
 					};
 				},
@@ -44,7 +43,10 @@ export const asTokenBalanceEntries = (tokenGroup, priceData) => {
 				symbol,
 				amount,
 				subEntries,
-				value: subEntries.reduce((acc, { value }) => acc + value, 0n),
+				value: subEntries.reduce(
+					(acc: bigint, { value }: { value: bigint }) => acc + value,
+					0n,
+				),
 			};
 		},
 	);
