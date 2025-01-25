@@ -1,4 +1,8 @@
 import {
+	aggregateBySymbol,
+	tokenBalanceStore,
+} from "@geist/domain/token/aggregate.js";
+import {
 	asCaip19Id,
 	groupMultichainToken,
 } from "@geist/domain/token/multi-chain";
@@ -24,11 +28,27 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+const { $tokenBalances, $priceData } = tokenBalanceStore();
+
+$tokenBalances.set([...TOKEN_BALANCES_MULTIPLE_STABLECOINS]);
+
+$priceData.set([...PRICE_DATA_SNAPSHOT]);
+
+const $aggregate = aggregateBySymbol($tokenBalances, $priceData);
+
+// map to chart data
+
+// TODO   Container component with nanostore useStore deps
+const mapAggregateAsBalances = () => {
+	const aggregate = $aggregate.get();
+	// const balances = asTokenBalanceEntries(tokenBalances);
+	// const grouped = groupMultichainToken(balances);
+	// return grouped;
+};
+
 export const CrossChain: Story = {
 	args: {
-		tokenBalances: asTokenBalanceEntries(
-			groupMultichainToken(TOKEN_BALANCES_MULTIPLE_STABLECOINS),
-			PRICE_DATA_SNAPSHOT,
-		),
+		tokenBalances: [],
+		// aggregate: $aggregate.get()
 	},
 };

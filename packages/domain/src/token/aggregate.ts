@@ -30,6 +30,7 @@ export const aggregateBySymbol = (
 			tokenBalances: TokenBalanceEntry[],
 			$priceData: TokenPriceEntry[] = [],
 		) => {
+			console.log("computed", $priceData);
 			const bySymbol = groupMultichainToken(tokenBalances);
 
 			return Object.entries(bySymbol).reduce((acc, [symbol, tokenInfo]) => {
@@ -39,8 +40,6 @@ export const aggregateBySymbol = (
 					withValue(tokenBalance, $priceData),
 				);
 
-				// TODO if empty price data
-				console.log("tokenBalancesWithValue", tokenBalancesWithValue);
 				const agg = tokenBalancesWithValue.reduce(
 					(acc, tokenBalanceWithValue) => {
 						return {
@@ -53,8 +52,9 @@ export const aggregateBySymbol = (
 						value: 0n,
 					},
 				);
-				console.log("agg", agg);
+
 				acc.setKey(symbol, {
+					symbol,
 					tokenBalances: tokenBalancesWithValue,
 					agg,
 				});

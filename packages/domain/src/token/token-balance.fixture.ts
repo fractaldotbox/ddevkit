@@ -2,6 +2,7 @@
 
 import { faker } from "@faker-js/faker";
 import { subHours } from "date-fns";
+import type { TokenBalanceEntry } from "./token-balance-entry";
 import type { TokenPriceEntry } from "./token-price-entry";
 
 // TODO confirm price modelfor multi-chain assets
@@ -93,7 +94,6 @@ export const TOKEN_BALANCES_MULTIPLE_STABLECOINS = [
 		amount: 444444n,
 		name: "USD Tether",
 	},
-
 	{
 		chainId: 10,
 		address: "0x4200000000000000000000000000000000000042",
@@ -102,4 +102,4 @@ export const TOKEN_BALANCES_MULTIPLE_STABLECOINS = [
 		amount: 555555n,
 		name: "Optimism",
 	},
-];
+] as TokenBalanceEntry[];
