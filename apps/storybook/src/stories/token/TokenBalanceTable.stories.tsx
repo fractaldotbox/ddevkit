@@ -1,7 +1,7 @@
 import {
 	asCaip19Id,
-	groupCrosschainTokens,
-} from "@geist/domain/token/cross-chain";
+	groupMultichainToken,
+} from "@geist/domain/token/multi-chain";
 import { asTokenBalanceEntries } from "@geist/domain/token/token";
 import {
 	PRICE_DATA_SNAPSHOT,
@@ -27,7 +27,7 @@ type Story = StoryObj<typeof meta>;
 export const CrossChain: Story = {
 	args: {
 		tokenBalances: asTokenBalanceEntries(
-			groupCrosschainTokens(TOKEN_BALANCES_MULTIPLE_STABLECOINS),
+			groupMultichainToken(TOKEN_BALANCES_MULTIPLE_STABLECOINS),
 			PRICE_DATA_SNAPSHOT,
 		),
 	},

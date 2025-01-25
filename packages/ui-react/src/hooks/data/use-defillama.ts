@@ -1,13 +1,8 @@
+import type { TokenSelector } from "@geist/domain/token/token";
 import type { TokenPriceEntry } from "@geist/domain/token/token-price-entry";
-import type { TokenSelector } from "@geist/domain/token/token.js";
 import type { TransactionMeta } from "@geist/domain/transaction/transaction";
 import { useQuery } from "@tanstack/react-query";
-import {
-	asTokenPriceEntry,
-	getChart,
-	getPrices,
-	getProtocolFees,
-} from "#lib/defillama/api";
+import { getChart, getPrices, getProtocolFees } from "#lib/defillama/api";
 
 export const CACHE_KEY = "defillama";
 

@@ -1,9 +1,29 @@
 import { describe, expect, test } from "vitest";
-import { formatUnitsWithLocale } from "./amount";
+import { formatNumberWithLocale, formatUnitsWithLocale } from "./amount";
 
 describe("amount", () => {
+	describe("#formatNumberWithLocale", () => {
+		test("format non currency", () => {
+			const result = formatNumberWithLocale({
+				value: 1234.567,
+				locale: new Intl.Locale("en-US"),
+			});
+			expect(result).toBe("1,234.57");
+		});
+
+		test("format currency", () => {
+			const result = formatNumberWithLocale({
+				value: 1234.567,
+				locale: new Intl.Locale("en-US"),
+				formatOptions: {
+					style: "currency",
+				},
+			});
+			expect(result).toBe("$1,234.57");
+		});
+	});
 	describe("formatUnitsWithLocale", () => {
-		test("formats number with locale options", () => {
+		test("format units with locale options", () => {
 			const result = formatUnitsWithLocale({
 				value: 1234567890000n,
 				exponent: 9,

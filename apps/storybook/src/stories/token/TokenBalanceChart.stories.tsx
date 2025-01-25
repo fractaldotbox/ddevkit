@@ -1,7 +1,7 @@
 import {
 	asCaip19Id,
-	groupCrosschainTokens,
-} from "@geist/domain/token/cross-chain";
+	groupMultichainToken,
+} from "@geist/domain/token/multi-chain";
 import { asTokenBalanceEntries } from "@geist/domain/token/token";
 import {
 	PRICE_DATA_SNAPSHOT,
@@ -24,11 +24,33 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const ByCrosschainToken: Story = {
+// separate abstraction
+// similar to how Elasticsearch query handles aggs https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html
+// agg by chain, token
+
+// useful:
+// e.g. USDC amount distribution by each chain
+// e.g. value distribution of agg of multiple tokens by each chain
+// e.g. value distribution by each token of a chain
+
+// not useful
+// e.g. multiple non-stable token amount by each chain
+
+export const TokenAmountByMultichain: Story = {
 	args: {
+		group: "chain",
+		// dataByGroup: {}
+
 		tokenBalances: asTokenBalanceEntries(
-			groupCrosschainTokens(TOKEN_BALANCES_MULTIPLE_STABLECOINS),
+			groupMultichainToken(TOKEN_BALANCES_MULTIPLE_STABLECOINS),
 			PRICE_DATA_SNAPSHOT,
 		),
 	},
 };
+
+// export const TokenValueByMultichain: Story = {
+// 	args: {
+// 		...TokenAmountByMultichain.args,
+// 		group: 'chain',
+// 	},
+// };

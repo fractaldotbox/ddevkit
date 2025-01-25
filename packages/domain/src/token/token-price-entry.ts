@@ -1,4 +1,6 @@
-export type TokenPriceEntry = {
-	happenAt: number;
+import type { Token } from "./token";
+
+export type TokenPriceEntry = Partial<Token> & {
+	happenAt?: number;
 	price: Number;
 };

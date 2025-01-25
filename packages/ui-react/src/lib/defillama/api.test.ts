@@ -1,5 +1,5 @@
 import exp from "constants";
-import { asCaip19Id } from "@geist/domain/token/cross-chain.js";
+import { asCaip19Id } from "@geist/domain/token/multi-chain.js";
 import { mainnet } from "viem/chains";
 import { describe, expect, it } from "vitest";
 import {

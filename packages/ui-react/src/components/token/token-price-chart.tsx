@@ -1,6 +1,6 @@
 import type { ChartConfig } from "#components/shadcn/chart";
 
-import { asCaip19Id } from "@geist/domain/token/cross-chain";
+import { asCaip19Id } from "@geist/domain/token/multi-chain";
 import type { TokenSelector } from "@geist/domain/token/token";
 import type { TokenPriceEntry } from "@geist/domain/token/token-price-entry";
 import type { Address, Chain } from "viem";

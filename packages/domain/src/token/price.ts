@@ -1,5 +1,5 @@
 export type Price = {
-	value: bigint;
+	value: number;
 };
 
 // return price value in bigint with desired decimals

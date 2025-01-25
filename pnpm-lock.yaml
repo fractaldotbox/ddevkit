@@ -507,6 +507,9 @@ importers:
       multiformats:
         specifier: ^13.3.0
         version: 13.3.0
+      nanostores:
+        specifier: 0.11.3
+        version: 0.11.3
       sha256:
         specifier: link:@noble/hashes/sha256
         version: link:@noble/hashes/sha256
@@ -597,6 +600,9 @@ importers:
       '@lighthouse-web3/sdk':
         specifier: ^0.3.7
         version: 0.3.7(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@nanostores/react':
+        specifier: 0.8.4
+        version: 0.8.4(nanostores@0.11.3)(react@18.3.1)
       '@noble/ed25519':
         specifier: 2.1.0
         version: 2.1.0
@@ -2896,6 +2902,13 @@ packages:
   '@multiformats/murmur3@2.1.8':
     resolution: {integrity: sha512-6vId1C46ra3R1sbJUOFCZnsUIveR9oF20yhPmAFxPm0JfrX3/ZRCgP3YDrBzlGoEppOXnA9czHeYc0T9mB6hbA==}
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
+
+  '@nanostores/react@0.8.4':
+    resolution: {integrity: sha512-EciHSzDXg7GmGODjegGG1VldPEinbAK+12/Uz5+MAdHmxf082Rl6eXqKFxAAu4pZAcr5dNTpv6wMfEe7XacjkQ==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    peerDependencies:
+      nanostores: ^0.9.0 || ^0.10.0 || ^0.11.0
+      react: '>=18.0.0'
 
   '@noble/ciphers@0.5.3':
     resolution: {integrity: sha512-B0+6IIHiqEs3BPMT0hcRmHvEj2QHOLu+uwt+tqDDeVd0oyVzh7BPrDcPjRnV1PV/5LaknXJJQvOuRGR0zQJz+w==}
@@ -9673,6 +9686,10 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  nanostores@0.11.3:
+    resolution: {integrity: sha512-TUes3xKIX33re4QzdxwZ6tdbodjmn3tWXCEc1uokiEmo14sI1EaGYNs2k3bU2pyyGNmBqFGAVl6jAGWd06AVIg==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+
   native-abort-controller@1.0.4:
     resolution: {integrity: sha512-zp8yev7nxczDJMoP6pDxyD20IU0T22eX8VwN2ztDccKvSZhRaV33yP1BGwKSZfXuqWUzsXopVFjBdau9OOAwMQ==}
     peerDependencies:
@@ -15598,6 +15615,11 @@ snapshots:
     dependencies:
       multiformats: 13.3.0
       murmurhash3js-revisited: 3.0.0
+
+  '@nanostores/react@0.8.4(nanostores@0.11.3)(react@18.3.1)':
+    dependencies:
+      nanostores: 0.11.3
+      react: 18.3.1
 
   '@noble/ciphers@0.5.3': {}
 
@@ -24325,6 +24347,8 @@ snapshots:
       thenify-all: 1.6.0
 
   nanoid@3.3.7: {}
+
+  nanostores@0.11.3: {}
 
   native-abort-controller@1.0.4(abort-controller@3.0.0):
     dependencies:

@@ -1,9 +1,11 @@
+import type { Atom } from "nanostores";
 import type { Address, Chain } from "viem";
-import { asCaip19Id } from "./cross-chain";
-import { asPriceValue } from "./price";
+import { asCaip19Id } from "./multi-chain";
+import { type Price, asPriceValue } from "./price";
 import type { TokenPriceEntry } from "./token-price-entry";
 
 export type Token = {
+	chainId?: number;
 	address?: Address;
 	imageUrl?: string;
 	decimals: number;
@@ -17,7 +19,11 @@ export type TokenSelector = {
 	address: string;
 };
 
-export const asTokenBalanceEntries = (tokenGroup, priceData) => {
+// TODO use aggregate for
+export const asTokenBalanceEntries = (
+	tokenGroup,
+	priceData: Atom<TokenPriceEntry[]>,
+) => {
 	const entries = Object.entries(tokenGroup).map(
 		([symbol, { meta, amount, tokenBalances = [] }]) => {
 			const subEntries = tokenBalances.map(

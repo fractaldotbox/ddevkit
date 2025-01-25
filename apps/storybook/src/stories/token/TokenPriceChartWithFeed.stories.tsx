@@ -1,7 +1,7 @@
 import {
 	asCaip19Id,
-	groupCrosschainTokens,
-} from "@geist/domain/token/cross-chain";
+	groupMultichainToken,
+} from "@geist/domain/token/multi-chain";
 import {
 	PRICE_DATA_FEED,
 	PRICE_DATA_SNAPSHOT,

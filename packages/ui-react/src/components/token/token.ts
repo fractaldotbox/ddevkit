@@ -23,7 +23,7 @@ import {
 	resolveChainById,
 	resolveProductionChain,
 } from "@geist/domain/chain/chain-resolver";
-import { asCaip19Id } from "@geist/domain/token/cross-chain.js";
+import { asCaip19Id } from "@geist/domain/token/multi-chain";
 import type { TokenSelector } from "@geist/domain/token/token";
 // import { useReadContracts } from "wagmi";
 import { type Config, readContracts } from "@wagmi/core";

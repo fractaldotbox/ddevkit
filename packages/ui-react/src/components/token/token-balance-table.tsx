@@ -6,17 +6,16 @@ import type { ColumnDef } from "@tanstack/react-table";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
 import { DataTable } from "#components/data-table";
 
-// ASSET_CROSS_CHAIN
-
 const FormattedValueCell = ({
 	value,
+	exponent = 0,
 	style,
-}: { value: any; style?: "currency" }) => {
+}: { value: any; exponent?: number; style?: "currency" }) => {
 	return (
 		<>
 			{formatUnitsWithLocale({
 				value,
-				exponent: 0,
+				exponent,
 				formatOptions: {
 					style,
 					maximumFractionDigits: 2,
@@ -78,7 +77,11 @@ const getCols = ({
 			header: "Value",
 			cell: ({ row }) => {
 				return (
-					<FormattedValueCell value={row.getValue("value")} style="currency" />
+					<FormattedValueCell
+						value={row.getValue("value")}
+						style="currency"
+						exponent={18}
+					/>
 				);
 			},
 		},

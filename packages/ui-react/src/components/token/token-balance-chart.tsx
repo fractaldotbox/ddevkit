@@ -8,25 +8,48 @@ import {
 	ChartTooltipContent,
 } from "#components/shadcn/chart";
 
-import { formatUnitsWithLocale } from "@geist/domain/amount";
+import {
+	formatNumberWithLocale,
+	formatUnitsWithLocale,
+} from "@geist/domain/amount";
+import type { TokenBalanceEntry } from "@geist/domain/token/token-balance-entry";
 import { Label, Pie, PieChart } from "recharts";
-import type { TokenBalanceEntry } from "./token-balance-entry";
 
 const chartConfig = {} satisfies ChartConfig;
 
+export const asPieChartData = () => {
+	const totalAmount = 123n;
+
+	return {
+		data: {},
+		totalFormatted: formatUnitsWithLocale({
+			value: totalAmount,
+			formatOptions: {
+				style: "currency",
+				maximumFractionDigits: 2,
+			},
+		}),
+	};
+};
+
 export const TokenBalanceChart = ({
 	tokenBalances,
+	group = "chain",
+	symbol,
+	by = "amount",
 }: {
 	tokenBalances: TokenBalanceEntry[];
+	group: string;
+	by: "amount" | "value";
 }) => {
-	const totalAmount = React.useMemo(() => {
-		return tokenBalances.reduce((acc, curr) => acc + curr.value! || 0n, 0n);
-	}, []);
+	console.log("group", group, by);
 
 	const chartData = tokenBalances.map((entry, i) => {
+		const { amount, value, chainId } = entry;
 		return {
-			amount: Number(entry.amount || 0),
-			value: Number(entry.value || 0),
+			chainId,
+			amount: Number(amount || 0),
+			value: Number(value || 0),
 			fill: `hsl(var(--chart-${i}))`,
 		};
 	});
@@ -46,11 +69,12 @@ export const TokenBalanceChart = ({
 							<ChartTooltipContent
 								hideLabel
 								formatter={(v, key) => {
+									console.log("vvv", v);
 									return (
 										<div>
 											{formatUnitsWithLocale({
-												value: BigInt(v),
-												exponent: 0,
+												value: v,
+												exponent: 18,
 												formatOptions: {
 													style: "currency",
 													maximumFractionDigits: 2,
@@ -65,8 +89,8 @@ export const TokenBalanceChart = ({
 					<Pie
 						data={chartData}
 						label
-						dataKey="amount"
-						nameKey="browser"
+						dataKey={by}
+						nameKey="chainId"
 						innerRadius={60}
 						strokeWidth={5}
 					>
@@ -85,14 +109,7 @@ export const TokenBalanceChart = ({
 												y={viewBox.cy}
 												className="fill-foreground text-3xl font-bold"
 											>
-												{formatUnitsWithLocale({
-													value: totalAmount,
-													exponent: 18,
-													formatOptions: {
-														style: "currency",
-														maximumFractionDigits: 2,
-													},
-												})}
+												{totalFormatted}
 											</tspan>
 											<tspan
 												x={viewBox.cx}
