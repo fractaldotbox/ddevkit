@@ -74,7 +74,7 @@ describe("fetchTokenInfoBulkAction", () => {
 
 		// 404: Not Found
 		expect(nonExists).toBe(
-			"https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6b175474e89094c44da98b954eedeac495271d0f/logo.png",
+			"https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6B175474E89094C44Da98b954EedeAC495271d0F/logo.png",
 		);
 	});
 });
