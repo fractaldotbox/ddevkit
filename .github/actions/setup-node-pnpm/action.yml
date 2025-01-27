@@ -1,0 +1,31 @@
+name: 'Setup Node.js and pnpm'
+
+inputs:
+  node-version:
+    type: string
+    default: '22'
+    description: 'The version of Node.js to use'
+
+  pnpm-version:
+    type: string
+    default: '10.0.0+sha512.b8fef5494bd3fe4cbd4edabd0745df2ee5be3e4b0b8b08fa643aa3e4c6702ccc0f00d68fa8a8c9858a735a0032485a44990ed2810526c875e416f001b17df12b'
+    description: 'The version of pnpm to use'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: ${{ inputs.pnpm-version }}
+        run_install: false
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'pnpm'
+
+    - name: Install dependencies
+      run: pnpm install
+      shell: bash
