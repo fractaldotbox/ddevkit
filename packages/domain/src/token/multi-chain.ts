@@ -1,12 +1,11 @@
 import { type Atom, computed } from "nanostores";
-import { groupBy } from "#util.js";
+import { groupBy } from "#util";
 import type { TokenSelector } from "./token";
 import type { TokenBalanceEntry } from "./token-balance-entry";
 import type { TokenPriceEntry } from "./token-price-entry";
 
 // consider main chain as canonical asset
 
-// TODO chainIdCaip19 CAIP-19 eip155: prefix
 export const TOKEN_MULTI_CHAIN = [
 	{
 		meta: {

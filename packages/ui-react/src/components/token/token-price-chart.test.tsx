@@ -4,7 +4,7 @@ import { mainnet } from "viem/chains";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { WagmiProvider } from "wagmi";
 import { useGetChartWithMultipleTokens } from "#hooks/data/use-defillama";
-import { WAGMI_CONFIG } from "#lib/utils/wagmi-config.js";
+import { WAGMI_CONFIG } from "#lib/utils/wagmi-config";
 import { TokenPriceChart } from "./token-price-chart";
 
 global.ResizeObserver = class {

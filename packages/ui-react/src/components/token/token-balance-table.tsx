@@ -1,15 +1,16 @@
 import { formatUnitsWithLocale } from "@geist/domain/amount";
-import { aggregateBySymbol } from "@geist/domain/token/aggregate.js";
+import { aggregateBySymbol } from "@geist/domain/token/aggregate";
 import type {
 	TokenBalance,
 	TokenBalanceEntry,
 } from "@geist/domain/token/token-balance-entry";
-import type { TokenPriceEntry } from "@geist/domain/token/token-price-entry.js";
+import type { TokenPriceEntry } from "@geist/domain/token/token-price-entry";
 import { useStore } from "@nanostores/react";
 import type { ColumnDef } from "@tanstack/react-table";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
 import type { Atom } from "nanostores";
 import React from "react";
+
 import { DataTable } from "#components/data-table";
 import { Explorer } from "#lib/explorer/url";
 

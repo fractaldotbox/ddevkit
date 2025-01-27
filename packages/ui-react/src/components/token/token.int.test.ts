@@ -2,7 +2,7 @@ import { mainnet } from "viem/chains";
 import { describe, expect, test } from "vitest";
 import type { Config } from "wagmi";
 import { BY_CHAIN_ID, Token } from "#lib/token/config";
-import { WAGMI_CONFIG } from "#lib/utils/wagmi-config.js";
+import { WAGMI_CONFIG } from "#lib/utils/wagmi-config";
 import { fetchTokenInfoBulkAction, getTrustWalletIconUrl } from "./token";
 // Mock readContracts
 // vi.mock("@wagmi/core", () => ({
@@ -31,13 +31,11 @@ describe("fetchTokenInfoBulkAction", () => {
 
 		const results = await fetchTokenInfoBulkAction(config, 1)(tokens);
 
-		// expect(Object.keys(results)).toEqual([]);
-
 		console.log("results", results);
 		// Verify first token results
 		const token =
 			results["eip155:1/erc20:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"];
-		const { decimals, name, symbol, totalSupply } = token;
+		const { decimals, name, symbol, totalSupply } = token!;
 		expect(decimals).toBe(6); // decimals
 		expect(totalSupply > 30646276803710503n).toBe(true);
 	});
