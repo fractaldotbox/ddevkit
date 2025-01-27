@@ -87,11 +87,10 @@ export const aggregate = (grouped: Record<string, any>) => {
 };
 
 export const withValue = (
-	tokenBalance: TokenBalanceEntry,
+	tokenBalance: TokenBalance,
 	priceData: TokenPriceEntry[],
 ) => {
 	const { chainId, address } = tokenBalance;
-	console.log("priceData", priceData);
 	if (!priceData?.[0]) {
 		return tokenBalance;
 	}

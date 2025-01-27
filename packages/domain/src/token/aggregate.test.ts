@@ -4,7 +4,7 @@ import { aggregateBySymbol, tokenBalanceStore } from "./aggregate";
 import { allTasks, atom, cleanStores, keepMount } from "nanostores";
 import {
 	PRICE_DATA_SNAPSHOT,
-	TOKEN_BALANCES_MULTIPLE_STABLECOINS,
+	TOKEN_BALANCES_MULTICHAIN_STABLECOINS,
 } from "./token-balance.fixture";
 import type { TokenPriceEntry } from "./token-price-entry";
 
@@ -21,7 +21,7 @@ describe("aggregate", () => {
 	});
 
 	it("#aggregateBySymbol with no price", () => {
-		$tokenBalances.set([...TOKEN_BALANCES_MULTIPLE_STABLECOINS]);
+		$tokenBalances.set([...TOKEN_BALANCES_MULTICHAIN_STABLECOINS]);
 
 		const $aggregate = aggregateBySymbol($tokenBalances);
 
@@ -32,7 +32,7 @@ describe("aggregate", () => {
 	});
 
 	it("#aggregateBySymbol with price", async () => {
-		$tokenBalances.set([...TOKEN_BALANCES_MULTIPLE_STABLECOINS]);
+		$tokenBalances.set([...TOKEN_BALANCES_MULTICHAIN_STABLECOINS]);
 
 		$priceData.set([...PRICE_DATA_SNAPSHOT]);
 
@@ -45,8 +45,8 @@ describe("aggregate", () => {
 		});
 		expect(OP.symbol).toEqual("OP");
 
-		expect(OP.tokenBalances?.[0].chainId).toEqual(10);
-		expect(OP.tokenBalances?.[0].address).toEqual(
+		expect(OP.subEntries?.[0].chainId).toEqual(10);
+		expect(OP.subEntries?.[0].address).toEqual(
 			"0x4200000000000000000000000000000000000042",
 		);
 
@@ -55,8 +55,8 @@ describe("aggregate", () => {
 			amount: 333333n,
 			value: 333333000000000000000000n,
 		});
-		expect(USDC.tokenBalances?.[0].chainId).toEqual(1);
-		expect(USDC.tokenBalances?.[0].address).toEqual(
+		expect(USDC.subEntries?.[0].chainId).toEqual(1);
+		expect(USDC.subEntries?.[0].address).toEqual(
 			"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
 		);
 

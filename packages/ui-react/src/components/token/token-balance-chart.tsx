@@ -8,53 +8,118 @@ import {
 	ChartTooltipContent,
 } from "#components/shadcn/chart";
 
-import {
-	formatNumberWithLocale,
-	formatUnitsWithLocale,
-} from "@geist/domain/amount";
-import type { TokenBalanceEntry } from "@geist/domain/token/token-balance-entry";
+import { formatUnitsWithLocale } from "@geist/domain/amount";
+import { aggregateBySymbol, sumTotal } from "@geist/domain/token/aggregate";
+import type {
+	TokenBalance,
+	TokenBalanceEntry,
+} from "@geist/domain/token/token-balance-entry";
+import type { TokenPriceEntry } from "@geist/domain/token/token-price-entry";
+import { useStore } from "@nanostores/react";
+import type { Atom } from "nanostores";
 import { Label, Pie, PieChart } from "recharts";
+import type { Address } from "viem";
+import { TokenChipWithInfo } from "./token-chip-with-info";
 
 const chartConfig = {} satisfies ChartConfig;
 
-export const asPieChartData = () => {
-	const totalAmount = 123n;
+/**
+ * recharts doesn't support bigint
+ * rely on original over chart data for display
+ * avoid conversion as most other components rely bigint
+ */
+export const TokenBalanceChart$ = ({
+	$tokenBalances,
+	$priceData,
+	group,
+	dataKey,
+}: {
+	$tokenBalances: Atom<TokenBalance[]>;
+	$priceData: Atom<TokenPriceEntry[]>;
+	group: string;
+	dataKey: string;
+}) => {
+	const $tokenBalancesAggregated = aggregateBySymbol(
+		$tokenBalances,
+		$priceData,
+	);
 
-	return {
-		data: {},
-		totalFormatted: formatUnitsWithLocale({
-			value: totalAmount,
-			formatOptions: {
-				style: "currency",
-				maximumFractionDigits: 2,
-			},
-		}),
-	};
+	const tokenBalancesAggregated = useStore(useStore($tokenBalancesAggregated));
+
+	const tokenBalances = React.useMemo(
+		() =>
+			Object.entries(tokenBalancesAggregated).map(([, entry]) => {
+				const { symbol = "", chainId, address, agg } = entry;
+
+				return {
+					symbol,
+					chainId,
+					address: address as Address,
+					amount: agg.amount,
+					value: agg.value,
+				} as TokenBalance;
+			}),
+		[tokenBalancesAggregated],
+	);
+
+	if (group === "token") {
+		return (
+			<div>
+				<TokenBalanceChart tokenBalances={tokenBalances} dataKey={dataKey} />
+			</div>
+		);
+	}
+
+	return <div>TokenBalanceChart</div>;
+};
+
+const formatter = (
+	total: {
+		amount: bigint;
+		value: bigint;
+	},
+	dataKey: string,
+) => {
+	const value = total[dataKey as keyof typeof total];
+	if (dataKey === "amount") {
+		return formatUnitsWithLocale({
+			value,
+			exponent: 0,
+		});
+	}
+	return formatUnitsWithLocale({
+		value,
+		exponent: 18,
+		formatOptions: {
+			style: "currency",
+			maximumFractionDigits: 2,
+		},
+	});
 };
 
 export const TokenBalanceChart = ({
 	tokenBalances,
-	group = "chain",
-	symbol,
-	by = "amount",
+	dataKey = "amount",
 }: {
-	tokenBalances: TokenBalanceEntry[];
-	group: string;
-	by: "amount" | "value";
+	tokenBalances: TokenBalance[];
+	dataKey?: string;
 }) => {
-	console.log("group", group, by);
+	const total = sumTotal(tokenBalances);
+
+	const totalFormatted = React.useMemo(() => {
+		return formatter(total, dataKey);
+	}, [dataKey]);
 
 	const chartData = tokenBalances.map((entry, i) => {
-		const { amount, value, chainId } = entry;
+		const { amount, value = 0n, chainId } = entry;
 		return {
 			chainId,
-			amount: Number(amount || 0),
-			value: Number(value || 0),
+			symbol: entry.symbol,
+			amount: Number(amount) || 0,
+			value: Number(value / 10n ** 18n) || 0,
 			fill: `hsl(var(--chart-${i}))`,
 		};
 	});
-
-	console.log("chartData", tokenBalances, chartData);
 	return (
 		<div className="w-full h-full]">
 			<ChartContainer
@@ -68,18 +133,19 @@ export const TokenBalanceChart = ({
 						content={
 							<ChartTooltipContent
 								hideLabel
-								formatter={(v, key) => {
-									console.log("vvv", v);
+								formatter={(v, name) => {
+									const token = tokenBalances.find(
+										({ symbol }) => name === symbol,
+									)!;
 									return (
 										<div>
-											{formatUnitsWithLocale({
-												value: v,
-												exponent: 18,
-												formatOptions: {
-													style: "currency",
-													maximumFractionDigits: 2,
-												},
-											})}
+											<TokenChipWithInfo
+												isShowValue={dataKey === "value"}
+												{...token}
+												amount={token.amount}
+												value={token.value}
+												decimals={dataKey === "value" ? 18 : 0}
+											/>
 										</div>
 									);
 								}}
@@ -89,8 +155,8 @@ export const TokenBalanceChart = ({
 					<Pie
 						data={chartData}
 						label
-						dataKey={by}
-						nameKey="chainId"
+						dataKey={dataKey}
+						nameKey="symbol"
 						innerRadius={60}
 						strokeWidth={5}
 					>

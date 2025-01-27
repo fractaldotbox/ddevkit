@@ -5,13 +5,28 @@
  */
 
 import { groupMultichainToken, withValue } from "./multi-chain";
-import type { TokenBalanceEntry } from "./token-balance-entry";
+import type { TokenBalance, TokenBalanceEntry } from "./token-balance-entry";
 
 import { type Atom, atom, computed, deepMap } from "nanostores";
 import type { TokenPriceEntry } from "./token-price-entry";
 
+export const sumTotal = (tokenBalancesWithValue: TokenBalance[]) => {
+	return tokenBalancesWithValue.reduce(
+		(acc, tokenBalanceWithValue) => {
+			return {
+				amount: acc.amount + tokenBalanceWithValue.amount,
+				value: acc.value + (tokenBalanceWithValue.value || 0n),
+			};
+		},
+		{
+			amount: 0n,
+			value: 0n,
+		},
+	);
+};
+
 export const tokenBalanceStore = () => {
-	const $tokenBalances = atom<TokenBalanceEntry[]>([]);
+	const $tokenBalances = atom<TokenBalance[]>([]);
 	const $priceData = atom<TokenPriceEntry[]>([]);
 
 	return {
@@ -21,45 +36,40 @@ export const tokenBalanceStore = () => {
 };
 
 export const aggregateBySymbol = (
-	$tokenBalances: Atom<TokenBalanceEntry[]>,
+	$tokenBalances: Atom<TokenBalance[]>,
 	$priceData?: Atom<TokenPriceEntry[]>,
 ) => {
 	return computed(
 		[$tokenBalances, $priceData || atom<TokenPriceEntry[]>([])],
-		(
-			tokenBalances: TokenBalanceEntry[],
-			$priceData: TokenPriceEntry[] = [],
-		) => {
-			console.log("computed", $priceData);
+		(tokenBalances: TokenBalance[], $priceData: TokenPriceEntry[] = []) => {
 			const bySymbol = groupMultichainToken(tokenBalances);
 
-			return Object.entries(bySymbol).reduce((acc, [symbol, tokenInfo]) => {
-				const { tokenBalances } = tokenInfo;
+			return Object.entries(bySymbol).reduce(
+				(acc, [symbol, tokenInfo]) => {
+					const { tokenBalances } = tokenInfo;
 
-				const tokenBalancesWithValue = tokenBalances.map((tokenBalance) =>
-					withValue(tokenBalance, $priceData),
-				);
+					const tokenBalancesWithValue = tokenBalances.map((tokenBalance) =>
+						withValue(tokenBalance, $priceData),
+					);
 
-				const agg = tokenBalancesWithValue.reduce(
-					(acc, tokenBalanceWithValue) => {
-						return {
-							amount: acc.amount + tokenBalanceWithValue.amount,
-							value: acc.value + (tokenBalanceWithValue.value || 0n),
-						};
-					},
-					{
-						amount: 0n,
-						value: 0n,
-					},
-				);
+					const agg = sumTotal(tokenBalancesWithValue);
 
-				acc.setKey(symbol, {
-					symbol,
-					tokenBalances: tokenBalancesWithValue,
-					agg,
-				});
-				return acc;
-			}, deepMap<Record<string, unknown>>({}));
+					acc.setKey(symbol, {
+						symbol,
+						subEntries: tokenBalancesWithValue,
+						agg,
+					});
+					return acc;
+				},
+				deepMap<
+					Record<
+						string,
+						Partial<TokenBalanceEntry> & {
+							agg: { value: bigint; amount: bigint };
+						}
+					>
+				>({}),
+			);
 		},
 	);
 };

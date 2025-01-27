@@ -15,11 +15,13 @@ const chartConfig = {
 	},
 } satisfies ChartConfig;
 
+// Consider adding reactive component with ws price feed
+
 export const TokenPriceChart = ({
-	chain,
+	chainId,
 	tokens,
 }: {
-	chain: Chain;
+	chainId: number;
 	tokens: TokenSelector[];
 }) => {
 	const {
@@ -32,12 +34,10 @@ export const TokenPriceChart = ({
 	const config = useConfig();
 
 	const { data: tokenInfoByTokenId = {} } = useTokenInfoBulk({
-		chainId: chain.id,
+		chainId: chainId,
 		tokens,
 		config,
 	});
-
-	console.log("data", isSuccess, error, tokenPriceFeedByTokenId);
 
 	return isLoading ? (
 		<div>Loading...</div>

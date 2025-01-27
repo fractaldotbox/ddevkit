@@ -1,10 +1,17 @@
-import type { TokenBalanceEntry } from "#components/token/token-balance-entry";
-import { Explorer } from "#lib/explorer/url";
-
 import { formatUnitsWithLocale } from "@geist/domain/amount";
+import { aggregateBySymbol } from "@geist/domain/token/aggregate.js";
+import type {
+	TokenBalance,
+	TokenBalanceEntry,
+} from "@geist/domain/token/token-balance-entry";
+import type { TokenPriceEntry } from "@geist/domain/token/token-price-entry.js";
+import { useStore } from "@nanostores/react";
 import type { ColumnDef } from "@tanstack/react-table";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
+import type { Atom } from "nanostores";
+import React from "react";
 import { DataTable } from "#components/data-table";
+import { Explorer } from "#lib/explorer/url";
 
 const FormattedValueCell = ({
 	value,
@@ -27,6 +34,7 @@ const FormattedValueCell = ({
 
 export interface TokenBalanceTableProps {
 	tokenBalances: TokenBalanceEntry[];
+	explorer?: Explorer;
 	chainId?: number;
 	// explorer?: Explorer;
 	itemsPerPage?: number;
@@ -107,6 +115,38 @@ const getCols = ({
 		},
 	] as ColumnDef<TokenBalanceEntry>[];
 };
+
+export function TokenBalanceTable$({
+	$tokenBalances,
+	$priceData,
+}: {
+	$tokenBalances: Atom<TokenBalance[]>;
+	$priceData: Atom<TokenPriceEntry[]>;
+}) {
+	const $tokenBalancesAggregated = aggregateBySymbol(
+		$tokenBalances,
+		$priceData,
+	);
+
+	const tokenBalancesAggregated = useStore(useStore($tokenBalancesAggregated));
+
+	const tokenBalanceEntries = React.useMemo(
+		() =>
+			Object.entries(tokenBalancesAggregated).map(([, entry]) => {
+				const { symbol, chainId, agg } = entry;
+
+				return {
+					price: entry.subEntries?.[0]?.price || 0.0,
+					amount: agg.amount,
+					value: agg.value,
+					subEntries: entry.subEntries,
+				};
+			}),
+		[tokenBalancesAggregated],
+	) as TokenBalanceEntry[];
+
+	return <TokenBalanceTable tokenBalances={tokenBalanceEntries} />;
+}
 
 export function TokenBalanceTable({
 	tokenBalances,

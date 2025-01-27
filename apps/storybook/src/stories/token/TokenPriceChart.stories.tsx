@@ -23,7 +23,7 @@ type Story = StoryObj<typeof meta>;
 
 export const StETH: Story = {
 	args: {
-		chain: mainnet,
+		chainId: mainnet.id,
 		tokens: [
 			{
 				chainId: mainnet.id,

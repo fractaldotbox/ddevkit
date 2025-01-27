@@ -2,7 +2,8 @@
 
 import { faker } from "@faker-js/faker";
 import { subHours } from "date-fns";
-import type { TokenBalanceEntry } from "./token-balance-entry";
+import { tokenBalanceStore } from "./aggregate";
+import type { TokenBalance, TokenBalanceEntry } from "./token-balance-entry";
 import type { TokenPriceEntry } from "./token-price-entry";
 
 // TODO confirm price modelfor multi-chain assets
@@ -60,7 +61,7 @@ export const PRICE_DATA_SNAPSHOT = [
 	},
 ] as TokenPriceEntry[];
 
-export const TOKEN_BALANCES_MULTIPLE_STABLECOINS = [
+export const TOKEN_BALANCES_MULTICHAIN_STABLECOINS = [
 	{
 		chainId: 1,
 		address: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
@@ -85,7 +86,6 @@ export const TOKEN_BALANCES_MULTIPLE_STABLECOINS = [
 		amount: 333333n,
 		name: "USD Tether",
 	},
-
 	{
 		chainId: 1,
 		address: "0xfde4c96c8593536e31f229ea8f37b2ada2699bb2",
@@ -94,6 +94,10 @@ export const TOKEN_BALANCES_MULTIPLE_STABLECOINS = [
 		amount: 444444n,
 		name: "USD Tether",
 	},
+] as TokenBalance[];
+
+export const TOKEN_BALANCES_MULTICHAIN = [
+	...TOKEN_BALANCES_MULTICHAIN_STABLECOINS,
 	{
 		chainId: 10,
 		address: "0x4200000000000000000000000000000000000042",
@@ -102,4 +106,17 @@ export const TOKEN_BALANCES_MULTIPLE_STABLECOINS = [
 		amount: 555555n,
 		name: "Optimism",
 	},
-] as TokenBalanceEntry[];
+] as TokenBalance[];
+
+export const createTokenBalanceStoreWithFixture = () => {
+	const { $tokenBalances, $priceData } = tokenBalanceStore();
+
+	$tokenBalances.set([...TOKEN_BALANCES_MULTICHAIN]);
+
+	$priceData.set([...PRICE_DATA_SNAPSHOT]);
+
+	return {
+		$tokenBalances,
+		$priceData,
+	};
+};

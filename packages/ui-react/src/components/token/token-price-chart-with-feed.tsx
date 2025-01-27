@@ -69,7 +69,6 @@ export const TokenPriceChartWithFeed = ({
 	const chartConfig = Object.keys(tokenPriceFeedByTokenId).reduce(
 		(acc, tokenId, i) => {
 			const tokenInfo = tokenInfoByTokenId[tokenId] || {};
-			console.log("tokenId", tokenId, acc, tokenInfo);
 			acc[tokenId] = {
 				...tokenInfo,
 				label: tokenInfo?.symbol,
@@ -121,12 +120,12 @@ export const TokenPriceChartWithFeed = ({
 									const { label, imageUrl = "" } = tokenInfo;
 									return (
 										<TokenChipWithInfo
+											isShowValue
 											imageUrl={imageUrl}
 											name={label}
 											symbol={label}
 											decimals={decimals}
-											decimalsDisplayed={1}
-											amount={value}
+											value={value}
 										/>
 									);
 								}}

@@ -21,6 +21,7 @@ describe("TokenChipWithInfo Component", () => {
 		symbol: "ETH",
 		imageUrl: "https://example.com/eth-icon.png",
 		className: "custom-class",
+		isShowValue: true,
 	};
 
 	it("renders the TokenChip component with correct props", () => {
@@ -38,6 +39,20 @@ describe("TokenChipWithInfo Component", () => {
 		// Check if the symbol text is displayed correctly
 		const symbolText = screen.getByText(defaultProps.symbol);
 		expect(symbolText).toBeDefined();
+	});
+
+	it("renders the TokenChip component with correct props", () => {
+		render(
+			<TokenChipWithInfo
+				{...defaultProps}
+				value={1234000000000000000n}
+				decimals={18}
+				isShowValue
+			/>,
+		);
+
+		const priceTag = screen.getByText("$1.23");
+		expect(priceTag).toBeDefined();
 	});
 
 	it("renders with no image when image prop is not provided", () => {
