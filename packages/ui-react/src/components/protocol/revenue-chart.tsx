@@ -1,9 +1,7 @@
-"use client";
-
 import * as React from "react";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
-import { formatUnitsWithLocale } from "@geist/domain/amount";
+import { formatNumberWithLocale } from "@geist/domain/amount";
 import { format } from "date-fns";
 
 import {
@@ -46,21 +44,12 @@ export const RevenueChart = ({
 
 			const [, revenue] = dailyRevenue?.totalDataChart[i] || [];
 
-			console.log("data", date, amount, revenue);
 			return {
 				date,
 				fees: amount,
 				revenue,
 			};
 		},
-	);
-
-	const total = React.useMemo(
-		() => ({
-			desktop: chartData.reduce((acc, curr) => acc + curr.desktop, 0),
-			mobile: chartData.reduce((acc, curr) => acc + curr.mobile, 0),
-		}),
-		[],
 	);
 
 	return (
@@ -111,9 +100,8 @@ export const RevenueChart = ({
 									formatter={(value, key) => {
 										return (
 											`${key}` +
-											formatUnitsWithLocale({
-												value: BigInt(value),
-												exponent: 0,
+											formatNumberWithLocale({
+												value: value as number,
 												formatOptions: {
 													style: "currency",
 												},
