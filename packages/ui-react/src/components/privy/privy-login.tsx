@@ -2,10 +2,10 @@ import { PrivyProvider, usePrivy } from "@privy-io/react-auth";
 import type { PropsWithChildren } from "react";
 import { Button } from "#components/shadcn/button";
 
-export function PrivyLoginProvider({
+export const PrivyLoginProvider = ({
 	children,
 	appId,
-}: PropsWithChildren<{ appId: string }>) {
+}: PropsWithChildren<{ appId: string }>) => {
 	return (
 		<PrivyProvider
 			appId={appId}
@@ -22,9 +22,9 @@ export function PrivyLoginProvider({
 			{children}
 		</PrivyProvider>
 	);
-}
+};
 
-export function PrivyLogin() {
+export const PrivyLogin = () => {
 	const { ready: isReady, authenticated: isAuthenticated, login } = usePrivy();
 	const disableLogin = !isReady || (isReady && isAuthenticated);
 
@@ -33,4 +33,4 @@ export function PrivyLogin() {
 			Login
 		</Button>
 	);
-}
+};

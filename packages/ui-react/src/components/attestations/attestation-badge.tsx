@@ -4,13 +4,13 @@ import { Badge } from "#components/shadcn/badge";
 import { useGetAttestations } from "#hooks/eas/use-get-attestations";
 
 // TODO
-export function AttestationBadge({
+export const AttestationBadge = ({
 	addressOrEns,
 	attestationSchemaId,
 }: {
 	addressOrEns: string;
 	attestationSchemaId: string;
-}) {
+}) => {
 	//
 	const chainId = useChainId();
 
@@ -21,4 +21,4 @@ export function AttestationBadge({
 	});
 
 	return <Badge>Translator</Badge>;
-}
+};
