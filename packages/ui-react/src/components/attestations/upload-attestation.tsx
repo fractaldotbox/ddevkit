@@ -5,7 +5,7 @@ import { useUploadAttestationWithLighthouse } from "#hooks/eas/use-upload-attest
 import type { UploadAttestationParams } from "./attestations";
 
 // this is a controlled component that depends on an external state
-export function UploadAttestation(props: UploadAttestationParams) {
+export const UploadAttestation = (props: UploadAttestationParams) => {
 	const { mutateAsync: uploadAttestation, isPending } =
 		useUploadAttestationWithLighthouse({
 			lighthouseApiKey: config.lighthouse.apiKey,
@@ -25,4 +25,4 @@ export function UploadAttestation(props: UploadAttestationParams) {
 			Upload Attestation
 		</Button>
 	);
-}
+};

@@ -28,11 +28,11 @@ interface DataTableProps<TData, TValue> {
 	tableConfig: any;
 }
 
-export function DataTable<TData, TValue>({
+export const DataTable = <TData, TValue>({
 	columns,
 	data,
 	tableConfig,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TData, TValue>) => {
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [expanded, setExpanded] = useState<ExpandedState>(true);
 
@@ -146,4 +146,4 @@ export function DataTable<TData, TValue>({
 			</div>
 		</div>
 	);
-}
+};

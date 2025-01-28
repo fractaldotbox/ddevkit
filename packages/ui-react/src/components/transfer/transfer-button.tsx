@@ -24,14 +24,14 @@ type TransferButtonProps = {
 	>;
 } & ButtonProps;
 
-export function TransferButton({
+export const TransferButton = ({
 	amount,
 	to,
 	account,
 	disabled,
 	mutationOptions,
 	...buttonProps
-}: TransferButtonProps) {
+}: TransferButtonProps) => {
 	const { sendTransaction, isPending } = useSendTransaction();
 
 	const handleTransfer = () => {
@@ -55,4 +55,4 @@ export function TransferButton({
 			{account ? "Transfer" : "Connect Wallet"}
 		</Button>
 	);
-}
+};

@@ -169,7 +169,7 @@ UPLOAD_FORM_BY_TYPE[UploadFormType.MultifieldsAsDirectory] = {
 	),
 };
 
-export function UploadForm({
+export const UploadForm = ({
 	type,
 	isMultipleFiles = false,
 	isShowProgress = true,
@@ -179,7 +179,7 @@ export function UploadForm({
 	isMultipleFiles?: boolean;
 	isShowProgress?: boolean;
 	uploadFiles: (params: UploadFilesParams<any>) => Promise<void>;
-}) {
+}) => {
 	const formArgs = UPLOAD_FORM_BY_TYPE[type];
 
 	return (
@@ -190,7 +190,7 @@ export function UploadForm({
 			uploadFiles={uploadFiles}
 		/>
 	);
-}
+};
 
 /**
  * We want to create sample form that can be easily customized
@@ -207,13 +207,13 @@ export type UploadFormWithFieldsProps<S extends ZodType<any, any, any>> = {
 	uploadFiles: (params: UploadFilesParams<S>) => Promise<void>;
 };
 
-export function UploadFormWithFields<S extends ZodType<any, any, any>>({
+export const UploadFormWithFields = <S extends ZodType<any, any, any>>({
 	schema,
 	defaultValues,
 	isShowProgress = true,
 	uploadFiles,
 	createFormFields,
-}: UploadFormWithFieldsProps<S>) {
+}: UploadFormWithFieldsProps<S>) => {
 	const [progress, setProgress] = React.useState({
 		transferredBytes: 0,
 		totalBytes: 0,
@@ -276,4 +276,4 @@ export function UploadFormWithFields<S extends ZodType<any, any, any>>({
 			</div>
 		</Form>
 	);
-}
+};
