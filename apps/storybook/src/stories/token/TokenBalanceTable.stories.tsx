@@ -1,7 +1,7 @@
 import {
 	aggregateBySymbol,
 	tokenBalanceStore,
-} from "@geist/domain/token/aggregate.js";
+} from "@geist/domain/token/aggregate";
 import {
 	PRICE_DATA_SNAPSHOT,
 	TOKEN_BALANCES_MULTICHAIN_STABLECOINS,

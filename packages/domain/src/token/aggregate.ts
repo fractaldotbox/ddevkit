@@ -8,7 +8,7 @@ import { withValue } from "./multi-chain";
 import type { TokenBalance, TokenBalanceEntry } from "./token-balance-entry";
 
 import { type Atom, atom, computed, deepMap } from "nanostores";
-import { groupBy } from "#util.js";
+import { groupBy } from "#util";
 import type { TokenPriceEntry } from "./token-price-entry";
 
 export const sumTotal = (tokenBalancesWithValue: TokenBalance[]) => {
@@ -43,12 +43,12 @@ export const aggregateBySymbol = (
 	return computed(
 		[$tokenBalances, $priceData || atom<TokenPriceEntry[]>([])],
 		(tokenBalances: TokenBalance[], $priceData: TokenPriceEntry[] = []) => {
-			const bySymbol = groupBy(
+			const bySymbol = groupBy<string, TokenBalance[]>(
 				tokenBalances,
 				({ symbol }: TokenBalance) => symbol,
 			);
 
-			return Object.entries<string, TokenBalance[]>(bySymbol).reduce(
+			return Object.entries(bySymbol).reduce(
 				(acc, [symbol, tokenBalances]) => {
 					const tokenBalancesWithValue = tokenBalances.map((tokenBalance) =>
 						withValue(tokenBalance, $priceData),

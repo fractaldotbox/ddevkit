@@ -1,3 +1,5 @@
+import type { K } from "vitest/dist/chunks/reporters.D7Jzd9GS.js";
+
 // Could use radix 16
 export const stringifyWithBigInt = (obj: any) =>
 	JSON.stringify(obj, (_, value) =>
@@ -5,9 +7,12 @@ export const stringifyWithBigInt = (obj: any) =>
 	);
 
 // replace with native Object.groupBy once bump to es2024
-export const groupBy = (iter: any[], by: (v: any) => any) => {
+export const groupBy = <K extends string, V>(
+	iter: any[],
+	by: (v: any) => any,
+) => {
 	return iter.reduce(
 		(r, v, i, a, k = by(v)) => ((r[k] || (r[k] = [])).push(v), r),
 		{},
-	);
+	) as Record<K, V>;
 };
