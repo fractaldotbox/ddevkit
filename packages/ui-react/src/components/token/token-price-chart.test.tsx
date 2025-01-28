@@ -33,7 +33,7 @@ const WrappedTokenPriceChart = (
 
 describe("TokenPriceChart", () => {
 	const mockProps = {
-		chain: mainnet,
+		chainId: mainnet.id,
 		tokenIds: "ethereum:0xdF574c24545E5FfEcb9a659c229253D4111d87e1",
 		tokenInfoByTokenId: {
 			"ethereum:0xdF574c24545E5FfEcb9a659c229253D4111d87e1": {

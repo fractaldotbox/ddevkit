@@ -9,12 +9,6 @@ import { useGetChartWithMultipleTokens } from "#hooks/data/use-defillama";
 import { useTokenInfoBulk } from "./token";
 import { TokenPriceChartWithFeed } from "./token-price-chart-with-feed";
 
-const chartConfig = {
-	visitors: {
-		label: "Visitors",
-	},
-} satisfies ChartConfig;
-
 // Consider adding reactive component with ws price feed
 
 export const TokenPriceChart = ({
