@@ -4,6 +4,7 @@ import { aggregateBySymbol, tokenBalanceStore } from "./aggregate";
 import { allTasks, atom, cleanStores, keepMount } from "nanostores";
 import {
 	PRICE_DATA_SNAPSHOT,
+	TOKEN_BALANCES_MULTICHAIN,
 	TOKEN_BALANCES_MULTICHAIN_STABLECOINS,
 } from "./token-balance.fixture";
 import type { TokenPriceEntry } from "./token-price-entry";
@@ -21,7 +22,7 @@ describe("aggregate", () => {
 	});
 
 	it("#aggregateBySymbol with no price", () => {
-		$tokenBalances.set([...TOKEN_BALANCES_MULTICHAIN_STABLECOINS]);
+		$tokenBalances.set([...TOKEN_BALANCES_MULTICHAIN]);
 
 		const $aggregate = aggregateBySymbol($tokenBalances);
 
@@ -32,7 +33,7 @@ describe("aggregate", () => {
 	});
 
 	it("#aggregateBySymbol with price", async () => {
-		$tokenBalances.set([...TOKEN_BALANCES_MULTICHAIN_STABLECOINS]);
+		$tokenBalances.set([...TOKEN_BALANCES_MULTICHAIN]);
 
 		$priceData.set([...PRICE_DATA_SNAPSHOT]);
 
@@ -69,9 +70,6 @@ describe("aggregate", () => {
 				price: 5.2,
 			},
 		]);
-		console.log("price updated");
-
-		// TODO fix reactive
 
 		expect($aggregate.get().get()["OP"].agg).toEqual({
 			amount: 555555n,

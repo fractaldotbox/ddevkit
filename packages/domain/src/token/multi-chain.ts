@@ -1,7 +1,7 @@
 import { type Atom, computed } from "nanostores";
 import { groupBy } from "#util";
 import type { TokenSelector } from "./token";
-import type { TokenBalanceEntry } from "./token-balance-entry";
+import type { TokenBalance, TokenBalanceEntry } from "./token-balance-entry";
 import type { TokenPriceEntry } from "./token-price-entry";
 
 // consider main chain as canonical asset
@@ -67,24 +67,6 @@ export const asCaip19Id = (token: TokenSelector) => {
  * 	}
  */
 
-export const aggregate = (grouped: Record<string, any>) => {
-	return Object.fromEntries(
-		Object.entries(grouped).map(([symbol, tokenBalances]) => {
-			return [
-				symbol,
-				{
-					symbol,
-					tokenBalances,
-					amount: tokenBalances.reduce(
-						(acc, tokenBalance) => acc + tokenBalance.amount,
-						0n,
-					),
-				},
-			];
-		}),
-	);
-};
-
 export const withValue = (
 	tokenBalance: TokenBalance,
 	priceData: TokenPriceEntry[],
@@ -110,28 +92,8 @@ export const withValue = (
 };
 
 /**
+ * TODO group by known list of multichain address
  * provide metadata while separate concern of aggregating etc
+ * https://github.com/fractaldotbox/geist-dapp-kit/issues/76
  *
  */
-export const groupMultichainToken = (tokenBalances: TokenBalanceEntry[]) => {
-	const grouped = groupBy(tokenBalances, (tokenBalance) => {
-		return tokenBalance.symbol;
-	});
-
-	return Object.entries(grouped).reduce(
-		(acc, [symbol, tokenBalances]) => {
-			acc[symbol] = {
-				symbol,
-				tokenBalances: tokenBalances as TokenBalanceEntry[],
-			};
-			return acc;
-		},
-		{} as Record<
-			string,
-			{
-				symbol: string;
-				tokenBalances: TokenBalanceEntry[];
-			}
-		>,
-	);
-};

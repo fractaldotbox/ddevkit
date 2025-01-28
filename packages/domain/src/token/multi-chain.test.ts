@@ -1,18 +1,15 @@
 import { describe, expect, it } from "vitest";
-import { groupMultichainToken } from "#token/multi-chain";
-import { TOKEN_BALANCES_MULTICHAIN_STABLECOINS } from "#token/token-balance.fixture";
+import { withValue } from "#token/multi-chain";
+import {
+	PRICE_DATA_SNAPSHOT,
+	TOKEN_BALANCES_MULTICHAIN_STABLECOINS,
+} from "#token/token-balance.fixture";
 
 describe("multi-chain", () => {
-	it("#groupMultichainToken", () => {
-		const grouped = groupMultichainToken(TOKEN_BALANCES_MULTICHAIN_STABLECOINS);
-		expect(grouped.USDC!.amount).toEqual(333333n);
+	it("#withValue", () => {
+		const [tokenBalance] = TOKEN_BALANCES_MULTICHAIN_STABLECOINS;
+		const token = withValue(tokenBalance!, PRICE_DATA_SNAPSHOT);
 
-		expect(grouped.USDT!.byChain[0].symbol).toEqual("USDT");
-
-		expect(grouped.USDT!.subEntries[0]).toEqual([]);
-	});
-
-	it("#aggregateValueByChain", () => {
-		// agg total value, amount
+		expect(token).toEqual([]);
 	});
 });

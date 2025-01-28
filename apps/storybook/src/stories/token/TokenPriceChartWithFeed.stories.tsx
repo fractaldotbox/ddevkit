@@ -1,13 +1,4 @@
-import {
-	asCaip19Id,
-	groupMultichainToken,
-} from "@geist/domain/token/multi-chain";
-import {
-	PRICE_DATA_FEED,
-	PRICE_DATA_SNAPSHOT,
-	TOKEN_BALANCES_MULTICHAIN_STABLECOINS,
-	generatePriceDataFeed,
-} from "@geist/domain/token/token-balance.fixture";
+import { generatePriceDataFeed } from "@geist/domain/token/token-balance.fixture";
 import { TokenPriceChartWithFeed } from "@geist/ui-react/components/token/token-price-chart-with-feed";
 import type { Meta, StoryObj } from "@storybook/react";
 
