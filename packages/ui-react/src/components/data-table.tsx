@@ -24,10 +24,10 @@ interface DataTableProps<TData, TValue> {
 	data: TData[];
 }
 
-export function DataTable<TData, TValue>({
+export const DataTable = <TData, TValue>({
 	columns,
 	data,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TData, TValue>) => {
 	const [sorting, setSorting] = useState<SortingState>([]);
 
 	const table = useReactTable({
@@ -114,4 +114,4 @@ export function DataTable<TData, TValue>({
 			</div>
 		</div>
 	);
-}
+};

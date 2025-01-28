@@ -23,6 +23,9 @@
 			"recommended": false,
 			"style": {
 				"useImportType": "info"
+			},
+			"complexity": {
+				"useArrowFunction": "warn"
 			}
 		}
 	},

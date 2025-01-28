@@ -145,13 +145,13 @@ const getTxnTableCols = ({
 	] as ColumnDef<TransactionMeta>[];
 };
 
-export function TransactionTable({
+export const TransactionTable = ({
 	transactions,
 
 	// defaults to ETH mainnet
 	chainId = 1,
 	explorer = Explorer.Blockscout,
-}: TransactionTableProps) {
+}: TransactionTableProps) => {
 	console.log("printing hookx", { chainId, explorer });
 
 	return (
@@ -162,4 +162,4 @@ export function TransactionTable({
 			/>
 		</div>
 	);
-}
+};
