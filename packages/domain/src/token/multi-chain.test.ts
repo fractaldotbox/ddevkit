@@ -10,6 +10,6 @@ describe("multi-chain", () => {
 		const [tokenBalance] = TOKEN_BALANCES_MULTICHAIN_STABLECOINS;
 		const token = withValue(tokenBalance!, PRICE_DATA_SNAPSHOT);
 
-		expect(token).toEqual([]);
+		expect(token.value).toEqual(111111000000000000000000n);
 	});
 });
