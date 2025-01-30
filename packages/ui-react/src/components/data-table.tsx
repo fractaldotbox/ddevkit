@@ -1,8 +1,10 @@
 import {
 	type ColumnDef,
+	type ExpandedState,
 	type SortingState,
 	flexRender,
 	getCoreRowModel,
+	getExpandedRowModel,
 	getPaginationRowModel,
 	getSortedRowModel,
 	useReactTable,
@@ -22,13 +24,16 @@ import {
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
 	data: TData[];
+	tableConfig: any;
 }
 
 export const DataTable = <TData, TValue>({
 	columns,
 	data,
+	tableConfig,
 }: DataTableProps<TData, TValue>) => {
 	const [sorting, setSorting] = useState<SortingState>([]);
+	const [expanded, setExpanded] = useState<ExpandedState>(true);
 
 	const table = useReactTable({
 		data,
@@ -36,10 +41,14 @@ export const DataTable = <TData, TValue>({
 		getCoreRowModel: getCoreRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
 		onSortingChange: setSorting,
+		onExpandedChange: setExpanded,
 		getSortedRowModel: getSortedRowModel(),
+		getExpandedRowModel: getExpandedRowModel(),
 		state: {
 			sorting,
+			expanded,
 		},
+		...tableConfig,
 	});
 
 	return (
@@ -65,21 +74,43 @@ export const DataTable = <TData, TValue>({
 						))}
 					</TableHeader>
 					<TableBody>
+						{/* separated row easier to style  */}
 						{table.getRowModel().rows?.length ? (
 							table.getRowModel().rows.map((row) => (
-								<TableRow
-									key={row.id}
-									data-state={row.getIsSelected() && "selected"}
-								>
-									{row.getVisibleCells().map((cell) => (
-										<TableCell key={cell.id}>
-											{flexRender(
-												cell.column.columnDef.cell,
-												cell.getContext(),
-											)}
-										</TableCell>
-									))}
-								</TableRow>
+								<>
+									<TableRow
+										key={row.id}
+										data-state={row.getIsSelected() && "selected"}
+										className=""
+									>
+										{row.getVisibleCells().map((cell) => (
+											<TableCell key={cell.id}>
+												{flexRender(
+													cell.column.columnDef.cell,
+													cell.getContext(),
+												)}
+											</TableCell>
+										))}
+									</TableRow>
+									{/* {row.getIsExpanded() && (
+										<TableRow>
+											<TableCell colSpan={columns.length}>
+												{row.subRows.map((subRow) => (
+													<TableRow key={subRow.id}>
+														{subRow.getVisibleCells().map((cell) => (
+															<TableCell key={cell.id}>
+																{flexRender(
+																	cell.column.columnDef.cell,
+																	cell.getContext(),
+																)}
+															</TableCell>
+														))}
+													</TableRow>
+												))}
+											</TableCell>
+										</TableRow>
+									)} */}
+								</>
 							))
 						) : (
 							<TableRow>

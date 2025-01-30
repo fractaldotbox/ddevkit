@@ -8,6 +8,10 @@
 			"#*": ["src/*"]
 		}
 	},
-	"include": ["src", "../../packages/@geist/domain"],
+	"include": [
+		"src",
+		"../../packages/@geist/domain",
+		"../domain/src/token/token-price-entry.ts"
+	],
 	"exclude": ["node_modules", "dist"]
 }

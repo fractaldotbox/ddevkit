@@ -3,18 +3,6 @@ const { blackA, violet, mauve } = require("@radix-ui/colors");
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ["./src/**/*.{js,jsx,ts,tsx}", "./@/**/*.{js,jsx,ts,tsx}"],
-	safelist: [
-		{
-			pattern: /(min|max)*-*w-/,
-		},
-		{
-			pattern: /(min|max)*-*h-/,
-		},
-
-		{
-			pattern: /bg-/,
-		},
-	],
 	darkMode: ["class", '[data-mode="dark"]'],
 	theme: {
 		extend: {

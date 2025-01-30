@@ -2,12 +2,14 @@ import type { Address } from "viem";
 import { base, mainnet, optimism, sepolia } from "viem/chains";
 
 export enum Token {
-	USDC = "usdc",
+	USDC = "USDC",
+	StETH = "StETH",
 }
 
 export const BY_CHAIN_ID = {
 	[mainnet.id]: {
 		[Token.USDC]: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+		[Token.StETH]: "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
 	},
 	[optimism.id]: {
 		[Token.USDC]: "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85",
@@ -18,7 +20,7 @@ export const BY_CHAIN_ID = {
 } as Record<
 	number,
 	{
-		[key in Token]: Address;
+		[key in Token]?: Address;
 	}
 >;
 

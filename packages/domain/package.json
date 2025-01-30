@@ -26,6 +26,7 @@
 		"vitest": "^2.1.8"
 	},
 	"dependencies": {
+		"nanostores": "0.11.3",
 		"@ethereumjs/rlp": "^5.0.2",
 		"@hookform/resolvers": "^3.9.0",
 		"@ipld/dag-ucan": "^3.4.0",
