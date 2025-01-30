@@ -16,7 +16,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// possible to have multiple tokens but trikcy with multiple axis
+// Case of multiple tokens->axis is tricky
 // https://github.com/recharts/recharts/issues/2815
 
 export const AaveV3: Story = {

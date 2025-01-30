@@ -1,12 +1,4 @@
-import {
-	aggregateBySymbol,
-	tokenBalanceStore,
-} from "@geist/domain/token/aggregate";
-import {
-	PRICE_DATA_SNAPSHOT,
-	TOKEN_BALANCES_MULTICHAIN_STABLECOINS,
-	createTokenBalanceStoreWithFixture,
-} from "@geist/domain/token/token-balance.fixture";
+import { createTokenBalanceStoreWithFixture } from "@geist/domain/token/token-balance.fixture";
 import { TokenBalanceTable$ } from "@geist/ui-react/components/token/token-balance-table";
 import type { Meta, StoryObj } from "@storybook/react";
 
