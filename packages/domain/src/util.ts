@@ -1,5 +1,3 @@
-import type { K } from "vitest/dist/chunks/reporters.D7Jzd9GS.js";
-
 // Could use radix 16
 export const stringifyWithBigInt = (obj: any) =>
 	JSON.stringify(obj, (_, value) =>
