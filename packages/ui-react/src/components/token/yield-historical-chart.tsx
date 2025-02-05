@@ -1,17 +1,18 @@
+import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
-import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
+import { CartesianGrid, Label, Line, LineChart, XAxis, YAxis } from "recharts";
 import {
 	type ChartConfig,
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
 } from "#components/shadcn/chart";
-import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "#components/shadcn/skeleton";
 
 type YieldHistoricalChartProps = {
 	// this will be defillama pool id
 	poolId: string;
+	title?: string;
 	color?: string;
 };
 
@@ -42,6 +43,7 @@ async function getYieldHistoricalChartData(
 
 export function YieldHistoricalChart({
 	poolId,
+	title,
 	color,
 }: YieldHistoricalChartProps) {
 	const { data, isLoading } = useQuery({
@@ -67,45 +69,48 @@ export function YieldHistoricalChart({
 	if (isLoading) return <Skeleton className="h-[400px] w-[600px]" />;
 
 	return (
-		<ChartContainer
-			config={chartConfig}
-			// cannot use tailwind here
-			style={{ height: "400px", width: "600px" }}
-		>
-			<LineChart data={formattedYieldData}>
-				<CartesianGrid strokeDasharray="3 3" horizontal vertical={false} />
-				<XAxis
-					dataKey="date"
-					type="number"
-					domain={["dataMin", "dataMax"]}
-					tickFormatter={formatDate}
-					label={{ value: "Date", position: "insideBottom", offset: -5 }}
-				/>
-				<YAxis
-					label={{ value: "APY (%)", position: "insideLeft", offset: -5 }}
-				/>
-				<ChartTooltip
-					content={
-						<ChartTooltipContent
-							formatter={(value, _name, props) => {
-								return (
-									<div className="text-sm flex flex-col gap-2">
-										<div>APY: {(value as number).toFixed(2)}%</div>
-										<div>Date: {formatDate(props.payload.date)}</div>
-									</div>
-								);
-							}}
-						/>
-					}
-				/>
-				<Line
-					type="monotone"
-					dataKey="apy"
-					strokeWidth={2}
-					stroke={color ?? "#2563eb"}
-					dot={false}
-				/>
-			</LineChart>
-		</ChartContainer>
+		<div className="flex flex-col gap-2 items-center">
+			{title && <div className="text-lg font-bold">{title}</div>}
+			<ChartContainer
+				config={chartConfig}
+				// cannot use tailwind here
+				style={{ height: "400px", width: "600px" }}
+			>
+				<LineChart data={formattedYieldData}>
+					<CartesianGrid strokeDasharray="3 3" horizontal vertical={false} />
+					<XAxis
+						dataKey="date"
+						type="number"
+						domain={["dataMin", "dataMax"]}
+						tickFormatter={formatDate}
+						label={{ value: "Date", position: "insideBottom", offset: -5 }}
+					/>
+					<YAxis
+						label={{ value: "APY (%)", position: "insideLeft", offset: -5 }}
+					/>
+					<ChartTooltip
+						content={
+							<ChartTooltipContent
+								formatter={(value, _name, props) => {
+									return (
+										<div className="text-sm flex flex-col gap-2">
+											<div>APY: {(value as number).toFixed(2)}%</div>
+											<div>Date: {formatDate(props.payload.date)}</div>
+										</div>
+									);
+								}}
+							/>
+						}
+					/>
+					<Line
+						type="monotone"
+						dataKey="apy"
+						strokeWidth={2}
+						stroke={color ?? "#2563eb"}
+						dot={false}
+					/>
+				</LineChart>
+			</ChartContainer>
+		</div>
 	);
 }
