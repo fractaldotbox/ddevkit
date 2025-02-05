@@ -17,15 +17,3 @@ export const DefaultView: Story = {
 		poolId: "aave-v3-usdc-ethereum",
 	},
 };
-
-export const PolygonPool: Story = {
-	args: {
-		poolId: "aave-v3-usdc-polygon",
-	},
-};
-
-export const ArbitrumPool: Story = {
-	args: {
-		poolId: "aave-v3-usdc-arbitrum",
-	},
-};
