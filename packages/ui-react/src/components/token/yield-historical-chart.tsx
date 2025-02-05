@@ -1,15 +1,15 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid } from "recharts";
+import { useMemo } from "react";
+import * as React from "react";
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 import {
-	ChartContainer,
 	type ChartConfig,
-	ChartTooltip,
-	ChartTooltipContent,
+	ChartContainer,
 	ChartLegend,
 	ChartLegendContent,
+	ChartTooltip,
+	ChartTooltipContent,
 } from "#components/shadcn/chart";
-import { useMemo } from "react";
 import { Label } from "#components/shadcn/label";
-import * as React from "react";
 import { TokenChipWithInfo } from "./token-chip-with-info";
 
 type YieldHistoricalChartProps = {
