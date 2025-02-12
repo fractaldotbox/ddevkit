@@ -1,6 +1,11 @@
+---
+title: On Dependencies
+---
+
+
 ## Dependencies considerations
 
-This document rational behind opionated dependencies
+This documents rationale behind opionated dependencies
 
 - `graphql-request` is used with @tanstack query as lightweight fetching. Data are not normalized
    - it is optional to combine with [client from the graph](https://thegraph.com/docs/en/querying/querying-from-an-application/#graph-client) with block tracking, multi-chain subgraphs handling etc. 

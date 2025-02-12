@@ -1,4 +1,22 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+
+
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
 
 # dependencies
 /node_modules

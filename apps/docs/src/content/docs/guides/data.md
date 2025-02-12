@@ -1,3 +1,8 @@
+---
+title: Data handling
+---
+
+
 # Data sources and types
 
 ## Graphql

@@ -1,3 +1,8 @@
+---
+title: Cli
+---
+
+
 ## Shadcn CLI support
 
 we support using shadcn cli as-is to add geist components, in below fashion

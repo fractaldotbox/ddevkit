@@ -1,3 +1,6 @@
+---
+title: Components Architecture
+---
 
 
 # Components Architecture
@@ -28,6 +31,9 @@ For now we try to mimic behaviours of common components e.g. blockscout, on-chai
 - Consider `lib/filecoin/gateway.ts` `getGatewayUrlWithCid()` as an example, it does not import dependenceis unconditionally or relevavnt ecosystem-specific code are expected to be injected using strategy pattern.
 - use naming conventions `.fixture.ts` `.test.ts` to avoid exporting related files at build 
 
+
+## Environment Setup
+- At local, use https://book.getfoundry.sh/anvil/
 
 ## Convention
 

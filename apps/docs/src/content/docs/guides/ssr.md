@@ -1,3 +1,7 @@
+---
+title: SSR
+---
+
 
 ## Server Side Rendering
 - Work in Progress.
