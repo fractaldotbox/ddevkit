@@ -20,8 +20,6 @@ In the context of autonomous agent, a simple package-lock.json is not sufficient
 - Consider `lib/filecoin/gateway.ts` `getGatewayUrlWithCid()` as an example, it does not import dependenceis unconditionally or relevavnt ecosystem-specific code are expected to be injected using strategy pattern.
 
 
-
-
 ## Dependencies considerations
 
 This documents rationale behind opionated dependencies

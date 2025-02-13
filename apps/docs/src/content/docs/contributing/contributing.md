@@ -2,10 +2,17 @@
 title: Contributing
 ---
 
-## Environment Setup
+Thanks for contributing! 
+
+# Implementation Guideline
+
+### Environment Setup
 - At local, use https://book.getfoundry.sh/anvil/
 
-## Convention
+### Repository structure
+- Note this is a monorepo, we can specify which path [for shadcn to install components](https://ui.shadcn.com/docs/monorepo), i.e. into `ui-react` or `storybook`
+
+### Convention
 
 ### Naming
 
