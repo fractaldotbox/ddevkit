@@ -78,6 +78,9 @@ importers:
       '@astrojs/starlight':
         specifier: ^0.31.1
         version: 0.31.1(astro@5.2.6(@types/node@22.10.2)(idb-keyval@6.2.1)(jiti@2.4.1)(rollup@4.34.6)(terser@5.34.1)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.5.1))
+      '@fleek-platform/cli':
+        specifier: ^3.8.2
+        version: 3.8.2(@types/node@22.10.2)(encoding@0.1.13)(typescript@5.7.2)
       astro:
         specifier: ^5.1.5
         version: 5.2.6(@types/node@22.10.2)(idb-keyval@6.2.1)(jiti@2.4.1)(rollup@4.34.6)(terser@5.34.1)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.5.1)
