@@ -7,24 +7,24 @@ import { defineConfig, passthroughImageService } from "astro/config";
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: "Geist DappKit",
+			title: "Geist dAppKit",
 			social: {
-				github: "https://github.com/withastro/starlight",
+				github: "https://github.com/fractaldotbox/geist-dapp-kit",
 			},
-			// sidebar: [
-			// 	{
-			// 		label: 'Guides',
-			// 		items:
-			// 			[
-			// 				// Each item here is one entry in the navigation menu.
-			// 				{ label: 'Example Guide', slug: 'guides/example' },
-			// 			],
-			// 	},
-			// 	{
-			// 		label: 'Reference',
-			// 		autogenerate: { directory: 'reference' },
-			// 	},
-			// ],
+			sidebar: [
+				{
+					label: "Intro",
+					autogenerate: { directory: "intro" },
+				},
+				{
+					label: "Guides",
+					autogenerate: { directory: "guides" },
+				},
+				{
+					label: "Contributing",
+					autogenerate: { directory: "contributing" },
+				},
+			],
 		}),
 	],
 	// adapter: cloudflare({
