@@ -16,8 +16,7 @@ title: Components Architecture
 - note only `default` style is supported for shadcn
 
 ## For Agent
-- With dceentralized agent, each agent has its own runtime and codebase. This means 
-
+- With dceentralized agents, each agent has its own runtime and codebase. This means each could be using different versions of sdk to interact with protocol. Compared to single "official" dApp controlled by single team, we need much better package management to cater for problems in diverse environment such as version conflicts. We should benefit from principles and effort of [UnixJs](https://unjs.io/) and [e18e](https://e18e.dev/) as in the wider javascript ecosystems to use small, perfomant packages.
 
 
 - We have decoupled `@geist/domain` package for common, non-ecosystem specific logic and types.
