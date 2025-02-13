@@ -65,6 +65,9 @@ jobs:
     # if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm.yml
 
