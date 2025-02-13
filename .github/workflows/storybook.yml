@@ -78,4 +78,4 @@ jobs:
         env:
           FLEEK_TOKEN: ${{ secrets.FLEEK_TOKEN }}
           FLEEK_PROJECT_ID: cm2lvm8yh000030bm17kmomq9
-        run: pnpm --dir apps/storybook deploy:fleek
+        run: pnpm --dir apps/docs deploy:fleek
