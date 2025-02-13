@@ -60,3 +60,19 @@ jobs:
           FLEEK_TOKEN: ${{ secrets.FLEEK_TOKEN }}
           FLEEK_PROJECT_ID: ${{ secrets.FLEEK_PROJECT_ID }}
         run: pnpm --dir apps/storybook deploy:fleek
+
+  deploy-docs:
+    # if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm.yml
+
+      - name: Build docs
+        run: pnpm --filter docs build
+
+      - name: Deploy docs
+        env:
+          FLEEK_TOKEN: ${{ secrets.FLEEK_TOKEN }}
+          FLEEK_PROJECT_ID: cm2lvm8yh000030bm17kmomq9
+        run: pnpm --dir apps/storybook deploy:fleek
