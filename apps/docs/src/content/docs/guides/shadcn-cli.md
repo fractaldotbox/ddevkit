@@ -8,7 +8,6 @@ title: Cli
 We support using shadcn cli AS-IS to add geist components, which is deployed onto the [registry](https://ui.shadcn.com/docs/registry)
 
 
-
 - `shadcn add <geist-repo-url>/styles/default/identity_address-badge.json`
 - Note we are still pointing default shadcn url (i.e. REGISTRY_URL) to original registry, so as to support adding components from both shadcn & geist registry
 
