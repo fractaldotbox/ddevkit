@@ -11,9 +11,9 @@ export type TransactionTableWithDetailsProps = GetTxnByFilterQuery & {
 	chainId?: number;
 };
 
-export function TransactionTableWithDetails(
+export const TransactionTableWithDetails = (
 	props: TransactionTableWithDetailsProps,
-) {
+) => {
 	const { data, isPending, isLoading } = useGetTransactions(props);
 
 	if (isPending || isLoading)
@@ -26,4 +26,4 @@ export function TransactionTableWithDetails(
 			chainId={props.chainId || 1}
 		/>
 	);
-}
+};

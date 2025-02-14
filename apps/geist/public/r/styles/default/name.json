@@ -1,20 +1,18 @@
 {
-  "name": "name",
-  "type": "registry:ui",
-  "dependencies": [
-    "viem"
-  ],
-  "files": [
-    {
-      "path": "components/ui/identity_name.tsx",
-      "content": "import type { AddressOrEns } from \"@/hooks/ens_efp\";\nimport { useEnsData } from \"@/hooks/ens_use-efp-api\";\n\nexport const Name = ({ addressOrEns }: { addressOrEns: AddressOrEns }) => {\n\tconst { data, isSuccess } = useEnsData(addressOrEns);\n\tconst name = data?.ens?.name;\n\treturn <div>{name}</div>;\n};\n",
-      "type": "registry:ui"
-    },
-    {
-      "path": "hooks/ens_use-efp-api.ts",
-      "content": "import { useQuery } from \"@tanstack/react-query\";\nimport type { Address } from \"viem\";\nimport type {\n\tAddressOrEns,\n\tEfpApiOptions,\n\tEfpEnsData,\n\tEfpFollower,\n\tEfpRecord,\n\tEfpUserStats,\n} from \"./efp\";\n\nconst EFP_ENDPOINT = \"https://api.ethfollow.xyz/api/v1/\";\n\n// TODO support paginations, sort\n// hard limit is unkonwn\nexport const getEndpointUserFollowing = (\n\taddressOrEns: AddressOrEns,\n\toptions?: EfpApiOptions,\n) => {\n\tconst { limit = 100, sort = \"followers\" } = options || {};\n\treturn `${EFP_ENDPOINT}users/${addressOrEns}/following?${new URLSearchParams({ limit: limit.toString(), sort }).toString()}`;\n};\n\nexport const getEndpointUserFollowers = (\n\taddressOrEns: AddressOrEns,\n\toptions?: EfpApiOptions,\n) => {\n\tconst { limit = 100, sort = \"followers\" } = options || {};\n\treturn `${EFP_ENDPOINT}users/${addressOrEns}/followers?${new URLSearchParams({ limit: limit.toString(), sort }).toString()}`;\n};\n\nexport const getEndpointEnsData = (\n\taddressOrEns: AddressOrEns,\n\toptions?: EfpApiOptions,\n) => {\n\tconst { limit = 10, sort = \"followers\" } = options || {};\n\treturn `${EFP_ENDPOINT}users/${addressOrEns}/ens?${new URLSearchParams({ limit: limit.toString(), sort }).toString()}`;\n};\n\nexport const getEndpointUserStats = (addressOrEns: AddressOrEns) => {\n\treturn `${EFP_ENDPOINT}users/${addressOrEns}/stats`;\n};\n\n// TODO use options at query key\nexport const useFollowers = (\n\taddressOrEns?: AddressOrEns,\n\toptions?: EfpApiOptions,\n) => {\n\treturn useQuery<{ followers: EfpFollower[] }>({\n\t\tqueryKey: [\"ethfollow.followers\", addressOrEns],\n\t\tqueryFn: async () => {\n\t\t\tconst endpoint = getEndpointUserFollowers(addressOrEns!, options);\n\n\t\t\treturn fetch(endpoint).then((res) => res.json());\n\t\t},\n\t\tenabled: !!addressOrEns,\n\t});\n};\n\nexport const useFollowing = (addressOrEns: AddressOrEns) => {\n\treturn useQuery<{ following: EfpRecord[] }>({\n\t\tqueryKey: [\"ethfollow.following\", addressOrEns],\n\t\tqueryFn: async () => {\n\t\t\tconst endpoint = getEndpointUserFollowing(addressOrEns);\n\n\t\t\treturn fetch(endpoint).then((res) => res.json());\n\t\t},\n\t});\n};\n\nexport const useEnsData = (addressOrEns: AddressOrEns) => {\n\treturn useQuery<{ ens: EfpEnsData }>({\n\t\tqueryKey: [\"ethfollow.ens\", addressOrEns],\n\t\tqueryFn: async () => {\n\t\t\tconst endpoint = getEndpointEnsData(addressOrEns);\n\n\t\t\treturn fetch(endpoint).then((res) => res.json());\n\t\t},\n\t});\n};\n\nexport const useUserStats = (addressOrEns: AddressOrEns) => {\n\treturn useQuery<EfpUserStats>({\n\t\tqueryKey: [\"ethfollow.user-stats\", addressOrEns],\n\t\tqueryFn: async () => {\n\t\t\tconst endpoint = getEndpointUserStats(addressOrEns);\n\n\t\t\treturn fetch(endpoint).then((res) => res.json());\n\t\t},\n\t});\n};\n",
-      "type": "registry:hook"
-    }
-  ],
-  "registryDependencies": []
+	"name": "name",
+	"type": "registry:ui",
+	"dependencies": ["viem"],
+	"files": [
+		{
+			"path": "components/ui/identity_name.tsx",
+			"content": "import type { AddressOrEns } from \"@/hooks/ens_efp\";\nimport { useEnsData } from \"@/hooks/ens_use-efp-api\";\n\nexport const Name = ({ addressOrEns }: { addressOrEns: AddressOrEns }) => {\n\tconst { data, isSuccess } = useEnsData(addressOrEns);\n\tconst name = data?.ens?.name;\n\treturn <div>{name}</div>;\n};\n",
+			"type": "registry:ui"
+		},
+		{
+			"path": "hooks/ens_use-efp-api.ts",
+			"content": "import { useQuery } from \"@tanstack/react-query\";\nimport type { Address } from \"viem\";\nimport type {\n\tAddressOrEns,\n\tEfpApiOptions,\n\tEfpEnsData,\n\tEfpFollower,\n\tEfpRecord,\n\tEfpUserStats,\n} from \"./efp\";\n\nconst EFP_ENDPOINT = \"https://api.ethfollow.xyz/api/v1/\";\n\n// TODO support paginations, sort\n// hard limit is unkonwn\nexport const getEndpointUserFollowing = (\n\taddressOrEns: AddressOrEns,\n\toptions?: EfpApiOptions,\n) => {\n\tconst { limit = 100, sort = \"followers\" } = options || {};\n\treturn `${EFP_ENDPOINT}users/${addressOrEns}/following?${new URLSearchParams({ limit: limit.toString(), sort }).toString()}`;\n};\n\nexport const getEndpointUserFollowers = (\n\taddressOrEns: AddressOrEns,\n\toptions?: EfpApiOptions,\n) => {\n\tconst { limit = 100, sort = \"followers\" } = options || {};\n\treturn `${EFP_ENDPOINT}users/${addressOrEns}/followers?${new URLSearchParams({ limit: limit.toString(), sort }).toString()}`;\n};\n\nexport const getEndpointEnsData = (\n\taddressOrEns: AddressOrEns,\n\toptions?: EfpApiOptions,\n) => {\n\tconst { limit = 10, sort = \"followers\" } = options || {};\n\treturn `${EFP_ENDPOINT}users/${addressOrEns}/ens?${new URLSearchParams({ limit: limit.toString(), sort }).toString()}`;\n};\n\nexport const getEndpointUserStats = (addressOrEns: AddressOrEns) => {\n\treturn `${EFP_ENDPOINT}users/${addressOrEns}/stats`;\n};\n\n// TODO use options at query key\nexport const useFollowers = (\n\taddressOrEns?: AddressOrEns,\n\toptions?: EfpApiOptions,\n) => {\n\treturn useQuery<{ followers: EfpFollower[] }>({\n\t\tqueryKey: [\"ethfollow.followers\", addressOrEns],\n\t\tqueryFn: async () => {\n\t\t\tconst endpoint = getEndpointUserFollowers(addressOrEns!, options);\n\n\t\t\treturn fetch(endpoint).then((res) => res.json());\n\t\t},\n\t\tenabled: !!addressOrEns,\n\t});\n};\n\nexport const useFollowing = (addressOrEns: AddressOrEns) => {\n\treturn useQuery<{ following: EfpRecord[] }>({\n\t\tqueryKey: [\"ethfollow.following\", addressOrEns],\n\t\tqueryFn: async () => {\n\t\t\tconst endpoint = getEndpointUserFollowing(addressOrEns);\n\n\t\t\treturn fetch(endpoint).then((res) => res.json());\n\t\t},\n\t});\n};\n\nexport const useEnsData = (addressOrEns: AddressOrEns) => {\n\treturn useQuery<{ ens: EfpEnsData }>({\n\t\tqueryKey: [\"ethfollow.ens\", addressOrEns],\n\t\tqueryFn: async () => {\n\t\t\tconst endpoint = getEndpointEnsData(addressOrEns);\n\n\t\t\treturn fetch(endpoint).then((res) => res.json());\n\t\t},\n\t});\n};\n\nexport const useUserStats = (addressOrEns: AddressOrEns) => {\n\treturn useQuery<EfpUserStats>({\n\t\tqueryKey: [\"ethfollow.user-stats\", addressOrEns],\n\t\tqueryFn: async () => {\n\t\t\tconst endpoint = getEndpointUserStats(addressOrEns);\n\n\t\t\treturn fetch(endpoint).then((res) => res.json());\n\t\t},\n\t});\n};\n",
+			"type": "registry:hook"
+		}
+	],
+	"registryDependencies": []
 }

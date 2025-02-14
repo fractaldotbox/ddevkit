@@ -16,6 +16,7 @@
 	"devDependencies": {
 		"@0no-co/graphqlsp": "^1.12.15",
 		"@biomejs/biome": "^1.9.4",
+		"@changesets/cli": "^2.27.11",
 		"@graphql-codegen/cli": "^5.0.2",
 		"@graphql-codegen/introspection": "^4.0.3",
 		"@graphql-codegen/schema-ast": "^4.1.0",
@@ -30,9 +31,9 @@
 	},
 	"engines": {
 		"node": ">=22",
-		"pnpm": ">=9"
+		"pnpm": ">=10"
 	},
-	"packageManager": "pnpm@9.7.0",
+	"packageManager": "pnpm@10.0.0+sha512.b8fef5494bd3fe4cbd4edabd0745df2ee5be3e4b0b8b08fa643aa3e4c6702ccc0f00d68fa8a8c9858a735a0032485a44990ed2810526c875e416f001b17df12b",
 	"dependencies": {
 		"@testing-library/jest-dom": "^6.6.3",
 		"@testing-library/react": "^16.0.1",

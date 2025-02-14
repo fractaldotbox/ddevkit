@@ -1342,7 +1342,7 @@ export const BLOCKSCOUT_CHAINS_BY_ID_IMPORTED = {
 	"426": {
 		name: "CLV",
 		description:
-			"Substrate-based specialized Layer 1 chain, EVM compatible with cross-chain features.",
+			"Substrate-based specialized Layer 1 chain, EVM compatible with multi-chain features.",
 		logo: "https://uploads-ssl.webflow.com/644a5b7efad46e3cd70deafb/6675b704f27176823b36e36b_clvscan.png",
 		ecosystem: "Ethereum",
 		isTestnet: false,

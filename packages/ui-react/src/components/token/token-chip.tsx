@@ -7,7 +7,8 @@ import { TokenChipWithInfo } from "./token-chip-with-info";
 export type TokenChipProps = {
 	className?: string;
 	amount?: bigint;
-	chain: Chain;
+	chainId: number;
+	decimalsDisplayed?: number;
 	address?: Address;
 };
 
@@ -20,13 +21,14 @@ enum ChainDataProvider {
 export const TokenChip = ({
 	address,
 	amount,
-	chain,
+	chainId,
+	decimalsDisplayed,
 	className,
 }: TokenChipProps) => {
 	const config = useConfig();
 	const { data } = useTokenInfo({
 		address,
-		chain,
+		chainId,
 		config,
 	});
 
@@ -38,6 +40,7 @@ export const TokenChip = ({
 		<TokenChipWithInfo
 			amount={amount}
 			decimals={data.decimals}
+			decimalsDisplayed={decimalsDisplayed}
 			imageUrl={data.imageUrl}
 			name={data.name}
 			symbol={data.symbol}

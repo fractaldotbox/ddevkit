@@ -32,5 +32,19 @@ export const ETHTokenChipWithAmount: Story = {
 		symbol: "ETH",
 		amount: 300000000000000000n,
 		decimals: 18,
+		maximumFractionDigits: 1,
+	},
+};
+
+export const ETHTokenChipWithValue: Story = {
+	args: {
+		imageUrl:
+			"https://ethereum.org/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Feth-diamond-black.a042df77.png&w=828&q=75",
+		name: "Ether",
+		symbol: "ETH",
+		value: 1234500000000000000000n,
+		decimals: 18,
+		maximumFractionDigits: 1,
+		isShowValue: true,
 	},
 };

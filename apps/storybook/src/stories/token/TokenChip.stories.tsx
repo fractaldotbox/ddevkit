@@ -1,4 +1,5 @@
 import { TokenChip } from "@geist/ui-react/components/token/token-chip";
+import { BY_CHAIN_ID, Token } from "@geist/ui-react/lib/token/config";
 import type { Meta, StoryObj } from "@storybook/react";
 import { mainnet, optimismSepolia } from "viem/chains";
 import { withWagmiProvider } from "../decorators/wagmi";
@@ -19,27 +20,28 @@ type Story = StoryObj<typeof meta>;
 
 export const ETHTokenChip: Story = {
 	args: {
-		chain: mainnet,
+		chainId: mainnet.id,
 	},
 };
 
 export const OptimismSepoliaTokenChip: Story = {
 	args: {
-		chain: optimismSepolia,
+		chainId: optimismSepolia.id,
 	},
 };
 
 export const ETHTokenChipWithAmount: Story = {
 	args: {
-		chain: mainnet,
+		chainId: mainnet.id,
 		amount: 300000000000000000n,
 	},
 };
 
 export const USDCTokenChipWithAmount: Story = {
 	args: {
-		chain: mainnet,
-		address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-		amount: 456000123n,
+		chainId: mainnet.id,
+		address: BY_CHAIN_ID[mainnet.id][Token.USDC],
+		amount: 4567000123n,
+		decimalsDisplayed: 4,
 	},
 };
