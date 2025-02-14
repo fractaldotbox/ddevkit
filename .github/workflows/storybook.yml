@@ -1,4 +1,4 @@
-name: Geist Dapp Kit
+name: Geist dDev Kit Components
 
 on:
   pull_request:

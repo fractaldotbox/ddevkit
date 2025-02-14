@@ -1,6 +1,6 @@
-## Geist Dapp Kit
+## Geist dDev Kit
 
-Optimized dApp Components that you or LLM can copy and paste into your apps.  Accessible, Localized. Customizable. Open Source.
+Optimized dApp Components and utils that you or LLM can copy and paste into your apps or agent.  Accessible, Localized. Customizable. Open Source.
 Inspired by [shadcn/ui](https://github.com/shadcn-ui/ui/tree/main)
 
 ⚠️ This is preview alpha version under active development

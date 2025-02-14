@@ -3,14 +3,14 @@ title: Introduction
 ---
 
 
-# Geist dApp Kit
+# Geist dDev Kit
 
 This repository consist of
 
-- dApp kit
+- dApp components
   - react components designed in shadcn style 
-- agent kit
-  - plugins designed for various agent frameworks
+- agent toolkit
+  - utilites plugins designed for various agent frameworks
 - utils
   - various utils designed to be isomorphic 
 
