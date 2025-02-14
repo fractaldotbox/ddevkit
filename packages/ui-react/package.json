@@ -15,6 +15,8 @@
 		"test": "vitest",
 		"test:unit": "VITEST_SUITES=unit vitest",
 		"test:int": "VITEST_SUITES=int vitest",
+		"registry:build": "shadcn build",
+		"registry:serve": "http-server src/registry",
 		"build:registry": "tsx --tsconfig ./tsconfig.scripts.json src/scripts/build-registry.mts",
 		"generate:component": "turbo gen react-component"
 	},
