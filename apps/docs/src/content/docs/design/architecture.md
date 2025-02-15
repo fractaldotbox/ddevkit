@@ -5,6 +5,7 @@ title: Components Architecture
 
 ## Architecture
 
+We believe there are too many frameworks and we want to make it easy for your dApps/agent to tailor-made your own library by generating from common receipes and mixing UNIX-style packages.
 
 ### For dApps
 
@@ -20,8 +21,6 @@ title: Components Architecture
 
 
 - We have decoupled `@geist/domain` package for common, non-ecosystem specific logic and types.
-
-
 
 
 
