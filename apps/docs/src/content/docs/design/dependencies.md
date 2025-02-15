@@ -1,5 +1,5 @@
 ---
-title: On Dependencies
+title: On Dependencies and Immutability
 ---
 
 ## Why Minimize dependencies
@@ -12,7 +12,21 @@ The risk is real as we were told ["Stop using dapps"](https://decrypt.co/209804/
 
 In the web context, dependencies make the bundle larger and the site slower.  [Island Architecture](https://docs.astro.build/en/concepts/islands/) --  we try to contain comopnents into static ones as plain markups and text when possible, and limit interacitivt to speicifc componenst. This help simplify diff across versions and make a larger chunk of the dApp served by IPFS which is immutable. This also help rendering infrequently updated contnet faster, composing different frameworks in a page and encourages pushing slow operations to the server. Typically, we postpone hydration for components requiring a connected wallet. 
 
-In the context of autonomous agent, a simple package-lock.json is not sufficient to guarantee your agent keep running safely. As dev we are just tired of [https://en.wikipedia.org/wiki/Dependency_hell].
+In the context of autonomous agent, a simple package-lock.json is not sufficient to guarantee your agent keep running autonomously and safely. As dev we are just tired of [https://en.wikipedia.org/wiki/Dependency_hell].
+As we argued in [Architecture](/architecture.md) the challenge is even more prominent for diverse, decentralized agents than dApps.
+
+
+
+## Immutability
+We have seen power of autonomous execution in smart contracts which are immutable or upgradeable only upon restricted rules. 
+Common primitives like Ethereum Attestation Service establish trust, promote interoperability and simplify audit. 
+
+It is a common need for more flexible, blockchain agnoistic programs outside the EVM runtime that are immutable and verifiable, as in Lit actions and [Chainlink Functions](https://docs.chain.link/chainlink-functions) which are javascript based and executed by decentralized nodes, or dockerized applications execute in TEE.
+
+With autonomous agents, it is crucial to ensure no one can update or remove the program and often it is desired to promote transparency. One typical approach is uploading that to IPFS and restrict execution to that content-addressing hash, as in [Lit's example](https://developer.litprotocol.com/sdk/serverless-signing/deploying#a-note-on-immutability).
+
+Today every agent has its own dependency graph and often versions of pacakge differ given versions of frameworks. Creating common, immutable program as tools for agent could make developer life easy and ease audit.  
+
 
 ## Our approach
 
