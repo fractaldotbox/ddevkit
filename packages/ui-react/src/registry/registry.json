@@ -10,8 +10,8 @@
 			"description": "A simple hello world component.",
 			"files": [
 				{
-					"path": "registry/hello-world/hello-world.tsx",
-					"type": "registry:component"
+					"path": "components/attestations/attestations-table.tsx",
+					"type": "registry:ui"
 				}
 			]
 		}

@@ -853,6 +853,9 @@ importers:
       sha256:
         specifier: link:@noble/hashes/sha256
         version: link:@noble/hashes/sha256
+      shadcn:
+        specifier: 2.4.0-canary.6
+        version: 2.4.0-canary.6(typescript@5.7.2)
       stream-browserify:
         specifier: ^3.0.0
         version: 3.0.0
@@ -971,6 +974,10 @@ packages:
 
   '@antfu/ni@0.21.12':
     resolution: {integrity: sha512-2aDL3WUv8hMJb2L3r/PIQWsTLyq7RQr3v9xD16fiz6O8ys1xEyLhhTOv8gxtZvJiTzjTF5pHoArvRdesGL1DMQ==}
+    hasBin: true
+
+  '@antfu/ni@23.3.1':
+    resolution: {integrity: sha512-C90iyzm/jLV7Lomv2UzwWUzRv9WZr1oRsFRKsX5HjQL4EXrbi9H/RtBkjCP+NF+ABZXUKpAa4F1dkoTaea4zHg==}
     hasBin: true
 
   '@ardatan/relay-compiler@12.0.0':
@@ -10263,9 +10270,11 @@ packages:
 
   lodash.get@4.4.2:
     resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
+    deprecated: This package is deprecated. Use the optional chaining (?.) operator instead.
 
   lodash.isequal@4.5.0:
     resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
+    deprecated: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
 
   lodash.ismatch@4.4.0:
     resolution: {integrity: sha512-fPMfXjGQEV9Xsq/8MTSgUf255gawYRbjwMyDbcvDhXgV7enSZA0hynz6vMPnpAb5iONEzBHBPsT+0zes5Z301g==}
@@ -10305,6 +10314,7 @@ packages:
 
   lodash.template@4.5.0:
     resolution: {integrity: sha512-84vYFxIkmidUiFxidA/KjjH9pAycqW+h980j7Fuz5qxRtO9pgB7MDFTdys1N7A5mcucRiDyEq4fusljItR1T/A==}
+    deprecated: This package is deprecated. Use https://socket.dev/npm/package/eta instead.
 
   lodash.templatesettings@4.2.0:
     resolution: {integrity: sha512-stgLz+i3Aa9mZgnjr/O+v9ruKZsPsndy7qPZOchbqk2cnTU1ZaldKK+v7m54WoKIyxiuMZTKT2H81F8BeAc3ZQ==}
@@ -12498,6 +12508,10 @@ packages:
     resolution: {integrity: sha512-lVuOAnibJUFrl2KaFkO3w+9ObCFBH4aLWrs4xWd9ZHvGKVYopdGXOva9qNAo8XqdeKSOUm0Xv5CYImrV80pjkA==}
     hasBin: true
 
+  shadcn@2.4.0-canary.6:
+    resolution: {integrity: sha512-7bsqWU9j6HwAksSLbzRTsnztd6cWa3F3MHP74aLYghDjbgFhlWzSYV8DyXfXz6EKbNSZzgYIWJvlk9UZ9TzbGw==}
+    hasBin: true
+
   shallow-clone@3.0.1:
     resolution: {integrity: sha512-/6KqX+GVUdqPuPPd2LxDDxzX6CAbjJehAAOKlNpqqUpAqPM6HeL8f+o3a+JsyGjn2lv0WY8UsTgUJjU9Ok55NA==}
     engines: {node: '>=8'}
@@ -14342,6 +14356,8 @@ snapshots:
 
   '@antfu/ni@0.21.12': {}
 
+  '@antfu/ni@23.3.1': {}
+
   '@ardatan/relay-compiler@12.0.0(encoding@0.1.13)(graphql@16.9.0)':
     dependencies:
       '@babel/core': 7.25.2
@@ -15074,7 +15090,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       chalk: 2.4.2
       js-tokens: 4.0.0
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   '@babel/parser@7.25.6':
     dependencies:
@@ -16802,8 +16818,8 @@ snapshots:
       hast-util-to-html: 9.0.4
       hast-util-to-text: 4.0.2
       hastscript: 9.0.0
-      postcss: 8.4.47
-      postcss-nested: 6.2.0(postcss@8.4.47)
+      postcss: 8.5.2
+      postcss-nested: 6.2.0(postcss@8.5.2)
       unist-util-visit: 5.0.0
       unist-util-visit-parents: 6.0.1
 
@@ -17922,7 +17938,7 @@ snapshots:
       '@types/debug': 4.1.12
       debug: 4.4.0(supports-color@8.1.1)
       pony-cause: 2.1.11
-      semver: 7.6.3
+      semver: 7.7.1
       uuid: 9.0.1
     transitivePeerDependencies:
       - supports-color
@@ -17936,7 +17952,7 @@ snapshots:
       '@types/debug': 4.1.12
       debug: 4.4.0(supports-color@8.1.1)
       pony-cause: 2.1.11
-      semver: 7.6.3
+      semver: 7.7.1
       uuid: 9.0.1
     transitivePeerDependencies:
       - supports-color
@@ -18358,7 +18374,7 @@ snapshots:
 
   '@privy-io/api-base@1.4.1':
     dependencies:
-      zod: 3.23.8
+      zod: 3.24.2
 
   '@privy-io/js-sdk-core@0.35.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)(viem@2.21.16(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8))':
     dependencies:
@@ -18389,7 +18405,7 @@ snapshots:
       bs58: 5.0.0
       ethers: 5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       libphonenumber-js: 1.11.15
-      zod: 3.23.8
+      zod: 3.24.2
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -21198,7 +21214,7 @@ snapshots:
 
   '@ts-morph/common@0.19.0':
     dependencies:
-      fast-glob: 3.3.2
+      fast-glob: 3.3.3
       minimatch: 7.4.6
       mkdirp: 2.1.6
       path-browserify: 1.0.1
@@ -21585,7 +21601,7 @@ snapshots:
       '@typescript-eslint/types': 8.13.0
       '@typescript-eslint/visitor-keys': 8.13.0
       debug: 4.4.0(supports-color@8.1.1)
-      fast-glob: 3.3.2
+      fast-glob: 3.3.3
       is-glob: 4.0.3
       minimatch: 9.0.5
       semver: 7.6.3
@@ -22395,7 +22411,7 @@ snapshots:
       lodash.ismatch: 4.4.0
       remeda: 1.61.0
       ts-toolbelt: 9.6.0
-      zod: 3.23.8
+      zod: 3.24.2
 
   anser@1.4.10: {}
 
@@ -22560,7 +22576,7 @@ snapshots:
 
   ast-types@0.16.1:
     dependencies:
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   astral-regex@1.0.0: {}
 
@@ -24284,7 +24300,7 @@ snapshots:
 
   esbuild-register@3.6.0(esbuild@0.23.1):
     dependencies:
-      debug: 4.3.7
+      debug: 4.4.0(supports-color@8.1.1)
       esbuild: 0.23.1
     transitivePeerDependencies:
       - supports-color
@@ -24715,7 +24731,7 @@ snapshots:
 
   execa@7.2.0:
     dependencies:
-      cross-spawn: 7.0.3
+      cross-spawn: 7.0.6
       get-stream: 6.0.1
       human-signals: 4.3.1
       is-stream: 3.0.0
@@ -24727,7 +24743,7 @@ snapshots:
 
   execa@8.0.1:
     dependencies:
-      cross-spawn: 7.0.3
+      cross-spawn: 7.0.6
       get-stream: 8.0.1
       human-signals: 5.0.0
       is-stream: 3.0.0
@@ -25032,7 +25048,7 @@ snapshots:
 
   foreground-child@3.3.0:
     dependencies:
-      cross-spawn: 7.0.3
+      cross-spawn: 7.0.6
       signal-exit: 4.1.0
 
   forever-agent@0.6.1: {}
@@ -25267,7 +25283,7 @@ snapshots:
       '@types/glob': 7.2.0
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.3.2
+      fast-glob: 3.3.3
       glob: 7.2.3
       ignore: 5.3.2
       merge2: 1.4.1
@@ -25277,7 +25293,7 @@ snapshots:
     dependencies:
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.3.2
+      fast-glob: 3.3.3
       ignore: 5.3.2
       merge2: 1.4.1
       slash: 3.0.0
@@ -25898,7 +25914,7 @@ snapshots:
   https-proxy-agent@6.2.1:
     dependencies:
       agent-base: 7.1.1
-      debug: 4.3.7
+      debug: 4.4.0(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -26051,7 +26067,7 @@ snapshots:
   interface-datastore@6.1.1:
     dependencies:
       interface-store: 2.0.2
-      nanoid: 3.3.7
+      nanoid: 3.3.8
       uint8arrays: 3.1.0
 
   interface-store@2.0.2: {}
@@ -28642,6 +28658,11 @@ snapshots:
       postcss: 8.4.47
       postcss-selector-parser: 6.1.2
 
+  postcss-nested@6.2.0(postcss@8.5.2):
+    dependencies:
+      postcss: 8.5.2
+      postcss-selector-parser: 6.1.2
+
   postcss-selector-parser@6.1.2:
     dependencies:
       cssesc: 3.0.0
@@ -29214,7 +29235,7 @@ snapshots:
       esprima: 4.0.1
       source-map: 0.6.1
       tiny-invariant: 1.3.3
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   receptacle@1.3.2:
     dependencies:
@@ -29838,6 +29859,34 @@ snapshots:
       ts-morph: 18.0.0
       tsconfig-paths: 4.2.0
       zod: 3.23.8
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+
+  shadcn@2.4.0-canary.6(typescript@5.7.2):
+    dependencies:
+      '@antfu/ni': 23.3.1
+      '@babel/core': 7.25.2
+      '@babel/parser': 7.25.6
+      '@babel/plugin-transform-typescript': 7.25.2(@babel/core@7.25.2)
+      commander: 10.0.1
+      cosmiconfig: 8.3.6(typescript@5.7.2)
+      deepmerge: 4.3.1
+      diff: 5.2.0
+      execa: 7.2.0
+      fast-glob: 3.3.3
+      fs-extra: 11.2.0
+      https-proxy-agent: 6.2.1
+      kleur: 4.1.5
+      node-fetch: 3.3.2
+      ora: 6.3.1
+      postcss: 8.5.2
+      prompts: 2.4.2
+      recast: 0.23.9
+      stringify-object: 5.0.0
+      ts-morph: 18.0.0
+      tsconfig-paths: 4.2.0
+      zod: 3.24.2
     transitivePeerDependencies:
       - supports-color
       - typescript

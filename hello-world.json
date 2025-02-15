@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hello-world",
+  "type": "registry:block",
+  "title": "Hello World",
+  "description": "A simple hello world component.",
+  "files": [
+    {
+      "path": "components/attestations/attestations-table.tsx",
+      "content": "import type { ColumnDef } from \"@tanstack/react-table\";\nimport { useMemo } from \"react\";\nimport { type Address, fromBlobs } from \"viem\";\nimport { mainnet } from \"viem/chains\";\nimport { useChainId } from \"wagmi\";\nimport { DataTable } from \"#components/data-table\";\nimport { useGetAttestations } from \"#hooks/eas/use-get-attestations\";\nimport { getEasscanAttestationUrl } from \"#lib/eas/easscan\";\nimport { truncate } from \"#lib/utils/hex\";\nimport { AttestationSchemaBadge } from \"./attestation-schema-badge\";\nimport type { AttestationMeta } from \"./attestations\";\nimport { asAttestationMeta } from \"./attestations\";\n\n// This type is used to define the shape of our data.\n// You can use a Zod schema here if you want.\n\n// customize column with url getEasscanSchemaUrl()\n\nexport const columns: ColumnDef<AttestationMeta>[] = [\n\t{\n\t\taccessorKey: \"id\",\n\t\theader: \"UID\",\n\t\tcell: ({ row }) => {\n\t\t\tconst id = row.getValue<string>(\"id\");\n\n\t\t\treturn (\n\t\t\t\t<a\n\t\t\t\t\thref={getEasscanAttestationUrl(\n\t\t\t\t\t\tmainnet.id,\n\t\t\t\t\t\tid,\n\t\t\t\t\t\trow.original.isOffchain,\n\t\t\t\t\t)}\n\t\t\t\t\ttarget=\"_blank\"\n\t\t\t\t>\n\t\t\t\t\t{truncate(id)}\n\t\t\t\t</a>\n\t\t\t);\n\t\t},\n\t},\n\t{\n\t\taccessorKey: \"schemaId\",\n\t\theader: \"Schema\",\n\t\tcell: ({ row }) => {\n\t\t\tconst schemaId = row.getValue<string>(\"schemaId\");\n\t\t\tconst schemaIndex = row.original.schemaIndex;\n\n\t\t\treturn (\n\t\t\t\t<AttestationSchemaBadge\n\t\t\t\t\tchainId={mainnet.id}\n\t\t\t\t\tschemaId={schemaId}\n\t\t\t\t\tschemaIndex={schemaIndex}\n\t\t\t\t/>\n\t\t\t);\n\t\t},\n\t},\n\t{\n\t\taccessorKey: \"from\",\n\t\theader: \"From\",\n\t},\n\n\t{\n\t\taccessorKey: \"to\",\n\t\theader: \"To\",\n\t},\n\t{\n\t\taccessorKey: \"type\",\n\t\theader: \"Type\",\n\t\tcell: ({ row }) => {\n\t\t\tconst isOffchain = row.original.isOffchain;\n\n\t\t\treturn isOffchain ? \"offchain\" : \"onchain\";\n\t\t},\n\t},\n\t{\n\t\taccessorKey: \"ageDisplayed\",\n\t\theader: \"Age\",\n\t},\n];\n\n// https://easscan.org/\nexport const AttestationsTable = ({\n\taddress,\n}: {\n\taddress: Address;\n}) => {\n\tconst chainId = useChainId();\n\tconst { data, isLoading } = useGetAttestations({\n\t\tchainId,\n\t\taddress,\n\t});\n\n\tconst records = useMemo(() => {\n\t\tif (!data?.data) {\n\t\t\treturn [];\n\t\t}\n\t\treturn data?.data.attestations?.map(asAttestationMeta);\n\t}, [data]);\n\n\treturn (\n\t\t<div>\n\t\t\t<DataTable columns={columns} data={records} />\n\t\t</div>\n\t);\n};\n",
+      "type": "registry:ui"
+    }
+  ]
+}
