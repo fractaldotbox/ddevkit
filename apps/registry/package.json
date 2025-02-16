@@ -1,5 +1,5 @@
 {
-	"name": "@geist/ui-react",
+	"name": "@geist/registry",
 	"version": "0.0.0",
 	"private": true,
 	"type": "module",
@@ -12,11 +12,19 @@
 		"#*": ["./src/*", "./src/*.tsx"]
 	},
 	"scripts": {
-		"registry:build": "shadcn build ../../ui-react/registry/registry.json -c src -o ../../../",
-		"registry:serve": "http-server src/registry",
+		"build": "tsx src/build.mts",
+		"test": "vitest",
+		"serve": "http-server public/r -p 3000",
 		"registry:deploy": "fleek --debug sites deploy"
 	},
 	"devDependencies": {
-		"shadcn": "2.4.0-canary.6"
+		"@types/node": "^22.10.2",
+		"shadcn": "2.4.0-canary.6",
+		"tsx": "4.19.2",
+		"vitest": "^2.1.8",
+		"http-server": "14.1.1"
+	},
+	"dependencies": {
+		"ts-morph": "^24.0.0"
 	}
 }
