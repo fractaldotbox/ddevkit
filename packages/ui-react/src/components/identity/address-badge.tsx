@@ -66,7 +66,7 @@ export const AddressBadgeFromName = ({ name }: { name: string }) => {
 };
 
 /**
- * @name: address-badge
+ * @title: address-badge
  * @description: AddressBadge component to display an address with a copy button.
  */
 export default AddressBadge;

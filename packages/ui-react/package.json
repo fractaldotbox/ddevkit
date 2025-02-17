@@ -15,7 +15,6 @@
 		"test": "vitest",
 		"test:unit": "VITEST_SUITES=unit vitest",
 		"test:int": "VITEST_SUITES=int vitest",
-		"build:registry": "tsx --tsconfig ./tsconfig.scripts.json src/scripts/build-registry.mts",
 		"generate:component": "turbo gen react-component"
 	},
 	"devDependencies": {

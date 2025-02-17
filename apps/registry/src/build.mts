@@ -109,7 +109,7 @@ const registryTree = {
 	items: [],
 };
 
-for (const file of files) {
+for (const file of files.slice(0, 14)) {
 	const { registryItem, sourceFile } = await parseItem(file, context, project);
 	registryTree.items.push(registryItem);
 	await sourceFile.save();

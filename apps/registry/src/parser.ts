@@ -107,8 +107,9 @@ export const createRegisterDependencyPath = (
 };
 
 export const parseComments = async (sourceFile: SourceFile) => {
+	// use comments from default export
 	const comments = sourceFile
-		.getStatementsWithComments()?.[0]
+		.getExportAssignments()?.[0]
 		?.getLeadingCommentRanges();
 
 	if (comments?.length > 0) {
