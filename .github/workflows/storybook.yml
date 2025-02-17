@@ -91,10 +91,10 @@ jobs:
         uses: ./.github/actions/setup-node-pnpm
 
       - name: Build docs
-        run: pnpm --filter ui-react registry:build
+        run: pnpm --filter @geist/registry build
 
       - name: Deploy registry
         env:
           FLEEK_TOKEN: ${{ secrets.FLEEK_TOKEN }}
           FLEEK_PROJECT_ID: cm2lvm8yh000030bm17kmomq9
-        run: pnpm --dir packages/ui-react registry:deploy
+        run: pnpm --dir apps/registry deploy

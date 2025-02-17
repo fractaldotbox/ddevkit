@@ -15,7 +15,7 @@
 		"build": "tsx src/build.mts",
 		"test": "vitest",
 		"serve": "http-server public/r -p 3000",
-		"registry:deploy": "fleek --debug sites deploy"
+		"deploy": "fleek --debug sites deploy"
 	},
 	"devDependencies": {
 		"@types/node": "^22.10.2",

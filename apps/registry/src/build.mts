@@ -113,11 +113,8 @@ const registryTree = {
 };
 
 for (const file of files) {
-	console.log("parse:", file);
 	const { registryItem, sourceFile } = await parseItem(file, context, project);
 	registryTree.items.push(registryItem);
-
-	console.log("save:", sourceFile.getFilePath());
 	await sourceFile.save();
 }
 writeFileSync(registryJsonPath, JSON.stringify(registryTree, null, 2));
