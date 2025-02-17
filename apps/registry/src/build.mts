@@ -77,7 +77,6 @@ async function getFiles(dir: string): Promise<string[]> {
 			!matchesGlob(fullPath, "**/*.{test,fixture}.*") &&
 			!matchesGlob(fullPath, "**/shadcn/*")
 		) {
-			console.log("xxx", fullPath);
 			files.push(fullPath);
 		}
 	}
