@@ -50,7 +50,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Download package artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -89,7 +89,7 @@ jobs:
           version: ${{ env.PNPM_VERSION }}
 
       - name: Download storybook build
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: storybook-build
           path: apps/storybook/storybook-static
