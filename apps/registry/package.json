@@ -26,6 +26,7 @@
 		"@fleek-platform/cli": "^3.8.2"
 	},
 	"dependencies": {
-		"ts-morph": "^24.0.0"
+		"ts-morph": "^24.0.0",
+		"pathe": "^2.0.3"
 	}
 }

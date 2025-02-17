@@ -20,7 +20,14 @@ import {
 	writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
-import path, { relative, join, basename, dirname, resolve } from "node:path";
+import path, {
+	relative,
+	join,
+	basename,
+	dirname,
+	resolve,
+	matchesGlob,
+} from "node:path";
 import process from "node:process";
 import { parseItem } from "./parser";
 
@@ -56,6 +63,7 @@ const registryJsonPath = resolve(import.meta.dirname, "../registry.json");
 console.log("creating working area");
 const sourceRootPath = await createWorkingArea();
 
+// shim for nodev <22
 async function getFiles(dir: string): Promise<string[]> {
 	let files: string[] = [];
 	const entries = await readdirSync(dir, { withFileTypes: true });
@@ -65,10 +73,11 @@ async function getFiles(dir: string): Promise<string[]> {
 			files = files.concat(await getFiles(fullPath));
 		} else if (
 			entry.isFile() &&
-			(fullPath.endsWith(".ts") || fullPath.endsWith(".tsx")) &&
-			!fullPath.match(".test.") &&
-			!fullPath.match("shadcn/")
+			matchesGlob(fullPath, "**/*.{ts,tsx}") &&
+			!matchesGlob(fullPath, "**/*.{test,fixture}.*") &&
+			!matchesGlob(fullPath, "**/shadcn/*")
 		) {
+			console.log("xxx", fullPath);
 			files.push(fullPath);
 		}
 	}

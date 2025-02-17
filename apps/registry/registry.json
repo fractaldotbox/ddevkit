@@ -31,6 +31,204 @@
 			"dependencies": ["@radix-ui/themes", "viem", "wagmi"]
 		},
 		{
+			"title": "components/attestations/attestation-badge",
+			"description": "",
+			"author": "geist",
+			"name": "components/attestations/attestation-badge",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/attestations/attestation-badge.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/hooks/eas/use-get-attestations.ts",
+					"type": "registry:hook"
+				}
+			],
+			"registryDependencies": ["badge"],
+			"dependencies": ["viem", "wagmi"]
+		},
+		{
+			"title": "components/attestations/attestation-card",
+			"description": "",
+			"author": "geist",
+			"name": "components/attestations/attestation-card",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/attestations/attestation-card.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/hooks/eas/use-get-attestation-with-uid.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "registry/lib/utils/hex.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/components/attestations/attestation-schema-badge.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/components/attestations/attestations.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["card", "separator", "skeleton"],
+			"dependencies": [
+				"@radix-ui/react-label",
+				"date-fns",
+				"react",
+				"viem",
+				"wagmi"
+			]
+		},
+		{
+			"title": "components/attestations/attestation-form",
+			"description": "",
+			"author": "geist",
+			"name": "components/attestations/attestation-form",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/attestations/attestation-form.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/eas/easscan.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/utils/hex.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/components/attestations/attestation-schema-badge.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": [
+				"button",
+				"card",
+				"form",
+				"input",
+				"toast",
+				"use-toast"
+			],
+			"dependencies": ["@hookform/resolvers", "react-hook-form", "viem", "zod"]
+		},
+		{
+			"title": "components/attestations/attestation-schema-badge",
+			"description": "",
+			"author": "geist",
+			"name": "components/attestations/attestation-schema-badge",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/attestations/attestation-schema-badge.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/eas/easscan.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": ["badge"],
+			"dependencies": []
+		},
+		{
+			"title": "components/attestations/attestations-table",
+			"description": "",
+			"author": "geist",
+			"name": "components/attestations/attestations-table",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/attestations/attestations-table.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/components/data-table.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/hooks/eas/use-get-attestations.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "registry/lib/eas/easscan.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/utils/hex.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/components/attestations/attestation-schema-badge.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/components/attestations/attestations.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/components/attestations/attestations.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["@tanstack/react-table", "react", "viem", "wagmi"]
+		},
+		{
+			"title": "components/attestations/attestations",
+			"description": "",
+			"author": "geist",
+			"name": "components/attestations/attestations",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/attestations/attestations.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/hooks/eas/use-get-attestations.ts",
+					"type": "registry:hook"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["date-fns", "viem"]
+		},
+		{
+			"title": "components/attestations/upload-attestation",
+			"description": "",
+			"author": "geist",
+			"name": "components/attestations/upload-attestation",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/attestations/upload-attestation.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/domain/config.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/hooks/eas/use-upload-attestation.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "registry/components/attestations/attestations.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["button"],
+			"dependencies": ["lucide-react"]
+		},
+		{
 			"title": "components/data-table",
 			"description": "",
 			"author": "geist",
@@ -131,144 +329,6 @@
 			],
 			"registryDependencies": [],
 			"dependencies": []
-		},
-		{
-			"title": "components/identity/name-wagmi",
-			"description": "",
-			"author": "geist",
-			"name": "components/identity/name-wagmi",
-			"type": "registry:component",
-			"files": [
-				{
-					"path": "registry/components/identity/name-wagmi.tsx",
-					"type": "registry:component"
-				},
-				{
-					"path": "registry/hooks/ens/efp.ts",
-					"type": "registry:hook"
-				}
-			],
-			"registryDependencies": [],
-			"dependencies": ["react", "viem", "wagmi"]
-		},
-		{
-			"title": "components/identity/name",
-			"description": "",
-			"author": "geist",
-			"name": "components/identity/name",
-			"type": "registry:component",
-			"files": [
-				{
-					"path": "registry/components/identity/name.tsx",
-					"type": "registry:component"
-				},
-				{
-					"path": "registry/hooks/ens/efp.ts",
-					"type": "registry:hook"
-				},
-				{
-					"path": "registry/hooks/ens/use-efp-api.ts",
-					"type": "registry:hook"
-				}
-			],
-			"registryDependencies": [],
-			"dependencies": []
-		},
-		{
-			"title": "components/privy/privy-login",
-			"description": "",
-			"author": "geist",
-			"name": "components/privy/privy-login",
-			"type": "registry:component",
-			"files": [
-				{
-					"path": "registry/components/privy/privy-login.tsx",
-					"type": "registry:component"
-				}
-			],
-			"registryDependencies": ["button"],
-			"dependencies": ["@privy-io/react-auth", "react"]
-		},
-		{
-			"title": "components/protocol/revenue-chart",
-			"description": "",
-			"author": "geist",
-			"name": "components/protocol/revenue-chart",
-			"type": "registry:component",
-			"files": [
-				{
-					"path": "registry/components/protocol/revenue-chart.tsx",
-					"type": "registry:component"
-				},
-				{
-					"path": "registry/lib/domain/amount.ts",
-					"type": "registry:lib"
-				},
-				{
-					"path": "registry/hooks/data/use-defillama.ts",
-					"type": "registry:hook"
-				}
-			],
-			"registryDependencies": ["chart"],
-			"dependencies": ["react", "recharts", "date-fns"]
-		},
-		{
-			"title": "components/scrollable-code-block",
-			"description": "",
-			"author": "geist",
-			"name": "components/scrollable-code-block",
-			"type": "registry:component",
-			"files": [
-				{
-					"path": "registry/components/scrollable-code-block.tsx",
-					"type": "registry:component"
-				}
-			],
-			"registryDependencies": ["scroll-area", "utils"],
-			"dependencies": []
-		},
-		{
-			"title": "components/signature/sign",
-			"description": "",
-			"author": "geist",
-			"name": "components/signature/sign",
-			"type": "registry:component",
-			"files": [
-				{
-					"path": "registry/components/signature/sign.tsx",
-					"type": "registry:component"
-				}
-			],
-			"registryDependencies": [],
-			"dependencies": [
-				"@noble/hashes",
-				"@wagmi/core",
-				"react",
-				"wagmi",
-				"micro-eth-signer"
-			]
-		},
-		{
-			"title": "components/signature/signature-form",
-			"description": "",
-			"author": "geist",
-			"name": "components/signature/signature-form",
-			"type": "registry:component",
-			"files": [
-				{
-					"path": "registry/components/signature/signature-form.tsx",
-					"type": "registry:component"
-				}
-			],
-			"registryDependencies": ["form", "button", "input"],
-			"dependencies": [
-				"jotai",
-				"viem",
-				"@hookform/resolvers",
-				"@radix-ui/react-icons",
-				"react-hook-form",
-				"zod"
-			]
 		}
 	]
 }
