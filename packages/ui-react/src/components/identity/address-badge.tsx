@@ -1,5 +1,5 @@
 /**
- * @name: AddressBadge
+ * @name: address-badge
  * @description: AddressBadge component to display an address with a copy button.
  *
  */

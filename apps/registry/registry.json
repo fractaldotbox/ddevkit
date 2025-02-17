@@ -62,7 +62,7 @@
 		},
 		{
 			"title": "components/identity/address-badge",
-			"description": "",
+			"description": "AddressBadge component to display an address with a copy button.",
 			"author": "geist",
 			"name": "components/identity/address-badge",
 			"type": "registry:component",
