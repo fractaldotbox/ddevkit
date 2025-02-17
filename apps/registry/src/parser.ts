@@ -1,21 +1,10 @@
 // shadcn do not export as ESM the build command
 
-import {
-	type Project,
-	ScriptKind,
-	type SourceFile,
-	SyntaxKind,
-} from "ts-morph";
+import { type Project, ScriptKind, type SourceFile } from "ts-morph";
 
-import {
-	existsSync,
-	mkdtempSync,
-	readFileSync,
-	readdirSync,
-	writeFileSync,
-} from "node:fs";
+import { mkdtempSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { basename, dirname, join, relative, resolve } from "node:path";
+import { dirname, join, relative } from "node:path";
 
 export const createTempSourceFile = async (filename: string) => {
 	const dir = await mkdtempSync(join(tmpdir(), "shadcn-"));
@@ -55,7 +44,6 @@ const matchPath = (pathInput: string) => {
 /**
  * derive registry name and names of files
  *
- * TODO Imports should always use the @/registry path
  * @param pathInput
  * @param context
  * @returns

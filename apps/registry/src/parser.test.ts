@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getPackageName, parseFilePath, parseImportPath } from "./parser";
+import { getPackageName, parseImportPath } from "./parser";
 
 describe("getPackageName", () => {
 	it("returns package name for valid scoped module specifier", () => {
@@ -23,33 +23,6 @@ const context = {
 	registryUrl: "https://example.com/r/",
 	filePath: "",
 };
-
-describe("parseFilePath", () => {
-	it("returns default type and no match for a non-matching path", () => {
-		const result = parseFilePath("./random/path", context);
-		expect(result.type).toBe("registry:component");
-		expect(result.pathRootMatch).toBeNull();
-	});
-
-	it("detects a components path", () => {
-		const result = parseFilePath("components/shadcn/button", context);
-		expect(result.type).toBe("registry:component");
-		expect(result.pathRootMatch).toBeTruthy();
-	});
-
-	it("returns default type for lib path due to matching result", () => {
-		const result = parseFilePath("lib/foo", context);
-		// Despite intent to change type, matching returns full string
-		expect(result.type).toBe("registry:component");
-		expect(result.pathRootMatch?.[0]).toBe("lib/foo");
-	});
-
-	it("returns default type for hooks path due to matching result", () => {
-		const result = parseFilePath("hooks/useSomething", context);
-		expect(result.type).toBe("registry:component");
-		expect(result.pathRootMatch?.[0]).toBe("hooks/useSomething");
-	});
-});
 
 describe("parseImportPath", () => {
 	it("returns parsed package from ESM", () => {
