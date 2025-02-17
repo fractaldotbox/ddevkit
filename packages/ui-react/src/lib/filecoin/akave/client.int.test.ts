@@ -1,9 +1,6 @@
 import { faker } from "@faker-js/faker";
 import rootConfig from "@geist/domain/config";
-import {
-	createTestContent,
-	createTestFile,
-} from "@geist/ui-react/lib/test-utils-node";
+import { createTestContent, createTestFile } from "#lib/test-utils-node";
 import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import {
 	AkaveBucket,

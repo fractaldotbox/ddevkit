@@ -23,8 +23,35 @@ type Context = {
 	registryUrl: string;
 };
 
+export const parseType = (folder?: string, input?: string) => {
+	if (folder === "lib") {
+		return {
+			type: "registry:lib",
+			ext: "ts",
+		};
+	} else if (folder === "hooks") {
+		return {
+			type: "registry:hook",
+			ext: "ts",
+		};
+	}
+
+	return {
+		type: "registry:component",
+		ext: "tsx",
+	};
+};
+
+const matchPath = (pathInput: string) => {
+	return pathInput.match(
+		/([?:\.\/|#])*(components|lib|hooks)\/(shadcn\/)*(.*)$/,
+	);
+};
+
 /**
  * derive registry name and names of files
+ *
+ * TODO Imports should always use the @/registry path
  * @param pathInput
  * @param context
  * @returns
@@ -35,48 +62,52 @@ export const parseImportPath = (
 		filePath: string;
 	},
 ) => {
-	const pathRootMatch = pathInput.match(
-		/^([?:\.\/|#])*(components|lib|hooks)\/(shadcn\/)*(.*)$/,
-	);
+	if (pathInput.startsWith("@geist")) {
+		// internal package
+
+		pathInput = pathInput.replace("@geist/domain", "#lib/domain");
+	}
+
+	const pathRootMatch = matchPath(pathInput);
 	const { sourceRootPath, filePath, registryUrl } = context;
 
 	let packageName;
-	let type = "registry:block";
-	if (pathRootMatch?.[0] === "lib") {
-		type = "registry:lib";
-	} else if (pathRootMatch?.[0] === "hooks") {
-		type = "registry:hook";
-	}
 
 	console.log("parseImportPath", filePath, dirname(filePath), pathInput);
-	// TODO bulk regex
 
 	let registryPath = pathInput;
 	let shadcnPackage;
+
 	if (pathInput.startsWith("./")) {
 		// TODO confirm extension
-		console.log("rewrite relative", join(dirname(filePath), pathInput));
-		registryPath = join(dirname(filePath), pathInput) + ".tsx";
+		console.log(
+			"rewrite relative",
+			pathInput,
+			join(dirname(filePath), pathInput),
+		);
+		registryPath = join(dirname(filePath), pathInput);
 	} else if (pathRootMatch?.[1] === "#") {
 		// rewrite
+		registryPath = pathInput.replace("#", "registry/");
+
+		console.log("rewrite alias", pathInput.replace("#", ""), registryPath);
 	} else {
 		packageName = getPackageName(pathInput);
+		console.log("packageName", packageName, pathInput);
 	}
-
-	const alias = pathRootMatch?.[1] === "#" ? "@/" : "";
 
 	if (pathRootMatch?.[3]) {
 		shadcnPackage = pathRootMatch[4];
 	}
 
-	// TODO rename not necessary for own registry
-	// const modulePath =
-	// 	pathRootMatch?.[2] === "components" ? "components/ui" : pathRootMatch?.[2];
-
 	if (pathRootMatch?.[0]) {
-		registryPath = `${alias}${pathRootMatch[2]}/${pathRootMatch[4]}`;
+		registryPath = `registry/${pathRootMatch[2]}/${pathRootMatch[4]}`;
 	}
-	return { packageName, shadcnPackage, type, registryPath };
+
+	// re-match for relative path
+
+	const { type, ext } = parseType(matchPath(registryPath)?.[2], pathInput);
+	return { packageName, shadcnPackage, type, registryPath, ext };
 };
 
 export const getPackageName = (moduleSpecifier: string): string | null => {
@@ -123,6 +154,8 @@ export const createRegisterDependencyPath = (
 	return context.registryUrl + name + ".json";
 };
 
+// Decouple parse/transform to be working-area independent and easier testing
+
 export const parseItem = async (
 	file: string,
 	context: Context,
@@ -130,91 +163,101 @@ export const parseItem = async (
 ) => {
 	const { sourceRootPath, registryUrl } = context;
 
+	console.log("parseItem:", file);
+
+	const pathRootMatch = matchPath(file);
+	const { type, ext } = parseType(pathRootMatch?.[2]);
+
+	console.log("xxx", file, type, ext);
 	const registryItemMetadata = {
 		title: "",
 		description: "",
 		target: "",
-		dependencies: [],
-		registryDependencies: [],
+		dependencies: new Set(),
+		registryDependencies: new Set(),
 	} as any;
 
-	const fileName = basename(file);
-	console.log("sourceRootPath", sourceRootPath, file);
 	const registryFilePath = relative(sourceRootPath, file);
-	// const { type } = parseFilePath(registryFilePath, context);
 
-	const type = "registry:block";
 	const content = readFileSync(file, "utf-8");
 
 	console.log("relativeFilePath", registryFilePath);
 
-	const tempFile = await createTempSourceFile(fileName);
-
-	const sourceFile = project.createSourceFile(tempFile, content, {
+	const sourceFile = project.createSourceFile(file, content, {
 		scriptKind: ScriptKind.TSX,
+		overwrite: true,
 	});
 
-	const comments = sourceFile
-		.getStatementsWithComments()[0]
-		.getLeadingCommentRanges();
+	// TODO parse comments for title and description
+	// const comments = sourceFile
+	// 	.getStatementsWithComments()[0]
+	// 	// .getLeadingCommentRanges();
 
 	const files = [];
-	// TODO parse comments for title and description
+
+	const registryPath = relative(sourceRootPath, file);
+
+	// TODO path
+	files.push({
+		path: registryPath,
+		type,
+	});
 
 	//  Replace shadcn imports
 	for (const node of sourceFile.getImportDeclarations()) {
-		// console.log("node", node);
 		const currentImport = node.getModuleSpecifier().getLiteralValue();
-
+		// include self??
+		console.log("currentImport:", currentImport);
 		const {
 			packageName,
 			registryPath,
 			shadcnPackage,
 			type: itemType,
+			ext,
 		} = parseImportPath(currentImport, {
 			...context,
 			filePath: registryFilePath,
 		});
 
-		console.log("import", currentImport, context, registryPath);
-
 		if (shadcnPackage) {
-			registryItemMetadata.registryDependencies.push(shadcnPackage);
+			registryItemMetadata.registryDependencies.add(shadcnPackage);
 		} else if (packageName) {
-			registryItemMetadata.dependencies.push(packageName);
+			registryItemMetadata.dependencies.add(packageName);
 		} else {
-			console.log("add files", registryPath);
+			// Note we workaround https://github.com/shadcn-ui/ui/issues/6678 by avoiding @/registry for non components
+
+			const importPath =
+				itemType === "registry:component"
+					? registryPath.replace("registry/", "@/registry/")
+					: registryPath.replace("registry/", "@/");
+
+			console.log("import:", currentImport, "->", importPath);
+
+			node.getModuleSpecifier().replaceWithText(`"${importPath}"`);
+			console.log("add: ", file);
 			files.push({
-				path: registryPath,
+				path: registryPath + "." + ext,
 				type: itemType,
 			});
 		}
 
 		// rewrite import path inside content
-
-		// 		node.getModuleSpecifier().replaceWithText(`"${geistDependencyPath}"`);
 	}
 
-	let geistDependencyPath = parseImportPath(registryFilePath, {
-		...context,
-		filePath: registryFilePath,
-	});
-
-	// registryItem.content = sourceFile.getText();
 	registryItemMetadata.registryFilePath = registryFilePath;
-	registryItemMetadata.path = geistDependencyPath;
 
 	const {
 		title,
 		description,
-		registryDependencies,
-		dependencies,
 		path,
 		// registryFilePath,
 	} = registryItemMetadata;
 
-	const name = registryFilePath.replace(/\.[^/.]+$/, "");
+	const name = registryFilePath
+		.replace(/\.[^/.]+$/, "")
+		.replace("registry/", "");
 
+	console.log("files:", files);
 	// TODO use class name of default export as name
 	const registryItem = {
 		title: name,
@@ -223,10 +266,9 @@ export const parseItem = async (
 		name,
 		type,
 		files,
-
-		registryDependencies,
-		dependencies,
+		registryDependencies: Array.from(registryItemMetadata.registryDependencies),
+		dependencies: Array.from(registryItemMetadata.dependencies),
 	};
 
-	return registryItem;
+	return { registryItem, sourceFile };
 };

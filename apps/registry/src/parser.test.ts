@@ -56,17 +56,26 @@ describe("parseImportPath", () => {
 		const { packageName } = parseImportPath("@zod/a/b", context);
 		expect(packageName).toBe("@zod/a");
 	});
+	it("returns lib for internal package", () => {
+		const { packageName, registryPath } = parseImportPath(
+			"@geist/domain/config",
+			context,
+		);
+		expect(packageName).toBe(undefined);
+		expect(registryPath).toBe("registry/lib/domain/config");
+	});
 	it("returns parsed package from ESM non namespace", () => {
 		const { packageName } = parseImportPath("viem/ens", context);
 		expect(packageName).toBe("viem");
 	});
 	it("returns registry path from relative", () => {
-		const { packageName, registryPath } = parseImportPath("./c.tsx", {
+		const { packageName, registryPath } = parseImportPath("./c", {
 			...context,
-			filePath: "src/a/b/d.tsx",
+			// filePath not include src/
+			filePath: "a/b/d.tsx",
 		});
 		expect(packageName).toBe(undefined);
-		expect(registryPath).toBe("a/b/c.tsx");
+		expect(registryPath).toBe("a/b/c");
 	});
 
 	it("returns registry dependency from shadcn components", () => {
@@ -79,7 +88,7 @@ describe("parseImportPath", () => {
 		);
 		expect(packageName).toBe(undefined);
 		expect(shadcnPackage).toBe("tooltip");
-		expect(registryPath).toBe("@/components/tooltip");
+		expect(registryPath).toBe("registry/components/tooltip");
 	});
 	it("returns registry path from alias", () => {
 		const { packageName, registryPath } = parseImportPath("#lib/d/c.ts", {
@@ -87,6 +96,6 @@ describe("parseImportPath", () => {
 			filePath: "src/a/b/d.tsx",
 		});
 		expect(packageName).toBe(undefined);
-		expect(registryPath).toBe("@/lib/d/c.ts");
+		expect(registryPath).toBe("registry/lib/d/c.ts");
 	});
 });

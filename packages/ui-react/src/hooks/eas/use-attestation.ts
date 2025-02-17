@@ -1,11 +1,11 @@
-import { NO_EXPIRATION } from "@geist/ui-react/lib/eas/request";
-import { OffchainAttestationVersion } from "@geist/ui-react/lib/eas/sdk/offchain/offchain";
-import { signOffchainAttestation } from "@geist/ui-react/lib/eas/viem/offchain";
+import { NO_EXPIRATION } from "#lib/eas/request";
+import { OffchainAttestationVersion } from "#lib/eas/sdk/offchain/offchain";
+import { signOffchainAttestation } from "#lib/eas/viem/offchain";
 import {
 	type AttestationRequestData,
 	makeOnchainAttestation,
-} from "@geist/ui-react/lib/eas/viem/onchain";
-import { createTestClientConfig } from "@geist/ui-react/lib/test-utils-isomorphic";
+} from "#lib/eas/viem/onchain";
+import { createTestClientConfig } from "#lib/test-utils-isomorphic";
 import { useMemo } from "react";
 import {
 	type Account,
