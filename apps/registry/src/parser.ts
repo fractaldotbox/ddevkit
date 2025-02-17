@@ -168,7 +168,6 @@ export const parseItem = async (
 	const pathRootMatch = matchPath(file);
 	const { type, ext } = parseType(pathRootMatch?.[2]);
 
-	console.log("xxx", file, type, ext);
 	const registryItemMetadata = {
 		title: "",
 		description: "",

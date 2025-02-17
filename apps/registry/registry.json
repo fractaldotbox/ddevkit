@@ -1,2350 +1,2105 @@
 {
-  "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "shadcn",
-  "homepage": "https://ui.shadcn.com",
-  "items": [
-    {
-      "title": "components/account/balance",
-      "description": "",
-      "author": "geist",
-      "name": "components/account/balance",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/account/balance.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/lib/domain/amount.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/components/token/token.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/lib/token/config.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@radix-ui/themes",
-        "viem",
-        "wagmi"
-      ]
-    },
-    {
-      "title": "components/data-table",
-      "description": "",
-      "author": "geist",
-      "name": "components/data-table",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/data-table.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "button",
-        "table"
-      ],
-      "dependencies": [
-        "@tanstack/react-table",
-        "react"
-      ]
-    },
-    {
-      "title": "components/file/file-input-field",
-      "description": "",
-      "author": "geist",
-      "name": "components/file/file-input-field",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/file/file-input-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "input"
-      ],
-      "dependencies": [
-        "react-hook-form"
-      ]
-    },
-    {
-      "title": "components/identity/address-badge",
-      "description": "",
-      "author": "geist",
-      "name": "components/identity/address-badge",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/identity/address-badge.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/lib/utils/address.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [
-        "tooltip"
-      ],
-      "dependencies": [
-        "lucide-react",
-        "react",
-        "viem",
-        "wagmi"
-      ]
-    },
-    {
-      "title": "components/identity/avatar-wagmi",
-      "description": "",
-      "author": "geist",
-      "name": "components/identity/avatar-wagmi",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/identity/avatar-wagmi.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/components/identity/avatar.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "avatar",
-        "skeleton"
-      ],
-      "dependencies": [
-        "viem",
-        "wagmi"
-      ]
-    },
-    {
-      "title": "components/identity/avatar",
-      "description": "",
-      "author": "geist",
-      "name": "components/identity/avatar",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/identity/avatar.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/hooks/identity/use-identity.ts",
-          "type": "registry:hook"
-        }
-      ],
-      "registryDependencies": [
-        "avatar",
-        "skeleton"
-      ],
-      "dependencies": []
-    },
-    {
-      "title": "components/identity/index",
-      "description": "",
-      "author": "geist",
-      "name": "components/identity/index",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/identity/index.ts",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "components/identity/name-wagmi",
-      "description": "",
-      "author": "geist",
-      "name": "components/identity/name-wagmi",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/identity/name-wagmi.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/hooks/ens/efp.ts",
-          "type": "registry:hook"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "react",
-        "viem",
-        "wagmi"
-      ]
-    },
-    {
-      "title": "components/identity/name",
-      "description": "",
-      "author": "geist",
-      "name": "components/identity/name",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/identity/name.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/hooks/ens/efp.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "registry/hooks/ens/use-efp-api.ts",
-          "type": "registry:hook"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "components/privy/privy-login",
-      "description": "",
-      "author": "geist",
-      "name": "components/privy/privy-login",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/privy/privy-login.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "button"
-      ],
-      "dependencies": [
-        "@privy-io/react-auth",
-        "react"
-      ]
-    },
-    {
-      "title": "components/protocol/revenue-chart",
-      "description": "",
-      "author": "geist",
-      "name": "components/protocol/revenue-chart",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/protocol/revenue-chart.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/lib/domain/amount.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/hooks/data/use-defillama.ts",
-          "type": "registry:hook"
-        }
-      ],
-      "registryDependencies": [
-        "chart"
-      ],
-      "dependencies": [
-        "react",
-        "recharts",
-        "date-fns"
-      ]
-    },
-    {
-      "title": "components/scrollable-code-block",
-      "description": "",
-      "author": "geist",
-      "name": "components/scrollable-code-block",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/scrollable-code-block.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "scroll-area",
-        "utils"
-      ],
-      "dependencies": []
-    },
-    {
-      "title": "components/signature/sign",
-      "description": "",
-      "author": "geist",
-      "name": "components/signature/sign",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/signature/sign.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@noble/hashes",
-        "@wagmi/core",
-        "react",
-        "wagmi",
-        "micro-eth-signer"
-      ]
-    },
-    {
-      "title": "components/signature/signature-form",
-      "description": "",
-      "author": "geist",
-      "name": "components/signature/signature-form",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/signature/signature-form.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "form",
-        "button",
-        "input"
-      ],
-      "dependencies": [
-        "jotai",
-        "viem",
-        "@hookform/resolvers",
-        "@radix-ui/react-icons",
-        "react-hook-form",
-        "zod"
-      ]
-    },
-    {
-      "title": "components/signature/signature-verify-badge",
-      "description": "",
-      "author": "geist",
-      "name": "components/signature/signature-verify-badge",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/signature/signature-verify-badge.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/components/identity/address-badge.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "label"
-      ],
-      "dependencies": [
-        "@radix-ui/themes",
-        "react",
-        "viem"
-      ]
-    },
-    {
-      "title": "components/social-graph/follower-list-ensjs",
-      "description": "",
-      "author": "geist",
-      "name": "components/social-graph/follower-list-ensjs",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/social-graph/follower-list-ensjs.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/hooks/ens/efp.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "registry/hooks/ens/use-ensjs.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "registry/components/social-graph/follower-list.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "react"
-      ]
-    },
-    {
-      "title": "components/social-graph/follower-list",
-      "description": "",
-      "author": "geist",
-      "name": "components/social-graph/follower-list",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/social-graph/follower-list.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/hooks/ens/efp.ts",
-          "type": "registry:hook"
-        }
-      ],
-      "registryDependencies": [
-        "scroll-area",
-        "separator"
-      ],
-      "dependencies": []
-    },
-    {
-      "title": "components/social-graph/name-and-follower-count-badge",
-      "description": "",
-      "author": "geist",
-      "name": "components/social-graph/name-and-follower-count-badge",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/social-graph/name-and-follower-count-badge.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/hooks/ens/use-efp-api.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "registry/hooks/ens/efp.ts",
-          "type": "registry:hook"
-        }
-      ],
-      "registryDependencies": [
-        "card"
-      ],
-      "dependencies": [
-        "@radix-ui/themes",
-        "react"
-      ]
-    },
-    {
-      "title": "components/token/token-balance-chart",
-      "description": "",
-      "author": "geist",
-      "name": "components/token/token-balance-chart",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/token/token-balance-chart.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/lib/domain/amount.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/aggregate.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token-balance-entry.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token-price-entry.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/components/token/token-chip-with-info.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "chart"
-      ],
-      "dependencies": [
-        "react",
-        "@nanostores/react",
-        "nanostores",
-        "recharts",
-        "viem"
-      ]
-    },
-    {
-      "title": "components/token/token-balance-table",
-      "description": "",
-      "author": "geist",
-      "name": "components/token/token-balance-table",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/token/token-balance-table.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/lib/domain/amount.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/aggregate.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token-balance-entry.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token-price-entry.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/components/data-table.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/lib/explorer/url.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@nanostores/react",
-        "@tanstack/react-table",
-        "lucide-react",
-        "nanostores",
-        "react"
-      ]
-    },
-    {
-      "title": "components/token/token-chip-with-info",
-      "description": "",
-      "author": "geist",
-      "name": "components/token/token-chip-with-info",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/token/token-chip-with-info.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/lib/domain/amount.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [
-        "button"
-      ],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "components/token/token-chip",
-      "description": "",
-      "author": "geist",
-      "name": "components/token/token-chip",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/token/token-chip.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/components/token/token.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/components/token/token-chip-with-info.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem",
-        "wagmi"
-      ]
-    },
-    {
-      "title": "components/token/token-price-chart-with-feed",
-      "description": "",
-      "author": "geist",
-      "name": "components/token/token-price-chart-with-feed",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/token/token-price-chart-with-feed.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/lib/domain/token/token-price-entry.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/components/token/token.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/components/token/token-chip-with-info.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "chart"
-      ],
-      "dependencies": [
-        "date-fns",
-        "react",
-        "recharts",
-        "viem"
-      ]
-    },
-    {
-      "title": "components/token/token-price-chart",
-      "description": "",
-      "author": "geist",
-      "name": "components/token/token-price-chart",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/token/token-price-chart.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/lib/domain/token/multi-chain.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token-price-entry.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/hooks/data/use-defillama.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "registry/components/token/token.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/components/token/token-price-chart-with-feed.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "chart"
-      ],
-      "dependencies": [
-        "viem",
-        "wagmi"
-      ]
-    },
-    {
-      "title": "components/token/token",
-      "description": "",
-      "author": "geist",
-      "name": "components/token/token",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/token/token.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/lib/domain/chain/chain-resolver.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/multi-chain.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/trustwallet-chain.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@wagmi/core",
-        "react",
-        "viem"
-      ]
-    },
-    {
-      "title": "components/token/yield-historical-chart",
-      "description": "",
-      "author": "geist",
-      "name": "components/token/yield-historical-chart",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/token/yield-historical-chart.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "chart",
-        "skeleton"
-      ],
-      "dependencies": [
-        "@tanstack/react-query",
-        "react",
-        "recharts"
-      ]
-    },
-    {
-      "title": "components/transactions/transaction-card-with-details",
-      "description": "",
-      "author": "geist",
-      "name": "components/transactions/transaction-card-with-details",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/transactions/transaction-card-with-details.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/lib/domain/token/token.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/transaction/transaction.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/components/identity/address-badge.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/components/token/token-chip-with-info.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/lib/utils/hex.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [
-        "card",
-        "separator",
-        "skeleton"
-      ],
-      "dependencies": [
-        "@radix-ui/react-label"
-      ]
-    },
-    {
-      "title": "components/transactions/transaction-card",
-      "description": "",
-      "author": "geist",
-      "name": "components/transactions/transaction-card",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/transactions/transaction-card.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/hooks/data/use-blockscout.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "registry/lib/explorer/url.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/components/transactions/transaction-card-with-details.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "skeleton"
-      ],
-      "dependencies": [
-        "viem",
-        "wagmi"
-      ]
-    },
-    {
-      "title": "components/transactions/transaction-table-with-details",
-      "description": "",
-      "author": "geist",
-      "name": "components/transactions/transaction-table-with-details",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/transactions/transaction-table-with-details.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/hooks/data/use-blockscout.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "registry/lib/blockscout/api.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/explorer/url.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/components/transactions/transaction-table.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "skeleton"
-      ],
-      "dependencies": []
-    },
-    {
-      "title": "components/transactions/transaction-table",
-      "description": "",
-      "author": "geist",
-      "name": "components/transactions/transaction-table",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/transactions/transaction-table.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/lib/domain/chain/chain-resolver.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/transaction/transaction.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/components/data-table.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/lib/explorer/url.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/utils/address.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/utils/hex.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [
-        "badge"
-      ],
-      "dependencies": [
-        "@tanstack/react-table",
-        "lucide-react",
-        "viem"
-      ]
-    },
-    {
-      "title": "components/transfer/transfer-button",
-      "description": "",
-      "author": "geist",
-      "name": "components/transfer/transfer-button",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/components/transfer/transfer-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "button"
-      ],
-      "dependencies": [
-        "@tanstack/react-query",
-        "@wagmi/core",
-        "lucide-react",
-        "viem",
-        "wagmi"
-      ]
-    },
-    {
-      "title": "hooks/data/use-blockscout",
-      "description": "",
-      "author": "geist",
-      "name": "hooks/data/use-blockscout",
-      "type": "registry:hook",
-      "files": [
-        {
-          "path": "registry/hooks/data/use-blockscout.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "registry/lib/domain/transaction/transaction.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/blockscout/api.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@tanstack/react-query"
-      ]
-    },
-    {
-      "title": "hooks/data/use-defillama",
-      "description": "",
-      "author": "geist",
-      "name": "hooks/data/use-defillama",
-      "type": "registry:hook",
-      "files": [
-        {
-          "path": "registry/hooks/data/use-defillama.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "registry/lib/domain/token/token.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token-price-entry.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/transaction/transaction.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/defillama/api.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@tanstack/react-query"
-      ]
-    },
-    {
-      "title": "hooks/ens/efp",
-      "description": "",
-      "author": "geist",
-      "name": "hooks/ens/efp",
-      "type": "registry:hook",
-      "files": [
-        {
-          "path": "registry/hooks/ens/efp.ts",
-          "type": "registry:hook"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "hooks/ens/use-efp-api",
-      "description": "",
-      "author": "geist",
-      "name": "hooks/ens/use-efp-api",
-      "type": "registry:hook",
-      "files": [
-        {
-          "path": "registry/hooks/ens/use-efp-api.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "registry/hooks/ens/efp.ts",
-          "type": "registry:hook"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@tanstack/react-query"
-      ]
-    },
-    {
-      "title": "hooks/ens/use-ensjs",
-      "description": "",
-      "author": "geist",
-      "name": "hooks/ens/use-ensjs",
-      "type": "registry:hook",
-      "files": [
-        {
-          "path": "registry/hooks/ens/use-ensjs.ts",
-          "type": "registry:hook"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@ensdomains/ensjs",
-        "viem"
-      ]
-    },
-    {
-      "title": "hooks/identity/use-identity",
-      "description": "",
-      "author": "geist",
-      "name": "hooks/identity/use-identity",
-      "type": "registry:hook",
-      "files": [
-        {
-          "path": "registry/hooks/identity/use-identity.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "registry/hooks/ens/efp.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "registry/hooks/ens/use-efp-api.ts",
-          "type": "registry:hook"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "hooks/signature/use-sign",
-      "description": "",
-      "author": "geist",
-      "name": "hooks/signature/use-sign",
-      "type": "registry:hook",
-      "files": [
-        {
-          "path": "registry/hooks/signature/use-sign.ts",
-          "type": "registry:hook"
-        },
-        {
-          "path": "registry/lib/domain/signature/sign.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/signature/type-data.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@wagmi/core",
-        "micro-eth-signer",
-        "react",
-        "wagmi",
-        "jotai",
-        "viem"
-      ]
-    },
-    {
-      "title": "index",
-      "description": "",
-      "author": "geist",
-      "name": "index",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/index.ts",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "lib/alchemy",
-      "description": "",
-      "author": "geist",
-      "name": "lib/alchemy",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/alchemy.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/blockscout/api",
-      "description": "",
-      "author": "geist",
-      "name": "lib/blockscout/api",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/blockscout/api.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/transaction/transaction.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/blockscout/chain",
-      "description": "",
-      "author": "geist",
-      "name": "lib/blockscout/chain",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/blockscout/chain.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/blockscout/chainInfo.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/blockscout/chainInfo",
-      "description": "",
-      "author": "geist",
-      "name": "lib/blockscout/chainInfo",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/blockscout/chainInfo.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "lib/blockscout/data.fixture",
-      "description": "",
-      "author": "geist",
-      "name": "lib/blockscout/data.fixture",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/blockscout/data.fixture.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@faker-js/faker"
-      ]
-    },
-    {
-      "title": "lib/blockscout/url",
-      "description": "",
-      "author": "geist",
-      "name": "lib/blockscout/url",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/blockscout/url.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/blockscout/chain.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/explorer/url.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "lib/constants",
-      "description": "",
-      "author": "geist",
-      "name": "lib/constants",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/constants.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "lib/defillama/api",
-      "description": "",
-      "author": "geist",
-      "name": "lib/defillama/api",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/defillama/api.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/chain/chain-resolver.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/multi-chain.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token-price-entry.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "ky"
-      ]
-    },
-    {
-      "title": "lib/domain/amount",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/amount",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/amount.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/domain/chain/chain-resolver",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/chain/chain-resolver",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/chain/chain-resolver.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/domain/codec",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/codec",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/codec.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "multiformats"
-      ]
-    },
-    {
-      "title": "lib/domain/config",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/config",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/config.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "lib/domain/signature/sign",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/signature/sign",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/signature/sign.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@noble/hashes",
-        "react",
-        "micro-eth-signer"
-      ]
-    },
-    {
-      "title": "lib/domain/signature/type-data",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/signature/type-data",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/signature/type-data.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "micro-eth-signer",
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/domain/signature/utils",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/signature/utils",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/signature/utils.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "lib/domain/token/aggregate",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/token/aggregate",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/token/aggregate.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/multi-chain.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token-balance-entry.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token-price-entry.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "nanostores",
-        "#util"
-      ]
-    },
-    {
-      "title": "lib/domain/token/multi-chain",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/token/multi-chain",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/token/multi-chain.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token-balance-entry.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token-price-entry.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "nanostores",
-        "#util"
-      ]
-    },
-    {
-      "title": "lib/domain/token/price",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/token/price",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/token/price.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "lib/domain/token/token-balance-entry",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/token/token-balance-entry",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/token/token-balance-entry.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/domain/token/token-balance.fixture",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/token/token-balance.fixture",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/token/token-balance.fixture.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/aggregate.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token-balance-entry.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token-price-entry.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@faker-js/faker",
-        "date-fns"
-      ]
-    },
-    {
-      "title": "lib/domain/token/token-price-entry",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/token/token-price-entry",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/token/token-price-entry.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "lib/domain/token/token",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/token/token",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/token/token.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/multi-chain.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/price.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/token/token-price-entry.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "nanostores",
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/domain/transaction/transaction",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/transaction/transaction",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/transaction/transaction.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem",
-        "#token"
-      ]
-    },
-    {
-      "title": "lib/domain/user.fixture",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/user.fixture",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/user.fixture.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/config.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@faker-js/faker",
-        "micro-eth-signer",
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/domain/util",
-      "description": "",
-      "author": "geist",
-      "name": "lib/domain/util",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/domain/util.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "lib/eas/abi",
-      "description": "",
-      "author": "geist",
-      "name": "lib/eas/abi",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/eas/abi.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/eas/config",
-      "description": "",
-      "author": "geist",
-      "name": "lib/eas/config",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/eas/config.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/eas/easscan",
-      "description": "",
-      "author": "geist",
-      "name": "lib/eas/easscan",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/eas/easscan.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/eas/config.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/eas/events",
-      "description": "",
-      "author": "geist",
-      "name": "lib/eas/events",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/eas/events.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/eas/abi.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/eas/request",
-      "description": "",
-      "author": "geist",
-      "name": "lib/eas/request",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/eas/request.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/eas/sdk/offchain/typed-data-handler.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "ethers"
-      ]
-    },
-    {
-      "title": "lib/eas/schema-encoder",
-      "description": "",
-      "author": "geist",
-      "name": "lib/eas/schema-encoder",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/eas/schema-encoder.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/codec.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/constants.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "multiformats",
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/eas/sdk/eas",
-      "description": "",
-      "author": "geist",
-      "name": "lib/eas/sdk/eas",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/eas/sdk/eas.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@ethereum-attestation-service/eas-sdk",
-        "ethers"
-      ]
-    },
-    {
-      "title": "lib/eas/sdk/offchain/delegated",
-      "description": "",
-      "author": "geist",
-      "name": "lib/eas/sdk/offchain/delegated",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/eas/sdk/offchain/delegated.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/eas/sdk/offchain/typed-data-handler.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "lodash"
-      ]
-    },
-    {
-      "title": "lib/eas/sdk/offchain/offchain-utils",
-      "description": "",
-      "author": "geist",
-      "name": "lib/eas/sdk/offchain/offchain-utils",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/eas/sdk/offchain/offchain-utils.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/util.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/constants.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/eas/sdk/offchain/offchain.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@ethereum-attestation-service/eas-sdk",
-        "@scure/base",
-        "fflate",
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/eas/sdk/offchain/offchain",
-      "description": "",
-      "author": "geist",
-      "name": "lib/eas/sdk/offchain/offchain",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/eas/sdk/offchain/offchain.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/constants.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/eas/sdk/offchain/offchain-utils.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/eas/sdk/offchain/typed-data-handler.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
-      "dependencies": [
-        "@ethereum-attestation-service/eas-sdk",
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/eas/sdk/offchain/schema-encoder",
-      "description": "",
-      "author": "geist",
-      "name": "lib/eas/sdk/offchain/schema-encoder",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/eas/sdk/offchain/schema-encoder.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/constants.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "ethers",
-        "multiformats"
-      ]
-    },
-    {
-      "title": "lib/eas/sdk/offchain/typed-data-handler",
-      "description": "",
-      "author": "geist",
-      "name": "lib/eas/sdk/offchain/typed-data-handler",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/eas/sdk/offchain/typed-data-handler.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/eas/sdk/offchain/delegated.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/eas/versions.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@ethereum-attestation-service/eas-sdk",
-        "ethers",
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/eas/versions",
-      "description": "",
-      "author": "geist",
-      "name": "lib/eas/versions",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/eas/versions.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "lib/eas/viem/eas",
-      "description": "",
-      "author": "geist",
-      "name": "lib/eas/viem/eas",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/eas/viem/eas.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "lib/eas/viem/offchain",
-      "description": "",
-      "author": "geist",
-      "name": "lib/eas/viem/offchain",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/eas/viem/offchain.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/eas/sdk/offchain/offchain.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/eas/sdk/offchain/offchain-utils.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/eas/viem/onchain",
-      "description": "",
-      "author": "geist",
-      "name": "lib/eas/viem/onchain",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/eas/viem/onchain.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/eas/abi.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/eas/events.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/eas/request.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/eas/sdk/eas.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/ens/config",
-      "description": "",
-      "author": "geist",
-      "name": "lib/ens/config",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/ens/config.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/explorer/url",
-      "description": "",
-      "author": "geist",
-      "name": "lib/explorer/url",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/explorer/url.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/filecoin/akave/client",
-      "description": "",
-      "author": "geist",
-      "name": "lib/filecoin/akave/client",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/filecoin/akave/client.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "ky"
-      ]
-    },
-    {
-      "title": "lib/filecoin/gateway-strategy",
-      "description": "",
-      "author": "geist",
-      "name": "lib/filecoin/gateway-strategy",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/filecoin/gateway-strategy.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "lib/filecoin/gateway",
-      "description": "",
-      "author": "geist",
-      "name": "lib/filecoin/gateway",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/filecoin/gateway.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/filecoin/gateway-strategy.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/filecoin/lighthouse/isomorphic.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "lib/filecoin/lighthouse/browser",
-      "description": "",
-      "author": "geist",
-      "name": "lib/filecoin/lighthouse/browser",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/filecoin/lighthouse/browser.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@lighthouse-web3/sdk",
-        "ky"
-      ]
-    },
-    {
-      "title": "lib/filecoin/lighthouse/isomorphic",
-      "description": "",
-      "author": "geist",
-      "name": "lib/filecoin/lighthouse/isomorphic",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/filecoin/lighthouse/isomorphic.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/filecoin/gateway-strategy.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/filecoin/lighthouse/browser.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@lighthouse-web3/kavach",
-        "@lighthouse-web3/sdk",
-        "ky",
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/filecoin/storacha/isomorphic",
-      "description": "",
-      "author": "geist",
-      "name": "lib/filecoin/storacha/isomorphic",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/filecoin/storacha/isomorphic.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/domain/config.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "@web3-storage/w3up-client",
-        "@ipld/dag-ucan",
-        "@noble/ed25519",
-        "@noble/hashes"
-      ]
-    },
-    {
-      "title": "lib/filecoin/url",
-      "description": "",
-      "author": "geist",
-      "name": "lib/filecoin/url",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/filecoin/url.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/explorer/url.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/onchain-min",
-      "description": "",
-      "author": "geist",
-      "name": "lib/onchain-min",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/onchain-min.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "lib/token/config",
-      "description": "",
-      "author": "geist",
-      "name": "lib/token/config",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/token/config.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/trustwallet-chain",
-      "description": "",
-      "author": "geist",
-      "name": "lib/trustwallet-chain",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/trustwallet-chain.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/utils/address",
-      "description": "",
-      "author": "geist",
-      "name": "lib/utils/address",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/utils/address.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/utils/hex.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/utils/hex",
-      "description": "",
-      "author": "geist",
-      "name": "lib/utils/hex",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/utils/hex.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem"
-      ]
-    },
-    {
-      "title": "lib/utils/wagmi-config",
-      "description": "",
-      "author": "geist",
-      "name": "lib/utils/wagmi-config",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/utils/wagmi-config.tsx",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "viem",
-        "wagmi"
-      ]
-    },
-    {
-      "title": "lib/wagmi-utils",
-      "description": "",
-      "author": "geist",
-      "name": "lib/wagmi-utils",
-      "type": "registry:lib",
-      "files": [
-        {
-          "path": "registry/lib/wagmi-utils.ts",
-          "type": "registry:lib"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "ethers",
-        "react",
-        "viem",
-        "wagmi"
-      ]
-    },
-    {
-      "title": "registry/index",
-      "description": "",
-      "author": "geist",
-      "name": "registry/index",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/registry/index.ts",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "#registry"
-      ]
-    },
-    {
-      "title": "registry/registry-examples",
-      "description": "",
-      "author": "geist",
-      "name": "registry/registry-examples",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/registry/registry-examples.ts",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "#registry"
-      ]
-    },
-    {
-      "title": "registry/registry-hooks",
-      "description": "",
-      "author": "geist",
-      "name": "registry/registry-hooks",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/registry/registry-hooks.ts",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "#registry"
-      ]
-    },
-    {
-      "title": "registry/registry-lib",
-      "description": "",
-      "author": "geist",
-      "name": "registry/registry-lib",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/registry/registry-lib.ts",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "#registry"
-      ]
-    },
-    {
-      "title": "registry/registry-styles",
-      "description": "",
-      "author": "geist",
-      "name": "registry/registry-styles",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/registry/registry-styles.ts",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": []
-    },
-    {
-      "title": "registry/registry-ui",
-      "description": "",
-      "author": "geist",
-      "name": "registry/registry-ui",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/registry/registry-ui.ts",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "#registry"
-      ]
-    },
-    {
-      "title": "registry/schema",
-      "description": "",
-      "author": "geist",
-      "name": "registry/schema",
-      "type": "registry:component",
-      "files": [
-        {
-          "path": "registry/registry/schema.ts",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [],
-      "dependencies": [
-        "zod"
-      ]
-    }
-  ]
+	"$schema": "https://ui.shadcn.com/schema/registry.json",
+	"name": "shadcn",
+	"homepage": "https://ui.shadcn.com",
+	"items": [
+		{
+			"title": "components/account/balance",
+			"description": "",
+			"author": "geist",
+			"name": "components/account/balance",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/account/balance.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/domain/amount.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/components/token/token.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/token/config.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["@radix-ui/themes", "viem", "wagmi"]
+		},
+		{
+			"title": "components/data-table",
+			"description": "",
+			"author": "geist",
+			"name": "components/data-table",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/data-table.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["button", "table"],
+			"dependencies": ["@tanstack/react-table", "react"]
+		},
+		{
+			"title": "components/file/file-input-field",
+			"description": "",
+			"author": "geist",
+			"name": "components/file/file-input-field",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/file/file-input-field.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["input"],
+			"dependencies": ["react-hook-form"]
+		},
+		{
+			"title": "components/identity/address-badge",
+			"description": "",
+			"author": "geist",
+			"name": "components/identity/address-badge",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/identity/address-badge.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/utils/address.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": ["tooltip"],
+			"dependencies": ["lucide-react", "react", "viem", "wagmi"]
+		},
+		{
+			"title": "components/identity/avatar-wagmi",
+			"description": "",
+			"author": "geist",
+			"name": "components/identity/avatar-wagmi",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/identity/avatar-wagmi.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/components/identity/avatar.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["avatar", "skeleton"],
+			"dependencies": ["viem", "wagmi"]
+		},
+		{
+			"title": "components/identity/avatar",
+			"description": "",
+			"author": "geist",
+			"name": "components/identity/avatar",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/identity/avatar.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/hooks/identity/use-identity.ts",
+					"type": "registry:hook"
+				}
+			],
+			"registryDependencies": ["avatar", "skeleton"],
+			"dependencies": []
+		},
+		{
+			"title": "components/identity/index",
+			"description": "",
+			"author": "geist",
+			"name": "components/identity/index",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/identity/index.ts",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "components/identity/name-wagmi",
+			"description": "",
+			"author": "geist",
+			"name": "components/identity/name-wagmi",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/identity/name-wagmi.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/hooks/ens/efp.ts",
+					"type": "registry:hook"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["react", "viem", "wagmi"]
+		},
+		{
+			"title": "components/identity/name",
+			"description": "",
+			"author": "geist",
+			"name": "components/identity/name",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/identity/name.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/hooks/ens/efp.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "registry/hooks/ens/use-efp-api.ts",
+					"type": "registry:hook"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "components/privy/privy-login",
+			"description": "",
+			"author": "geist",
+			"name": "components/privy/privy-login",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/privy/privy-login.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["button"],
+			"dependencies": ["@privy-io/react-auth", "react"]
+		},
+		{
+			"title": "components/protocol/revenue-chart",
+			"description": "",
+			"author": "geist",
+			"name": "components/protocol/revenue-chart",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/protocol/revenue-chart.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/domain/amount.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/hooks/data/use-defillama.ts",
+					"type": "registry:hook"
+				}
+			],
+			"registryDependencies": ["chart"],
+			"dependencies": ["react", "recharts", "date-fns"]
+		},
+		{
+			"title": "components/scrollable-code-block",
+			"description": "",
+			"author": "geist",
+			"name": "components/scrollable-code-block",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/scrollable-code-block.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["scroll-area", "utils"],
+			"dependencies": []
+		},
+		{
+			"title": "components/signature/sign",
+			"description": "",
+			"author": "geist",
+			"name": "components/signature/sign",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/signature/sign.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": [
+				"@noble/hashes",
+				"@wagmi/core",
+				"react",
+				"wagmi",
+				"micro-eth-signer"
+			]
+		},
+		{
+			"title": "components/signature/signature-form",
+			"description": "",
+			"author": "geist",
+			"name": "components/signature/signature-form",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/signature/signature-form.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["form", "button", "input"],
+			"dependencies": [
+				"jotai",
+				"viem",
+				"@hookform/resolvers",
+				"@radix-ui/react-icons",
+				"react-hook-form",
+				"zod"
+			]
+		},
+		{
+			"title": "components/signature/signature-verify-badge",
+			"description": "",
+			"author": "geist",
+			"name": "components/signature/signature-verify-badge",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/signature/signature-verify-badge.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/components/identity/address-badge.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["label"],
+			"dependencies": ["@radix-ui/themes", "react", "viem"]
+		},
+		{
+			"title": "components/social-graph/follower-list-ensjs",
+			"description": "",
+			"author": "geist",
+			"name": "components/social-graph/follower-list-ensjs",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/social-graph/follower-list-ensjs.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/hooks/ens/efp.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "registry/hooks/ens/use-ensjs.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "registry/components/social-graph/follower-list.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["react"]
+		},
+		{
+			"title": "components/social-graph/follower-list",
+			"description": "",
+			"author": "geist",
+			"name": "components/social-graph/follower-list",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/social-graph/follower-list.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/hooks/ens/efp.ts",
+					"type": "registry:hook"
+				}
+			],
+			"registryDependencies": ["scroll-area", "separator"],
+			"dependencies": []
+		},
+		{
+			"title": "components/social-graph/name-and-follower-count-badge",
+			"description": "",
+			"author": "geist",
+			"name": "components/social-graph/name-and-follower-count-badge",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/social-graph/name-and-follower-count-badge.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/hooks/ens/use-efp-api.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "registry/hooks/ens/efp.ts",
+					"type": "registry:hook"
+				}
+			],
+			"registryDependencies": ["card"],
+			"dependencies": ["@radix-ui/themes", "react"]
+		},
+		{
+			"title": "components/token/token-balance-chart",
+			"description": "",
+			"author": "geist",
+			"name": "components/token/token-balance-chart",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/token/token-balance-chart.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/domain/amount.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/aggregate.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token-balance-entry.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token-price-entry.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/components/token/token-chip-with-info.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["chart"],
+			"dependencies": [
+				"react",
+				"@nanostores/react",
+				"nanostores",
+				"recharts",
+				"viem"
+			]
+		},
+		{
+			"title": "components/token/token-balance-table",
+			"description": "",
+			"author": "geist",
+			"name": "components/token/token-balance-table",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/token/token-balance-table.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/domain/amount.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/aggregate.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token-balance-entry.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token-price-entry.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/components/data-table.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/explorer/url.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": [
+				"@nanostores/react",
+				"@tanstack/react-table",
+				"lucide-react",
+				"nanostores",
+				"react"
+			]
+		},
+		{
+			"title": "components/token/token-chip-with-info",
+			"description": "",
+			"author": "geist",
+			"name": "components/token/token-chip-with-info",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/token/token-chip-with-info.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/domain/amount.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": ["button"],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "components/token/token-chip",
+			"description": "",
+			"author": "geist",
+			"name": "components/token/token-chip",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/token/token-chip.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/components/token/token.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/components/token/token-chip-with-info.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem", "wagmi"]
+		},
+		{
+			"title": "components/token/token-price-chart-with-feed",
+			"description": "",
+			"author": "geist",
+			"name": "components/token/token-price-chart-with-feed",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/token/token-price-chart-with-feed.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/domain/token/token-price-entry.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/components/token/token.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/components/token/token-chip-with-info.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["chart"],
+			"dependencies": ["date-fns", "react", "recharts", "viem"]
+		},
+		{
+			"title": "components/token/token-price-chart",
+			"description": "",
+			"author": "geist",
+			"name": "components/token/token-price-chart",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/token/token-price-chart.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/domain/token/multi-chain.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token-price-entry.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/hooks/data/use-defillama.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "registry/components/token/token.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/components/token/token-price-chart-with-feed.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["chart"],
+			"dependencies": ["viem", "wagmi"]
+		},
+		{
+			"title": "components/token/token",
+			"description": "",
+			"author": "geist",
+			"name": "components/token/token",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/token/token.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/domain/chain/chain-resolver.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/multi-chain.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/trustwallet-chain.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["@wagmi/core", "react", "viem"]
+		},
+		{
+			"title": "components/token/yield-historical-chart",
+			"description": "",
+			"author": "geist",
+			"name": "components/token/yield-historical-chart",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/token/yield-historical-chart.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["chart", "skeleton"],
+			"dependencies": ["@tanstack/react-query", "react", "recharts"]
+		},
+		{
+			"title": "components/transactions/transaction-card-with-details",
+			"description": "",
+			"author": "geist",
+			"name": "components/transactions/transaction-card-with-details",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/transactions/transaction-card-with-details.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/domain/token/token.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/transaction/transaction.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/components/identity/address-badge.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/components/token/token-chip-with-info.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/utils/hex.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": ["card", "separator", "skeleton"],
+			"dependencies": ["@radix-ui/react-label"]
+		},
+		{
+			"title": "components/transactions/transaction-card",
+			"description": "",
+			"author": "geist",
+			"name": "components/transactions/transaction-card",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/transactions/transaction-card.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/hooks/data/use-blockscout.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "registry/lib/explorer/url.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/components/transactions/transaction-card-with-details.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["skeleton"],
+			"dependencies": ["viem", "wagmi"]
+		},
+		{
+			"title": "components/transactions/transaction-table-with-details",
+			"description": "",
+			"author": "geist",
+			"name": "components/transactions/transaction-table-with-details",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/transactions/transaction-table-with-details.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/hooks/data/use-blockscout.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "registry/lib/blockscout/api.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/explorer/url.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/components/transactions/transaction-table.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["skeleton"],
+			"dependencies": []
+		},
+		{
+			"title": "components/transactions/transaction-table",
+			"description": "",
+			"author": "geist",
+			"name": "components/transactions/transaction-table",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/transactions/transaction-table.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/domain/chain/chain-resolver.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/transaction/transaction.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/components/data-table.tsx",
+					"type": "registry:component"
+				},
+				{
+					"path": "registry/lib/explorer/url.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/utils/address.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/utils/hex.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": ["badge"],
+			"dependencies": ["@tanstack/react-table", "lucide-react", "viem"]
+		},
+		{
+			"title": "components/transfer/transfer-button",
+			"description": "",
+			"author": "geist",
+			"name": "components/transfer/transfer-button",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/components/transfer/transfer-button.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["button"],
+			"dependencies": [
+				"@tanstack/react-query",
+				"@wagmi/core",
+				"lucide-react",
+				"viem",
+				"wagmi"
+			]
+		},
+		{
+			"title": "hooks/data/use-blockscout",
+			"description": "",
+			"author": "geist",
+			"name": "hooks/data/use-blockscout",
+			"type": "registry:hook",
+			"files": [
+				{
+					"path": "registry/hooks/data/use-blockscout.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "registry/lib/domain/transaction/transaction.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/blockscout/api.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["@tanstack/react-query"]
+		},
+		{
+			"title": "hooks/data/use-defillama",
+			"description": "",
+			"author": "geist",
+			"name": "hooks/data/use-defillama",
+			"type": "registry:hook",
+			"files": [
+				{
+					"path": "registry/hooks/data/use-defillama.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "registry/lib/domain/token/token.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token-price-entry.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/transaction/transaction.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/defillama/api.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["@tanstack/react-query"]
+		},
+		{
+			"title": "hooks/ens/efp",
+			"description": "",
+			"author": "geist",
+			"name": "hooks/ens/efp",
+			"type": "registry:hook",
+			"files": [
+				{
+					"path": "registry/hooks/ens/efp.ts",
+					"type": "registry:hook"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "hooks/ens/use-efp-api",
+			"description": "",
+			"author": "geist",
+			"name": "hooks/ens/use-efp-api",
+			"type": "registry:hook",
+			"files": [
+				{
+					"path": "registry/hooks/ens/use-efp-api.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "registry/hooks/ens/efp.ts",
+					"type": "registry:hook"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["@tanstack/react-query"]
+		},
+		{
+			"title": "hooks/ens/use-ensjs",
+			"description": "",
+			"author": "geist",
+			"name": "hooks/ens/use-ensjs",
+			"type": "registry:hook",
+			"files": [
+				{
+					"path": "registry/hooks/ens/use-ensjs.ts",
+					"type": "registry:hook"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["@ensdomains/ensjs", "viem"]
+		},
+		{
+			"title": "hooks/identity/use-identity",
+			"description": "",
+			"author": "geist",
+			"name": "hooks/identity/use-identity",
+			"type": "registry:hook",
+			"files": [
+				{
+					"path": "registry/hooks/identity/use-identity.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "registry/hooks/ens/efp.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "registry/hooks/ens/use-efp-api.ts",
+					"type": "registry:hook"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "hooks/signature/use-sign",
+			"description": "",
+			"author": "geist",
+			"name": "hooks/signature/use-sign",
+			"type": "registry:hook",
+			"files": [
+				{
+					"path": "registry/hooks/signature/use-sign.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "registry/lib/domain/signature/sign.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/signature/type-data.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": [
+				"@wagmi/core",
+				"micro-eth-signer",
+				"react",
+				"wagmi",
+				"jotai",
+				"viem"
+			]
+		},
+		{
+			"title": "index",
+			"description": "",
+			"author": "geist",
+			"name": "index",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/index.ts",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "lib/alchemy",
+			"description": "",
+			"author": "geist",
+			"name": "lib/alchemy",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/alchemy.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/blockscout/api",
+			"description": "",
+			"author": "geist",
+			"name": "lib/blockscout/api",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/blockscout/api.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/transaction/transaction.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/blockscout/chain",
+			"description": "",
+			"author": "geist",
+			"name": "lib/blockscout/chain",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/blockscout/chain.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/blockscout/chainInfo.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/blockscout/chainInfo",
+			"description": "",
+			"author": "geist",
+			"name": "lib/blockscout/chainInfo",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/blockscout/chainInfo.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "lib/blockscout/data.fixture",
+			"description": "",
+			"author": "geist",
+			"name": "lib/blockscout/data.fixture",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/blockscout/data.fixture.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["@faker-js/faker"]
+		},
+		{
+			"title": "lib/blockscout/url",
+			"description": "",
+			"author": "geist",
+			"name": "lib/blockscout/url",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/blockscout/url.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/blockscout/chain.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/explorer/url.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "lib/constants",
+			"description": "",
+			"author": "geist",
+			"name": "lib/constants",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/constants.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "lib/defillama/api",
+			"description": "",
+			"author": "geist",
+			"name": "lib/defillama/api",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/defillama/api.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/chain/chain-resolver.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/multi-chain.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token-price-entry.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["ky"]
+		},
+		{
+			"title": "lib/domain/amount",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/amount",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/amount.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/domain/chain/chain-resolver",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/chain/chain-resolver",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/chain/chain-resolver.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/domain/codec",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/codec",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/codec.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["multiformats"]
+		},
+		{
+			"title": "lib/domain/config",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/config",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/config.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "lib/domain/signature/sign",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/signature/sign",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/signature/sign.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["@noble/hashes", "react", "micro-eth-signer"]
+		},
+		{
+			"title": "lib/domain/signature/type-data",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/signature/type-data",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/signature/type-data.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["micro-eth-signer", "viem"]
+		},
+		{
+			"title": "lib/domain/signature/utils",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/signature/utils",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/signature/utils.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "lib/domain/token/aggregate",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/token/aggregate",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/token/aggregate.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/multi-chain.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token-balance-entry.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token-price-entry.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["nanostores", "#util"]
+		},
+		{
+			"title": "lib/domain/token/multi-chain",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/token/multi-chain",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/token/multi-chain.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token-balance-entry.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token-price-entry.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["nanostores", "#util"]
+		},
+		{
+			"title": "lib/domain/token/price",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/token/price",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/token/price.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "lib/domain/token/token-balance-entry",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/token/token-balance-entry",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/token/token-balance-entry.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/domain/token/token-balance.fixture",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/token/token-balance.fixture",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/token/token-balance.fixture.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/aggregate.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token-balance-entry.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token-price-entry.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["@faker-js/faker", "date-fns"]
+		},
+		{
+			"title": "lib/domain/token/token-price-entry",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/token/token-price-entry",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/token/token-price-entry.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "lib/domain/token/token",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/token/token",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/token/token.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/multi-chain.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/price.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/token/token-price-entry.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["nanostores", "viem"]
+		},
+		{
+			"title": "lib/domain/transaction/transaction",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/transaction/transaction",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/transaction/transaction.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem", "#token"]
+		},
+		{
+			"title": "lib/domain/user.fixture",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/user.fixture",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/user.fixture.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/config.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["@faker-js/faker", "micro-eth-signer", "viem"]
+		},
+		{
+			"title": "lib/domain/util",
+			"description": "",
+			"author": "geist",
+			"name": "lib/domain/util",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/domain/util.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "lib/eas/abi",
+			"description": "",
+			"author": "geist",
+			"name": "lib/eas/abi",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/eas/abi.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/eas/config",
+			"description": "",
+			"author": "geist",
+			"name": "lib/eas/config",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/eas/config.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/eas/easscan",
+			"description": "",
+			"author": "geist",
+			"name": "lib/eas/easscan",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/eas/easscan.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/eas/config.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/eas/events",
+			"description": "",
+			"author": "geist",
+			"name": "lib/eas/events",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/eas/events.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/eas/abi.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/eas/request",
+			"description": "",
+			"author": "geist",
+			"name": "lib/eas/request",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/eas/request.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/eas/sdk/offchain/typed-data-handler.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["ethers"]
+		},
+		{
+			"title": "lib/eas/schema-encoder",
+			"description": "",
+			"author": "geist",
+			"name": "lib/eas/schema-encoder",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/eas/schema-encoder.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/codec.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/constants.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["multiformats", "viem"]
+		},
+		{
+			"title": "lib/eas/sdk/eas",
+			"description": "",
+			"author": "geist",
+			"name": "lib/eas/sdk/eas",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/eas/sdk/eas.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["@ethereum-attestation-service/eas-sdk", "ethers"]
+		},
+		{
+			"title": "lib/eas/sdk/offchain/delegated",
+			"description": "",
+			"author": "geist",
+			"name": "lib/eas/sdk/offchain/delegated",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/eas/sdk/offchain/delegated.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/eas/sdk/offchain/typed-data-handler.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["lodash"]
+		},
+		{
+			"title": "lib/eas/sdk/offchain/offchain-utils",
+			"description": "",
+			"author": "geist",
+			"name": "lib/eas/sdk/offchain/offchain-utils",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/eas/sdk/offchain/offchain-utils.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/util.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/constants.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/eas/sdk/offchain/offchain.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": [
+				"@ethereum-attestation-service/eas-sdk",
+				"@scure/base",
+				"fflate",
+				"viem"
+			]
+		},
+		{
+			"title": "lib/eas/sdk/offchain/offchain",
+			"description": "",
+			"author": "geist",
+			"name": "lib/eas/sdk/offchain/offchain",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/eas/sdk/offchain/offchain.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/constants.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/eas/sdk/offchain/offchain-utils.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/eas/sdk/offchain/typed-data-handler.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": ["utils"],
+			"dependencies": ["@ethereum-attestation-service/eas-sdk", "viem"]
+		},
+		{
+			"title": "lib/eas/sdk/offchain/schema-encoder",
+			"description": "",
+			"author": "geist",
+			"name": "lib/eas/sdk/offchain/schema-encoder",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/eas/sdk/offchain/schema-encoder.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/constants.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["ethers", "multiformats"]
+		},
+		{
+			"title": "lib/eas/sdk/offchain/typed-data-handler",
+			"description": "",
+			"author": "geist",
+			"name": "lib/eas/sdk/offchain/typed-data-handler",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/eas/sdk/offchain/typed-data-handler.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/eas/sdk/offchain/delegated.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/eas/versions.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": [
+				"@ethereum-attestation-service/eas-sdk",
+				"ethers",
+				"viem"
+			]
+		},
+		{
+			"title": "lib/eas/versions",
+			"description": "",
+			"author": "geist",
+			"name": "lib/eas/versions",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/eas/versions.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "lib/eas/viem/eas",
+			"description": "",
+			"author": "geist",
+			"name": "lib/eas/viem/eas",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/eas/viem/eas.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "lib/eas/viem/offchain",
+			"description": "",
+			"author": "geist",
+			"name": "lib/eas/viem/offchain",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/eas/viem/offchain.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/eas/sdk/offchain/offchain.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/eas/sdk/offchain/offchain-utils.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/eas/viem/onchain",
+			"description": "",
+			"author": "geist",
+			"name": "lib/eas/viem/onchain",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/eas/viem/onchain.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/eas/abi.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/eas/events.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/eas/request.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/eas/sdk/eas.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/ens/config",
+			"description": "",
+			"author": "geist",
+			"name": "lib/ens/config",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/ens/config.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/explorer/url",
+			"description": "",
+			"author": "geist",
+			"name": "lib/explorer/url",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/explorer/url.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/filecoin/akave/client",
+			"description": "",
+			"author": "geist",
+			"name": "lib/filecoin/akave/client",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/filecoin/akave/client.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["ky"]
+		},
+		{
+			"title": "lib/filecoin/gateway-strategy",
+			"description": "",
+			"author": "geist",
+			"name": "lib/filecoin/gateway-strategy",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/filecoin/gateway-strategy.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "lib/filecoin/gateway",
+			"description": "",
+			"author": "geist",
+			"name": "lib/filecoin/gateway",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/filecoin/gateway.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/filecoin/gateway-strategy.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/filecoin/lighthouse/isomorphic.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "lib/filecoin/lighthouse/browser",
+			"description": "",
+			"author": "geist",
+			"name": "lib/filecoin/lighthouse/browser",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/filecoin/lighthouse/browser.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["@lighthouse-web3/sdk", "ky"]
+		},
+		{
+			"title": "lib/filecoin/lighthouse/isomorphic",
+			"description": "",
+			"author": "geist",
+			"name": "lib/filecoin/lighthouse/isomorphic",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/filecoin/lighthouse/isomorphic.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/filecoin/gateway-strategy.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/filecoin/lighthouse/browser.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": [
+				"@lighthouse-web3/kavach",
+				"@lighthouse-web3/sdk",
+				"ky",
+				"viem"
+			]
+		},
+		{
+			"title": "lib/filecoin/storacha/isomorphic",
+			"description": "",
+			"author": "geist",
+			"name": "lib/filecoin/storacha/isomorphic",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/filecoin/storacha/isomorphic.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/domain/config.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": [
+				"@web3-storage/w3up-client",
+				"@ipld/dag-ucan",
+				"@noble/ed25519",
+				"@noble/hashes"
+			]
+		},
+		{
+			"title": "lib/filecoin/url",
+			"description": "",
+			"author": "geist",
+			"name": "lib/filecoin/url",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/filecoin/url.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/explorer/url.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/onchain-min",
+			"description": "",
+			"author": "geist",
+			"name": "lib/onchain-min",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/onchain-min.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "lib/token/config",
+			"description": "",
+			"author": "geist",
+			"name": "lib/token/config",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/token/config.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/trustwallet-chain",
+			"description": "",
+			"author": "geist",
+			"name": "lib/trustwallet-chain",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/trustwallet-chain.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/utils/address",
+			"description": "",
+			"author": "geist",
+			"name": "lib/utils/address",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/utils/address.ts",
+					"type": "registry:lib"
+				},
+				{
+					"path": "registry/lib/utils/hex.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/utils/hex",
+			"description": "",
+			"author": "geist",
+			"name": "lib/utils/hex",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/utils/hex.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem"]
+		},
+		{
+			"title": "lib/utils/wagmi-config",
+			"description": "",
+			"author": "geist",
+			"name": "lib/utils/wagmi-config",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/utils/wagmi-config.tsx",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["viem", "wagmi"]
+		},
+		{
+			"title": "lib/wagmi-utils",
+			"description": "",
+			"author": "geist",
+			"name": "lib/wagmi-utils",
+			"type": "registry:lib",
+			"files": [
+				{
+					"path": "registry/lib/wagmi-utils.ts",
+					"type": "registry:lib"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["ethers", "react", "viem", "wagmi"]
+		},
+		{
+			"title": "registry/index",
+			"description": "",
+			"author": "geist",
+			"name": "registry/index",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/registry/index.ts",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["#registry"]
+		},
+		{
+			"title": "registry/registry-examples",
+			"description": "",
+			"author": "geist",
+			"name": "registry/registry-examples",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/registry/registry-examples.ts",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["#registry"]
+		},
+		{
+			"title": "registry/registry-hooks",
+			"description": "",
+			"author": "geist",
+			"name": "registry/registry-hooks",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/registry/registry-hooks.ts",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["#registry"]
+		},
+		{
+			"title": "registry/registry-lib",
+			"description": "",
+			"author": "geist",
+			"name": "registry/registry-lib",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/registry/registry-lib.ts",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["#registry"]
+		},
+		{
+			"title": "registry/registry-styles",
+			"description": "",
+			"author": "geist",
+			"name": "registry/registry-styles",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/registry/registry-styles.ts",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": []
+		},
+		{
+			"title": "registry/registry-ui",
+			"description": "",
+			"author": "geist",
+			"name": "registry/registry-ui",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/registry/registry-ui.ts",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["#registry"]
+		},
+		{
+			"title": "registry/schema",
+			"description": "",
+			"author": "geist",
+			"name": "registry/schema",
+			"type": "registry:component",
+			"files": [
+				{
+					"path": "registry/registry/schema.ts",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": [],
+			"dependencies": ["zod"]
+		}
+	]
 }

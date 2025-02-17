@@ -1,11 +1,3 @@
-import { NO_EXPIRATION } from "#lib/eas/request";
-import { OffchainAttestationVersion } from "#lib/eas/sdk/offchain/offchain";
-import { signOffchainAttestation } from "#lib/eas/viem/offchain";
-import {
-	type AttestationRequestData,
-	makeOnchainAttestation,
-} from "#lib/eas/viem/onchain";
-import { createTestClientConfig } from "#lib/test-utils-isomorphic";
 import { useMemo } from "react";
 import {
 	type Account,
@@ -17,7 +9,15 @@ import {
 	stringToHex,
 	zeroHash,
 } from "viem";
+import { NO_EXPIRATION } from "#lib/eas/request";
 import { SchemaEncoder } from "#lib/eas/schema-encoder";
+import { OffchainAttestationVersion } from "#lib/eas/sdk/offchain/offchain";
+import { signOffchainAttestation } from "#lib/eas/viem/offchain";
+import {
+	type AttestationRequestData,
+	makeOnchainAttestation,
+} from "#lib/eas/viem/onchain";
+import { createTestClientConfig } from "#lib/test-utils-isomorphic";
 
 export type UseAttestationParams = {
 	account: Account;

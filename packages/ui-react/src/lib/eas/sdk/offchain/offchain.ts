@@ -4,8 +4,8 @@ import type {
 	OffchainAttestationType,
 	SignedOffchainAttestation,
 } from "@ethereum-attestation-service/eas-sdk";
-import { ZERO_ADDRESS } from "#lib/constants";
 import { type Address, verifyMessage, verifyTypedData } from "viem";
+import { ZERO_ADDRESS } from "#lib/constants";
 import { getOffchainUID } from "#lib/eas/sdk/offchain/offchain-utils";
 import { isDeepEqual } from "#lib/shadcn/utils";
 import {

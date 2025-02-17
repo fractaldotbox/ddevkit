@@ -11,13 +11,13 @@ import { execSync } from "node:child_process";
 import { Project, ScriptKind, SyntaxKind } from "ts-morph";
 
 import {
+	cpSync,
 	existsSync,
 	mkdirSync,
 	mkdtempSync,
 	readFileSync,
 	readdirSync,
 	writeFileSync,
-	cpSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
 import path, { relative, join, basename, dirname, resolve } from "node:path";
