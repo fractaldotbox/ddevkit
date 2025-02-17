@@ -1,6 +1,4 @@
 import { SchemaEncoder } from "@ethereum-attestation-service/eas-sdk";
-import { NO_EXPIRATION } from "@geist/ui-react/lib/eas/request";
-import type { AttestationRequestData } from "@geist/ui-react/lib/eas/viem/onchain";
 import { type Signer, ZeroHash } from "ethers";
 import { useMemo } from "react";
 import {
@@ -13,7 +11,9 @@ import {
 	zeroHash,
 } from "viem";
 import { EAS_CONTRACT_ADDRESS } from "#lib/eas/abi";
+import { NO_EXPIRATION } from "#lib/eas/request";
 import { createAttestationOnchain, createEAS } from "#lib/eas/sdk/eas";
+import type { AttestationRequestData } from "#lib/eas/viem/onchain";
 
 export type UseAttestationEasSdkParams = {
 	signer: Signer;

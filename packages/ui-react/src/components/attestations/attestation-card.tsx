@@ -14,7 +14,7 @@ import {
 } from "#components/shadcn/card";
 import { Separator } from "#components/shadcn/separator";
 import { Skeleton } from "#components/shadcn/skeleton";
-import { useGetAttestationWithUid } from "#hooks/eas/use-get-attestation-with-uid.js";
+import { useGetAttestationWithUid } from "#hooks/eas/use-get-attestation-with-uid";
 import { getShortHex } from "#lib/utils/hex";
 import { AttestationSchemaBadge } from "./attestation-schema-badge";
 import { type AttestationMeta, asAttestationMeta } from "./attestations";

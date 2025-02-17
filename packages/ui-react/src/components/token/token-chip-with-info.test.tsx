@@ -1,9 +1,9 @@
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import {
 	TokenChipWithInfo,
 	type TokenChipWithInfoProps,
-} from "@geist/ui-react/components/token/token-chip-with-info";
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+} from "#components/token/token-chip-with-info";
 
 vi.mock("@/components/ui/button", () => ({
 	Button: ({

@@ -9,7 +9,7 @@ import {
 } from "./use-efp-api";
 
 import { BY_USER } from "@geist/domain/user.fixture";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, type QueryClientProvider } from "@tanstack/react-query";
 import { renderHook, waitFor } from "@testing-library/react";
 import type React from "react";
 

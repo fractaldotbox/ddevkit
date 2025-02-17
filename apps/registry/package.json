@@ -1,0 +1,32 @@
+{
+	"name": "@geist/registry",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts",
+		"./*.fixture": ["./src/*.fixture.ts"],
+		"./*": ["./src/*", "./src/*.tsx", "./src/*.ts"]
+	},
+	"imports": {
+		"#*": ["./src/*", "./src/*.tsx"]
+	},
+	"scripts": {
+		"build": "tsx src/build.mts",
+		"test": "vitest",
+		"serve": "http-server public/r -p 3000",
+		"deploy:fleek": "fleek --debug sites deploy"
+	},
+	"devDependencies": {
+		"@types/node": "^22.10.2",
+		"shadcn": "2.4.0-canary.6",
+		"tsx": "4.19.2",
+		"vitest": "^2.1.8",
+		"http-server": "14.1.1",
+		"@fleek-platform/cli": "^3.8.2"
+	},
+	"dependencies": {
+		"ts-morph": "^24.0.0",
+		"pathe": "^2.0.3"
+	}
+}
