@@ -62,7 +62,7 @@
 		},
 		{
 			"title": "components/identity/address-badge",
-			"description": "AddressBadge component to display an address with a copy button.",
+			"description": "",
 			"author": "geist",
 			"name": "components/identity/address-badge",
 			"type": "registry:component",
@@ -1995,111 +1995,6 @@
 			],
 			"registryDependencies": [],
 			"dependencies": ["ethers", "react", "viem", "wagmi"]
-		},
-		{
-			"title": "registry/index",
-			"description": "",
-			"author": "geist",
-			"name": "registry/index",
-			"type": "registry:component",
-			"files": [
-				{
-					"path": "registry/registry/index.ts",
-					"type": "registry:component"
-				}
-			],
-			"registryDependencies": [],
-			"dependencies": ["#registry"]
-		},
-		{
-			"title": "registry/registry-examples",
-			"description": "",
-			"author": "geist",
-			"name": "registry/registry-examples",
-			"type": "registry:component",
-			"files": [
-				{
-					"path": "registry/registry/registry-examples.ts",
-					"type": "registry:component"
-				}
-			],
-			"registryDependencies": [],
-			"dependencies": ["#registry"]
-		},
-		{
-			"title": "registry/registry-hooks",
-			"description": "",
-			"author": "geist",
-			"name": "registry/registry-hooks",
-			"type": "registry:component",
-			"files": [
-				{
-					"path": "registry/registry/registry-hooks.ts",
-					"type": "registry:component"
-				}
-			],
-			"registryDependencies": [],
-			"dependencies": ["#registry"]
-		},
-		{
-			"title": "registry/registry-lib",
-			"description": "",
-			"author": "geist",
-			"name": "registry/registry-lib",
-			"type": "registry:component",
-			"files": [
-				{
-					"path": "registry/registry/registry-lib.ts",
-					"type": "registry:component"
-				}
-			],
-			"registryDependencies": [],
-			"dependencies": ["#registry"]
-		},
-		{
-			"title": "registry/registry-styles",
-			"description": "",
-			"author": "geist",
-			"name": "registry/registry-styles",
-			"type": "registry:component",
-			"files": [
-				{
-					"path": "registry/registry/registry-styles.ts",
-					"type": "registry:component"
-				}
-			],
-			"registryDependencies": [],
-			"dependencies": []
-		},
-		{
-			"title": "registry/registry-ui",
-			"description": "",
-			"author": "geist",
-			"name": "registry/registry-ui",
-			"type": "registry:component",
-			"files": [
-				{
-					"path": "registry/registry/registry-ui.ts",
-					"type": "registry:component"
-				}
-			],
-			"registryDependencies": [],
-			"dependencies": ["#registry"]
-		},
-		{
-			"title": "registry/schema",
-			"description": "",
-			"author": "geist",
-			"name": "registry/schema",
-			"type": "registry:component",
-			"files": [
-				{
-					"path": "registry/registry/schema.ts",
-					"type": "registry:component"
-				}
-			],
-			"registryDependencies": [],
-			"dependencies": ["zod"]
 		}
 	]
 }

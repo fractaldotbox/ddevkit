@@ -1,9 +1,3 @@
-/**
- * @name: address-badge
- * @description: AddressBadge component to display an address with a copy button.
- *
- */
-
 import { Check, Copy } from "lucide-react";
 import { useMemo, useState } from "react";
 import { type Hex, getAddress } from "viem";
@@ -71,4 +65,8 @@ export const AddressBadgeFromName = ({ name }: { name: string }) => {
 	return <AddressBadge address={address} />;
 };
 
+/**
+ * @name: address-badge
+ * @description: AddressBadge component to display an address with a copy button.
+ */
 export default AddressBadge;

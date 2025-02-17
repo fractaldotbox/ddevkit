@@ -115,7 +115,7 @@ export const parseComments = async (sourceFile: SourceFile) => {
 		const comment = comments.pop();
 		const commentBlock = comment?.getText() || "";
 
-		// Extract @name and @description from the comment block
+		// Extract from the comment block top of file
 		const title = commentBlock.match(/@title:\s*(.*)/)?.[1];
 		const description = commentBlock.match(/@description:\s*(.*)/)?.[1];
 

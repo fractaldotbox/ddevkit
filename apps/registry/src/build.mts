@@ -4,7 +4,7 @@
  * 3. generate registry.json
  * 4. use shadcn build to build the registry
  *
- * Note: shadcn do not export as ESM the build command
+ * Note: shadcn do not export as ESM the build Command
  */
 
 import { execSync } from "node:child_process";
@@ -21,7 +21,8 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import path, { relative, join, basename, dirname, resolve } from "node:path";
-import { parseItem, transformItem } from "./parser";
+import process from "node:process";
+import { parseItem } from "./parser";
 
 console.log("Building shadcn done");
 
@@ -53,11 +54,7 @@ const createWorkingArea = async () => {
 const registryJsonPath = resolve(import.meta.dirname, "../registry.json");
 
 console.log("creating working area");
-const workingDir = await createWorkingArea();
-
-// const sourceRootPath = join(workingDir, "registry");
-const sourceRootPath = workingDir;
-// project.createSourceFile
+const sourceRootPath = await createWorkingArea();
 
 async function getFiles(dir: string): Promise<string[]> {
 	let files: string[] = [];
@@ -85,11 +82,11 @@ export const ensureDirectoriesExist = async (paths: string[]) => {
 		Array.from(uniqueDirs).map((dir) => mkdirSync(dir, { recursive: true })),
 	);
 };
-// TODO
+
 const context = {
 	sourceRootPath,
 	registryLocalPath: join(import.meta.dirname, "../public/r"),
-	registryUrl: "https://example.com/r/",
+	registryUrl: process.env.REGISTRY_URL || "https://example.com/r/",
 };
 
 console.log("Build Context", context);
@@ -119,7 +116,7 @@ for (const file of files) {
 }
 writeFileSync(registryJsonPath, JSON.stringify(registryTree, null, 2));
 
-// shadcn do not pre-create folder name implied in component name during build
+// we create nested path for components by hacking `name` field, which shadcn wont pre-create the folders by default
 console.log("pre-created registry folders");
 
 await ensureDirectoriesExist(registryPaths);
