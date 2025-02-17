@@ -97,6 +97,9 @@ importers:
         specifier: ^24.0.0
         version: 24.0.0
     devDependencies:
+      '@fleek-platform/cli':
+        specifier: ^3.8.2
+        version: 3.8.2(@types/node@22.10.2)(encoding@0.1.13)(typescript@5.7.2)
       '@types/node':
         specifier: ^22.10.2
         version: 22.10.2

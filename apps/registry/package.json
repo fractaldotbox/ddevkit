@@ -22,7 +22,8 @@
 		"shadcn": "2.4.0-canary.6",
 		"tsx": "4.19.2",
 		"vitest": "^2.1.8",
-		"http-server": "14.1.1"
+		"http-server": "14.1.1",
+		"@fleek-platform/cli": "^3.8.2"
 	},
 	"dependencies": {
 		"ts-morph": "^24.0.0"
