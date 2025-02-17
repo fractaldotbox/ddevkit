@@ -90,7 +90,7 @@ jobs:
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
 
-      - name: Build docs
+      - name: Build registry
         run: pnpm --filter @geist/registry build
 
       - name: Deploy registry

@@ -1,8 +1,0 @@
-{
-	"sites": [
-		{
-			"slug": "geist-ddev-kit-registry",
-			"distDir": "registry"
-		}
-	]
-}
