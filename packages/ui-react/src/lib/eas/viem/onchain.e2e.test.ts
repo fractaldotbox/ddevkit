@@ -1,17 +1,17 @@
 import { EAS, NO_EXPIRATION } from "@ethereum-attestation-service/eas-sdk";
 import config from "@geist/domain/config";
-import { SignatureType } from "@geist/ui-react/lib/eas/request";
-import {
-	createTestClientConfig,
-	createTestEthersSigner,
-} from "@geist/ui-react/lib/test-utils-isomorphic";
 import { http, type Hex, createWalletClient, zeroHash } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { sepolia } from "viem/chains";
 import { beforeEach, describe, expect, it, test } from "vitest";
 import { SCHEMA_FIXTURE_IS_A_FRIEND } from "#lib/eas/attest.fixture";
+import { SignatureType } from "#lib/eas/request";
 import { createEAS } from "#lib/eas/sdk/eas";
 import { makeOnchainAttestation, revoke } from "#lib/eas/viem/onchain";
+import {
+	createTestClientConfig,
+	createTestEthersSigner,
+} from "#lib/test-utils-isomorphic";
 
 const chain = sepolia;
 export const EASContractAddress = "0xC2679fBD37d54388Ce493F1DB75320D236e1815e"; // Sepolia v0.26

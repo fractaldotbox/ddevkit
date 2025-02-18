@@ -11,7 +11,7 @@ import {
 
 import config from "@geist/domain/config";
 import { BY_USER } from "@geist/domain/user.fixture";
-import { createTestFile } from "@geist/ui-react/lib/test-utils-node";
+import { createTestFile } from "#lib/test-utils-node";
 /**
  * Test on mainnet
  */
