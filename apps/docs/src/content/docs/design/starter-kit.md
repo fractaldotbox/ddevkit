@@ -9,6 +9,13 @@ This documents whether we should build a dApp starter template.
 
 Today for dApp developments there are great starter template like [Scaffold-ETH2] or ecosystems specific ones like `create-filecoin-app`, `create-nillion-app`. They do a great job onboarding new develoeprs.. 
 
+
+- ScaffoldETH is great and designed to make it simple for beginners to start from scratch. We like every library they use, and of course the team and community. 
+- It rightfully uses a [opionated techstack](https://docs.scaffoldeth.io/#scaffold-eth-2-tech-stack) with modular compatabile [extensions](https://docs.scaffoldeth.io/extensions/). 
+- Our focus is to optimize and secure production build, to make wagmi, rainbowkit optional and adapt to various styling methods, with a differernt vision of optimizing the library for LLM to iterate the sites.
+
+
+
 Meanwhile, "vibe coding" is getting popular, one can bootstrap a project by prompting LLM such as replit, v0 or bolt.new
 
 

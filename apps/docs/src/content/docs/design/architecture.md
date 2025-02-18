@@ -29,3 +29,7 @@ We believe there are too many frameworks and we want to make it easy for your dA
 - With "Copy & Paste" approach, we apply open-close principle and ensure dependencies are limited to required types and configs are loaded per usage scenario, 
 - use naming conventions `.fixture.ts` `.test.ts` to avoid exporting related files at build 
 
+
+## Shadcn
+
+Dapp needs are quite different and end to end tested flows, not just UI components. Fork instead of adding these into the shadcdn registry.

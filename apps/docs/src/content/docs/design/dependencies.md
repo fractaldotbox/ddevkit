@@ -33,6 +33,33 @@ Today every agent has its own dependency graph and often versions of pacakge dif
 - We prefer downstream dependencies that is treeshakable.
 - Consider `lib/filecoin/gateway.ts` `getGatewayUrlWithCid()` as an example, it does not import dependenceis unconditionally or relevavnt ecosystem-specific code are expected to be injected using strategy pattern.
 
+Many framework adopt a plugin system, some limit dependencies to only plugin being used.
+s
+### Scenario #1
+
+sequenceDiagram
+    Agent->>ToolPlugin: invoke
+    ToolPlugin-->>Dependencies: invoke
+    Dependencies->>Protocol: invoke
+
+### Scenario #2
+sequenceDiagram
+    Agent->>Agent: invoke
+    Agent-->>Dependencies: invoke
+    Dependencies->>Protocol: invoke
+
+
+### Scenario #3
+sequenceDiagram
+    Agent->ImmutableTool: invoke
+    ImmutableTool->>Protocol: invoke
+
+Improve scenario in #2 (reduced dependencies by design and removing wrapper)
+Enable Scenario #3 where common , immutable hosted on IPFS and work with Lit Action.
+
+Consider supplying USDC on Aave Protocol USDC. Aave, use ethers, aave-utilities and finally.
+viem
+
 
 ## Dependencies considerations
 
