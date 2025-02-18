@@ -11,9 +11,7 @@ We support using shadcn cli AS-IS to add geist components, which is deployed ont
 - `shadcn add <geist-repo-url>/styles/default/identity_address-badge.json`
 - Note we are still pointing default shadcn url (i.e. REGISTRY_URL) to original registry, so as to support adding components from both shadcn & geist registry
 
-
-## Implementation details
-- WIP, refesr to [#42](https://github.com/fractaldotbox/geist-dapp-kit/issues/42) for considerations
+- We currently do not support adding new components out of this repository to geist registry, but you can host your own registry
 
 
 ## Namespaces

@@ -1,5 +1,5 @@
 {
-	"name": "geist-dapp-kit",
+	"name": "geist-ddev-kit",
 	"private": true,
 	"scripts": {
 		"build": "turbo build",

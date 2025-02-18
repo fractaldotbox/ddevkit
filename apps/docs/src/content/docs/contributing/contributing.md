@@ -14,6 +14,12 @@ Thanks for contributing!
 
 ### Convention
 
+- use https://www.conventionalcommits.org/en/v1.0.0/
+
+### changeset
+- [Changesets](https://github.com/changesets/changesets) is used for release management at CI.
+- Follows [semantic version](https://semver.org/)
+
 ### Naming
 
 Prefer shorter name for higher level components and use WithAbc to indicate Abc is required arguments

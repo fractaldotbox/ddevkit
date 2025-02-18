@@ -5,6 +5,7 @@ title: Components Architecture
 
 ## Architecture
 
+We believe there are too many frameworks and we want to make it easy for your dApps/agent to tailor-made your own library by generating from common receipes and mixing UNIX-style packages.
 
 ### For dApps
 
@@ -16,12 +17,10 @@ title: Components Architecture
 - note only `default` style is supported for shadcn
 
 ## For Agent
-- With dceentralized agents, each agent has its own runtime and codebase. This means each could be using different versions of sdk to interact with protocol. Compared to single "official" dApp controlled by single team, we need much better package management to cater for problems in diverse environment such as version conflicts. We should benefit from principles and effort of [UnixJs](https://unjs.io/) and [e18e](https://e18e.dev/) as in the wider javascript ecosystems to use small, perfomant packages.
+- With dceentralized agents, each agent has its own runtime and codebase. This means each could be using different versions of sdk to interact with protocol. Compared to single "official" dApp controlled by single team, we need much better dependencies management to cater for problems in diverse environment such as version conflicts. We should benefit from principles and effort of [UnixJs](https://unjs.io/) and [e18e](https://e18e.dev/) as in the wider javascript ecosystems to use small, perfomant packages.
 
 
 - We have decoupled `@geist/domain` package for common, non-ecosystem specific logic and types.
-
-
 
 
 
@@ -30,3 +29,7 @@ title: Components Architecture
 - With "Copy & Paste" approach, we apply open-close principle and ensure dependencies are limited to required types and configs are loaded per usage scenario, 
 - use naming conventions `.fixture.ts` `.test.ts` to avoid exporting related files at build 
 
+
+## Shadcn
+
+Dapp needs are quite different and end to end tested flows, not just UI components. Fork instead of adding these into the shadcdn registry.

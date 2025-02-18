@@ -3,23 +3,22 @@ title: Introduction
 ---
 
 
-# Geist dApp Kit
+# Geist dDev Kit
 
-This repository consist of
+This repository consists of
 
-- dApp kit
+- dApp Components
   - react components designed in shadcn style 
-- agent kit
-  - plugins designed for various agent frameworks
-- utils
+- Agent Toolkit
+  - utilites plugins designed for various agent frameworks
+- Utils
   - various utils designed to be isomorphic 
-
 
 ## Design principles
 
-- 🔻 [Minimized dependencies](/dependencies.md)
-  - For performance and security. Refers to 
-- 🏎 [Optimized and SSR ready.](/ssr.md)
+- 🔻 [Minimized dependencies](/design/dependencies)
+- 🤖 AI-Ready: Open code for LLMs to read, understand, and improve.
+- 🏎 [Optimized and SSR ready.](/guides/ssr)
 - 🤌 Small. Faster for both user and ci. Cheaper to store. 
 - 🔒 Secure. No dynamic script loading. Audited dependencies (TODO) 
 - 🕊️ Censorship Resistant. Take explicit control on asset gateway and trust assumptions
@@ -30,9 +29,89 @@ This repository consist of
 
 
 ## Overview
-- We're creating cookbook instead of libraries and we focus on working, barebone, lightly styled components. It is way easier to identify painpoints and refactor for best architecture, instead of being astronaut architects. 
 
-For now we try to mimic behaviours of common components e.g. what you see on explorers/wallets and we will revisit best UX for each component.
 
+> We're creating cookbook instead of libraries and we focus on working, headless components.
+ It is way easier to identify painpoints and refactor for best architecture, instead of being astronaut architects.  For now we try to mimic behaviours of common components e.g. what you see on explorers/wallets and we will revisit best UX for each component.
+
+
+We follow many of the [principles](https://ui.shadcn.com/docs) of shadcn. 
+
+We try to create headless, generic dApp components and agent utils that work well across different ecosystems.  
+Besides decoupling style and implementation as in shadcn, the bigger motivation is to support developing dApp and decentralized agents that are trustless, autonomous, secured from supply chain attacks with minimal dependencies.
+
+With Open Code we make it AI-ready and provide reasonable defaults allowing one to extend per need, enabling agents generating and iterating its own codebase. 
 
 Learn about more about architecture design at [here](/design/architecture). 
+
+
+### When to use
+- You look for working, generic components with minimum dependencies to further customize
+- You're using LLM to generate codebase for web3
+- If you want support and maximium compatability with latest features of particular ecosystem, check out official sdks 
+
+
+## FAQ
+
+### Why 
+Start with some sensible defaults, then customize the components to your needs.
+
+Easy to Style: One of the drawbacks of packaging the components in an npm package is that the style is coupled with the implementation. The design of your components should be separate from their implementation.
+
+Secure: Avoid supply chain attack
+
+Faster: Build size is generally not the major concern given treeshaking at modern ESM, but we avoid duplications at various depenedencies such as having both jotai and zustand.
+
+## Why treeshaking is not enough?
+
+
+## What is different in dApp development?
+- The space iterate too fast thus working examples matters. Tools are fragmented are generally do not have sufficient traction.
+- Underated, but libraries should be auditable and dependencies should be minimized, as we learnt from ledger connect kit incident. Check out Extraordinary work at by paulmillr at [scure](https://github.com/paulmillr/scure-base).
+
+- "The ecosystem is also continuously evolving, meaning you need to adapt to new improvements or get left behind." Read more on https://wagmi.sh/core/why
+
+## Why not using library X?
+
+- Build on top of viem, which has minimum dependency, and @radix for max compatability with shadcn. 
+- We love wagmi and many other web3 libraries depends on it anyway. Thus many, but not all, components depends on @wagmi/core, while we stay framework agnoistic so wagmi is peer dependency for react.
+- Regarding data fetching, we try to decouple that with presentation layer, data source
+    - wagmi use tanstack query which has adapters to various frameworks.
+    - data source can be RPC, the graph or customized.
+   
+
+- Opinonated (us) defaults and unopionated extensions  
+
+ - First of all, we support a plugin systems such that libraries sensible to use case like `starknetjs` could be added easily, although we also prefer [scure-starknet](https://github.com/paulmillr/scure-starknet). Libraries such as rainbowkit are intentionally excluded. 
+- At its core, we prefer lightweight, framework-agnoistic libraries with minimal context provider such as `nanostore` or `permissionless`. Rational of individual choices are documented at [Dependencies](/design/dependencies)
+- At the end of the day these are code receipes and components, nothing stops anyone to extend with particular component libraries.    
+    - These components wont be possible without amazing work at [onchainkit](https://github.com/coinbase/onchainkit), ensjs, [starknet-react](https://github.com/apibara/starknet-react) etc. Thus we create default opionated receipes, also shows side by side methods to opt for integrating particular 3rd party libraries.
+    - Most libraries generally included opionated data sources, data fetching, validations and state management/caching dependency. 
+    - Best way is to make it a community effort as it also not possible for authors to keep track of latest versions.
+    - Many components are of similar purposes (e.g. useAddress) but not interoperable, generally it is hard to achieve consistent styles and integrating multiple fast itearting libraries the dependency hell and outdated documentations are often a headache itself. 
+
+
+- Ethers and viem compatability
+  - often installing both as libraries are still depending ether.js
+
+## Which ecosystems are supported
+- We focus on Ethereum ecosystems, we prioritize L1 and L2 on OPstack and starknet.
+- Current alpha version is tested on sepolia, optimism sepolia and base sepolia
+
+
+## How is this different from Scaffold-ETH (or Scaffold-X)
+- check [/starter-kit.md]
+
+## Which frameworks are supported
+- Currently we focus on React with wagmi, but make it framework agnostic and support solid.js is a goal (reaplcing underlying @radix ui components) .
+- for web framework, next.js is supported for now. We will try to align what is supported at shadcdn
+
+## How secure is this package?
+Use at your own risk as you should always have been and security is often application specific.
+We're not infosec experts and precisely for that reason we do best-effort to align best practices and avoid common pitfalls, and make this open so everyone can point out any risks. We would like to work with auditors.
+
+
+## Acknolwedgement
+- Thanks shadcn released with MIT license to make this possible
+- Thank you for contribution
+

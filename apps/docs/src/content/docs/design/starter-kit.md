@@ -9,6 +9,13 @@ This documents whether we should build a dApp starter template.
 
 Today for dApp developments there are great starter template like [Scaffold-ETH2] or ecosystems specific ones like `create-filecoin-app`, `create-nillion-app`. They do a great job onboarding new develoeprs.. 
 
+
+- ScaffoldETH is great and designed to make it simple for beginners to start from scratch. We like every library they use, and of course the team and community. 
+- It rightfully uses a [opionated techstack](https://docs.scaffoldeth.io/#scaffold-eth-2-tech-stack) with modular compatabile [extensions](https://docs.scaffoldeth.io/extensions/). 
+- Our focus is to optimize and secure production build, to make wagmi, rainbowkit optional and adapt to various styling methods, with a differernt vision of optimizing the library for LLM to iterate the sites.
+
+
+
 Meanwhile, "vibe coding" is getting popular, one can bootstrap a project by prompting LLM such as replit, v0 or bolt.new
 
 
@@ -47,3 +54,26 @@ We want to be agnostic regarding
       - create-turbo for monorepo setup (https://turbo.build/repo/docs/reference/create-turbo)
       - https://github.com/plopjs/plop (base on inquirer, handlebars) which generates various file e.g. api endpoint as well
 
+
+
+
+## Ecosystems Comparison
+
+
+| Ecosystem      | AS-IS packages                                                                                                                                                  | NPM Wk Dl | Notes on tooling                                                                |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------- |
+| general        | wagmi                                                                                                                                                           | 160k      | abitype, viem. use @noble under the hood                                        |
+| general        | @noble/curves                                                                                                                                                   | 1.8M      | other utils like secp256k1  (330k)                                              |
+| Base           | onchainkit                                                                                                                                                      | 8k        |                                                                                 |
+| Stark          | [@starknet-react/core](https://www.npmjs.com/package/@starknet-react/core)                                                                                      | 2k        |                                                                                 |
+| XMTP           | [react-xmtp](https://www.google.com/search?q=xmtp-react&oq=xmtp-react&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQLhhA0gEIMTY5N2owajGoAgCwAgA&sourceid=chrome&ie=UTF-8) | 2k        |                                                                                 |
+| EAS            | [@ethereum-attestation-service/eas-sdk](@ethereum-attestation-service/eas-sdk)                                                                                  | 3k        |                                                                                 |
+| ENS            | ensjs, react                                                                                                                                                    |           |                                                                                 |
+| Mina           | o1js                                                                                                                                                            | 2k        | [zkapp-cli](https://docs.minaprotocol.com/zkapps/tutorials/zkapp-ui-with-react) |
+| MUD            | @latticexyz/react                                                                                                                                               | 3k        |                                                                                 |
+| permissionless | permissionless                                                                                                                                                  | 27k       |                                                                                 |
+| Superchain     |                                                                                                                                                                 |           |                                                                                 |
+
+
+### Wagmi
+- https://wagmi.sh/react/comparisons#overview
