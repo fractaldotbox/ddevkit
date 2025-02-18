@@ -3,7 +3,6 @@ import { ZodBoolean, ZodNumber, z } from "zod";
 import { Badge } from "#components/shadcn/badge";
 import { Button } from "#components/shadcn/button";
 import { Card, CardContent } from "#components/shadcn/card";
-import { Switch } from "#components/shadcn/switch";
 import {
 	Form,
 	FormControl,
@@ -13,6 +12,7 @@ import {
 	FormMessage,
 } from "#components/shadcn/form";
 import { Input } from "#components/shadcn/input";
+import { Switch } from "#components/shadcn/switch";
 import { ToastAction } from "#components/shadcn/toast";
 import {
 	getSubmissionData,
