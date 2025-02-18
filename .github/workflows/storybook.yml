@@ -62,7 +62,7 @@ jobs:
         run: pnpm --dir apps/storybook deploy:fleek
 
   deploy-docs:
-    # if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -81,7 +81,7 @@ jobs:
         run: pnpm --dir apps/docs deploy:fleek
 
   deploy-registry:
-    # if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
