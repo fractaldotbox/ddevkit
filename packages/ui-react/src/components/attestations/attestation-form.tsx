@@ -32,7 +32,7 @@ export interface AttestationFormParams {
 }
 
 // TODO dynamic schema. For now, hardcode the MetIRL
-// https://github.com/fractaldotbox/geist-dapp-kit/issues/56
+// https://github.com/fractaldotbox/geist-ddev-kit/issues/56
 export const AttestationForm = ({
 	chainId,
 	schemaId,

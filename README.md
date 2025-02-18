@@ -26,10 +26,10 @@ Inspired by [shadcn/ui](https://github.com/shadcn-ui).
 - 🙌 Working example. First class Storybook support, avoid outdated documentations. 
 - 🚶 Open source. Authors can walkaway. No npm account breaking your code.
 
-## [Documentations](https://geist-dapp-kit-docs.on-fleek.app/) | [Roadmap](https://github.com/orgs/fractaldotbox/projects/13)
+## [Documentations](https://ddevkit.geist.network/) | [Roadmap](https://github.com/orgs/fractaldotbox/projects/13)
 
 ## Samlpe usage
-- Check out [Hosted Storybook](https://dappkit.geist.network/) for working examples 
+- Check out [Hosted Storybook](https://ddev-storybook.geist.network/) for working examples 
 
 Built by Team of [FractalBox](https://fractal.box/) and the community 
 

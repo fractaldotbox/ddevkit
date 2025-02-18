@@ -94,6 +94,6 @@ export const withValue = (
 /**
  * TODO group by known list of multichain address
  * provide metadata while separate concern of aggregating etc
- * https://github.com/fractaldotbox/geist-dapp-kit/issues/76
+ * https://github.com/fractaldotbox/geist-ddev-kit/issues/76
  *
  */

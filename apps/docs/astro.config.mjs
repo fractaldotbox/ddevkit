@@ -9,7 +9,7 @@ export default defineConfig({
 		starlight({
 			title: "Geist dDevKit",
 			social: {
-				github: "https://github.com/fractaldotbox/geist-dapp-kit",
+				github: "https://github.com/fractaldotbox/geist-ddev-kit",
 			},
 			sidebar: [
 				{
@@ -19,6 +19,11 @@ export default defineConfig({
 				{
 					label: "Guides",
 					autogenerate: { directory: "guides" },
+				},
+				
+				{
+					label: "Design",
+					autogenerate: { directory: "design" },
 				},
 				{
 					label: "Contributing",

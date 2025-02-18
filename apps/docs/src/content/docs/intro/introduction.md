@@ -5,21 +5,20 @@ title: Introduction
 
 # Geist dDev Kit
 
-This repository consist of
+This repository consists of
 
-- dApp components
+- dApp Components
   - react components designed in shadcn style 
-- agent toolkit
+- Agent Toolkit
   - utilites plugins designed for various agent frameworks
-- utils
+- Utils
   - various utils designed to be isomorphic 
 
 ## Design principles
 
-- 🔻 [Minimized dependencies](/dependencies.md)
-  - For performance and security. Refers to 
-- AI-Ready: Open code for LLMs to read, understand, and improve.
-- 🏎 [Optimized and SSR ready.](/ssr.md)
+- 🔻 [Minimized dependencies](/design/dependencies)
+- 🤖 AI-Ready: Open code for LLMs to read, understand, and improve.
+- 🏎 [Optimized and SSR ready.](/guides/ssr)
 - 🤌 Small. Faster for both user and ci. Cheaper to store. 
 - 🔒 Secure. No dynamic script loading. Audited dependencies (TODO) 
 - 🕊️ Censorship Resistant. Take explicit control on asset gateway and trust assumptions
@@ -30,28 +29,26 @@ This repository consist of
 
 
 ## Overview
-- We're creating cookbook instead of libraries and we focus on working, barebone, lightly styled components.
+
+
+> We're creating cookbook instead of libraries and we focus on working, headless components.
  It is way easier to identify painpoints and refactor for best architecture, instead of being astronaut architects.  For now we try to mimic behaviours of common components e.g. what you see on explorers/wallets and we will revisit best UX for each component.
 
 
-We follow many of the [principles](https://ui.shadcn.com/docs) of shadcn.
+We follow many of the [principles](https://ui.shadcn.com/docs) of shadcn. 
 
+We try to create headless, generic dApp components and agent utils that work well across different ecosystems.  
+Besides decoupling style and implementation as in shadcn, the bigger motivation is to support developing dApp and decentralized agents that are trustless, autonomous, secured from supply chain attacks with minimal dependencies.
 
-We try to create headless, generic dApp components that work well across different ecosystems. 
-
-Besides decoupling style and implementation as in shadcn, the bigger motivation is to support developing dapp that are trustless, secure with minimal dependency to particular ecosystems and avoid supply chain attacks.
-This aims to provide reasonable defaults and allow user to extend per need. 
-We try to improve DX but the end goal is to support autonomous agents to control and iterate Decentralized, autonomous website with programmable cryptography. 
-
-We try to align conventions with shadcn so `geist` is alias to shadcdn with extra batteries. 
-
+With Open Code we make it AI-ready and provide reasonable defaults allowing one to extend per need, enabling agents generating and iterating its own codebase. 
 
 Learn about more about architecture design at [here](/design/architecture). 
 
 
 ### When to use
 - You look for working, generic components with minimum dependencies to further customize
-- If you want support and maximium compatability with latest features, go for official sdks that are well maintained. 
+- You're using LLM to generate codebase for web3
+- If you want support and maximium compatability with latest features of particular ecosystem, check out official sdks 
 
 
 ## FAQ
@@ -86,7 +83,7 @@ Faster: Build size is generally not the major concern given treeshaking at moder
 - Opinonated (us) defaults and unopionated extensions  
 
  - First of all, we support a plugin systems such that libraries sensible to use case like `starknetjs` could be added easily, although we also prefer [scure-starknet](https://github.com/paulmillr/scure-starknet). Libraries such as rainbowkit are intentionally excluded. 
-- At its core, we prefer lightweight, framework-agnoistic libraries with minimal context provider such as `jotai` or `permissionless`. Individual choices are documented at Rationale.
+- At its core, we prefer lightweight, framework-agnoistic libraries with minimal context provider such as `nanostore` or `permissionless`. Rational of individual choices are documented at [Dependencies](/design/dependencies)
 - At the end of the day these are code receipes and components, nothing stops anyone to extend with particular component libraries.    
     - These components wont be possible without amazing work at [onchainkit](https://github.com/coinbase/onchainkit), ensjs, [starknet-react](https://github.com/apibara/starknet-react) etc. Thus we create default opionated receipes, also shows side by side methods to opt for integrating particular 3rd party libraries.
     - Most libraries generally included opionated data sources, data fetching, validations and state management/caching dependency. 
