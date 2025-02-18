@@ -214,7 +214,7 @@ export const parseItem = async (
 		title: title || name || "",
 		description: description || "",
 		author: "geist",
-		name,
+		name: `@geist/${name}`,
 		type,
 		files,
 		registryDependencies: Array.from(registryItemMetadata.registryDependencies),

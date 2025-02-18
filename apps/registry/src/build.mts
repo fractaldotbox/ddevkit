@@ -63,7 +63,6 @@ const registryJsonPath = resolve(import.meta.dirname, "../registry.json");
 console.log("creating working area");
 const sourceRootPath = await createWorkingArea();
 
-// shim for nodev <22
 async function getFiles(dir: string): Promise<string[]> {
 	let files: string[] = [];
 	const entries = await readdirSync(dir, { withFileTypes: true });
@@ -104,7 +103,7 @@ const files = await getFiles(context.sourceRootPath);
 const registryPaths = files.map((file) =>
 	join(
 		context.registryLocalPath,
-		relative(context.sourceRootPath, file).replace("registry/", ""),
+		relative(context.sourceRootPath, file).replace("registry/", "@geist/"),
 	),
 );
 
@@ -112,12 +111,12 @@ console.log("registryPaths", registryPaths);
 
 const registryTree = {
 	$schema: "https://ui.shadcn.com/schema/registry.json",
-	name: "shadcn",
-	homepage: "https://ui.shadcn.com",
+	name: "geist-ddev-kit",
+	homepage: "https://ddevkit.geist.network",
 	items: [],
 };
 
-for (const file of files.slice(0, 14)) {
+for (const file of files) {
 	const { registryItem, sourceFile } = await parseItem(file, context, project);
 	registryTree.items.push(registryItem);
 	await sourceFile.save();

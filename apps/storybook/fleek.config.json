@@ -1,7 +1,7 @@
 {
 	"sites": [
 		{
-			"slug": "geist-dapp-kit",
+			"slug": "geist-ddev-kit-storybook",
 			"distDir": "storybook-static"
 		}
 	]
