@@ -85,7 +85,6 @@ export const init = new Command()
 			);
 			logger.break();
 		} catch (error) {
-			console.log("yyy", error);
 			logger.break();
 			handleError(error);
 		}
@@ -128,8 +127,6 @@ export async function runInit(
 		(await promptForMinimalConfig(projectConfig || {}, {
 			defaults: true,
 		})) || {};
-
-	console.log("config", config, projectConfig);
 
 	if (!options.yes) {
 		const { proceed } = await prompts({

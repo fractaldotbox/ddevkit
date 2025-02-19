@@ -190,7 +190,6 @@ export const add = new Command()
 				await updateAppIndex(options.components[0], config);
 			}
 		} catch (error) {
-			console.log("yyy-add", error);
 			logger.break();
 			handleError(error);
 		}

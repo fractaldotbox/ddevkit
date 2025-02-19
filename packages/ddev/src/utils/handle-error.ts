@@ -15,8 +15,6 @@ export function handleError(error: unknown) {
 	}
 
 	if (error instanceof z.ZodError) {
-		console.log("xxx");
-		console.log(error);
 		logger.error("Validation failed:");
 		for (const [key, value] of Object.entries(error.flatten().fieldErrors)) {
 			logger.error(`- ${highlighter.info(key)}: ${value}`);
