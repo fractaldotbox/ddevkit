@@ -17,6 +17,7 @@ import {
 	mkdtempSync,
 	readFileSync,
 	readdirSync,
+	rmSync,
 	writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
@@ -54,6 +55,8 @@ const createWorkingArea = async () => {
 		join(dest, "registry/lib/domain"),
 		{ recursive: true },
 	);
+
+	await rmSync(join(dest, "registry/index.ts"));
 
 	return dest;
 };
