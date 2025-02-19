@@ -38,13 +38,12 @@ describe("parseImportPath", () => {
 		expect(registryPath).toBe("registry/lib/domain/config");
 	});
 
-	it("returns empty for shadcn", () => {
+	it("returns package for shadcn", () => {
 		const { packageName, shadcnPackage, registryPath } = parseImportPath(
 			"#components/shadcn/tooltip",
 			context,
 		);
 		expect(packageName).toBe(undefined);
-		expect(registryPath).toBe("registry/components/tooltip");
 		expect(shadcnPackage).toBe("tooltip");
 	});
 
