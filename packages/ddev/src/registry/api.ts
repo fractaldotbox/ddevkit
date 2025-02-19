@@ -1,5 +1,5 @@
 import path from "path";
-import { Config, getTargetStyleFromConfig } from "@/src/utils/get-config";
+import { type Config, getTargetStyleFromConfig } from "@/src/utils/get-config";
 import {
 	getProjectInfo,
 	getProjectTailwindVersionFromConfig,

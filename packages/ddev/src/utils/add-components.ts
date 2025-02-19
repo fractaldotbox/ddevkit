@@ -8,12 +8,12 @@ import {
 } from "@/src/registry/api";
 import { registryItemSchema } from "@/src/registry/schema";
 import {
-	configSchema,
+	type Config,
+	type configSchema,
 	findCommonRoot,
 	findPackageRoot,
 	getWorkspaceConfig,
-	workspaceConfigSchema,
-	type Config,
+	type workspaceConfigSchema,
 } from "@/src/utils/get-config";
 import { getProjectTailwindVersionFromConfig } from "@/src/utils/get-project-info";
 import { handleError } from "@/src/utils/handle-error";

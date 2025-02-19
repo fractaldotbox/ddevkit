@@ -6,6 +6,7 @@ import { addComponents } from "@/src/utils/add-components";
 import { createProject } from "@/src/utils/create-project";
 import * as ERRORS from "@/src/utils/errors";
 import {
+	type Config,
 	DEFAULT_COMPONENTS,
 	DEFAULT_TAILWIND_CONFIG,
 	DEFAULT_TAILWIND_CSS,
@@ -13,7 +14,6 @@ import {
 	getConfig,
 	rawConfigSchema,
 	resolveConfigPaths,
-	type Config,
 } from "@/src/utils/get-config";
 import {
 	getProjectConfig,

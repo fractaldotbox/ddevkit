@@ -1,8 +1,11 @@
-import { existsSync, promises as fs } from "fs";
+import { promises as fs, existsSync } from "fs";
 import path, { basename } from "path";
 import { getRegistryBaseColor } from "@/src/registry/api";
-import { RegistryItem, registryItemFileSchema } from "@/src/registry/schema";
-import { Config } from "@/src/utils/get-config";
+import type {
+	RegistryItem,
+	registryItemFileSchema,
+} from "@/src/registry/schema";
+import type { Config } from "@/src/utils/get-config";
 import { getProjectInfo } from "@/src/utils/get-project-info";
 import { highlighter } from "@/src/utils/highlighter";
 import { logger } from "@/src/utils/logger";
@@ -14,7 +17,7 @@ import { transformImport } from "@/src/utils/transformers/transform-import";
 import { transformRsc } from "@/src/utils/transformers/transform-rsc";
 import { transformTwPrefixes } from "@/src/utils/transformers/transform-tw-prefix";
 import prompts from "prompts";
-import { z } from "zod";
+import type { z } from "zod";
 
 export async function updateFiles(
 	files: RegistryItem["files"],

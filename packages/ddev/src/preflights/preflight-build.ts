@@ -1,10 +1,10 @@
 import path from "path";
-import { buildOptionsSchema } from "@/src/commands/build";
+import type { buildOptionsSchema } from "@/src/commands/build";
 import * as ERRORS from "@/src/utils/errors";
 import { highlighter } from "@/src/utils/highlighter";
 import { logger } from "@/src/utils/logger";
 import fs from "fs-extra";
-import { z } from "zod";
+import type { z } from "zod";
 
 export async function preFlightBuild(
 	options: z.infer<typeof buildOptionsSchema>,
