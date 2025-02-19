@@ -189,6 +189,13 @@ export const parseItem = async (
 
 		if (shadcnPackage) {
 			registryItemMetadata.registryDependencies.add(shadcnPackage);
+
+			const suffix = currentImport.startsWith("#components") ? "ui/" : "/";
+			const importPath = currentImport
+				.replace("#", "@/")
+				.replace("shadcn/", suffix);
+
+			node.getModuleSpecifier().replaceWithText(`"${importPath}"`);
 		} else if (packageName) {
 			registryItemMetadata.dependencies.add(packageName);
 		} else {
