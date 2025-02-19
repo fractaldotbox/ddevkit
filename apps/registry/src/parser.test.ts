@@ -29,7 +29,7 @@ describe("parseImportPath", () => {
 		const { packageName } = parseImportPath("@zod/a/b", context);
 		expect(packageName).toBe("@zod/a");
 	});
-	it("returns lib for internal package", () => {
+	it("returns lib for internal @geist/domain", () => {
 		const { packageName, registryPath } = parseImportPath(
 			"@geist/domain/config",
 			context,
@@ -37,6 +37,16 @@ describe("parseImportPath", () => {
 		expect(packageName).toBe(undefined);
 		expect(registryPath).toBe("registry/lib/domain/config");
 	});
+
+	it("returns package for shadcn", () => {
+		const { packageName, shadcnPackage, registryPath } = parseImportPath(
+			"#components/shadcn/tooltip",
+			context,
+		);
+		expect(packageName).toBe(undefined);
+		expect(shadcnPackage).toBe("tooltip");
+	});
+
 	it("returns parsed package from ESM non namespace", () => {
 		const { packageName } = parseImportPath("viem/ens", context);
 		expect(packageName).toBe("viem");
