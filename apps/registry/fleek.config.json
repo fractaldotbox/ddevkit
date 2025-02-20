@@ -2,7 +2,7 @@
 	"sites": [
 		{
 			"slug": "geist-ddev-kit-registry",
-			"distDir": "public/r/@geist"
+			"distDir": "public/"
 		}
 	]
 }
