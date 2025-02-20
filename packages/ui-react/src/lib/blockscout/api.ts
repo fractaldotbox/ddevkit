@@ -112,12 +112,15 @@ export const getTxnsByFilter = async ({
 	return await invokeApi(endpoint);
 };
 
-export const findDisplayedTxType = (transaction_types: any[]): string => {
-	if (transaction_types.includes("contract_call")) {
+export const findDisplayedTxType = (transactionTypes: any[] = []): string => {
+	if (transactionTypes.includes("contract_call")) {
 		return "contract_call";
 	}
-	if (transaction_types.includes("coin_transfer")) {
+	if (transactionTypes.includes("coin_transfer")) {
 		return "coin_transfer";
+	}
+	if (transactionTypes.includes("token_transfer")) {
+		return "token_transfer";
 	}
 	return "native_transfer";
 };
@@ -144,7 +147,7 @@ export const asTransactionMeta = (res: any): TransactionMeta => {
 		from: res.from.hash as Address,
 		to: res.to.hash as Address,
 		isSuccess: res.success,
-		displayedTxType: findDisplayedTxType(res.tx_types),
+		displayedTxType: findDisplayedTxType(res.transaction_types),
 		value: parseUnits(res.value, res.decimals),
 		tokenTransfers: (res.token_transfers || []).map(asTokenTransfer),
 		gas: res.gas_used,
