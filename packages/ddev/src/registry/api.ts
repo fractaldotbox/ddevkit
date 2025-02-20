@@ -23,7 +23,7 @@ import {
 	stylesSchema,
 } from "./schema";
 
-const REGISTRY_URL = process.env.REGISTRY_URL ?? "https://ddev.geist.network";
+const REGISTRY_URL = process.env.REGISTRY_URL ?? "https://ddev.geist.network/r";
 
 const agent = process.env.https_proxy
 	? new HttpsProxyAgent(process.env.https_proxy)
