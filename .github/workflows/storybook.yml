@@ -1,6 +1,7 @@
 name: Geist dDev Kit Components
 
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - 'draft'
@@ -43,7 +44,7 @@ jobs:
 
   deploy-storybook:
     needs: [build-storybook]
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/draft'
     runs-on: ubuntu-latest
     steps:
       - name: Setup Node.js and pnpm
@@ -81,7 +82,7 @@ jobs:
         run: pnpm --dir apps/docs deploy:fleek
 
   deploy-registry:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/draft'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
