@@ -103,7 +103,7 @@ const files = await getFiles(context.sourceRootPath);
 const registryPaths = files.map((file) =>
 	join(
 		context.registryLocalPath,
-		relative(context.sourceRootPath, file).replace("registry/", "@geist/"),
+		relative(context.sourceRootPath, file).replace("registry/", ""),
 	),
 );
 
@@ -116,11 +116,37 @@ const registryTree = {
 	items: [],
 };
 
+const itemByName = new Map();
+
 for (const file of files) {
-	const { registryItem, sourceFile } = await parseItem(file, context, project);
+	const { registryItem, geistDependencies, sourceFile } = await parseItem(
+		file,
+		context,
+		project,
+	);
 	registryTree.items.push(registryItem);
+	itemByName.set(registryItem.name, { registryItem, geistDependencies });
 	await sourceFile.save();
 }
+
+// quick workaround to do 1 level transitive deps, we should eval deps tree
+
+for (const [
+	name,
+	{ registryItem, geistDependencies },
+] of itemByName.entries()) {
+	for (const dep of geistDependencies) {
+		const depItem = itemByName.get(dep);
+		if (depItem) {
+			for (const dep of depItem.registryItem.registryDependencies) {
+				registryItem.registryDependencies.push(dep);
+			}
+		}
+	}
+}
+
+// handle transitive registry deps
+
 writeFileSync(registryJsonPath, JSON.stringify(registryTree, null, 2));
 
 // we create nested path for components by hacking `name` field, which shadcn wont pre-create the folders by default

@@ -7,7 +7,7 @@
 			"title": "components/account/balance",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/account/balance",
+			"name": "components/account/balance",
 			"type": "registry:component",
 			"files": [
 				{
@@ -34,7 +34,7 @@
 			"title": "components/attestations/attestation-badge",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/attestations/attestation-badge",
+			"name": "components/attestations/attestation-badge",
 			"type": "registry:component",
 			"files": [
 				{
@@ -53,7 +53,7 @@
 			"title": "components/attestations/attestation-card",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/attestations/attestation-card",
+			"name": "components/attestations/attestation-card",
 			"type": "registry:component",
 			"files": [
 				{
@@ -77,7 +77,7 @@
 					"type": "registry:component"
 				}
 			],
-			"registryDependencies": ["card", "separator", "skeleton"],
+			"registryDependencies": ["card", "separator", "skeleton", "badge"],
 			"dependencies": [
 				"@radix-ui/react-label",
 				"date-fns",
@@ -90,7 +90,7 @@
 			"title": "components/attestations/attestation-form",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/attestations/attestation-form",
+			"name": "components/attestations/attestation-form",
 			"type": "registry:component",
 			"files": [
 				{
@@ -116,7 +116,8 @@
 				"form",
 				"input",
 				"toast",
-				"use-toast"
+				"use-toast",
+				"badge"
 			],
 			"dependencies": ["@hookform/resolvers", "react-hook-form", "viem", "zod"]
 		},
@@ -124,7 +125,7 @@
 			"title": "components/attestations/attestation-schema-badge",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/attestations/attestation-schema-badge",
+			"name": "components/attestations/attestation-schema-badge",
 			"type": "registry:component",
 			"files": [
 				{
@@ -143,7 +144,7 @@
 			"title": "components/attestations/attestations-table",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/attestations/attestations-table",
+			"name": "components/attestations/attestations-table",
 			"type": "registry:component",
 			"files": [
 				{
@@ -179,14 +180,14 @@
 					"type": "registry:component"
 				}
 			],
-			"registryDependencies": [],
+			"registryDependencies": ["button", "table", "badge"],
 			"dependencies": ["@tanstack/react-table", "react", "viem", "wagmi"]
 		},
 		{
 			"title": "components/attestations/attestations",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/attestations/attestations",
+			"name": "components/attestations/attestations",
 			"type": "registry:component",
 			"files": [
 				{
@@ -205,7 +206,7 @@
 			"title": "components/attestations/upload-attestation",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/attestations/upload-attestation",
+			"name": "components/attestations/upload-attestation",
 			"type": "registry:component",
 			"files": [
 				{
@@ -225,14 +226,14 @@
 					"type": "registry:component"
 				}
 			],
-			"registryDependencies": ["button"],
+			"registryDependencies": ["button", "use-toast"],
 			"dependencies": ["lucide-react"]
 		},
 		{
 			"title": "components/data-table",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/data-table",
+			"name": "components/data-table",
 			"type": "registry:component",
 			"files": [
 				{
@@ -247,7 +248,7 @@
 			"title": "components/file/file-input-field",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/file/file-input-field",
+			"name": "components/file/file-input-field",
 			"type": "registry:component",
 			"files": [
 				{
@@ -262,7 +263,7 @@
 			"title": "address-badge",
 			"description": "AddressBadge component to display an address with a copy button.",
 			"author": "geist",
-			"name": "@geist/components/identity/address-badge",
+			"name": "components/identity/address-badge",
 			"type": "registry:component",
 			"files": [
 				{
@@ -281,7 +282,7 @@
 			"title": "components/identity/avatar-wagmi",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/identity/avatar-wagmi",
+			"name": "components/identity/avatar-wagmi",
 			"type": "registry:component",
 			"files": [
 				{
@@ -293,14 +294,14 @@
 					"type": "registry:component"
 				}
 			],
-			"registryDependencies": ["avatar", "skeleton"],
+			"registryDependencies": ["avatar", "skeleton", "avatar", "skeleton"],
 			"dependencies": ["viem", "wagmi"]
 		},
 		{
 			"title": "components/identity/avatar",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/identity/avatar",
+			"name": "components/identity/avatar",
 			"type": "registry:component",
 			"files": [
 				{
@@ -319,7 +320,7 @@
 			"title": "components/identity/index",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/identity/index",
+			"name": "components/identity/index",
 			"type": "registry:component",
 			"files": [
 				{
@@ -334,7 +335,7 @@
 			"title": "components/identity/name-wagmi",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/identity/name-wagmi",
+			"name": "components/identity/name-wagmi",
 			"type": "registry:component",
 			"files": [
 				{
@@ -353,7 +354,7 @@
 			"title": "components/identity/name",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/identity/name",
+			"name": "components/identity/name",
 			"type": "registry:component",
 			"files": [
 				{
@@ -376,7 +377,7 @@
 			"title": "components/privy/privy-login",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/privy/privy-login",
+			"name": "components/privy/privy-login",
 			"type": "registry:component",
 			"files": [
 				{
@@ -391,7 +392,7 @@
 			"title": "components/protocol/revenue-chart",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/protocol/revenue-chart",
+			"name": "components/protocol/revenue-chart",
 			"type": "registry:component",
 			"files": [
 				{
@@ -414,7 +415,7 @@
 			"title": "components/scrollable-code-block",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/scrollable-code-block",
+			"name": "components/scrollable-code-block",
 			"type": "registry:component",
 			"files": [
 				{
@@ -429,7 +430,7 @@
 			"title": "components/signature/sign",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/signature/sign",
+			"name": "components/signature/sign",
 			"type": "registry:component",
 			"files": [
 				{
@@ -450,7 +451,7 @@
 			"title": "components/signature/signature-form",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/signature/signature-form",
+			"name": "components/signature/signature-form",
 			"type": "registry:component",
 			"files": [
 				{
@@ -472,7 +473,7 @@
 			"title": "components/signature/signature-verify-badge",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/signature/signature-verify-badge",
+			"name": "components/signature/signature-verify-badge",
 			"type": "registry:component",
 			"files": [
 				{
@@ -484,14 +485,14 @@
 					"type": "registry:component"
 				}
 			],
-			"registryDependencies": ["label"],
+			"registryDependencies": ["label", "tooltip"],
 			"dependencies": ["@radix-ui/themes", "react", "viem"]
 		},
 		{
 			"title": "components/social-graph/follower-list-ensjs",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/social-graph/follower-list-ensjs",
+			"name": "components/social-graph/follower-list-ensjs",
 			"type": "registry:component",
 			"files": [
 				{
@@ -511,14 +512,14 @@
 					"type": "registry:component"
 				}
 			],
-			"registryDependencies": [],
+			"registryDependencies": ["scroll-area", "separator"],
 			"dependencies": ["react"]
 		},
 		{
 			"title": "components/social-graph/follower-list",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/social-graph/follower-list",
+			"name": "components/social-graph/follower-list",
 			"type": "registry:component",
 			"files": [
 				{
@@ -537,7 +538,7 @@
 			"title": "components/social-graph/name-and-follower-count-badge",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/social-graph/name-and-follower-count-badge",
+			"name": "components/social-graph/name-and-follower-count-badge",
 			"type": "registry:component",
 			"files": [
 				{
@@ -560,7 +561,7 @@
 			"title": "components/token/token-balance-chart",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/token/token-balance-chart",
+			"name": "components/token/token-balance-chart",
 			"type": "registry:component",
 			"files": [
 				{
@@ -588,7 +589,7 @@
 					"type": "registry:component"
 				}
 			],
-			"registryDependencies": ["chart"],
+			"registryDependencies": ["chart", "button"],
 			"dependencies": [
 				"react",
 				"@nanostores/react",
@@ -601,7 +602,7 @@
 			"title": "components/token/token-balance-table",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/token/token-balance-table",
+			"name": "components/token/token-balance-table",
 			"type": "registry:component",
 			"files": [
 				{
@@ -633,7 +634,7 @@
 					"type": "registry:lib"
 				}
 			],
-			"registryDependencies": [],
+			"registryDependencies": ["button", "table"],
 			"dependencies": [
 				"@nanostores/react",
 				"@tanstack/react-table",
@@ -646,7 +647,7 @@
 			"title": "components/token/token-chip-with-info",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/token/token-chip-with-info",
+			"name": "components/token/token-chip-with-info",
 			"type": "registry:component",
 			"files": [
 				{
@@ -665,7 +666,7 @@
 			"title": "components/token/token-chip",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/token/token-chip",
+			"name": "components/token/token-chip",
 			"type": "registry:component",
 			"files": [
 				{
@@ -681,14 +682,14 @@
 					"type": "registry:component"
 				}
 			],
-			"registryDependencies": [],
+			"registryDependencies": ["button"],
 			"dependencies": ["viem", "wagmi"]
 		},
 		{
 			"title": "components/token/token-price-chart-with-feed",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/token/token-price-chart-with-feed",
+			"name": "components/token/token-price-chart-with-feed",
 			"type": "registry:component",
 			"files": [
 				{
@@ -708,14 +709,14 @@
 					"type": "registry:component"
 				}
 			],
-			"registryDependencies": ["chart"],
+			"registryDependencies": ["chart", "button"],
 			"dependencies": ["date-fns", "react", "recharts", "viem"]
 		},
 		{
 			"title": "components/token/token-price-chart",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/token/token-price-chart",
+			"name": "components/token/token-price-chart",
 			"type": "registry:component",
 			"files": [
 				{
@@ -747,14 +748,14 @@
 					"type": "registry:component"
 				}
 			],
-			"registryDependencies": ["chart"],
+			"registryDependencies": ["chart", "chart", "button"],
 			"dependencies": ["viem", "wagmi"]
 		},
 		{
 			"title": "components/token/token",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/token/token",
+			"name": "components/token/token",
 			"type": "registry:component",
 			"files": [
 				{
@@ -785,7 +786,7 @@
 			"title": "components/token/yield-historical-chart",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/token/yield-historical-chart",
+			"name": "components/token/yield-historical-chart",
 			"type": "registry:component",
 			"files": [
 				{
@@ -800,7 +801,7 @@
 			"title": "components/transactions/transaction-card-with-details",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/transactions/transaction-card-with-details",
+			"name": "components/transactions/transaction-card-with-details",
 			"type": "registry:component",
 			"files": [
 				{
@@ -828,14 +829,20 @@
 					"type": "registry:lib"
 				}
 			],
-			"registryDependencies": ["card", "separator", "skeleton"],
+			"registryDependencies": [
+				"card",
+				"separator",
+				"skeleton",
+				"tooltip",
+				"button"
+			],
 			"dependencies": ["@radix-ui/react-label"]
 		},
 		{
 			"title": "components/transactions/transaction-card",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/transactions/transaction-card",
+			"name": "components/transactions/transaction-card",
 			"type": "registry:component",
 			"files": [
 				{
@@ -855,14 +862,21 @@
 					"type": "registry:component"
 				}
 			],
-			"registryDependencies": ["skeleton"],
+			"registryDependencies": [
+				"skeleton",
+				"card",
+				"separator",
+				"skeleton",
+				"tooltip",
+				"button"
+			],
 			"dependencies": ["viem", "wagmi"]
 		},
 		{
 			"title": "components/transactions/transaction-table-with-details",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/transactions/transaction-table-with-details",
+			"name": "components/transactions/transaction-table-with-details",
 			"type": "registry:component",
 			"files": [
 				{
@@ -886,14 +900,14 @@
 					"type": "registry:component"
 				}
 			],
-			"registryDependencies": ["skeleton"],
+			"registryDependencies": ["skeleton", "badge"],
 			"dependencies": []
 		},
 		{
 			"title": "components/transactions/transaction-table",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/transactions/transaction-table",
+			"name": "components/transactions/transaction-table",
 			"type": "registry:component",
 			"files": [
 				{
@@ -925,14 +939,14 @@
 					"type": "registry:lib"
 				}
 			],
-			"registryDependencies": ["badge"],
+			"registryDependencies": ["badge", "button", "table"],
 			"dependencies": ["@tanstack/react-table", "lucide-react", "viem"]
 		},
 		{
 			"title": "components/transfer/transfer-button",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/components/transfer/transfer-button",
+			"name": "components/transfer/transfer-button",
 			"type": "registry:component",
 			"files": [
 				{
@@ -953,7 +967,7 @@
 			"title": "hooks/data/use-blockscout",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/hooks/data/use-blockscout",
+			"name": "hooks/data/use-blockscout",
 			"type": "registry:hook",
 			"files": [
 				{
@@ -976,7 +990,7 @@
 			"title": "hooks/data/use-defillama",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/hooks/data/use-defillama",
+			"name": "hooks/data/use-defillama",
 			"type": "registry:hook",
 			"files": [
 				{
@@ -1007,7 +1021,7 @@
 			"title": "hooks/eas/sdk/use-attestation",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/hooks/eas/sdk/use-attestation",
+			"name": "hooks/eas/sdk/use-attestation",
 			"type": "registry:hook",
 			"files": [
 				{
@@ -1043,7 +1057,7 @@
 			"title": "hooks/eas/use-attestation",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/hooks/eas/use-attestation",
+			"name": "hooks/eas/use-attestation",
 			"type": "registry:hook",
 			"files": [
 				{
@@ -1075,14 +1089,14 @@
 					"type": "registry:lib"
 				}
 			],
-			"registryDependencies": [],
+			"registryDependencies": ["utils"],
 			"dependencies": ["react", "viem"]
 		},
 		{
 			"title": "hooks/eas/use-get-attestation-with-uid",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/hooks/eas/use-get-attestation-with-uid",
+			"name": "hooks/eas/use-get-attestation-with-uid",
 			"type": "registry:hook",
 			"files": [
 				{
@@ -1105,7 +1119,7 @@
 			"title": "hooks/eas/use-get-attestations",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/hooks/eas/use-get-attestations",
+			"name": "hooks/eas/use-get-attestations",
 			"type": "registry:hook",
 			"files": [
 				{
@@ -1129,7 +1143,7 @@
 			"title": "hooks/eas/use-upload-attestation",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/hooks/eas/use-upload-attestation",
+			"name": "hooks/eas/use-upload-attestation",
 			"type": "registry:hook",
 			"files": [
 				{
@@ -1156,7 +1170,7 @@
 			"title": "hooks/ens/efp",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/hooks/ens/efp",
+			"name": "hooks/ens/efp",
 			"type": "registry:hook",
 			"files": [
 				{
@@ -1171,7 +1185,7 @@
 			"title": "hooks/ens/use-efp-api",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/hooks/ens/use-efp-api",
+			"name": "hooks/ens/use-efp-api",
 			"type": "registry:hook",
 			"files": [
 				{
@@ -1190,7 +1204,7 @@
 			"title": "hooks/ens/use-ensjs",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/hooks/ens/use-ensjs",
+			"name": "hooks/ens/use-ensjs",
 			"type": "registry:hook",
 			"files": [
 				{
@@ -1205,7 +1219,7 @@
 			"title": "hooks/identity/use-identity",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/hooks/identity/use-identity",
+			"name": "hooks/identity/use-identity",
 			"type": "registry:hook",
 			"files": [
 				{
@@ -1228,7 +1242,7 @@
 			"title": "hooks/signature/use-sign",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/hooks/signature/use-sign",
+			"name": "hooks/signature/use-sign",
 			"type": "registry:hook",
 			"files": [
 				{
@@ -1258,7 +1272,7 @@
 			"title": "index",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/index",
+			"name": "index",
 			"type": "registry:component",
 			"files": [
 				{
@@ -1273,7 +1287,7 @@
 			"title": "lib/alchemy",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/alchemy",
+			"name": "lib/alchemy",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1288,7 +1302,7 @@
 			"title": "lib/blockscout/api",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/blockscout/api",
+			"name": "lib/blockscout/api",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1307,7 +1321,7 @@
 			"title": "lib/blockscout/chain",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/blockscout/chain",
+			"name": "lib/blockscout/chain",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1326,7 +1340,7 @@
 			"title": "lib/blockscout/chainInfo",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/blockscout/chainInfo",
+			"name": "lib/blockscout/chainInfo",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1341,7 +1355,7 @@
 			"title": "lib/blockscout/url",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/blockscout/url",
+			"name": "lib/blockscout/url",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1364,7 +1378,7 @@
 			"title": "lib/constants",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/constants",
+			"name": "lib/constants",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1379,7 +1393,7 @@
 			"title": "lib/defillama/api",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/defillama/api",
+			"name": "lib/defillama/api",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1410,7 +1424,7 @@
 			"title": "lib/domain/amount",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/domain/amount",
+			"name": "lib/domain/amount",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1425,7 +1439,7 @@
 			"title": "lib/domain/chain/chain-resolver",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/domain/chain/chain-resolver",
+			"name": "lib/domain/chain/chain-resolver",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1440,7 +1454,7 @@
 			"title": "lib/domain/codec",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/domain/codec",
+			"name": "lib/domain/codec",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1455,7 +1469,7 @@
 			"title": "lib/domain/config",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/domain/config",
+			"name": "lib/domain/config",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1470,7 +1484,7 @@
 			"title": "lib/domain/signature/sign",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/domain/signature/sign",
+			"name": "lib/domain/signature/sign",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1485,7 +1499,7 @@
 			"title": "lib/domain/signature/type-data",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/domain/signature/type-data",
+			"name": "lib/domain/signature/type-data",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1500,7 +1514,7 @@
 			"title": "lib/domain/signature/utils",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/domain/signature/utils",
+			"name": "lib/domain/signature/utils",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1515,7 +1529,7 @@
 			"title": "lib/domain/token/aggregate",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/domain/token/aggregate",
+			"name": "lib/domain/token/aggregate",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1542,7 +1556,7 @@
 			"title": "lib/domain/token/multi-chain",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/domain/token/multi-chain",
+			"name": "lib/domain/token/multi-chain",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1569,7 +1583,7 @@
 			"title": "lib/domain/token/price",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/domain/token/price",
+			"name": "lib/domain/token/price",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1584,7 +1598,7 @@
 			"title": "lib/domain/token/token-balance-entry",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/domain/token/token-balance-entry",
+			"name": "lib/domain/token/token-balance-entry",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1599,7 +1613,7 @@
 			"title": "lib/domain/token/token-price-entry",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/domain/token/token-price-entry",
+			"name": "lib/domain/token/token-price-entry",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1618,7 +1632,7 @@
 			"title": "lib/domain/token/token",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/domain/token/token",
+			"name": "lib/domain/token/token",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1645,7 +1659,7 @@
 			"title": "lib/domain/transaction/transaction",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/domain/transaction/transaction",
+			"name": "lib/domain/transaction/transaction",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1660,7 +1674,7 @@
 			"title": "lib/domain/util",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/domain/util",
+			"name": "lib/domain/util",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1675,7 +1689,7 @@
 			"title": "lib/eas/abi",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/eas/abi",
+			"name": "lib/eas/abi",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1690,7 +1704,7 @@
 			"title": "lib/eas/config",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/eas/config",
+			"name": "lib/eas/config",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1705,7 +1719,7 @@
 			"title": "lib/eas/easscan",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/eas/easscan",
+			"name": "lib/eas/easscan",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1724,7 +1738,7 @@
 			"title": "lib/eas/events",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/eas/events",
+			"name": "lib/eas/events",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1743,7 +1757,7 @@
 			"title": "lib/eas/request",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/eas/request",
+			"name": "lib/eas/request",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1762,7 +1776,7 @@
 			"title": "lib/eas/schema-encoder",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/eas/schema-encoder",
+			"name": "lib/eas/schema-encoder",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1785,7 +1799,7 @@
 			"title": "lib/eas/sdk/eas",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/eas/sdk/eas",
+			"name": "lib/eas/sdk/eas",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1800,7 +1814,7 @@
 			"title": "lib/eas/sdk/offchain/delegated",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/eas/sdk/offchain/delegated",
+			"name": "lib/eas/sdk/offchain/delegated",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1819,7 +1833,7 @@
 			"title": "lib/eas/sdk/offchain/offchain-utils",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/eas/sdk/offchain/offchain-utils",
+			"name": "lib/eas/sdk/offchain/offchain-utils",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1839,7 +1853,7 @@
 					"type": "registry:lib"
 				}
 			],
-			"registryDependencies": [],
+			"registryDependencies": ["utils"],
 			"dependencies": [
 				"@ethereum-attestation-service/eas-sdk",
 				"@scure/base",
@@ -1851,7 +1865,7 @@
 			"title": "lib/eas/sdk/offchain/offchain",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/eas/sdk/offchain/offchain",
+			"name": "lib/eas/sdk/offchain/offchain",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1871,14 +1885,14 @@
 					"type": "registry:lib"
 				}
 			],
-			"registryDependencies": ["utils"],
+			"registryDependencies": ["utils", "utils"],
 			"dependencies": ["@ethereum-attestation-service/eas-sdk", "viem"]
 		},
 		{
 			"title": "lib/eas/sdk/offchain/schema-encoder",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/eas/sdk/offchain/schema-encoder",
+			"name": "lib/eas/sdk/offchain/schema-encoder",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1897,7 +1911,7 @@
 			"title": "lib/eas/sdk/offchain/typed-data-handler",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/eas/sdk/offchain/typed-data-handler",
+			"name": "lib/eas/sdk/offchain/typed-data-handler",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1924,7 +1938,7 @@
 			"title": "lib/eas/versions",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/eas/versions",
+			"name": "lib/eas/versions",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1939,7 +1953,7 @@
 			"title": "lib/eas/viem/eas",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/eas/viem/eas",
+			"name": "lib/eas/viem/eas",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1954,7 +1968,7 @@
 			"title": "lib/eas/viem/offchain",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/eas/viem/offchain",
+			"name": "lib/eas/viem/offchain",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -1970,14 +1984,14 @@
 					"type": "registry:lib"
 				}
 			],
-			"registryDependencies": [],
+			"registryDependencies": ["utils", "utils", "utils"],
 			"dependencies": ["viem"]
 		},
 		{
 			"title": "lib/eas/viem/onchain",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/eas/viem/onchain",
+			"name": "lib/eas/viem/onchain",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2008,7 +2022,7 @@
 			"title": "lib/ens/config",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/ens/config",
+			"name": "lib/ens/config",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2023,7 +2037,7 @@
 			"title": "lib/explorer/url",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/explorer/url",
+			"name": "lib/explorer/url",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2038,7 +2052,7 @@
 			"title": "lib/filecoin/akave/client",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/filecoin/akave/client",
+			"name": "lib/filecoin/akave/client",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2053,7 +2067,7 @@
 			"title": "lib/filecoin/gateway-strategy",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/filecoin/gateway-strategy",
+			"name": "lib/filecoin/gateway-strategy",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2068,7 +2082,7 @@
 			"title": "lib/filecoin/gateway",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/filecoin/gateway",
+			"name": "lib/filecoin/gateway",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2091,7 +2105,7 @@
 			"title": "lib/filecoin/lighthouse/browser",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/filecoin/lighthouse/browser",
+			"name": "lib/filecoin/lighthouse/browser",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2106,7 +2120,7 @@
 			"title": "lib/filecoin/lighthouse/isomorphic",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/filecoin/lighthouse/isomorphic",
+			"name": "lib/filecoin/lighthouse/isomorphic",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2134,7 +2148,7 @@
 			"title": "lib/filecoin/storacha/isomorphic",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/filecoin/storacha/isomorphic",
+			"name": "lib/filecoin/storacha/isomorphic",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2158,7 +2172,7 @@
 			"title": "lib/filecoin/url",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/filecoin/url",
+			"name": "lib/filecoin/url",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2177,7 +2191,7 @@
 			"title": "lib/onchain-min",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/onchain-min",
+			"name": "lib/onchain-min",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2192,7 +2206,7 @@
 			"title": "lib/test-utils-isomorphic",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/test-utils-isomorphic",
+			"name": "lib/test-utils-isomorphic",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2215,7 +2229,7 @@
 			"title": "lib/test-utils-node",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/test-utils-node",
+			"name": "lib/test-utils-node",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2230,7 +2244,7 @@
 			"title": "lib/token/config",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/token/config",
+			"name": "lib/token/config",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2245,7 +2259,7 @@
 			"title": "lib/trustwallet-chain",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/trustwallet-chain",
+			"name": "lib/trustwallet-chain",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2260,7 +2274,7 @@
 			"title": "lib/utils/address",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/utils/address",
+			"name": "lib/utils/address",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2279,7 +2293,7 @@
 			"title": "lib/utils/hex",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/utils/hex",
+			"name": "lib/utils/hex",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2294,7 +2308,7 @@
 			"title": "lib/utils/wagmi-config",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/utils/wagmi-config",
+			"name": "lib/utils/wagmi-config",
 			"type": "registry:lib",
 			"files": [
 				{
@@ -2309,7 +2323,7 @@
 			"title": "lib/wagmi-utils",
 			"description": "",
 			"author": "geist",
-			"name": "@geist/lib/wagmi-utils",
+			"name": "lib/wagmi-utils",
 			"type": "registry:lib",
 			"files": [
 				{
