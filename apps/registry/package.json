@@ -14,7 +14,7 @@
 	"scripts": {
 		"build": "tsx src/build.mts",
 		"test": "vitest",
-		"serve": "http-server public/r/@geist -p 3000",
+		"serve": "http-server public/ -p 3000",
 		"deploy:fleek": "fleek --debug sites deploy"
 	},
 	"devDependencies": {

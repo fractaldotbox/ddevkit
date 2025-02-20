@@ -167,6 +167,8 @@ export const parseItem = async (
 		type: string;
 	}[];
 
+	const geistDependencies = new Set();
+
 	const registryPath = relative(sourceRootPath, file);
 
 	files.push({
@@ -208,6 +210,9 @@ export const parseItem = async (
 			console.log("import:", currentImport, "->", importPath);
 
 			node.getModuleSpecifier().replaceWithText(`"${importPath}"`);
+
+			// TODO avoid the back and forth path rewrite
+			geistDependencies.add(registryPath.replace("registry/", ""));
 			files.push({
 				path: registryPath + "." + ext,
 				type: itemType,
@@ -221,12 +226,17 @@ export const parseItem = async (
 		title: title || name || "",
 		description: description || "",
 		author: "geist",
-		name: `@geist/${name}`,
+		name,
 		type,
 		files,
+
 		registryDependencies: Array.from(registryItemMetadata.registryDependencies),
 		dependencies: Array.from(registryItemMetadata.dependencies),
 	};
 
-	return { registryItem, sourceFile };
+	return {
+		registryItem,
+		sourceFile,
+		geistDependencies: Array.from(geistDependencies),
+	};
 };
