@@ -24,13 +24,13 @@ import {
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
 	data: TData[];
-	tableConfig: any;
+	tableConfig?: any;
 }
 
 export const DataTable = <TData, TValue>({
 	columns,
 	data,
-	tableConfig,
+	tableConfig = {},
 }: DataTableProps<TData, TValue>) => {
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [expanded, setExpanded] = useState<ExpandedState>(true);

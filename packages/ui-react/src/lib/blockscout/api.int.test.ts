@@ -17,10 +17,10 @@ describe("blockscout", () => {
 		const txnHash =
 			"0xc6480de9e7ba4daa2bd115be1aa41c669246b052e6765a4848f8c683c63cacf7";
 
-		const { from, to, tx_types } = await getTransaction(txnHash);
+		const { from, to, transaction_types } = await getTransaction(txnHash);
 		expect(from.ens_domain_name).toBe("debuggingfuture.eth");
 		expect(to.ens_domain_name).toBe(null);
-		expect(tx_types).toEqual(["coin_transfer"]);
+		expect(transaction_types).toEqual(["coin_transfer"]);
 	});
 });
 
