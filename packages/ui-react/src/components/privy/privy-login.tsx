@@ -34,3 +34,14 @@ export const PrivyLogin = () => {
 		</Button>
 	);
 };
+
+export const PrivyLogout = () => {
+	const { authenticated: isAuthenticated, logout } = usePrivy();
+	const disableLogout = !isAuthenticated;
+
+	return (
+		<Button disabled={disableLogout} onClick={logout}>
+			Logout
+		</Button>
+	);
+};
