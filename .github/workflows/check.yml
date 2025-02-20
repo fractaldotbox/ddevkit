@@ -1,0 +1,41 @@
+name: Check
+
+on:
+  pull_request:
+    branches:
+      - 'draft'
+      - 'main'
+    types: [opened, synchronize, reopened]
+
+env:
+  TEST_EAS_PRIVATE_KEY: ${{ secrets.TEST_EAS_PRIVATE_KEY }}
+  TEST_USER_PRIVATE_KEY: ${{ secrets.TEST_USER_PRIVATE_KEY }}
+
+jobs:
+  check:
+    name: Run tests and format checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+
+      - name: Run Tests - Unit
+        run: |
+          pnpm --filter ui-react run test:unit
+          pnpm --filter domain run test:unit
+
+      - name: Run Check
+        run: pnpm exec turbo run check
+
+      - name: Report Status
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { job, conclusion } = context.payload.workflow_run || {};
+            if (conclusion === 'failure') {
+              core.setFailed('Lint and format checks failed');
+            }
