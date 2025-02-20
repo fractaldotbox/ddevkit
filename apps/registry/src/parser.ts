@@ -103,7 +103,7 @@ export const createRegisterDependencyPath = (
 	context: Context,
 	name: string,
 ) => {
-	return context.registryUrl + name + ".json";
+	return `${context.registryUrl}/${name}.json`;
 };
 
 export const parseComments = async (sourceFile: SourceFile) => {
@@ -199,7 +199,9 @@ export const parseItem = async (
 
 			node.getModuleSpecifier().replaceWithText(`"${importPath}"`);
 		} else if (packageName) {
-			registryItemMetadata.dependencies.add(packageName);
+			if (!["react", "..", "."].includes(packageName)) {
+				registryItemMetadata.dependencies.add(packageName);
+			}
 		} else {
 			// Note we workaround https://github.com/shadcn-ui/ui/issues/6678 by avoiding @/registry for non components
 			const importPath =

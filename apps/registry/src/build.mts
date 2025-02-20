@@ -96,7 +96,7 @@ export const ensureDirectoriesExist = async (paths: string[]) => {
 const context = {
 	sourceRootPath,
 	registryLocalPath: join(import.meta.dirname, "../public/r"),
-	registryUrl: process.env.REGISTRY_URL || "https://example.com/r/",
+	registryUrl: process.env.REGISTRY_URL || "https://ddev.geist.network/r",
 };
 
 console.log("Build Context", context);
@@ -140,12 +140,35 @@ for (const [
 ] of itemByName.entries()) {
 	for (const dep of geistDependencies) {
 		const depItem = itemByName.get(dep);
-		if (depItem) {
-			for (const dep of depItem.registryItem.registryDependencies) {
-				registryItem.registryDependencies.push(dep);
-			}
-		}
+
+		const files = new Map();
+
+		registryItem.files.concat(depItem.registryItem.files).forEach((file) => {
+			files.set(file?.path, file);
+		});
+
+		registryItem.files = Array.from(files.values());
+
+		const registryDependencies = new Set([
+			...registryItem.registryDependencies,
+			...depItem.registryItem.registryDependencies,
+		]);
+
+		const dependencies = new Set([
+			...registryItem.dependencies,
+			...depItem.registryItem.dependencies,
+		]);
+
+		registryItem.registryDependencies = Array.from(registryDependencies);
+		registryItem.dependencies = Array.from(dependencies);
 	}
+
+	// Don't use transitive registry resolve for now
+	// for (const depItemName of registryDependencies) {
+	// 	registryItem.registryDependencies.push(
+	// 		`${context.registryUrl}/${depItemName}.json`,
+	// 	);
+	// }
 }
 
 // handle transitive registry deps

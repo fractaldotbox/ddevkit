@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { withValue } from "#token/multi-chain";
+import { withValue } from "./multi-chain";
 import {
 	PRICE_DATA_SNAPSHOT,
 	TOKEN_BALANCES_MULTICHAIN_STABLECOINS,
-} from "#token/token-balance.fixture";
+} from "./token-balance.fixture";
 
 describe("multi-chain", () => {
 	it("#withValue", () => {
