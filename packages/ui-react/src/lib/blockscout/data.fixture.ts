@@ -18,7 +18,7 @@ export const VITALIK_DEPOSIT = {
 	transaction_tag: null,
 	created_contract: null,
 	value: "32010000000000000000",
-	tx_types: ["coin_transfer", "contract_call", "token_transfer"],
+	transaction_types: ["coin_transfer", "contract_call", "token_transfer"],
 	from: {
 		ens_domain_name: "vitalik.eth",
 		hash: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
@@ -351,7 +351,7 @@ export const VITALIK_TRANSFER = {
 	transaction_tag: null,
 	created_contract: null,
 	value: "100000000000000000000",
-	tx_types: ["coin_transfer"],
+	transaction_types: ["coin_transfer"],
 	from: {
 		ens_domain_name: "vitalik.eth",
 		hash: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
@@ -653,7 +653,7 @@ export const generateTxnFixturesByCount = (count: number) => {
 				? null
 				: faker.finance.ethereumAddress(),
 			value: faker.finance.amount(0, 1000000000000000000000, 0),
-			tx_types: faker.helpers.arrayElements(
+			transaction_types: faker.helpers.arrayElements(
 				["coin_transfer", "contract_call", "token_transfer"],
 				{ min: 1, max: 3 },
 			),
