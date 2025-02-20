@@ -67,7 +67,6 @@ async function addProjectComponents(
 		server?: boolean;
 	},
 ) {
-	console.log("addProjectComponents");
 	const registrySpinner = spinner(`Checking registry.`, {
 		silent: options.silent,
 	})?.start();
