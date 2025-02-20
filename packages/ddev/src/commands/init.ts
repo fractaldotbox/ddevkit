@@ -119,14 +119,9 @@ export async function runInit(
 	}
 
 	const projectConfig = await getProjectConfig(options.cwd, projectInfo);
-	// const config = projectConfig
-	// 	? await promptForMinimalConfig(projectConfig, options)
-	// 	: await promptForConfig(await getConfig(options.cwd));
-
-	const config =
-		(await promptForMinimalConfig(projectConfig || {}, {
-			defaults: true,
-		})) || {};
+	const config = projectConfig
+		? await promptForMinimalConfig(projectConfig, options)
+		: await promptForConfig(await getConfig(options.cwd));
 
 	if (!options.yes) {
 		const { proceed } = await prompts({
@@ -295,6 +290,7 @@ async function promptForMinimalConfig(
 	defaultConfig: Config,
 	opts: z.infer<typeof initOptionsSchema>,
 ) {
+	console.log("defaultConfig", defaultConfig);
 	let style = defaultConfig.style;
 	let baseColor = defaultConfig.tailwind.baseColor;
 	let cssVariables = defaultConfig.tailwind.cssVariables;

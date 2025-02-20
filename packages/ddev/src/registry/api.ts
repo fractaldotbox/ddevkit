@@ -104,7 +104,7 @@ export async function getRegistryBaseColors() {
 export async function getRegistryBaseColor(baseColor: string) {
 	try {
 		const [result] = await fetchRegistry([
-			`"http://ui.shadcn.com/r/colors/${baseColor}.json`,
+			`http://ui.shadcn.com/r/colors/${baseColor}.json`,
 		]);
 
 		return registryBaseColorSchema.parse(result);

@@ -48,9 +48,9 @@ export async function updateFiles(
 		silent: options.silent,
 	})?.start();
 
-	const [projectInfo] = await Promise.all([
+	const [projectInfo, baseColor] = await Promise.all([
 		getProjectInfo(config.resolvedPaths.cwd),
-		// getRegistryBaseColor(config.tailwind.baseColor),
+		getRegistryBaseColor(config.tailwind.baseColor),
 	]);
 
 	const filesCreated = [];
@@ -118,7 +118,7 @@ export async function updateFiles(
 				filename: file.path,
 				raw: file.content,
 				config,
-				// baseColor,
+				baseColor,
 				transformJsx: !config.tsx,
 				isRemote: options.isRemote,
 			},
@@ -127,7 +127,7 @@ export async function updateFiles(
 				transformRsc,
 				transformCssVars,
 				transformTwPrefixes,
-				// transformIcons,
+				transformIcons,
 			],
 		);
 
