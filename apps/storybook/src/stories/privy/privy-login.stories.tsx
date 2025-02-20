@@ -1,6 +1,7 @@
 import {
 	PrivyLogin,
 	PrivyLoginProvider,
+	PrivyLogout,
 } from "@geist/ui-react/components/privy/privy-login";
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -12,12 +13,13 @@ function PrivyLoginStories({ appId }: PrivyLoginProps) {
 	return (
 		<PrivyLoginProvider appId={appId}>
 			<PrivyLogin />
+			<PrivyLogout />
 		</PrivyLoginProvider>
 	);
 }
 
 const meta = {
-	title: "Privy/Login",
+	title: "Privy/LoginAndLogout",
 	component: PrivyLoginStories,
 	argTypes: {
 		appId: {
