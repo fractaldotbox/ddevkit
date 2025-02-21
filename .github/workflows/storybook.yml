@@ -8,6 +8,7 @@ on:
       - 'main'  
   push:
     branches:
+      - 'docs'
       - 'draft'
       - 'main'
     paths:
