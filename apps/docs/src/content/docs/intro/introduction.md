@@ -28,7 +28,12 @@ This repository consists of
 - 🚶 Open source. Authors can walkaway. No npm account to secure.
 
 
+## Demo
+
+<div style="position: relative; padding-bottom: 62.42774566473989%; height: 0;"><iframe src="https://www.loom.com/embed/0cc7734987c34a4a9ffe1f928396fa22?sid=f4aa37c9-9cdf-4e44-8308-8e58c42ba4c7" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
 ## Overview
+
 
 
 > We're creating cookbook instead of libraries and we focus on working, headless components.
@@ -43,6 +48,7 @@ Besides decoupling style and implementation as in shadcn, the bigger motivation 
 With Open Code we make it AI-ready and provide reasonable defaults allowing one to extend per need, enabling agents generating and iterating its own codebase. 
 
 Learn about more about architecture design at [here](/design/architecture). 
+
 
 
 ### When to use
