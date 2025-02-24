@@ -3,7 +3,8 @@ title: Components
 ---
 
 
-## TODO
+## List of Components
 
+Refers to [Storybook](https://dappkit.geist.network/) to find sample usage
 
-Refers to [Storybook](https://dappkit.geist.network/)
+Dedicated documentation for each component coming soon. 

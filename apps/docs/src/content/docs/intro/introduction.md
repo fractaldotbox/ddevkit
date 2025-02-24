@@ -35,7 +35,6 @@ This repository consists of
 ## Overview
 
 
-
 > We're creating cookbook instead of libraries and we focus on working, headless components.
  It is way easier to identify painpoints and refactor for best architecture, instead of being astronaut architects.  For now we try to mimic behaviours of common components e.g. what you see on explorers/wallets and we will revisit best UX for each component.
 

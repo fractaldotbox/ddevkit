@@ -12,8 +12,7 @@ The risk is real as we were told ["Stop using dapps"](https://decrypt.co/209804/
 
 In the web context, dependencies make the bundle larger and the site slower.  [Island Architecture](https://docs.astro.build/en/concepts/islands/) --  we try to contain comopnents into static ones as plain markups and text when possible, and limit interacitivt to speicifc componenst. This help simplify diff across versions and make a larger chunk of the dApp served by IPFS which is immutable. This also help rendering infrequently updated contnet faster, composing different frameworks in a page and encourages pushing slow operations to the server. Typically, we postpone hydration for components requiring a connected wallet. 
 
-In the context of autonomous agent, a simple package-lock.json is not sufficient to guarantee your agent keep running autonomously and safely. As dev we are just tired of [https://en.wikipedia.org/wiki/Dependency_hell].
-As we argued in [Architecture](/architecture.md) the challenge is even more prominent for diverse, decentralized agents than dApps.
+In the context of autonomous agent, a simple package-lock.json is not sufficient to guarantee your agent keep running autonomously and safely.  As we argued in [Build your own library](/build-your-own-library.md) the challenge is even more prominent for diverse, decentralized agents than dApps.
 
 
 
@@ -33,8 +32,8 @@ Today every agent has its own dependency graph and often versions of pacakge dif
 - We prefer downstream dependencies that is treeshakable.
 - Consider `lib/filecoin/gateway.ts` `getGatewayUrlWithCid()` as an example, it does not import dependenceis unconditionally or relevavnt ecosystem-specific code are expected to be injected using strategy pattern.
 
-Many framework adopt a plugin system, some limit dependencies to only plugin being used.
-s
+Many frameworks adopt a plugin system, some limit dependencies to only plugin being used.
+
 ### Scenario #1
 
 sequenceDiagram
@@ -58,7 +57,6 @@ Improve scenario in #2 (reduced dependencies by design and removing wrapper)
 Enable Scenario #3 where common , immutable hosted on IPFS and work with Lit Action.
 
 Consider supplying USDC on Aave Protocol USDC. Aave, use ethers, aave-utilities and finally.
-viem
 
 
 ## Dependencies considerations
@@ -70,7 +68,7 @@ This documents rationale behind opionated dependencies
 - `vitest` over `jest`
   - used by shadcn, scaffold and generally author find less issues for typscript setup as in jest.
 
-- Currently we use a small set of unix style stable, isomorphic lightweight libraries. To avoid supply chain attacks, we should make versions easily fixed/immutable or configurable to native 
+- Currently we use a small set of unix style stable, isomorphic lightweight libraries. 
   - `ky` over `fetch` to reduce boilerplates
   - use `URLSearchParams` over `fast-querystring`
   - unjs packages
