@@ -4,7 +4,7 @@
 
 ### Repository setup and structure
 
-- Refers to https://github.com/fractaldotbox/geist-ddev-kit/issues/57
+- Refers to https://github.com/fractaldotbox/ddev-kit/issues/57
 
 
 ### Implementation Guide

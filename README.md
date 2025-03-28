@@ -1,10 +1,11 @@
-## Geist dDev Kit
+## dDev Kit
 
 Optimized, headless components and utils that you can copy and paste into your dApps or Agent. 
 Open Source. Open Code. AI-Ready. Accessible, Localized.
 
 Inspired by [shadcn/ui](https://github.com/shadcn-ui). 
 
+## [Documentations](https://ddevkit.geist.network/) | [Roadmap](https://github.com/orgs/fractaldotbox/projects/13) | [X @dDevKit](https://x.com/dDevKit)
 > This is not a library. It is how you build your library.
 
 ⚠️ This is preview alpha version under active development
@@ -26,7 +27,7 @@ Inspired by [shadcn/ui](https://github.com/shadcn-ui).
 - 🙌 Working example. First class Storybook support, avoid outdated documentations. 
 - 🚶 Open source. Authors can walkaway. No npm account breaking your code.
 
-## [Documentations](https://ddevkit.geist.network/) | [Roadmap](https://github.com/orgs/fractaldotbox/projects/13)
+
 
 ## Samlpe usage
 - Check out [Hosted Storybook](https://ddev-storybook.geist.network/) for working examples 

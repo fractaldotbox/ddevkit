@@ -11,7 +11,7 @@ title: Installation
 
 
 
-## Install component from Geist dDev Kit Registry
+## Install component from dDev Kit Registry
 
 - dDev kit is deployed as a [custom registry of shadcn](https://ui.shadcn.com/docs/registry), on https://ddev.geist.network/r (IPFS) 
 

@@ -7,9 +7,9 @@ import { defineConfig, passthroughImageService } from "astro/config";
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: "Geist dDevKit",
+			title: "dDevKit",
 			social: {
-				github: "https://github.com/fractaldotbox/geist-ddev-kit",
+				github: "https://github.com/fractaldotbox/ddev-kit",
 			},
 			sidebar: [
 				{
