@@ -1,0 +1,40 @@
+{
+	"name": "@geist/agent",
+	"version": "0.0.0",
+	"private": true,
+
+	"exports": {
+		".": "./src/index.ts",
+		"./*.fixture": ["./src/*.fixture.ts"],
+		"./*": ["./src/*", "./src/*.tsx", "./src/*.ts"]
+	},
+	"scripts": {
+		"dev": "mastra dev",
+		"test": "vitest",
+		"test:unit": "VITEST_SUITES=unit vitest",
+		"test:int": "VITEST_SUITES=int vitest"
+	},
+	"imports": {
+		"#*": ["./src/*", "./src/*.tsx"]
+	},
+
+	"dependencies": {
+		"@ai-sdk/openai": "^1.3.2",
+
+		"viem": "2.x",
+		"@mastra/core": "^0.6.4",
+		"mastra": "^0.4.3",
+		"zod": "^3.24.2"
+	},
+	"devDependencies": {
+		"@geist/typescript-config": "workspace:*",
+		"@geist/domain": "workspace:*",
+		"@turbo/gen": "^1.12.4",
+		"@types/node": "^22.10.2",
+		"@faker-js/faker": "^8.2.0",
+		"typescript": "^5.7.2",
+		"vite": "^5.4.1",
+		"vite-plugin-node-polyfills": "^0.22.0",
+		"vitest": "^2.1.8"
+	}
+}

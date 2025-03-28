@@ -1,5 +1,5 @@
-import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
+import * as React from "react";
 import {
 	Card,
 	CardContent,
@@ -8,20 +8,20 @@ import {
 	CardTitle,
 } from "#components/shadcn/card";
 import { Skeleton } from "#components/shadcn/skeleton";
-import { getShortAddress } from "#lib/utils/address";
 import {
 	getScoreWithAddress,
 	getStampsByAddress,
 	getStampsMetadata,
 	getStampsWithScorerIdAddress,
 } from "#lib/passport/api";
+import { getShortAddress } from "#lib/utils/address";
 
 import { Logo } from "./logo";
 
-import { cn } from "#lib/shadcn/utils";
 import { useMemo } from "react";
-import AddressBadge from "#components/identity/address-badge.js";
 import type { Address } from "viem";
+import AddressBadge from "#components/identity/address-badge.js";
+import { cn } from "#lib/shadcn/utils";
 
 interface PassportScoreCardProps {
 	address: Address;

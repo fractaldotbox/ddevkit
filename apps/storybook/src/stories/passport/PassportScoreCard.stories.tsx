@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { PassportScoreCard } from "@geist/ui-react/components/passport/score-card";
 import { BY_USER } from "@geist/domain/user.fixture";
-import { withWagmiProvider } from "#stories/decorators/wagmi.tsx";
+import { PassportScoreCard } from "@geist/ui-react/components/passport/score-card";
+import type { Meta, StoryObj } from "@storybook/react";
 import type { Address } from "viem";
+import { withWagmiProvider } from "#stories/decorators/wagmi.tsx";
 
 const meta = {
 	title: "Passport/PassportScoreCard",

@@ -1,6 +1,6 @@
-import { describe, it, expect } from "vitest";
-import * as api from "./api";
 import { BY_USER } from "@geist/domain/user.fixture";
+import { describe, expect, it } from "vitest";
+import * as api from "./api";
 
 // Test Ethereum address to use for testing
 const TEST_ADDRESS = BY_USER.vitalik.address;
