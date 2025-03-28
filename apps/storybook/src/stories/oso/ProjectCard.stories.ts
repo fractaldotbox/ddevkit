@@ -18,7 +18,7 @@ type Story = StoryObj<typeof meta>;
 
 export const DdevKitProject: Story = {
 	args: {
-		projectId: BY_PROJECT.DDEV_KIT.osoProjectId,
+		projectId: BY_PROJECT.DDEV_KIT.osoProjectIdV0,
 	},
 	parameters: {},
 };

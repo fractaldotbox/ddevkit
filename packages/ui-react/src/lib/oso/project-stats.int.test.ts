@@ -7,20 +7,24 @@ import {
 	it,
 	test,
 } from "vitest";
+
+import { BY_PROJECT } from "@geist/domain/project.fixture";
 import { queryCodeMetrics, queryTimeseriesMetrics } from "./project-stats";
 
-const PROJECT_ID = "DjRsDzYdMseT34+iydaLO7PHX1dfywIAExlAeW0YlHM=";
 describe(
 	"project-stats",
 	() => {
 		test("#queryCodeMetrics", async () => {
-			const result = await queryCodeMetrics();
+			const params = {
+				projectId: BY_PROJECT.DDEV_KIT.osoProjectIdV1,
+			};
+			const result = await queryCodeMetrics(params);
 			console.log("results", result);
 		});
 
-		test.only("#queryTimeseriesMetrics", async () => {
+		test("#queryTimeseriesMetrics", async () => {
 			const params = {
-				projectId: PROJECT_ID,
+				projectId: BY_PROJECT.DDEV_KIT.osoProjectIdV0,
 			};
 			const result = await queryTimeseriesMetrics(params);
 

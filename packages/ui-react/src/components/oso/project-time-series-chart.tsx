@@ -1,66 +1,87 @@
-import { format, parseISO } from "date-fns";
+import { Skeleton } from "@radix-ui/themes";
+import { useQuery } from "@tanstack/react-query";
+import { format, parse, parseISO } from "date-fns";
+import { useMemo } from "react";
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
+
 import {
-	CartesianGrid,
-	Line,
-	LineChart,
-	ResponsiveContainer,
-	Tooltip,
-	XAxis,
-	YAxis,
-} from "recharts";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from "#components/shadcn/card";
+	type ChartConfig,
+	ChartContainer,
+	ChartTooltip,
+	ChartTooltipContent,
+} from "#components/shadcn/chart";
 import { queryTimeseriesMetrics } from "#lib/oso/project-stats";
 
-interface TimeSeriesChartProps {
-	title: string;
-	description?: string;
-	data: Array<{
-		sampleDate: string;
-		amount: number;
-	}>;
+interface ProjectTimeSeriesChartProps {
+	projectId: string;
+	metricNameWhiteList: string[];
 }
+const chartConfig = {} satisfies ChartConfig;
+// Mock data for multi
+export const ProjectTimeSeriesChartWithData = ({
+	points,
+	metricsById,
+}: {
+	points: any[];
+	metricsById: Record<
+		string,
+		{
+			metricName: string;
+		}
+	>;
+}) => {
+	const metricIds = Object.keys(metricsById);
 
-export const ProjectTimeSeriesChartWithData = ({ data }: { data: any }) => {
-	const formattedData = data.map((item) => ({
-		date: item.sampleDate,
-		value: item.amount,
-		formattedDate: format(parseISO(item.sampleDate), "MMM dd, yyyy"),
-	}));
+	const groupedPoints = useMemo(() => {
+		const grouped = points.reduce((acc, point) => {
+			const dateGroup = format(point.sampleDate, "yyyy-'W'II");
+			if (!acc[dateGroup]) {
+				acc[dateGroup] = {};
+			}
+			acc[dateGroup].dateGroup = point.dateGroup;
+			acc[dateGroup][point.metricId] = point.amount;
+			// use last point to avoid re-parse
+			acc[dateGroup].sampleDate = point.sampleDate;
+			return acc;
+		}, {});
+
+		return Object.entries(grouped).map(([dateGroup, data]) => data);
+	}, [points]);
 
 	return (
-		<ResponsiveContainer width="100%" height="100%">
+		<ChartContainer
+			config={chartConfig}
+			style={{ height: "400px", width: "600px" }}
+		>
 			<LineChart
-				data={formattedData}
+				data={groupedPoints}
 				margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
 			>
 				<CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
 				<XAxis
-					dataKey="formattedDate"
+					dataKey="sampleDate"
+					tickLine={false}
+					axisLine={false}
 					className="text-xs text-muted-foreground"
+					tickFormatter={(value) => {
+						return format(value, "yyyy-MM");
+					}}
 				/>
 				<YAxis className="text-xs text-muted-foreground" />
-				<Tooltip
-					contentStyle={{
-						backgroundColor: "hsl(var(--card))",
-						borderColor: "hsl(var(--border))",
-					}}
-					labelStyle={{ color: "hsl(var(--foreground))" }}
-				/>
-				<Line
-					type="monotone"
-					dataKey="value"
-					stroke="hsl(var(--primary))"
-					activeDot={{ r: 8 }}
-					strokeWidth={2}
-				/>
+				<ChartTooltip cursor={true} content={<ChartTooltipContent />} />
+				{metricIds.map((metricId, index) => (
+					<Line
+						key={metricId}
+						type="monotone"
+						dataKey={metricId}
+						name={metricsById[metricId]?.metricName}
+						stroke={`hsl(var(--chart-${index + 1}))`}
+						activeDot={{ r: 8 }}
+						strokeWidth={2}
+					/>
+				))}
 			</LineChart>
-		</ResponsiveContainer>
+		</ChartContainer>
 	);
 };
 
@@ -74,15 +95,62 @@ export const useGetProjectTimeSeries = ({
 	const queryOptions = {
 		queryKey: ["oso-project-timeseries", projectId],
 		queryFn: async () => {
-			await queryTimeseriesMetrics({ projectId });
+			return queryTimeseriesMetrics({ projectId });
 		},
 	};
 	return useQuery(queryOptions);
 };
 
-export const ProjectTimeSeriesChart = ({ projectId }: TimeSeriesChartProps) => {
-	const data = {};
+// Metrics need to align smae time period e.g. weekly
+export const ProjectTimeSeriesChart = ({
+	projectId,
+	metricNameWhiteList = ["GITHUB_stars_weekly", "GITHUB_commits_weekly"],
+}: ProjectTimeSeriesChartProps) => {
+	const { data, isLoading, error } = useGetProjectTimeSeries({
+		projectId,
+	});
 
-	// useGetProjectTimeSeries()
-	return <ProjectTimeSeriesChartWithData data={data} />;
+	const { points, metricsById } = useMemo(() => {
+		if (!data?.metrics) {
+			return {
+				points: [],
+				metricsById: {},
+			};
+		}
+		const metricsById = Object.fromEntries(
+			metricNameWhiteList.map((metricNameWhiteListed) => {
+				const metric = data.metrics.find(({ metricName }) => {
+					return metricName === metricNameWhiteListed;
+				});
+
+				return [metric.metricId, metric];
+			}),
+		);
+
+		const points = data.timeseriesMetrics
+			.filter((point) => {
+				return metricsById[point.metricId];
+			})
+			.map((point) => {
+				return {
+					...point,
+					...metricsById[point.metricId],
+					sampleDate: new Date(point.sampleDate).getTime(),
+				};
+			})
+			.sort((a, b) => a.sampleDate - b.sampleDate);
+
+		return {
+			points,
+			metricsById,
+		};
+	}, [data, isLoading]);
+
+	if (!points) {
+		return <Skeleton className="w-full bg-gray-200" />;
+	}
+
+	return (
+		<ProjectTimeSeriesChartWithData points={points} metricsById={metricsById} />
+	);
 };

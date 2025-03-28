@@ -44,7 +44,10 @@ const projectCodeMetricsQuery = gql`
   }
 `;
 
-export const queryCodeMetrics = async () => {
+// TODO event sources
+export const queryCodeMetrics = async (params: {
+	projectId: string;
+}) => {
 	const results = await rawRequest<{
 		oso_codeMetricsByProjectV1: Oso_CodeMetricsByProjectV1[];
 	}>(
@@ -52,6 +55,9 @@ export const queryCodeMetrics = async () => {
 		projectCodeMetricsQuery.toString(),
 		{
 			where: {
+				projectId: {
+					_eq: params.projectId,
+				},
 				eventSource: {
 					_eq: "GITHUB",
 				},
@@ -60,7 +66,7 @@ export const queryCodeMetrics = async () => {
 		osoHeaders,
 	);
 
-	return results?.data["oso_codeMetricsByProjectV1"];
+	return results?.data["oso_codeMetricsByProjectV1"]?.[0];
 };
 
 const projectTimeseriesMetricsQuery = gql`

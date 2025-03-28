@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import { format, parseISO } from "date-fns";
 import {
 	CartesianGrid,
@@ -16,7 +17,10 @@ import {
 	CardHeader,
 	CardTitle,
 } from "#components/shadcn/card";
-import { queryTimeseriesMetrics } from "#lib/oso/project-stats";
+import {
+	queryCodeMetrics,
+	queryTimeseriesMetrics,
+} from "#lib/oso/project-stats";
 
 interface TimeSeriesChartProps {
 	title: string;
@@ -27,17 +31,18 @@ interface TimeSeriesChartProps {
 	}>;
 }
 
-export const ProjectMetricsCard = ({
+export const ProjectMetricsCardWithData = ({
 	metric,
+	metricTitle,
 }: {
 	metric: string;
+	metricTitle: string;
 }) => {
 	return (
 		<Card className="@container/card">
 			<CardHeader className="relative">
-				<CardDescription>Total Revenue</CardDescription>
+				<CardDescription>{metricTitle}</CardDescription>
 				<CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
-					$1,250.00
 					{metric}
 				</CardTitle>
 				{/* <div className="absolute right-4 top-4">
@@ -47,14 +52,37 @@ export const ProjectMetricsCard = ({
 					</Badge>
 				</div> */}
 			</CardHeader>
-			<CardFooter className="flex-col items-start gap-1 text-sm">
-				<div className="line-clamp-1 flex gap-2 font-medium">
-					Trending up this month <TrendingUpIcon className="size-4" />
-				</div>
-				<div className="text-muted-foreground">
-					Visitors for the last 6 months
-				</div>
-			</CardFooter>
 		</Card>
+	);
+};
+
+type UseGetProjectCodeMetricsParams = {
+	projectId: string;
+};
+
+export const useGetProjectCodeMetrics = ({
+	projectId,
+}: UseGetProjectCodeMetricsParams) => {
+	const queryOptions = {
+		queryKey: ["oso-project-metric", projectId],
+		queryFn: async () => {
+			return queryCodeMetrics({ projectId });
+		},
+	};
+	return useQuery(queryOptions);
+};
+
+export const ProjectMetricsCard = ({
+	projectId,
+}: {
+	projectId: string;
+}) => {
+	const { data } = useGetProjectCodeMetrics({ projectId });
+	console.log("data", data);
+	return (
+		<ProjectMetricsCardWithData
+			metric={data?.activeDeveloperCount6Months}
+			metricTitle="Active Developers Count last 6 months"
+		/>
 	);
 };
