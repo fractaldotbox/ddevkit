@@ -2,9 +2,9 @@
 
 // 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
 
-import { describe, it, expect } from "vitest";
-import { rpcBalanceTool, rpcTool } from "./index";
 import { BY_USER } from "@geist/domain/user.fixture";
+import { describe, expect, it } from "vitest";
+import { rpcBalanceTool, rpcTool } from "./index";
 
 describe("Tools", () => {
 	it("rpcBalanceTool should get balance for an address", async () => {

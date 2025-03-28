@@ -1,10 +1,10 @@
 import {
-	describe,
-	it,
-	expect,
-	beforeAll,
 	afterAll,
 	afterEach,
+	beforeAll,
+	describe,
+	expect,
+	it,
 	test,
 } from "vitest";
 import { queryCodeMetrics, queryTimeseriesMetrics } from "./project-stats";

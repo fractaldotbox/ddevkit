@@ -1,7 +1,7 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
 
-import { http, createPublicClient, type Address } from "viem";
+import { http, type Address, createPublicClient } from "viem";
 import { base, mainnet } from "viem/chains";
 
 export const publicClient = createPublicClient({

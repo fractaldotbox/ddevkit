@@ -1,10 +1,10 @@
 // This deo
 
-import { Agent } from "@mastra/core/agent";
 import { openai } from "@ai-sdk/openai";
+import { Agent } from "@mastra/core/agent";
 
-import { Mastra } from "@mastra/core/mastra";
 import { createLogger } from "@mastra/core/logger";
+import { Mastra } from "@mastra/core/mastra";
 
 import { ethereumAgent } from "./agents";
 

@@ -1,8 +1,8 @@
 import { BY_PROJECT } from "@geist/domain/project.fixture";
+import { ProjectTimeSeriesChart } from "@geist/ui-react/components/oso/project-time-series-chart";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { Address } from "viem";
 import { withWagmiProvider } from "#stories/decorators/wagmi.tsx";
-import { ProjectTimeSeriesChart } from "@geist/ui-react/components/oso/project-time-series-chart";
 
 const data = {
 	timeseriesMetrics: [

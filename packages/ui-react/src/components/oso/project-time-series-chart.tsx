@@ -1,3 +1,13 @@
+import { format, parseISO } from "date-fns";
+import {
+	CartesianGrid,
+	Line,
+	LineChart,
+	ResponsiveContainer,
+	Tooltip,
+	XAxis,
+	YAxis,
+} from "recharts";
 import {
 	Card,
 	CardContent,
@@ -5,16 +15,6 @@ import {
 	CardHeader,
 	CardTitle,
 } from "#components/shadcn/card";
-import {
-	LineChart,
-	Line,
-	XAxis,
-	YAxis,
-	CartesianGrid,
-	Tooltip,
-	ResponsiveContainer,
-} from "recharts";
-import { format, parseISO } from "date-fns";
 import { queryTimeseriesMetrics } from "#lib/oso/project-stats";
 
 interface TimeSeriesChartProps {
