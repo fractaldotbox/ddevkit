@@ -1,3 +1,17 @@
+import type {
+	Oso_CodeMetricsByArtifactV0,
+	Oso_CodeMetricsByProjectV1,
+} from "@geist/graphql/oso/graphql";
+import { useQuery } from "@tanstack/react-query";
+import {
+	queryCodeMetrics,
+	queryTimeseriesMetrics,
+} from "#lib/oso/project-stats";
+
+type UseGetProjectCodeMetricsParams = {
+	projectId: string;
+};
+
 /**
  * Note: v0 metrics are unstable
  * we don't hv a direct id based mapping between key name e.g. `activeDeveloperCount6Months` and the ones at oso_metricsv0
@@ -14,20 +28,6 @@ export const PERIOD_LABEL_BY_PERIOD = {
 	all: "All period",
 	Date: "",
 } as Record<string, string>;
-
-import type {
-	Oso_CodeMetricsByArtifactV0,
-	Oso_CodeMetricsByProjectV1,
-} from "@geist/graphql/oso/graphql";
-import { useQuery } from "@tanstack/react-query";
-import {
-	queryCodeMetrics,
-	queryTimeseriesMetrics,
-} from "#lib/oso/project-stats";
-
-type UseGetProjectCodeMetricsParams = {
-	projectId: string;
-};
 
 // TODO align the daily/weekly convnetion at project metric
 export const parseMetric = (key: string) => {
