@@ -44,18 +44,26 @@ Headless components (as in shadcn) that are decoupled form styling with minimize
 <!-- - `graphql-request` to genearte typed-safe graphql for ENS, EAS, Open source observer without use of sdk. -->
 
 
-## Context of Agent
+## Context of Agents
 
-Decentralized agent often has its own runtime and codebase. 
-Also, for tools to be usable by agents, 3 typical models are:
+Decentralized agent often has its own runtime and codebase. Typically agents are equipped with tools in different fasions, such as 
+
 1. Included in agent runtime as plugin
 1. Externalized with MCP (Model Context Protocol). 
-1. Invoking another agent in swarm architecture via verifiable messaging layer
+1. Invoking another agent in swarm architecture via verifiable messaging layer, such as these examples implemented at [Autogen](
+https://microsoft.github.io/autogen/0.2/docs/Use-Cases/agent_chat/#diverse-applications-implemented-with-autogen
+). 
 
- This means each could be using different versions of sdk to interact with protocol. Compared to single "official" dApp controlled by single team, much better dependencies management is needed to cater for multiple agents running in diverse environments. 
+This imply each agents are on different versions of sdk to interact with protocol. Compared to single "official" dApp controlled by single team, environments of agent is much more diversed.
 
+The fragmentation is reinforced by increasing number of agent frameworks, each maintaining its own version of standalone boilerplate "adapter", such as framework-plugin-aave for yield farming on Aave.
 
-With increasing number of agent frameworks, even with a modular plugins systems, the community often find issues related to module loading (commonjs/ESM), dependencies version conflicts and lack of long-term maintence commitment. Duplicative boilerplates / "Gluing adapters" are common across frameworks which generally results in [leaky abstraction](https://en.wikipedia.org/wiki/Leaky_abstraction), being hard to customize e.g. error handling or response data structure, and also introduce supply chain attack vector.
+ Common issues find by Developers
+- module loading (commonjs/esm)
+- dependencies version conflicts
+- lack of long-term maintence commitment.
+- 3rd-party plugins as source of supply chain attack vector
+- 3rd-party plugins as inflexiblility and [leaky abstraction](https://en.wikipedia.org/wiki/Leaky_abstraction), e.g. hard to customize error handling or response data structure
 
 Examples include 
 - cdp agenkit requires [ethers v5 to support aave](https://github.com/coinbase/agentkit/issues/323)
@@ -64,18 +72,9 @@ Examples include
 ), [agentkit](https://github.com/coinbase/agentkit/blob/main/typescript/agentkit/src/wallet-providers/viemWalletProvider.ts) can be generated and streamlined per application need 
 
 We argue the problem is often application specific and it's most effective for developers 
-to take control and generate with LLM and a well-documented canonical set of working receipes & libraries the desired adapters and capabilities for the agent codebase. 
+to take control and generate with LLM the desired adapters and capabilities for the agent, base on a well-documented canonical set of working receipes & libraries codebase. 
 
-
-
-https://github.com/modelcontextprotocol/servers
-
-It's up to owner of agent to decide by use case the architecture and execution environment (e.g. TEE). 
-To reduce supply chain attack vector and keep agent lightweight, one effective way could be communicating with external services (e.g. MCP server / data layer) with verifiable computation proof.
-Our utils approach make it possible to generate code at all scenarios. 
-
-One example below uses Cursor where it only takes 1-2 prompt to equip mastra agent with ability of send transaciton and get balances via viem 
-
+Regardless agent framework or execution environment (e.g. TEE) in use, dependencies is minimized to avoid duplication and supply chain vulenerability.
 
 
 
