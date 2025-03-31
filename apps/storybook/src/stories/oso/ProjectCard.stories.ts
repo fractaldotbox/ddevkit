@@ -1,24 +1,24 @@
 import { BY_PROJECT } from "@geist/domain/project.fixture";
-import { PassportScoreCard } from "@geist/ui-react/components/passport/score-card";
+import { ProjectCard } from "@geist/ui-react/components/oso/project-card";
 import type { Meta, StoryObj } from "@storybook/react";
-import type { Address } from "viem";
 import { withWagmiProvider } from "#stories/decorators/wagmi.tsx";
 
 const meta = {
-	title: "Passport/PassportScoreCard",
-	component: PassportScoreCard,
+	title: "OSO/ProjectCard",
+	component: ProjectCard,
 	parameters: {
 		layout: "centered",
 	},
 	decorators: [withWagmiProvider()],
-} satisfies Meta<typeof PassportScoreCard>;
+} satisfies Meta<typeof ProjectCard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const DdevKitProject: Story = {
 	args: {
-		projectId: BY_PROJECT.DDEV_KIT.osoProjectIdV0,
+		projectIdV0: BY_PROJECT.DDEV_KIT.osoProjectIdV0,
+		projectIdV1: BY_PROJECT.DDEV_KIT.osoProjectIdV1,
 	},
 	parameters: {},
 };
