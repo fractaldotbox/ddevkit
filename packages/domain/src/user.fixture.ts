@@ -7,6 +7,10 @@ const vitalik = {
 	ens: "vitalik.eth",
 	address: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045" as Address,
 };
+const jesse = {
+	ens: "jesse.eth",
+	address: "0x849151d7D0bF1F34b70d5caD5149D28CC2308bf1" as Address,
+};
 
 // stable private key
 // 0x4E123166e7DfDE7AbA29162Fb3a5c6Af562443D4
@@ -36,6 +40,7 @@ const easSampleAttester = {
 
 export const BY_USER = {
 	vitalik,
+	jesse,
 	easSampleAttester,
 	filecoinTopHolder,
 	user,

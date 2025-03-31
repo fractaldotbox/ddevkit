@@ -2850,6 +2850,13 @@ export type TimestampWhereUniqueInput = {
   id?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type AttestationByIdQueryVariables = Exact<{
+  where: AttestationWhereUniqueInput;
+}>;
+
+
+export type AttestationByIdQuery = { __typename?: 'Query', attestation?: { __typename?: 'Attestation', id: string, txid: string, recipient: string, time: number, isOffchain: boolean, schemaId: string, attester: string, schema: { __typename?: 'Schema', index: string, schemaNames: Array<{ __typename?: 'SchemaName', name: string }> } } | null };
+
 export type AllAttestationsByQueryVariables = Exact<{
   where?: InputMaybe<AttestationWhereInput>;
 }>;
@@ -2872,6 +2879,25 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
+export const AttestationByIdDocument = new TypedDocumentString(`
+    query AttestationById($where: AttestationWhereUniqueInput!) {
+  attestation(where: $where) {
+    id
+    txid
+    recipient
+    schema {
+      index
+      schemaNames {
+        name
+      }
+    }
+    time
+    isOffchain
+    schemaId
+    attester
+  }
+}
+    `) as unknown as TypedDocumentString<AttestationByIdQuery, AttestationByIdQueryVariables>;
 export const AllAttestationsByDocument = new TypedDocumentString(`
     query allAttestationsBy($where: AttestationWhereInput) {
   attestations(where: $where) {

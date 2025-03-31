@@ -46,3 +46,6 @@ apps/storybook/storybook-static/**
 
 apps/registry/public/r/
 apps/registry/registry.json
+
+
+apps/agent-demo/.mastra/
