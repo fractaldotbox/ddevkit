@@ -1,18 +1,17 @@
 import { BY_PROJECT } from "@geist/domain/project.fixture";
-import { ProjectMetricsCard } from "@geist/ui-react/components/oso/project-metrics-card";
+import { ProjectMetricsGrid } from "@geist/ui-react/components/oso/project-metrics-grid";
 import type { Meta, StoryObj } from "@storybook/react";
-import type { Address } from "viem";
 import { withWagmiProvider } from "#stories/decorators/wagmi.tsx";
 
 // TODO for code metrics
 const meta = {
-	title: "OSO/ProjectMetricsCard",
-	component: ProjectMetricsCard,
+	title: "OSO/ProjectMetricsGrid",
+	component: ProjectMetricsGrid,
 	parameters: {
 		layout: "centered",
 	},
 	decorators: [withWagmiProvider()],
-} satisfies Meta<typeof ProjectMetricsCard>;
+} satisfies Meta<typeof ProjectMetricsGrid>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

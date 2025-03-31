@@ -1,5 +1,4 @@
 import { Skeleton } from "@radix-ui/themes";
-import { useQuery } from "@tanstack/react-query";
 import { format, parse, parseISO } from "date-fns";
 import { useMemo } from "react";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
@@ -7,10 +6,11 @@ import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 import {
 	type ChartConfig,
 	ChartContainer,
+	ChartLegend,
 	ChartTooltip,
 	ChartTooltipContent,
 } from "#components/shadcn/chart";
-import { queryTimeseriesMetrics } from "#lib/oso/project-stats";
+import { useGetProjectTimeSeries } from "#hooks/oso/use-timeseries";
 
 interface ProjectTimeSeriesChartProps {
 	projectId: string;
@@ -69,6 +69,7 @@ export const ProjectTimeSeriesChartWithData = ({
 				/>
 				<YAxis className="text-xs text-muted-foreground" />
 				<ChartTooltip cursor={true} content={<ChartTooltipContent />} />
+				<ChartLegend />
 				{metricIds.map((metricId, index) => (
 					<Line
 						key={metricId}
@@ -83,22 +84,6 @@ export const ProjectTimeSeriesChartWithData = ({
 			</LineChart>
 		</ChartContainer>
 	);
-};
-
-type UseGetProjectTimeSeriesParams = {
-	projectId: string;
-};
-
-export const useGetProjectTimeSeries = ({
-	projectId,
-}: UseGetProjectTimeSeriesParams) => {
-	const queryOptions = {
-		queryKey: ["oso-project-timeseries", projectId],
-		queryFn: async () => {
-			return queryTimeseriesMetrics({ projectId });
-		},
-	};
-	return useQuery(queryOptions);
 };
 
 // Metrics need to align smae time period e.g. weekly
