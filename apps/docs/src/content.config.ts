@@ -12,6 +12,7 @@ export const collections = {
 		loader: storybookLoader(),
 		schema: docsSchema({
 			extend: z.object({
+				name: z.string(),
 				description: z.string(),
 			}),
 		}),
