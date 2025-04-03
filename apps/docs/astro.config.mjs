@@ -2,7 +2,22 @@ import starlight from "@astrojs/starlight";
 import tailwind from "@astrojs/tailwind";
 // @ts-check
 import { defineConfig, passthroughImageService } from "astro/config";
-// import cloudflare from "@astrojs/cloudflare";
+import { fetchStories, storybookLoader } from "./src/storybook-loader.ts";
+// No access to `getCollection` here, use loader
+
+// sidebar use docs collection as default, model as external link
+export const getSidebarComponentsSlugs = async () => {
+	const entries = await fetchStories();
+
+	return entries.map(({ id, name }) => {
+		return {
+			label: name,
+			link: `/component/${id}`,
+		};
+	});
+};
+
+const components = await getSidebarComponentsSlugs();
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,6 +39,12 @@ export default defineConfig({
 				{
 					label: "Guides",
 					autogenerate: { directory: "guides" },
+				},
+
+				// TODO align storybook groups
+				{
+					label: "Components",
+					items: components,
 				},
 
 				{
