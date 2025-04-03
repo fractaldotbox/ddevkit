@@ -2,7 +2,43 @@ import starlight from "@astrojs/starlight";
 import tailwind from "@astrojs/tailwind";
 // @ts-check
 import { defineConfig, passthroughImageService } from "astro/config";
-// import cloudflare from "@astrojs/cloudflare";
+import { fetchStories, storybookLoader } from "./src/storybook-loader.ts";
+// No access to `getCollection` here, use loader
+
+// sidebar use docs collection as default, model as external link
+export const getSidebarComponentsSlugs = async () => {
+	const entries = await fetchStories();
+	// Group entries by their title parts
+	const groupedEntries = entries.reduce((acc, { id, title, name }) => {
+		const parts = title.split("/");
+		const [group, subgroup] = parts;
+
+		if (!acc[group]) {
+			acc[group] = {};
+		}
+		if (!acc[group][subgroup]) {
+			acc[group][subgroup] = [];
+		}
+
+		acc[group][subgroup].push({
+			label: name,
+			link: `/component/${id}`,
+		});
+
+		return acc;
+	}, {});
+
+	// Convert groups into nested sidebar items
+	return Object.entries(groupedEntries).map(([group, subgroups]) => ({
+		label: group,
+		items: Object.entries(subgroups).map(([subgroup, items]) => ({
+			label: subgroup,
+			items,
+		})),
+	}));
+};
+
+const components = await getSidebarComponentsSlugs();
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,10 +61,13 @@ export default defineConfig({
 					label: "Guides",
 					autogenerate: { directory: "guides" },
 				},
-
 				{
 					label: "Design",
 					autogenerate: { directory: "design" },
+				},
+				{
+					label: "Components",
+					items: components,
 				},
 				{
 					label: "Contributing",

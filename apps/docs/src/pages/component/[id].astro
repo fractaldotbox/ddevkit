@@ -1,0 +1,36 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import type { GetStaticPaths } from "astro";
+import { STORYBOOK_URL } from "../../storybook-loader";
+
+export const getStaticPaths = (async () => {
+	const components = await getCollection("components");
+	return components.map(({ id }) => ({
+		params: { id },
+	}));
+}) satisfies GetStaticPaths;
+
+const { id } = Astro.params;
+
+const component = await getEntry("components", id);
+
+import "../../styles/global.css";
+---
+
+<StarlightPage frontmatter={{ title: component.data.title, tableOfContents: false }}>
+
+	<div>
+		<h2>{ component.data.name } </h2>
+	</div>
+	<div class="h-[600px] w-full text-2xl not-content">
+
+	<iframe
+		height="100%"
+		width="100%"
+		src=`${STORYBOOK_URL}?path=/story/${component?.id}&full=1&shortcuts=false&singleStory=true`
+	></iframe>
+
+	</div>
+
+</StarlightPage>
