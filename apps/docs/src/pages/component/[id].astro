@@ -2,10 +2,10 @@
 import { getCollection, getEntry, render } from "astro:content";
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
 import type { GetStaticPaths } from "astro";
+import { STORYBOOK_URL } from "../../storybook-loader";
 
 export const getStaticPaths = (async () => {
 	const components = await getCollection("components");
-	console.log("components paths", components?.length);
 	return components.map(({ id }) => ({
 		params: { id },
 	}));
@@ -14,12 +14,11 @@ export const getStaticPaths = (async () => {
 const { id } = Astro.params;
 
 const component = await getEntry("components", id);
-const endpoint = "https://ddev-storybook.geist.network/";
 
 import "../../styles/global.css";
 ---
 
-<StarlightPage frontmatter={{ title: component.data.title }}>
+<StarlightPage frontmatter={{ title: component.data.title, tableOfContents: false }}>
 
 	<div>
 		<h2>{ component.data.name} 	</h2>
@@ -29,7 +28,7 @@ import "../../styles/global.css";
 	<iframe
 		height="100%"
 		width="100%"
-		src=`${endpoint}?path=/story/${component?.id}&full=1&shortcuts=false&singleStory=true`
+		src=`${STORYBOOK_URL}?path=/story/${component?.id}&full=1&shortcuts=false&singleStory=true`
 	></iframe>
 
 	</div>

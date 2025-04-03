@@ -11,8 +11,8 @@ export const fetchStories = async () => {
 	const stories = await response.json();
 
 	return Object.values(stories.entries).filter(
-		({ importPath }: { importPath: string }) => {
-			return importPath !== "./src/stories/Configure.mdx";
+		({ tags }: { tags: string[] }) => {
+			return !tags.includes("attached-mdx") && !tags.includes("unattached-mdx");
 		},
 	);
 };
