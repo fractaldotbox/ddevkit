@@ -1,4 +1,4 @@
-## Geist dDev Kit
+## dDevKit
 
 Optimized, headless components and utils that you can copy and paste into your dApps or Agent. 
 Open Source. Open Code. AI-Ready. Accessible, Localized.
