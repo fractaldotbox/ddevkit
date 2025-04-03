@@ -1,4 +1,5 @@
 import starlight from "@astrojs/starlight";
+import tailwind from "@astrojs/tailwind";
 // @ts-check
 import { defineConfig, passthroughImageService } from "astro/config";
 // import cloudflare from "@astrojs/cloudflare";
@@ -11,6 +12,10 @@ export default defineConfig({
 			social: {
 				github: "https://github.com/fractaldotbox/geist-ddev-kit",
 			},
+			customCss: [
+				// Path to your Tailwind base styles:
+				"./src/styles/global.css",
+			],
 			sidebar: [
 				{
 					label: "Intro",
@@ -30,6 +35,11 @@ export default defineConfig({
 					autogenerate: { directory: "contributing" },
 				},
 			],
+			favicon: "/favicon.svg",
+		}),
+		tailwind({
+			// Disable the default base styles:
+			applyBaseStyles: true,
 		}),
 	],
 	// adapter: cloudflare({

@@ -81,6 +81,12 @@ importers:
       '@astrojs/starlight':
         specifier: ^0.31.1
         version: 0.31.1(astro@5.2.6(@types/node@22.10.2)(idb-keyval@6.2.1)(jiti@2.4.1)(rollup@4.34.6)(terser@5.34.1)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.5.1))
+      '@astrojs/starlight-tailwind':
+        specifier: ^3.0.1
+        version: 3.0.1(@astrojs/starlight@0.31.1(astro@5.2.6(@types/node@22.10.2)(idb-keyval@6.2.1)(jiti@2.4.1)(rollup@4.34.6)(terser@5.34.1)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.5.1)))(@astrojs/tailwind@6.0.2(astro@5.2.6(@types/node@22.10.2)(idb-keyval@6.2.1)(jiti@2.4.1)(rollup@4.34.6)(terser@5.34.1)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.5.1))(tailwindcss@3.4.13(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2)))(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2)))(tailwindcss@3.4.13(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2)))
+      '@astrojs/tailwind':
+        specifier: ^6.0.2
+        version: 6.0.2(astro@5.2.6(@types/node@22.10.2)(idb-keyval@6.2.1)(jiti@2.4.1)(rollup@4.34.6)(terser@5.34.1)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.5.1))(tailwindcss@3.4.13(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2)))(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2))
       '@fleek-platform/cli':
         specifier: ^3.8.2
         version: 3.8.2(@types/node@22.10.2)(encoding@0.1.13)(typescript@5.7.2)
@@ -90,6 +96,9 @@ importers:
       sharp:
         specifier: ^0.32.5
         version: 0.32.6
+      tailwindcss:
+        specifier: ^3.4.13
+        version: 3.4.13(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2))
 
   apps/registry:
     dependencies:
@@ -1151,10 +1160,23 @@ packages:
   '@astrojs/sitemap@3.2.1':
     resolution: {integrity: sha512-uxMfO8f7pALq0ADL6Lk68UV6dNYjJ2xGUzyjjVj60JLBs5a6smtlkBYv3tQ0DzoqwS7c9n4FUx5lgv0yPo/fgA==}
 
+  '@astrojs/starlight-tailwind@3.0.1':
+    resolution: {integrity: sha512-9gPBaglNYuD3gLSF+4RvmbO3DxMMMby/AYFuwZkS+BLo67WQWyBIdYtmof814Gi750qSnt0sCvhqFAURqbA1Cw==}
+    peerDependencies:
+      '@astrojs/starlight': '>=0.30.0'
+      '@astrojs/tailwind': ^5.1.3 || ^6.0.0
+      tailwindcss: ^3.3.3
+
   '@astrojs/starlight@0.31.1':
     resolution: {integrity: sha512-VIVkHugwgtEqJPiRH8+ouP0UqUfdmpBO9C64R+6QaQ2qmADNkI/BA3/YAJHTBZYlMQQGEEuLJwD9qpaUovi52Q==}
     peerDependencies:
       astro: ^5.1.5
+
+  '@astrojs/tailwind@6.0.2':
+    resolution: {integrity: sha512-j3mhLNeugZq6A8dMNXVarUa8K6X9AW+QHU9u3lKNrPLMHhOQ0S7VeWhHwEeJFpEK1BTKEUY1U78VQv2gN6hNGg==}
+    peerDependencies:
+      astro: ^3.0.0 || ^4.0.0 || ^5.0.0
+      tailwindcss: ^3.0.24
 
   '@astrojs/telemetry@3.2.0':
     resolution: {integrity: sha512-wxhSKRfKugLwLlr4OFfcqovk+LIFtKwLyGPqMsv+9/ibqqnW3Gv7tBhtKEb0gAyUAC4G9BTVQeQahqnQAhd6IQ==}
@@ -7071,6 +7093,13 @@ packages:
     peerDependencies:
       postcss: ^8.1.0
 
+  autoprefixer@10.4.21:
+    resolution: {integrity: sha512-O+A6LWV5LDHSJD3LjHYoNi4VLsj/Whi7k6zG12xTYaU4cQ8oxQGckXNX8cRHK5yOZ/ppVHe0ZBXGzSV9jXdVbQ==}
+    engines: {node: ^10 || ^12 || >=14}
+    hasBin: true
+    peerDependencies:
+      postcss: ^8.1.0
+
   available-typed-arrays@1.0.7:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
@@ -7331,6 +7360,11 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
+  browserslist@4.24.4:
+    resolution: {integrity: sha512-KDi1Ny1gSePi1vm0q4oxSF8b4DR44GF4BbmS2YdhPLOEqd8pDviZOGH/GsmRwoWJ2+5Lr085X7naowMwKHDG1A==}
+    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
+    hasBin: true
+
   bs58@4.0.1:
     resolution: {integrity: sha512-Ok3Wdf5vOIlBrgCvTq96gBkJw+JUEzdBgyaza5HLtPm7yTHkjRy8+JzNyHF7BHa0bNWOQIp3m5YF0nnFcOIKLw==}
 
@@ -7446,6 +7480,9 @@ packages:
 
   caniuse-lite@1.0.30001664:
     resolution: {integrity: sha512-AmE7k4dXiNKQipgn7a2xg558IRqPN3jMQY/rOsbxDhrd0tyChwbITBfiwtnqz8bi2M5mIWbxAYBvk7W7QBUS2g==}
+
+  caniuse-lite@1.0.30001709:
+    resolution: {integrity: sha512-NgL3vUTnDrPCZ3zTahp4fsugQ4dc7EKTSzwQDPEel6DMoMnfH2jhry9n2Zm8onbSR+f/QtKHFOA+iAQu4kbtWA==}
 
   capital-case@1.0.4:
     resolution: {integrity: sha512-ds37W8CytHgwnhGGTi88pcPyR15qoNkOpYwmMMfnWqqWgESapLqvDx6huFjQ5vqWSn2Z06173XNA7LtMOeUh1A==}
@@ -8383,6 +8420,9 @@ packages:
   electron-fetch@1.9.1:
     resolution: {integrity: sha512-M9qw6oUILGVrcENMSRRefE1MbHPIz0h79EKIeJWK9v563aT9Qkh8aEHPO1H5vi970wPirNY+jO9OpFoLiMsMGA==}
     engines: {node: '>=6'}
+
+  electron-to-chromium@1.5.130:
+    resolution: {integrity: sha512-Ou2u7L9j2XLZbhqzyX0jWDj6gA8D3jIfVzt4rikLf3cGBa0VdReuFimBKS9tQJA4+XpeCxj1NoWlfBXzbMa9IA==}
 
   electron-to-chromium@1.5.29:
     resolution: {integrity: sha512-PF8n2AlIhCKXQ+gTpiJi0VhcHDb69kYX4MtCiivctc2QD3XuNZ/XIOlbGzt7WAjjEev0TtaH6Cu3arZExm5DOw==}
@@ -11283,6 +11323,9 @@ packages:
   node-releases@2.0.18:
     resolution: {integrity: sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==}
 
+  node-releases@2.0.19:
+    resolution: {integrity: sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==}
+
   node-stdlib-browser@1.3.0:
     resolution: {integrity: sha512-g/koYzOr9Fb1Jc+tHUHlFd5gODjGn48tHexUK8q6iqOVriEgSnd3/1T7myBYc+0KBVze/7F7n65ec9rW6OD7xw==}
     engines: {node: '>=10'}
@@ -11862,6 +11905,10 @@ packages:
 
   postcss@8.5.2:
     resolution: {integrity: sha512-MjOadfU3Ys9KYoX0AdkBlFEF1Vx37uCCeN4ZHnmwm9FfpbsGWMZeBLMmmpY+6Ocqod7mkdZ0DT31OlbsFrLlkA==}
+    engines: {node: ^10 || ^12 || >=14}
+
+  postcss@8.5.3:
+    resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
     engines: {node: ^10 || ^12 || >=14}
 
   preact@10.24.1:
@@ -14749,6 +14796,12 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.24.2
 
+  '@astrojs/starlight-tailwind@3.0.1(@astrojs/starlight@0.31.1(astro@5.2.6(@types/node@22.10.2)(idb-keyval@6.2.1)(jiti@2.4.1)(rollup@4.34.6)(terser@5.34.1)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.5.1)))(@astrojs/tailwind@6.0.2(astro@5.2.6(@types/node@22.10.2)(idb-keyval@6.2.1)(jiti@2.4.1)(rollup@4.34.6)(terser@5.34.1)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.5.1))(tailwindcss@3.4.13(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2)))(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2)))(tailwindcss@3.4.13(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2)))':
+    dependencies:
+      '@astrojs/starlight': 0.31.1(astro@5.2.6(@types/node@22.10.2)(idb-keyval@6.2.1)(jiti@2.4.1)(rollup@4.34.6)(terser@5.34.1)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.5.1))
+      '@astrojs/tailwind': 6.0.2(astro@5.2.6(@types/node@22.10.2)(idb-keyval@6.2.1)(jiti@2.4.1)(rollup@4.34.6)(terser@5.34.1)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.5.1))(tailwindcss@3.4.13(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2)))(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2))
+      tailwindcss: 3.4.13(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2))
+
   '@astrojs/starlight@0.31.1(astro@5.2.6(@types/node@22.10.2)(idb-keyval@6.2.1)(jiti@2.4.1)(rollup@4.34.6)(terser@5.34.1)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.5.1))':
     dependencies:
       '@astrojs/mdx': 4.0.8(astro@5.2.6(@types/node@22.10.2)(idb-keyval@6.2.1)(jiti@2.4.1)(rollup@4.34.6)(terser@5.34.1)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.5.1))
@@ -14778,6 +14831,16 @@ snapshots:
       vfile: 6.0.3
     transitivePeerDependencies:
       - supports-color
+
+  '@astrojs/tailwind@6.0.2(astro@5.2.6(@types/node@22.10.2)(idb-keyval@6.2.1)(jiti@2.4.1)(rollup@4.34.6)(terser@5.34.1)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.5.1))(tailwindcss@3.4.13(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2)))(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2))':
+    dependencies:
+      astro: 5.2.6(@types/node@22.10.2)(idb-keyval@6.2.1)(jiti@2.4.1)(rollup@4.34.6)(terser@5.34.1)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.5.1)
+      autoprefixer: 10.4.21(postcss@8.5.3)
+      postcss: 8.5.3
+      postcss-load-config: 4.0.2(postcss@8.5.3)(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2))
+      tailwindcss: 3.4.13(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2))
+    transitivePeerDependencies:
+      - ts-node
 
   '@astrojs/telemetry@3.2.0':
     dependencies:
@@ -23012,6 +23075,16 @@ snapshots:
       postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
+  autoprefixer@10.4.21(postcss@8.5.3):
+    dependencies:
+      browserslist: 4.24.4
+      caniuse-lite: 1.0.30001709
+      fraction.js: 4.3.7
+      normalize-range: 0.1.2
+      picocolors: 1.1.1
+      postcss: 8.5.3
+      postcss-value-parser: 4.2.0
+
   available-typed-arrays@1.0.7:
     dependencies:
       possible-typed-array-names: 1.0.0
@@ -23363,6 +23436,13 @@ snapshots:
       node-releases: 2.0.18
       update-browserslist-db: 1.1.1(browserslist@4.24.0)
 
+  browserslist@4.24.4:
+    dependencies:
+      caniuse-lite: 1.0.30001709
+      electron-to-chromium: 1.5.130
+      node-releases: 2.0.19
+      update-browserslist-db: 1.1.1(browserslist@4.24.4)
+
   bs58@4.0.1:
     dependencies:
       base-x: 3.0.10
@@ -23471,6 +23551,8 @@ snapshots:
   camelize@1.0.1: {}
 
   caniuse-lite@1.0.30001664: {}
+
+  caniuse-lite@1.0.30001709: {}
 
   capital-case@1.0.4:
     dependencies:
@@ -24444,6 +24526,8 @@ snapshots:
   electron-fetch@1.9.1:
     dependencies:
       encoding: 0.1.13
+
+  electron-to-chromium@1.5.130: {}
 
   electron-to-chromium@1.5.29: {}
 
@@ -28395,6 +28479,8 @@ snapshots:
 
   node-releases@2.0.18: {}
 
+  node-releases@2.0.19: {}
+
   node-stdlib-browser@1.3.0:
     dependencies:
       assert: 2.1.0
@@ -29025,6 +29111,14 @@ snapshots:
       postcss: 8.5.2
       ts-node: 10.9.2(@types/node@22.10.2)(typescript@5.7.2)
 
+  postcss-load-config@4.0.2(postcss@8.5.3)(ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2)):
+    dependencies:
+      lilconfig: 3.1.2
+      yaml: 2.5.1
+    optionalDependencies:
+      postcss: 8.5.3
+      ts-node: 10.9.2(@types/node@22.10.2)(typescript@5.7.2)
+
   postcss-nested@6.2.0(postcss@8.5.2):
     dependencies:
       postcss: 8.5.2
@@ -29050,6 +29144,12 @@ snapshots:
       source-map-js: 1.2.1
 
   postcss@8.5.2:
+    dependencies:
+      nanoid: 3.3.8
+      picocolors: 1.1.1
+      source-map-js: 1.2.1
+
+  postcss@8.5.3:
     dependencies:
       nanoid: 3.3.8
       picocolors: 1.1.1
@@ -31461,6 +31561,12 @@ snapshots:
   update-browserslist-db@1.1.1(browserslist@4.24.0):
     dependencies:
       browserslist: 4.24.0
+      escalade: 3.2.0
+      picocolors: 1.1.1
+
+  update-browserslist-db@1.1.1(browserslist@4.24.4):
+    dependencies:
+      browserslist: 4.24.4
       escalade: 3.2.0
       picocolors: 1.1.1
 
