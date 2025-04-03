@@ -3,7 +3,7 @@ title: Introduction
 ---
 
 
-# Geist dDev Kit
+# dDevKit
 
 This repository consists of
 
