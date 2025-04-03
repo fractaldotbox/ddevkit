@@ -4,7 +4,7 @@ title: Installation
 
 
 ## Pre-requisite
-- You can use `shadcn@canary` cli  to add components from dDev kit. 
+- You can use `shadcn@canary` cli  to add components from dDevkit. 
 
 - Install shadcn according to [your framework](https://ui.shadcn.com/docs/installation)
 
@@ -13,7 +13,7 @@ title: Installation
 
 ## Install component from geist
 
-- dDev kit is deployed as a [custom registry of shadcn](https://ui.shadcn.com/docs/registry), on https://ddev.geist.network/ (IPFS) 
+- dDevkit is deployed as a [custom registry of shadcn](https://ui.shadcn.com/docs/registry), on https://ddev.geist.network/ (IPFS) 
 
 - You can look for components to use and identify the registry item url, then install via
 
