@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"@astrojs/cloudflare": "^12.2.1",
+		"@astrojs/sitemap": "^3.3.0",
 		"@astrojs/starlight": "^0.31.1",
 		"@astrojs/starlight-tailwind": "^3.0.1",
 		"@astrojs/tailwind": "^6.0.2",

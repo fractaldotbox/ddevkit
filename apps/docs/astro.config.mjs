@@ -1,11 +1,12 @@
+import sitemap from "@astrojs/sitemap";
 import starlight from "@astrojs/starlight";
 import tailwind from "@astrojs/tailwind";
 // @ts-check
 import { defineConfig, passthroughImageService } from "astro/config";
-import { fetchStories, storybookLoader } from "./src/storybook-loader.ts";
-// No access to `getCollection` here, use loader
+import { fetchStories } from "./src/storybook-loader.ts";
 
-// sidebar use docs collection as default, model as external link
+const PUBLIC_DOC_SITE_URL = "https://ddev-storybook.geist.network";
+
 export const getSidebarComponentsSlugs = async () => {
 	const entries = await fetchStories();
 	// Group entries by their title parts
@@ -22,6 +23,7 @@ export const getSidebarComponentsSlugs = async () => {
 
 		acc[group][subgroup].push({
 			label: name,
+			// model as external link as slug only applicable to doc
 			link: `/component/${id}`,
 		});
 
@@ -42,6 +44,7 @@ const components = await getSidebarComponentsSlugs();
 
 // https://astro.build/config
 export default defineConfig({
+	site: PUBLIC_DOC_SITE_URL,
 	integrations: [
 		starlight({
 			title: "dDevKit",
@@ -76,14 +79,12 @@ export default defineConfig({
 			],
 			favicon: "/favicon.svg",
 		}),
+		sitemap(),
 		tailwind({
 			// Disable the default base styles:
 			applyBaseStyles: true,
 		}),
 	],
-	// adapter: cloudflare({
-	// 	imageService: "cloudflare",
-	// }),
 	image: {
 		service: passthroughImageService(),
 	},
