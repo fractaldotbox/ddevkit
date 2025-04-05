@@ -6,8 +6,16 @@
 		"access": "public"
 	},
 	"license": "MIT",
-	"files": ["dist"],
-	"keywords": ["components", "ui", "tailwind", "radix-ui", "shadcn"],
+	"files": [
+		"dist"
+	],
+	"keywords": [
+		"components",
+		"ui",
+		"tailwind",
+		"radix-ui",
+		"shadcn"
+	],
 	"type": "module",
 	"exports": {
 		".": {
@@ -67,6 +75,7 @@
 		"@types/babel__core": "^7.20.1",
 		"@types/diff": "^5.0.3",
 		"@types/fs-extra": "^11.0.1",
+		"@types/node": "^22.14.0",
 		"@types/prompts": "^2.4.2",
 		"@types/stringify-object": "^4.0.5",
 		"rimraf": "^6.0.1",
