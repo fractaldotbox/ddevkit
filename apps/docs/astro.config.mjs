@@ -1,4 +1,3 @@
-import sitemap from "@astrojs/sitemap";
 import starlight from "@astrojs/starlight";
 import tailwind from "@astrojs/tailwind";
 // @ts-check
@@ -79,7 +78,6 @@ export default defineConfig({
 			],
 			favicon: "/favicon.svg",
 		}),
-		sitemap(),
 		tailwind({
 			// Disable the default base styles:
 			applyBaseStyles: true,
