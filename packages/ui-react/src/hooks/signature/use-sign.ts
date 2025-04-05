@@ -1,9 +1,6 @@
 import { signMessage } from "@wagmi/core";
 import * as typed from "micro-eth-signer/typed-data";
-import {
-	type EIP712Domain,
-	signTyped,
-} from "micro-eth-signer/typed-data";
+import { type EIP712Domain, signTyped } from "micro-eth-signer/typed-data";
 import { useEffect, useRef, useState } from "react";
 import { useAccount, useConfig, useSignMessage } from "wagmi";
 
