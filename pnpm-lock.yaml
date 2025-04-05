@@ -570,6 +570,9 @@ importers:
       typescript:
         specifier: ^4.9.3
         version: 4.9.5
+      vite-tsconfig-paths:
+        specifier: ^5.1.4
+        version: 5.1.4(typescript@4.9.5)(vite@6.1.0(@types/node@22.10.2)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.34.1)(tsx@4.19.2)(yaml@2.5.1))
 
   packages/domain:
     dependencies:
@@ -14153,6 +14156,14 @@ packages:
     resolution: {integrity: sha512-F+G3LjiGbG8QpbH9bZ//GSBr9i1InSTkaulfUHFa9jkLqVGORFBoqc2A/Yu5Mmh1kNAbiAeKeK+6aaQUf3x0JA==}
     peerDependencies:
       vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0
+
+  vite-tsconfig-paths@5.1.4:
+    resolution: {integrity: sha512-cYj0LRuLV2c2sMqhqhGpaO3LretdtMn/BVX4cPLanIZuwwrkVl+lK84E/miEXkCHWXuq65rhNN4rXsBcOB3S4w==}
+    peerDependencies:
+      vite: '*'
+    peerDependenciesMeta:
+      vite:
+        optional: true
 
   vite@5.4.8:
     resolution: {integrity: sha512-FqrItQ4DT1NC4zCUqMB4c4AZORMKIa0m8/URVCZ77OZ/QSNeJ54bU1vrFADbDsuwfIPcgknRkmqakQcgnL4GiQ==}
@@ -31341,6 +31352,10 @@ snapshots:
 
   ts-toolbelt@9.6.0: {}
 
+  tsconfck@3.1.5(typescript@4.9.5):
+    optionalDependencies:
+      typescript: 4.9.5
+
   tsconfck@3.1.5(typescript@5.7.2):
     optionalDependencies:
       typescript: 5.7.2
@@ -31898,6 +31913,17 @@ snapshots:
       vite: 5.4.8(@types/node@22.10.2)(lightningcss@1.29.2)(terser@5.34.1)
     transitivePeerDependencies:
       - rollup
+
+  vite-tsconfig-paths@5.1.4(typescript@4.9.5)(vite@6.1.0(@types/node@22.10.2)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.34.1)(tsx@4.19.2)(yaml@2.5.1)):
+    dependencies:
+      debug: 4.4.0(supports-color@8.1.1)
+      globrex: 0.1.2
+      tsconfck: 3.1.5(typescript@4.9.5)
+    optionalDependencies:
+      vite: 6.1.0(@types/node@22.10.2)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.34.1)(tsx@4.19.2)(yaml@2.5.1)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
 
   vite@5.4.8(@types/node@22.10.2)(lightningcss@1.29.2)(terser@5.34.1):
     dependencies:
