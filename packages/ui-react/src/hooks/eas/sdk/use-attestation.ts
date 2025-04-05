@@ -2,10 +2,10 @@ import { SchemaEncoder } from "@ethereum-attestation-service/eas-sdk";
 import { type Signer, ZeroHash } from "ethers";
 import { useMemo } from "react";
 import {
-	Account,
+	type Account,
 	type Address,
 	type Chain,
-	Hex,
+	type Hex,
 	createWalletClient,
 	stringToHex,
 	zeroHash,
