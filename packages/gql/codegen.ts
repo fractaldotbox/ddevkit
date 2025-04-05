@@ -36,9 +36,18 @@ const config: CodegenConfig = {
 				documentMode: "string",
 			},
 		},
+		"./src/graphql/oso/": {
+			preset: "client",
+			documents: ["../../packages/ui-react/src/{lib,hooks}/oso/**/*.ts"],
+			schema: "https://www.opensource.observer/api/v1/graphql",
+			presetConfig: {
+				gqlTagName: "gql",
+			},
+			config: {
+				documentMode: "string",
+			},
+		},
 	},
 };
-
-//
 
 export default config;

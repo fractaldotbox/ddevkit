@@ -2,7 +2,7 @@ import { gql } from "@geist/graphql";
 import type { Attestation } from "@geist/graphql/eas/graphql";
 import { type UseQueryResult, useQuery } from "@tanstack/react-query";
 import { rawRequest, request } from "graphql-request";
-import { type Address, Hex } from "viem";
+import type { Address } from "viem";
 import { getEasscanEndpoint } from "#lib/eas/easscan";
 
 const allAttestationsByQuery = gql(`

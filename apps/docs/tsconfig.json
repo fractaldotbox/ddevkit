@@ -1,6 +1,8 @@
 {
 	"extends": "@geist/typescript-config/nextjs.json",
 	"compilerOptions": {
+		"moduleResolution": "bundler",
+		"module": "ES2015",
 		"plugins": [
 			{
 				"name": "next"

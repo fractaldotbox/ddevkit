@@ -1,5 +1,5 @@
 {
-	"name": "geist-ddev-kit",
+	"name": "@geist/ddevkit",
 	"private": true,
 	"scripts": {
 		"build": "turbo build",

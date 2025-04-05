@@ -1,16 +1,57 @@
 import starlight from "@astrojs/starlight";
+import tailwind from "@astrojs/tailwind";
 // @ts-check
 import { defineConfig, passthroughImageService } from "astro/config";
-// import cloudflare from "@astrojs/cloudflare";
+import { fetchStories, storybookLoader } from "./src/storybook-loader.ts";
+// No access to `getCollection` here, use loader
+
+// sidebar use docs collection as default, model as external link
+export const getSidebarComponentsSlugs = async () => {
+	const entries = await fetchStories();
+	// Group entries by their title parts
+	const groupedEntries = entries.reduce((acc, { id, title, name }) => {
+		const parts = title.split("/");
+		const [group, subgroup] = parts;
+
+		if (!acc[group]) {
+			acc[group] = {};
+		}
+		if (!acc[group][subgroup]) {
+			acc[group][subgroup] = [];
+		}
+
+		acc[group][subgroup].push({
+			label: name,
+			link: `/component/${id}`,
+		});
+
+		return acc;
+	}, {});
+
+	// Convert groups into nested sidebar items
+	return Object.entries(groupedEntries).map(([group, subgroups]) => ({
+		label: group,
+		items: Object.entries(subgroups).map(([subgroup, items]) => ({
+			label: subgroup,
+			items,
+		})),
+	}));
+};
+
+const components = await getSidebarComponentsSlugs();
 
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: "Geist dDevKit",
+			title: "dDevKit",
 			social: {
 				github: "https://github.com/fractaldotbox/geist-ddev-kit",
 			},
+			customCss: [
+				// Path to your Tailwind base styles:
+				"./src/styles/global.css",
+			],
 			sidebar: [
 				{
 					label: "Intro",
@@ -26,13 +67,18 @@ export default defineConfig({
 				},
 				{
 					label: "Components",
-					autogenerate: { directory: "components" },
+					items: components,
 				},
 				{
 					label: "Contributing",
 					autogenerate: { directory: "contributing" },
 				},
 			],
+			favicon: "/favicon.svg",
+		}),
+		tailwind({
+			// Disable the default base styles:
+			applyBaseStyles: true,
 		}),
 	],
 	// adapter: cloudflare({

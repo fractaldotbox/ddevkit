@@ -1,4 +1,4 @@
-name: Geist dDev Kit Components
+name: dDevKit Components
 
 on:
   workflow_dispatch:
