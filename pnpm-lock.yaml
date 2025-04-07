@@ -6,6 +6,7 @@ settings:
 
 overrides:
   '@noble/ed25519': 2.1.0
+  '@geist/ddev': link:packages/ddev
 
 importers:
 
