@@ -28,7 +28,7 @@ const generateCmd = (type: string) => {
 	if (type === "shadcn") {
 		const registryPath = componentPath.replace(
 			"@geist/ui-react/",
-			REGISTRY_URL,
+			`${REGISTRY_URL}/`,
 		);
 		return `pnpm exec shadcn add ${registryPath}.json`;
 	}
