@@ -16,13 +16,22 @@ export const fetchStories = async () => {
 		},
 	);
 };
+
+export type StoryMeta = {
+	id: string;
+	name: string;
+	title: string;
+	componentPath: string;
+	tags: string[];
+};
+
 // Custom loader for Storybook components
 export const load = async (context): Promise<any> => {
 	const stories = await fetchStories();
 
 	// Transform Storybook stories into Astro content entries
-	return stories.forEach((story) => {
-		const { id } = story;
+	return stories.forEach((story: StoryMeta) => {
+		const { id, title, componentPath } = story;
 		// Extract component name and story title
 		const [componentName, storyTitle] = id.split("--");
 
