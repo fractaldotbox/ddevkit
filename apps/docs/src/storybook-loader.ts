@@ -12,7 +12,8 @@ export const fetchStories = async () => {
 
 	return Object.values(stories.entries).filter(
 		({ tags }: { tags: string[] }) => {
-			return !tags.includes("attached-mdx") && !tags.includes("unattached-mdx");
+			return tags.includes("attached-mdx") || tags.includes("unattached-mdx");
+			// return !tags.includes("attached-mdx") && !tags.includes("unattached-mdx");
 		},
 	);
 };
