@@ -126,7 +126,6 @@ async function addWorkspaceComponents(
 		return handleError(new Error("Failed to fetch components from registry."));
 	}
 	registrySpinner?.succeed();
-	console.log("registry:", payload);
 
 	const registryParentMap = getRegistryParentMap(payload);
 	const registryTypeAliasMap = getRegistryTypeAliasMap();
