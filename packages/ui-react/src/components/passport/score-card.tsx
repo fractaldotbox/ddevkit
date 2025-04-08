@@ -20,7 +20,7 @@ import { Logo } from "./logo";
 
 import { useMemo } from "react";
 import type { Address } from "viem";
-import AddressBadge from "#components/identity/address-badge.js";
+import AddressBadge from "#components/identity/address-badge";
 import { cn } from "#lib/shadcn/utils";
 
 interface PassportScoreCardProps {

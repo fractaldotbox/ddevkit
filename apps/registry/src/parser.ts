@@ -55,8 +55,12 @@ export const parseImportPath = (
 	},
 ) => {
 	if (pathInput.startsWith("@geist")) {
+		console.log("pathInput @geist", pathInput);
 		// internal package
 		pathInput = pathInput.replace("@geist/domain", "#lib/domain");
+
+		pathInput = pathInput.replace("@geist/graphql/", "#lib/gql/");
+		pathInput = pathInput.replace("@geist/graphql", "#lib/gql/index");
 	}
 
 	const pathRootMatch = matchPath(pathInput);
