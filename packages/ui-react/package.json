@@ -39,7 +39,7 @@
 		"vitest": "^2.1.8"
 	},
 	"dependencies": {
-		"@ensdomains/ensjs": "4.0.1-alpha.0",
+		"@ensdomains/ensjs": "4.0.2",
 		"@ensdomains/ensjs-react": "^0.0.3",
 		"@ethereum-attestation-service/eas-sdk": "2.6.0",
 		"@ethereumjs/rlp": "^5.0.2",
@@ -132,7 +132,7 @@
 		"tailwindcss": "^3.4.13",
 		"tailwindcss-animate": "^1.0.7",
 		"ts-morph": "^24.0.0",
-		"viem": "2.x",
+		"viem": "^2.26.2",
 		"wagmi": "^2.12.16",
 		"zod": "^3.23.8"
 	}

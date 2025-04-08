@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { AddressOrEns, EfpFollowerWithName } from "#hooks/ens/efp";
 import { getNames } from "#hooks/ens/use-ensjs";
 import { FollowerListScrollable } from "./follower-list";
-
+import { useFollowers } from "#hooks/ens/use-efp-api";
 /**
  * This one is client-side based dynamic resolving
  * Better to opt for SSR

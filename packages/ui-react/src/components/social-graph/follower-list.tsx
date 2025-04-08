@@ -10,12 +10,12 @@ export const FollowerListScrollable = ({
 			<div className="p-4">
 				<h4 className="mb-4 text-sm font-medium leading-none">Followers</h4>
 				{followers.map((follower: EfpFollowerWithName) => (
-					<>
-						<div key={follower.address} className="text-sm">
+					<div key={follower.address}>
+						<div className="text-sm">
 							{follower?.name || follower.address}
 						</div>
 						<Separator className="my-2" />
-					</>
+					</div>
 				))}
 			</div>
 		</ScrollArea>
