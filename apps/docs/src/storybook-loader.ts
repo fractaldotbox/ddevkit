@@ -2,6 +2,13 @@ export const STORYBOOK_URL = "https://ddev-storybook.geist.network";
 
 import { type Loader, glob } from "astro/loaders";
 
+export const filterStoryEntry = ({
+	id,
+	type,
+}: { id: string; type: string }) => {
+	return type === "docs" && id !== "ddevkit--docs";
+};
+
 export const fetchStories = async () => {
 	const response = await fetch(`${STORYBOOK_URL}/index.json`);
 
@@ -10,15 +17,12 @@ export const fetchStories = async () => {
 	}
 	const stories = await response.json();
 
-	return Object.values(stories.entries).filter(
-		({ tags }: { tags: string[] }) => {
-			return !tags.includes("attached-mdx") && !tags.includes("unattached-mdx");
-		},
-	);
+	return Object.values(stories.entries);
 };
 
 export type StoryMeta = {
 	id: string;
+	type: string;
 	name: string;
 	title: string;
 	componentPath: string;
@@ -27,19 +31,25 @@ export type StoryMeta = {
 
 // Custom loader for Storybook components
 export const load = async (context): Promise<any> => {
-	const stories = await fetchStories();
+	const stories = (await fetchStories()) as StoryMeta[];
 
 	// Transform Storybook stories into Astro content entries
-	return stories.forEach((story: StoryMeta) => {
-		const { id, title, componentPath } = story;
+	return stories.filter(filterStoryEntry).forEach((story: StoryMeta) => {
+		const { id, type, title } = story;
+
+		const component = stories.find((story: StoryMeta) => {
+			return story.title === title && story.type === "story";
+		});
 		// Extract component name and story title
 		const [componentName, storyTitle] = id.split("--");
 
+		// componentPath
 		// Transform story data into frontmatter for Starlight
 		const entry = {
 			id,
 			slug: id,
 			...story,
+			componentPath: component?.componentPath || "",
 		};
 
 		context.store.set({

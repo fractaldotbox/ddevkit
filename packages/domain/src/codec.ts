@@ -1,4 +1,4 @@
-import { CID, MultihashDigest } from "multiformats";
+import { CID, type MultihashDigest } from "multiformats";
 
 export const isCID = (cid: string) => {
 	try {
