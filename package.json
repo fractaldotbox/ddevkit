@@ -4,6 +4,7 @@
 	"scripts": {
 		"build": "turbo build",
 		"dev": "turbo dev",
+		"dev:loose": "turbo dev --env-mode=loose",
 		"check": "biome check . --no-errors-on-unmatched",
 		"check:fix": "biome check . --write --no-errors-on-unmatched",
 		"prepare": "husky"

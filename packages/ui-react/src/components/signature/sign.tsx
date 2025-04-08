@@ -8,7 +8,6 @@ import { useAccount, useConfig, useSignMessage } from "wagmi";
 import * as typed from "micro-eth-signer/typed-data";
 import {
 	EIP712Domain,
-	GetType,
 	TypedData,
 	signTyped,
 } from "micro-eth-signer/typed-data";
