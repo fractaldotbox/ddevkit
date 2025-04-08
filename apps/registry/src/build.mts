@@ -51,6 +51,12 @@ const createWorkingArea = async () => {
 	);
 
 	await cpSync(
+		join(import.meta.dirname, "../../../packages/gql/src/graphql"),
+		join(dest, "registry/lib/gql"),
+		{ recursive: true },
+	);
+
+	await cpSync(
 		join(import.meta.dirname, "../../../packages/domain/src"),
 		join(dest, "registry/lib/domain"),
 		{ recursive: true },
@@ -142,6 +148,11 @@ for (const [
 		const depItem = itemByName.get(dep);
 
 		const files = new Map();
+		if (!depItem) {
+			// graceful handle extra path e.g. .js later
+			console.log("Error: dependency not found", dep);
+			break;
+		}
 
 		registryItem.files.concat(depItem.registryItem.files).forEach((file) => {
 			files.set(file?.path, file);

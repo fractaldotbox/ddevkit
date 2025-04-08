@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { queryTimeseriesMetrics } from "#lib/oso/project-stats.js";
+import { queryTimeseriesMetrics } from "#lib/oso/project-stats";
 
 type UseGetProjectTimeSeriesParams = {
 	projectId: string;

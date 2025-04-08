@@ -39,3 +39,9 @@ You can also run the command without any arguments to view a list of all availab
 ```bash
 npx ddev add
 ```
+
+
+# Development
+- under `packages/ddev`, `pnpm link --global`
+- at repo to execute command, `pnpm link @geist/ddev`
+- run with `pnpm exec ddev`
