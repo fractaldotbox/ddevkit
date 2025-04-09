@@ -1,10 +1,14 @@
 "use client";
 
-import { type atom, useAtom } from "jotai";
-import type { Hex } from "viem";
-
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useStore } from "@nanostores/react";
 import { Pencil2Icon } from "@radix-ui/react-icons";
+import { type MapStore, map } from "nanostores";
+import { useForm } from "react-hook-form";
+import type { Hex } from "viem";
+import { z } from "zod";
+
+import { Button } from "#components/shadcn/button";
 import {
 	Form,
 	FormControl,
@@ -14,43 +18,34 @@ import {
 	FormLabel,
 	FormMessage,
 } from "#components/shadcn/form";
-
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { Button } from "#components/shadcn/button";
 import { Input } from "#components/shadcn/input";
 
 const formSchema = z.object({
 	message: z.string().min(1).max(50),
 });
 
-// wrapper for storbook demo
 export const SignatureForm = ({
-	messageAtom,
-	signatureAtom,
+	$input,
 	signMessage,
 }: {
-	messageAtom: ReturnType<typeof atom<string>>;
-	signatureAtom: ReturnType<typeof atom<Hex>>;
+	$input: MapStore<{ message: string; signature: Hex }>;
 	signMessage: (message: any) => Promise<Hex | void>;
 }) => {
-	const [, setMessage] = useAtom(messageAtom);
-
-	const [, setSignature] = useAtom(signatureAtom);
+	const { message, signature } = useStore($input);
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			message: "",
+			message: message || "",
 		},
 	});
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
-		setMessage(values.message);
+		$input.setKey("message", values.message);
 		try {
 			const signature = await signMessage(values.message);
 			if (signature) {
-				setSignature(signature);
+				$input.setKey("signature", signature);
 			}
 		} catch (error) {
 			console.error("Error signing message:", error);
@@ -73,7 +68,7 @@ export const SignatureForm = ({
 										{...field}
 										onChange={(e) => {
 											field.onChange(e);
-											setMessage(e.target.value);
+											$input.setKey("message", e.target.value);
 										}}
 									/>
 								</FormControl>

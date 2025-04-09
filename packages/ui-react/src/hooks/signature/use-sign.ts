@@ -1,14 +1,12 @@
-import { signMessage } from "@wagmi/core";
 import * as typed from "micro-eth-signer/typed-data";
 import { type EIP712Domain, signTyped } from "micro-eth-signer/typed-data";
-import { useEffect, useRef, useState } from "react";
-import { useAccount, useConfig, useSignMessage } from "wagmi";
 
-import { type atom, useAtom } from "jotai";
 import { addr } from "micro-eth-signer";
 
 import { type Hex, SignType } from "@geist/domain/signature/sign";
 import { TYPED_DATA } from "@geist/domain/signature/type-data";
+import { useStore } from "@nanostores/react";
+import type { MapStore } from "nanostores";
 import { useMemo } from "react";
 import type { Address } from "viem";
 
@@ -43,14 +41,14 @@ export type VerifySignatureParams = {
 export const useSign = ({
 	signType,
 	privateKey,
-	messageAtom,
+	$input,
 }: {
 	signType: SignType;
 	privateKey: Hex;
-	messageAtom: ReturnType<typeof atom<string>>;
+	$input: MapStore;
 }): any => {
 	const publicKeyAddress = addr.fromPrivateKey(privateKey) as Hex;
-	const [message] = useAtom(messageAtom);
+	const { message } = useStore($input);
 
 	const typedData = useMemo(() => {
 		const messageToVerify = {

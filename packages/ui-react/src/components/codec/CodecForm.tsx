@@ -1,14 +1,15 @@
+import { useStore } from "@nanostores/react";
 import { base16 as base16S, base64 as base64S } from "@scure/base";
-import { Atom, type atom, useAtom } from "jotai";
 import { base16 } from "multiformats/bases/base16";
 import { base64 } from "multiformats/bases/base64";
 import { CID, type MultibaseEncoder } from "multiformats/cid";
 import * as json from "multiformats/codecs/json";
 import { sha256 } from "multiformats/hashes/sha2";
 import { Suspense, useEffect, useMemo, useState } from "react";
-import { Input } from "#components/ui/input";
+import { Input } from "#components/shadcn/input";
 
-import { Label } from "#components/ui/label";
+import { map } from "nanostores";
+import { Label } from "#components/shadcn/label";
 
 const MULTI_ENCODER_BY_CODEC = {
 	["multibase64"]: base64.encoder,
@@ -49,15 +50,16 @@ const CodecOutput = ({
 	);
 };
 
-export const CodecForm = ({
-	inputAtom,
-	codecAtom,
-}: {
-	inputAtom: ReturnType<typeof atom<string>>;
-	codecAtom: ReturnType<typeof atom<string>>;
-}) => {
-	const [input, setInput] = useAtom(inputAtom);
-	const [codec] = useAtom(codecAtom);
+export const $codec = map({
+	input: "",
+	codec: "",
+});
+
+export const CodecForm = ({ $codec }: { $codec: any }) => {
+	// const [input, setInput] = useAtom(inputAtom);
+	// const [codec] = useAtom(codecAtom);
+
+	const { input, codec } = useStore($codec);
 
 	const encoder = MULTI_ENCODER_BY_CODEC[codec];
 
@@ -72,7 +74,7 @@ export const CodecForm = ({
 	}, [input]);
 
 	const [output2, setOutput2] = useState("");
-	// TODO agnoistic useAtom
+
 	useEffect(() => {
 		(async () => {
 			const bytes = json.encode(message);
@@ -96,7 +98,7 @@ export const CodecForm = ({
 				<Input
 					placeholder="message"
 					onChange={(e) => {
-						setInput(e.target.value);
+						$codec.setKey("input", e.target.value);
 					}}
 				/>
 			</div>
