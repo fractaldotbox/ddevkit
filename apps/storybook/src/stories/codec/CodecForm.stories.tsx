@@ -1,6 +1,7 @@
+import { CodecForm } from "@geist/ui-react/components/codec/CodecForm";
 import type { Meta, StoryObj } from "@storybook/react";
-import { atom } from "jotai";
-import { CodecForm } from "./CodecForm";
+
+import { map } from "nanostores";
 
 const meta = {
 	title: "Codec/Multibase",
@@ -18,15 +19,19 @@ type Story = StoryObj<typeof meta>;
 
 export const Multibase64: Story = {
 	args: {
-		inputAtom: atom(""),
-		codecAtom: atom("multibase64"),
+		$codec: map({
+			input: "",
+			codec: "multibase64",
+		}),
 	},
 };
 
 export const Multibase16: Story = {
 	args: {
-		inputAtom: atom(""),
-		codecAtom: atom("multibase16"),
+		$codec: map({
+			input: "",
+			codec: "multibase16",
+		}),
 	},
 };
 

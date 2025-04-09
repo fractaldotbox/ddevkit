@@ -335,6 +335,9 @@ importers:
       multiformats:
         specifier: ^13.3.0
         version: 13.3.0
+      nanostores:
+        specifier: 0.11.3
+        version: 0.11.3
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -23068,14 +23071,6 @@ snapshots:
       chai: 5.1.2
       tinyrainbow: 1.2.0
 
-  '@vitest/mocker@2.1.8(vite@5.4.8(@types/node@22.10.2)(lightningcss@1.29.2)(terser@5.34.1))':
-    dependencies:
-      '@vitest/spy': 2.1.8
-      estree-walker: 3.0.3
-      magic-string: 0.30.17
-    optionalDependencies:
-      vite: 5.4.8(@types/node@22.10.2)(lightningcss@1.29.2)(terser@5.34.1)
-
   '@vitest/mocker@2.1.8(vite@5.4.8(@types/node@22.14.0)(lightningcss@1.29.2)(terser@5.34.1))':
     dependencies:
       '@vitest/spy': 2.1.8
@@ -33698,7 +33693,7 @@ snapshots:
   vitest@2.1.8(@types/node@22.10.2)(happy-dom@15.11.6)(jsdom@25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10))(lightningcss@1.29.2)(terser@5.34.1):
     dependencies:
       '@vitest/expect': 2.1.8
-      '@vitest/mocker': 2.1.8(vite@5.4.8(@types/node@22.10.2)(lightningcss@1.29.2)(terser@5.34.1))
+      '@vitest/mocker': 2.1.8(vite@5.4.8(@types/node@22.14.0)(lightningcss@1.29.2)(terser@5.34.1))
       '@vitest/pretty-format': 2.1.8
       '@vitest/runner': 2.1.8
       '@vitest/snapshot': 2.1.8

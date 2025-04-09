@@ -1,77 +1,11 @@
-import { AttestationForm } from "@geist/ui-react/components/attestations/attestation-form";
-import { useAttestation } from "@geist/ui-react/hooks/eas/use-attestation";
-import {
-	SCHEMA_BY_NAME,
-	SCHEMA_FIXTURE_IS_A_FRIEND,
-} from "@geist/ui-react/lib/eas/attest.fixture";
-import type { AttestationRequestData } from "@geist/ui-react/lib/eas/viem/onchain";
+import { AttestationFormWagmi } from "@geist/ui-react/components/attestations/attestation-form-wagmi";
+import { SCHEMA_BY_NAME } from "@geist/ui-react/lib/eas/attest.fixture";
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-	type Account,
-	type Address,
-	type Chain,
-	type Hex,
-	stringToHex,
-	zeroHash,
-} from "viem";
+import { type Chain, type Hex, stringToHex, zeroHash } from "viem";
 import { sepolia } from "viem/chains";
 import { withToaster } from "../decorators/toaster";
 import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
 import { withWalletControlWagmi } from "../decorators/wallet-control";
-
-const AttestationFormWagmi = ({
-	schemaId,
-	schemaIndex,
-
-	account,
-	isOffchain,
-	schemaString,
-	chain,
-	data,
-	attestData,
-}: {
-	schemaId: string;
-	schemaIndex: string;
-	account: Account;
-	isOffchain: boolean;
-	schemaString: string;
-	chain: Chain;
-	data: any;
-	attestData: Omit<AttestationRequestData, "recipient">;
-}) => {
-	if (!account) {
-		return;
-	}
-
-	console.log("schemaString", schemaString);
-
-	const { signAttestation } = useAttestation({
-		account,
-		isOffchain,
-		schemaId,
-		schemaString,
-		chain,
-	});
-
-	const recipient = "0xFD50b031E778fAb33DfD2Fc3Ca66a1EeF0652165" as Address;
-
-	return (
-		<AttestationForm
-			chainId={chain.id}
-			schemaId={schemaId}
-			schemaIndex={schemaIndex}
-			isOffchain={isOffchain}
-			signAttestation={async () =>
-				signAttestation({
-					...attestData,
-					data,
-					recipient,
-					// attester: account.address,
-				})
-			}
-		/>
-	);
-};
 
 const meta = {
 	title: "Attestations/AttestationFormWagmi",

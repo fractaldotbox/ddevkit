@@ -1,18 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { type Atom, atom, useAtom } from "jotai";
 
 import { TYPED_DATA } from "@geist/domain/signature/type-data";
 import { SignatureForm } from "@geist/ui-react/components/signature/signature-form";
-import { useMemo } from "react";
-import {
-	http,
-	type Account,
-	createPublicClient,
-	createWalletClient,
-	verifyMessage,
-} from "viem";
-import { sepolia } from "viem/chains";
-import { useSignMessage } from "wagmi";
+
+import { http, type Account } from "viem";
 import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
 
 import {
@@ -22,134 +13,30 @@ import {
 } from "@geist/domain/signature/sign";
 import { ScrollableCodeBlock } from "@geist/ui-react/components/scrollable-code-block";
 import { SignatureVerifyBadge } from "@geist/ui-react/components/signature/signature-verify-badge";
+import { useSignWagmi } from "@geist/ui-react/hooks/signature/use-sign-wagmi";
+import { type MapStore, map } from "nanostores";
 
 const { types, primaryType, domain } = TYPED_DATA;
-
-// TODO wagmi style
-type UseSignReturnType = {
-	isReady: boolean;
-	messageToVerify?: any;
-	signature?: any;
-	signMessage?: (message: Hex) => Promise<Hex>;
-	verifySignature?: (args: { address: Hex; message: any }) => Promise<boolean>;
-};
-
-const useSign = ({
-	account,
-	signType,
-	messageAtom,
-	signatureAtom,
-}: {
-	account: Account | undefined;
-	signType: SignType;
-	messageAtom: Atom<string>;
-	signatureAtom: Atom<Hex>;
-}): UseSignReturnType => {
-	if (!account) {
-		return {
-			isReady: false,
-		};
-	}
-	// temp workaround before account hoisting
-	const walletClient = createWalletClient({
-		account,
-		chain: sepolia,
-		transport: http(),
-	});
-
-	const publicClient = createPublicClient({
-		chain: sepolia,
-		transport: http(),
-	});
-
-	const [message] = useAtom(messageAtom);
-	const [signature] = useAtom(signatureAtom);
-	const { signMessageAsync } = useSignMessage();
-
-	// type satisfies TypedData here
-	const { messageToVerify, typedData } = useMemo(() => {
-		const messageToVerify =
-			signType === SignType.EIP191
-				? message
-				: {
-						...TYPED_DATA.message,
-						contents: message,
-					};
-
-		const typedData = {
-			types,
-			primaryType,
-			domain,
-			message: messageToVerify,
-		};
-		return {
-			messageToVerify,
-			typedData,
-		};
-	}, [signType, account, message]);
-
-	const signMessage = async (message: Hex) => {
-		if (signType === SignType.EIP712) {
-			return walletClient.signTypedData(typedData as any);
-		}
-		return await signMessageAsync({
-			account,
-			message,
-		});
-	};
-
-	const verifySignature = async ({
-		address,
-		message,
-	}: {
-		address: Hex;
-		message: any;
-	}) => {
-		if (signType === SignType.EIP712) {
-			return publicClient.verifyTypedData({
-				address,
-				domain,
-				types,
-				primaryType,
-				message,
-				signature,
-			} as any);
-		}
-		return verifyMessage({
-			address,
-			message,
-			signature,
-		});
-	};
-
-	return {
-		isReady: true,
-		messageToVerify,
-		signature,
-		signMessage,
-		verifySignature,
-	} satisfies UseSignReturnType;
-};
 
 const SignatureFormWagmi = ({
 	account,
 	signType,
-	messageAtom,
-	signatureAtom,
+	$input,
 	signAccountType = SignAccountType.EOA,
 }: {
 	account?: Account;
 	signType: SignType;
-	messageAtom: ReturnType<typeof atom<string>>;
-	signatureAtom: ReturnType<typeof atom<Hex>>;
+	$input: MapStore<{
+		message: string;
+		signature: Hex;
+	}>;
 	signAccountType?: SignAccountType;
 }) => {
 	const { signMessage, verifySignature, messageToVerify, signature, isReady } =
-		useSign({
+		useSignWagmi({
 			account,
 			signType,
-			messageAtom,
-			signatureAtom,
+			$input,
 		});
 
 	return (
@@ -158,8 +45,7 @@ const SignatureFormWagmi = ({
 				Type: {signType} - {signAccountType}
 				{signMessage && (
 					<SignatureForm
-						messageAtom={messageAtom}
-						signatureAtom={signatureAtom}
+						$input={$input}
 						signMessage={async (message: Hex) => {
 							return signMessage(message);
 						}}
@@ -202,12 +88,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const initInput = {
+	message: "",
+	signature: "" as Hex,
+};
+
 export const Wagmi: Story = {
 	args: {
 		signType: SignType.EIP191,
 		signAccountType: SignAccountType.EOA,
-		messageAtom: atom(""),
-		signatureAtom: atom("" as Hex),
+		$input: map(initInput),
 	},
 	decorators: [withMockAccount(), withWagmiProvider()],
 };
@@ -216,8 +106,7 @@ export const EIP712EOAWagmi: Story = {
 	args: {
 		signType: SignType.EIP712,
 		signAccountType: SignAccountType.EOA,
-		messageAtom: atom(""),
-		signatureAtom: atom("" as Hex),
+		$input: map(initInput),
 	},
 	decorators: [withMockAccount(), withWagmiProvider()],
 };
