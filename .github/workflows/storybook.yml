@@ -38,6 +38,15 @@ jobs:
           name: storybook-build
           path: apps/storybook/storybook-static
 
+      - name: Install Playwright
+        run: npx playwright install --with-deps
+
+      - name: Serve Storybook and run tests
+        run: |
+          npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+            "npx http-server apps/storybook/storybook-static --port 6006 --silent" \
+            "npx wait-on tcp:127.0.0.1:6006 && pnpm test:storybook-runner"
+
       # smoke test, disabled for now
       # - name: Build gql
       #   run:  pnpm --filter graphql build:gql
