@@ -43,13 +43,13 @@ export const StETH: Story = {
 			},
 		);
 
-		await chart.click();
+		await expect(chart).toBeInTheDocument();
+		await userEvent.hover(chart);
 
 		const label = await canvas.findByText("stETH", undefined, {
 			timeout: 5000,
 		});
 
-		await expect(chart).toBeInTheDocument();
 		await expect(label).toBeInTheDocument();
 	},
 };
