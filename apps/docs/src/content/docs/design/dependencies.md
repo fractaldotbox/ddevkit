@@ -12,8 +12,8 @@ The risk is real as we were told ["Stop using dapps"](https://decrypt.co/209804/
 
 In the web context, dependencies make the bundle larger and the site slower.  [Island Architecture](https://docs.astro.build/en/concepts/islands/) --  we try to contain comopnents into static ones as plain markups and text when possible, and limit interacitivt to speicifc componenst. This help simplify diff across versions and make a larger chunk of the dApp served by IPFS which is immutable. This also help rendering infrequently updated contnet faster, composing different frameworks in a page and encourages pushing slow operations to the server. Typically, we postpone hydration for components requiring a connected wallet. 
 
-In the context of autonomous agent, a simple package-lock.json is not sufficient to guarantee your agent keep running autonomously and safely. As dev we are just tired of [https://en.wikipedia.org/wiki/Dependency_hell].
-As we argued in [Architecture](/architecture.md) the challenge is even more prominent for diverse, decentralized agents than dApps.
+In the context of autonomous agent, a simple package-lock.json is not sufficient to guarantee your agent keep running autonomously and safely. As dev we are just tired of [dependency hell](https://en.wikipedia.org/wiki/Dependency_hell).
+As we argued in [Architecture](/design/architecture/), the challenge is even more prominent for diverse, decentralized agents than dApps.
 
 
 
@@ -37,22 +37,30 @@ Many framework adopt a plugin system, some limit dependencies to only plugin bei
 s
 ### Scenario #1
 
+```mermaid
 sequenceDiagram
     Agent->>ToolPlugin: invoke
     ToolPlugin-->>Dependencies: invoke
     Dependencies->>Protocol: invoke
+```
 
 ### Scenario #2
+
+```mermaid
 sequenceDiagram
     Agent->>Agent: invoke
     Agent-->>Dependencies: invoke
     Dependencies->>Protocol: invoke
+```
 
 
 ### Scenario #3
+
+```mermaid
 sequenceDiagram
     Agent->ImmutableTool: invoke
     ImmutableTool->>Protocol: invoke
+```
 
 Improve scenario in #2 (reduced dependencies by design and removing wrapper)
 Enable Scenario #3 where common , immutable hosted on IPFS and work with Lit Action.
@@ -65,7 +73,7 @@ viem
 
 This documents rationale behind opionated dependencies
 
-- For graphql / store related, refers to [/data.md]
+- For graphql / store related, refers to [data](/design/data)
 
 - `vitest` over `jest`
   - used by shadcn, scaffold and generally author find less issues for typscript setup as in jest.
@@ -83,4 +91,3 @@ This documents rationale behind opionated dependencies
 
 ## Form
 - we opt for shadcn form (react-hook-form) instead of radix ui form 
-
