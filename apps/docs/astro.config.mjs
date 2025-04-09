@@ -48,7 +48,7 @@ export default defineConfig({
 		starlight({
 			title: "dDevKit",
 			social: {
-				github: "https://github.com/fractaldotbox/geist-ddev-kit",
+				github: "https://github.com/fractaldotbox/ddevkit",
 			},
 			customCss: [
 				// Path to your Tailwind base styles:
