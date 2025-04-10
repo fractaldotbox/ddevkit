@@ -22,23 +22,27 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+async function testBalanceDisplay(
+	canvasElement: HTMLElement,
+	tokenRegex: RegExp,
+) {
+	const canvas = within(canvasElement);
+
+	const loadingText = await canvas.findByText("Loading...");
+	expect(loadingText).toBeInTheDocument();
+
+	await new Promise((resolve) => setTimeout(resolve, 1000));
+
+	const balanceText = await canvas.findByText(tokenRegex);
+	expect(balanceText).toBeInTheDocument();
+}
+
 export const MainnetETH: Story = {
 	args: {
 		address: BY_USER.vitalik.address as Address,
 	},
 	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-
-		// Check if the loading text is displayed initially
-		const loadingText = await canvas.findByText("Loading...");
-		expect(loadingText).toBeInTheDocument();
-
-		// Simulate a delay to allow the balance to load (mocked in Storybook)
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-
-		// Check if the balance is displayed correctly
-		const balanceText = await canvas.findByText(/ETH/); // Adjust regex based on expected balance format
-		expect(balanceText).toBeInTheDocument();
+		await testBalanceDisplay(canvasElement, /ETH/);
 	},
 };
 
@@ -48,18 +52,7 @@ export const BaseETH: Story = {
 		chainId: base.id,
 	},
 	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-
-		// Check if the loading text is displayed initially
-		const loadingText = await canvas.findByText("Loading...");
-		expect(loadingText).toBeInTheDocument();
-
-		// Simulate a delay to allow the balance to load (mocked in Storybook)
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-
-		// Check if the balance is displayed correctly
-		const balanceText = await canvas.findByText(/ETH/); // Adjust regex based on expected balance format
-		expect(balanceText).toBeInTheDocument();
+		await testBalanceDisplay(canvasElement, /ETH/);
 	},
 };
 
@@ -70,18 +63,7 @@ export const MainnetUSDC: Story = {
 		chainId: mainnet.id,
 	},
 	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-
-		// Check if the loading text is displayed initially
-		const loadingText = await canvas.findByText("Loading...");
-		expect(loadingText).toBeInTheDocument();
-
-		// Simulate a delay to allow the balance to load (mocked in Storybook)
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-
-		// Check if the balance is displayed correctly
-		const balanceText = await canvas.findByText(/USDC/); // Adjust regex based on expected balance format
-		expect(balanceText).toBeInTheDocument();
+		await testBalanceDisplay(canvasElement, /US/);
 	},
 };
 
@@ -92,17 +74,6 @@ export const OptimismUSDC: Story = {
 		chainId: optimism.id,
 	},
 	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-
-		// Check if the loading text is displayed initially
-		const loadingText = await canvas.findByText("Loading...");
-		expect(loadingText).toBeInTheDocument();
-
-		// Simulate a delay to allow the balance to load (mocked in Storybook)
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-
-		// Check if the balance is displayed correctly
-		const balanceText = await canvas.findByText(/USDC/); // Adjust regex based on expected balance format
-		expect(balanceText).toBeInTheDocument();
+		await testBalanceDisplay(canvasElement, /US/);
 	},
 };
