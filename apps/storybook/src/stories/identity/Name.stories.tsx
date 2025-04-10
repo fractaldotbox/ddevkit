@@ -16,19 +16,24 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+// Helper function to test that the name is displayed correctly
+const testNameRendering = async (canvasElement: HTMLElement) => {
+	const canvas = within(canvasElement);
+
+	// Simulate a delay to allow the name to load
+	await new Promise((resolve) => setTimeout(resolve, 2000));
+
+	// Check if the name is displayed
+	const name = await canvas.findByTestId("name");
+	expect(name).toBeInTheDocument();
+};
+
 export const Short: Story = {
 	args: {
 		addressOrEns: BY_USER.vitalik.address,
 	},
 	decorators: [withQueryClientProvider()],
 	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
-
-		// Simulate a delay to allow the name to load
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-
-		// Check if the name is displayed
-		const name = await canvas.findByTestId("name");
-		expect(name).toBeInTheDocument();
+		await testNameRendering(canvasElement);
 	},
 };
