@@ -1,13 +1,18 @@
 {
-	"extends": "@geist/typescript-config/nextjs.json",
+	"extends": "@geist/typescript-config/react-library.json",
 	"compilerOptions": {
 		"moduleResolution": "bundler",
 		"module": "ES2015",
+		"jsx": "react-jsx",
 		"plugins": [
 			{
 				"name": "next"
 			}
-		]
+		],
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
 	},
 	"include": [".astro/types.d.ts", "**/*"],
 	"exclude": ["dist"]

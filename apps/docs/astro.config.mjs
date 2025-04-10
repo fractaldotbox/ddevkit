@@ -1,3 +1,4 @@
+import react from "@astrojs/react";
 import starlight from "@astrojs/starlight";
 import tailwind from "@astrojs/tailwind";
 // @ts-check
@@ -84,6 +85,7 @@ export default defineConfig({
 			// Disable the default base styles:
 			applyBaseStyles: true,
 		}),
+		react(),
 	],
 	image: {
 		service: passthroughImageService(),

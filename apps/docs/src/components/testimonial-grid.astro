@@ -1,0 +1,73 @@
+---
+import { getCollection } from "astro:content";
+import { TestimonialCard } from "./testimonial-card";
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+const testimonials = await getCollection("testimonials");
+const firstRow = testimonials.slice(0, 2);
+const secondRow = testimonials.slice(2, 4);
+---
+
+<div class="testimonial-wrapper not-content" data-pagefind-ignore>
+	<h2 class="testimonial-grid-title">{title}</h2>
+	<div class="testimonial-grid">
+		<div class="testimonial-row">
+			{firstRow.map((testimonial) => (
+				<TestimonialCard 
+					name={testimonial.data.name} 
+					twitter={testimonial.data.twitter} 
+					client:load
+				>
+					{testimonial.body}
+				</TestimonialCard>
+			))}
+		</div>
+		<div class="testimonial-row">
+			{secondRow.map((testimonial) => (
+				<TestimonialCard 
+					name={testimonial.data.name} 
+					twitter={testimonial.data.twitter} 
+					client:load
+				>
+					{testimonial.body}
+				</TestimonialCard>
+			))}
+		</div>
+	</div>
+</div>
+
+<style>
+	.testimonial-wrapper {
+		margin: 4rem 0;
+	}
+
+	.testimonial-grid-title {
+		font-size: 1.5rem;
+		font-weight: 600;
+		margin-bottom: 2rem;
+		text-align: center;
+	}
+
+	.testimonial-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.testimonial-row {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2rem;
+	}
+
+	@media (max-width: 768px) {
+		.testimonial-row {
+			grid-template-columns: 1fr;
+		}
+	}
+</style> 

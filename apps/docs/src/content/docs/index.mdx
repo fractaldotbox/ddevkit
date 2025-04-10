@@ -16,6 +16,34 @@ hero:
       variant: minimal
 ---
 
-<div>
+import { CardGrid, Card } from '@astrojs/starlight/components';
+import TestimonialGrid from '../../components/testimonial-grid.astro';
 
+<CardGrid stagger>
+	<Card title="Open Source, Public Good" icon="open-book">
+		Includes: Site navigation, search, internationalization, SEO, easy-to-read
+		typography, code highlighting, dark mode and more.
+	</Card>
+	<Card title="Powered by Astro" icon="rocket">
+		Leverage the full power and performance of Astro. Extend Starlight with your
+		favorite Astro integrations and libraries.
+	</Card>
+	<Card title="Markdown, Markdoc, and MDX" icon="document">
+		Bring your favorite markup language. Starlight gives you built-in
+		frontmatter validation with TypeScript type-safety.
+	</Card>
+	<Card title="Bring your own UI components" icon="puzzle">
+		Starlight ships as a framework-agnostic, complete docs solution. Extend with
+		React, Vue, Svelte, Solid, and more.
+	</Card>
+</CardGrid>
+
+
+
+<div>
+dDevKit is supported and funded by amazing contributors at Gitcoin Grants #22, #23
 </div>
+
+<TestimonialGrid title="What people are saying">
+  
+</TestimonialGrid>

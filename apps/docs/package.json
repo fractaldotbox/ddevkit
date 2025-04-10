@@ -12,11 +12,22 @@
 	},
 	"dependencies": {
 		"@astrojs/cloudflare": "^12.2.1",
+		"@astrojs/react": "^4.2.3",
 		"@astrojs/starlight": "^0.31.1",
 		"@astrojs/starlight-tailwind": "^3.0.1",
 		"@astrojs/tailwind": "^6.0.2",
 		"@fleek-platform/cli": "^3.8.2",
+		"@geist/typescript-config": "workspace:*",
+		"@radix-ui/react-avatar": "^1.1.0",
 		"astro": "^5.1.5",
-		"tailwindcss": "^3.4.13"
+		"avatar": "^0.1.0",
+		"class-variance-authority": "^0.7.0",
+		"clsx": "^2.1.1",
+		"lucide-react": "^0.446.0",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"tailwind-merge": "^2.5.2",
+		"tailwindcss": "^3.4.13",
+		"tailwindcss-animate": "^1.0.7"
 	}
 }
