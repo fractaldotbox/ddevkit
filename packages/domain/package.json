@@ -53,7 +53,6 @@
 		"ethers": "^6.13.2",
 		"graphql-request": "^7.1.0",
 		"happy-dom": "^15.11.6",
-		"jotai": "^2.10.0",
 		"ky": "^1.7.2",
 		"lodash": "^4.17.21",
 		"micro-eth-signer": "^0.12.0",
