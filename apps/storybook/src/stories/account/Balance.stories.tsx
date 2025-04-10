@@ -3,10 +3,10 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { BY_USER } from "@geist/domain/user.fixture";
 import { Balance } from "@geist/ui-react/components/account/balance";
 import { BY_CHAIN_ID, Token } from "@geist/ui-react/lib/token/config";
+import { expect, within } from "@storybook/test";
 import type { Address } from "viem";
 import { base, mainnet, optimism } from "viem/chains";
 import { withWagmiProvider } from "../decorators/wagmi";
-import { expect, userEvent, within } from "@storybook/test";
 
 const meta = {
 	title: "Account/Balance",
@@ -27,18 +27,18 @@ export const MainnetETH: Story = {
 		address: BY_USER.vitalik.address as Address,
 	},
 	play: async ({ canvasElement }) => {
-	  const canvas = within(canvasElement);
+		const canvas = within(canvasElement);
 
-	  // Check if the loading text is displayed initially
-	  const loadingText = await canvas.findByText("Loading...");
-	  expect(loadingText).toBeInTheDocument();
+		// Check if the loading text is displayed initially
+		const loadingText = await canvas.findByText("Loading...");
+		expect(loadingText).toBeInTheDocument();
 
-	  // Simulate a delay to allow the balance to load (mocked in Storybook)
-	  await new Promise((resolve) => setTimeout(resolve, 1000));
+		// Simulate a delay to allow the balance to load (mocked in Storybook)
+		await new Promise((resolve) => setTimeout(resolve, 1000));
 
-	  // Check if the balance is displayed correctly
-	  const balanceText = await canvas.findByText(/ETH/); // Adjust regex based on expected balance format
-	  expect(balanceText).toBeInTheDocument();
+		// Check if the balance is displayed correctly
+		const balanceText = await canvas.findByText(/ETH/); // Adjust regex based on expected balance format
+		expect(balanceText).toBeInTheDocument();
 	},
 };
 
