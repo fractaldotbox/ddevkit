@@ -33,7 +33,7 @@ const generateCmd = (type: string) => {
 		return `npx shadcn@latest add ${registryPath}.json`;
 	}
 	const registryPath = componentPath.replace("@geist/ui-react/", "");
-	return `npx ddev add ${registryPath}`;
+	return `npx @geist/ddev add ${registryPath}`;
 };
 
 export const highlights = ["file", "CMS"];
