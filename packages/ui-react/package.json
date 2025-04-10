@@ -125,7 +125,7 @@
 		"react-hook-form": "^7.53.0",
 		"recharts": "^2.15.0",
 		"sha256": "link:@noble/hashes/sha256",
-		"shadcn": "2.4.0-canary.6",
+		"shadcn": "2.4.0",
 		"stream-browserify": "^3.0.0",
 		"tailwind-merge": "^2.5.2",
 		"tailwindcss": "^3.4.13",

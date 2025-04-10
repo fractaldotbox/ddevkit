@@ -19,7 +19,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^22.10.2",
-		"shadcn": "2.4.0-canary.6",
+		"shadcn": "2.4.0",
 		"tsx": "4.19.2",
 		"vitest": "^2.1.9",
 		"http-server": "14.1.1",

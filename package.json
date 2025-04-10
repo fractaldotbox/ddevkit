@@ -27,7 +27,7 @@
 		"cross-env": "^7.0.3",
 		"husky": "^9.1.6",
 		"prettier": "^3.2.5",
-		"shadcn": "^2.1.0",
+		"shadcn": "^2.4.0",
 		"turbo": "^2.1.2",
 		"typescript": "^5.7.2",
 		"vite-bundle-visualizer": "^1.2.1"
