@@ -100,7 +100,7 @@ Faster: Build size is generally not the major concern given treeshaking at moder
 
 
 ## How is this different from Scaffold-ETH (or Scaffold-X)
-- check [/starter-kit.md]
+- check [starter-kit](/design/starter-kit)
 
 ## Which frameworks are supported
 - Currently we focus on React with wagmi, but make it framework agnostic and support solid.js is a goal (reaplcing underlying @radix ui components) .
@@ -114,4 +114,3 @@ We're not infosec experts and precisely for that reason we do best-effort to ali
 ## Acknolwedgement
 - Thanks shadcn released with MIT license to make this possible
 - Thank you for contribution
-

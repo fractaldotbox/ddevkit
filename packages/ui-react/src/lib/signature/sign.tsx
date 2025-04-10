@@ -6,11 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { useAccount, useConfig, useSignMessage } from "wagmi";
 
 import * as typed from "micro-eth-signer/typed-data";
-import {
-	EIP712Domain,
-	TypedData,
-	signTyped,
-} from "micro-eth-signer/typed-data";
+import { EIP712Domain, signTyped } from "micro-eth-signer/typed-data";
 export type Hex = `0x${string}`;
 
 // https://www.npmjs.com/package/@noble/secp256k1

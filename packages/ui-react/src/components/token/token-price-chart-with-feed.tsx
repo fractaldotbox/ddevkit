@@ -79,7 +79,7 @@ export const TokenPriceChartWithFeed = ({
 	) satisfies ChartConfig;
 
 	return (
-		<div className="w-full h-full]">
+		<div className="w-full h-full" data-testid="token-price-chart-with-feed">
 			<ChartContainer
 				config={chartConfig}
 				style={{ height: "600px", width: "600px" }}
