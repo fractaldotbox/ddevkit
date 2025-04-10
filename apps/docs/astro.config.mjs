@@ -1,34 +1,35 @@
-import sitemap from "@astrojs/sitemap";
 import starlight from "@astrojs/starlight";
 import tailwind from "@astrojs/tailwind";
 // @ts-check
 import { defineConfig, passthroughImageService } from "astro/config";
-import { fetchStories } from "./src/storybook-loader.ts";
+import { fetchStories, filterStoryEntry } from "./src/storybook-loader.ts";
 
 const PUBLIC_DOC_SITE_URL = "https://ddev-storybook.geist.network";
 
 export const getSidebarComponentsSlugs = async () => {
 	const entries = await fetchStories();
 	// Group entries by their title parts
-	const groupedEntries = entries.reduce((acc, { id, title, name }) => {
-		const parts = title.split("/");
-		const [group, subgroup] = parts;
+	const groupedEntries = entries
+		.filter(filterStoryEntry)
+		.reduce((acc, { id, title, name }) => {
+			const parts = title.split("/");
+			const [group, subgroup] = parts;
 
-		if (!acc[group]) {
-			acc[group] = {};
-		}
-		if (!acc[group][subgroup]) {
-			acc[group][subgroup] = [];
-		}
+			if (!acc[group]) {
+				acc[group] = {};
+			}
+			if (!acc[group][subgroup]) {
+				acc[group][subgroup] = [];
+			}
 
-		acc[group][subgroup].push({
-			label: name,
-			// model as external link as slug only applicable to doc
-			link: `/component/${id}`,
-		});
+			acc[group][subgroup].push({
+				label: name,
+				// model as external link as slug only applicable to doc
+				link: `/component/${id}`,
+			});
 
-		return acc;
-	}, {});
+			return acc;
+		}, {});
 
 	// Convert groups into nested sidebar items
 	return Object.entries(groupedEntries).map(([group, subgroups]) => ({
@@ -49,7 +50,7 @@ export default defineConfig({
 		starlight({
 			title: "dDevKit",
 			social: {
-				github: "https://github.com/fractaldotbox/ddev-kit",
+				github: "https://github.com/fractaldotbox/ddevkit",
 			},
 			customCss: [
 				// Path to your Tailwind base styles:
@@ -79,7 +80,6 @@ export default defineConfig({
 			],
 			favicon: "/favicon.svg",
 		}),
-		sitemap(),
 		tailwind({
 			// Disable the default base styles:
 			applyBaseStyles: true,

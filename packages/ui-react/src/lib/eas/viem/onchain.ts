@@ -3,13 +3,13 @@
 
 import {
 	http,
-	Account,
-	Chain,
-	Client,
+	type Account,
+	type Chain,
+	type Client,
 	type Hex,
 	type ReadContractParameters,
-	TransactionReceipt,
-	Transport,
+	type TransactionReceipt,
+	type Transport,
 	type WalletClient,
 	createPublicClient,
 } from "viem";

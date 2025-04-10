@@ -26,6 +26,8 @@ const config: StorybookConfig = {
 		getAbsolutePath("@storybook/addon-essentials"),
 		getAbsolutePath("@chromatic-com/storybook"),
 		getAbsolutePath("@storybook/addon-interactions"),
+		// source addon not usable https://github.com/storybookjs/storybook/issues/22922
+		// getAbsolutePath("@storybook/addon-storysource"),
 	],
 	framework: {
 		name: getAbsolutePath("@storybook/react-vite"),
