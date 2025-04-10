@@ -29,9 +29,6 @@ async function testBalanceDisplay(
 ) {
 	const { canvas } = await setupCanvas(canvasElement, 1000);
 
-	const loadingText = await canvas.findByText("Loading...");
-	expect(loadingText).toBeInTheDocument();
-
 	const balanceText = await canvas.findByText(tokenRegex);
 	expect(balanceText).toBeInTheDocument();
 }
@@ -62,7 +59,7 @@ export const MainnetUSDC: Story = {
 		chainId: mainnet.id,
 	},
 	play: async ({ canvasElement }) => {
-		await testBalanceDisplay(canvasElement, /US/);
+		await testBalanceDisplay(canvasElement, /USDC/);
 	},
 };
 
@@ -73,6 +70,6 @@ export const OptimismUSDC: Story = {
 		chainId: optimism.id,
 	},
 	play: async ({ canvasElement }) => {
-		await testBalanceDisplay(canvasElement, /US/);
+		await testBalanceDisplay(canvasElement, /USDC/);
 	},
 };

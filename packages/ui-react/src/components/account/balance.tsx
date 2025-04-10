@@ -35,7 +35,7 @@ export const Balance = ({
 			/>
 		);
 	}
-
+	
 	return <NativeTokenBalance address={address} chainId={chainId} />;
 };
 
@@ -43,10 +43,12 @@ export const TokenBalance = ({
 	address,
 	chainId = mainnet.id,
 	tokenAddress,
+	decimalsDisplayed = 4,
 }: {
 	address: Address;
 	chainId?: number;
 	tokenAddress: Address;
+	decimalsDisplayed?: number;
 }) => {
 	const config = useConfig();
 
@@ -72,17 +74,16 @@ export const TokenBalance = ({
 
 	const { decimals } = tokenInfo || {};
 
-	console.log("data", data, tokenInfo, value, decimals);
 	return (
 		<Text>
 			{formatUnitsWithLocale({
 				value,
 				exponent: decimals ?? 18,
 				formatOptions: {
-					style: "currency",
-					maximumFractionDigits: 4,
+					maximumFractionDigits: decimalsDisplayed,
 				},
 			})}{" "}
+			{ tokenInfo?.symbol }
 		</Text>
 	);
 };

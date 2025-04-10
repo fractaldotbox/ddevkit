@@ -24,13 +24,11 @@ export const Short: Story = {
 	play: async ({ canvasElement }) => {
 		const { canvas } = await setupCanvas(canvasElement);
 
-		// Check if the address is displayed
 		const addressBadge = await canvas.findByText(
 			/^0x[a-fA-F0-9]{4}\.\.\.[a-fA-F0-9]{4}$/,
 		);
 		expect(addressBadge).toBeInTheDocument();
 
-		// Check if the tooltip trigger is present
 		const tooltipTrigger = await canvas.findByTestId("tooltip-trigger");
 		expect(tooltipTrigger).toBeInTheDocument();
 	},
@@ -44,11 +42,9 @@ export const Full: Story = {
 	play: async ({ canvasElement }) => {
 		const { canvas } = await setupCanvas(canvasElement);
 
-		// Check if the address is displayed
 		const addressBadge = await canvas.findByText(/^0x[a-fA-F0-9]{40}$/);
 		expect(addressBadge).toBeInTheDocument();
 
-		// Check if the tooltip trigger is present
 		const tooltipTrigger = await canvas.findByTestId("tooltip-trigger");
 		expect(tooltipTrigger).toBeInTheDocument();
 	},
