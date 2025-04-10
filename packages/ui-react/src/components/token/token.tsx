@@ -86,6 +86,7 @@ export const fetchTokenInfoBulkAction =
 				const address = token.address as Address;
 
 				return selectors.map((selector) => ({
+					chainId,
 					address,
 					abi: erc20Abi,
 					...selector,
