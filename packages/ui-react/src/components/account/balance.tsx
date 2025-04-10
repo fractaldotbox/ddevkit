@@ -35,7 +35,7 @@ export const Balance = ({
 			/>
 		);
 	}
-	
+
 	return <NativeTokenBalance address={address} chainId={chainId} />;
 };
 
@@ -83,7 +83,7 @@ export const TokenBalance = ({
 					maximumFractionDigits: decimalsDisplayed,
 				},
 			})}{" "}
-			{ tokenInfo?.symbol }
+			{tokenInfo?.symbol}
 		</Text>
 	);
 };
