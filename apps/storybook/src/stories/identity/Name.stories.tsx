@@ -20,10 +20,8 @@ type Story = StoryObj<typeof meta>;
 const testNameRendering = async (canvasElement: HTMLElement) => {
 	const canvas = within(canvasElement);
 
-	// Simulate a delay to allow the name to load
 	await new Promise((resolve) => setTimeout(resolve, 2000));
 
-	// Check if the name is displayed
 	const name = await canvas.findByTestId("name");
 	expect(name).toBeInTheDocument();
 };
