@@ -36,9 +36,7 @@ export const StETH: Story = {
 	play: async ({ canvasElement }) => {
 		const { canvas } = await setupCanvas(canvasElement);
 
-		const chart = await canvas.findByTestId(
-			"token-price-chart-with-feed",
-		);
+		const chart = await canvas.findByTestId("token-price-chart-with-feed");
 
 		await expect(chart).toBeInTheDocument();
 		await userEvent.hover(chart);
