@@ -1,4 +1,4 @@
-name: dDevKit Components
+name: dDevKit Components Storybook
 
 on:
   workflow_dispatch:
@@ -37,6 +37,15 @@ jobs:
         with:
           name: storybook-build
           path: apps/storybook/storybook-static
+
+      - name: Install Playwright
+        run: pnpm dlx playwright install --with-deps
+
+      - name: Serve Storybook and run tests
+        run: |
+          pnpm dlx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+            "pnpm dlx http-server apps/storybook/storybook-static --port 6006 --silent" \
+            "pnpm dlx wait-on tcp:127.0.0.1:6006 && pnpm --filter @geist/storybook test:storybook-runner"
 
       # smoke test, disabled for now
       # - name: Build gql
