@@ -77,7 +77,6 @@
 		"embla-carousel-react": "^8.3.0",
 		"ethers": "^6.13.2",
 		"happy-dom": "^15.11.6",
-		"jotai": "^2.10.0",
 		"jsdom": "^25.0.1",
 		"ky": "^1.7.2",
 		"lodash": "^4.17.21",

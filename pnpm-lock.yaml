@@ -314,9 +314,6 @@ importers:
       happy-dom:
         specifier: ^15.11.6
         version: 15.11.6
-      jotai:
-        specifier: ^2.10.0
-        version: 2.10.0(@types/react@18.3.18)(react@18.3.1)
       jsdom:
         specifier: ^25.0.1
         version: 25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -661,9 +658,6 @@ importers:
       happy-dom:
         specifier: ^15.11.6
         version: 15.11.6
-      jotai:
-        specifier: ^2.10.0
-        version: 2.10.0(@types/react@18.3.18)(react@18.3.1)
       ky:
         specifier: ^1.7.2
         version: 1.7.2
@@ -952,9 +946,6 @@ importers:
       happy-dom:
         specifier: ^15.11.6
         version: 15.11.6
-      jotai:
-        specifier: ^2.10.0
-        version: 2.10.0(@types/react@18.3.18)(react@18.3.1)
       jsdom:
         specifier: ^25.0.1
         version: 25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -10738,18 +10729,6 @@ packages:
 
   jose@5.9.3:
     resolution: {integrity: sha512-egLIoYSpcd+QUF+UHgobt5YzI2Pkw/H39ou9suW687MY6PmCwPmkNV/4TNjn1p2tX5xO3j0d0sq5hiYE24bSlg==}
-
-  jotai@2.10.0:
-    resolution: {integrity: sha512-8W4u0aRlOIwGlLQ0sqfl/c6+eExl5D8lZgAUolirZLktyaj4WnxO/8a0HEPmtriQAB6X5LMhXzZVmw02X0P0qQ==}
-    engines: {node: '>=12.20.0'}
-    peerDependencies:
-      '@types/react': '>=17.0.0'
-      react: '>=17.0.0'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      react:
-        optional: true
 
   joycon@3.1.1:
     resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
@@ -28617,11 +28596,6 @@ snapshots:
   jose@4.15.9: {}
 
   jose@5.9.3: {}
-
-  jotai@2.10.0(@types/react@18.3.18)(react@18.3.1):
-    optionalDependencies:
-      '@types/react': 18.3.18
-      react: 18.3.1
 
   joycon@3.1.1: {}
 
