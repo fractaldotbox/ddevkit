@@ -129,7 +129,7 @@
 		"typescript-eslint": "^8.0.1",
 		"vite": "^5.4.1",
 		"vite-plugin-node-polyfills": "^0.22.0",
-		"vitest": "^2.1.8",
+		"vitest": "^2.1.9",
 		"wagmi": "^2.12.16"
 	}
 }
