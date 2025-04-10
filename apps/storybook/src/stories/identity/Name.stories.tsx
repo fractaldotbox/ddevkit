@@ -1,7 +1,7 @@
-import { expect, within } from "@storybook/test";
 import { BY_USER } from "@geist/domain/user.fixture";
 import { Name } from "@geist/ui-react/components/identity/name";
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, within } from "@storybook/test";
 import { withQueryClientProvider } from "../decorators/wagmi";
 
 const meta = {
