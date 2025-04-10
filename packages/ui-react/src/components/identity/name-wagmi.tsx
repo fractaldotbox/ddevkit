@@ -9,6 +9,7 @@ export const NameWagmi = ({ addressOrEns }: { addressOrEns: AddressOrEns }) => {
 	const isName = !isHex(addressOrEns);
 
 	const { data: name, isSuccess } = useEnsName({
+		chainId: 1,
 		address: addressOrEns as Address,
 		query: {
 			enabled: !isName,
@@ -20,5 +21,5 @@ export const NameWagmi = ({ addressOrEns }: { addressOrEns: AddressOrEns }) => {
 		return name || addressOrEns;
 	}, [isSuccess]);
 
-	return <div>{displayedName}</div>;
+	return <div data-testid="name">{displayedName}</div>;
 };

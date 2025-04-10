@@ -1,9 +1,10 @@
 import { TokenPriceChart } from "@geist/ui-react/components/token/token-price-chart";
 import { BY_CHAIN_ID, Token } from "@geist/ui-react/lib/token/config";
 import type { Meta, StoryObj } from "@storybook/react";
-import { expect, userEvent, within } from "@storybook/test";
+import { expect, userEvent } from "@storybook/test";
 import { mainnet } from "viem/chains";
 import { withWagmiProvider } from "#stories/decorators/wagmi.tsx";
+import { setupCanvas } from "../utils/test-utils";
 
 const meta = {
 	title: "Token/TokenPriceChart",
@@ -33,14 +34,10 @@ export const StETH: Story = {
 		],
 	},
 	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement);
+		const { canvas } = await setupCanvas(canvasElement);
 
 		const chart = await canvas.findByTestId(
 			"token-price-chart-with-feed",
-			undefined,
-			{
-				timeout: 2000,
-			},
 		);
 
 		await expect(chart).toBeInTheDocument();

@@ -3,10 +3,11 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { BY_USER } from "@geist/domain/user.fixture";
 import { Balance } from "@geist/ui-react/components/account/balance";
 import { BY_CHAIN_ID, Token } from "@geist/ui-react/lib/token/config";
-import { expect, within } from "@storybook/test";
+import { expect } from "@storybook/test";
 import type { Address } from "viem";
 import { base, mainnet, optimism } from "viem/chains";
 import { withWagmiProvider } from "../decorators/wagmi";
+import { setupCanvas } from "../utils/test-utils";
 
 const meta = {
 	title: "Account/Balance",
@@ -26,12 +27,10 @@ async function testBalanceDisplay(
 	canvasElement: HTMLElement,
 	tokenRegex: RegExp,
 ) {
-	const canvas = within(canvasElement);
+	const { canvas } = await setupCanvas(canvasElement, 1000);
 
 	const loadingText = await canvas.findByText("Loading...");
 	expect(loadingText).toBeInTheDocument();
-
-	await new Promise((resolve) => setTimeout(resolve, 1000));
 
 	const balanceText = await canvas.findByText(tokenRegex);
 	expect(balanceText).toBeInTheDocument();

@@ -1,8 +1,9 @@
 import { BY_USER } from "@geist/domain/user.fixture";
 import { Avatar } from "@geist/ui-react/components/identity/avatar";
 import type { Meta, StoryObj } from "@storybook/react";
-import { expect, within } from "@storybook/test";
+import { expect } from "@storybook/test";
 import { withQueryClientProvider } from "../decorators/wagmi";
+import { setupCanvas } from "../utils/test-utils";
 
 const meta = {
 	title: "Identity/Avatar/Avatar",
@@ -15,10 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 // Helper function to test that the avatar is displayed correctly
 const testAvatarRendering = async (canvasElement: HTMLElement) => {
-	const canvas = within(canvasElement);
-
-	// Simulate a delay to allow the avatar to load
-	await new Promise((resolve) => setTimeout(resolve, 2000));
+	const { canvas } = await setupCanvas(canvasElement);
 
 	// Check if the avatar is displayed correctly
 	const avatar = await canvas.findByRole("img");
