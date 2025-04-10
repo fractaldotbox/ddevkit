@@ -6,6 +6,7 @@ import { BY_CHAIN_ID, Token } from "@geist/ui-react/lib/token/config";
 import type { Address } from "viem";
 import { base, mainnet, optimism } from "viem/chains";
 import { withWagmiProvider } from "../decorators/wagmi";
+import { expect, userEvent, within } from "@storybook/test";
 
 const meta = {
 	title: "Account/Balance",
@@ -25,12 +26,40 @@ export const MainnetETH: Story = {
 	args: {
 		address: BY_USER.vitalik.address as Address,
 	},
+	play: async ({ canvasElement }) => {
+	  const canvas = within(canvasElement);
+
+	  // Check if the loading text is displayed initially
+	  const loadingText = await canvas.findByText("Loading...");
+	  expect(loadingText).toBeInTheDocument();
+
+	  // Simulate a delay to allow the balance to load (mocked in Storybook)
+	  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+	  // Check if the balance is displayed correctly
+	  const balanceText = await canvas.findByText(/ETH/); // Adjust regex based on expected balance format
+	  expect(balanceText).toBeInTheDocument();
+	},
 };
 
 export const BaseETH: Story = {
 	args: {
 		address: BY_USER.vitalik.address as Address,
 		chainId: base.id,
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+
+		// Check if the loading text is displayed initially
+		const loadingText = await canvas.findByText("Loading...");
+		expect(loadingText).toBeInTheDocument();
+
+		// Simulate a delay to allow the balance to load (mocked in Storybook)
+		await new Promise((resolve) => setTimeout(resolve, 1000));
+
+		// Check if the balance is displayed correctly
+		const balanceText = await canvas.findByText(/ETH/); // Adjust regex based on expected balance format
+		expect(balanceText).toBeInTheDocument();
 	},
 };
 
@@ -40,6 +69,20 @@ export const MainnetUSDC: Story = {
 		tokenAddress: BY_CHAIN_ID[mainnet.id][Token.USDC] as Address,
 		chainId: mainnet.id,
 	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+
+		// Check if the loading text is displayed initially
+		const loadingText = await canvas.findByText("Loading...");
+		expect(loadingText).toBeInTheDocument();
+
+		// Simulate a delay to allow the balance to load (mocked in Storybook)
+		await new Promise((resolve) => setTimeout(resolve, 1000));
+
+		// Check if the balance is displayed correctly
+		const balanceText = await canvas.findByText(/USDC/); // Adjust regex based on expected balance format
+		expect(balanceText).toBeInTheDocument();
+	},
 };
 
 export const OptimismUSDC: Story = {
@@ -47,5 +90,19 @@ export const OptimismUSDC: Story = {
 		address: BY_USER.vitalik.address as Address,
 		tokenAddress: BY_CHAIN_ID[optimism.id][Token.USDC] as Address,
 		chainId: optimism.id,
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+
+		// Check if the loading text is displayed initially
+		const loadingText = await canvas.findByText("Loading...");
+		expect(loadingText).toBeInTheDocument();
+
+		// Simulate a delay to allow the balance to load (mocked in Storybook)
+		await new Promise((resolve) => setTimeout(resolve, 1000));
+
+		// Check if the balance is displayed correctly
+		const balanceText = await canvas.findByText(/USDC/); // Adjust regex based on expected balance format
+		expect(balanceText).toBeInTheDocument();
 	},
 };
