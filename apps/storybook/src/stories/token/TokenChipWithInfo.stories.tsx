@@ -42,7 +42,6 @@ export const ETHTokenChip: Story = {
 	},
 	play: async ({ canvasElement, args }) => {
 		await testTokenChip(canvasElement, args.symbol);
-		expect(ETHTokenChip.args).toBeDefined();
 	},
 };
 
@@ -58,7 +57,6 @@ export const ETHTokenChipWithAmount: Story = {
 	},
 	play: async ({ canvasElement, args }) => {
 		await testTokenChip(canvasElement, args.symbol, "300.0M");
-		expect(ETHTokenChipWithAmount.args).toBeDefined();
 	},
 };
 
@@ -75,6 +73,5 @@ export const ETHTokenChipWithValue: Story = {
 	},
 	play: async ({ canvasElement, args }) => {
 		await testTokenChip(canvasElement, args.symbol, "1.2T");
-		expect(ETHTokenChipWithValue.args).toBeDefined();
 	},
 };
