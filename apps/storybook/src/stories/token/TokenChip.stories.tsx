@@ -1,9 +1,9 @@
 import { TokenChip } from "@geist/ui-react/components/token/token-chip";
 import { BY_CHAIN_ID, Token } from "@geist/ui-react/lib/token/config";
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect } from "@storybook/test";
 import { mainnet, optimismSepolia } from "viem/chains";
 import { withWagmiProvider } from "../decorators/wagmi";
-import { expect } from "@storybook/test";
 import { setupCanvas } from "../utils/test-utils";
 
 const meta = {
