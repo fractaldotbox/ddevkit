@@ -30,7 +30,7 @@ const generateCmd = (type: string) => {
 			"@geist/ui-react/",
 			`${REGISTRY_URL}/`,
 		);
-		return `npx shadcn@latest add ${registryPath}.json`;
+		return `npx shadcn@2.4.0 add ${registryPath}.json`;
 	}
 	const registryPath = componentPath.replace("@geist/ui-react/", "");
 	return `npx @geist/ddev add ${registryPath}`;

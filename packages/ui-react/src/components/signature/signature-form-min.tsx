@@ -1,9 +1,9 @@
-import { TYPED_DATA } from "@geist/domain/signature/type-data.js";
+import { TYPED_DATA } from "@geist/domain/signature/type-data";
 import { useStore } from "@nanostores/react";
 import type { MapStore } from "nanostores";
 import { ScrollableCodeBlock } from "#components/scrollable-code-block";
 import { useSign } from "#hooks/signature/use-sign";
-import { type Hex, SignType } from "../../lib/signature/sign";
+import { type Hex, SignType } from "#lib/signature/sign";
 import { SignatureForm } from "./signature-form";
 import { SignatureVerifyBadge } from "./signature-verify-badge";
 

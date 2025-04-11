@@ -33,8 +33,8 @@ Today every agent has its own dependency graph and often versions of pacakge dif
 - We prefer downstream dependencies that is treeshakable.
 - Consider `lib/filecoin/gateway.ts` `getGatewayUrlWithCid()` as an example, it does not import dependenceis unconditionally or relevavnt ecosystem-specific code are expected to be injected using strategy pattern.
 
-Many framework adopt a plugin system, some limit dependencies to only plugin being used.
-s
+Many frameworks adopt a plugin system, some limit dependencies to only plugin being used.
+
 ### Scenario #1
 
 ```mermaid
@@ -66,7 +66,6 @@ Improve scenario in #2 (reduced dependencies by design and removing wrapper)
 Enable Scenario #3 where common , immutable hosted on IPFS and work with Lit Action.
 
 Consider supplying USDC on Aave Protocol USDC. Aave, use ethers, aave-utilities and finally.
-viem
 
 
 ## Dependencies considerations
@@ -78,7 +77,7 @@ This documents rationale behind opionated dependencies
 - `vitest` over `jest`
   - used by shadcn, scaffold and generally author find less issues for typscript setup as in jest.
 
-- Currently we use a small set of unix style stable, isomorphic lightweight libraries. To avoid supply chain attacks, we should make versions easily fixed/immutable or configurable to native 
+- Currently we use a small set of unix style stable, isomorphic lightweight libraries. 
   - `ky` over `fetch` to reduce boilerplates
   - use `URLSearchParams` over `fast-querystring`
   - unjs packages

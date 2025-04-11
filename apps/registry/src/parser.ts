@@ -182,6 +182,13 @@ export const parseItem = async (
 
 	for (const node of sourceFile.getImportDeclarations()) {
 		const currentImport = node.getModuleSpecifier().getLiteralValue();
+
+		const isTypeOnly = node.isTypeOnly();
+
+		if (isTypeOnly) {
+			break;
+		}
+
 		const {
 			packageName,
 			registryPath,

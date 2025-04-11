@@ -5,9 +5,6 @@
  * to be genearted with shadcn cli
  */
 
-// this run at runtime but
-// at storybook process.env not longer available and import.meta.env do not include config
-
 export default {
 	onchainkit: {
 		apiKey: process.env.ONCHAINKIT_API_KEY,

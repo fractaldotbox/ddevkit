@@ -28,21 +28,20 @@ This repository consists of
 - 🚶 Open source. Authors can walkaway. No npm account to secure.
 
 
+## Demo
+
+<div style="position: relative; padding-bottom: 62.42774566473989%; height: 0;"><iframe src="https://www.loom.com/embed/0cc7734987c34a4a9ffe1f928396fa22?sid=f4aa37c9-9cdf-4e44-8308-8e58c42ba4c7" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
 ## Overview
-
-
-> We're creating cookbook instead of libraries and we focus on working, headless components.
- It is way easier to identify painpoints and refactor for best architecture, instead of being astronaut architects.  For now we try to mimic behaviours of common components e.g. what you see on explorers/wallets and we will revisit best UX for each component.
-
 
 We follow many of the [principles](https://ui.shadcn.com/docs) of shadcn. 
 
-We try to create headless, generic dApp components and agent utils that work well across different ecosystems.  
-Besides decoupling style and implementation as in shadcn, the bigger motivation is to support developing dApp and decentralized agents that are trustless, autonomous, secured from supply chain attacks with minimal dependencies.
+We try to create headless, generic & interoperable dApp components and agent utils that work well across different ecosystems.  
+Besides decoupling style and implementation as in shadcn, the bigger motivation is to support developing dApp and decentralized agents that are trustless, autonomous, secured from supply chain attacks with minimal dependencies. 
 
 With Open Code we make it AI-ready and provide reasonable defaults allowing one to extend per need, enabling agents generating and iterating its own codebase. 
 
-Learn about more about architecture design at [here](/design/architecture). 
+Learn more about the moviations of [Build your own library](/build-your-own-library.md) and [architecture design](/design/architecture). 
 
 
 ### When to use
@@ -53,14 +52,7 @@ Learn about more about architecture design at [here](/design/architecture).
 
 ## FAQ
 
-### Why 
-Start with some sensible defaults, then customize the components to your needs.
 
-Easy to Style: One of the drawbacks of packaging the components in an npm package is that the style is coupled with the implementation. The design of your components should be separate from their implementation.
-
-Secure: Avoid supply chain attack
-
-Faster: Build size is generally not the major concern given treeshaking at modern ESM, but we avoid duplications at various depenedencies such as having both jotai and zustand.
 
 ## Why treeshaking is not enough?
 

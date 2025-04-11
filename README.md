@@ -5,6 +5,7 @@ Open Source. Open Code. AI-Ready. Accessible, Localized.
 
 Inspired by [shadcn/ui](https://github.com/shadcn-ui). 
 
+## [Documentations](https://ddevkit.geist.network/) | [Roadmap](https://github.com/orgs/fractaldotbox/projects/13) | [X @dDevKit](https://x.com/dDevKit)
 > This is not a library. It is how you build your library.
 
 ⚠️ This is preview alpha version under active development
@@ -26,7 +27,7 @@ Inspired by [shadcn/ui](https://github.com/shadcn-ui).
 - 🙌 Working example. First class Storybook support, avoid outdated documentations. 
 - 🚶 Open source. Authors can walkaway. No npm account breaking your code.
 
-## [Documentations](https://ddevkit.geist.network/) | [Roadmap](https://github.com/orgs/fractaldotbox/projects/13)
+
 
 ## Samlpe usage
 - Check out [Hosted Storybook](https://ddev-storybook.geist.network/) for working examples 
@@ -34,5 +35,6 @@ Inspired by [shadcn/ui](https://github.com/shadcn-ui).
 Built by Team of [FractalBox](https://fractal.box/) and the community 
 
 
-## Acknolwedgement
-- Thanks shadcn released with MIT license to make this possible
+## Acknowledgement
+- Thanks shadcn released with MIT license to make this 
+- Thanks contributors and sponsors on [Gitcoin](https://explorer.gitcoin.co/#/projects/0x9dd138d22b68c074ec450b2560a00d89887058e886e433bb527fa6fce3f9b352) who funded this project.
