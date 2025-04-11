@@ -1,7 +1,7 @@
 import { TokenChipWithInfo } from "@geist/ui-react/components/token/token-chip-with-info";
+import type { Meta, StoryObj } from "@storybook/react";
 import { expect } from "@storybook/test";
 import { setupCanvas } from "../utils/test-utils";
-import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
 	title: "OnchainInfo/TokenChipWithInfo",
@@ -17,7 +17,11 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const testTokenChip = async (canvasElement: HTMLElement, symbol: string, amount?: string) => {
+const testTokenChip = async (
+	canvasElement: HTMLElement,
+	symbol: string,
+	amount?: string,
+) => {
 	const { canvas } = await setupCanvas(canvasElement);
 	const tokenChip = await canvas.findByRole("button");
 	expect(tokenChip).toBeInTheDocument();
