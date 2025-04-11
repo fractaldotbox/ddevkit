@@ -430,7 +430,6 @@ export const VITALIK_TRANSFER = {
 	timestamp: "2024-10-28T23:30:59.000000Z",
 	nonce: 1420,
 	block: 21067426,
-	transaction_types: ["coin_transfer"],
 	exchange_rate: "3316.49",
 	block_number: 21067426,
 	has_error_in_internal_transactions: false,
