@@ -31,7 +31,7 @@ describe("fetchTokenInfoBulkAction", () => {
 
 		const results = await fetchTokenInfoBulkAction(config, 1)(tokens);
 
-		console.log("results", results);
+		// console.log("results", results);
 		// Verify first token results
 		const token =
 			results["eip155:1/erc20:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"];

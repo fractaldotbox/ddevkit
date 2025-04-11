@@ -46,7 +46,7 @@ describe(
 
 		test("#listBuckets", async () => {
 			const results = await listBuckets(config);
-			console.log("results", results);
+			// console.log("results", results);
 			expect(
 				!!results.data!.find(
 					(bucket: any) => bucket.Name === testBucketNameExists,
@@ -59,7 +59,7 @@ describe(
 				...config,
 				bucketName: testBucketNameExists,
 			});
-			console.log("files", files);
+			// console.log("files", files);
 			// expect(!!files.length > 0).toEqual(true);
 		});
 
