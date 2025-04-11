@@ -1,7 +1,7 @@
 import { CodecForm } from "@geist/ui-react/components/codec/CodecForm";
-import { setupCanvas } from "../utils/test-utils";
-import { userEvent, within, expect } from "@storybook/test";
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, userEvent, within } from "@storybook/test";
+import { setupCanvas } from "../utils/test-utils";
 
 import { map } from "nanostores";
 
