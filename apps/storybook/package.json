@@ -69,7 +69,8 @@
 		"@ucanto/client": "^9.0.1",
 		"@ucanto/interface": "^10.0.1",
 		"@ucanto/transport": "^9.1.1",
-		"@wagmi/core": "^2.13.8",
+		"@wagmi/connectors": "^5.7.12",
+		"@wagmi/core": "^2.16.7",
 		"@web3-storage/w3up-client": "^16.5.1",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",
@@ -109,11 +110,11 @@
 		"@storybook/addon-links": "^8.3.4",
 		"@storybook/addon-onboarding": "^8.3.4",
 		"@storybook/addon-themes": "^8.3.4",
-		"@storybook/test-runner": "^0.22.0",
 		"@storybook/blocks": "^8.3.4",
 		"@storybook/react": "^8.3.4",
 		"@storybook/react-vite": "^8.3.4",
 		"@storybook/test": "^8.3.4",
+		"@storybook/test-runner": "^0.22.0",
 		"@testing-library/jest-dom": "^6.6.3",
 		"@testing-library/react": "^16.0.1",
 		"@testing-library/react-hooks": "^8.0.1",
@@ -130,6 +131,6 @@
 		"vite": "^5.4.1",
 		"vite-plugin-node-polyfills": "^0.22.0",
 		"vitest": "^2.1.9",
-		"wagmi": "^2.12.16"
+		"wagmi": "^2.14.16"
 	}
 }

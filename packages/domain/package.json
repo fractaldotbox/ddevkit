@@ -46,7 +46,7 @@
 		"@ucanto/client": "^9.0.1",
 		"@ucanto/interface": "^10.0.1",
 		"@ucanto/transport": "^9.1.1",
-		"@wagmi/core": "^2.13.8",
+		"@wagmi/core": "^2.16.7",
 		"@web3-storage/w3up-client": "^16.5.1",
 		"date-fns": "^4.1.0",
 		"embla-carousel-react": "^8.3.0",
