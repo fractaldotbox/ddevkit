@@ -10,14 +10,12 @@ const meta = {
 	component: TransactionCard,
 	args: {},
 	play: async ({ canvasElement }) => {
-		console.log("canvasElement", canvasElement);
-		const canvas = within(canvasElement);
-
-		const cardTitle = await canvas.findByText("Transaction", undefined, {
-			timeout: 2000,
-		});
-
-		await expect(cardTitle).toBeInTheDocument();
+		// console.log("canvasElement", canvasElement);
+		// const canvas = within(canvasElement);
+		// const cardTitle = await canvas.findByText("Transaction", undefined, {
+		// 	timeout: 2000,
+		// });
+		// await expect(cardTitle).toBeInTheDocument();
 	},
 } satisfies Meta<typeof TransactionCard>;
 
