@@ -186,7 +186,7 @@ export const parseItem = async (
 		const isTypeOnly = node.isTypeOnly();
 
 		if (isTypeOnly) {
-			break;
+			continue;
 		}
 
 		const {
