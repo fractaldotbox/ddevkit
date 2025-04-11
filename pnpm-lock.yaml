@@ -23305,14 +23305,6 @@ snapshots:
       chai: 5.2.0
       tinyrainbow: 2.0.0
 
-  '@vitest/mocker@3.1.1(vite@5.4.8(@types/node@22.10.2)(lightningcss@1.29.2)(terser@5.34.1))':
-    dependencies:
-      '@vitest/spy': 3.1.1
-      estree-walker: 3.0.3
-      magic-string: 0.30.17
-    optionalDependencies:
-      vite: 5.4.8(@types/node@22.10.2)(lightningcss@1.29.2)(terser@5.34.1)
-
   '@vitest/mocker@3.1.1(vite@5.4.8(@types/node@22.14.0)(lightningcss@1.29.2)(terser@5.34.1))':
     dependencies:
       '@vitest/spy': 3.1.1
@@ -24360,7 +24352,7 @@ snapshots:
 
   axios@1.7.7:
     dependencies:
-      follow-redirects: 1.15.9(debug@4.4.0)
+      follow-redirects: 1.15.9(debug@4.3.4)
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -27804,7 +27796,7 @@ snapshots:
   http-proxy@1.18.1:
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.9(debug@4.4.0)
+      follow-redirects: 1.15.9(debug@4.3.4)
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -33945,7 +33937,7 @@ snapshots:
   vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.10.2)(happy-dom@15.11.6)(jsdom@25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10))(lightningcss@1.29.2)(terser@5.34.1):
     dependencies:
       '@vitest/expect': 3.1.1
-      '@vitest/mocker': 3.1.1(vite@5.4.8(@types/node@22.10.2)(lightningcss@1.29.2)(terser@5.34.1))
+      '@vitest/mocker': 3.1.1(vite@5.4.8(@types/node@22.14.0)(lightningcss@1.29.2)(terser@5.34.1))
       '@vitest/pretty-format': 3.1.1
       '@vitest/runner': 3.1.1
       '@vitest/snapshot': 3.1.1
