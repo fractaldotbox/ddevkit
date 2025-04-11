@@ -1,8 +1,8 @@
 // TODO extract sample wagmi config
 
+import { injected } from "@wagmi/connectors";
 import { base, mainnet, optimism, optimismSepolia } from "viem/chains";
 import { http, createConfig } from "wagmi";
-import { injected } from "wagmi/connectors";
 
 export const WAGMI_CONFIG = createConfig({
 	chains: [mainnet, base, optimism, optimismSepolia],
