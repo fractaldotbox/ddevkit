@@ -42,6 +42,7 @@ export const TokenChipWithInfo = ({
 					{isShowValue && value
 						? formatUnitsWithLocale({
 								value: value,
+								locale: new Intl.Locale("en-US"),
 								exponent: decimals,
 								formatOptions: {
 									style: "currency",
@@ -49,6 +50,7 @@ export const TokenChipWithInfo = ({
 							})
 						: formatUnitsWithLocale({
 								value: amount ?? 0n,
+								locale: new Intl.Locale("en-US"),
 								exponent: decimals,
 								formatOptions: {
 									maximumFractionDigits,

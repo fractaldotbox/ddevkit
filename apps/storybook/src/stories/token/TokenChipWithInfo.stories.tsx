@@ -40,8 +40,8 @@ export const ETHTokenChip: Story = {
 		name: "Ether",
 		symbol: "ETH",
 	},
-	play: async ({ canvasElement, args }) => {
-		await testTokenChip(canvasElement, args.symbol);
+	play: async ({ canvasElement }) => {
+		await testTokenChip(canvasElement, 'ETH');
 	},
 };
 
@@ -55,8 +55,8 @@ export const ETHTokenChipWithAmount: Story = {
 		decimals: 18,
 		maximumFractionDigits: 1,
 	},
-	play: async ({ canvasElement, args }) => {
-		await testTokenChip(canvasElement, args.symbol, "300.0M");
+	play: async ({ canvasElement }) => {
+		await testTokenChip(canvasElement, 'ETH', "0.3");
 	},
 };
 
@@ -71,7 +71,7 @@ export const ETHTokenChipWithValue: Story = {
 		maximumFractionDigits: 1,
 		isShowValue: true,
 	},
-	play: async ({ canvasElement, args }) => {
-		await testTokenChip(canvasElement, args.symbol, "1.2T");
+	play: async ({ canvasElement }) => {
+		await testTokenChip(canvasElement, 'ETH', "$1,234.50");
 	},
 };
