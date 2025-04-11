@@ -3,10 +3,8 @@ import { WAGMI_CONFIG } from "@geist/ui-react/lib/utils/wagmi-config";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { mock } from "@wagmi/connectors";
 import type { Hex } from "viem";
-import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
+import { privateKeyToAccount } from "viem/accounts";
 import { type Config, WagmiProvider } from "wagmi";
-
-// TODO fix Story type
 
 const createMock = (wagmiConfig: Config, isStable = true) => {
 	const privateKey = isStable
@@ -57,10 +55,12 @@ export const withMockAccount = () => {
 	return (Story: any, context: any) => {
 		// Not possible to hoist a private key based account. Inject at action
 		// https://wagmi.sh/react/guides/viem#private-key-mnemonic-accounts
-		const { account, privateKey } = createMock(WAGMI_CONFIG);
+		const { account, privateKey, config } = createMock(WAGMI_CONFIG);
 		return (
 			<>
-				<Story args={{ account, privateKey, ...(context.args || {}) }} />
+				<Story
+					args={{ account, privateKey, config, ...(context.args || {}) }}
+				/>
 			</>
 		);
 	};
