@@ -88,7 +88,6 @@ export const fetchTokenInfoBulkAction =
 				return selectors.map((selector) => ({
 					chainId,
 					address,
-					chainId,
 					abi: erc20Abi,
 					...selector,
 				}));
@@ -175,28 +174,24 @@ export const useTokenInfo = ({
 				{
 					chainId,
 					address,
-					chainId,
 					abi: erc20Abi,
 					functionName: "decimals",
 				},
 				{
 					chainId,
 					address,
-					chainId,
 					abi: erc20Abi,
 					functionName: "name",
 				},
 				{
 					chainId,
 					address,
-					chainId,
 					abi: erc20Abi,
 					functionName: "symbol",
 				},
 				{
 					chainId,
 					address,
-					chainId,
 					abi: erc20Abi,
 					functionName: "totalSupply",
 				},
