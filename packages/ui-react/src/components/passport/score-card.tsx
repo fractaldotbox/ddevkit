@@ -63,7 +63,7 @@ export const PassportScoreCard = ({
 	passportParams,
 	className,
 }: PassportScoreCardProps) => {
-	const { data, isPending, error } = useQuery({
+	const { data, isSuccess, error } = useQuery({
 		queryKey: ["passport-score", address, passportParams],
 		queryFn: async () => {
 			if ("model" in passportParams) {
@@ -124,7 +124,7 @@ export const PassportScoreCard = ({
 			</CardHeader>
 			<CardContent>
 				<div className="space-y-4">
-					{isPending ? (
+					{!isSuccess ? (
 						<>
 							<Skeleton className="h-4 w-48" />
 							<Skeleton className="h-4 w-48" />
