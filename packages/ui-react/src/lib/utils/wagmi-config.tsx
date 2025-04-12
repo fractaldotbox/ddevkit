@@ -2,7 +2,7 @@
 
 import { injected } from "@wagmi/connectors";
 import { base, mainnet, optimism, optimismSepolia } from "viem/chains";
-import { http } from "wagmi";
+import { http, type CreateConfigParameters } from "wagmi";
 
 export const WAGMI_CONFIG_PARAMS = {
 	chains: [mainnet, base, optimism, optimismSepolia],
@@ -14,4 +14,4 @@ export const WAGMI_CONFIG_PARAMS = {
 		[optimism.id]: http(),
 		[optimismSepolia.id]: http(),
 	},
-};
+} as CreateConfigParameters;

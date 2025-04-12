@@ -2,9 +2,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen } from "@testing-library/react";
 import { mainnet } from "viem/chains";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { WagmiProvider } from "wagmi";
+import { WagmiProvider, createConfig } from "wagmi";
 import { useGetChartWithMultipleTokens } from "#hooks/data/use-defillama";
-import { WAGMI_CONFIG } from "#lib/utils/wagmi-config";
+import { WAGMI_CONFIG_PARAMS } from "#lib/utils/wagmi-config";
 import { TokenPriceChart } from "./token-price-chart";
 
 global.ResizeObserver = class {
@@ -24,7 +24,7 @@ const WrappedTokenPriceChart = (
 	const queryClient = new QueryClient();
 	return (
 		<QueryClientProvider client={queryClient}>
-			<WagmiProvider config={WAGMI_CONFIG}>
+			<WagmiProvider config={createConfig(WAGMI_CONFIG_PARAMS)}>
 				<TokenPriceChart {...props} />
 			</WagmiProvider>
 		</QueryClientProvider>
