@@ -19,6 +19,7 @@ env:
   TEST_EAS_PRIVATE_KEY: ${{ secrets.TEST_EAS_PRIVATE_KEY }}
   TEST_USER_PRIVATE_KEY: ${{ secrets.TEST_USER_PRIVATE_KEY }}
   LIGHTHOUSE_API_KEY: ${{ secrets.LIGHTHOUSE_API_KEY }}
+  PASSPORT_API_KEY:  ${{ secrets.PASSPORT_API_KEY }}
 
 jobs:
   build-storybook:

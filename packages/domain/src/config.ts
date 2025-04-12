@@ -19,6 +19,11 @@ export default {
 		key: process.env.STORACHA_KEY,
 		proof: process.env.STORACHA_PROOF,
 	},
+	passport: {
+		endpointUrl:
+			process.env.PASSPORT_API_ENDPOINT_URL || "https://api.passport.xyz",
+		apiKey: process.env.PASSPORT_API_KEY,
+	},
 	alchemy: {
 		apiKey: process.env.ALCHEMY_API_KEY,
 	},
