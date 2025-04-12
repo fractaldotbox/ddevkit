@@ -11,6 +11,7 @@
 	},
 	"pnpm": {
 		"overrides": {
+			"axios": "^1.8.4",
 			"@noble/ed25519": "2.1.0",
 			"@geist/ddev": "link:packages/ddev"
 		}
