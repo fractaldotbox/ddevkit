@@ -111,7 +111,6 @@ export const Wagmi: Story = {
 		const messageInput = await canvas.getByRole("textbox");
 		expect(messageInput).toBeInTheDocument();
 
-		// Check sign button exists
 		const signButton = await canvas.getByRole("button", {
 			name: /Sign Message/i,
 		});

@@ -39,7 +39,7 @@ export const DdevKitProject: Story = {
 			activeDeveloperCard.querySelector(".tabular-nums");
 		expect(activeDeveloperValue).not.toBeNull();
 		if (activeDeveloperValue) {
-			expect(activeDeveloperValue.textContent).toMatch(/^\d+$/); // Should be a number
+			expect(activeDeveloperValue.textContent).toMatch(/^\d+$/);
 		}
 
 		const activeDeveloperPeriod =
@@ -53,7 +53,7 @@ export const DdevKitProject: Story = {
 		const commitCountValue = commitCountCard.querySelector(".tabular-nums");
 		expect(commitCountValue).not.toBeNull();
 		if (commitCountValue) {
-			expect(commitCountValue.textContent).toMatch(/^\d+$/); // Should be a number
+			expect(commitCountValue.textContent).toMatch(/^\d+$/);
 		}
 
 		const commitCountPeriod =
@@ -69,7 +69,7 @@ export const DdevKitProject: Story = {
 			developerCountCard.querySelector(".tabular-nums");
 		expect(developerCountValue).not.toBeNull();
 		if (developerCountValue) {
-			expect(developerCountValue.textContent).toMatch(/^\d+$/); // Should be a number
+			expect(developerCountValue.textContent).toMatch(/^\d+$/);
 		}
 
 		const developerCountPeriod =

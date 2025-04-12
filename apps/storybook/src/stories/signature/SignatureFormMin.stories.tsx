@@ -8,13 +8,6 @@ import { map } from "nanostores";
 import { withMockAccount } from "../decorators/wagmi";
 import { setupCanvas } from "../utils/test-utils";
 
-/**
- * Helper function to test the signature form UI interactions
- *
- * @param canvasElement The canvas element to test
- * @param options Additional test options
- * @returns Promise that resolves when the test is complete
- */
 const testSignatureFormUI = async (
 	canvasElement: HTMLElement,
 	options: {

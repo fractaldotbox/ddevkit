@@ -18,7 +18,6 @@ import { setupCanvas } from "../utils/test-utils";
 
 type Story = StoryObj<typeof meta>;
 
-// Helper function to test that the name is displayed correctly
 const testNameRendering = async (canvasElement: HTMLElement) => {
 	const { canvas } = await setupCanvas(canvasElement);
 

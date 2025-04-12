@@ -30,11 +30,10 @@ async function testPassportScoreCardDisplay(
 	const addressElement = canvas.getByText(addressText);
 	expect(addressElement).toBeInTheDocument();
 
-	// TODO: uncomment when the env variable is set for github actions
-	// await new Promise((resolve) => setTimeout(resolve, 2000));
-	// const scoreRegex = /\d+\.\d{2}/;
-	// const scoreElements = canvas.getByTestId("passport-score-card-score");
-	// expect(scoreElements.textContent).toMatch(scoreRegex);
+	await new Promise((resolve) => setTimeout(resolve, 2000));
+	const scoreRegex = /\d+\.\d{2}/;
+	const scoreElements = canvas.getByTestId("passport-score-card-score");
+	expect(scoreElements.textContent).toMatch(scoreRegex);
 }
 
 export const VitalikModel: Story = {
