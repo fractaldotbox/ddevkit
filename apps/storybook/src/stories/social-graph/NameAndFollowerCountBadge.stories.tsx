@@ -18,12 +18,15 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-async function testEnsAndFollowerCount(canvasElement: HTMLElement, ensText: string) {
+async function testEnsAndFollowerCount(
+	canvasElement: HTMLElement,
+	ensText: string,
+) {
 	const { canvas } = await setupCanvas(canvasElement, 4000);
-	
+
 	const ensTextStr = await canvas.findByText(ensText);
 	expect(ensTextStr).toBeInTheDocument();
-	
+
 	const followersText = await canvas.findByText(/\d+ followers/);
 	expect(followersText).toBeInTheDocument();
 }
