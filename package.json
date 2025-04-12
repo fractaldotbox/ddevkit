@@ -12,6 +12,7 @@
 	"pnpm": {
 		"overrides": {
 			"ethers@5": ">=5.8.0",
+			"elliptic@6": ">=6.6.1",
 			"@noble/ed25519": "2.1.0",
 			"@geist/ddev": "link:packages/ddev"
 		}
