@@ -1,5 +1,5 @@
 import { SchemaEncoder } from "@ethereum-attestation-service/eas-sdk";
-import { type Signer, ZeroHash } from "ethers";
+import type { Signer } from "ethers";
 import { useMemo } from "react";
 import {
 	type Account,
@@ -45,7 +45,7 @@ export const useAttestationEasSdk = (params: UseAttestationEasSdkParams) => {
 			recipient,
 			revocable = false,
 			expirationTime = NO_EXPIRATION,
-			refUID = ZeroHash,
+			refUID = zeroHash,
 			data,
 			salt,
 		} = requestParams;
@@ -70,7 +70,7 @@ export const useAttestationEasSdk = (params: UseAttestationEasSdkParams) => {
 					data: encodedData,
 					salt,
 				},
-				signer,
+				signer as any,
 			);
 
 			const { uid } = attestation;
