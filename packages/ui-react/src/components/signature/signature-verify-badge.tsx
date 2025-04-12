@@ -33,6 +33,7 @@ export const SignatureVerifyBadge = ({
 		});
 	}, [signature, message, address]);
 
+	// TODO: use break-all class from tailwind instead of injected style
 	return (
 		<div>
 			<div className="flex items-center space-x-2">
@@ -41,7 +42,9 @@ export const SignatureVerifyBadge = ({
 					<AddressBadge address={address} />
 				</div>
 			</div>
-			<div className="font-xs break-all">Signature: {signature} </div>
+			<div className="font-xs" style={{ wordBreak: "break-all" }}>
+				Signature: {signature}{" "}
+			</div>
 			<Flex align="center" gap="2">
 				{isVerified ? "✅Verified!" : ""}
 			</Flex>
