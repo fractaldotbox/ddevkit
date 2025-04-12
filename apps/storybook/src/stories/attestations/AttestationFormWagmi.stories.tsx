@@ -20,6 +20,7 @@ const meta = {
 		withWagmiProvider(),
 	],
 	args: {},
+	tags: ["!autodocs", "experimental"],
 } satisfies Meta<typeof AttestationFormWagmi>;
 
 export default meta;
