@@ -23,7 +23,7 @@
 		"@faker-js/faker": "^8.2.0",
 		"@geist/typescript-config": "workspace:*",
 		"@testing-library/jest-dom": "^6.6.3",
-		"@testing-library/react": "^16.0.1",
+		"@testing-library/react": "^16.3.0",
 		"@testing-library/react-hooks": "^8.0.1",
 		"@turbo/gen": "^1.12.4",
 		"@types/node": "^22.10.2",
