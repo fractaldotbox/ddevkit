@@ -2,10 +2,11 @@ import { BY_USER, getRandomAccount } from "@geist/domain/user.fixture";
 import { WAGMI_CONFIG_PARAMS } from "@geist/ui-react/lib/utils/wagmi-config";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { mock } from "@wagmi/connectors";
+import type { MockParameters } from "@wagmi/connectors";
+
 import type { Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import {
-	type Config,
 	type CreateConfigParameters,
 	WagmiProvider,
 	createConfig,
@@ -26,10 +27,9 @@ const createMockConfig = (
 			...(wagmiConfigParams.connectors || []),
 			mock({
 				accounts: [account?.address],
-				features: {
-					defaultConnected: true,
-				},
-			}),
+				features: {},
+				defaultConnected: true,
+			} as MockParameters),
 		],
 	});
 	return {
