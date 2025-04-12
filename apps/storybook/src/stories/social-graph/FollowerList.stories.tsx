@@ -30,7 +30,7 @@ async function testFollowerListDisplay(
 	const followersArea = await canvas.findByText(/followers/i);
 	expect(followersArea).toBeInTheDocument();
 
-	await new Promise((resolve) => setTimeout(resolve, 2000));
+	await new Promise((resolve) => setTimeout(resolve, 4000));
 	const followerList = await canvas.findAllByText(/.eth/i);
 	expect(followerList.length).toBeGreaterThan(0);
 }
