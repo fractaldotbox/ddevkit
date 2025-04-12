@@ -74,43 +74,21 @@ export const DataTable = <TData, TValue>({
 						))}
 					</TableHeader>
 					<TableBody>
-						{/* separated row easier to style  */}
 						{table.getRowModel().rows?.length ? (
 							table.getRowModel().rows.map((row) => (
-								<>
-									<TableRow
-										key={row.id}
-										data-state={row.getIsSelected() && "selected"}
-										className=""
-									>
-										{row.getVisibleCells().map((cell) => (
-											<TableCell key={cell.id}>
-												{flexRender(
-													cell.column.columnDef.cell,
-													cell.getContext(),
-												)}
-											</TableCell>
-										))}
-									</TableRow>
-									{/* {row.getIsExpanded() && (
-										<TableRow>
-											<TableCell colSpan={columns.length}>
-												{row.subRows.map((subRow) => (
-													<TableRow key={subRow.id}>
-														{subRow.getVisibleCells().map((cell) => (
-															<TableCell key={cell.id}>
-																{flexRender(
-																	cell.column.columnDef.cell,
-																	cell.getContext(),
-																)}
-															</TableCell>
-														))}
-													</TableRow>
-												))}
-											</TableCell>
-										</TableRow>
-									)} */}
-								</>
+								<TableRow
+									key={row.id}
+									data-state={row.getIsSelected() && "selected"}
+								>
+									{row.getVisibleCells().map((cell) => (
+										<TableCell key={cell.id}>
+											{flexRender(
+												cell.column.columnDef.cell,
+												cell.getContext(),
+											)}
+										</TableCell>
+									))}
+								</TableRow>
 							))
 						) : (
 							<TableRow key={0}>
