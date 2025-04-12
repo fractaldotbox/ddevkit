@@ -125,7 +125,7 @@
 		"globals": "^15.9.0",
 		"postcss": "^8.4.24",
 		"react-test-renderer": "^18.3.1",
-		"storybook": "^8.3.4",
+		"storybook": "^8.6.12",
 		"typescript": "^5.7.2",
 		"typescript-eslint": "^8.0.1",
 		"vite": "^5.4.1",
