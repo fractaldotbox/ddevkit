@@ -1,3 +1,4 @@
+import config from "@geist/domain/config";
 import { BY_USER } from "@geist/domain/user.fixture";
 import { PassportScoreCard } from "@geist/ui-react/components/passport/score-card";
 import type { Meta, StoryObj } from "@storybook/react";
@@ -66,7 +67,7 @@ export const UserScorer: Story = {
 	args: {
 		address: BY_USER.vitalik.address,
 		passportParams: {
-			scorerId: 11454,
+			scorerId: config.passport.scorerId,
 		},
 	},
 	play: async ({ canvasElement }) => {
