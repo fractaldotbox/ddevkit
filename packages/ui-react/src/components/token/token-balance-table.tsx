@@ -53,7 +53,7 @@ const getCols = ({
 			accessorKey: "symbol",
 			header: "Symbol",
 			cell: ({ row }) => {
-				console.log("row", row, row.getValue(), row.subRows);
+				// console.log("row", row, row.getValue(), row.subRows);
 				return <>{row.getValue("symbol")}</>;
 			},
 		},
@@ -61,7 +61,7 @@ const getCols = ({
 			accessorKey: "chainId",
 			header: "ChainId",
 			cell: ({ row }) => {
-				console.log("row", row, row.getValue(), row.subRows);
+				// console.log("row", row, row.getValue(), row.subRows);
 				return <>{row.getValue("chainId")}</>;
 			},
 		},
@@ -137,6 +137,7 @@ export function TokenBalanceTable$({
 				const { symbol, chainId, agg } = entry;
 
 				return {
+					symbol,
 					price: entry.subEntries?.[0]?.price || 0.0,
 					amount: agg.amount,
 					value: agg.value,
@@ -145,7 +146,6 @@ export function TokenBalanceTable$({
 			}),
 		[tokenBalancesAggregated],
 	) as TokenBalanceEntry[];
-
 	return <TokenBalanceTable tokenBalances={tokenBalanceEntries} />;
 }
 
