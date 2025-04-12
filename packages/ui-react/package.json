@@ -113,7 +113,6 @@
 		"jsdom": "^25.0.1",
 		"ky": "^1.7.2",
 		"lodash": "^4.17.21",
-		"lodash.template": "^4.5.0",
 		"lucide-react": "^0.446.0",
 		"micro-eth-signer": "^0.12.0",
 		"micro-packed": "^0.6.3",
