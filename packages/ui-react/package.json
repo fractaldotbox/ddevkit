@@ -99,7 +99,7 @@
 		"@ucanto/interface": "^10.0.1",
 		"@ucanto/transport": "^9.1.1",
 		"@wagmi/connectors": "^5.7.12",
-		"@wagmi/core": "^2.13.8",
+		"@wagmi/core": "^2.16.7",
 		"@web3-storage/w3up-client": "^16.5.1",
 		"autoprefixer": "10.4.20",
 		"class-variance-authority": "^0.7.0",
