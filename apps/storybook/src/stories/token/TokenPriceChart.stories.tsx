@@ -34,19 +34,18 @@ export const StETH: Story = {
 		],
 	},
 	play: async ({ canvasElement }) => {
-		const { canvas } = await setupCanvas(canvasElement);
+		const { canvas } = await setupCanvas(canvasElement, 3000);
 
 		const chart = await canvas.findByTestId("token-price-chart-with-feed");
 
 		await expect(chart).toBeInTheDocument();
-		await userEvent.hover(chart);
 
-		// broken at CI, TODO
+		await userEvent.keyboard("{Tab}");
 
-		// const label = await canvas.findByText("stETH", undefined, {
-		// 	timeout: 5000,
-		// });
+		const label = await canvas.findByText("stETH", undefined, {
+			timeout: 3000,
+		});
 
-		// await expect(label).toBeInTheDocument();
+		await expect(label).toBeInTheDocument();
 	},
 };
