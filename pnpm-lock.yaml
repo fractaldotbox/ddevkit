@@ -5,6 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  axios: ^1.8.4
   '@noble/ed25519': 2.1.0
   '@geist/ddev': link:packages/ddev
 
@@ -7225,11 +7226,8 @@ packages:
   aws4@1.13.2:
     resolution: {integrity: sha512-lHe62zvbTB5eEABUVi/AwVh0ZKY9rMMDhmm+eeyuuUQbQ3+J+fONVQOZyj+DdrvD4BY33uYniyRJ4UJIaSKAfw==}
 
-  axios@0.21.4:
-    resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
-
-  axios@1.7.7:
-    resolution: {integrity: sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==}
+  axios@1.8.4:
+    resolution: {integrity: sha512-eBSYY4Y68NNlHbHBMdeDmKNtDgXWhQsJcGqzO3iLUM0GraQFSS9cVgPX5I9b3lbdFKyYoAEGAZF1DwhTaljNAw==}
 
   axobject-query@4.1.0:
     resolution: {integrity: sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ==}
@@ -16886,7 +16884,7 @@ snapshots:
       ansi-escapes: 3.2.0
       as-table: 1.0.55
       aws4: 1.13.2
-      axios: 1.7.7
+      axios: 1.8.4(debug@4.3.4)
       boxen: 5.1.2
       chalk: 4.1.2
       cli-progress: 3.12.0
@@ -16929,7 +16927,7 @@ snapshots:
       ansi-escapes: 3.2.0
       as-table: 1.0.55
       aws4: 1.13.2
-      axios: 1.7.7
+      axios: 1.8.4(debug@4.3.4)
       boxen: 5.1.2
       chalk: 4.1.2
       cli-progress: 3.12.0
@@ -22634,7 +22632,7 @@ snapshots:
 
   apisauce@2.1.6(debug@4.3.4):
     dependencies:
-      axios: 0.21.4(debug@4.3.4)
+      axios: 1.8.4(debug@4.3.4)
     transitivePeerDependencies:
       - debug
 
@@ -22900,13 +22898,7 @@ snapshots:
 
   aws4@1.13.2: {}
 
-  axios@0.21.4(debug@4.3.4):
-    dependencies:
-      follow-redirects: 1.15.9(debug@4.3.4)
-    transitivePeerDependencies:
-      - debug
-
-  axios@1.7.7:
+  axios@1.8.4(debug@4.3.4):
     dependencies:
       follow-redirects: 1.15.9(debug@4.3.4)
       form-data: 4.0.0
@@ -23062,7 +23054,7 @@ snapshots:
 
   binary-install-raw@0.0.13(debug@4.3.4):
     dependencies:
-      axios: 0.21.4(debug@4.3.4)
+      axios: 1.8.4(debug@4.3.4)
       rimraf: 3.0.2
       tar: 6.2.1
     transitivePeerDependencies:
@@ -31730,7 +31722,7 @@ snapshots:
 
   wait-on@7.2.0:
     dependencies:
-      axios: 1.7.7
+      axios: 1.8.4(debug@4.3.4)
       joi: 17.13.3
       lodash: 4.17.21
       minimist: 1.2.8
