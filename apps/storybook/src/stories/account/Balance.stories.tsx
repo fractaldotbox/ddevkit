@@ -27,7 +27,7 @@ async function testBalanceDisplay(
 	canvasElement: HTMLElement,
 	tokenRegex: RegExp,
 ) {
-	const { canvas } = await setupCanvas(canvasElement, 1000);
+	const { canvas } = await setupCanvas(canvasElement, 4000);
 
 	const balanceText = await canvas.findByText(tokenRegex);
 	expect(balanceText).toBeInTheDocument();

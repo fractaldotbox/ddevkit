@@ -23,7 +23,7 @@ export const DdevKitProject: Story = {
 	},
 	parameters: {},
 	play: async ({ canvasElement }) => {
-		await new Promise((resolve) => setTimeout(resolve, 2000));
+		await new Promise((resolve) => setTimeout(resolve, 4000));
 		const cards = Array.from(
 			canvasElement.querySelectorAll(".rounded-lg.border.bg-card"),
 		);

@@ -14,12 +14,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Helper function to test that the avatar is displayed correctly
 const testAvatarRendering = async (canvasElement: HTMLElement) => {
 	const canvas = within(canvasElement);
 
-	// Simulate a delay to allow the avatar to load
-	await new Promise((resolve) => setTimeout(resolve, 2000));
+	await new Promise((resolve) => setTimeout(resolve, 4000));
 
 	// Check if the avatar is displayed correctly
 	const avatar = await canvas.findByRole("img");

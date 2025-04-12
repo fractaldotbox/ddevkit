@@ -54,7 +54,7 @@ export const DdevKitProject: Story = {
 	},
 	parameters: {},
 	play: async ({ canvasElement }) => {
-		const { canvas } = await setupCanvas(canvasElement, 5000);
+		const { canvas } = await setupCanvas(canvasElement, 3000);
 		const chart = await canvas.getByTestId("project-time-series-chart");
 		expect(chart).toBeVisible();
 

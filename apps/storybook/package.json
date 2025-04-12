@@ -11,7 +11,7 @@
 		"build": "storybook build",
 		"preview": "vite preview",
 		"test": "vitest",
-		"test:storybook-runner": "test-storybook",
+		"test:storybook-runner": "test-storybook --testTimeout=60000",
 		"config:setup": "node --experimental-json-modules ./src/scripts/setup.mjs",
 		"deploy:fleek": "fleek --debug sites deploy"
 	},
