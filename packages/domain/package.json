@@ -34,7 +34,7 @@
 		"@noble/hashes": "^1.6.1",
 		"@noble/secp256k1": "^2.1.0",
 		"@openzeppelin/merkle-tree": "^1.0.7",
-		"@privy-io/react-auth": "^1.95.2",
+		"@privy-io/react-auth": "^2.8.3",
 		"@geist/graphql": "workspace:*",
 		"@scure/base": "^1.1.9",
 		"@storybook/components": "^8.3.6",
@@ -58,7 +58,6 @@
 		"micro-eth-signer": "^0.12.0",
 		"micro-packed": "^0.6.3",
 		"multiformats": "^13.3.0",
-		"sha256": "link:@noble/hashes/sha256",
 		"stream-browserify": "^3.0.0",
 		"viem": "^2.26.2",
 		"zod": "^3.23.8"
