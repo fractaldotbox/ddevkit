@@ -85,6 +85,7 @@ const meta = {
 	},
 	decorators: [withToaster(), withWalletControl()],
 	args: {},
+	tags: ["!autodocs", "experimental"],
 } satisfies Meta<typeof AttestationFormEasSdk>;
 
 export default meta;
