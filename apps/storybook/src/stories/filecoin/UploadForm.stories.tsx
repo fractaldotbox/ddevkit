@@ -11,7 +11,7 @@ import {
 	uploadFiles as uploadFilesStoracha,
 } from "@geist/ui-react/lib/filecoin/storacha/isomorphic";
 
-import { withToaster } from "../decorators/toaster";
+import { withSonner } from "../decorators/toaster";
 import {
 	type UploadFilesParams,
 	UploadForm,
@@ -28,7 +28,7 @@ const meta = {
 	component: UploadForm,
 	argTypes: {},
 	args: {},
-	decorators: [withToaster()],
+	decorators: [withSonner()],
 } satisfies Meta<typeof UploadForm>;
 
 export default meta;
