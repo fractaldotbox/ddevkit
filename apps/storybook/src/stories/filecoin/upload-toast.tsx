@@ -1,8 +1,8 @@
-import { toast } from "sonner";
 import {
 	IpfsGateway,
 	getGatewayUrlWithCid,
 } from "@geist/ui-react/lib/filecoin/gateway";
+import { toast } from "sonner";
 
 export const uploadSuccessToast = ({
 	cid,
