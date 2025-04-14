@@ -32,6 +32,7 @@ export const StETH: Story = {
 				address: BY_CHAIN_ID[mainnet.id][Token.StETH]!,
 			},
 		],
+		locale: "en-US",
 	},
 	play: async ({ canvasElement }) => {
 		const { canvas } = await setupCanvas(canvasElement, 3000);

@@ -16,7 +16,7 @@ export type TokenChipWithInfoProps = {
 	maximumFractionDigits?: number;
 	className?: string;
 	isShowValue?: boolean;
-	locale?: string;
+	locale?: Intl.Locale;
 };
 
 // TODO fix value
