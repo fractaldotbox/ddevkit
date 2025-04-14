@@ -1,6 +1,8 @@
 ---
-name: u3
-twitter: https://x.com/adJAstra/status/1909992704467251304
+name: adJAstra
+x: adJAstra
+xAvatar: ''
+xPost: https://x.com/adJAstra/status/1909992704467251304
 
 ---
 

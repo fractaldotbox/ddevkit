@@ -42,7 +42,7 @@ export const getSidebarComponentsSlugs = async () => {
 	}));
 };
 
-const components = await getSidebarComponentsSlugs();
+// const components = await getSidebarComponentsSlugs();
 
 // https://astro.build/config
 export default defineConfig({
@@ -70,10 +70,10 @@ export default defineConfig({
 					label: "Design",
 					autogenerate: { directory: "design" },
 				},
-				{
-					label: "Components",
-					items: components,
-				},
+				// {
+				// 	label: "Components",
+				// 	items: components,
+				// },
 				{
 					label: "Contributing",
 					autogenerate: { directory: "contributing" },
