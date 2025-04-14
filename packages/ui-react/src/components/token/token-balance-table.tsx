@@ -18,7 +18,8 @@ const FormattedValueCell = ({
 	value,
 	exponent = 0,
 	style,
-}: { value: any; exponent?: number; style?: "currency" }) => {
+	locale,
+}: { value: any; exponent?: number; style?: "currency"; locale?: string }) => {
 	return (
 		<>
 			{formatUnitsWithLocale({
@@ -28,6 +29,7 @@ const FormattedValueCell = ({
 					style,
 					maximumFractionDigits: 2,
 				},
+				locale: locale ? new Intl.Locale(locale) : undefined,
 			})}
 		</>
 	);
@@ -41,12 +43,15 @@ export interface TokenBalanceTableProps {
 	itemsPerPage?: number;
 	withPagination?: boolean;
 	withSorting?: boolean;
+	locale?: string;
 }
 
 const getCols = ({
 	explorer,
+	locale,
 }: {
 	explorer: Explorer;
+	locale?: string;
 }): ColumnDef<TokenBalanceEntry>[] => {
 	return [
 		{
@@ -70,7 +75,11 @@ const getCols = ({
 			header: "Price",
 			cell: ({ row }) => {
 				return (
-					<FormattedValueCell value={row.getValue("price")} style="currency" />
+					<FormattedValueCell
+						value={row.getValue("price")}
+						style="currency"
+						locale={locale}
+					/>
 				);
 			},
 		},
@@ -90,6 +99,7 @@ const getCols = ({
 						value={row.getValue("value")}
 						style="currency"
 						exponent={18}
+						locale={locale}
 					/>
 				);
 			},
@@ -104,9 +114,15 @@ const getCols = ({
 						style={{ cursor: "pointer" }}
 					>
 						{row.getIsExpanded() ? (
-							<ChevronUp className="h-4 w-4 shrink-0 transition-transform duration-200" />
+							<ChevronUp
+								className="h-4 w-4 shrink-0 transition-transform duration-200"
+								data-testid="collapse-btn"
+							/>
 						) : (
-							<ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
+							<ChevronDown
+								className="h-4 w-4 shrink-0 transition-transform duration-200"
+								data-testid="expand-btn"
+							/>
 						)}
 					</div>
 				) : (
@@ -120,9 +136,11 @@ const getCols = ({
 export function TokenBalanceTable$({
 	$tokenBalances,
 	$priceData,
+	locale,
 }: {
 	$tokenBalances: Atom<TokenBalance[]>;
 	$priceData: Atom<TokenPriceEntry[]>;
+	locale?: string;
 }) {
 	const $tokenBalancesAggregated = aggregateBySymbol(
 		$tokenBalances,
@@ -146,19 +164,22 @@ export function TokenBalanceTable$({
 			}),
 		[tokenBalancesAggregated],
 	) as TokenBalanceEntry[];
-	return <TokenBalanceTable tokenBalances={tokenBalanceEntries} />;
+	return (
+		<TokenBalanceTable tokenBalances={tokenBalanceEntries} locale={locale} />
+	);
 }
 
 export function TokenBalanceTable({
 	tokenBalances,
 	explorer = Explorer.Blockscout,
+	locale,
 }: TokenBalanceTableProps) {
 	// load and inject token info in bulk
 
 	return (
 		<div className="w-full">
 			<DataTable
-				columns={getCols({ explorer })}
+				columns={getCols({ explorer, locale })}
 				data={tokenBalances}
 				tableConfig={{
 					getSubRows: (row) => row.subEntries,

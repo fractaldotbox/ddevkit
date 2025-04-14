@@ -16,6 +16,7 @@ export type TokenChipWithInfoProps = {
 	maximumFractionDigits?: number;
 	className?: string;
 	isShowValue?: boolean;
+	locale?: string;
 };
 
 // TODO fix value
@@ -30,6 +31,7 @@ export const TokenChipWithInfo = ({
 	maximumFractionDigits = 2,
 	className,
 	isShowValue = false,
+	locale,
 }: TokenChipWithInfoProps) => {
 	return (
 		<Button variant={"secondary"} className={`py-1 flex gap-3 ${className}`}>
@@ -42,7 +44,7 @@ export const TokenChipWithInfo = ({
 					{isShowValue && value
 						? formatUnitsWithLocale({
 								value: value,
-								locale: new Intl.Locale("en-US"),
+								locale: locale ? new Intl.Locale(locale) : undefined,
 								exponent: decimals,
 								formatOptions: {
 									style: "currency",
@@ -50,7 +52,7 @@ export const TokenChipWithInfo = ({
 							})
 						: formatUnitsWithLocale({
 								value: amount ?? 0n,
-								locale: new Intl.Locale("en-US"),
+								locale: locale ? new Intl.Locale(locale) : undefined,
 								exponent: decimals,
 								formatOptions: {
 									maximumFractionDigits,

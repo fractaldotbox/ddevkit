@@ -70,6 +70,7 @@ export const ETHTokenChipWithValue: Story = {
 		decimals: 18,
 		maximumFractionDigits: 1,
 		isShowValue: true,
+		locale: "en-US",
 	},
 	play: async ({ canvasElement }) => {
 		await testTokenChip(canvasElement, "ETH", "$1,234.50");

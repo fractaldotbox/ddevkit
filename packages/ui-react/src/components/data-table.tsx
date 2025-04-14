@@ -33,7 +33,7 @@ export const DataTable = <TData, TValue>({
 	tableConfig = {},
 }: DataTableProps<TData, TValue>) => {
 	const [sorting, setSorting] = useState<SortingState>([]);
-	const [expanded, setExpanded] = useState<ExpandedState>(true);
+	const [expanded, setExpanded] = useState<ExpandedState>({});
 
 	const table = useReactTable({
 		data,

@@ -31,39 +31,54 @@ async function testTokenBalanceTable(canvasElement: HTMLElement) {
 	expect(allHeaders[3]).toHaveTextContent("Amount");
 	expect(allHeaders[4]).toHaveTextContent("Value");
 
-	const rows = canvas.getAllByRole("row");
+	let rows = canvas.getAllByRole("row");
 	expect(rows).toHaveLength(4);
 
 	const usdcRow = rows[1];
-	expect(usdcRow).toHaveTextContent("USDC");
-	expect(usdcRow).toHaveTextContent("$1.00");
-	expect(usdcRow).toHaveTextContent("333,333");
-	expect(usdcRow).toHaveTextContent("$333,333.00");
+	const usdcRowCells = within(usdcRow).getAllByRole("cell");
+	expect(usdcRowCells).toHaveLength(6);
+	expect(usdcRowCells[0]).toHaveTextContent("USDC");
+	expect(usdcRowCells[1]).toHaveTextContent("");
+	expect(usdcRowCells[2]).toHaveTextContent("$1.00");
+	expect(usdcRowCells[3]).toHaveTextContent("333,333");
+	expect(usdcRowCells[4]).toHaveTextContent("$333,333.00");
 
-	const usdcExpandButton = await within(usdcRow).findByRole("svg");
+	const usdcExpandButton = await within(usdcRow).findByTestId("expand-btn");
 	expect(usdcExpandButton).toBeInTheDocument();
 	await userEvent.click(usdcExpandButton);
-	await waitFor(() => {
-		expect(rows).toHaveLength(5);
-	});
+	rows = canvas.getAllByRole("row");
+	expect(rows).toHaveLength(6);
 
-	// const usdtRow = rows[2];
-	// expect(usdtRow).toHaveTextContent("USDT");
-	// expect(usdtRow).toHaveTextContent("$1.00");
-	// expect(usdtRow).toHaveTextContent("777,777");
-	// expect(usdtRow).toHaveTextContent("$777,777.00");
+	const usdcSubRow = rows[2];
+	const usdcSubRowCells = within(usdcSubRow).getAllByRole("cell");
+	expect(usdcSubRowCells).toHaveLength(6);
+	expect(usdcSubRowCells[0]).toHaveTextContent("USDC");
+	expect(usdcSubRowCells[1]).toHaveTextContent("1");
+	expect(usdcSubRowCells[2]).toHaveTextContent("$1.00");
+	expect(usdcSubRowCells[3]).toHaveTextContent("111,111");
+	expect(usdcSubRowCells[4]).toHaveTextContent("$111,111.00");
 
-	// const opRow = rows[3];
-	// expect(opRow).toHaveTextContent("OP");
-	// expect(opRow).toHaveTextContent("$2.10");
-	// expect(opRow).toHaveTextContent("555,555");
-	// expect(opRow).toHaveTextContent("$1,166,665.50");
+	const usdcSubRow2 = rows[3];
+	const usdcSubRow2Cells = within(usdcSubRow2).getAllByRole("cell");
+	expect(usdcSubRow2Cells).toHaveLength(6);
+	expect(usdcSubRow2Cells[0]).toHaveTextContent("USDC");
+	expect(usdcSubRow2Cells[1]).toHaveTextContent("8453");
+	expect(usdcSubRow2Cells[2]).toHaveTextContent("$1.00");
+	expect(usdcSubRow2Cells[3]).toHaveTextContent("222,222");
+	expect(usdcSubRow2Cells[4]).toHaveTextContent("$222,222.00");
+
+	const usdcCollapseBtn = await within(usdcRow).findByTestId("collapse-btn");
+	expect(usdcCollapseBtn).toBeInTheDocument();
+	await userEvent.click(usdcCollapseBtn);
+	rows = canvas.getAllByRole("row");
+	expect(rows).toHaveLength(4);
 }
 
 export const Multichain: Story = {
 	args: {
 		$tokenBalances,
 		$priceData,
+		locale: "en-US",
 	},
 	play: async ({ canvasElement }) => {
 		await testTokenBalanceTable(canvasElement);
