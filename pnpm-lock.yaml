@@ -997,6 +997,9 @@ importers:
       shadcn:
         specifier: 2.4.0
         version: 2.4.0(@types/node@22.10.2)(typescript@5.7.2)
+      sonner:
+        specifier: ^2.0.3
+        version: 2.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       stream-browserify:
         specifier: ^3.0.0
         version: 3.0.0

@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 import { useWalletClient } from "wagmi";
 import type { UploadAttestationParams } from "#components/attestations/attestations";
 import { createGetAttestationWithUidQueryOptions } from "#hooks/eas/use-get-attestation-with-uid";
-import { useToast } from "#hooks/shadcn/use-toast";
 import {
 	createLighthouseParams,
 	getLighthouseGatewayUrl,
@@ -19,7 +19,6 @@ export const useUploadAttestationWithLighthouse = ({
 
 	const { data: walletClient } = useWalletClient();
 	const queryClient = useQueryClient();
-	const { toast } = useToast();
 
 	const mutation = useMutation({
 		mutationFn: async ({
@@ -44,7 +43,7 @@ export const useUploadAttestationWithLighthouse = ({
 			}
 
 			if (!payload) {
-				toast({
+				toast.error({
 					title: "Error",
 					description:
 						"At least attestation payload or uid with chain must be present",
@@ -66,7 +65,7 @@ export const useUploadAttestationWithLighthouse = ({
 					accountAddress,
 					signedMessage,
 				);
-				toast({
+				toast.success({
 					title: `Encrypted Upload Successful for file : ${name}`,
 					description: getLighthouseGatewayUrl(cid),
 				});
@@ -75,7 +74,7 @@ export const useUploadAttestationWithLighthouse = ({
 					JSON.stringify(compiledPayload),
 					lighthouseApiKey,
 				);
-				toast({
+				toast.success({
 					title: `Upload Successful for file : ${name}`,
 					description: getLighthouseGatewayUrl(cid),
 				});
