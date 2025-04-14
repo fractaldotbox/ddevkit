@@ -10,7 +10,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { encodeBytes32String } from "ethers";
 import { type Chain, type Hex, zeroHash } from "viem";
 import { mainnet, optimism, optimismSepolia, sepolia } from "viem/chains";
-import { withSonner } from "../decorators/toaster";
+import { withToaster } from "../decorators/toaster";
 import { withWalletControl } from "../decorators/wallet-control";
 
 export interface AttestationFormEasSdkProps {
@@ -83,7 +83,7 @@ const meta = {
 	parameters: {
 		layout: "centered",
 	},
-	decorators: [withSonner(), withWalletControl()],
+	decorators: [withToaster(), withWalletControl()],
 	args: {},
 	tags: ["!autodocs", "experimental"],
 } satisfies Meta<typeof AttestationFormEasSdk>;

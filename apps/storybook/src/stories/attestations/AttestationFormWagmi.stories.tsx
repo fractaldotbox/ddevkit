@@ -3,7 +3,7 @@ import { SCHEMA_BY_NAME } from "@geist/ui-react/lib/eas/attest.fixture";
 import type { Meta, StoryObj } from "@storybook/react";
 import { type Chain, type Hex, stringToHex, zeroHash } from "viem";
 import { sepolia } from "viem/chains";
-import { withSonner } from "../decorators/toaster";
+import { withToaster } from "../decorators/toaster";
 import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
 import { withWalletControlWagmi } from "../decorators/wallet-control";
 
@@ -14,7 +14,7 @@ const meta = {
 		layout: "centered",
 	},
 	decorators: [
-		withSonner(),
+		withToaster(),
 		withWalletControlWagmi(),
 		withMockAccount(),
 		withWagmiProvider(),

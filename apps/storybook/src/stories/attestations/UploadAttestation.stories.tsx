@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { injected } from "@wagmi/connectors";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { Button } from "#components/ui/button";
-import { withSonner } from "../decorators/toaster";
+import { withToaster } from "../decorators/toaster";
 import { withWagmiProvider } from "../decorators/wagmi";
 
 const meta = {
@@ -52,7 +52,7 @@ export const UploadAttestationWithId: Story = {
 			<UploadAttestation uid={uid} chainId={chainId} />
 		</>
 	),
-	decorators: [withSonner()],
+	decorators: [withToaster()],
 };
 
 export const UploadAttestationWithPayload: Story = {
@@ -66,5 +66,5 @@ export const UploadAttestationWithPayload: Story = {
 			<UploadAttestation payload={payload} chainId={chainId} />
 		</>
 	),
-	decorators: [withSonner()],
+	decorators: [withToaster()],
 };

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import config from "@geist/domain/config";
 import { uploadFiles } from "@geist/ui-react/lib/filecoin/lighthouse/browser";
-import { withSonner } from "../decorators/toaster";
+import { withToaster } from "../decorators/toaster";
 import UploadDropzone from "./UploadDropzone";
 import { uploadSuccessToast } from "./upload-toast";
 
@@ -12,7 +12,7 @@ const meta = {
 	argTypes: {},
 	args: {},
 
-	decorators: [withSonner()],
+	decorators: [withToaster()],
 } satisfies Meta<typeof UploadDropzone>;
 
 export default meta;

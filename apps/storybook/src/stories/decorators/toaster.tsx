@@ -1,6 +1,6 @@
 import { Toaster } from "#components/ui/sonner";
 
-export const withSonner = () => {
+export const withToaster = () => {
 	return (Story: any, context: any) => {
 		return (
 			<>
