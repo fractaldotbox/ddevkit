@@ -46,7 +46,7 @@ export const TokenPriceChartWithFeed = ({
 }: {
 	tokenPriceFeedByTokenId: { [tokenId: string]: TokenPriceEntry[] };
 	tokenInfoByTokenId: Record<string, TokenInfo>;
-	locale?: Intl.Locale;
+	locale?: string;
 }) => {
 	const tokenIds = Object.keys(tokenPriceFeedByTokenId || {});
 
@@ -128,7 +128,7 @@ export const TokenPriceChartWithFeed = ({
 											symbol={label}
 											decimals={decimals}
 											value={value}
-											locale={locale}
+											locale={locale? new Intl.Locale(locale) : undefined}
 										/>
 									);
 								}}

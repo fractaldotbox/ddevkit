@@ -38,5 +38,6 @@ export const ByCrosschainToken: Story = {
 				generatePriceDataFeed(10, now),
 		},
 		tokenInfoByTokenId,
+		locale: "en-US",
 	},
 };
