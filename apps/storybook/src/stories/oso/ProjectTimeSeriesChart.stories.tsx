@@ -1,8 +1,11 @@
 import { BY_PROJECT } from "@geist/domain/project.fixture";
 import { ProjectTimeSeriesChart } from "@geist/ui-react/components/oso/project-time-series-chart";
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, userEvent } from "@storybook/test";
+import { within } from "@testing-library/react";
 import type { Address } from "viem";
 import { withWagmiProvider } from "#stories/decorators/wagmi.tsx";
+import { setupCanvas } from "#stories/utils/test-utils.ts";
 
 const data = {
 	timeseriesMetrics: [
@@ -50,4 +53,14 @@ export const DdevKitProject: Story = {
 		projectId: BY_PROJECT.DDEV_KIT.osoProjectIdV0,
 	},
 	parameters: {},
+	play: async ({ canvasElement }) => {
+		const { canvas } = await setupCanvas(canvasElement, 3000);
+		const chart = await canvas.getByTestId("project-time-series-chart");
+		expect(chart).toBeVisible();
+
+		const chartLegendCommits = await canvas.findByText("GITHUB_commits_weekly");
+		const chartLegendStars = await canvas.findByText("GITHUB_stars_weekly");
+		expect(chartLegendCommits).toBeVisible();
+		expect(chartLegendStars).toBeVisible();
+	},
 };

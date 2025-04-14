@@ -49,44 +49,46 @@ export const ProjectTimeSeriesChartWithData = ({
 	}, [points]);
 
 	return (
-		<ChartContainer
-			config={chartConfig}
-			style={{ height: "400px", width: "600px" }}
-		>
-			{groupedPoints?.length > 0 ? (
-				<LineChart
-					data={groupedPoints}
-					margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-				>
-					<CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-					<XAxis
-						dataKey="sampleDate"
-						tickLine={false}
-						axisLine={false}
-						className="text-xs text-muted-foreground"
-						tickFormatter={(value) => {
-							return format(value, "yyyy-MM");
-						}}
-					/>
-					<YAxis className="text-xs text-muted-foreground" />
-					<ChartTooltip cursor={true} content={<ChartTooltipContent />} />
-					<ChartLegend />
-					{metricIds.map((metricId, index) => (
-						<Line
-							key={metricId}
-							type="monotone"
-							dataKey={metricId}
-							name={metricsById[metricId]?.metricName}
-							stroke={`hsl(var(--chart-${index + 1}))`}
-							activeDot={{ r: 8 }}
-							strokeWidth={2}
+		<div className="w-full h-full" data-testid="project-time-series-chart">
+			<ChartContainer
+				config={chartConfig}
+				style={{ height: "400px", width: "600px" }}
+			>
+				{groupedPoints?.length > 0 ? (
+					<LineChart
+						data={groupedPoints}
+						margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+					>
+						<CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+						<XAxis
+							dataKey="sampleDate"
+							tickLine={false}
+							axisLine={false}
+							className="text-xs text-muted-foreground"
+							tickFormatter={(value) => {
+								return format(value, "yyyy-MM");
+							}}
 						/>
-					))}
-				</LineChart>
-			) : (
-				<Skeleton className="h-[400px] w-[600px]" />
-			)}
-		</ChartContainer>
+						<YAxis className="text-xs text-muted-foreground" />
+						<ChartTooltip cursor={true} content={<ChartTooltipContent />} />
+						<ChartLegend />
+						{metricIds.map((metricId, index) => (
+							<Line
+								key={metricId}
+								type="monotone"
+								dataKey={metricId}
+								name={metricsById[metricId]?.metricName}
+								stroke={`hsl(var(--chart-${index + 1}))`}
+								activeDot={{ r: 8 }}
+								strokeWidth={2}
+							/>
+						))}
+					</LineChart>
+				) : (
+					<Skeleton className="h-[400px] w-[600px]" />
+				)}
+			</ChartContainer>
+		</div>
 	);
 };
 

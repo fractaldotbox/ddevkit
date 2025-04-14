@@ -21,7 +21,17 @@ describe("Address Component", () => {
 	const mockAddress = "0x742d35Cc6634C0532925a3b844Bc454e4438f44e";
 
 	beforeEach(() => {
-		vi.useFakeTimers();
+		vi.useFakeTimers({
+			toFake: [
+				"setTimeout",
+				"clearTimeout",
+				"setInterval",
+				"clearInterval",
+				"setImmediate",
+				"clearImmediate",
+				"Date",
+			],
+		});
 
 		window.navigator = {
 			clipboard: {

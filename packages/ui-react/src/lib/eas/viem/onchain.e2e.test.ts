@@ -70,9 +70,9 @@ describe("attest with sepolia contract", () => {
 
 				const txnSdk = await eas.attest(request, overrides);
 
-				console.log("attest with sdk txn", txnSdk);
+				// console.log("attest with sdk txn", txnSdk);
 				const uid = await txnSdk.wait();
-				console.log("attest with sdk txn uid", uid);
+				// console.log("attest with sdk txn uid", uid);
 				expect(await eas.isAttestationValid(uid)).to.be.true;
 			});
 			test("with viem ", async () => {
@@ -83,7 +83,7 @@ describe("attest with sepolia contract", () => {
 
 				const { uids } = await makeOnchainAttestation(client, request);
 
-				console.log("attested", { uids });
+				// console.log("attested", { uids });
 
 				expect(await eas.isAttestationValid(uids?.[0])).to.be.true;
 			});

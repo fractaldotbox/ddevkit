@@ -7,6 +7,7 @@ import type { AddressOrEns } from "#hooks/ens/efp";
 
 export type NameWithEfpFollowerCount = { name: string; followers: number };
 
+// TODO: Handling for address without ENS
 export const NameAndFollowerCountBadge = ({
 	addressOrEns,
 }: { addressOrEns: AddressOrEns }) => {

@@ -1,3 +1,4 @@
+import { mainnet } from "viem/chains";
 import { normalize } from "viem/ens";
 import { useEnsAvatar } from "wagmi";
 import { Avatar as AvatarPrimitive } from "#components/shadcn/avatar";
@@ -10,6 +11,7 @@ export const AvatarWagmi = ({
 	ens: string;
 }) => {
 	const { data: ensAvatar, isLoading } = useEnsAvatar({
+		chainId: mainnet.id,
 		name: normalize(ens),
 	});
 

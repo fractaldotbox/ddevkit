@@ -1,8 +1,8 @@
 // TODO extract sample wagmi config
 
-import { injected } from "@wagmi/connectors";
+import { http, type CreateConfigParameters } from "@wagmi/core";
 import { base, mainnet, optimism, optimismSepolia } from "viem/chains";
-import { http, type CreateConfigParameters } from "wagmi";
+import { injected } from "wagmi/connectors";
 
 export const WAGMI_CONFIG_PARAMS = {
 	chains: [mainnet, base, optimism, optimismSepolia],

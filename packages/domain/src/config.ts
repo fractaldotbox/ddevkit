@@ -23,6 +23,7 @@ export default {
 		endpointUrl:
 			process.env.PASSPORT_API_ENDPOINT_URL || "https://api.passport.xyz",
 		apiKey: process.env.PASSPORT_API_KEY,
+		scorerId: Number(process.env.PASSPORT_SCORER_ID) || 11347,
 	},
 	alchemy: {
 		apiKey: process.env.ALCHEMY_API_KEY,

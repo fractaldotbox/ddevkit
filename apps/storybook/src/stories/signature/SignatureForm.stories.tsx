@@ -3,8 +3,10 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { TYPED_DATA } from "@geist/domain/signature/type-data";
 import { SignatureForm } from "@geist/ui-react/components/signature/signature-form";
 
+import { expect, userEvent } from "@storybook/test";
 import { http, type Account } from "viem";
 import { withMockAccount, withWagmiProvider } from "../decorators/wagmi";
+import { setupCanvas } from "../utils/test-utils";
 
 import {
 	type Hex,
@@ -41,7 +43,7 @@ const SignatureFormWagmi = ({
 
 	return (
 		<div className="flex flex-row">
-			<div className="w-1/2">
+			<div className="w-full">
 				Type: {signType} - {signAccountType}
 				{signMessage && (
 					<SignatureForm
@@ -65,8 +67,8 @@ const SignatureFormWagmi = ({
 					/>
 				)}
 			</div>
-			<div>
-				{signType === SignType.EIP712 && (
+			{signType === SignType.EIP712 && (
+				<div className="w-full">
 					<div>
 						<ScrollableCodeBlock title="Message" codeObject={messageToVerify} />
 						<ScrollableCodeBlock
@@ -74,8 +76,8 @@ const SignatureFormWagmi = ({
 							codeObject={{ domain, types }}
 						/>
 					</div>
-				)}
-			</div>
+				</div>
+			)}
 		</div>
 	);
 };
@@ -100,6 +102,29 @@ export const Wagmi: Story = {
 		$input: map(initInput),
 	},
 	decorators: [withMockAccount(), withWagmiProvider()],
+	play: async ({ canvasElement }) => {
+		const { canvas } = await setupCanvas(canvasElement, 2000);
+
+		const typeInfo = await canvas.findByText(/EIP191 - EOA/);
+		expect(typeInfo).toBeInTheDocument();
+
+		const messageInput = await canvas.getByRole("textbox");
+		expect(messageInput).toBeInTheDocument();
+
+		const signButton = await canvas.getByRole("button", {
+			name: /Sign Message/i,
+		});
+		expect(signButton).toBeInTheDocument();
+
+		await userEvent.type(messageInput, "Hello World");
+
+		await userEvent.click(signButton);
+
+		await new Promise((resolve) => setTimeout(resolve, 2000));
+
+		const verificationBadge = await canvas.findByText(/Verified!/i);
+		expect(verificationBadge).toBeInTheDocument();
+	},
 };
 
 export const EIP712EOAWagmi: Story = {
@@ -109,4 +134,30 @@ export const EIP712EOAWagmi: Story = {
 		$input: map(initInput),
 	},
 	decorators: [withMockAccount(), withWagmiProvider()],
+	play: async ({ canvasElement }) => {
+		const { canvas } = await setupCanvas(canvasElement, 2000);
+
+		const typeInfo = await canvas.findByText(/EIP712 - EOA/);
+		expect(typeInfo).toBeInTheDocument();
+
+		const messageInput = await canvas.getByRole("textbox");
+		expect(messageInput).toBeInTheDocument();
+
+		const signButton = await canvas.getByRole("button", {
+			name: /Sign Message/i,
+		});
+		expect(signButton).toBeInTheDocument();
+
+		await userEvent.type(messageInput, "Hello World");
+
+		await userEvent.click(signButton);
+
+		await new Promise((resolve) => setTimeout(resolve, 2000));
+
+		const verificationBadge = await canvas.findByText(/Verified!/i);
+		expect(verificationBadge).toBeInTheDocument();
+
+		const messageCodeBlock = await canvas.findByText(/Hello World/i);
+		expect(messageCodeBlock).toBeInTheDocument();
+	},
 };

@@ -14,9 +14,11 @@ import { TokenPriceChartWithFeed } from "./token-price-chart-with-feed";
 export const TokenPriceChart = ({
 	chainId,
 	tokens,
+	locale,
 }: {
 	chainId: number;
 	tokens: TokenSelector[];
+	locale?: string;
 }) => {
 	const {
 		data: tokenPriceFeedByTokenId,
@@ -39,6 +41,7 @@ export const TokenPriceChart = ({
 		<TokenPriceChartWithFeed
 			tokenPriceFeedByTokenId={tokenPriceFeedByTokenId || {}}
 			tokenInfoByTokenId={tokenInfoByTokenId}
+			locale={locale ? new Intl.Locale(locale) : undefined}
 		/>
 	);
 };

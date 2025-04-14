@@ -29,7 +29,7 @@
 		"@parcel/watcher": "^2.4.1",
 		"husky": "^9.1.6",
 		"prettier": "^3.2.5",
-		"shadcn": "^2.4.0",
+		"shadcn": "2.4.0",
 		"turbo": "^2.1.2",
 		"typescript": "^5.7.2",
 		"vite-bundle-visualizer": "^1.2.1"
@@ -45,6 +45,6 @@
 		"@vitejs/plugin-react": "^4.3.2",
 		"tsx": "^4.1.4",
 		"vite": "^5.4.1",
-		"vitest": "^2.1.9"
+		"vitest": "3.1.1"
 	}
 }

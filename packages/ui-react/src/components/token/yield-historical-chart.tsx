@@ -69,14 +69,17 @@ export function YieldHistoricalChart({
 	if (isLoading) return <Skeleton className="h-[400px] w-[600px]" />;
 
 	return (
-		<div className="flex flex-col gap-2 items-center">
+		<div
+			className="flex flex-col gap-2 items-center"
+			data-testid="yield-historical-chart"
+		>
 			{title && <div className="text-lg font-bold">{title}</div>}
 			<ChartContainer
 				config={chartConfig}
 				// cannot use tailwind here
 				style={{ height: "400px", width: "600px" }}
 			>
-				<LineChart data={formattedYieldData}>
+				<LineChart accessibilityLayer data={formattedYieldData}>
 					<CartesianGrid strokeDasharray="3 3" horizontal vertical={false} />
 					<XAxis
 						dataKey="date"

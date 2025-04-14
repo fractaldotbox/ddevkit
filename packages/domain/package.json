@@ -23,7 +23,7 @@
 		"typescript": "^5.7.2",
 		"vite": "^5.4.1",
 		"vite-plugin-node-polyfills": "^0.22.0",
-		"vitest": "^2.1.9"
+		"vitest": "3.1.1"
 	},
 	"dependencies": {
 		"nanostores": "0.11.3",
@@ -46,7 +46,7 @@
 		"@ucanto/client": "^9.0.1",
 		"@ucanto/interface": "^10.0.1",
 		"@ucanto/transport": "^9.1.1",
-		"@wagmi/core": "^2.16.7",
+		"@wagmi/core": "^2.13.8",
 		"@web3-storage/w3up-client": "^16.5.1",
 		"date-fns": "^4.1.0",
 		"embla-carousel-react": "^8.3.0",

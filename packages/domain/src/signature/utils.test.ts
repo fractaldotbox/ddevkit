@@ -22,7 +22,7 @@ describe("Signature Verification Tests", () => {
 
 		// Sign message using ethers
 		const signature = await wallet.signMessage(message);
-		console.log("Signature:", signature);
+		// console.log("Signature:", signature);
 
 		// Verify using viem
 		const isValid = await verifyMessage({

@@ -11,7 +11,7 @@
 		"build": "storybook build",
 		"preview": "vite preview",
 		"test": "vitest",
-		"test:storybook-runner": "test-storybook",
+		"test:storybook-runner": "test-storybook --testTimeout=60000",
 		"config:setup": "node --experimental-json-modules ./src/scripts/setup.mjs",
 		"deploy:fleek": "fleek --debug sites deploy"
 	},
@@ -70,7 +70,7 @@
 		"@ucanto/interface": "^10.0.1",
 		"@ucanto/transport": "^9.1.1",
 		"@wagmi/connectors": "^5.7.12",
-		"@wagmi/core": "^2.16.7",
+		"@wagmi/core": "^2.13.8",
 		"@web3-storage/w3up-client": "^16.5.1",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",
@@ -129,7 +129,7 @@
 		"typescript-eslint": "^8.0.1",
 		"vite": "^5.4.1",
 		"vite-plugin-node-polyfills": "^0.22.0",
-		"vitest": "^2.1.9",
-		"wagmi": "^2.14.16"
+		"vitest": "3.1.1",
+		"wagmi": "^2.12.16"
 	}
 }
