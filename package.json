@@ -1,0 +1,50 @@
+{
+	"name": "@geist/ddevkit",
+	"private": true,
+	"scripts": {
+		"build": "turbo build",
+		"dev": "turbo dev",
+		"dev:loose": "turbo dev --env-mode=loose",
+		"check": "biome check . --no-errors-on-unmatched",
+		"check:fix": "biome check . --write --no-errors-on-unmatched",
+		"prepare": "husky"
+	},
+	"pnpm": {
+		"overrides": {
+			"axios": "^1.8.4",
+			"ethers@5": ">=5.8.0",
+			"elliptic@6": ">=6.6.1",
+			"@noble/ed25519": "2.1.0",
+			"@geist/ddev": "link:packages/ddev"
+		}
+	},
+	"devDependencies": {
+		"@0no-co/graphqlsp": "^1.12.15",
+		"@biomejs/biome": "^1.9.4",
+		"@changesets/cli": "^2.27.11",
+		"@geist/ddev": "link:packages/ddev",
+		"@graphql-codegen/cli": "^5.0.2",
+		"@graphql-codegen/introspection": "^4.0.3",
+		"@graphql-codegen/schema-ast": "^4.1.0",
+		"@parcel/watcher": "^2.4.1",
+		"husky": "^9.1.6",
+		"prettier": "^3.2.5",
+		"shadcn": "2.4.0",
+		"turbo": "^2.1.2",
+		"typescript": "^5.7.2",
+		"vite-bundle-visualizer": "^1.2.1"
+	},
+	"engines": {
+		"node": ">=22",
+		"pnpm": ">=10"
+	},
+	"packageManager": "pnpm@10.7.1",
+	"dependencies": {
+		"@testing-library/jest-dom": "^6.6.3",
+		"@testing-library/react": "^16.3.0",
+		"@vitejs/plugin-react": "^4.3.2",
+		"tsx": "^4.1.4",
+		"vite": "^5.4.1",
+		"vitest": "3.1.1"
+	}
+}

@@ -3,13 +3,14 @@ name: Release
 on:
   push:
     branches:
-      - 'draft'
+      - 'next'
       - 'main'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
+    if: github.ref == 'refs/heads/main'
     name: Release
     runs-on: ubuntu-latest
     steps:
@@ -23,3 +24,40 @@ jobs:
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+  deploy-docs:
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/docs'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+
+      - name: Build docs
+        run: pnpm --filter docs build
+
+      - name: Deploy docs
+        env:
+          FLEEK_TOKEN: ${{ secrets.FLEEK_TOKEN }}
+          FLEEK_PROJECT_ID: cm1coipco000087g1pcgohgtd
+        run: pnpm --dir apps/docs deploy:fleek
+
+  deploy-registry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+
+      - name: Build registry
+        run: pnpm --filter @geist/registry build
+
+      - name: Deploy registry
+        env:
+          FLEEK_TOKEN: ${{ secrets.FLEEK_TOKEN }}
+          FLEEK_PROJECT_ID: cm2lvm8yh000030bm17kmomq9
+        run: pnpm --dir apps/registry deploy:fleek

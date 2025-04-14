@@ -1,0 +1,22 @@
+{
+	"name": "@geist/docs",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"deploy:fleek": "fleek --debug sites deploy"
+	},
+	"dependencies": {
+		"@astrojs/cloudflare": "^12.4.0",
+		"@astrojs/starlight": "^0.31.1",
+		"@astrojs/starlight-tailwind": "^3.0.1",
+		"@astrojs/tailwind": "^6.0.2",
+		"@fleek-platform/cli": "^3.8.2",
+		"astro": "^5.1.5",
+		"tailwindcss": "^3.4.13"
+	}
+}

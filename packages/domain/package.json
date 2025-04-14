@@ -1,0 +1,65 @@
+{
+	"name": "@geist/domain",
+	"version": "0.0.0",
+	"private": true,
+	"exports": {
+		".": "./src/index.ts",
+		"./*.fixture": ["./src/*.fixture.ts"],
+		"./*": ["./src/*", "./src/*.tsx", "./src/*.ts"]
+	},
+	"scripts": {
+		"test": "vitest",
+		"test:unit": "VITEST_SUITES=unit vitest",
+		"test:int": "VITEST_SUITES=int vitest"
+	},
+	"imports": {
+		"#*": ["./src/*", "./src/*.tsx"]
+	},
+	"devDependencies": {
+		"@geist/typescript-config": "workspace:*",
+		"@turbo/gen": "^1.12.4",
+		"@types/node": "^22.10.2",
+		"@faker-js/faker": "^8.2.0",
+		"typescript": "^5.7.2",
+		"vite": "^5.4.1",
+		"vite-plugin-node-polyfills": "^0.22.0",
+		"vitest": "3.1.1"
+	},
+	"dependencies": {
+		"nanostores": "0.11.3",
+		"@ethereumjs/rlp": "^5.0.2",
+		"@hookform/resolvers": "^3.9.0",
+		"@ipld/dag-ucan": "^3.4.0",
+		"@noble/ed25519": "2.1.0",
+		"@noble/hashes": "^1.6.1",
+		"@noble/secp256k1": "^2.1.0",
+		"@openzeppelin/merkle-tree": "^1.0.7",
+		"@privy-io/react-auth": "^2.8.3",
+		"@geist/graphql": "workspace:*",
+		"@scure/base": "^1.1.9",
+		"@storybook/components": "^8.3.6",
+		"@storybook/icons": "^1.2.12",
+		"@storybook/manager-api": "^8.3.6",
+		"@tanstack/react-query": "^5.56.2",
+		"@tanstack/react-table": "^8.20.5",
+		"@ucans/ucans": "^0.12.0",
+		"@ucanto/client": "^9.0.1",
+		"@ucanto/interface": "^10.0.1",
+		"@ucanto/transport": "^9.1.1",
+		"@wagmi/core": "^2.13.8",
+		"@web3-storage/w3up-client": "^16.5.1",
+		"date-fns": "^4.1.0",
+		"embla-carousel-react": "^8.3.0",
+		"ethers": "^6.13.2",
+		"graphql-request": "^7.1.0",
+		"happy-dom": "^15.11.6",
+		"ky": "^1.7.2",
+		"lodash": "^4.17.21",
+		"micro-eth-signer": "^0.12.0",
+		"micro-packed": "^0.6.3",
+		"multiformats": "^13.3.0",
+		"stream-browserify": "^3.0.0",
+		"viem": "^2.26.2",
+		"zod": "^3.23.8"
+	}
+}

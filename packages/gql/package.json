@@ -1,0 +1,26 @@
+{
+	"name": "@geist/graphql",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"files": ["dist"],
+	"exports": {
+		".": "./src/graphql/index.ts",
+		"./eas/*": "./src/graphql/eas/*.ts",
+		"./ens/*": "./src/graphql/ens/*.ts",
+		"./oso/*": "./src/graphql/oso/*.ts"
+	},
+	"scripts": {
+		"build:gql": "graphql-codegen --config codegen.ts"
+	},
+	"devDependencies": {
+		"@graphprotocol/graph-cli": "^0.67.2",
+		"@graphprotocol/graph-ts": "^0.31.0",
+		"@graphql-codegen/cli": "^5.0.2",
+		"@graphql-codegen/schema-ast": "^4.1.0",
+		"graphql-codegen-typescript-common": "0.18.2"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}

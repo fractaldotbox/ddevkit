@@ -1,0 +1,52 @@
+import { Meta, Story, Canvas } from '@storybook/blocks';
+import * as UploadFormStories from './UploadForm.stories';
+
+<Meta title="MDX/UploadForm" of={UploadFormStories} />
+
+# Upload Form
+
+- This is an attempt to unify upload components for various clients of filecoin 
+- Note they have diferent sweetspot and requirements
+
+
+## Lighthouse Upload Single File
+- isomorphic sdk upload text as file or selected file
+<Canvas of={UploadFormStories.LighthouseText} />
+
+<Canvas  of={UploadFormStories.LighthouseFile} />
+
+
+## Lighthouse with directory
+- select a directory to upload
+<Canvas of={UploadFormStories.LighthouseDirectory} />
+
+## Lighthouse with multiple files
+- select multiple files to upload (as a directory)
+<Canvas  of={UploadFormStories.LighthouseMultipleFiles} />
+
+## Storacha
+- for hot storage and IPFS gateway retrieval
+- It will skip upload if file always exists 
+- upload text as file or selected file
+
+<Canvas of={UploadFormStories.StorachaText} />
+
+<Canvas of={UploadFormStories.StorachaFile} />
+
+
+## Storacha multi field as single file
+- group multiple fields into a directory 
+- for hot storage and IPFS gateway retrieval
+
+<Canvas of={UploadFormStories.StorachaMultifield} />
+
+
+## Akave
+- for S3-compatabilie API, enterprise usages
+- Browser is working for now, but we might need handle auth token at backend
+- require minimum size to upload
+
+<Canvas  of={UploadFormStories.AkaveText} />
+
+
+<Canvas  of={UploadFormStories.AkaveFile} />

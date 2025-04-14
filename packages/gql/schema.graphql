@@ -1,0 +1,2420 @@
+schema {
+	query: Query
+	mutation: Mutation
+}
+
+type AffectedRowsOutput {
+	count: Int!
+}
+
+type AggregateAttestation {
+	_avg: AttestationAvgAggregate
+	_count: AttestationCountAggregate
+	_max: AttestationMaxAggregate
+	_min: AttestationMinAggregate
+	_sum: AttestationSumAggregate
+}
+
+type AggregateEnsName {
+	_avg: EnsNameAvgAggregate
+	_count: EnsNameCountAggregate
+	_max: EnsNameMaxAggregate
+	_min: EnsNameMinAggregate
+	_sum: EnsNameSumAggregate
+}
+
+type AggregateOffchainRevocation {
+	_avg: OffchainRevocationAvgAggregate
+	_count: OffchainRevocationCountAggregate
+	_max: OffchainRevocationMaxAggregate
+	_min: OffchainRevocationMinAggregate
+	_sum: OffchainRevocationSumAggregate
+}
+
+type AggregateSchema {
+	_avg: SchemaAvgAggregate
+	_count: SchemaCountAggregate
+	_max: SchemaMaxAggregate
+	_min: SchemaMinAggregate
+	_sum: SchemaSumAggregate
+}
+
+type AggregateSchemaName {
+	_avg: SchemaNameAvgAggregate
+	_count: SchemaNameCountAggregate
+	_max: SchemaNameMaxAggregate
+	_min: SchemaNameMinAggregate
+	_sum: SchemaNameSumAggregate
+}
+
+type AggregateServiceStat {
+	_count: ServiceStatCountAggregate
+	_max: ServiceStatMaxAggregate
+	_min: ServiceStatMinAggregate
+}
+
+type AggregateTimestamp {
+	_avg: TimestampAvgAggregate
+	_count: TimestampCountAggregate
+	_max: TimestampMaxAggregate
+	_min: TimestampMinAggregate
+	_sum: TimestampSumAggregate
+}
+
+type Attestation {
+	attester: String!
+	data: String!
+	decodedDataJson: String!
+	expirationTime: Int!
+	id: String!
+	ipfsHash: String!
+	isOffchain: Boolean!
+	recipient: String!
+	refUID: String!
+	revocable: Boolean!
+	revocationTime: Int!
+	revoked: Boolean!
+	schema: Schema!
+	schemaId: String!
+	time: Int!
+	timeCreated: Int!
+	txid: String!
+}
+
+type AttestationAvgAggregate {
+	expirationTime: Float
+	revocationTime: Float
+	time: Float
+	timeCreated: Float
+}
+
+input AttestationAvgOrderByAggregateInput {
+	expirationTime: SortOrder
+	revocationTime: SortOrder
+	time: SortOrder
+	timeCreated: SortOrder
+}
+
+type AttestationCountAggregate {
+	_all: Int!
+	attester: Int!
+	data: Int!
+	decodedDataJson: Int!
+	expirationTime: Int!
+	id: Int!
+	ipfsHash: Int!
+	isOffchain: Int!
+	recipient: Int!
+	refUID: Int!
+	revocable: Int!
+	revocationTime: Int!
+	revoked: Int!
+	schemaId: Int!
+	time: Int!
+	timeCreated: Int!
+	txid: Int!
+}
+
+input AttestationCountOrderByAggregateInput {
+	attester: SortOrder
+	data: SortOrder
+	decodedDataJson: SortOrder
+	expirationTime: SortOrder
+	id: SortOrder
+	ipfsHash: SortOrder
+	isOffchain: SortOrder
+	recipient: SortOrder
+	refUID: SortOrder
+	revocable: SortOrder
+	revocationTime: SortOrder
+	revoked: SortOrder
+	schemaId: SortOrder
+	time: SortOrder
+	timeCreated: SortOrder
+	txid: SortOrder
+}
+
+input AttestationCreateInput {
+	attester: String!
+	data: String!
+	decodedDataJson: String
+	expirationTime: Int!
+	id: String!
+	ipfsHash: String!
+	isOffchain: Boolean!
+	recipient: String!
+	refUID: String!
+	revocable: Boolean!
+	revocationTime: Int!
+	revoked: Boolean!
+	schema: SchemaCreateNestedOneWithoutAttestationsInput!
+	time: Int!
+	timeCreated: Int!
+	txid: String!
+}
+
+input AttestationCreateManyInput {
+	attester: String!
+	data: String!
+	decodedDataJson: String
+	expirationTime: Int!
+	id: String!
+	ipfsHash: String!
+	isOffchain: Boolean!
+	recipient: String!
+	refUID: String!
+	revocable: Boolean!
+	revocationTime: Int!
+	revoked: Boolean!
+	schemaId: String!
+	time: Int!
+	timeCreated: Int!
+	txid: String!
+}
+
+input AttestationCreateManySchemaInput {
+	attester: String!
+	data: String!
+	decodedDataJson: String
+	expirationTime: Int!
+	id: String!
+	ipfsHash: String!
+	isOffchain: Boolean!
+	recipient: String!
+	refUID: String!
+	revocable: Boolean!
+	revocationTime: Int!
+	revoked: Boolean!
+	time: Int!
+	timeCreated: Int!
+	txid: String!
+}
+
+input AttestationCreateManySchemaInputEnvelope {
+	data: [AttestationCreateManySchemaInput!]!
+	skipDuplicates: Boolean
+}
+
+input AttestationCreateNestedManyWithoutSchemaInput {
+	connect: [AttestationWhereUniqueInput!]
+	connectOrCreate: [AttestationCreateOrConnectWithoutSchemaInput!]
+	create: [AttestationCreateWithoutSchemaInput!]
+	createMany: AttestationCreateManySchemaInputEnvelope
+}
+
+input AttestationCreateOrConnectWithoutSchemaInput {
+	create: AttestationCreateWithoutSchemaInput!
+	where: AttestationWhereUniqueInput!
+}
+
+input AttestationCreateWithoutSchemaInput {
+	attester: String!
+	data: String!
+	decodedDataJson: String
+	expirationTime: Int!
+	id: String!
+	ipfsHash: String!
+	isOffchain: Boolean!
+	recipient: String!
+	refUID: String!
+	revocable: Boolean!
+	revocationTime: Int!
+	revoked: Boolean!
+	time: Int!
+	timeCreated: Int!
+	txid: String!
+}
+
+type AttestationGroupBy {
+	_avg: AttestationAvgAggregate
+	_count: AttestationCountAggregate
+	_max: AttestationMaxAggregate
+	_min: AttestationMinAggregate
+	_sum: AttestationSumAggregate
+	attester: String!
+	data: String!
+	decodedDataJson: String!
+	expirationTime: Int!
+	id: String!
+	ipfsHash: String!
+	isOffchain: Boolean!
+	recipient: String!
+	refUID: String!
+	revocable: Boolean!
+	revocationTime: Int!
+	revoked: Boolean!
+	schemaId: String!
+	time: Int!
+	timeCreated: Int!
+	txid: String!
+}
+
+input AttestationListRelationFilter {
+	every: AttestationWhereInput
+	none: AttestationWhereInput
+	some: AttestationWhereInput
+}
+
+type AttestationMaxAggregate {
+	attester: String
+	data: String
+	decodedDataJson: String
+	expirationTime: Int
+	id: String
+	ipfsHash: String
+	isOffchain: Boolean
+	recipient: String
+	refUID: String
+	revocable: Boolean
+	revocationTime: Int
+	revoked: Boolean
+	schemaId: String
+	time: Int
+	timeCreated: Int
+	txid: String
+}
+
+input AttestationMaxOrderByAggregateInput {
+	attester: SortOrder
+	data: SortOrder
+	decodedDataJson: SortOrder
+	expirationTime: SortOrder
+	id: SortOrder
+	ipfsHash: SortOrder
+	isOffchain: SortOrder
+	recipient: SortOrder
+	refUID: SortOrder
+	revocable: SortOrder
+	revocationTime: SortOrder
+	revoked: SortOrder
+	schemaId: SortOrder
+	time: SortOrder
+	timeCreated: SortOrder
+	txid: SortOrder
+}
+
+type AttestationMinAggregate {
+	attester: String
+	data: String
+	decodedDataJson: String
+	expirationTime: Int
+	id: String
+	ipfsHash: String
+	isOffchain: Boolean
+	recipient: String
+	refUID: String
+	revocable: Boolean
+	revocationTime: Int
+	revoked: Boolean
+	schemaId: String
+	time: Int
+	timeCreated: Int
+	txid: String
+}
+
+input AttestationMinOrderByAggregateInput {
+	attester: SortOrder
+	data: SortOrder
+	decodedDataJson: SortOrder
+	expirationTime: SortOrder
+	id: SortOrder
+	ipfsHash: SortOrder
+	isOffchain: SortOrder
+	recipient: SortOrder
+	refUID: SortOrder
+	revocable: SortOrder
+	revocationTime: SortOrder
+	revoked: SortOrder
+	schemaId: SortOrder
+	time: SortOrder
+	timeCreated: SortOrder
+	txid: SortOrder
+}
+
+input AttestationOrderByRelationAggregateInput {
+	_count: SortOrder
+}
+
+input AttestationOrderByWithAggregationInput {
+	_avg: AttestationAvgOrderByAggregateInput
+	_count: AttestationCountOrderByAggregateInput
+	_max: AttestationMaxOrderByAggregateInput
+	_min: AttestationMinOrderByAggregateInput
+	_sum: AttestationSumOrderByAggregateInput
+	attester: SortOrder
+	data: SortOrder
+	decodedDataJson: SortOrder
+	expirationTime: SortOrder
+	id: SortOrder
+	ipfsHash: SortOrder
+	isOffchain: SortOrder
+	recipient: SortOrder
+	refUID: SortOrder
+	revocable: SortOrder
+	revocationTime: SortOrder
+	revoked: SortOrder
+	schemaId: SortOrder
+	time: SortOrder
+	timeCreated: SortOrder
+	txid: SortOrder
+}
+
+input AttestationOrderByWithRelationInput {
+	attester: SortOrder
+	data: SortOrder
+	decodedDataJson: SortOrder
+	expirationTime: SortOrder
+	id: SortOrder
+	ipfsHash: SortOrder
+	isOffchain: SortOrder
+	recipient: SortOrder
+	refUID: SortOrder
+	revocable: SortOrder
+	revocationTime: SortOrder
+	revoked: SortOrder
+	schema: SchemaOrderByWithRelationInput
+	schemaId: SortOrder
+	time: SortOrder
+	timeCreated: SortOrder
+	txid: SortOrder
+}
+
+enum AttestationScalarFieldEnum {
+	attester
+	data
+	decodedDataJson
+	expirationTime
+	id
+	ipfsHash
+	isOffchain
+	recipient
+	refUID
+	revocable
+	revocationTime
+	revoked
+	schemaId
+	time
+	timeCreated
+	txid
+}
+
+input AttestationScalarWhereInput {
+	AND: [AttestationScalarWhereInput!]
+	NOT: [AttestationScalarWhereInput!]
+	OR: [AttestationScalarWhereInput!]
+	attester: StringFilter
+	data: StringFilter
+	decodedDataJson: StringFilter
+	expirationTime: IntFilter
+	id: StringFilter
+	ipfsHash: StringFilter
+	isOffchain: BoolFilter
+	recipient: StringFilter
+	refUID: StringFilter
+	revocable: BoolFilter
+	revocationTime: IntFilter
+	revoked: BoolFilter
+	schemaId: StringFilter
+	time: IntFilter
+	timeCreated: IntFilter
+	txid: StringFilter
+}
+
+input AttestationScalarWhereWithAggregatesInput {
+	AND: [AttestationScalarWhereWithAggregatesInput!]
+	NOT: [AttestationScalarWhereWithAggregatesInput!]
+	OR: [AttestationScalarWhereWithAggregatesInput!]
+	attester: StringWithAggregatesFilter
+	data: StringWithAggregatesFilter
+	decodedDataJson: StringWithAggregatesFilter
+	expirationTime: IntWithAggregatesFilter
+	id: StringWithAggregatesFilter
+	ipfsHash: StringWithAggregatesFilter
+	isOffchain: BoolWithAggregatesFilter
+	recipient: StringWithAggregatesFilter
+	refUID: StringWithAggregatesFilter
+	revocable: BoolWithAggregatesFilter
+	revocationTime: IntWithAggregatesFilter
+	revoked: BoolWithAggregatesFilter
+	schemaId: StringWithAggregatesFilter
+	time: IntWithAggregatesFilter
+	timeCreated: IntWithAggregatesFilter
+	txid: StringWithAggregatesFilter
+}
+
+type AttestationSumAggregate {
+	expirationTime: Int
+	revocationTime: Int
+	time: Int
+	timeCreated: Int
+}
+
+input AttestationSumOrderByAggregateInput {
+	expirationTime: SortOrder
+	revocationTime: SortOrder
+	time: SortOrder
+	timeCreated: SortOrder
+}
+
+input AttestationUpdateInput {
+	attester: StringFieldUpdateOperationsInput
+	data: StringFieldUpdateOperationsInput
+	decodedDataJson: StringFieldUpdateOperationsInput
+	expirationTime: IntFieldUpdateOperationsInput
+	id: StringFieldUpdateOperationsInput
+	ipfsHash: StringFieldUpdateOperationsInput
+	isOffchain: BoolFieldUpdateOperationsInput
+	recipient: StringFieldUpdateOperationsInput
+	refUID: StringFieldUpdateOperationsInput
+	revocable: BoolFieldUpdateOperationsInput
+	revocationTime: IntFieldUpdateOperationsInput
+	revoked: BoolFieldUpdateOperationsInput
+	schema: SchemaUpdateOneRequiredWithoutAttestationsNestedInput
+	time: IntFieldUpdateOperationsInput
+	timeCreated: IntFieldUpdateOperationsInput
+	txid: StringFieldUpdateOperationsInput
+}
+
+input AttestationUpdateManyMutationInput {
+	attester: StringFieldUpdateOperationsInput
+	data: StringFieldUpdateOperationsInput
+	decodedDataJson: StringFieldUpdateOperationsInput
+	expirationTime: IntFieldUpdateOperationsInput
+	id: StringFieldUpdateOperationsInput
+	ipfsHash: StringFieldUpdateOperationsInput
+	isOffchain: BoolFieldUpdateOperationsInput
+	recipient: StringFieldUpdateOperationsInput
+	refUID: StringFieldUpdateOperationsInput
+	revocable: BoolFieldUpdateOperationsInput
+	revocationTime: IntFieldUpdateOperationsInput
+	revoked: BoolFieldUpdateOperationsInput
+	time: IntFieldUpdateOperationsInput
+	timeCreated: IntFieldUpdateOperationsInput
+	txid: StringFieldUpdateOperationsInput
+}
+
+input AttestationUpdateManyWithWhereWithoutSchemaInput {
+	data: AttestationUpdateManyMutationInput!
+	where: AttestationScalarWhereInput!
+}
+
+input AttestationUpdateManyWithoutSchemaNestedInput {
+	connect: [AttestationWhereUniqueInput!]
+	connectOrCreate: [AttestationCreateOrConnectWithoutSchemaInput!]
+	create: [AttestationCreateWithoutSchemaInput!]
+	createMany: AttestationCreateManySchemaInputEnvelope
+	delete: [AttestationWhereUniqueInput!]
+	deleteMany: [AttestationScalarWhereInput!]
+	disconnect: [AttestationWhereUniqueInput!]
+	set: [AttestationWhereUniqueInput!]
+	update: [AttestationUpdateWithWhereUniqueWithoutSchemaInput!]
+	updateMany: [AttestationUpdateManyWithWhereWithoutSchemaInput!]
+	upsert: [AttestationUpsertWithWhereUniqueWithoutSchemaInput!]
+}
+
+input AttestationUpdateWithWhereUniqueWithoutSchemaInput {
+	data: AttestationUpdateWithoutSchemaInput!
+	where: AttestationWhereUniqueInput!
+}
+
+input AttestationUpdateWithoutSchemaInput {
+	attester: StringFieldUpdateOperationsInput
+	data: StringFieldUpdateOperationsInput
+	decodedDataJson: StringFieldUpdateOperationsInput
+	expirationTime: IntFieldUpdateOperationsInput
+	id: StringFieldUpdateOperationsInput
+	ipfsHash: StringFieldUpdateOperationsInput
+	isOffchain: BoolFieldUpdateOperationsInput
+	recipient: StringFieldUpdateOperationsInput
+	refUID: StringFieldUpdateOperationsInput
+	revocable: BoolFieldUpdateOperationsInput
+	revocationTime: IntFieldUpdateOperationsInput
+	revoked: BoolFieldUpdateOperationsInput
+	time: IntFieldUpdateOperationsInput
+	timeCreated: IntFieldUpdateOperationsInput
+	txid: StringFieldUpdateOperationsInput
+}
+
+input AttestationUpsertWithWhereUniqueWithoutSchemaInput {
+	create: AttestationCreateWithoutSchemaInput!
+	update: AttestationUpdateWithoutSchemaInput!
+	where: AttestationWhereUniqueInput!
+}
+
+input AttestationWhereInput {
+	AND: [AttestationWhereInput!]
+	NOT: [AttestationWhereInput!]
+	OR: [AttestationWhereInput!]
+	attester: StringFilter
+	data: StringFilter
+	decodedDataJson: StringFilter
+	expirationTime: IntFilter
+	id: StringFilter
+	ipfsHash: StringFilter
+	isOffchain: BoolFilter
+	recipient: StringFilter
+	refUID: StringFilter
+	revocable: BoolFilter
+	revocationTime: IntFilter
+	revoked: BoolFilter
+	schema: SchemaRelationFilter
+	schemaId: StringFilter
+	time: IntFilter
+	timeCreated: IntFilter
+	txid: StringFilter
+}
+
+input AttestationWhereUniqueInput {
+	id: String
+}
+
+input BoolFieldUpdateOperationsInput {
+	set: Boolean
+}
+
+input BoolFilter {
+	equals: Boolean
+	not: NestedBoolFilter
+}
+
+input BoolWithAggregatesFilter {
+	_count: NestedIntFilter
+	_max: NestedBoolFilter
+	_min: NestedBoolFilter
+	equals: Boolean
+	not: NestedBoolWithAggregatesFilter
+}
+
+type EnsName {
+	id: String!
+	name: String!
+	timestamp: Int!
+}
+
+type EnsNameAvgAggregate {
+	timestamp: Float
+}
+
+input EnsNameAvgOrderByAggregateInput {
+	timestamp: SortOrder
+}
+
+type EnsNameCountAggregate {
+	_all: Int!
+	id: Int!
+	name: Int!
+	timestamp: Int!
+}
+
+input EnsNameCountOrderByAggregateInput {
+	id: SortOrder
+	name: SortOrder
+	timestamp: SortOrder
+}
+
+input EnsNameCreateInput {
+	id: String!
+	name: String!
+	timestamp: Int!
+}
+
+input EnsNameCreateManyInput {
+	id: String!
+	name: String!
+	timestamp: Int!
+}
+
+type EnsNameGroupBy {
+	_avg: EnsNameAvgAggregate
+	_count: EnsNameCountAggregate
+	_max: EnsNameMaxAggregate
+	_min: EnsNameMinAggregate
+	_sum: EnsNameSumAggregate
+	id: String!
+	name: String!
+	timestamp: Int!
+}
+
+type EnsNameMaxAggregate {
+	id: String
+	name: String
+	timestamp: Int
+}
+
+input EnsNameMaxOrderByAggregateInput {
+	id: SortOrder
+	name: SortOrder
+	timestamp: SortOrder
+}
+
+type EnsNameMinAggregate {
+	id: String
+	name: String
+	timestamp: Int
+}
+
+input EnsNameMinOrderByAggregateInput {
+	id: SortOrder
+	name: SortOrder
+	timestamp: SortOrder
+}
+
+input EnsNameOrderByWithAggregationInput {
+	_avg: EnsNameAvgOrderByAggregateInput
+	_count: EnsNameCountOrderByAggregateInput
+	_max: EnsNameMaxOrderByAggregateInput
+	_min: EnsNameMinOrderByAggregateInput
+	_sum: EnsNameSumOrderByAggregateInput
+	id: SortOrder
+	name: SortOrder
+	timestamp: SortOrder
+}
+
+input EnsNameOrderByWithRelationInput {
+	id: SortOrder
+	name: SortOrder
+	timestamp: SortOrder
+}
+
+enum EnsNameScalarFieldEnum {
+	id
+	name
+	timestamp
+}
+
+input EnsNameScalarWhereWithAggregatesInput {
+	AND: [EnsNameScalarWhereWithAggregatesInput!]
+	NOT: [EnsNameScalarWhereWithAggregatesInput!]
+	OR: [EnsNameScalarWhereWithAggregatesInput!]
+	id: StringWithAggregatesFilter
+	name: StringWithAggregatesFilter
+	timestamp: IntWithAggregatesFilter
+}
+
+type EnsNameSumAggregate {
+	timestamp: Int
+}
+
+input EnsNameSumOrderByAggregateInput {
+	timestamp: SortOrder
+}
+
+input EnsNameUpdateInput {
+	id: StringFieldUpdateOperationsInput
+	name: StringFieldUpdateOperationsInput
+	timestamp: IntFieldUpdateOperationsInput
+}
+
+input EnsNameUpdateManyMutationInput {
+	id: StringFieldUpdateOperationsInput
+	name: StringFieldUpdateOperationsInput
+	timestamp: IntFieldUpdateOperationsInput
+}
+
+input EnsNameWhereInput {
+	AND: [EnsNameWhereInput!]
+	NOT: [EnsNameWhereInput!]
+	OR: [EnsNameWhereInput!]
+	id: StringFilter
+	name: StringFilter
+	timestamp: IntFilter
+}
+
+input EnsNameWhereUniqueInput {
+	id: String
+}
+
+input IntFieldUpdateOperationsInput {
+	decrement: Int
+	divide: Int
+	increment: Int
+	multiply: Int
+	set: Int
+}
+
+input IntFilter {
+	equals: Int
+	gt: Int
+	gte: Int
+	in: [Int!]
+	lt: Int
+	lte: Int
+	not: NestedIntFilter
+	notIn: [Int!]
+}
+
+input IntWithAggregatesFilter {
+	_avg: NestedFloatFilter
+	_count: NestedIntFilter
+	_max: NestedIntFilter
+	_min: NestedIntFilter
+	_sum: NestedIntFilter
+	equals: Int
+	gt: Int
+	gte: Int
+	in: [Int!]
+	lt: Int
+	lte: Int
+	not: NestedIntWithAggregatesFilter
+	notIn: [Int!]
+}
+
+type Mutation {
+	createManyAttestation(
+		data: [AttestationCreateManyInput!]!
+		skipDuplicates: Boolean
+	): AffectedRowsOutput!
+	createManyEnsName(
+		data: [EnsNameCreateManyInput!]!
+		skipDuplicates: Boolean
+	): AffectedRowsOutput!
+	createManyOffchainRevocation(
+		data: [OffchainRevocationCreateManyInput!]!
+		skipDuplicates: Boolean
+	): AffectedRowsOutput!
+	createManySchema(
+		data: [SchemaCreateManyInput!]!
+		skipDuplicates: Boolean
+	): AffectedRowsOutput!
+	createManySchemaName(
+		data: [SchemaNameCreateManyInput!]!
+		skipDuplicates: Boolean
+	): AffectedRowsOutput!
+	createManyServiceStat(
+		data: [ServiceStatCreateManyInput!]!
+		skipDuplicates: Boolean
+	): AffectedRowsOutput!
+	createManyTimestamp(
+		data: [TimestampCreateManyInput!]!
+		skipDuplicates: Boolean
+	): AffectedRowsOutput!
+	createOneAttestation(data: AttestationCreateInput!): Attestation!
+	createOneEnsName(data: EnsNameCreateInput!): EnsName!
+	createOneOffchainRevocation(
+		data: OffchainRevocationCreateInput!
+	): OffchainRevocation!
+	createOneSchema(data: SchemaCreateInput!): Schema!
+	createOneSchemaName(data: SchemaNameCreateInput!): SchemaName!
+	createOneServiceStat(data: ServiceStatCreateInput!): ServiceStat!
+	createOneTimestamp(data: TimestampCreateInput!): Timestamp!
+	deleteManyAttestation(where: AttestationWhereInput): AffectedRowsOutput!
+	deleteManyEnsName(where: EnsNameWhereInput): AffectedRowsOutput!
+	deleteManyOffchainRevocation(
+		where: OffchainRevocationWhereInput
+	): AffectedRowsOutput!
+	deleteManySchema(where: SchemaWhereInput): AffectedRowsOutput!
+	deleteManySchemaName(where: SchemaNameWhereInput): AffectedRowsOutput!
+	deleteManyServiceStat(where: ServiceStatWhereInput): AffectedRowsOutput!
+	deleteManyTimestamp(where: TimestampWhereInput): AffectedRowsOutput!
+	deleteOneAttestation(where: AttestationWhereUniqueInput!): Attestation
+	deleteOneEnsName(where: EnsNameWhereUniqueInput!): EnsName
+	deleteOneOffchainRevocation(
+		where: OffchainRevocationWhereUniqueInput!
+	): OffchainRevocation
+	deleteOneSchema(where: SchemaWhereUniqueInput!): Schema
+	deleteOneSchemaName(where: SchemaNameWhereUniqueInput!): SchemaName
+	deleteOneServiceStat(where: ServiceStatWhereUniqueInput!): ServiceStat
+	deleteOneTimestamp(where: TimestampWhereUniqueInput!): Timestamp
+	updateManyAttestation(
+		data: AttestationUpdateManyMutationInput!
+		where: AttestationWhereInput
+	): AffectedRowsOutput!
+	updateManyEnsName(
+		data: EnsNameUpdateManyMutationInput!
+		where: EnsNameWhereInput
+	): AffectedRowsOutput!
+	updateManyOffchainRevocation(
+		data: OffchainRevocationUpdateManyMutationInput!
+		where: OffchainRevocationWhereInput
+	): AffectedRowsOutput!
+	updateManySchema(
+		data: SchemaUpdateManyMutationInput!
+		where: SchemaWhereInput
+	): AffectedRowsOutput!
+	updateManySchemaName(
+		data: SchemaNameUpdateManyMutationInput!
+		where: SchemaNameWhereInput
+	): AffectedRowsOutput!
+	updateManyServiceStat(
+		data: ServiceStatUpdateManyMutationInput!
+		where: ServiceStatWhereInput
+	): AffectedRowsOutput!
+	updateManyTimestamp(
+		data: TimestampUpdateManyMutationInput!
+		where: TimestampWhereInput
+	): AffectedRowsOutput!
+	updateOneAttestation(
+		data: AttestationUpdateInput!
+		where: AttestationWhereUniqueInput!
+	): Attestation
+	updateOneEnsName(
+		data: EnsNameUpdateInput!
+		where: EnsNameWhereUniqueInput!
+	): EnsName
+	updateOneOffchainRevocation(
+		data: OffchainRevocationUpdateInput!
+		where: OffchainRevocationWhereUniqueInput!
+	): OffchainRevocation
+	updateOneSchema(
+		data: SchemaUpdateInput!
+		where: SchemaWhereUniqueInput!
+	): Schema
+	updateOneSchemaName(
+		data: SchemaNameUpdateInput!
+		where: SchemaNameWhereUniqueInput!
+	): SchemaName
+	updateOneServiceStat(
+		data: ServiceStatUpdateInput!
+		where: ServiceStatWhereUniqueInput!
+	): ServiceStat
+	updateOneTimestamp(
+		data: TimestampUpdateInput!
+		where: TimestampWhereUniqueInput!
+	): Timestamp
+	upsertOneAttestation(
+		create: AttestationCreateInput!
+		update: AttestationUpdateInput!
+		where: AttestationWhereUniqueInput!
+	): Attestation!
+	upsertOneEnsName(
+		create: EnsNameCreateInput!
+		update: EnsNameUpdateInput!
+		where: EnsNameWhereUniqueInput!
+	): EnsName!
+	upsertOneOffchainRevocation(
+		create: OffchainRevocationCreateInput!
+		update: OffchainRevocationUpdateInput!
+		where: OffchainRevocationWhereUniqueInput!
+	): OffchainRevocation!
+	upsertOneSchema(
+		create: SchemaCreateInput!
+		update: SchemaUpdateInput!
+		where: SchemaWhereUniqueInput!
+	): Schema!
+	upsertOneSchemaName(
+		create: SchemaNameCreateInput!
+		update: SchemaNameUpdateInput!
+		where: SchemaNameWhereUniqueInput!
+	): SchemaName!
+	upsertOneServiceStat(
+		create: ServiceStatCreateInput!
+		update: ServiceStatUpdateInput!
+		where: ServiceStatWhereUniqueInput!
+	): ServiceStat!
+	upsertOneTimestamp(
+		create: TimestampCreateInput!
+		update: TimestampUpdateInput!
+		where: TimestampWhereUniqueInput!
+	): Timestamp!
+}
+
+input NestedBoolFilter {
+	equals: Boolean
+	not: NestedBoolFilter
+}
+
+input NestedBoolWithAggregatesFilter {
+	_count: NestedIntFilter
+	_max: NestedBoolFilter
+	_min: NestedBoolFilter
+	equals: Boolean
+	not: NestedBoolWithAggregatesFilter
+}
+
+input NestedFloatFilter {
+	equals: Float
+	gt: Float
+	gte: Float
+	in: [Float!]
+	lt: Float
+	lte: Float
+	not: NestedFloatFilter
+	notIn: [Float!]
+}
+
+input NestedIntFilter {
+	equals: Int
+	gt: Int
+	gte: Int
+	in: [Int!]
+	lt: Int
+	lte: Int
+	not: NestedIntFilter
+	notIn: [Int!]
+}
+
+input NestedIntWithAggregatesFilter {
+	_avg: NestedFloatFilter
+	_count: NestedIntFilter
+	_max: NestedIntFilter
+	_min: NestedIntFilter
+	_sum: NestedIntFilter
+	equals: Int
+	gt: Int
+	gte: Int
+	in: [Int!]
+	lt: Int
+	lte: Int
+	not: NestedIntWithAggregatesFilter
+	notIn: [Int!]
+}
+
+input NestedStringFilter {
+	contains: String
+	endsWith: String
+	equals: String
+	gt: String
+	gte: String
+	in: [String!]
+	lt: String
+	lte: String
+	not: NestedStringFilter
+	notIn: [String!]
+	startsWith: String
+}
+
+input NestedStringWithAggregatesFilter {
+	_count: NestedIntFilter
+	_max: NestedStringFilter
+	_min: NestedStringFilter
+	contains: String
+	endsWith: String
+	equals: String
+	gt: String
+	gte: String
+	in: [String!]
+	lt: String
+	lte: String
+	not: NestedStringWithAggregatesFilter
+	notIn: [String!]
+	startsWith: String
+}
+
+type OffchainRevocation {
+	from: String!
+	id: String!
+	timestamp: Int!
+	txid: String!
+	uid: String!
+}
+
+type OffchainRevocationAvgAggregate {
+	timestamp: Float
+}
+
+input OffchainRevocationAvgOrderByAggregateInput {
+	timestamp: SortOrder
+}
+
+type OffchainRevocationCountAggregate {
+	_all: Int!
+	from: Int!
+	id: Int!
+	timestamp: Int!
+	txid: Int!
+	uid: Int!
+}
+
+input OffchainRevocationCountOrderByAggregateInput {
+	from: SortOrder
+	id: SortOrder
+	timestamp: SortOrder
+	txid: SortOrder
+	uid: SortOrder
+}
+
+input OffchainRevocationCreateInput {
+	from: String!
+	id: String
+	timestamp: Int!
+	txid: String!
+	uid: String!
+}
+
+input OffchainRevocationCreateManyInput {
+	from: String!
+	id: String
+	timestamp: Int!
+	txid: String!
+	uid: String!
+}
+
+type OffchainRevocationGroupBy {
+	_avg: OffchainRevocationAvgAggregate
+	_count: OffchainRevocationCountAggregate
+	_max: OffchainRevocationMaxAggregate
+	_min: OffchainRevocationMinAggregate
+	_sum: OffchainRevocationSumAggregate
+	from: String!
+	id: String!
+	timestamp: Int!
+	txid: String!
+	uid: String!
+}
+
+type OffchainRevocationMaxAggregate {
+	from: String
+	id: String
+	timestamp: Int
+	txid: String
+	uid: String
+}
+
+input OffchainRevocationMaxOrderByAggregateInput {
+	from: SortOrder
+	id: SortOrder
+	timestamp: SortOrder
+	txid: SortOrder
+	uid: SortOrder
+}
+
+type OffchainRevocationMinAggregate {
+	from: String
+	id: String
+	timestamp: Int
+	txid: String
+	uid: String
+}
+
+input OffchainRevocationMinOrderByAggregateInput {
+	from: SortOrder
+	id: SortOrder
+	timestamp: SortOrder
+	txid: SortOrder
+	uid: SortOrder
+}
+
+input OffchainRevocationOrderByWithAggregationInput {
+	_avg: OffchainRevocationAvgOrderByAggregateInput
+	_count: OffchainRevocationCountOrderByAggregateInput
+	_max: OffchainRevocationMaxOrderByAggregateInput
+	_min: OffchainRevocationMinOrderByAggregateInput
+	_sum: OffchainRevocationSumOrderByAggregateInput
+	from: SortOrder
+	id: SortOrder
+	timestamp: SortOrder
+	txid: SortOrder
+	uid: SortOrder
+}
+
+input OffchainRevocationOrderByWithRelationInput {
+	from: SortOrder
+	id: SortOrder
+	timestamp: SortOrder
+	txid: SortOrder
+	uid: SortOrder
+}
+
+enum OffchainRevocationScalarFieldEnum {
+	from
+	id
+	timestamp
+	txid
+	uid
+}
+
+input OffchainRevocationScalarWhereWithAggregatesInput {
+	AND: [OffchainRevocationScalarWhereWithAggregatesInput!]
+	NOT: [OffchainRevocationScalarWhereWithAggregatesInput!]
+	OR: [OffchainRevocationScalarWhereWithAggregatesInput!]
+	from: StringWithAggregatesFilter
+	id: StringWithAggregatesFilter
+	timestamp: IntWithAggregatesFilter
+	txid: StringWithAggregatesFilter
+	uid: StringWithAggregatesFilter
+}
+
+type OffchainRevocationSumAggregate {
+	timestamp: Int
+}
+
+input OffchainRevocationSumOrderByAggregateInput {
+	timestamp: SortOrder
+}
+
+input OffchainRevocationUpdateInput {
+	from: StringFieldUpdateOperationsInput
+	id: StringFieldUpdateOperationsInput
+	timestamp: IntFieldUpdateOperationsInput
+	txid: StringFieldUpdateOperationsInput
+	uid: StringFieldUpdateOperationsInput
+}
+
+input OffchainRevocationUpdateManyMutationInput {
+	from: StringFieldUpdateOperationsInput
+	id: StringFieldUpdateOperationsInput
+	timestamp: IntFieldUpdateOperationsInput
+	txid: StringFieldUpdateOperationsInput
+	uid: StringFieldUpdateOperationsInput
+}
+
+input OffchainRevocationWhereInput {
+	AND: [OffchainRevocationWhereInput!]
+	NOT: [OffchainRevocationWhereInput!]
+	OR: [OffchainRevocationWhereInput!]
+	from: StringFilter
+	id: StringFilter
+	timestamp: IntFilter
+	txid: StringFilter
+	uid: StringFilter
+}
+
+input OffchainRevocationWhereUniqueInput {
+	id: String
+}
+
+type Query {
+	aggregateAttestation(
+		cursor: AttestationWhereUniqueInput
+		orderBy: [AttestationOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: AttestationWhereInput
+	): AggregateAttestation!
+	aggregateEnsName(
+		cursor: EnsNameWhereUniqueInput
+		orderBy: [EnsNameOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: EnsNameWhereInput
+	): AggregateEnsName!
+	aggregateOffchainRevocation(
+		cursor: OffchainRevocationWhereUniqueInput
+		orderBy: [OffchainRevocationOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: OffchainRevocationWhereInput
+	): AggregateOffchainRevocation!
+	aggregateSchema(
+		cursor: SchemaWhereUniqueInput
+		orderBy: [SchemaOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: SchemaWhereInput
+	): AggregateSchema!
+	aggregateSchemaName(
+		cursor: SchemaNameWhereUniqueInput
+		orderBy: [SchemaNameOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: SchemaNameWhereInput
+	): AggregateSchemaName!
+	aggregateServiceStat(
+		cursor: ServiceStatWhereUniqueInput
+		orderBy: [ServiceStatOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: ServiceStatWhereInput
+	): AggregateServiceStat!
+	aggregateTimestamp(
+		cursor: TimestampWhereUniqueInput
+		orderBy: [TimestampOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: TimestampWhereInput
+	): AggregateTimestamp!
+	attestation(where: AttestationWhereUniqueInput!): Attestation
+	attestations(
+		cursor: AttestationWhereUniqueInput
+		distinct: [AttestationScalarFieldEnum!]
+		orderBy: [AttestationOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: AttestationWhereInput
+	): [Attestation!]!
+	ensName(where: EnsNameWhereUniqueInput!): EnsName
+	ensNames(
+		cursor: EnsNameWhereUniqueInput
+		distinct: [EnsNameScalarFieldEnum!]
+		orderBy: [EnsNameOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: EnsNameWhereInput
+	): [EnsName!]!
+	findFirstAttestation(
+		cursor: AttestationWhereUniqueInput
+		distinct: [AttestationScalarFieldEnum!]
+		orderBy: [AttestationOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: AttestationWhereInput
+	): Attestation
+	findFirstAttestationOrThrow(
+		cursor: AttestationWhereUniqueInput
+		distinct: [AttestationScalarFieldEnum!]
+		orderBy: [AttestationOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: AttestationWhereInput
+	): Attestation
+	findFirstEnsName(
+		cursor: EnsNameWhereUniqueInput
+		distinct: [EnsNameScalarFieldEnum!]
+		orderBy: [EnsNameOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: EnsNameWhereInput
+	): EnsName
+	findFirstEnsNameOrThrow(
+		cursor: EnsNameWhereUniqueInput
+		distinct: [EnsNameScalarFieldEnum!]
+		orderBy: [EnsNameOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: EnsNameWhereInput
+	): EnsName
+	findFirstOffchainRevocation(
+		cursor: OffchainRevocationWhereUniqueInput
+		distinct: [OffchainRevocationScalarFieldEnum!]
+		orderBy: [OffchainRevocationOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: OffchainRevocationWhereInput
+	): OffchainRevocation
+	findFirstOffchainRevocationOrThrow(
+		cursor: OffchainRevocationWhereUniqueInput
+		distinct: [OffchainRevocationScalarFieldEnum!]
+		orderBy: [OffchainRevocationOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: OffchainRevocationWhereInput
+	): OffchainRevocation
+	findFirstSchema(
+		cursor: SchemaWhereUniqueInput
+		distinct: [SchemaScalarFieldEnum!]
+		orderBy: [SchemaOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: SchemaWhereInput
+	): Schema
+	findFirstSchemaName(
+		cursor: SchemaNameWhereUniqueInput
+		distinct: [SchemaNameScalarFieldEnum!]
+		orderBy: [SchemaNameOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: SchemaNameWhereInput
+	): SchemaName
+	findFirstSchemaNameOrThrow(
+		cursor: SchemaNameWhereUniqueInput
+		distinct: [SchemaNameScalarFieldEnum!]
+		orderBy: [SchemaNameOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: SchemaNameWhereInput
+	): SchemaName
+	findFirstSchemaOrThrow(
+		cursor: SchemaWhereUniqueInput
+		distinct: [SchemaScalarFieldEnum!]
+		orderBy: [SchemaOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: SchemaWhereInput
+	): Schema
+	findFirstServiceStat(
+		cursor: ServiceStatWhereUniqueInput
+		distinct: [ServiceStatScalarFieldEnum!]
+		orderBy: [ServiceStatOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: ServiceStatWhereInput
+	): ServiceStat
+	findFirstServiceStatOrThrow(
+		cursor: ServiceStatWhereUniqueInput
+		distinct: [ServiceStatScalarFieldEnum!]
+		orderBy: [ServiceStatOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: ServiceStatWhereInput
+	): ServiceStat
+	findFirstTimestamp(
+		cursor: TimestampWhereUniqueInput
+		distinct: [TimestampScalarFieldEnum!]
+		orderBy: [TimestampOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: TimestampWhereInput
+	): Timestamp
+	findFirstTimestampOrThrow(
+		cursor: TimestampWhereUniqueInput
+		distinct: [TimestampScalarFieldEnum!]
+		orderBy: [TimestampOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: TimestampWhereInput
+	): Timestamp
+	getAttestation(where: AttestationWhereUniqueInput!): Attestation
+	getEnsName(where: EnsNameWhereUniqueInput!): EnsName
+	getOffchainRevocation(
+		where: OffchainRevocationWhereUniqueInput!
+	): OffchainRevocation
+	getSchema(where: SchemaWhereUniqueInput!): Schema
+	getSchemaName(where: SchemaNameWhereUniqueInput!): SchemaName
+	getServiceStat(where: ServiceStatWhereUniqueInput!): ServiceStat
+	getTimestamp(where: TimestampWhereUniqueInput!): Timestamp
+	groupByAttestation(
+		by: [AttestationScalarFieldEnum!]!
+		having: AttestationScalarWhereWithAggregatesInput
+		orderBy: [AttestationOrderByWithAggregationInput!]
+		skip: Int
+		take: Int
+		where: AttestationWhereInput
+	): [AttestationGroupBy!]!
+	groupByEnsName(
+		by: [EnsNameScalarFieldEnum!]!
+		having: EnsNameScalarWhereWithAggregatesInput
+		orderBy: [EnsNameOrderByWithAggregationInput!]
+		skip: Int
+		take: Int
+		where: EnsNameWhereInput
+	): [EnsNameGroupBy!]!
+	groupByOffchainRevocation(
+		by: [OffchainRevocationScalarFieldEnum!]!
+		having: OffchainRevocationScalarWhereWithAggregatesInput
+		orderBy: [OffchainRevocationOrderByWithAggregationInput!]
+		skip: Int
+		take: Int
+		where: OffchainRevocationWhereInput
+	): [OffchainRevocationGroupBy!]!
+	groupBySchema(
+		by: [SchemaScalarFieldEnum!]!
+		having: SchemaScalarWhereWithAggregatesInput
+		orderBy: [SchemaOrderByWithAggregationInput!]
+		skip: Int
+		take: Int
+		where: SchemaWhereInput
+	): [SchemaGroupBy!]!
+	groupBySchemaName(
+		by: [SchemaNameScalarFieldEnum!]!
+		having: SchemaNameScalarWhereWithAggregatesInput
+		orderBy: [SchemaNameOrderByWithAggregationInput!]
+		skip: Int
+		take: Int
+		where: SchemaNameWhereInput
+	): [SchemaNameGroupBy!]!
+	groupByServiceStat(
+		by: [ServiceStatScalarFieldEnum!]!
+		having: ServiceStatScalarWhereWithAggregatesInput
+		orderBy: [ServiceStatOrderByWithAggregationInput!]
+		skip: Int
+		take: Int
+		where: ServiceStatWhereInput
+	): [ServiceStatGroupBy!]!
+	groupByTimestamp(
+		by: [TimestampScalarFieldEnum!]!
+		having: TimestampScalarWhereWithAggregatesInput
+		orderBy: [TimestampOrderByWithAggregationInput!]
+		skip: Int
+		take: Int
+		where: TimestampWhereInput
+	): [TimestampGroupBy!]!
+	offchainRevocation(
+		where: OffchainRevocationWhereUniqueInput!
+	): OffchainRevocation
+	offchainRevocations(
+		cursor: OffchainRevocationWhereUniqueInput
+		distinct: [OffchainRevocationScalarFieldEnum!]
+		orderBy: [OffchainRevocationOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: OffchainRevocationWhereInput
+	): [OffchainRevocation!]!
+	schema(where: SchemaWhereUniqueInput!): Schema
+	schemaName(where: SchemaNameWhereUniqueInput!): SchemaName
+	schemaNames(
+		cursor: SchemaNameWhereUniqueInput
+		distinct: [SchemaNameScalarFieldEnum!]
+		orderBy: [SchemaNameOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: SchemaNameWhereInput
+	): [SchemaName!]!
+	schemata(
+		cursor: SchemaWhereUniqueInput
+		distinct: [SchemaScalarFieldEnum!]
+		orderBy: [SchemaOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: SchemaWhereInput
+	): [Schema!]!
+	serviceStat(where: ServiceStatWhereUniqueInput!): ServiceStat
+	serviceStats(
+		cursor: ServiceStatWhereUniqueInput
+		distinct: [ServiceStatScalarFieldEnum!]
+		orderBy: [ServiceStatOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: ServiceStatWhereInput
+	): [ServiceStat!]!
+	timestamp(where: TimestampWhereUniqueInput!): Timestamp
+	timestamps(
+		cursor: TimestampWhereUniqueInput
+		distinct: [TimestampScalarFieldEnum!]
+		orderBy: [TimestampOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: TimestampWhereInput
+	): [Timestamp!]!
+}
+
+enum QueryMode {
+	default
+	insensitive
+}
+
+type Schema {
+	_count: SchemaCount
+	attestations(
+		cursor: AttestationWhereUniqueInput
+		distinct: [AttestationScalarFieldEnum!]
+		orderBy: [AttestationOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: AttestationWhereInput
+	): [Attestation!]!
+	creator: String!
+	id: String!
+	index: String!
+	resolver: String!
+	revocable: Boolean!
+	schema: String!
+	schemaNames(
+		cursor: SchemaNameWhereUniqueInput
+		distinct: [SchemaNameScalarFieldEnum!]
+		orderBy: [SchemaNameOrderByWithRelationInput!]
+		skip: Int
+		take: Int
+		where: SchemaNameWhereInput
+	): [SchemaName!]!
+	time: Int!
+	txid: String!
+}
+
+type SchemaAvgAggregate {
+	time: Float
+}
+
+input SchemaAvgOrderByAggregateInput {
+	time: SortOrder
+}
+
+type SchemaCount {
+	attestations: Int!
+	schemaNames: Int!
+}
+
+type SchemaCountAggregate {
+	_all: Int!
+	creator: Int!
+	id: Int!
+	index: Int!
+	resolver: Int!
+	revocable: Int!
+	schema: Int!
+	time: Int!
+	txid: Int!
+}
+
+input SchemaCountOrderByAggregateInput {
+	creator: SortOrder
+	id: SortOrder
+	index: SortOrder
+	resolver: SortOrder
+	revocable: SortOrder
+	schema: SortOrder
+	time: SortOrder
+	txid: SortOrder
+}
+
+input SchemaCreateInput {
+	attestations: AttestationCreateNestedManyWithoutSchemaInput
+	creator: String!
+	id: String!
+	index: String!
+	resolver: String!
+	revocable: Boolean!
+	schema: String!
+	schemaNames: SchemaNameCreateNestedManyWithoutSchemaInput
+	time: Int!
+	txid: String!
+}
+
+input SchemaCreateManyInput {
+	creator: String!
+	id: String!
+	index: String!
+	resolver: String!
+	revocable: Boolean!
+	schema: String!
+	time: Int!
+	txid: String!
+}
+
+input SchemaCreateNestedOneWithoutAttestationsInput {
+	connect: SchemaWhereUniqueInput
+	connectOrCreate: SchemaCreateOrConnectWithoutAttestationsInput
+	create: SchemaCreateWithoutAttestationsInput
+}
+
+input SchemaCreateNestedOneWithoutSchemaNamesInput {
+	connect: SchemaWhereUniqueInput
+	connectOrCreate: SchemaCreateOrConnectWithoutSchemaNamesInput
+	create: SchemaCreateWithoutSchemaNamesInput
+}
+
+input SchemaCreateOrConnectWithoutAttestationsInput {
+	create: SchemaCreateWithoutAttestationsInput!
+	where: SchemaWhereUniqueInput!
+}
+
+input SchemaCreateOrConnectWithoutSchemaNamesInput {
+	create: SchemaCreateWithoutSchemaNamesInput!
+	where: SchemaWhereUniqueInput!
+}
+
+input SchemaCreateWithoutAttestationsInput {
+	creator: String!
+	id: String!
+	index: String!
+	resolver: String!
+	revocable: Boolean!
+	schema: String!
+	schemaNames: SchemaNameCreateNestedManyWithoutSchemaInput
+	time: Int!
+	txid: String!
+}
+
+input SchemaCreateWithoutSchemaNamesInput {
+	attestations: AttestationCreateNestedManyWithoutSchemaInput
+	creator: String!
+	id: String!
+	index: String!
+	resolver: String!
+	revocable: Boolean!
+	schema: String!
+	time: Int!
+	txid: String!
+}
+
+type SchemaGroupBy {
+	_avg: SchemaAvgAggregate
+	_count: SchemaCountAggregate
+	_max: SchemaMaxAggregate
+	_min: SchemaMinAggregate
+	_sum: SchemaSumAggregate
+	creator: String!
+	id: String!
+	index: String!
+	resolver: String!
+	revocable: Boolean!
+	schema: String!
+	time: Int!
+	txid: String!
+}
+
+type SchemaMaxAggregate {
+	creator: String
+	id: String
+	index: String
+	resolver: String
+	revocable: Boolean
+	schema: String
+	time: Int
+	txid: String
+}
+
+input SchemaMaxOrderByAggregateInput {
+	creator: SortOrder
+	id: SortOrder
+	index: SortOrder
+	resolver: SortOrder
+	revocable: SortOrder
+	schema: SortOrder
+	time: SortOrder
+	txid: SortOrder
+}
+
+type SchemaMinAggregate {
+	creator: String
+	id: String
+	index: String
+	resolver: String
+	revocable: Boolean
+	schema: String
+	time: Int
+	txid: String
+}
+
+input SchemaMinOrderByAggregateInput {
+	creator: SortOrder
+	id: SortOrder
+	index: SortOrder
+	resolver: SortOrder
+	revocable: SortOrder
+	schema: SortOrder
+	time: SortOrder
+	txid: SortOrder
+}
+
+type SchemaName {
+	attesterAddress: String!
+	id: String!
+	isCreator: Boolean!
+	name: String!
+	schema: Schema!
+	schemaId: String!
+	time: Int!
+}
+
+type SchemaNameAvgAggregate {
+	time: Float
+}
+
+input SchemaNameAvgOrderByAggregateInput {
+	time: SortOrder
+}
+
+type SchemaNameCountAggregate {
+	_all: Int!
+	attesterAddress: Int!
+	id: Int!
+	isCreator: Int!
+	name: Int!
+	schemaId: Int!
+	time: Int!
+}
+
+input SchemaNameCountOrderByAggregateInput {
+	attesterAddress: SortOrder
+	id: SortOrder
+	isCreator: SortOrder
+	name: SortOrder
+	schemaId: SortOrder
+	time: SortOrder
+}
+
+input SchemaNameCreateInput {
+	attesterAddress: String!
+	id: String
+	isCreator: Boolean!
+	name: String!
+	schema: SchemaCreateNestedOneWithoutSchemaNamesInput!
+	time: Int!
+}
+
+input SchemaNameCreateManyInput {
+	attesterAddress: String!
+	id: String
+	isCreator: Boolean!
+	name: String!
+	schemaId: String!
+	time: Int!
+}
+
+input SchemaNameCreateManySchemaInput {
+	attesterAddress: String!
+	id: String
+	isCreator: Boolean!
+	name: String!
+	time: Int!
+}
+
+input SchemaNameCreateManySchemaInputEnvelope {
+	data: [SchemaNameCreateManySchemaInput!]!
+	skipDuplicates: Boolean
+}
+
+input SchemaNameCreateNestedManyWithoutSchemaInput {
+	connect: [SchemaNameWhereUniqueInput!]
+	connectOrCreate: [SchemaNameCreateOrConnectWithoutSchemaInput!]
+	create: [SchemaNameCreateWithoutSchemaInput!]
+	createMany: SchemaNameCreateManySchemaInputEnvelope
+}
+
+input SchemaNameCreateOrConnectWithoutSchemaInput {
+	create: SchemaNameCreateWithoutSchemaInput!
+	where: SchemaNameWhereUniqueInput!
+}
+
+input SchemaNameCreateWithoutSchemaInput {
+	attesterAddress: String!
+	id: String
+	isCreator: Boolean!
+	name: String!
+	time: Int!
+}
+
+type SchemaNameGroupBy {
+	_avg: SchemaNameAvgAggregate
+	_count: SchemaNameCountAggregate
+	_max: SchemaNameMaxAggregate
+	_min: SchemaNameMinAggregate
+	_sum: SchemaNameSumAggregate
+	attesterAddress: String!
+	id: String!
+	isCreator: Boolean!
+	name: String!
+	schemaId: String!
+	time: Int!
+}
+
+input SchemaNameListRelationFilter {
+	every: SchemaNameWhereInput
+	none: SchemaNameWhereInput
+	some: SchemaNameWhereInput
+}
+
+type SchemaNameMaxAggregate {
+	attesterAddress: String
+	id: String
+	isCreator: Boolean
+	name: String
+	schemaId: String
+	time: Int
+}
+
+input SchemaNameMaxOrderByAggregateInput {
+	attesterAddress: SortOrder
+	id: SortOrder
+	isCreator: SortOrder
+	name: SortOrder
+	schemaId: SortOrder
+	time: SortOrder
+}
+
+type SchemaNameMinAggregate {
+	attesterAddress: String
+	id: String
+	isCreator: Boolean
+	name: String
+	schemaId: String
+	time: Int
+}
+
+input SchemaNameMinOrderByAggregateInput {
+	attesterAddress: SortOrder
+	id: SortOrder
+	isCreator: SortOrder
+	name: SortOrder
+	schemaId: SortOrder
+	time: SortOrder
+}
+
+input SchemaNameOrderByRelationAggregateInput {
+	_count: SortOrder
+}
+
+input SchemaNameOrderByWithAggregationInput {
+	_avg: SchemaNameAvgOrderByAggregateInput
+	_count: SchemaNameCountOrderByAggregateInput
+	_max: SchemaNameMaxOrderByAggregateInput
+	_min: SchemaNameMinOrderByAggregateInput
+	_sum: SchemaNameSumOrderByAggregateInput
+	attesterAddress: SortOrder
+	id: SortOrder
+	isCreator: SortOrder
+	name: SortOrder
+	schemaId: SortOrder
+	time: SortOrder
+}
+
+input SchemaNameOrderByWithRelationInput {
+	attesterAddress: SortOrder
+	id: SortOrder
+	isCreator: SortOrder
+	name: SortOrder
+	schema: SchemaOrderByWithRelationInput
+	schemaId: SortOrder
+	time: SortOrder
+}
+
+enum SchemaNameScalarFieldEnum {
+	attesterAddress
+	id
+	isCreator
+	name
+	schemaId
+	time
+}
+
+input SchemaNameScalarWhereInput {
+	AND: [SchemaNameScalarWhereInput!]
+	NOT: [SchemaNameScalarWhereInput!]
+	OR: [SchemaNameScalarWhereInput!]
+	attesterAddress: StringFilter
+	id: StringFilter
+	isCreator: BoolFilter
+	name: StringFilter
+	schemaId: StringFilter
+	time: IntFilter
+}
+
+input SchemaNameScalarWhereWithAggregatesInput {
+	AND: [SchemaNameScalarWhereWithAggregatesInput!]
+	NOT: [SchemaNameScalarWhereWithAggregatesInput!]
+	OR: [SchemaNameScalarWhereWithAggregatesInput!]
+	attesterAddress: StringWithAggregatesFilter
+	id: StringWithAggregatesFilter
+	isCreator: BoolWithAggregatesFilter
+	name: StringWithAggregatesFilter
+	schemaId: StringWithAggregatesFilter
+	time: IntWithAggregatesFilter
+}
+
+type SchemaNameSumAggregate {
+	time: Int
+}
+
+input SchemaNameSumOrderByAggregateInput {
+	time: SortOrder
+}
+
+input SchemaNameUpdateInput {
+	attesterAddress: StringFieldUpdateOperationsInput
+	id: StringFieldUpdateOperationsInput
+	isCreator: BoolFieldUpdateOperationsInput
+	name: StringFieldUpdateOperationsInput
+	schema: SchemaUpdateOneRequiredWithoutSchemaNamesNestedInput
+	time: IntFieldUpdateOperationsInput
+}
+
+input SchemaNameUpdateManyMutationInput {
+	attesterAddress: StringFieldUpdateOperationsInput
+	id: StringFieldUpdateOperationsInput
+	isCreator: BoolFieldUpdateOperationsInput
+	name: StringFieldUpdateOperationsInput
+	time: IntFieldUpdateOperationsInput
+}
+
+input SchemaNameUpdateManyWithWhereWithoutSchemaInput {
+	data: SchemaNameUpdateManyMutationInput!
+	where: SchemaNameScalarWhereInput!
+}
+
+input SchemaNameUpdateManyWithoutSchemaNestedInput {
+	connect: [SchemaNameWhereUniqueInput!]
+	connectOrCreate: [SchemaNameCreateOrConnectWithoutSchemaInput!]
+	create: [SchemaNameCreateWithoutSchemaInput!]
+	createMany: SchemaNameCreateManySchemaInputEnvelope
+	delete: [SchemaNameWhereUniqueInput!]
+	deleteMany: [SchemaNameScalarWhereInput!]
+	disconnect: [SchemaNameWhereUniqueInput!]
+	set: [SchemaNameWhereUniqueInput!]
+	update: [SchemaNameUpdateWithWhereUniqueWithoutSchemaInput!]
+	updateMany: [SchemaNameUpdateManyWithWhereWithoutSchemaInput!]
+	upsert: [SchemaNameUpsertWithWhereUniqueWithoutSchemaInput!]
+}
+
+input SchemaNameUpdateWithWhereUniqueWithoutSchemaInput {
+	data: SchemaNameUpdateWithoutSchemaInput!
+	where: SchemaNameWhereUniqueInput!
+}
+
+input SchemaNameUpdateWithoutSchemaInput {
+	attesterAddress: StringFieldUpdateOperationsInput
+	id: StringFieldUpdateOperationsInput
+	isCreator: BoolFieldUpdateOperationsInput
+	name: StringFieldUpdateOperationsInput
+	time: IntFieldUpdateOperationsInput
+}
+
+input SchemaNameUpsertWithWhereUniqueWithoutSchemaInput {
+	create: SchemaNameCreateWithoutSchemaInput!
+	update: SchemaNameUpdateWithoutSchemaInput!
+	where: SchemaNameWhereUniqueInput!
+}
+
+input SchemaNameWhereInput {
+	AND: [SchemaNameWhereInput!]
+	NOT: [SchemaNameWhereInput!]
+	OR: [SchemaNameWhereInput!]
+	attesterAddress: StringFilter
+	id: StringFilter
+	isCreator: BoolFilter
+	name: StringFilter
+	schema: SchemaRelationFilter
+	schemaId: StringFilter
+	time: IntFilter
+}
+
+input SchemaNameWhereUniqueInput {
+	id: String
+}
+
+input SchemaOrderByWithAggregationInput {
+	_avg: SchemaAvgOrderByAggregateInput
+	_count: SchemaCountOrderByAggregateInput
+	_max: SchemaMaxOrderByAggregateInput
+	_min: SchemaMinOrderByAggregateInput
+	_sum: SchemaSumOrderByAggregateInput
+	creator: SortOrder
+	id: SortOrder
+	index: SortOrder
+	resolver: SortOrder
+	revocable: SortOrder
+	schema: SortOrder
+	time: SortOrder
+	txid: SortOrder
+}
+
+input SchemaOrderByWithRelationInput {
+	attestations: AttestationOrderByRelationAggregateInput
+	creator: SortOrder
+	id: SortOrder
+	index: SortOrder
+	resolver: SortOrder
+	revocable: SortOrder
+	schema: SortOrder
+	schemaNames: SchemaNameOrderByRelationAggregateInput
+	time: SortOrder
+	txid: SortOrder
+}
+
+input SchemaRelationFilter {
+	is: SchemaWhereInput
+	isNot: SchemaWhereInput
+}
+
+enum SchemaScalarFieldEnum {
+	creator
+	id
+	index
+	resolver
+	revocable
+	schema
+	time
+	txid
+}
+
+input SchemaScalarWhereWithAggregatesInput {
+	AND: [SchemaScalarWhereWithAggregatesInput!]
+	NOT: [SchemaScalarWhereWithAggregatesInput!]
+	OR: [SchemaScalarWhereWithAggregatesInput!]
+	creator: StringWithAggregatesFilter
+	id: StringWithAggregatesFilter
+	index: StringWithAggregatesFilter
+	resolver: StringWithAggregatesFilter
+	revocable: BoolWithAggregatesFilter
+	schema: StringWithAggregatesFilter
+	time: IntWithAggregatesFilter
+	txid: StringWithAggregatesFilter
+}
+
+type SchemaSumAggregate {
+	time: Int
+}
+
+input SchemaSumOrderByAggregateInput {
+	time: SortOrder
+}
+
+input SchemaUpdateInput {
+	attestations: AttestationUpdateManyWithoutSchemaNestedInput
+	creator: StringFieldUpdateOperationsInput
+	id: StringFieldUpdateOperationsInput
+	index: StringFieldUpdateOperationsInput
+	resolver: StringFieldUpdateOperationsInput
+	revocable: BoolFieldUpdateOperationsInput
+	schema: StringFieldUpdateOperationsInput
+	schemaNames: SchemaNameUpdateManyWithoutSchemaNestedInput
+	time: IntFieldUpdateOperationsInput
+	txid: StringFieldUpdateOperationsInput
+}
+
+input SchemaUpdateManyMutationInput {
+	creator: StringFieldUpdateOperationsInput
+	id: StringFieldUpdateOperationsInput
+	index: StringFieldUpdateOperationsInput
+	resolver: StringFieldUpdateOperationsInput
+	revocable: BoolFieldUpdateOperationsInput
+	schema: StringFieldUpdateOperationsInput
+	time: IntFieldUpdateOperationsInput
+	txid: StringFieldUpdateOperationsInput
+}
+
+input SchemaUpdateOneRequiredWithoutAttestationsNestedInput {
+	connect: SchemaWhereUniqueInput
+	connectOrCreate: SchemaCreateOrConnectWithoutAttestationsInput
+	create: SchemaCreateWithoutAttestationsInput
+	update: SchemaUpdateWithoutAttestationsInput
+	upsert: SchemaUpsertWithoutAttestationsInput
+}
+
+input SchemaUpdateOneRequiredWithoutSchemaNamesNestedInput {
+	connect: SchemaWhereUniqueInput
+	connectOrCreate: SchemaCreateOrConnectWithoutSchemaNamesInput
+	create: SchemaCreateWithoutSchemaNamesInput
+	update: SchemaUpdateWithoutSchemaNamesInput
+	upsert: SchemaUpsertWithoutSchemaNamesInput
+}
+
+input SchemaUpdateWithoutAttestationsInput {
+	creator: StringFieldUpdateOperationsInput
+	id: StringFieldUpdateOperationsInput
+	index: StringFieldUpdateOperationsInput
+	resolver: StringFieldUpdateOperationsInput
+	revocable: BoolFieldUpdateOperationsInput
+	schema: StringFieldUpdateOperationsInput
+	schemaNames: SchemaNameUpdateManyWithoutSchemaNestedInput
+	time: IntFieldUpdateOperationsInput
+	txid: StringFieldUpdateOperationsInput
+}
+
+input SchemaUpdateWithoutSchemaNamesInput {
+	attestations: AttestationUpdateManyWithoutSchemaNestedInput
+	creator: StringFieldUpdateOperationsInput
+	id: StringFieldUpdateOperationsInput
+	index: StringFieldUpdateOperationsInput
+	resolver: StringFieldUpdateOperationsInput
+	revocable: BoolFieldUpdateOperationsInput
+	schema: StringFieldUpdateOperationsInput
+	time: IntFieldUpdateOperationsInput
+	txid: StringFieldUpdateOperationsInput
+}
+
+input SchemaUpsertWithoutAttestationsInput {
+	create: SchemaCreateWithoutAttestationsInput!
+	update: SchemaUpdateWithoutAttestationsInput!
+}
+
+input SchemaUpsertWithoutSchemaNamesInput {
+	create: SchemaCreateWithoutSchemaNamesInput!
+	update: SchemaUpdateWithoutSchemaNamesInput!
+}
+
+input SchemaWhereInput {
+	AND: [SchemaWhereInput!]
+	NOT: [SchemaWhereInput!]
+	OR: [SchemaWhereInput!]
+	attestations: AttestationListRelationFilter
+	creator: StringFilter
+	id: StringFilter
+	index: StringFilter
+	resolver: StringFilter
+	revocable: BoolFilter
+	schema: StringFilter
+	schemaNames: SchemaNameListRelationFilter
+	time: IntFilter
+	txid: StringFilter
+}
+
+input SchemaWhereUniqueInput {
+	id: String
+}
+
+type ServiceStat {
+	name: String!
+	value: String!
+}
+
+type ServiceStatCountAggregate {
+	_all: Int!
+	name: Int!
+	value: Int!
+}
+
+input ServiceStatCountOrderByAggregateInput {
+	name: SortOrder
+	value: SortOrder
+}
+
+input ServiceStatCreateInput {
+	name: String!
+	value: String!
+}
+
+input ServiceStatCreateManyInput {
+	name: String!
+	value: String!
+}
+
+type ServiceStatGroupBy {
+	_count: ServiceStatCountAggregate
+	_max: ServiceStatMaxAggregate
+	_min: ServiceStatMinAggregate
+	name: String!
+	value: String!
+}
+
+type ServiceStatMaxAggregate {
+	name: String
+	value: String
+}
+
+input ServiceStatMaxOrderByAggregateInput {
+	name: SortOrder
+	value: SortOrder
+}
+
+type ServiceStatMinAggregate {
+	name: String
+	value: String
+}
+
+input ServiceStatMinOrderByAggregateInput {
+	name: SortOrder
+	value: SortOrder
+}
+
+input ServiceStatOrderByWithAggregationInput {
+	_count: ServiceStatCountOrderByAggregateInput
+	_max: ServiceStatMaxOrderByAggregateInput
+	_min: ServiceStatMinOrderByAggregateInput
+	name: SortOrder
+	value: SortOrder
+}
+
+input ServiceStatOrderByWithRelationInput {
+	name: SortOrder
+	value: SortOrder
+}
+
+enum ServiceStatScalarFieldEnum {
+	name
+	value
+}
+
+input ServiceStatScalarWhereWithAggregatesInput {
+	AND: [ServiceStatScalarWhereWithAggregatesInput!]
+	NOT: [ServiceStatScalarWhereWithAggregatesInput!]
+	OR: [ServiceStatScalarWhereWithAggregatesInput!]
+	name: StringWithAggregatesFilter
+	value: StringWithAggregatesFilter
+}
+
+input ServiceStatUpdateInput {
+	name: StringFieldUpdateOperationsInput
+	value: StringFieldUpdateOperationsInput
+}
+
+input ServiceStatUpdateManyMutationInput {
+	name: StringFieldUpdateOperationsInput
+	value: StringFieldUpdateOperationsInput
+}
+
+input ServiceStatWhereInput {
+	AND: [ServiceStatWhereInput!]
+	NOT: [ServiceStatWhereInput!]
+	OR: [ServiceStatWhereInput!]
+	name: StringFilter
+	value: StringFilter
+}
+
+input ServiceStatWhereUniqueInput {
+	name: String
+}
+
+enum SortOrder {
+	asc
+	desc
+}
+
+input StringFieldUpdateOperationsInput {
+	set: String
+}
+
+input StringFilter {
+	contains: String
+	endsWith: String
+	equals: String
+	gt: String
+	gte: String
+	in: [String!]
+	lt: String
+	lte: String
+	mode: QueryMode
+	not: NestedStringFilter
+	notIn: [String!]
+	startsWith: String
+}
+
+input StringWithAggregatesFilter {
+	_count: NestedIntFilter
+	_max: NestedStringFilter
+	_min: NestedStringFilter
+	contains: String
+	endsWith: String
+	equals: String
+	gt: String
+	gte: String
+	in: [String!]
+	lt: String
+	lte: String
+	mode: QueryMode
+	not: NestedStringWithAggregatesFilter
+	notIn: [String!]
+	startsWith: String
+}
+
+type Timestamp {
+	from: String!
+	id: String!
+	timestamp: Int!
+	tree: String!
+	txid: String!
+}
+
+type TimestampAvgAggregate {
+	timestamp: Float
+}
+
+input TimestampAvgOrderByAggregateInput {
+	timestamp: SortOrder
+}
+
+type TimestampCountAggregate {
+	_all: Int!
+	from: Int!
+	id: Int!
+	timestamp: Int!
+	tree: Int!
+	txid: Int!
+}
+
+input TimestampCountOrderByAggregateInput {
+	from: SortOrder
+	id: SortOrder
+	timestamp: SortOrder
+	tree: SortOrder
+	txid: SortOrder
+}
+
+input TimestampCreateInput {
+	from: String!
+	id: String!
+	timestamp: Int!
+	tree: String
+	txid: String!
+}
+
+input TimestampCreateManyInput {
+	from: String!
+	id: String!
+	timestamp: Int!
+	tree: String
+	txid: String!
+}
+
+type TimestampGroupBy {
+	_avg: TimestampAvgAggregate
+	_count: TimestampCountAggregate
+	_max: TimestampMaxAggregate
+	_min: TimestampMinAggregate
+	_sum: TimestampSumAggregate
+	from: String!
+	id: String!
+	timestamp: Int!
+	tree: String!
+	txid: String!
+}
+
+type TimestampMaxAggregate {
+	from: String
+	id: String
+	timestamp: Int
+	tree: String
+	txid: String
+}
+
+input TimestampMaxOrderByAggregateInput {
+	from: SortOrder
+	id: SortOrder
+	timestamp: SortOrder
+	tree: SortOrder
+	txid: SortOrder
+}
+
+type TimestampMinAggregate {
+	from: String
+	id: String
+	timestamp: Int
+	tree: String
+	txid: String
+}
+
+input TimestampMinOrderByAggregateInput {
+	from: SortOrder
+	id: SortOrder
+	timestamp: SortOrder
+	tree: SortOrder
+	txid: SortOrder
+}
+
+input TimestampOrderByWithAggregationInput {
+	_avg: TimestampAvgOrderByAggregateInput
+	_count: TimestampCountOrderByAggregateInput
+	_max: TimestampMaxOrderByAggregateInput
+	_min: TimestampMinOrderByAggregateInput
+	_sum: TimestampSumOrderByAggregateInput
+	from: SortOrder
+	id: SortOrder
+	timestamp: SortOrder
+	tree: SortOrder
+	txid: SortOrder
+}
+
+input TimestampOrderByWithRelationInput {
+	from: SortOrder
+	id: SortOrder
+	timestamp: SortOrder
+	tree: SortOrder
+	txid: SortOrder
+}
+
+enum TimestampScalarFieldEnum {
+	from
+	id
+	timestamp
+	tree
+	txid
+}
+
+input TimestampScalarWhereWithAggregatesInput {
+	AND: [TimestampScalarWhereWithAggregatesInput!]
+	NOT: [TimestampScalarWhereWithAggregatesInput!]
+	OR: [TimestampScalarWhereWithAggregatesInput!]
+	from: StringWithAggregatesFilter
+	id: StringWithAggregatesFilter
+	timestamp: IntWithAggregatesFilter
+	tree: StringWithAggregatesFilter
+	txid: StringWithAggregatesFilter
+}
+
+type TimestampSumAggregate {
+	timestamp: Int
+}
+
+input TimestampSumOrderByAggregateInput {
+	timestamp: SortOrder
+}
+
+input TimestampUpdateInput {
+	from: StringFieldUpdateOperationsInput
+	id: StringFieldUpdateOperationsInput
+	timestamp: IntFieldUpdateOperationsInput
+	tree: StringFieldUpdateOperationsInput
+	txid: StringFieldUpdateOperationsInput
+}
+
+input TimestampUpdateManyMutationInput {
+	from: StringFieldUpdateOperationsInput
+	id: StringFieldUpdateOperationsInput
+	timestamp: IntFieldUpdateOperationsInput
+	tree: StringFieldUpdateOperationsInput
+	txid: StringFieldUpdateOperationsInput
+}
+
+input TimestampWhereInput {
+	AND: [TimestampWhereInput!]
+	NOT: [TimestampWhereInput!]
+	OR: [TimestampWhereInput!]
+	from: StringFilter
+	id: StringFilter
+	timestamp: IntFilter
+	tree: StringFilter
+	txid: StringFilter
+}
+
+input TimestampWhereUniqueInput {
+	id: String
+}

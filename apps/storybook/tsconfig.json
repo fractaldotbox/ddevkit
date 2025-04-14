@@ -1,0 +1,11 @@
+{
+	"extends": "@geist/typescript-config/base.json",
+	"compilerOptions": {
+		"baseUrl": "."
+	},
+	"files": [],
+	"references": [
+		{ "path": "./tsconfig.app.json" },
+		{ "path": "./tsconfig.node.json" }
+	]
+}

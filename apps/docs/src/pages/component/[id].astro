@@ -1,0 +1,71 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import type { GetStaticPaths } from "astro";
+import { STORYBOOK_URL } from "../../storybook-loader";
+import "../../styles/global.css";
+
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
+export const getStaticPaths = (async () => {
+	const components = await getCollection("components");
+	return components.map(({ id }) => ({
+		params: { id },
+	}));
+}) satisfies GetStaticPaths;
+
+const { id } = Astro.params;
+
+const component = await getEntry("components", id);
+
+import { Code } from "@astrojs/starlight/components";
+
+const REGISTRY_URL = process.env.REGISTRY_URL ?? "https://ddev.geist.network/r";
+
+const generateCmd = (type: string) => {
+	const { componentPath } = component.data;
+
+	if (type === "shadcn") {
+		const registryPath = componentPath.replace(
+			"@geist/ui-react/",
+			`${REGISTRY_URL}/`,
+		);
+		return `npx shadcn@2.4.0 add ${registryPath}.json`;
+	}
+	const registryPath = componentPath.replace("@geist/ui-react/", "");
+	return `npx @geist/ddev add ${registryPath}`;
+};
+
+export const highlights = ["file", "CMS"];
+---
+
+<StarlightPage frontmatter={{ title: component.data.title, tableOfContents: false }}>
+
+	<div>
+		<h2> Storybook </h2>
+	</div>
+	<div class="h-[1200px] w-full not-content">
+		<iframe
+			height="100%"
+			width="100%"
+			src=`${STORYBOOK_URL}?path=/story/${component?.id}&full=1&shortcuts=false`
+		></iframe>
+	<div>
+
+	<h6 class="pb-2 text-lg">Installation</h6>
+
+<Tabs>
+	<TabItem label="ddev">
+		<Code code={generateCmd("ddev")} lang="bash" />
+	</TabItem>
+	<TabItem label="shadcn">
+		<Code code={generateCmd("shadcn")} lang="bash" />
+	</TabItem>
+  </Tabs>
+
+  
+
+	</div>
+	</div>
+
+</StarlightPage>

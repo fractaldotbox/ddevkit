@@ -1,0 +1,18 @@
+{
+	"extends": "@geist/typescript-config/react-library.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"paths": {
+			"#*": ["src/*"]
+		},
+		"target": "ES2022"
+	},
+	"include": [
+		"src",
+		"../../packages/@geist/domain",
+		"../domain/src/token/token-price-entry.ts"
+	],
+	"exclude": ["node_modules", "dist"]
+}

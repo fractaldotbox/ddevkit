@@ -3,7 +3,7 @@ name: Check
 on:
   pull_request:
     branches:
-      - 'draft'
+      - 'next'
       - 'main'
     types: [opened, synchronize, reopened]
 

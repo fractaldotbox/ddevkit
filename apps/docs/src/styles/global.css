@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--sl-content-width: 100%;
+	--sl-text-5xl: 3.5rem;
+}

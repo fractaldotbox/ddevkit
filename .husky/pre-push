@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set +e
+
+# Run the check command
+pnpm exec turbo run check
+
+# Capture the exit code
+EXIT_CODE=$?
+
+# If the check fails, provide a helpful error message
+if [ $EXIT_CODE -ne 0 ]; then
+  echo ""
+  echo "💡 You may want to integrate Biome with your IDE to format file on save."
+  echo "   See https://biomejs.dev/guides/editors/first-party-extensions/ for more information."
+  echo ""
+  echo "🛠️ To apply auto fixes now, run:"
+  echo "   $ pnpm check:fix"
+  exit $EXIT_CODE
+fi
+
+exit 0
