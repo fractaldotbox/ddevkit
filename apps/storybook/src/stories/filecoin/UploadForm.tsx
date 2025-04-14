@@ -5,7 +5,7 @@ import { type ZodType, z } from "zod";
 import { FileInputField } from "@geist/ui-react/components/file/file-input-field";
 import type { DownloadProgress } from "ky";
 import React from "react";
-import { toast } from "sooner";
+import { toast } from "sonner";
 import { Button } from "#components/ui/button";
 import {
 	Form,
