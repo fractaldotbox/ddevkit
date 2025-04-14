@@ -1,6 +1,8 @@
 import { generatePriceDataFeed } from "@geist/domain/token/token-balance.fixture";
 import { TokenPriceChartWithFeed } from "@geist/ui-react/components/token/token-price-chart-with-feed";
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, userEvent } from "@storybook/test";
+import { setupCanvas } from "../utils/test-utils";
 
 const tokenInfoByTokenId = {
 	"eip155:1/erc20:0x6b175474e89094c44da98b954eedeac495271d0f": {
@@ -39,5 +41,23 @@ export const ByCrosschainToken: Story = {
 		},
 		tokenInfoByTokenId,
 		locale: "en-US",
+	},
+	play: async ({ canvasElement }) => {
+		const { canvas } = await setupCanvas(canvasElement, 3000);
+
+		const chart = await canvas.findByTestId("token-price-chart-with-feed");
+		await expect(chart).toBeInTheDocument();
+
+		await userEvent.keyboard("{Tab}");
+
+		const daiLabel = await canvas.findByText("DAI", undefined, {
+			timeout: 3000,
+		});
+		await expect(daiLabel).toBeInTheDocument();
+
+		const usdcLabel = await canvas.findByText("USDC", undefined, {
+			timeout: 3000,
+		});
+		await expect(usdcLabel).toBeInTheDocument();
 	},
 };

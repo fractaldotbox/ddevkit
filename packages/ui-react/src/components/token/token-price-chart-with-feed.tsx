@@ -128,7 +128,7 @@ export const TokenPriceChartWithFeed = ({
 											symbol={label}
 											decimals={decimals}
 											value={value}
-											locale={locale? new Intl.Locale(locale) : undefined}
+											locale={locale ? new Intl.Locale(locale) : undefined}
 										/>
 									);
 								}}
