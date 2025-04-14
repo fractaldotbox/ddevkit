@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import { type ZodType, z } from "zod";
 
 import { FileInputField } from "@geist/ui-react/components/file/file-input-field";
-import { toast } from "@geist/ui-react/hooks/shadcn/use-toast";
 import type { DownloadProgress } from "ky";
 import React from "react";
+import { toast } from "sonner";
 import { Button } from "#components/ui/button";
 import {
 	Form,
@@ -239,7 +239,7 @@ export const UploadFormWithFields = <S extends ZodType<any, any, any>>({
 		const uploadProgressCallback = (data: DownloadProgress) => {
 			setProgress(data);
 		};
-		toast({
+		toast.success({
 			title: "You submitted the following values:",
 			description: (
 				<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">

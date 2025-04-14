@@ -111,6 +111,7 @@
 		"graphql-request": "^7.1.0",
 		"happy-dom": "^15.11.6",
 		"jsdom": "^25.0.1",
+		"sonner": "^2.0.3",
 		"ky": "^1.7.2",
 		"lodash": "^4.17.21",
 		"lucide-react": "^0.446.0",
