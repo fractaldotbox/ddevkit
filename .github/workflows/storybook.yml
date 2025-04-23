@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
   pull_request:
     branches:
-      - 'draft'
+      - 'next'
       - 'main'  
   push:
     branches:
       - 'docs'
-      - 'draft'
+      - 'next'
       - 'main'
     paths:
       - 'apps/storybook/**'
@@ -19,6 +19,7 @@ env:
   TEST_EAS_PRIVATE_KEY: ${{ secrets.TEST_EAS_PRIVATE_KEY }}
   TEST_USER_PRIVATE_KEY: ${{ secrets.TEST_USER_PRIVATE_KEY }}
   LIGHTHOUSE_API_KEY: ${{ secrets.LIGHTHOUSE_API_KEY }}
+  PASSPORT_API_KEY:  ${{ secrets.PASSPORT_API_KEY }}
 
 jobs:
   build-storybook:
@@ -54,7 +55,7 @@ jobs:
 
   deploy-storybook:
     needs: [build-storybook]
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/draft'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -74,41 +75,3 @@ jobs:
           FLEEK_TOKEN: ${{ secrets.FLEEK_TOKEN }}
           FLEEK_PROJECT_ID: cm2kkeg090000d5n0pbuh5f9u
         run: pnpm --dir apps/storybook deploy:fleek
-
-  deploy-docs:
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/docs'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js and pnpm
-        uses: ./.github/actions/setup-node-pnpm
-
-      - name: Build docs
-        run: pnpm --filter docs build
-
-      - name: Deploy docs
-        env:
-          FLEEK_TOKEN: ${{ secrets.FLEEK_TOKEN }}
-          FLEEK_PROJECT_ID: cm1coipco000087g1pcgohgtd
-        run: pnpm --dir apps/docs deploy:fleek
-
-  deploy-registry:
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/draft'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js and pnpm
-        uses: ./.github/actions/setup-node-pnpm
-
-      - name: Build registry
-        run: pnpm --filter @geist/registry build
-
-      - name: Deploy registry
-        env:
-          FLEEK_TOKEN: ${{ secrets.FLEEK_TOKEN }}
-          FLEEK_PROJECT_ID: cm2lvm8yh000030bm17kmomq9
-        run: pnpm --dir apps/registry deploy:fleek

@@ -121,7 +121,7 @@ export const TokenBalanceChart = ({
 		};
 	});
 	return (
-		<div className="w-full h-full">
+		<div className="w-full h-full" data-testid="token-balance-chart">
 			<ChartContainer
 				config={chartConfig}
 				style={{ height: "600px", width: "600px" }}

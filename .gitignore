@@ -49,3 +49,6 @@ apps/registry/registry.json
 
 
 apps/agent-demo/.mastra/
+
+
+pnpm-lock.yaml

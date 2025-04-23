@@ -6,6 +6,8 @@ import {
 } from "@geist/domain/token/token-balance.fixture";
 import { TokenBalanceChart$ } from "@geist/ui-react/components/token/token-balance-chart";
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, userEvent } from "@storybook/test";
+import { setupCanvas } from "../utils/test-utils";
 
 const meta = {
 	title: "Token/TokenBalanceChart$",
@@ -39,12 +41,25 @@ const { $tokenBalances: $tokenBalancesStablecoin } =
 
 $tokenBalancesStablecoin.set(TOKEN_BALANCES_MULTICHAIN_STABLECOINS);
 
+async function testTokenBalanceChart(canvasElement: HTMLElement) {
+	const { canvas } = await setupCanvas(canvasElement, 4000);
+
+	const chart = await canvas.findByTestId("token-balance-chart");
+	expect(chart).toBeInTheDocument();
+
+	const balanceText = await canvas.findByText("Balance");
+	expect(balanceText).toBeInTheDocument();
+}
+
 export const TokenAmountByMultichain: Story = {
 	args: {
 		group: "token",
 		dataKey: "amount",
 		$tokenBalances: $tokenBalancesStablecoin,
 		$priceData,
+	},
+	play: async ({ canvasElement }) => {
+		await testTokenBalanceChart(canvasElement);
 	},
 };
 
@@ -54,5 +69,8 @@ export const TokenValueByMultichain: Story = {
 		dataKey: "value",
 		$tokenBalances,
 		$priceData,
+	},
+	play: async ({ canvasElement }) => {
+		await testTokenBalanceChart(canvasElement);
 	},
 };

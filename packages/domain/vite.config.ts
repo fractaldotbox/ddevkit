@@ -1,6 +1,6 @@
+/// <reference types="vitest/config" />
 import viteConfig from "../../vite.config";
 
-/// <reference types="vitest" />
 import { defineConfig, loadEnv } from "vite";
 
 // https://vitejs.dev/config/

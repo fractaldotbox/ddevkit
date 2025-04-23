@@ -1,9 +1,6 @@
+import config from "@geist/domain/config";
 import ky from "ky";
 import type { Address } from "viem";
-
-const PASSPORT_API_ENDPOINT = "https://api.passport.xyz";
-
-const PASSPORT_API_KEY = process.env.PASSPORT_API_KEY || "";
 
 /**
  * Creates a URL for the Passport API endpoint
@@ -12,7 +9,7 @@ export const createEndpointUrl = (
 	path: string,
 	queryParams?: Record<string, string>,
 ) => {
-	const url = `${PASSPORT_API_ENDPOINT}${path}`;
+	const url = `${config.passport.endpointUrl}${path}`;
 	if (!queryParams) return url;
 
 	const params = new URLSearchParams();
@@ -33,7 +30,7 @@ export const createFetchOptions = (
 		options: {
 			headers: {
 				accept: "application/json",
-				"X-API-Key": PASSPORT_API_KEY,
+				"X-API-Key": config.passport.apiKey,
 			},
 		},
 	};

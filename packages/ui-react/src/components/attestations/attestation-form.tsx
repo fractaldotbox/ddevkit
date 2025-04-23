@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import type { Address } from "viem";
 import { z } from "zod";
 import { Button } from "#components/shadcn/button";
@@ -15,7 +16,6 @@ import {
 } from "#components/shadcn/form";
 import { Input } from "#components/shadcn/input";
 import { ToastAction } from "#components/shadcn/toast";
-import { toast } from "#hooks/shadcn/use-toast";
 import { getEasscanAttestationUrl } from "#lib/eas/easscan";
 import { getShortHex } from "#lib/utils/hex";
 import { AttestationSchemaBadge } from "./attestation-schema-badge";
@@ -63,7 +63,7 @@ export const AttestationForm = ({
 				? getShortHex(uid)
 				: `attested ${txnReceipt?.transactionHash}`;
 
-			toast({
+			toast.success({
 				title: "Attestation success",
 				description,
 				action: (

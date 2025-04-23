@@ -1,8 +1,8 @@
-import { toast } from "@geist/ui-react/hooks/shadcn/use-toast";
 import {
 	IpfsGateway,
 	getGatewayUrlWithCid,
 } from "@geist/ui-react/lib/filecoin/gateway";
+import { toast } from "sonner";
 
 export const uploadSuccessToast = ({
 	cid,
@@ -11,8 +11,7 @@ export const uploadSuccessToast = ({
 }: { cid: string; name?: string; gateway?: IpfsGateway }) => {
 	const url = getGatewayUrlWithCid(cid, gateway);
 
-	toast({
-		title: "File uploaded",
+	toast.success("File uploaded", {
 		description: (
 			<div>
 				{name && <span className="pr-2">Name:</span>}

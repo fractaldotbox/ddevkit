@@ -1,6 +1,6 @@
 import "../src/index.css";
 import type { Preview } from "@storybook/react";
-
+import { withTags } from "../src/stories/decorators/with-tags";
 // storybook Manager will serialize args
 // @ts-ignore
 BigInt.prototype.toJSON = function () {
@@ -16,6 +16,7 @@ const preview: Preview = {
 			},
 		},
 	},
+	decorators: [withTags()],
 	tags: ["autodocs"],
 };
 

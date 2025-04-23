@@ -42,9 +42,11 @@ const filterIntegralTicks = (ticks) => {
 export const TokenPriceChartWithFeed = ({
 	tokenPriceFeedByTokenId,
 	tokenInfoByTokenId,
+	locale,
 }: {
 	tokenPriceFeedByTokenId: { [tokenId: string]: TokenPriceEntry[] };
 	tokenInfoByTokenId: Record<string, TokenInfo>;
+	locale?: string;
 }) => {
 	const tokenIds = Object.keys(tokenPriceFeedByTokenId || {});
 
@@ -126,6 +128,7 @@ export const TokenPriceChartWithFeed = ({
 											symbol={label}
 											decimals={decimals}
 											value={value}
+											locale={locale ? new Intl.Locale(locale) : undefined}
 										/>
 									);
 								}}

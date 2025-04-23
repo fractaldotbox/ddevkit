@@ -117,7 +117,7 @@ describe("typed data", () => {
 
 		const domainSeparatorSdk = offchain.getDomainSeparator();
 
-		console.log("domainSeparator", domainSeparator);
+		// console.log("domainSeparator", domainSeparator);
 		expect(domainSeparatorSdk).toEqual(
 			"0x632c3721bd85744e31ec5ace6e6755b9c4b7fa734f6760a248fa7a2d19b5d521",
 		);

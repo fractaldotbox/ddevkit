@@ -1,8 +1,9 @@
 import { mainnet } from "viem/chains";
 import { describe, expect, test } from "vitest";
-import type { Config } from "wagmi";
+import { type Config, createConfig } from "wagmi";
 import { BY_CHAIN_ID, Token } from "#lib/token/config";
-import { WAGMI_CONFIG } from "#lib/utils/wagmi-config";
+import { WAGMI_CONFIG_PARAMS } from "#lib/utils/wagmi-config";
+
 import { fetchTokenInfoBulkAction, getTrustWalletIconUrl } from "./token";
 // Mock readContracts
 // vi.mock("@wagmi/core", () => ({
@@ -21,7 +22,7 @@ import { fetchTokenInfoBulkAction, getTrustWalletIconUrl } from "./token";
 describe("fetchTokenInfoBulkAction", () => {
 	test("should fetch token info for multiple tokens", async () => {
 		// Mock config
-		const config = WAGMI_CONFIG;
+		const config = createConfig(WAGMI_CONFIG_PARAMS);
 
 		// Test tokens
 		const tokens = [
@@ -31,7 +32,7 @@ describe("fetchTokenInfoBulkAction", () => {
 
 		const results = await fetchTokenInfoBulkAction(config, 1)(tokens);
 
-		console.log("results", results);
+		// console.log("results", results);
 		// Verify first token results
 		const token =
 			results["eip155:1/erc20:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"];

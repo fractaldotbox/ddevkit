@@ -25,7 +25,6 @@ export const formatUnitsWithLocale = ({
 		return "";
 	}
 	const e = Math.pow(10, exponent);
-
 	return formatNumberWithLocale({
 		value: Number(value) / e,
 		locale,

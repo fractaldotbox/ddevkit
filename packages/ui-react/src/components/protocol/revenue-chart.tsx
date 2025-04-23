@@ -53,68 +53,70 @@ export const RevenueChart = ({
 	);
 
 	return (
-		<ChartContainer
-			config={chartConfig}
-			style={{ height: "600px", width: "600px" }}
-			className="aspect-auto h-[250px] w-full"
-		>
-			<BarChart
-				accessibilityLayer
-				data={chartData}
-				margin={{
-					left: 12,
-					right: 12,
-				}}
+		<div className="w-full h-full" data-testid="revenue-chart">
+			<ChartContainer
+				config={chartConfig}
+				style={{ height: "600px", width: "600px" }}
+				className="aspect-auto h-[250px] w-full"
 			>
-				<CartesianGrid vertical={false} />
-				<XAxis
-					dataKey="date"
-					tickLine={false}
-					axisLine={false}
-					tickMargin={8}
-					minTickGap={32}
-					tickFormatter={(value) => {
-						const date = new Date(value);
-						return date.toLocaleDateString("en-US", {
-							month: "short",
-							day: "numeric",
-						});
+				<BarChart
+					accessibilityLayer
+					data={chartData}
+					margin={{
+						left: 12,
+						right: 12,
 					}}
-				/>
+				>
+					<CartesianGrid vertical={false} />
+					<XAxis
+						dataKey="date"
+						tickLine={false}
+						axisLine={false}
+						tickMargin={8}
+						minTickGap={32}
+						tickFormatter={(value) => {
+							const date = new Date(value);
+							return date.toLocaleDateString("en-US", {
+								month: "short",
+								day: "numeric",
+							});
+						}}
+					/>
 
-				{activeCharts.map((activeChart) => (
-					<>
-						<ChartTooltip
-							key={activeChart}
-							content={
-								<ChartTooltipContent
-									className="w-[150px]"
-									nameKey={activeChart}
-									labelFormatter={(date) => {
-										return new Date(date).toLocaleDateString("en-US", {
-											month: "short",
-											day: "numeric",
-											year: "numeric",
-										});
-									}}
-									formatter={(value, key) => {
-										return (
-											`${key}` +
-											formatNumberWithLocale({
-												value: value as number,
-												formatOptions: {
-													style: "currency",
-												},
-											})
-										);
-									}}
-								/>
-							}
-						/>
-						<Bar dataKey={activeChart} fill={`var(--color-${activeChart})`} />
-					</>
-				))}
-			</BarChart>
-		</ChartContainer>
+					{activeCharts.map((activeChart) => (
+						<>
+							<ChartTooltip
+								key={activeChart}
+								content={
+									<ChartTooltipContent
+										className="w-[150px]"
+										nameKey={activeChart}
+										labelFormatter={(date) => {
+											return new Date(date).toLocaleDateString("en-US", {
+												month: "short",
+												day: "numeric",
+												year: "numeric",
+											});
+										}}
+										formatter={(value, key) => {
+											return (
+												`${key}` +
+												formatNumberWithLocale({
+													value: value as number,
+													formatOptions: {
+														style: "currency",
+													},
+												})
+											);
+										}}
+									/>
+								}
+							/>
+							<Bar dataKey={activeChart} fill={`var(--color-${activeChart})`} />
+						</>
+					))}
+				</BarChart>
+			</ChartContainer>
+		</div>
 	);
 };
