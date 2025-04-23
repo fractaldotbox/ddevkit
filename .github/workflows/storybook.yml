@@ -41,7 +41,7 @@ jobs:
           path: apps/storybook/storybook-static
 
       - name: Install Playwright
-        run: pnpm playwright install --with-deps
+        run: pnpm exec playwright install --with-deps
 
       - name: Serve Storybook and run tests
         run: |
