@@ -132,6 +132,7 @@
 		"vite": "^5.4.1",
 		"vite-plugin-node-polyfills": "^0.22.0",
 		"vitest": "3.1.1",
-		"wagmi": "^2.12.16"
+		"wagmi": "^2.12.16",
+		"playwright": "^1.52.0"
 	}
 }
