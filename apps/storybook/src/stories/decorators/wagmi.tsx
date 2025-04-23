@@ -24,7 +24,7 @@ const createMockConfig = (
 	const config = createConfig({
 		...wagmiConfigParams,
 		connectors: [
-			...(wagmiConfigParams.connectors || []),
+			// ...(wagmiConfigParams.connectors || []),
 			mock({
 				accounts: [account?.address],
 				features: {},
