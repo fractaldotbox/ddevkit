@@ -1,10 +1,11 @@
 ---
-"@geist/ui-react": minor
-"@geist/domain": minor
-"@geist/graphql": minor
-"@geist/storybook": minor
-"@geist/docs": minor
-"@geist/registry": minor
+"@geist/ui-react": patch
+"@geist/ddev": patch
+"@geist/domain": patch
+"@geist/graphql": patch
+"@geist/storybook": patch
+"@geist/docs": patch
+"@geist/registry": patch
 ---
 
 init Beta launch 
