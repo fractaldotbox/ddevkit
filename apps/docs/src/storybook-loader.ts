@@ -20,27 +20,6 @@ export const fetchStories = async () => {
 	return Object.values(stories.entries);
 };
 
-export const fetchStoriesWithDoc = async () => {
-	const stories = (await fetchStories()) as StoryMeta[];
-
-	return stories.filter(filterStoryEntry).map((story: StoryMeta) => {
-		const { id, type, title } = story;
-
-		const component = stories.find((story: StoryMeta) => {
-			return story.title === title && story.type === "story";
-		});
-
-		return {
-			id,
-			slug: id,
-			...story,
-			name: component.name,
-			title: component.title,
-			componentPath: component?.componentPath || "",
-		};
-	});
-};
-
 export type StoryMeta = {
 	id: string;
 	type: string;
@@ -52,15 +31,30 @@ export type StoryMeta = {
 
 // Custom loader for Storybook components
 export const load = async (context): Promise<any> => {
-	const stories = (await fetchStoriesWithDoc()) as StoryMeta[];
+	const stories = (await fetchStories()) as StoryMeta[];
 
 	// Transform Storybook stories into Astro content entries
-	return stories.forEach((story: StoryMeta) => {
+	return stories.filter(filterStoryEntry).forEach((story: StoryMeta) => {
 		const { id, type, title } = story;
+
+		const component = stories.find((story: StoryMeta) => {
+			return story.title === title && story.type === "story";
+		});
+		// Extract component name and story title
+		const [componentName, storyTitle] = id.split("--");
+
+		// componentPath
+		// Transform story data into frontmatter for Starlight
+		const entry = {
+			id,
+			slug: id,
+			...story,
+			componentPath: component?.componentPath || "",
+		};
 
 		context.store.set({
 			id,
-			data: story,
+			data: entry,
 		});
 	});
 };

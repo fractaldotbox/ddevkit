@@ -1,16 +1,14 @@
+import react from "@astrojs/react";
 import starlight from "@astrojs/starlight";
 import tailwind from "@astrojs/tailwind";
 // @ts-check
 import { defineConfig, passthroughImageService } from "astro/config";
-import {
-	fetchStoriesWithDoc,
-	filterStoryEntry,
-} from "./src/storybook-loader.ts";
+import { fetchStories, filterStoryEntry } from "./src/storybook-loader.ts";
 
 const PUBLIC_DOC_SITE_URL = "https://ddev-storybook.geist.network";
 
 export const getSidebarComponentsSlugs = async () => {
-	const entries = await fetchStoriesWithDoc();
+	const entries = await fetchStories();
 	// Group entries by their title parts
 	const groupedEntries = entries
 		.filter(filterStoryEntry)
@@ -44,7 +42,7 @@ export const getSidebarComponentsSlugs = async () => {
 	}));
 };
 
-const components = await getSidebarComponentsSlugs();
+// const components = await getSidebarComponentsSlugs();
 
 // https://astro.build/config
 export default defineConfig({
@@ -72,10 +70,10 @@ export default defineConfig({
 					label: "Design",
 					autogenerate: { directory: "design" },
 				},
-				{
-					label: "Components",
-					items: components,
-				},
+				// {
+				// 	label: "Components",
+				// 	items: components,
+				// },
 				{
 					label: "Contributing",
 					autogenerate: { directory: "contributing" },
@@ -87,6 +85,7 @@ export default defineConfig({
 			// Disable the default base styles:
 			applyBaseStyles: true,
 		}),
+		react(),
 	],
 	image: {
 		service: passthroughImageService(),
