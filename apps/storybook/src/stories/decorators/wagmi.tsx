@@ -14,7 +14,7 @@ import {
 
 const createMockConfig = (
 	wagmiConfigParams: CreateConfigParameters,
-	isStable = true,
+	isStable = false,
 ) => {
 	const privateKey = isStable
 		? BY_USER.user.privateKey
