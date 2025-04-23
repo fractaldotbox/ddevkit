@@ -16,14 +16,14 @@ export const collections = {
 			xPost: z.string(),
 		}),
 	}),
-	// components: defineCollection({
-	// 	loader: storybookLoader(),
-	// 	schema: docsSchema({
-	// 		extend: z.object({
-	// 			name: z.string(),
-	// 			description: z.string(),
-	// 			componentPath: z.string(),
-	// 		}),
-	// 	}),
-	// }),
+	components: defineCollection({
+		loader: storybookLoader(),
+		schema: docsSchema({
+			extend: z.object({
+				name: z.string(),
+				description: z.string(),
+				componentPath: z.string(),
+			}),
+		}),
+	}),
 };
