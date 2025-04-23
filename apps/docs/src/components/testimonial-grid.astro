@@ -1,0 +1,92 @@
+---
+import { getCollection } from "astro:content";
+import { TestimonialCard } from "./testimonial-card";
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+const testimonials = await getCollection("testimonials");
+---
+
+<div class="testimonial-wrapper not-content" data-pagefind-ignore>
+	<h2 class="testimonial-grid-title">{title}</h2>
+	<div class="testimonial-grid">
+		<div class="testimonial-row">
+			{testimonials.map((testimonial) => (
+				<TestimonialCard 
+					name={testimonial.data.name} 
+					handle={testimonial.data.x} 
+					avatar={testimonial.data.xAvatar} 
+					xPost={testimonial.data.xPost} 
+					client:load
+				>
+					{testimonial.body}
+				</TestimonialCard>
+			))}
+			{/* Duplicate cards for seamless loop */}
+			{testimonials.map((testimonial) => (
+				<TestimonialCard 
+					name={testimonial.data.name} 
+					handle={testimonial.data.x} 
+					avatar={testimonial.data.xAvatar} 
+					xPost={testimonial.data.xPost} 
+					client:load
+				>
+					{testimonial.body}
+				</TestimonialCard>
+			))}
+		</div>
+	</div>
+</div>
+
+<style>
+	.testimonial-wrapper {
+		margin: 4rem 0;
+		overflow: hidden;
+	}
+
+	.testimonial-grid-title {
+		font-size: 1.5rem;
+		font-weight: 600;
+		margin-bottom: 2rem;
+		text-align: center;
+	}
+
+	.testimonial-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.testimonial-row {
+		display: flex;
+		gap: 2rem;
+		animation: scroll 40s linear infinite;
+		width: max-content;
+	}
+
+	@keyframes scroll {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-50%);
+		}
+	}
+
+	.testimonial-row:hover {
+		animation-play-state: paused;
+	}
+
+	@media (max-width: 768px) {
+		.testimonial-row {
+			animation: none;
+			display: grid;
+			grid-template-columns: 1fr;
+			width: 100%;
+		}
+	}
+</style> 

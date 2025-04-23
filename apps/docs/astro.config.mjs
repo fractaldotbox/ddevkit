@@ -1,3 +1,4 @@
+import react from "@astrojs/react";
 import starlight from "@astrojs/starlight";
 import tailwind from "@astrojs/tailwind";
 // @ts-check
@@ -50,6 +51,7 @@ const components = await getSidebarComponentsSlugs();
 export default defineConfig({
 	site: PUBLIC_DOC_SITE_URL,
 	integrations: [
+		react(),
 		starlight({
 			title: "dDevKit",
 			social: {
