@@ -1,7 +1,7 @@
 ---
 name: Lucas
 x: lucasonchain
-xAvatar: ''
+xAvatar: 'https://pbs.twimg.com/profile_images/1879118643944202240/sytHj71T_400x400.jpg'
 xPost: https://x.com/lucasonchain/status/1911321058353041453
 
 ---

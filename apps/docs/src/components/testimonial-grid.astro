@@ -9,29 +9,30 @@ interface Props {
 const { title } = Astro.props;
 
 const testimonials = await getCollection("testimonials");
-const firstRow = testimonials.slice(0, 2);
-const secondRow = testimonials.slice(2, 4);
 ---
 
 <div class="testimonial-wrapper not-content" data-pagefind-ignore>
 	<h2 class="testimonial-grid-title">{title}</h2>
 	<div class="testimonial-grid">
 		<div class="testimonial-row">
-			{firstRow.map((testimonial) => (
+			{testimonials.map((testimonial) => (
 				<TestimonialCard 
 					name={testimonial.data.name} 
-					twitter={testimonial.data.twitter} 
+					handle={testimonial.data.x} 
+					avatar={testimonial.data.xAvatar} 
+					xPost={testimonial.data.xPost} 
 					client:load
 				>
 					{testimonial.body}
 				</TestimonialCard>
 			))}
-		</div>
-		<div class="testimonial-row">
-			{secondRow.map((testimonial) => (
+			{/* Duplicate cards for seamless loop */}
+			{testimonials.map((testimonial) => (
 				<TestimonialCard 
 					name={testimonial.data.name} 
-					twitter={testimonial.data.twitter} 
+					handle={testimonial.data.x} 
+					avatar={testimonial.data.xAvatar} 
+					xPost={testimonial.data.xPost} 
 					client:load
 				>
 					{testimonial.body}
@@ -44,6 +45,7 @@ const secondRow = testimonials.slice(2, 4);
 <style>
 	.testimonial-wrapper {
 		margin: 4rem 0;
+		overflow: hidden;
 	}
 
 	.testimonial-grid-title {
@@ -60,14 +62,31 @@ const secondRow = testimonials.slice(2, 4);
 	}
 
 	.testimonial-row {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		display: flex;
 		gap: 2rem;
+		animation: scroll 40s linear infinite;
+		width: max-content;
+	}
+
+	@keyframes scroll {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-50%);
+		}
+	}
+
+	.testimonial-row:hover {
+		animation-play-state: paused;
 	}
 
 	@media (max-width: 768px) {
 		.testimonial-row {
+			animation: none;
+			display: grid;
 			grid-template-columns: 1fr;
+			width: 100%;
 		}
 	}
 </style> 
