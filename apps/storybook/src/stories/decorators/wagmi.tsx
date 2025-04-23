@@ -14,7 +14,7 @@ import {
 
 const createMockConfig = (
 	wagmiConfigParams: CreateConfigParameters,
-	isStable = false,
+	isStable = true,
 ) => {
 	const privateKey = isStable
 		? BY_USER.user.privateKey
@@ -24,7 +24,7 @@ const createMockConfig = (
 	const config = createConfig({
 		...wagmiConfigParams,
 		connectors: [
-			// ...(wagmiConfigParams.connectors || []),
+			...(wagmiConfigParams.connectors || []),
 			mock({
 				accounts: [account?.address],
 				features: {},
