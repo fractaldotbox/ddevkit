@@ -9,7 +9,7 @@ import {
 } from "#components/shadcn/chart";
 import { Skeleton } from "#components/shadcn/skeleton";
 
-type TvlHistoricalChartProps = {
+type ChainTvlHistoricalChartProps = {
 	chainId: string;
 	title?: string;
 	color?: string;
@@ -22,7 +22,7 @@ export type DefiLlamaTvlDataPoint = {
 
 const chartConfig = {} satisfies ChartConfig;
 
-async function getTvlHistoricalChartData(
+async function getChainTvlHistoricalChartData(
 	chainId: string,
 ): Promise<DefiLlamaTvlDataPoint[]> {
 	const response = await fetch(
@@ -37,14 +37,14 @@ async function getTvlHistoricalChartData(
 	return data as DefiLlamaTvlDataPoint[];
 }
 
-export function TvlHistoricalChart({
+export function ChainTvlHistoricalChart({
 	chainId,
 	title,
 	color,
-}: TvlHistoricalChartProps) {
+}: ChainTvlHistoricalChartProps) {
 	const { data, isLoading } = useQuery({
-		queryKey: ["tvl-historical-chart", chainId],
-		queryFn: () => getTvlHistoricalChartData(chainId),
+		queryKey: ["chain-tvl-historical-chart", chainId],
+		queryFn: () => getChainTvlHistoricalChartData(chainId),
 	});
 
 	const formatDate = (timestamp: number) => {
@@ -78,7 +78,7 @@ export function TvlHistoricalChart({
 	return (
 		<div
 			className="flex flex-col gap-2 items-center"
-			data-testid="tvl-historical-chart"
+			data-testid="chain-tvl-historical-chart"
 		>
 			{title && <div className="text-lg font-bold">{title}</div>}
 			<ChartContainer

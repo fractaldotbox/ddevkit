@@ -1,17 +1,17 @@
-import { TvlHistoricalChart } from "@geist/ui-react/components/defi/tvl-historical-chart";
+import { ChainTvlHistoricalChart } from "@geist/ui-react/components/defi/chain-tvl-historical-chart";
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent } from "@storybook/test";
 import { withQueryClientProvider } from "#stories/decorators/wagmi.tsx";
 import { setupCanvas } from "../utils/test-utils";
 
 const meta = {
-	title: "DeFi/TvlHistoricalChart",
-	component: TvlHistoricalChart,
+	title: "DeFi/ChainTvlHistoricalChart",
+	component: ChainTvlHistoricalChart,
 	parameters: {
 		layout: "centered",
 	},
 	decorators: [withQueryClientProvider()],
-} satisfies Meta<typeof TvlHistoricalChart>;
+} satisfies Meta<typeof ChainTvlHistoricalChart>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -22,10 +22,10 @@ export const EthereumMainnet: Story = {
 		title: "Ethereum TVL",
 		color: "#5470FF",
 	},
-	play: async ({ canvasElement }) => {
+	play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
 		const { canvas } = await setupCanvas(canvasElement, 3000);
 
-		const chart = await canvas.findByTestId("tvl-historical-chart");
+		const chart = await canvas.findByTestId("chain-tvl-historical-chart");
 		await expect(chart).toBeInTheDocument();
 
 		const title = await canvas.findByText("Ethereum TVL");
