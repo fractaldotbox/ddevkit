@@ -168,7 +168,7 @@ export function ProtocolTvlHistoricalChart({
 						type="monotone"
 						dataKey="tvl"
 						strokeWidth={2}
-						stroke={color ?? "#2563eb"}
+						stroke={color}
 						dot={false}
 					/>
 				</LineChart>
