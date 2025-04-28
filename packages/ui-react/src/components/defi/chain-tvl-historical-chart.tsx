@@ -1,3 +1,4 @@
+import { formatNumberWithLocale } from "@geist/domain/amount";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
@@ -8,7 +9,6 @@ import {
 	ChartTooltipContent,
 } from "#components/shadcn/chart";
 import { Skeleton } from "#components/shadcn/skeleton";
-import { formatNumberWithLocale } from "@geist/domain/amount";
 
 type ChainTvlHistoricalChartProps = {
 	chainId: string;
