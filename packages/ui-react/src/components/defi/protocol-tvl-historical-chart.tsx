@@ -46,8 +46,6 @@ async function getProtocolTvlHistoricalChartData(
 
 	const data = (await response.json()) as ProtocolData;
 
-	console.log(data);
-
 	// If chainName is specified, only include data for that chain
 	if (data.tvl) {
 		const chainData = data.tvl;
