@@ -23,7 +23,6 @@ type UploadResponse = {
 
 export type UploadDropzoneProps = {
 	uploadFiles: ({ files }: { files: File[] }) => Promise<any>;
-	filePrefix?: string;
 	isAcceptMultiple?: boolean;
 	isAcceptDirectory?: boolean;
 };
@@ -36,7 +35,6 @@ const UploadDropzone = (props: UploadDropzoneProps) => {
 		{},
 	);
 
-	const filePrefix = props.filePrefix || "";
 	const {
 		uploadFiles,
 		isAcceptMultiple = true,
@@ -93,12 +91,7 @@ const UploadDropzone = (props: UploadDropzoneProps) => {
 	const uploadFilesCallback = async (
 		files: File[],
 	): Promise<UploadResponse> => {
-		console.log("upload file", files);
-
-		// TODO handle filePrefix
-
 		const results = await uploadFiles({ files });
-		console.log("results", results);
 		return {
 			success: !!results?.data?.Hash,
 			message: "File uploaded successfully",
