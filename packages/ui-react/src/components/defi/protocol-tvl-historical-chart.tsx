@@ -116,7 +116,7 @@ export function ProtocolTvlHistoricalChart({
 		}));
 	}, [data]);
 
-	const displayTitle = useMemo(() => {
+	const displayedTitle = useMemo(() => {
 		if (title) return title;
 		return protocolId;
 	}, [title, protocolId]);
@@ -128,7 +128,9 @@ export function ProtocolTvlHistoricalChart({
 			className="flex flex-col gap-2 items-center"
 			data-testid="protocol-tvl-historical-chart"
 		>
-			{displayTitle && <div className="text-lg font-bold">{displayTitle}</div>}
+			{displayedTitle && (
+				<div className="text-lg font-bold">{displayedTitle}</div>
+			)}
 			<ChartContainer
 				config={chartConfig}
 				// cannot use tailwind here
