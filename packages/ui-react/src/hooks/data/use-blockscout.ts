@@ -3,9 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import {
 	type GetTxnByFilterQuery,
 	asTransactionMeta,
+	getSingleNFTMetadata,
 	getTransaction,
 	getTxnsByFilter,
 } from "#lib/blockscout/api";
+import type { Address } from "viem";
 
 export const CACHE_KEY = "blockscout";
 
@@ -27,6 +29,19 @@ export const useGetTransactions = (query: GetTxnByFilterQuery) => {
 			// TODO: implement pagination with API calls
 			if (!!results) return results.items;
 			return [];
+		},
+	});
+};
+
+export const useGetSingleNFTMetadata = (
+	contractAddress: Address,
+	tokenId: string,
+) => {
+	return useQuery({
+		queryKey: [`${CACHE_KEY}.transactions`, contractAddress, tokenId],
+		queryFn: async () => {
+			const results = await getSingleNFTMetadata(contractAddress, tokenId);
+			return results;
 		},
 	});
 };
