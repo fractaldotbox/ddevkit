@@ -8,6 +8,7 @@ import {
 	ChartTooltipContent,
 } from "#components/shadcn/chart";
 import { Skeleton } from "#components/shadcn/skeleton";
+import { formatNumberWithLocale } from "@geist/domain/amount";
 
 type ProtocolTvlHistoricalChartProps = {
 	protocol: string;
@@ -81,13 +82,12 @@ async function getProtocolTvlHistoricalChartData(
 
 export function ProtocolTvlHistoricalChart({
 	protocol: protocolId,
-	chainName,
 	title,
 	color,
 }: ProtocolTvlHistoricalChartProps) {
 	const { data, isLoading } = useQuery({
-		queryKey: ["protocol-tvl-historical-chart", protocolId, chainName],
-		queryFn: () => getProtocolTvlHistoricalChartData(protocolId, chainName),
+		queryKey: ["protocol-tvl-historical-chart", protocolId],
+		queryFn: () => getProtocolTvlHistoricalChartData(protocolId),
 	});
 
 	const formatDate = (timestamp: number) => {
@@ -95,14 +95,16 @@ export function ProtocolTvlHistoricalChart({
 	};
 
 	const formatTvl = (value: number) => {
-		if (value >= 1e9) {
-			return `$${(value / 1e9).toFixed(2)}B`;
-		} else if (value >= 1e6) {
-			return `$${(value / 1e6).toFixed(2)}M`;
-		} else if (value >= 1e3) {
-			return `$${(value / 1e3).toFixed(2)}K`;
-		}
-		return `$${value.toFixed(2)}`;
+		return formatNumberWithLocale({
+			value,
+			locale: new Intl.Locale("en-US"),
+			formatOptions: {
+				style: "currency",
+				currency: "USD",
+				notation: "compact",
+				compactDisplay: "short",
+			},
+		});
 	};
 
 	const formattedTvlData = useMemo(() => {
@@ -116,9 +118,8 @@ export function ProtocolTvlHistoricalChart({
 
 	const displayTitle = useMemo(() => {
 		if (title) return title;
-		if (chainName) return `${protocolId} (${chainName})`;
 		return protocolId;
-	}, [title, protocolId, chainName]);
+	}, [title, protocolId]);
 
 	if (isLoading) return <Skeleton className="h-[400px] w-[600px]" />;
 
