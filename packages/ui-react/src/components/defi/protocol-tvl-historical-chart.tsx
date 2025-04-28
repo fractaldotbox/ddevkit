@@ -74,8 +74,10 @@ async function getProtocolTvlHistoricalChartData(
 		}
 	});
 
-	// Sort by date
-	return tvlData.sort((a, b) => a.date - b.date);
+	const sortByDate = (a: ProtocolTvlDataPoint, b: ProtocolTvlDataPoint) =>
+		a.date - b.date;
+
+	return tvlData.sort(sortByDate);
 }
 
 export function ProtocolTvlHistoricalChart({

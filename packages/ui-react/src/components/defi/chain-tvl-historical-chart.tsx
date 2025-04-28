@@ -68,12 +68,15 @@ export function ChainTvlHistoricalChart({
 	const formattedTvlData = useMemo(() => {
 		if (!data) return [];
 
-		return data
-			.map((dataPoint) => ({
-				date: dataPoint.date,
-				tvl: dataPoint.tvl,
-			}))
-			.sort((a, b) => a.date - b.date);
+		const mapTvlDataPoint = (dataPoint: DefiLlamaTvlDataPoint) => ({
+			date: dataPoint.date,
+			tvl: dataPoint.tvl,
+		});
+
+		const sortByDate = (a: DefiLlamaTvlDataPoint, b: DefiLlamaTvlDataPoint) =>
+			a.date - b.date;
+
+		return data.map(mapTvlDataPoint).sort(sortByDate);
 	}, [data]);
 
 	if (isLoading) return <Skeleton className="h-[400px] w-[600px]" />;
