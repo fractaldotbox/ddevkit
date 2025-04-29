@@ -2,10 +2,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { type ZodType, z } from "zod";
 
-import { FileInputField } from "@geist/ui-react/components/file/file-input-field";
 import type { DownloadProgress } from "ky";
 import React from "react";
 import { toast } from "sonner";
+import { FileInputField } from "#components/file/file-input-field";
 import { Button } from "#components/shadcn/button";
 import {
 	Form,
