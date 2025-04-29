@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import config from "@geist/domain/config";
+import UploadDropzone from "@geist/ui-react/components/filecoin/UploadDropzone";
 import { uploadFiles } from "@geist/ui-react/lib/filecoin/lighthouse/browser";
 import { withToaster } from "../decorators/toaster";
-import UploadDropzone from "./UploadDropzone";
+
 import { uploadSuccessToast } from "./upload-toast";
 
 const meta = {
