@@ -15,7 +15,7 @@ import {
 	type UploadFilesParams,
 	UploadForm,
 	UploadFormType,
-} from "@geist/ui-react/components/filecoin/UploadForm";
+} from "@geist/ui-react/components/filecoin/upload-form";
 import { withToaster } from "../decorators/toaster";
 import { uploadSuccessToast } from "./upload-toast";
 
