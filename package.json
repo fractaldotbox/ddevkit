@@ -3,6 +3,8 @@
 	"private": true,
 	"scripts": {
 		"build": "turbo build",
+		"changeset:publish": "changeset publish",
+		"changeset:version": "changeset version",
 		"dev": "turbo dev",
 		"dev:loose": "turbo dev --env-mode=loose",
 		"check": "biome check . --no-errors-on-unmatched",
