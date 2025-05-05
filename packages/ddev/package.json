@@ -1,5 +1,6 @@
 {
 	"name": "@geist/ddev",
+	"private": true,
 	"version": "0.0.1",
 	"description": "Add components and utils to your dApps and agent",
 	"publishConfig": {
