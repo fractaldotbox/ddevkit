@@ -1,10 +1,10 @@
 import { Upload, X } from "lucide-react";
 import type React from "react";
 import { useCallback, useRef, useState } from "react";
-import { Alert, AlertDescription } from "#components/ui/alert";
-import { Button } from "#components/ui/button";
-import { Card } from "#components/ui/card";
-import { Progress } from "#components/ui/progress";
+import { Alert, AlertDescription } from "#components/shadcn/alert";
+import { Button } from "#components/shadcn/button";
+import { Card } from "#components/shadcn/card";
+import { Progress } from "#components/shadcn/progress";
 
 type FileWithPreview = File & {
 	preview: string;
@@ -23,6 +23,7 @@ type UploadResponse = {
 
 export type UploadDropzoneProps = {
 	uploadFiles: ({ files }: { files: File[] }) => Promise<any>;
+	filePrefix?: string;
 	isAcceptMultiple?: boolean;
 	isAcceptDirectory?: boolean;
 };
@@ -35,6 +36,7 @@ const UploadDropzone = (props: UploadDropzoneProps) => {
 		{},
 	);
 
+	const filePrefix = props.filePrefix || "";
 	const {
 		uploadFiles,
 		isAcceptMultiple = true,
@@ -91,7 +93,12 @@ const UploadDropzone = (props: UploadDropzoneProps) => {
 	const uploadFilesCallback = async (
 		files: File[],
 	): Promise<UploadResponse> => {
+		console.log("upload file", files);
+
+		// TODO handle filePrefix
+
 		const results = await uploadFiles({ files });
+		console.log("results", results);
 		return {
 			success: !!results?.data?.Hash,
 			message: "File uploaded successfully",

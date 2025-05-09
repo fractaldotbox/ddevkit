@@ -63,8 +63,7 @@ export const AttestationForm = ({
 				? getShortHex(uid)
 				: `attested ${txnReceipt?.transactionHash}`;
 
-			toast.success({
-				title: "Attestation success",
+			toast.success("Attestation success", {
 				description,
 				action: (
 					<ToastAction altText="View on EASSCAN">
