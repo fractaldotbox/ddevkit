@@ -4,6 +4,7 @@ import type {
 } from "@geist/domain/transaction/transaction";
 import { type Address, parseUnits } from "viem";
 import * as chains from "viem/chains";
+import type { NFTResponse } from "./types";
 
 const chainIdToApiRoot: any = {
 	[chains.mainnet.id]: "https://eth.blockscout.com/api/",
@@ -80,6 +81,16 @@ export const getTransaction = async (txnHash: string, chainId?: number) => {
 		chainId,
 	);
 	return invokeApi(endpoint);
+};
+
+export const getSingleNFTMetadata = async (
+	contractAddress: Address,
+	tokenId: string,
+	chainId?: number,
+) => {
+	return invokeApi(
+		`${chainIdToApiRoot[chainId || chains.mainnet.id]}v2/tokens/${contractAddress}/instances/${tokenId}`,
+	) as Promise<NFTResponse>;
 };
 
 export interface GetTxnByFilterQuery {
