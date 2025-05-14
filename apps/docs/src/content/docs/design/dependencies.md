@@ -15,6 +15,8 @@ In the web context, dependencies make the bundle larger and the site slower.  [I
 In the context of autonomous agent, a simple package-lock.json is not sufficient to guarantee your agent keep running autonomously and safely. As dev we are just tired of [dependency hell](https://en.wikipedia.org/wiki/Dependency_hell).
 As we argued in [Architecture](/design/architecture/), the challenge is even more prominent for diverse, decentralized agents than dApps.
 
+Check out Extraordinary work at by paulmillr at [scure](https://github.com/paulmillr/scure-base).
+
 
 
 ## Immutability
