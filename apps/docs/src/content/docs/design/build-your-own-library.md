@@ -40,16 +40,16 @@ dDevKit aims to provide receipes with streamline library, also well maintained, 
 
 ---
 
-Below section illustrates some common problems in development across dApps and agents.
+## Common painpoints to be solved
 
-## Context of dApps 
+### Context of dApps 
 
 In Web3, there is an abundance of templates curated by various infra providers, mostly nextjs/tailwind based. Each boilerplate has different flavours from styling libraries, build process to choices of package manager. Often thare are overlapping and opionated modules such as graphql, caching and usage of ipfs gateway. 
 
 Headless components (as in shadcn) which are decoupled form styling with minimized dependencies serve as sharable canonical modules that can work out of the box as much as possible. We see the pattern beyond UI components but extendable to fullstack, as [permissionless](https://docs.pimlico.io/references/permissionless) serve as middleware that is agnostic to smart accounts, bundlers and paymasters. Curated working, tested receipes integrating different infrastructure will promote maximum resuse.
 
 
-## Context of Agents
+### Context of Agents
 
 Compared to usually single "official" dApp controlled by single team, environments of agent is much more diversed.
 
@@ -61,10 +61,10 @@ Decentralized agent often has its own runtime, codebase and typically equipped w
 https://microsoft.github.io/autogen/0.2/docs/Use-Cases/agent_chat/#diverse-applications-implemented-with-autogen
 ). 
 
-This imply each agent are on different versions of sdk to interact with protocols.
+This implies each agent are on different versions of sdk to interact with protocols.
 The fragmentation is reinforced by increasing number of agentic frameworks, each maintaining its own version of standalone boilerplate "adapter", such as framework-plugin-aave for yield farming on Aave.
 
- Common issues find by Developers
+Common issues find by Developers
 - module loading (commonjs/esm)
 - dependencies version conflicts
 - lack of long-term maintence commitment.
@@ -73,54 +73,10 @@ The fragmentation is reinforced by increasing number of agentic frameworks, each
 
 Examples include 
 - cdp agenkit requires [ethers v5 to support aave](https://github.com/coinbase/agentkit/issues/323)
-- Plugin for Storacha is highly similar at Eliza OS and CDP agentkit while effort is spent on commonjs handling.   
+- Plugin for Storacha is highly similar at Eliza OS and CDP agentkit, with main effort spent on commonjs handling in order to use ESM based library.   
 - `viem` code adapters at [goat-sdk](https://github.com/goat-sdk/goat/blob/main/typescript/packages/wallets/viem/src/ViemEVMWalletClient.ts
-), [agentkit](https://github.com/coinbase/agentkit/blob/main/typescript/agentkit/src/wallet-providers/viemWalletProvider.ts) can be generated and streamlined per application need 
+), [agentkit](https://github.com/coinbase/agentkit/blob/main/typescript/agentkit/src/wallet-providers/viemWalletProvider.ts) can actually be generated and streamlined per application need 
 
 We argue the problem is often application specific and it's most effective for developers 
-to take control and generate with LLM the desired adapters and capabilities for the agent, base on a well-documented canonical set of working receipes & libraries codebase. 
-
-Regardless agent framework or execution environment (e.g. TEE) in use, dependencies is minimized to avoid duplication and supply chain vulenerability.
-
-
-
-
-## Usage
-
-- Using Cli  to install utils and LLM to generate with building blocks.
-
-Streamline by deeper integration
-
-
-with a simple rpc , able to generate corresponding.
-
-
-
-<!-- For good or for the worse, there are too many frameworks in both web2 and web3, dApp or agents. -->
-
-
-
-
-
-
-<!-- 
-Start with some sensible defaults, then customize the components to your needs.
-
-Easy to Style: One of the drawbacks of packaging the components in an npm package is that the style is coupled with the implementation. The design of your components should be separate from their implementation.
-
-Secure: Avoid supply chain attack
-
-Faster: Build size is generally not the major concern given treeshaking at modern ESM, but we avoid duplications at various depenedencies such as having both jotai and zustand.
- -->
-
-
-
-<!-- We try to create headless, generic dApp components and agent utils that work well across different ecosystems.  
-Besides decoupling style and implementation as in shadcn, the bigger motivation is to support developing dApp and decentralized agents that are trustless, autonomous, secured from supply chain attacks with minimal dependencies.
-
-With Open Code we make it AI-ready and provide reasonable defaults allowing one to extend per need, enabling agents generating and iterating its own codebase.  -->
-
-
-
-
-<!-- despite numerous examples and demos created by dev rel teams they are often deprecated quickly, and often there is overempahsis on starter templates over well maintained modules. -->
+to take control and generate with LLM the desired adapters and capabilities for the agent, base on a well-documented canonical set of working receipes & libraries codebase.
+In such a way regardless of the agent framework or execution environment (e.g. TEE) in use, dependencies is minimized to avoid duplication and supply chain vulenerability.
