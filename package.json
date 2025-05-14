@@ -3,6 +3,8 @@
 	"private": true,
 	"scripts": {
 		"build": "turbo build",
+		"changeset:publish": "changeset publish",
+		"changeset:version": "changeset version",
 		"dev": "turbo dev",
 		"dev:loose": "turbo dev --env-mode=loose",
 		"check": "biome check . --no-errors-on-unmatched",
@@ -21,7 +23,7 @@
 	"devDependencies": {
 		"@0no-co/graphqlsp": "^1.12.15",
 		"@biomejs/biome": "^1.9.4",
-		"@changesets/cli": "^2.27.11",
+		"@changesets/cli": "^2.29.2",
 		"@geist/ddev": "link:packages/ddev",
 		"@graphql-codegen/cli": "^5.0.2",
 		"@graphql-codegen/introspection": "^4.0.3",

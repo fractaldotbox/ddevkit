@@ -109,7 +109,7 @@ export function YieldHistoricalChart({
 						type="monotone"
 						dataKey="apy"
 						strokeWidth={2}
-						stroke={color ?? "#2563eb"}
+						stroke={color}
 						dot={false}
 					/>
 				</LineChart>
