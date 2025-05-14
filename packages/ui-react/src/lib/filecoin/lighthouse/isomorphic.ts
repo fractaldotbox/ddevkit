@@ -1,12 +1,17 @@
 import kavach from "@lighthouse-web3/kavach";
 import lighthouse from "@lighthouse-web3/sdk";
-import type { IUploadProgressCallback } from "@lighthouse-web3/sdk/dist/types";
-import ky, { type DownloadProgress } from "ky";
+import type {
+	IFileUploadedResponse,
+	IUploadProgressCallback,
+} from "@lighthouse-web3/sdk/dist/types";
+import ky, { type Progress } from "ky";
 import { http, type Account, createWalletClient } from "viem";
 import { sepolia } from "viem/chains";
-import type { GatewayStrategy } from "#lib/filecoin/gateway-strategy";
 import { uploadFiles as uploadFilesLighthouse } from "#lib/filecoin/lighthouse/browser";
-// import { CID } from 'multiformats/cid'
+
+import fs from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
 
 // Supposedly lighthouse can be treeshake for node/browser, to be validated
 
@@ -43,7 +48,7 @@ export const signAuthMessage = async (account: any) => {
 
 	const { error, message } = authMessage;
 	if (error || !message) {
-		throw new Error("authMessage error" + error);
+		throw new Error(`authMessage error${error}`);
 	}
 
 	return client.signMessage({
@@ -60,23 +65,34 @@ export const signAuthMessage = async (account: any) => {
 export const uploadFiles = async (
 	files: File[],
 	apiKey: string,
-	uploadProgressCallback?: (data: DownloadProgress) => void,
+	uploadProgressCallback?: (data: Progress) => void,
 ): Promise<any> => {
-	let output;
+	let output: { data: IFileUploadedResponse };
+	if (files.length < 1) {
+		throw new Error("No files provided");
+	}
 
-	if (window) {
+	if (global.window) {
 		output = await uploadFilesLighthouse<false>({
-			files,
+			files: files as File[],
 			config: {
 				accessToken: apiKey,
 			},
 			uploadProgressCallback,
 		});
 	} else {
-		// currently accept first file as folder
-		const [file] = files;
+		// uploadBuffer do not support progress. write to temp dir for now
+		const [file] = files as [File];
+
+		const tempDir = os.tmpdir();
+		const uniqueId = `${Date.now()}-${Math.random().toString(36).substring(2, 15)}`;
+		const tempFilePath = path.join(tempDir, `${uniqueId}-${file.name}`);
+
+		// Write file to temp location
+		await fs.writeFile(tempFilePath, Buffer.from(await file.arrayBuffer()));
+
 		output = await lighthouse.upload(
-			file,
+			tempFilePath,
 			apiKey,
 			undefined,
 			(data: IUploadProgressCallback) => {
@@ -97,19 +113,18 @@ export const uploadFiles = async (
 	return {
 		name: output.data.Name,
 		cid: output.data.Hash,
-		size: parseInt(output.data.Size, 10),
+		size: Number.parseInt(output.data.Size, 10),
 	};
 };
 
 export const retrievePoDsi = async (cid: string) => {
-	let response = await ky.get(`${LIGHTHOUSE_API_ROOT}/get_proof`, {
+	const response = await ky.get(`${LIGHTHOUSE_API_ROOT}/get_proof`, {
 		searchParams: {
 			cid,
 			network: "testnet", // Change the network to mainnet when ready
 		},
 	});
-	const data = await response.json();
-	return JSON.parse(data);
+	return await response.json();
 };
 
 // .uploadText has no deal params options
@@ -126,7 +141,7 @@ export const uploadText = async (text: string, apiKey: string) => {
 	return {
 		name: data.Name,
 		cid: data.Hash,
-		size: parseInt(data.Size, 10),
+		size: Number.parseInt(data.Size, 10),
 	};
 };
 
@@ -151,8 +166,8 @@ export const uploadEncryptedFileWithText = async (
 	};
 };
 
-export const getLighthouseGatewayUrl: GatewayStrategy = (cid: string) => {
-	return "https://gateway.lighthouse.storage/ipfs/" + cid;
+export const getLighthouseGatewayUrl = (cid: string) => {
+	return `https://gateway.lighthouse.storage/ipfs/${cid}`;
 };
 
 export const retrieveFile = async (cid: string) => {

@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { type ZodType, z } from "zod";
 
-import type { DownloadProgress } from "ky";
+import ky, { type Progress as UploadProgress } from "ky";
 import React from "react";
 import { toast } from "sonner";
 import { FileInputField } from "#components/file/file-input-field";
@@ -30,7 +30,7 @@ Sed in faucibus ipsum. In in arcu ornare, maximus eros ac, volutpat turpis. Maec
 `;
 
 export type UploadFilesParams<T> = T & {
-	uploadProgressCallback?: (data: DownloadProgress) => void;
+	uploadProgressCallback?: (data: UploadProgress) => void;
 };
 
 export type UploadFormParams<T> = {
@@ -236,7 +236,7 @@ export const UploadFormWithFields = <S extends ZodType<any, any, any>>({
 			percent: 0.001,
 		});
 
-		const uploadProgressCallback = (data: DownloadProgress) => {
+		const uploadProgressCallback = (data: UploadProgress) => {
 			setProgress(data);
 		};
 		toast.success("You submitted the following values:", {
