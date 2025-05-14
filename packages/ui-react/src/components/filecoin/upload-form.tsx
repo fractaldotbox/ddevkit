@@ -2,11 +2,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { type ZodType, z } from "zod";
 
-import { FileInputField } from "@geist/ui-react/components/file/file-input-field";
-import type { DownloadProgress } from "ky";
+import ky, { type Progress as UploadProgress } from "ky";
 import React from "react";
 import { toast } from "sonner";
-import { Button } from "#components/ui/button";
+import { FileInputField } from "#components/file/file-input-field";
+import { Button } from "#components/shadcn/button";
 import {
 	Form,
 	FormControl,
@@ -15,9 +15,9 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "#components/ui/form";
-import { Progress } from "#components/ui/progress";
-import { Textarea } from "#components/ui/textarea";
+} from "#components/shadcn/form";
+import { Progress } from "#components/shadcn/progress";
+import { Textarea } from "#components/shadcn/textarea";
 
 const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper porttitor massa, non placerat dolor rutrum vel. Morbi eu elit vitae odio hendrerit mollis. Proin at nibh auctor, laoreet ante vel, commodo leo. Sed viverra neque id lectus dictum, non accumsan tortor rhoncus. Fusce consectetur est vitae viverra pellentesque. Nunc pharetra felis libero, at rhoncus est euismod et. Morbi ac ultrices lectus, quis commodo eros. Etiam vestibulum finibus imperdiet. Nulla dictum tempor neque ac varius.
 Duis sed malesuada odio. Aenean fermentum tristique nunc a dictum. Donec posuere varius pharetra. Sed vitae nisi leo. Nam eget velit id erat sagittis molestie. Fusce feugiat turpis nec neque sodales, sit amet lobortis velit tempus. Curabitur nisi quam, consectetur in velit ac, gravida convallis ante. Etiam condimentum, ligula ut pharetra vehicula, odio ligula laoreet sem, et convallis metus mauris ut tellus. Fusce libero risus, vulputate a suscipit commodo, tincidunt vel ex. Duis quis ultrices ex, in feugiat dolor. Nullam ultrices lorem augue, ac pellentesque velit finibus vel.
@@ -30,7 +30,7 @@ Sed in faucibus ipsum. In in arcu ornare, maximus eros ac, volutpat turpis. Maec
 `;
 
 export type UploadFilesParams<T> = T & {
-	uploadProgressCallback?: (data: DownloadProgress) => void;
+	uploadProgressCallback?: (data: UploadProgress) => void;
 };
 
 export type UploadFormParams<T> = {
@@ -236,11 +236,10 @@ export const UploadFormWithFields = <S extends ZodType<any, any, any>>({
 			percent: 0.001,
 		});
 
-		const uploadProgressCallback = (data: DownloadProgress) => {
+		const uploadProgressCallback = (data: UploadProgress) => {
 			setProgress(data);
 		};
-		toast.success({
-			title: "You submitted the following values:",
+		toast.success("You submitted the following values:", {
 			description: (
 				<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
 					<code className="text-white">{JSON.stringify(data, null, 2)}</code>

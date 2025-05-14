@@ -65,8 +65,7 @@ export const useUploadAttestationWithLighthouse = ({
 					accountAddress,
 					signedMessage,
 				);
-				toast.success({
-					title: `Encrypted Upload Successful for file : ${name}`,
+				toast.success(`Encrypted Upload Successful for file : ${name}`, {
 					description: getLighthouseGatewayUrl(cid),
 				});
 			} else {
@@ -74,8 +73,7 @@ export const useUploadAttestationWithLighthouse = ({
 					JSON.stringify(compiledPayload),
 					lighthouseApiKey,
 				);
-				toast.success({
-					title: `Upload Successful for file : ${name}`,
+				toast.success(`Upload Successful for file : ${name}`, {
 					description: getLighthouseGatewayUrl(cid),
 				});
 			}

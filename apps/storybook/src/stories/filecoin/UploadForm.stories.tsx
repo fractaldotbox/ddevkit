@@ -11,12 +11,12 @@ import {
 	uploadFiles as uploadFilesStoracha,
 } from "@geist/ui-react/lib/filecoin/storacha/isomorphic";
 
-import { withToaster } from "../decorators/toaster";
 import {
 	type UploadFilesParams,
 	UploadForm,
 	UploadFormType,
-} from "./UploadForm";
+} from "@geist/ui-react/components/filecoin/upload-form";
+import { withToaster } from "../decorators/toaster";
 import { uploadSuccessToast } from "./upload-toast";
 
 import config from "@geist/domain/config";

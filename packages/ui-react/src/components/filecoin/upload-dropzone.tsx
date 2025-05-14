@@ -1,10 +1,10 @@
 import { Upload, X } from "lucide-react";
 import type React from "react";
 import { useCallback, useRef, useState } from "react";
-import { Alert, AlertDescription } from "#components/ui/alert";
-import { Button } from "#components/ui/button";
-import { Card } from "#components/ui/card";
-import { Progress } from "#components/ui/progress";
+import { Alert, AlertDescription } from "#components/shadcn/alert";
+import { Button } from "#components/shadcn/button";
+import { Card } from "#components/shadcn/card";
+import { Progress } from "#components/shadcn/progress";
 
 type FileWithPreview = File & {
 	preview: string;
